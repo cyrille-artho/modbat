@@ -5,7 +5,42 @@ import modbat.cov.TransitionCoverage
 import modbat.RequirementFailedException
 import scala.language.implicitConversions
 
+object Model {
+  // TODO: if not run in Modbat main thread, also handle assertion failure
+  // by setting testFailed and triggering error trace display in Modbat
+  // main loop
+  // requires synchronization on a global lock
+  def assert(assertion: Boolean, message: Any): Unit = {
+    if (!assertion) {
+      // if in different thread, set testHasFailed
+      // do not set this flag in Modbat thread as functions that are
+      // expected to throw an assertion failure would otherwise mistakenly
+      // mark a test as failed
+      if (Thread.currentThread != MBT.modbatThread) {
+	MBT.synchronized {
+	  val e = new AssertionError("Assertion failed in Thread " +
+				     Thread.currentThread.getName)
+	  MBT.externalException = e
+	  MBT.testHasFailed = true
+	}
+      }
+      if (message == null) {
+	scala.Predef.assert(false)
+      } else {
+	scala.Predef.assert(false, message)
+      }
+    }
+  }
+
+  def assert(assertion: Boolean): Unit = assert(assertion, null)
+}
+
 abstract trait Model {
+  def assert(assertion: Boolean): Unit = Model.assert(assertion, null)
+
+  def assert(assertion: Boolean, message: Any): Unit =
+    Model.assert(assertion, message)
+
   var efsm: MBT = null
 
   def getCurrentState = efsm.getCurrentState
@@ -57,34 +92,6 @@ abstract trait Model {
   }
 
   def require(requirement: Boolean): Unit = require(requirement, null)
-
-  // TODO: if not run in Modbat main thread, also handle assertion failure
-  // by setting testFailed and triggering error trace display in Modbat
-  // main loop
-  // requires synchronization on a global lock
-  def assert(assertion: Boolean, message: Any): Unit = {
-    if (!assertion) {
-      // if in different thread, set testHasFailed
-      // do not set this flag in Modbat thread as functions that are
-      // expected to throw an assertion failure would otherwise mistakenly
-      // mark a test as failed
-      if (Thread.currentThread != MBT.modbatThread) {
-	MBT.synchronized {
-	  val e = new AssertionError("Assertion failed in Thread " +
-				     Thread.currentThread.getName)
-	  MBT.externalException = e
-	  MBT.testHasFailed = true
-	}
-      }
-      if (message == null) {
-	scala.Predef.assert(false)
-      } else {
-	scala.Predef.assert(false, message)
-      }
-    }
-  }
-
-  def assert(assertion: Boolean): Unit = assert(assertion, null)
 
   type AnyFunc = () => Any
   def choose(actions: AnyFunc*): Any = {
