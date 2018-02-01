@@ -179,7 +179,7 @@ class Dotify(val model: MBT, outFile: String = "") {
   def dotify(coverage: Boolean = false) {
     out.println("digraph model {")
     out.println("  orientation = landscape;")
-    out.println("  graph [ rankdir = \"TB\", sep=\"0.5\", nodesep=\"0.2\" ];")
+    out.println("  graph [ rankdir = \"TB\", ranksep=\"0.4\", nodesep=\"0.2\" ];")
     out.println("  node [ fontname = \"Helvetica\", fontsize=\"12.0\"," +
 		" margin=\"0.07\" ];")
     out.println("  edge [ fontname = \"Helvetica\", fontsize=\"12.0\"," +
