@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<project name="sysconf" basedir=".">
+  <target name="scala-home">
+    <exec executable="/usr/bin/which" output="SCALA_BIN">
+      <arg value="scala" />
+    </exec>
+    <loadfile property="scala.home" srcFile="SCALA_BIN">
+      <filterchain>
+	<striplinebreaks />
+	<tokenfilter> 
+	  <replaceregex pattern="/bin/scala$" replace="" />
+	</tokenfilter> 
+      </filterchain>
+    </loadfile>
+    <echo message="scala.home is ${scala.home}." />
+    <delete file="SCALA_BIN" />
+  </target>
+
+  <target name="scala-version" depends="scala-home">
+    <exec executable="${scala.home}/bin/scala" output="SCALA_VERSION">
+      <arg value="-version" />
+    </exec>
+    <loadfile property="scala.version" srcFile="SCALA_VERSION">
+      <filterchain>
+	<striplinebreaks />
+	<tokenfilter> 
+	  <replaceregex pattern=".*version " replace="" />
+	  <replaceregex pattern=" --.*" replace="" />
+	  <replaceregex pattern="([^.]*\.[^.]*).*" replace="\1" />
+	</tokenfilter> 
+      </filterchain>
+    </loadfile>
+    <echo message="scala.version is ${scala.version}." />
+    <delete file="SCALA_VERSION" />
+    <condition property="scalatest.jar"
+	       value="tools/scalatest_2.11-2.1.5.jar">
+      <equals arg1="${scala.version}" arg2="2.11" />
+    </condition>
+    <condition property="scalatest.jar"
+	       value="tools/scalatest_2.10-1.9.1.jar">
+      <equals arg1="${scala.version}" arg2="2.10" />
+    </condition>
+    <condition property="scalatest.jar"
+	       value="tools/scalatest_2.9.0-1.9.1.jar">
+      <equals arg1="${scala.version}" arg2="2.9" />
+    </condition>
+    <echo message="scalatest library is ${scalatest.jar}." />
+  </target>
+
+  <target name="scala-library" depends="scalalib-find">
+    <delete file="SCALA_LIBRARY" />
+    <echo message="Scala libraries found at ${scala-librarypath}." />
+    <echo message="${scala-librarypath}"
+	  file="scala-lib-path" />
+  </target>
+
+  <target name="scalalib-default" depends="scala-home,scala-version">
+    <available file="${scala.home}/lib/scala-library.jar"
+	       property="scala-librarypath"
+	       value="${scala.home}/lib" />
+  </target>
+
+  <target name="scalalib-find" depends="scalalib-find1"
+	  unless="scala-librarypath">
+    <loadfile property="scala-librarypath" srcFile="SCALA_LIBRARY">
+      <filterchain>
+	<striplinebreaks />
+	<linecontains>
+	  <contains value="scala-library.jar" />
+	</linecontains>
+	<tokenfilter> 
+	  <replaceregex pattern="/scala-library.jar" replace="" />
+	</tokenfilter>
+      </filterchain>
+    </loadfile>
+  </target>
+
+  <target name="scalalib-find1" depends="scalalib-default"
+	  unless="scala-librarypath">
+    <exec executable="/usr/bin/find" output="SCALA_LIBRARY" logError="yes">
+      <arg value="${scala.home}" />
+      <arg value="-name" />
+      <arg value="scala-library.jar" />
+    </exec>
+    <loadfile property="scala-librarypath" srcFile="SCALA_LIBRARY">
+      <filterchain>
+	<striplinebreaks />
+	<linecontains>
+	  <contains value="${scala.version}" />
+	</linecontains>
+	<tokenfilter> 
+	  <replaceregex pattern="/scala-library.jar" replace="" />
+	</tokenfilter>
+      </filterchain>
+    </loadfile>
+  </target>
+</project>

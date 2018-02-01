@@ -1,0 +1,106 @@
+Modbat history
+
+Version	Description
+
+1.0.0	Initial release. Built against Scala 2.9.2.
+
+1.0.1	Fixed bug about reporting on classes with empty package names.
+
+1.0.2	Fixed typo in example/improvements in documentation.
+
+-- 1.2 series --
+
+1.2.0	Internally used version. Features off-line code generation.
+	Built against Scala 2.10.0.
+
+1.2.1	Fixed typo in example/improvements in documentation.
+
+-- 1.3 series --
+
+1.3.0	Added optional label for actions.
+	Better error handling for invalid model classes.
+	Generating meaningful labels automatically for dot output when
+	no user-defined label is given.
+	Fixed bug where some transitions would not be shown in dot output.
+
+-- 1.4 series --
+
+1.4.0	Added optional weight for transitions.
+	Changed behavior of random seed option (-s) for small numbers
+	to avoid poor distributions in random values.
+	Fixed bug where some transitions would be shown twice in dot output.
+	Fixed bug in state coverage count in case launch was used.
+	Defined and implemented more precise semantics for @Before/@After
+	  when child instances are launched.
+	Fixed bug where IllegalArgumentException was misclassified as a
+	  failed requirement.
+
+1.4.1	Added "chooseIf", which takes a list of predicates and actions,
+	and chooses one of the actions of which the predicate is true
+	(or none if no predicate is true).
+	Fixed bug where coverage information was not always correct.
+
+-- 1.5 series --
+
+1.5.0	Added "@States" annotation, which allows the specification of
+	self-loop transitions for multiple given states, by annotating
+	a method.
+	A failed transition action is now reported by its stack trace
+	information rather than by reflection, which pinpoints the
+	right source line of the failing last transition.
+
+1.5.1	Minor bug fixes.
+
+1.5.2	Various bug fixes regarding the output of "@States" transitions.
+
+-- 2.0 series --
+
+2.0.0	Annotations are now in upper case (thus models using annotations
+	are not compatible between 1.X and 2.X).
+	Added support for "@Throws", "@Weight" annotations for methods
+	using "@States".
+	Added support for showing coverage information of all launched
+	(child) models, too, both as summary and as dot output.
+	REMOVED option dot-file as it does not work for multiple outputs.
+	Added option dot-dir to set output directory for dot files.
+	Added API functions getRandomSeed, testFailed.
+
+2.1.0	Initial support for Observer state machines.
+	Added option --show-choices, which shows choices taken inside
+	a transition (in the error trace).
+	Rewrote code that handles requirements/assertions for:
+	- more fine-grained control of model/SUT-level requirements, and
+	- ability to handle assertion failures in other threads.
+
+2.2.0	More UML-like visualization of state graph.
+
+-- 3.0 series --
+
+3.0	Simplified model syntax; less boilerplate code and no commas
+	between transitions needed.
+	REMOVED empty transitions (use "skip") and singleton models.
+	- Remove "def instance = new MBT" from old models.
+	- Change "Set[State]" to "List[State]" to ensure correct ordering.
+	- To convert singleton models, keep annotated Init/Shutdown and
+	  related code in companion object but move model to dynamic
+	  instance (class).
+
+3.1	Added a classification of test failures based on the exact
+        exception and the transition in which they occurred.
+	Added a feature to trace model variables using annotation @Trace.
+
+3.2	- After a declared exception is caught, the next transition is
+	  executed on the same model, so the successive action appears
+	  to execute atomically with the action that caught the exception..
+	  This helps with dealing with exceptions in models that have
+	  multiple active instance. A non-atomic catch can be modeled
+	  by inserting an additional "skip" transition.
+	- Coverage now shows the percentage of all times a given edge
+	  was taken (for non-zero coverage).
+	- Print a warning if test has to be aborted because all
+	  preconditions of all available transitions are false.
+	- Added "join(Model)", which blocks the given model until the
+	  target model has terminated. Note that termination does not
+	  recognize transitions with impossible preconditions, but
+	  only models with no outgoing transitions or where the loop
+	  limit is reached.

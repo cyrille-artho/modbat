@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+<project name="modbat" default="jar" basedir=".">
+  <import file="sysconf.xml" />
+  <property name="src.dir" value="src/scala"/>
+  <property name="build.dir" value="build"/>
+  <property name="log.dir" value="log"/>
+
+  <target name="init" depends="scala-home,scala-version,scala-library">
+    <path id="project.classpath">
+      <pathelement location="${scala-librarypath}/scala-library.jar" />
+      <pathelement location="${build.dir}"/>
+      <pathelement location="lib/asm-4.0.jar"/>
+      <pathelement location="lib/junit-4.11.jar"/>
+    </path>
+    <taskdef resource="scala/tools/ant/antlib.xml">
+      <classpath>
+	<fileset dir="${scala-librarypath}" includes="*.jar" />
+      </classpath>
+    </taskdef>
+  </target>
+
+  <target name="hash">
+    <loadfile srcfile="git-hash" property="hash">
+      <filterchain>
+	<striplinebreaks/>
+      </filterchain>
+    </loadfile>
+  </target>
+
+  <target name="compile-java">
+    <mkdir dir="${build.dir}"/>
+    <javac srcdir="${src.dir}" destdir="${build.dir}"
+     classpathref="project.classpath">
+      <include name="**/*.java"/>
+    </javac>
+  </target>
+
+  <target name="compile"
+    depends="init,compile-java,compile-scala,compile-offline" />
+
+  <target name="compile-scala" depends="init,compile-java">
+    <scalac srcdir="${src.dir}" destdir="${build.dir}"
+     classpathref="project.classpath" force="changed">
+      <include name="modbat/**/*.scala"/>
+    </scalac>
+    <scalac srcdir="${src.dir}" destdir="${build.dir}"
+     classpathref="project.classpath" force="changed">
+      <include name="NoPackage.scala"/>
+    </scalac>
+  </target>
+
+  <target name="compile-offline" depends="init,compile-java">
+  </target>
+
+  <target name="delete-jar">
+  </target>
+
+  <target name="jar"
+    depends="app-jar,config-jar,offline-jar,examples-jar,test-jar">
+  </target>
+
+
+  <target name="prep-jar" depends="compile,delete-jar,hash">
+    <mkdir dir="${build.dir}/"/>
+    <copy file="LICENSE" todir="${build.dir}"/>
+    <copy file="README" todir="${build.dir}"/>
+    <copy file="CHANGELOG" todir="${build.dir}"/>
+    <copy todir="${build.dir}">
+      <fileset dir="lib" includes="*-LICENSE"/>
+    </copy>
+    <loadfile srcfile="${src.dir}/modbat/mbt/VERSION" property="modbat.mbt.version">
+      <filterchain>
+	<striplinebreaks/>
+      </filterchain>
+    </loadfile>
+    <loadfile srcfile="${src.dir}/modbat/config/VERSION" property="modbat.config.version">
+      <filterchain>
+	<striplinebreaks/>
+      </filterchain>
+    </loadfile>
+  </target>
+
+  <target name="app-jar" depends="prep-jar,config-jar">
+    <jar jarfile="${build.dir}/modbat.jar">
+      <manifest>
+  	<attribute name="Main-Class" value="modbat.mbt.Main"/>
+        <section name="modbat/mbt/">
+	  <attribute name="Specification-Title"
+	    value="Modbat: A model-based tester" />
+	  <attribute name="Specification-Vendor" value="AIST" />
+	  <attribute name="Specification-Version"
+	    value="${modbat.mbt.version}" />
+	  <attribute name="Implementation-Title" value="Modbat" />
+	  <attribute name="Implementation-Vendor" value="AIST" />
+	  <attribute name="Implementation-Version" value="${hash}" />
+	</section>
+      </manifest>
+      <fileset dir="${build.dir}"
+       includes="modbat/**/*.class,*LICENSE,README,CHANGELOG"
+       excludes="modbat/test/*.class,modbat/config/*.class,modbat/examples/*.class,modbat/ModelTemplate*.*"/>
+      <zipgroupfileset dir="lib" includes="asm-4.0.jar" />
+      <zipgroupfileset dir="${build.dir}" includes="config.jar" />
+    </jar>
+  </target>
+
+  <target name="config-jar" depends="prep-jar">
+    <jar jarfile="${build.dir}/config.jar">
+      <manifest>
+  	<attribute name="Main-Class" value="modbat.config.ConfigMgr"/>
+        <section name="modbat/config/">
+	  <attribute name="Specification-Title"
+	    value="ConfigMgr: Configuration Manager" />
+	  <attribute name="Specification-Vendor" value="AIST" />
+	  <attribute name="Specification-Version"
+	    value="${modbat.config.version}" />
+	  <attribute name="Implementation-Title" value="modbat.config" />
+	  <attribute name="Implementation-Vendor" value="AIST" />
+	  <attribute name="Implementation-Version" value="${hash}" />
+	</section>
+      </manifest>
+      <fileset dir="${build.dir}"
+	includes="modbat/config/*.class,LICENSE,modbat/util,modbat/util/FieldUtil*.class" />
+    </jar>
+  </target>
+
+  <target name="offline-jar" depends="prep-jar">
+  </target>
+
+  <target name="examples-jar" depends="compile">
+    <delete file="${build.dir}/modbat-examples.jar"/>
+    <delete dir="${build.dir}/examples-jar"/>
+    <mkdir dir="${build.dir}/examples-jar"/>
+    <copy todir="${build.dir}/examples-jar">
+     <fileset dir="${src.dir}"
+      includes="modbat/ModelTemplate.scala,modbat/examples/*.scala,modbat/examples/*.java" />
+    </copy>
+    <copy todir="${build.dir}/examples-jar/modbat">
+     <fileset dir="." includes="LICENSE,README"/>
+    </copy>
+    <move todir="${build.dir}/examples-jar/modbat">
+      <fileset dir="${build.dir}/modbat"
+       includes="ModelTemplate*.class,examples/*.class" />
+    </move>
+    <zip destfile="${build.dir}/modbat-examples.jar"
+      basedir="${build.dir}/examples-jar">
+    </zip>
+    <!-- move compiled files back to original place to avoid re-compilation -->
+    <move todir="${build.dir}/modbat">
+      <fileset dir="${build.dir}/examples-jar/modbat"
+       includes="**/*.class"/>
+    </move>
+  </target>
+
+  <!-- Test cases; not for redestribution -->
+  <target name="test-jar" depends="compile">
+    <zip destfile="${build.dir}/modbat-test.jar">
+      <fileset dir="${build.dir}"
+	includes="modbat/test/*.class,NoPackage*.class" />
+    </zip>
+  </target>
+
+  <target name="clean">
+    <delete dir="${build.dir}"/>
+    <delete file="scala-lib-path"/>
+    <delete failonerror="false">
+      <fileset dir="${log.dir}" includes="**/*.log"/>
+      <fileset dir="${log.dir}">
+	<include name="**/*.err"/>
+	<!-- exclude files that start with a hex char and have at least
+	     three characters because they are error trace files that
+	     should be preserved -->
+	<!-- regexp cannot be used with ant here, hence 16 patterns -->
+	<exclude name="**/0??*.err"/>
+	<exclude name="**/1??*.err"/>
+	<exclude name="**/2??*.err"/>
+	<exclude name="**/3??*.err"/>
+	<exclude name="**/4??*.err"/>
+	<exclude name="**/5??*.err"/>
+	<exclude name="**/6??*.err"/>
+	<exclude name="**/7??*.err"/>
+	<exclude name="**/8??*.err"/>
+	<exclude name="**/9??*.err"/>
+	<exclude name="**/a??*.err"/>
+	<exclude name="**/b??*.err"/>
+	<exclude name="**/c??*.err"/>
+	<exclude name="**/d??*.err"/>
+	<exclude name="**/e??*.err"/>
+	<exclude name="**/f??*.err"/>
+      </fileset>
+      <fileset dir="." includes="*.dot"/>
+    </delete>
+  </target>
+
+</project>
