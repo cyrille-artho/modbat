@@ -1,0 +1,11 @@
+[WARNING] java.lang.AssertionError: assertion failed: n = 2 occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed: n = 2
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.ChooseInBefore.assert(ChooseInBefore.scala)
+[ERROR] 	at modbat.test.ChooseInBefore$$anonfun$1.apply$mcV$sp(ChooseInBefore.scala)
+[ERROR] 	at modbat.test.ChooseInBefore$$anonfun$1.apply(ChooseInBefore.scala)
+[ERROR] 	at modbat.test.ChooseInBefore$$anonfun$1.apply(ChooseInBefore.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/ChooseInBefore.scala:14: assert; choices = (2)

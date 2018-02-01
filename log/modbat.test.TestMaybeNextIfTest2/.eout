@@ -1,0 +1,48 @@
+[WARNING] Next state predicate #1 was false in online testing but is true now.
+[WARNING] Ignoring different return value in offline test.
+[WARNING] The remaining test execution may produce different results.
+[WARNING] Next state predicate #2 was true in online testing but is false now.
+[WARNING] Ignoring different return value in offline test.
+[WARNING] The remaining test execution may produce different results.
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2.assert(MaybeNextIfTest2.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2$$anonfun$5.apply$mcV$sp(MaybeNextIfTest2.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2$$anonfun$5.apply(MaybeNextIfTest2.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2$$anonfun$5.apply(MaybeNextIfTest2.scala)
+[WARNING] Next state predicate #1 was false in online testing but is true now.
+[WARNING] Ignoring different return value in offline test.
+[WARNING] The remaining test execution may produce different results.
+[WARNING] Next state predicate #2 was true in online testing but is false now.
+[WARNING] Ignoring different return value in offline test.
+[WARNING] The remaining test execution may produce different results.
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2.assert(MaybeNextIfTest2.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2$$anonfun$5.apply$mcV$sp(MaybeNextIfTest2.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2$$anonfun$5.apply(MaybeNextIfTest2.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2$$anonfun$5.apply(MaybeNextIfTest2.scala)
+[WARNING] Next state predicate #1 was false in online testing but is true now.
+[WARNING] Ignoring different return value in offline test.
+[WARNING] The remaining test execution may produce different results.
+[WARNING] Next state predicate #1 was false in online testing but is true now.
+[WARNING] Ignoring different return value in offline test.
+[WARNING] The remaining test execution may produce different results.
+[WARNING] Next state predicate #2 was true in online testing but is false now.
+[WARNING] Ignoring different return value in offline test.
+[WARNING] The remaining test execution may produce different results.
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2.assert(MaybeNextIfTest2.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2$$anonfun$5.apply$mcV$sp(MaybeNextIfTest2.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2$$anonfun$5.apply(MaybeNextIfTest2.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2$$anonfun$5.apply(MaybeNextIfTest2.scala)

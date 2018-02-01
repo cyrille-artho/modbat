@@ -1,0 +1,2 @@
+[WARNING] Deadlock: Some models stuck waiting for another model to finish.
+[WARNING] modbat.test.NoSelfJoin-1: modbat/test/NoSelfJoin.scala:7: join

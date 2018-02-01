@@ -1,0 +1,144 @@
+[WARNING] java.lang.AssertionError: assertion failed: Cannot mkdir "0/1/4" occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed: Cannot mkdir "0/1/4"
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.SimpleFileModel.assert(SimpleFileModel.scala)
+[ERROR] 	at modbat.test.SimpleFileModel$$anonfun$6.apply(SimpleFileModel.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-1: skip
+[WARNING] modbat/test/SimpleFileModel.scala:34: modbat.test.SimpleFileModel-1: launch; choices = (0.42469475)
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-1: require
+[WARNING] modbat/test/SimpleFileModel.scala:45: modbat.test.SimpleFileModel-1: launch; choices = (0, 0.052770555)
+[WARNING] modbat/test/SimpleFileModel.scala:49: modbat.test.SimpleFileModel-1: skip
+[WARNING] modbat/test/SimpleFileModel.scala:50: modbat.test.SimpleFileModel-1: println
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-2: skip
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-2: require
+[WARNING] modbat/test/SimpleFileModel.scala:45: modbat.test.SimpleFileModel-2: launch; choices = (1, 0.116557345)
+[WARNING] modbat/test/SimpleFileModel.scala:50: modbat.test.SimpleFileModel-1: println
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-4: skip
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-3: skip
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-4: require
+[WARNING] modbat/test/SimpleFileModel.scala:49: modbat.test.SimpleFileModel-3: skip
+[WARNING] modbat/test/SimpleFileModel.scala:45: modbat.test.SimpleFileModel-4: launch; choices = (1, 0.47003296)
+[WARNING] modbat/test/SimpleFileModel.scala:50: modbat.test.SimpleFileModel-1: println
+[WARNING] modbat/test/SimpleFileModel.scala:49: modbat.test.SimpleFileModel-2: skip
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-5: skip
+[WARNING] modbat/test/SimpleFileModel.scala:37: modbat.test.SimpleFileModel-5: launch
+Cannot create file "0/1/2/5"
+[WARNING] java.io.IOException: Not a directory occurred, aborting.
+[ERROR] java.io.IOException: Not a directory
+[ERROR] 	at java.io.UnixFileSystem.createFileExclusively(Native Method)
+[ERROR] 	at java.io.File.createNewFile(File.java)
+[ERROR] 	at modbat.test.SimpleFileModel$$anonfun$4.apply$mcV$sp(SimpleFileModel.scala)
+[ERROR] 	at modbat.test.SimpleFileModel$$anonfun$4.apply(SimpleFileModel.scala)
+[ERROR] 	at modbat.test.SimpleFileModel$$anonfun$4.apply(SimpleFileModel.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-1: skip
+[WARNING] modbat/test/SimpleFileModel.scala:34: modbat.test.SimpleFileModel-1: launch; choices = (0.47383475)
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-1: require
+[WARNING] modbat/test/SimpleFileModel.scala:45: modbat.test.SimpleFileModel-1: launch; choices = (0, 0.49744096)
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-1: require
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-3: skip
+[WARNING] modbat/test/SimpleFileModel.scala:34: modbat.test.SimpleFileModel-3: launch; choices = (0.6462358)
+[WARNING] modbat/test/SimpleFileModel.scala:45: modbat.test.SimpleFileModel-1: launch; choices = (0, 0.091820545)
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-4: skip
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-3: require
+[WARNING] modbat/test/SimpleFileModel.scala:49: modbat.test.SimpleFileModel-4: skip
+[WARNING] modbat/test/SimpleFileModel.scala:50: modbat.test.SimpleFileModel-4: println
+[WARNING] modbat/test/SimpleFileModel.scala:64: modbat.test.SimpleFileModel-4: skip
+[WARNING] modbat/test/SimpleFileModel.scala:49: modbat.test.SimpleFileModel-1: skip
+[WARNING] modbat/test/SimpleFileModel.scala:50: modbat.test.SimpleFileModel-1: println
+[WARNING] modbat/test/SimpleFileModel.scala:64: modbat.test.SimpleFileModel-1: skip
+[WARNING] modbat/test/SimpleFileModel.scala:45: modbat.test.SimpleFileModel-3: launch; choices = (1, 0.75484973)
+[WARNING] modbat/test/SimpleFileModel.scala:49: modbat.test.SimpleFileModel-3: skip
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-2: skip
+[WARNING] modbat/test/SimpleFileModel.scala:64: modbat.test.SimpleFileModel-3: skip
+[WARNING] modbat/test/SimpleFileModel.scala:34: modbat.test.SimpleFileModel-2: launch; choices = (0.19486848)
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-2: require
+[WARNING] modbat/test/SimpleFileModel.scala:45: modbat.test.SimpleFileModel-2: launch; choices = (3, 0.051386885)
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-6: skip
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-2: require
+[WARNING] modbat/test/SimpleFileModel.scala:49: modbat.test.SimpleFileModel-6: skip
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-5: skip
+[WARNING] modbat/test/SimpleFileModel.scala:64: modbat.test.SimpleFileModel-6: skip
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-5: require
+[WARNING] modbat/test/SimpleFileModel.scala:45: modbat.test.SimpleFileModel-2: launch; choices = (3, 0.9979433)
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-2: require
+[WARNING] modbat/test/SimpleFileModel.scala:45: modbat.test.SimpleFileModel-5: launch; choices = (0, 0.2412326)
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-7: skip
+[WARNING] modbat/test/SimpleFileModel.scala:49: modbat.test.SimpleFileModel-5: skip
+[WARNING] modbat/test/SimpleFileModel.scala:64: modbat.test.SimpleFileModel-5: skip
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-7: require
+[WARNING] modbat/test/SimpleFileModel.scala:45: modbat.test.SimpleFileModel-7: launch; choices = (0, 0.897156)
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-7: require
+[WARNING] modbat/test/SimpleFileModel.scala:45: modbat.test.SimpleFileModel-2: launch; choices = (2, 0.0067829136)
+[WARNING] modbat/test/SimpleFileModel.scala:49: modbat.test.SimpleFileModel-2: skip
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-8: skip
+[WARNING] modbat/test/SimpleFileModel.scala:64: modbat.test.SimpleFileModel-2: skip
+[WARNING] modbat/test/SimpleFileModel.scala:49: modbat.test.SimpleFileModel-8: skip
+[WARNING] modbat/test/SimpleFileModel.scala:54: modbat.test.SimpleFileModel-8: println
+[WARNING] java.lang.AssertionError: assertion failed: Cannot mkdir "1/2" occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed: Cannot mkdir "1/2"
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.SimpleFileModel.assert(SimpleFileModel.scala)
+[ERROR] 	at modbat.test.SimpleFileModel$$anonfun$6.apply(SimpleFileModel.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-1: skip
+[WARNING] modbat/test/SimpleFileModel.scala:34: modbat.test.SimpleFileModel-1: launch; choices = (0.052770555)
+[WARNING] modbat/test/SimpleFileModel.scala:49: modbat.test.SimpleFileModel-1: skip
+[WARNING] modbat/test/SimpleFileModel.scala:50: modbat.test.SimpleFileModel-1: println
+[WARNING] modbat/test/SimpleFileModel.scala:64: modbat.test.SimpleFileModel-1: skip
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-2: skip
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-2: require
+[WARNING] modbat/test/SimpleFileModel.scala:45: modbat.test.SimpleFileModel-2: launch; choices = (0, 0.091820545)
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-3: skip
+[WARNING] modbat/test/SimpleFileModel.scala:37: modbat.test.SimpleFileModel-3: launch
+Cannot create file "3/6"
+[WARNING] java.io.IOException: Not a directory occurred, aborting.
+[ERROR] java.io.IOException: Not a directory
+[ERROR] 	at java.io.UnixFileSystem.createFileExclusively(Native Method)
+[ERROR] 	at java.io.File.createNewFile(File.java)
+[ERROR] 	at modbat.test.SimpleFileModel$$anonfun$4.apply$mcV$sp(SimpleFileModel.scala)
+[ERROR] 	at modbat.test.SimpleFileModel$$anonfun$4.apply(SimpleFileModel.scala)
+[ERROR] 	at modbat.test.SimpleFileModel$$anonfun$4.apply(SimpleFileModel.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-1: skip
+[WARNING] modbat/test/SimpleFileModel.scala:34: modbat.test.SimpleFileModel-1: launch; choices = (0.24076776)
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-2: skip
+[WARNING] modbat/test/SimpleFileModel.scala:34: modbat.test.SimpleFileModel-2: launch; choices = (0.6462358)
+[WARNING] modbat/test/SimpleFileModel.scala:34: modbat.test.SimpleFileModel-1: launch; choices = (0.6110733)
+[WARNING] modbat/test/SimpleFileModel.scala:49: modbat.test.SimpleFileModel-2: skip
+[WARNING] modbat/test/SimpleFileModel.scala:50: modbat.test.SimpleFileModel-2: println
+[WARNING] modbat/test/SimpleFileModel.scala:64: modbat.test.SimpleFileModel-2: skip
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-1: require
+[WARNING] modbat/test/SimpleFileModel.scala:45: modbat.test.SimpleFileModel-1: launch; choices = (3, 0.3496365)
+[WARNING] modbat/test/SimpleFileModel.scala:34: modbat.test.SimpleFileModel-1: launch; choices = (0.074869335)
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-1: require
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-4: skip
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-4: require
+[WARNING] modbat/test/SimpleFileModel.scala:45: modbat.test.SimpleFileModel-4: launch; choices = (3, 0.17113267)
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-5: skip
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-3: skip
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-4: require
+[WARNING] modbat/test/SimpleFileModel.scala:49: modbat.test.SimpleFileModel-5: skip
+[WARNING] modbat/test/SimpleFileModel.scala:45: modbat.test.SimpleFileModel-1: launch; choices = (4, 0.09513232)
+[WARNING] modbat/test/SimpleFileModel.scala:50: modbat.test.SimpleFileModel-5: println
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-6: skip
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-3: require
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-1: require
+[WARNING] modbat/test/SimpleFileModel.scala:64: modbat.test.SimpleFileModel-5: skip
+[WARNING] modbat/test/SimpleFileModel.scala:45: modbat.test.SimpleFileModel-3: launch; choices = (0, 0.3503109)
+[WARNING] modbat/test/SimpleFileModel.scala:45: modbat.test.SimpleFileModel-4: launch; choices = (2, 0.98873675)
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-3: require
+[WARNING] modbat/test/SimpleFileModel.scala:45: modbat.test.SimpleFileModel-1: launch; choices = (2, 0.9312955)
+[WARNING] modbat/test/SimpleFileModel.scala:49: modbat.test.SimpleFileModel-6: skip
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-1: require
+[WARNING] modbat/test/SimpleFileModel.scala:49: modbat.test.SimpleFileModel-4: skip
+[WARNING] modbat/test/SimpleFileModel.scala:64: modbat.test.SimpleFileModel-6: skip
+[WARNING] modbat/test/SimpleFileModel.scala:45: modbat.test.SimpleFileModel-1: launch; choices = (0, 0.33296603)
+[WARNING] modbat/test/SimpleFileModel.scala:45: modbat.test.SimpleFileModel-3: launch; choices = (2, 0.23164265)
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-1: require
+[WARNING] modbat/test/SimpleFileModel.scala:54: modbat.test.SimpleFileModel-4: println

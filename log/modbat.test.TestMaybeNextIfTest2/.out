@@ -1,0 +1,22 @@
+[FINE] Launching new model instance modbat.test.MaybeNextIfTest2-1...
+ok
+Result of call is false.
+ok
+Result of call is false.
+err2
+[FINE] Launching new model instance modbat.test.MaybeNextIfTest2-1...
+ok
+ok
+Result of call is false.
+ok
+Result of call is false.
+err2
+[FINE] Launching new model instance modbat.test.MaybeNextIfTest2-1...
+ok
+ok
+ok
+Result of call is false.
+ok
+Result of call is false.
+Result of call is false.
+err2

@@ -1,0 +1,20 @@
+[WARNING] Precondition fulfilled in online testing but violated in offline mode.
+[WARNING] Ignoring different exception occurrence in offline test.
+[WARNING] The remaining test execution may produce different results.
+[ERROR] modbat.RequirementFailedException: requirement failed
+[ERROR] 	at modbat.dsl.Model$class.require(Model.scala)
+[ERROR] 	at modbat.test.PrecondOffline.require(PrecondOffline.scala)
+[ERROR] 	at modbat.dsl.Model$class.require(Model.scala)
+[ERROR] 	at modbat.test.PrecondOffline.require(PrecondOffline.scala)
+[ERROR] 	at modbat.test.PrecondOffline$$anonfun$1.apply$mcV$sp(PrecondOffline.scala)
+[ERROR] 	at modbat.test.PrecondOffline$$anonfun$1.apply(PrecondOffline.scala)
+[ERROR] 	at modbat.test.PrecondOffline$$anonfun$1.apply(PrecondOffline.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.PrecondOffline.assert(PrecondOffline.scala)
+[ERROR] 	at modbat.test.PrecondOffline$$anonfun$2.apply$mcV$sp(PrecondOffline.scala)
+[ERROR] 	at modbat.test.PrecondOffline$$anonfun$2.apply(PrecondOffline.scala)
+[ERROR] 	at modbat.test.PrecondOffline$$anonfun$2.apply(PrecondOffline.scala)

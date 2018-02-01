@@ -1,0 +1,16 @@
+[WARNING] Exception of type java.io.IOException occurred in online testing but java.lang.Exception occurred now.
+[WARNING] Ignoring different exception occurrence in offline test.
+[WARNING] The remaining test execution may produce different results.
+[ERROR] java.lang.Exception: Offline...
+[ERROR] 	at modbat.test.ExcTestA5$$anonfun$1.apply$mcZ$sp(ExcTestA5.scala)
+[ERROR] 	at modbat.test.ExcTestA5$$anonfun$1.apply(ExcTestA5.scala)
+[ERROR] 	at modbat.test.ExcTestA5$$anonfun$1.apply(ExcTestA5.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.ExcTestA5.assert(ExcTestA5.scala)
+[ERROR] 	at modbat.test.ExcTestA5$$anonfun$2.apply$mcV$sp(ExcTestA5.scala)
+[ERROR] 	at modbat.test.ExcTestA5$$anonfun$2.apply(ExcTestA5.scala)
+[ERROR] 	at modbat.test.ExcTestA5$$anonfun$2.apply(ExcTestA5.scala)

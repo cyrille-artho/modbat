@@ -1,0 +1,12 @@
+       1 3ba471c1785a0175
+[FINE] Launching new model instance modbat.test.SUTReq-1...
+[FINE] modbat.test.SUTReq-1: Executing transition ok => err...
+[FINE] Precondition violated, backtracking to ok.
+[FINE] modbat.test.SUTReq-1: Executing transition ok => ok...
+[FINE] Precondition violated, backtracking to ok.
+[INFO] 1 tests executed, 1 ok, 0 failed.
+[INFO] 1 states covered (50 % out of 2),
+[INFO] 0 transitions covered (0 % out of 2).
+[INFO] Precondition 1 always failed at transition modbat/test/SUTReq.scala:8 require
+[INFO] Precondition 1 always passed at transition modbat/test/SUTReq.scala:10 fail
+[INFO] Random seed for next test would be: 402b73cd0066eaea

@@ -1,0 +1,20 @@
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.ChooseTest2.assert(ChooseTest2.scala)
+[ERROR] 	at modbat.test.ChooseTest2.use(ChooseTest2.scala)
+[ERROR] 	at modbat.test.ChooseTest2$$anonfun$1.apply$mcV$sp(ChooseTest2.scala)
+[ERROR] 	at modbat.test.ChooseTest2$$anonfun$1.apply(ChooseTest2.scala)
+[ERROR] 	at modbat.test.ChooseTest2$$anonfun$1.apply(ChooseTest2.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.ChooseTest2.assert(ChooseTest2.scala)
+[ERROR] 	at modbat.test.ChooseTest2.use(ChooseTest2.scala)
+[ERROR] 	at modbat.test.ChooseTest2$$anonfun$1.apply$mcV$sp(ChooseTest2.scala)
+[ERROR] 	at modbat.test.ChooseTest2$$anonfun$1.apply(ChooseTest2.scala)
+[ERROR] 	at modbat.test.ChooseTest2$$anonfun$1.apply(ChooseTest2.scala)
