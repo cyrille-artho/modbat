@@ -1,0 +1,63 @@
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.Child.assert(Child.scala)
+[ERROR] 	at modbat.test.Child$$anonfun$3.apply$mcV$sp(Child.scala)
+[ERROR] 	at modbat.test.Child$$anonfun$3.apply(Child.scala)
+[ERROR] 	at modbat.test.Child$$anonfun$3.apply(Child.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.ComplexLaunch.assert(ComplexLaunch.scala)
+[ERROR] 	at modbat.test.ComplexLaunch$$anonfun$2.apply$mcV$sp(ComplexLaunch.scala)
+[ERROR] 	at modbat.test.ComplexLaunch$$anonfun$2.apply(ComplexLaunch.scala)
+[ERROR] 	at modbat.test.ComplexLaunch$$anonfun$2.apply(ComplexLaunch.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.ComplexLaunch.assert(ComplexLaunch.scala)
+[ERROR] 	at modbat.test.ComplexLaunch$$anonfun$2.apply$mcV$sp(ComplexLaunch.scala)
+[ERROR] 	at modbat.test.ComplexLaunch$$anonfun$2.apply(ComplexLaunch.scala)
+[ERROR] 	at modbat.test.ComplexLaunch$$anonfun$2.apply(ComplexLaunch.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.Child.assert(Child.scala)
+[ERROR] 	at modbat.test.Child$$anonfun$3.apply$mcV$sp(Child.scala)
+[ERROR] 	at modbat.test.Child$$anonfun$3.apply(Child.scala)
+[ERROR] 	at modbat.test.Child$$anonfun$3.apply(Child.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.ComplexLaunch.assert(ComplexLaunch.scala)
+[ERROR] 	at modbat.test.ComplexLaunch$$anonfun$2.apply$mcV$sp(ComplexLaunch.scala)
+[ERROR] 	at modbat.test.ComplexLaunch$$anonfun$2.apply(ComplexLaunch.scala)
+[ERROR] 	at modbat.test.ComplexLaunch$$anonfun$2.apply(ComplexLaunch.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.Child.assert(Child.scala)
+[ERROR] 	at modbat.test.Child$$anonfun$3.apply$mcV$sp(Child.scala)
+[ERROR] 	at modbat.test.Child$$anonfun$3.apply(Child.scala)
+[ERROR] 	at modbat.test.Child$$anonfun$3.apply(Child.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.ComplexLaunch.assert(ComplexLaunch.scala)
+[ERROR] 	at modbat.test.ComplexLaunch$$anonfun$2.apply$mcV$sp(ComplexLaunch.scala)
+[ERROR] 	at modbat.test.ComplexLaunch$$anonfun$2.apply(ComplexLaunch.scala)
+[ERROR] 	at modbat.test.ComplexLaunch$$anonfun$2.apply(ComplexLaunch.scala)

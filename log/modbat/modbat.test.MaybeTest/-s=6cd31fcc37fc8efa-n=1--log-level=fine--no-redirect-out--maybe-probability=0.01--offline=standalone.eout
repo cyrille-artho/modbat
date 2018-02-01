@@ -1,0 +1,11 @@
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.MaybeTest.assert(MaybeTest.scala)
+[ERROR] 	at modbat.test.MaybeTest$$anonfun$2$$anonfun$apply$1.apply$mcV$sp(MaybeTest.scala)
+[ERROR] 	at modbat.test.MaybeTest$$anonfun$2$$anonfun$apply$1.apply(MaybeTest.scala)
+[ERROR] 	at modbat.test.MaybeTest$$anonfun$2$$anonfun$apply$1.apply(MaybeTest.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/MaybeTest.scala:10: assert; choices = (0.0010969304)

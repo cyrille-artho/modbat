@@ -1,0 +1,49 @@
+       1 3ba471c1785a0175
+7 dirs/files created.
+Deleting "6"
+Deleting "5"
+Deleting "4"
+Deleting "3"
+Deleting "2"
+Deleting "1"
+Deleting "0"
+       2 402b73cd0066eaea
+7 dirs/files created.
+Deleting "0/3/6"
+Deleting "0/3/5"
+rmdir "0/3/4"
+rmdir "0/3"
+rmdir "0/2"
+rmdir "1"
+rmdir "0"
+       3 41530f4040856586
+4 dirs/files created.
+Deleting "0/3"
+Deleting "0/2"
+Deleting "0/1"
+rmdir "0"
+       4  89a82931be29e65, one test failed.
+7 dirs/files created.
+Deleting "0/6"
+Deleting "0/5"
+Deleting "0/4"
+Deleting "0/3"
+rmdir "0/2"
+Deleting "0/1"
+rmdir "0"
+       5 49a846e52b813972, one test failed.
+7 dirs/files created.
+Deleting "6"
+Deleting "5"
+rmdir "4"
+rmdir "0/3"
+rmdir "0/2"
+rmdir "0/1"
+rmdir "0"
+[INFO] 5 tests executed, 4 ok, 1 failed.
+[INFO] One type of test failure:
+[INFO] 1) java.lang.AssertionError: assertion failed: Cannot mkdir "0/1/4" at launch
+[INFO]    41530f4040856586
+[INFO] 5 states covered (100 % out of 5),
+[INFO] 7 transitions covered (100 % out of 7).
+[INFO] Random seed for next test would be: 27fe2d950fc74b21

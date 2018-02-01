@@ -1,0 +1,142 @@
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GetState4.assert(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply$mcV$sp(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply(GetState4.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/GetState4.scala:14: assert
+[WARNING] modbat/test/GetState4.scala:7: invariantCheck
+[WARNING] modbat/test/GetState4.scala:20: i = ...
+[WARNING] modbat/test/GetState4.scala:22: skip
+[WARNING] modbat/test/GetState4.scala:23: assert
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GetState4.assert(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply$mcV$sp(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply(GetState4.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/GetState4.scala:14: assert
+[WARNING] modbat/test/GetState4.scala:20: i = ...
+[WARNING] modbat/test/GetState4.scala:22: skip
+[WARNING] modbat/test/GetState4.scala:23: assert
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GetState4.assert(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply$mcV$sp(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply(GetState4.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/GetState4.scala:14: assert
+[WARNING] modbat/test/GetState4.scala:20: i = ...
+[WARNING] modbat/test/GetState4.scala:22: skip
+[WARNING] modbat/test/GetState4.scala:23: assert
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GetState4.assert(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply$mcV$sp(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply(GetState4.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/GetState4.scala:14: assert
+[WARNING] modbat/test/GetState4.scala:20: i = ...
+[WARNING] modbat/test/GetState4.scala:22: skip
+[WARNING] modbat/test/GetState4.scala:23: assert
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GetState4.assert(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply$mcV$sp(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply(GetState4.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/GetState4.scala:14: assert
+[WARNING] modbat/test/GetState4.scala:20: i = ...
+[WARNING] modbat/test/GetState4.scala:22: skip
+[WARNING] modbat/test/GetState4.scala:23: assert
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GetState4.assert(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply$mcV$sp(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply(GetState4.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/GetState4.scala:14: assert
+[WARNING] modbat/test/GetState4.scala:20: i = ...
+[WARNING] modbat/test/GetState4.scala:22: skip
+[WARNING] modbat/test/GetState4.scala:23: assert
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GetState4.assert(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply$mcV$sp(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply(GetState4.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/GetState4.scala:14: assert
+[WARNING] modbat/test/GetState4.scala:20: i = ...
+[WARNING] modbat/test/GetState4.scala:22: skip
+[WARNING] modbat/test/GetState4.scala:23: assert
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GetState4.assert(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply$mcV$sp(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply(GetState4.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/GetState4.scala:14: assert
+[WARNING] modbat/test/GetState4.scala:20: i = ...
+[WARNING] modbat/test/GetState4.scala:22: skip
+[WARNING] modbat/test/GetState4.scala:23: assert
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GetState4.assert(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply$mcV$sp(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply(GetState4.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/GetState4.scala:14: assert
+[WARNING] modbat/test/GetState4.scala:20: i = ...
+[WARNING] modbat/test/GetState4.scala:22: skip
+[WARNING] modbat/test/GetState4.scala:23: assert
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GetState4.assert(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply$mcV$sp(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply(GetState4.scala)
+[ERROR] 	at modbat.test.GetState4$$anonfun$5.apply(GetState4.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/GetState4.scala:14: assert
+[WARNING] modbat/test/GetState4.scala:20: i = ...
+[WARNING] modbat/test/GetState4.scala:7: invariantCheck
+[WARNING] modbat/test/GetState4.scala:22: skip
+[WARNING] modbat/test/GetState4.scala:23: assert

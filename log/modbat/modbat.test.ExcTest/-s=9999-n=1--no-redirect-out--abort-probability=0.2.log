@@ -1,0 +1,7 @@
+       1 ed445559b8a9cbed
+Online mode: not throwing exception.
+Online mode: not throwing exception.
+[INFO] 1 tests executed, 1 ok, 0 failed.
+[INFO] 1 states covered (50 % out of 2),
+[INFO] 1 transitions covered (33 % out of 3).
+[INFO] Random seed for next test would be: 3025fec5380340b9

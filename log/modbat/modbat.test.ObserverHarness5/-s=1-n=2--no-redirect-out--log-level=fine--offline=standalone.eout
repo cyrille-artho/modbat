@@ -1,0 +1,20 @@
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.TestObserver5.assert(TestObserver5.scala)
+[ERROR] 	at modbat.test.TestObserver5$$anonfun$3.apply$mcV$sp(TestObserver5.scala)
+[ERROR] 	at modbat.test.TestObserver5$$anonfun$3.apply(TestObserver5.scala)
+[ERROR] 	at modbat.test.TestObserver5$$anonfun$3.apply(TestObserver5.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/ObserverHarness5.scala:8: modbat.test.ObserverHarness5-1: launch
+[WARNING] modbat/test/ObserverHarness5.scala:11: modbat.test.ObserverHarness5-1: i
+[WARNING] modbat/test/TestObserver5.scala:9: modbat.test.TestObserver5-1: println
+[WARNING] modbat/test/ObserverHarness5.scala:11: modbat.test.ObserverHarness5-1: i
+[WARNING] modbat/test/TestObserver5.scala:14: modbat.test.TestObserver5-1: println
+[WARNING] modbat/test/TestObserver5.scala:19: modbat.test.TestObserver5-1: assert
+[WARNING] modbat/test/ObserverHarness5.scala:11: modbat.test.ObserverHarness5-1: i
+[WARNING] modbat/test/TestObserver5.scala:19: modbat.test.TestObserver5-1: assert
+[WARNING] modbat/test/ObserverHarness5.scala:11: modbat.test.ObserverHarness5-1: i
+[WARNING] modbat/test/TestObserver5.scala:19: modbat.test.TestObserver5-1: assert

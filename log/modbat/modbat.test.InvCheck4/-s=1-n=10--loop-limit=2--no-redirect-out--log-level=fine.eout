@@ -1,0 +1,140 @@
+[WARNING] java.lang.AssertionError: assertion failed: i = 0 occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed: i = 0
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.InvCheck4.assert(InvCheck4.scala)
+[ERROR] 	at modbat.test.InvCheck4.check(InvCheck4.scala)
+[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+[ERROR] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+[ERROR] 	at java.lang.reflect.Method.invoke(Method.java)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/InvCheck4.scala:15: skip
+[WARNING] modbat/test/InvCheck4.scala:9: check
+[WARNING] java.lang.AssertionError: assertion failed: i = 0 occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed: i = 0
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.InvCheck4.assert(InvCheck4.scala)
+[ERROR] 	at modbat.test.InvCheck4.check(InvCheck4.scala)
+[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+[ERROR] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+[ERROR] 	at java.lang.reflect.Method.invoke(Method.java)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/InvCheck4.scala:12: skip
+[WARNING] modbat/test/InvCheck4.scala:13: skip
+[WARNING] modbat/test/InvCheck4.scala:14: skip
+[WARNING] modbat/test/InvCheck4.scala:9: check
+[WARNING] java.lang.AssertionError: assertion failed: i = 0 occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed: i = 0
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.InvCheck4.assert(InvCheck4.scala)
+[ERROR] 	at modbat.test.InvCheck4.check(InvCheck4.scala)
+[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+[ERROR] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+[ERROR] 	at java.lang.reflect.Method.invoke(Method.java)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/InvCheck4.scala:15: skip
+[WARNING] modbat/test/InvCheck4.scala:9: check
+[WARNING] java.lang.AssertionError: assertion failed: i = 0 occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed: i = 0
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.InvCheck4.assert(InvCheck4.scala)
+[ERROR] 	at modbat.test.InvCheck4.check(InvCheck4.scala)
+[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+[ERROR] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+[ERROR] 	at java.lang.reflect.Method.invoke(Method.java)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/InvCheck4.scala:12: skip
+[WARNING] modbat/test/InvCheck4.scala:13: skip
+[WARNING] modbat/test/InvCheck4.scala:14: skip
+[WARNING] modbat/test/InvCheck4.scala:9: check
+[WARNING] java.lang.AssertionError: assertion failed: i = 0 occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed: i = 0
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.InvCheck4.assert(InvCheck4.scala)
+[ERROR] 	at modbat.test.InvCheck4.check(InvCheck4.scala)
+[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+[ERROR] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+[ERROR] 	at java.lang.reflect.Method.invoke(Method.java)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/InvCheck4.scala:12: skip
+[WARNING] modbat/test/InvCheck4.scala:13: skip
+[WARNING] modbat/test/InvCheck4.scala:14: skip
+[WARNING] modbat/test/InvCheck4.scala:9: check
+[WARNING] java.lang.AssertionError: assertion failed: i = 0 occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed: i = 0
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.InvCheck4.assert(InvCheck4.scala)
+[ERROR] 	at modbat.test.InvCheck4.check(InvCheck4.scala)
+[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+[ERROR] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+[ERROR] 	at java.lang.reflect.Method.invoke(Method.java)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/InvCheck4.scala:12: skip
+[WARNING] modbat/test/InvCheck4.scala:13: skip
+[WARNING] modbat/test/InvCheck4.scala:14: skip
+[WARNING] modbat/test/InvCheck4.scala:9: check
+[WARNING] java.lang.AssertionError: assertion failed: i = 0 occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed: i = 0
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.InvCheck4.assert(InvCheck4.scala)
+[ERROR] 	at modbat.test.InvCheck4.check(InvCheck4.scala)
+[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+[ERROR] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+[ERROR] 	at java.lang.reflect.Method.invoke(Method.java)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/InvCheck4.scala:12: skip
+[WARNING] modbat/test/InvCheck4.scala:13: skip
+[WARNING] modbat/test/InvCheck4.scala:14: skip
+[WARNING] modbat/test/InvCheck4.scala:9: check
+[WARNING] java.lang.AssertionError: assertion failed: i = 0 occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed: i = 0
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.InvCheck4.assert(InvCheck4.scala)
+[ERROR] 	at modbat.test.InvCheck4.check(InvCheck4.scala)
+[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+[ERROR] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+[ERROR] 	at java.lang.reflect.Method.invoke(Method.java)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/InvCheck4.scala:12: skip
+[WARNING] modbat/test/InvCheck4.scala:13: skip
+[WARNING] modbat/test/InvCheck4.scala:14: skip
+[WARNING] modbat/test/InvCheck4.scala:9: check
+[WARNING] java.lang.AssertionError: assertion failed: i = 0 occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed: i = 0
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.InvCheck4.assert(InvCheck4.scala)
+[ERROR] 	at modbat.test.InvCheck4.check(InvCheck4.scala)
+[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+[ERROR] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+[ERROR] 	at java.lang.reflect.Method.invoke(Method.java)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/InvCheck4.scala:12: skip
+[WARNING] modbat/test/InvCheck4.scala:13: skip
+[WARNING] modbat/test/InvCheck4.scala:14: skip
+[WARNING] modbat/test/InvCheck4.scala:9: check

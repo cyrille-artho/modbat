@@ -1,0 +1,10 @@
+[WARNING] java.lang.AssertionError: assertion failed: i = 0 occurred, aborting.
+[WARNING] Error found, model trace:
+[WARNING] (empty transition function): reset => end
+[WARNING] modbat/test/InvCheck4.scala:10: end => end
+[WARNING] java.lang.AssertionError: assertion failed: i = 0 occurred, aborting.
+[WARNING] Error found, model trace:
+[WARNING] (empty transition function): reset => somestate
+[WARNING] (empty transition function): somestate => state2
+[WARNING] (empty transition function): state2 => end
+[WARNING] modbat/test/InvCheck4.scala:10: end => end

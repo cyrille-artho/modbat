@@ -1,0 +1,10 @@
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[WARNING] Error found, model trace:
+[WARNING] modbat/examples/CounterModel.scala:13: reset => zero
+[WARNING] modbat/examples/CounterModel.scala:16: zero => zero
+[WARNING] modbat/examples/CounterModel.scala:16: zero => zero
+[WARNING] modbat/examples/CounterModel.scala:16: zero => zero
+[WARNING] modbat/examples/CounterModel.scala:19: zero => one
+[WARNING] modbat/examples/CounterModel.scala:22: one => two
+[WARNING] modbat/examples/CounterModel.scala:28: two => end
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.

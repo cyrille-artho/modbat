@@ -1,0 +1,8 @@
+build
+*.pdf
+*.ps
+*.bak
+*~
+git-hash
+*.tar.gz
+.*.swp

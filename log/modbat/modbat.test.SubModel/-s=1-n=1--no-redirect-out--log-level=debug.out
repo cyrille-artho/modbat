@@ -1,0 +1,18 @@
+[DEBUG] Adding build/modbat-test.jar to classpath.
+       1 3ba471c1785a0175
+[DEBUG] modbat.test.SubModel-1: Registered state transition from init to err
+[DEBUG] Before: init
+[FINE] Launching new model instance modbat.test.SubModel-1...
+[DEBUG] --- Exploring model ---
+[DEBUG] modbat.test.SubModel-1: Current state: init
+[DEBUG] modbat.test.SubModel-1: Possible successor: err
+[DEBUG] State err in model modbat.test.SubModel-1 was visited 0 times.
+[FINE] modbat.test.SubModel-1: Executing transition init => err...
+[DEBUG] Model modbat.test.SubModel-1 has terminated.
+[DEBUG] modbat.test.SubModel-1: Current state: err
+[DEBUG] No more successors.
+[DEBUG] --- Resetting to initial state ---
+[INFO] 1 tests executed, 1 ok, 0 failed.
+[INFO] 2 states covered (100 % out of 2),
+[INFO] 1 transitions covered (100 % out of 1).
+[INFO] Random seed for next test would be: 402b73cd0066eaea

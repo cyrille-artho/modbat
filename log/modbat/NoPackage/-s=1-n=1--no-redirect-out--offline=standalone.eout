@@ -1,0 +1,11 @@
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at NoPackage.assert(NoPackage.scala)
+[ERROR] 	at NoPackage$$anonfun$1.apply$mcV$sp(NoPackage.scala)
+[ERROR] 	at NoPackage$$anonfun$1.apply(NoPackage.scala)
+[ERROR] 	at NoPackage$$anonfun$1.apply(NoPackage.scala)
+[WARNING] Error found, model trace:
+[WARNING] NoPackage.scala:6: assert

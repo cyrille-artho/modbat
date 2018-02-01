@@ -1,0 +1,16 @@
+digraph model {
+  orientation = landscape;
+  graph [ rankdir = "TB", ranksep="0.4", nodesep="0.2" ];
+  node [ fontname = "Helvetica", fontsize="12.0", margin="0.07" ];
+  edge [ fontname = "Helvetica", fontsize="12.0", margin="0.05" ];
+  "" [ shape = "point", height="0.1" ];
+  "" -> zero
+  zero	-> pos [ label = " inc " ];
+  pos	-> pos [ label = " inc " ];
+  pos	-> any [ label = " dec " ];
+  any	-> any [ label = " inc " ];
+  any	-> any [ label = " dec " ];
+  zero	-> neg [ label = " dec " ];
+  neg	-> neg [ label = " dec " ];
+  neg	-> any [ label = " inc " ];
+}

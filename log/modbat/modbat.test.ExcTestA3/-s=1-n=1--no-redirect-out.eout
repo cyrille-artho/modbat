@@ -1,0 +1,12 @@
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.ExcTestA3.assert(ExcTestA3.scala)
+[ERROR] 	at modbat.test.ExcTestA3$$anonfun$2.apply$mcV$sp(ExcTestA3.scala)
+[ERROR] 	at modbat.test.ExcTestA3$$anonfun$2.apply(ExcTestA3.scala)
+[ERROR] 	at modbat.test.ExcTestA3$$anonfun$2.apply(ExcTestA3.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/ExcTestA3.scala:8: nonDetCall
+[WARNING] modbat/test/ExcTestA3.scala:11: assert

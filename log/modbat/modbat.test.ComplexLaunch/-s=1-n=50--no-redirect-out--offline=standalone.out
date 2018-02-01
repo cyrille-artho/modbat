@@ -1,0 +1,60 @@
+       1 3ba471c1785a0175
+       2 402b73cd0066eaea
+       3 41530f4040856586
+       4  89a82931be29e65
+       5 49a846e52b813972
+       6 27fe2d950fc74b21
+       7 19b6aa1b14a29017
+       8 5ff50ec9279365d2
+[INFO] Writing off-line test into file ./modbat/test/TestComplexLaunch.scala
+       9  85780661bf76533, one test failed.
+      10 486e122d1bcbade7, one test failed.
+      11  a410ce32fc39dfb, one test failed.
+      12  745035c2b643033, one test failed.
+      13  1e528010d3d2d54, one test failed.
+      14 1690fa4e0c732f7d, 2 tests failed.
+      15 8d32a08e0d0b1183, 2 tests failed.
+      16 5a92477004cf57fb, 3 tests failed.
+      17 284ca782182a253f, 3 tests failed.
+      18 5e7dfc9e0a3af5da, 3 tests failed.
+      19 8e80db4b43867a5a, 3 tests failed.
+      20 7bb4b043219b1ba6, 3 tests failed.
+      21 636e772f0798297b, 3 tests failed.
+      22 433bb5b50b64a008, 3 tests failed.
+      23 66809a782bf43de4, 3 tests failed.
+      24 572341b810ffdb34, 3 tests failed.
+      25 2512cb9b3c34c93f, 3 tests failed.
+      26 72dad7a5374659e4, 3 tests failed.
+      27 79a5b58718b0a686, 3 tests failed.
+      28 6666de042dbcc690, 3 tests failed.
+      29 7d3db60a36899abc, 3 tests failed.
+      30 66b0c7572a7ff949, 3 tests failed.
+      31 7073195f4478074f, 3 tests failed.
+      32  e50486a02022728, 3 tests failed.
+      33 28d961ca0ac12e82, 3 tests failed.
+      34 3729e4b30cc61f61, 3 tests failed.
+      35 8102b494089e6116, 3 tests failed.
+      36 65ddd1b61aaa637e, 4 tests failed.
+      37 764cc9831b53a60a, 4 tests failed.
+      38 71accd072d9aba73, 4 tests failed.
+      39 73a8798b3335e38a, 4 tests failed.
+      40 44907dab3e7f0a55, 4 tests failed.
+      41 46e3ffb302d6b70f, 4 tests failed.
+      42 903dd74e32475186, 5 tests failed.
+      43 7974bf3b16645027, 5 tests failed.
+      44 6be018a71603cc94, 5 tests failed.
+      45  de8785f38307c43, 5 tests failed.
+      46 43e6dcdf22215f20, 5 tests failed.
+      47 7c984b5d1a209c21, 5 tests failed.
+      48 2a83b5bd2ae1ea70, 6 tests failed.
+      49 6685050840640de1, 7 tests failed.
+      50  2d6f6cd03d01cb4, 7 tests failed.
+[INFO] 50 tests executed, 43 ok, 7 failed.
+[INFO] One type of test failure:
+[INFO] 1) java.lang.AssertionError: assertion failed at assert
+[INFO]    5ff50ec9279365d2 1e528010d3d2d54 8d32a08e0d0b1183 8102b494089e6116 46e3ffb302d6b70f 7c984b5d1a209c21 2a83b5bd2ae1ea70
+[INFO] modbat.test.ComplexLaunch: 3 states covered (100 % out of 3),
+[INFO] modbat.test.ComplexLaunch: 3 transitions covered (100 % out of 3).
+[INFO] modbat.test.Child: 3 states covered (100 % out of 3),
+[INFO] modbat.test.Child: 3 transitions covered (100 % out of 3).
+[INFO] Random seed for next test would be: 8b388ceb07e23410

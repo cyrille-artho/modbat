@@ -1,0 +1,19 @@
+Run starting. Expected test count is: 12
+RandomTestSuite:
+- distribution/choose
+- range (nextInt)
+- clone
+- multiple clones in lockstop after different number of calls
+- setting random seed
+- trace of random numbers
+- clone a trace to be replayed
+- replay a long trace
+- clone and clear
+- range of nextDouble
+- init. with seed < 0xffffffff
+- init. with seed > 0x7fffffffffffffff
+Run completed.
+Total number of tests run: 12
+Suites: completed 1, aborted 0
+Tests: succeeded 12, failed 0, ignored 0, pending 0
+All tests passed.

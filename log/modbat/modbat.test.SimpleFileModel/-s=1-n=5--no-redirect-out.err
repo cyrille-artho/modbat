@@ -1,0 +1,27 @@
+[WARNING] java.lang.AssertionError: assertion failed: Cannot mkdir "0/1/4" occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed: Cannot mkdir "0/1/4"
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.SimpleFileModel.assert(SimpleFileModel.scala)
+[ERROR] 	at modbat.test.SimpleFileModel$$anonfun$6.apply(SimpleFileModel.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-1: skip
+[WARNING] modbat/test/SimpleFileModel.scala:34: modbat.test.SimpleFileModel-1: launch; choices = (0.42469475)
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-1: require
+[WARNING] modbat/test/SimpleFileModel.scala:45: modbat.test.SimpleFileModel-1: launch; choices = (0, 0.052770555)
+[WARNING] modbat/test/SimpleFileModel.scala:49: modbat.test.SimpleFileModel-1: skip
+[WARNING] modbat/test/SimpleFileModel.scala:50: modbat.test.SimpleFileModel-1: println
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-2: skip
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-2: require
+[WARNING] modbat/test/SimpleFileModel.scala:45: modbat.test.SimpleFileModel-2: launch; choices = (1, 0.116557345)
+[WARNING] modbat/test/SimpleFileModel.scala:50: modbat.test.SimpleFileModel-1: println
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-4: skip
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-3: skip
+[WARNING] modbat/test/SimpleFileModel.scala:43: modbat.test.SimpleFileModel-4: require
+[WARNING] modbat/test/SimpleFileModel.scala:49: modbat.test.SimpleFileModel-3: skip
+[WARNING] modbat/test/SimpleFileModel.scala:45: modbat.test.SimpleFileModel-4: launch; choices = (1, 0.47003296)
+[WARNING] modbat/test/SimpleFileModel.scala:50: modbat.test.SimpleFileModel-1: println
+[WARNING] modbat/test/SimpleFileModel.scala:49: modbat.test.SimpleFileModel-2: skip
+[WARNING] modbat/test/SimpleFileModel.scala:33: modbat.test.SimpleFileModel-5: skip
+[WARNING] modbat/test/SimpleFileModel.scala:37: modbat.test.SimpleFileModel-5: launch

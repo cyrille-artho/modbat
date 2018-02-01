@@ -1,0 +1,10 @@
+       1 3ba471c1785a0175
+Online mode: throwing exception.
+[INFO] Writing off-line test into file ./modbat/test/TestExcTest2.scala
+[INFO] 1 tests executed, 0 ok, 1 failed.
+[INFO] One type of test failure:
+[INFO] 1) java.lang.AssertionError: assertion failed at assert
+[INFO]    3ba471c1785a0175
+[INFO] 2 states covered (100 % out of 2),
+[INFO] 1 transitions covered (33 % out of 3).
+[INFO] Random seed for next test would be: 402b73cd0066eaea

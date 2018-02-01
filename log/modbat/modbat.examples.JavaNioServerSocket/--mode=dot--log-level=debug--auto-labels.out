@@ -1,0 +1,20 @@
+[DEBUG] Adding build/modbat-examples.jar to classpath.
+[DEBUG] modbat.examples.JavaNioServerSocket-1: Registered state transition from reset to open
+[DEBUG] modbat.examples.JavaNioServerSocket-1: Registered state transition from open to open
+[DEBUG] modbat.examples.JavaNioServerSocket-1: Registered state transition from open to bound
+[DEBUG] modbat.examples.JavaNioServerSocket-1: Registered state transition from bound to bound
+[DEBUG] modbat.examples.JavaNioServerSocket-1: Registered state transition from open to err
+[DEBUG] modbat.examples.JavaNioServerSocket-1: Registered state transition from bound to connected
+[DEBUG] modbat.examples.JavaNioServerSocket-1: Registered state transition from bound to accepting
+[DEBUG] modbat.examples.JavaNioServerSocket-1: Registered state transition from accepting to accepting
+[DEBUG] modbat.examples.JavaNioServerSocket-1: Registered state transition from connected to connected
+[DEBUG] modbat.examples.JavaNioServerSocket-1: Registered state transition from connected to bound
+[DEBUG] modbat.examples.JavaNioServerSocket-1: Registered state transition from accepting to bound
+[DEBUG] modbat.examples.JavaNioServerSocket-1: Registered state transition from open to closed
+[DEBUG] modbat.examples.JavaNioServerSocket-1: Registered state transition from bound to closed
+[DEBUG] modbat.examples.JavaNioServerSocket-1: Registered state transition from accepting to closed
+[DEBUG] modbat.examples.JavaNioServerSocket-1: Registered state transition from closed to closed
+[DEBUG] modbat.examples.JavaNioServerSocket-1: Registered state transition from closed to err
+[DEBUG] modbat.examples.JavaNioServerSocket-1: Registered state transition from accepting to connected
+[FINE] Launching new model instance modbat.examples.JavaNioServerSocket-1...
+[DEBUG] Function "accept" called inside closure (such as "maybe").

@@ -1,0 +1,10 @@
+       1 3ba471c1785a0175
+[FINE] Launching new model instance modbat.test.JoinNull-1...
+[FINE] modbat.test.JoinNull-1: Executing transition init => end...
+[INFO] 1 tests executed, 0 ok, 1 failed.
+[INFO] One type of test failure:
+[INFO] 1) java.lang.NullPointerException at join
+[INFO]    3ba471c1785a0175
+[INFO] 1 states covered (50 % out of 2),
+[INFO] 0 transitions covered (0 % out of 1).
+[INFO] Random seed for next test would be: 402b73cd0066eaea

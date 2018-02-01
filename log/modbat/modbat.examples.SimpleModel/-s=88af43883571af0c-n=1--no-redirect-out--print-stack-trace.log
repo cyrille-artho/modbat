@@ -1,0 +1,8 @@
+       1 88af43883571af0c
+[INFO] 1 tests executed, 0 ok, 1 failed.
+[INFO] One type of test failure:
+[INFO] 1) java.lang.AssertionError: assertion failed at assert
+[INFO]    88af43883571af0c
+[INFO] 4 states covered (80 % out of 5),
+[INFO] 4 transitions covered (66 % out of 6).
+[INFO] Random seed for next test would be: 2618bb7730143131

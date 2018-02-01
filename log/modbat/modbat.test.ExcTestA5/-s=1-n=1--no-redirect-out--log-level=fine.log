@@ -1,0 +1,15 @@
+       1 3ba471c1785a0175
+[FINE] Launching new model instance modbat.test.ExcTestA5-1...
+[FINE] modbat.test.ExcTestA5-1: Executing transition ok => ok...
+Result of call is true.
+[FINE] java.io.IOException: Online... leads to exception state err1.
+[FINE] Next transition on this model must be taken immediately.
+[FINE] modbat.test.ExcTestA5-1: Executing transition err1 => err1...
+err1
+[INFO] 1 tests executed, 0 ok, 1 failed.
+[INFO] One type of test failure:
+[INFO] 1) java.lang.AssertionError: assertion failed at assert
+[INFO]    3ba471c1785a0175
+[INFO] 2 states covered (66 % out of 3),
+[INFO] 1 transitions covered (20 % out of 5).
+[INFO] Random seed for next test would be: 402b73cd0066eaea

@@ -1,0 +1,420 @@
+[DEBUG] Adding ../../build/modbat-test.jar to classpath.
+[DEBUG] Adding ../../build/modbat-examples.jar to classpath.
+       1 1
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from zero to pos1
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from pos1 to pos
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from pos1 to zero
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from pos to pos
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from pos to any
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from any to any
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from any to any
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from zero to neg1
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from neg1 to neg
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from neg1 to zero
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from neg to any
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from neg to neg
+[FINE] Launching new model instance modbat.test.CounterPosNeg1-1...
+[DEBUG] --- Exploring model ---
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: zero
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: pos1
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: neg1
+[DEBUG] State pos1 in model modbat.test.CounterPosNeg1-1 was visited 0 times.
+[DEBUG] State neg1 in model modbat.test.CounterPosNeg1-1 was visited 0 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition zero => pos1...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: pos1
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: pos
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: zero
+[DEBUG] State pos in model modbat.test.CounterPosNeg1-1 was visited 0 times.
+[DEBUG] State zero in model modbat.test.CounterPosNeg1-1 was visited 1 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: zero
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: pos1
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: neg1
+[DEBUG] State pos1 in model modbat.test.CounterPosNeg1-1 was visited 1 times.
+[DEBUG] State neg1 in model modbat.test.CounterPosNeg1-1 was visited 0 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: neg1
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: neg
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: zero
+[DEBUG] State neg in model modbat.test.CounterPosNeg1-1 was visited 0 times.
+[DEBUG] State zero in model modbat.test.CounterPosNeg1-1 was visited 2 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: neg
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: neg
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 0 times.
+[DEBUG] State neg in model modbat.test.CounterPosNeg1-1 was visited 1 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] Loop 1
+[DEBUG] 
+[DEBUG] modbat/test/CounterPosNeg1.scala:19: zero => pos1, modbat/test/CounterPosNeg1.scala:25: dec
+[DEBUG] modbat/test/CounterPosNeg1.scala:41: dec, modbat/test/CounterPosNeg1.scala:43: dec, modbat/test/CounterPosNeg1.scala:53: dec
+[DEBUG] Identical model found: modbat.test.CounterPosNeg1-1
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from zero to pos1
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from pos1 to pos
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from pos1 to zero
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from pos to pos
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from pos to any
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from any to any
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from any to any
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from zero to neg1
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from neg1 to neg
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from neg1 to zero
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from neg to any
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from neg to neg
+[FINE] Launching new model instance modbat.test.CounterPosNeg1-1...
+[FINE] Replaying trace (for trace reduction)...
+[DEBUG] Replaying prefix, 0 transitions...
+[DEBUG] Replaying 1 loops, total number of 2 transitions...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition zero => pos1...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] Replaying suffix, 3 transitions...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] Loop 2
+[DEBUG] modbat/test/CounterPosNeg1.scala:19: zero => pos1, modbat/test/CounterPosNeg1.scala:25: dec, modbat/test/CounterPosNeg1.scala:41: dec, modbat/test/CounterPosNeg1.scala:43: dec
+[DEBUG] modbat/test/CounterPosNeg1.scala:53: dec
+[DEBUG] 
+[DEBUG] Identical model found: modbat.test.CounterPosNeg1-1
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from zero to pos1
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from pos1 to pos
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from pos1 to zero
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from pos to pos
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from pos to any
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from any to any
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from any to any
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from zero to neg1
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from neg1 to neg
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from neg1 to zero
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from neg to any
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from neg to neg
+[FINE] Launching new model instance modbat.test.CounterPosNeg1-1...
+[FINE] Replaying trace (for trace reduction)...
+[DEBUG] Replaying prefix, 4 transitions...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition zero => pos1...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] Replaying 1 loops, total number of 1 transitions...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] Replaying suffix, 0 transitions...
+[DEBUG] --- Resetting to initial state ---
+       2 4650
+[DEBUG] Identical model found: modbat.test.CounterPosNeg1-1
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from zero to pos1
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from pos1 to pos
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from pos1 to zero
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from pos to pos
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from pos to any
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from any to any
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from any to any
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from zero to neg1
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from neg1 to neg
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from neg1 to zero
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from neg to any
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from neg to neg
+[FINE] Launching new model instance modbat.test.CounterPosNeg1-1...
+[DEBUG] --- Exploring model ---
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: zero
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: pos1
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: neg1
+[DEBUG] State pos1 in model modbat.test.CounterPosNeg1-1 was visited 0 times.
+[DEBUG] State neg1 in model modbat.test.CounterPosNeg1-1 was visited 0 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: neg1
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: neg
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: zero
+[DEBUG] State neg in model modbat.test.CounterPosNeg1-1 was visited 0 times.
+[DEBUG] State zero in model modbat.test.CounterPosNeg1-1 was visited 0 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: neg
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: neg
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 0 times.
+[DEBUG] State neg in model modbat.test.CounterPosNeg1-1 was visited 1 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition neg => any...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 1 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 1 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 2 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 2 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 3 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 3 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 4 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 4 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 5 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 5 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 6 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 6 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 7 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 7 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 8 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 8 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 9 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 9 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 10 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 10 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 11 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 11 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 12 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 12 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 13 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 13 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 14 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 14 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 15 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 15 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 16 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 16 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 17 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 17 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 18 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 18 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 19 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 19 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 20 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 20 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 21 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 21 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 22 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 22 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 23 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 23 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 24 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 24 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 25 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 25 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 26 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 26 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 27 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 27 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 28 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 28 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 29 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 29 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 30 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 30 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 31 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 31 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] modbat.test.CounterPosNeg1-1: Current state: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] modbat.test.CounterPosNeg1-1: Possible successor: any
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 32 times.
+[DEBUG] State any in model modbat.test.CounterPosNeg1-1 was visited 32 times.
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] Loop 1
+[DEBUG] modbat/test/CounterPosNeg1.scala:41: dec, modbat/test/CounterPosNeg1.scala:43: dec, modbat/test/CounterPosNeg1.scala:51: neg => any
+[DEBUG] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[DEBUG] modbat/test/CounterPosNeg1.scala:36: dec
+[DEBUG] modbat/test/CounterPosNeg1.scala:36: dec
+[DEBUG] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[DEBUG] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[DEBUG] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[DEBUG] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[DEBUG] modbat/test/CounterPosNeg1.scala:36: dec
+[DEBUG] modbat/test/CounterPosNeg1.scala:36: dec
+[DEBUG] modbat/test/CounterPosNeg1.scala:36: dec
+[DEBUG] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[DEBUG] modbat/test/CounterPosNeg1.scala:36: dec
+[DEBUG] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[DEBUG] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[DEBUG] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[DEBUG] modbat/test/CounterPosNeg1.scala:36: dec
+[DEBUG] modbat/test/CounterPosNeg1.scala:36: dec
+[DEBUG] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[DEBUG] modbat/test/CounterPosNeg1.scala:36: dec
+[DEBUG] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[DEBUG] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[DEBUG] modbat/test/CounterPosNeg1.scala:36: dec
+[DEBUG] modbat/test/CounterPosNeg1.scala:36: dec
+[DEBUG] modbat/test/CounterPosNeg1.scala:36: dec
+[DEBUG] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[DEBUG] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[DEBUG] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[DEBUG] modbat/test/CounterPosNeg1.scala:36: dec
+[DEBUG] modbat/test/CounterPosNeg1.scala:36: dec
+[DEBUG] modbat/test/CounterPosNeg1.scala:36: dec
+[DEBUG] modbat/test/CounterPosNeg1.scala:36: dec
+[DEBUG] modbat/test/CounterPosNeg1.scala:36: dec
+[DEBUG] 
+[DEBUG] Identical model found: modbat.test.CounterPosNeg1-1
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from zero to pos1
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from pos1 to pos
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from pos1 to zero
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from pos to pos
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from pos to any
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from any to any
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from any to any
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from zero to neg1
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from neg1 to neg
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from neg1 to zero
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from neg to any
+[DEBUG] modbat.test.CounterPosNeg1-1: Registered state transition from neg to neg
+[FINE] Launching new model instance modbat.test.CounterPosNeg1-1...
+[FINE] Replaying trace (for trace reduction)...
+[DEBUG] Replaying prefix, 3 transitions...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition neg => any...
+[DEBUG] Replaying 32 loops, total number of 32 transitions...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition any => any (1)...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[FINE] modbat.test.CounterPosNeg1-1: Executing transition dec...
+[DEBUG] Replaying suffix, 0 transitions...
+[DEBUG] --- Resetting to initial state ---
+[INFO] 2 tests executed, 0 ok, 2 failed.
+[INFO] 5 states covered (83 % out of 6), 7 transitions covered (58 % out of 12).
+[INFO] Random seed for next test would be: 134fd900
