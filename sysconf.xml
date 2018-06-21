@@ -90,7 +90,7 @@
 	  <contains value="${scala.version}" />
 	</linecontains>
 	<tokenfilter> 
-	  <replaceregex pattern="/scala-library.jar" replace="" />
+	  <replaceregex pattern="/scala-library.jar" replace="/" />
 	</tokenfilter>
       </filterchain>
     </loadfile>
