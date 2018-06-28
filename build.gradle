@@ -26,7 +26,27 @@ dependencies {
     testCompile 'org.scalatest:scalatest_2.11:2.1.5'
 }
 
-task prepJar(type: Copy, dependsOn: 'build') {
+task prepJar(type: Copy, dependsOn: 'compileScala') {
     from "LICENSE", "README", "CHANGELOG"
     into "${buildDir}"
+}
+
+task testJar(type: Jar, dependsOn: 'compileScala') {
+    archiveName = "modbat-test.jar"
+    destinationDir = file("${buildDir}")
+    from("${buildDir}/classes/scala/main") {
+        include "modbat/test/*.class"
+        include "NoPackage*.class"
+    }
+}
+
+task configJar(type: Jar, dependsOn: 'prepJar') {
+    archiveName = "config.jar"
+    destinationDir = file("${buildDir}")
+    from("${buildDir}/classes/scala/main") {
+        include "modbat/config/*.class"
+        include "LICENSE"
+        include "modbat/util"
+        include "modbat/util/FieldUtil*.class"
+    }
 }
