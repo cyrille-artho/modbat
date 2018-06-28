@@ -25,3 +25,8 @@ dependencies {
     testCompile 'junit:junit:4.11'
     testCompile 'org.scalatest:scalatest_2.11:2.1.5'
 }
+
+task prepJar(type: Copy, dependsOn: 'build') {
+    from "LICENSE", "README", "CHANGELOG"
+    into "${buildDir}"
+}
