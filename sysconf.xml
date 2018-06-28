@@ -12,7 +12,7 @@
 	</tokenfilter> 
       </filterchain>
     </loadfile>
-    <property name="scala.home" value="/" />
+    <property name="scala.home" value="/usr/share/scala" />
     <echo message="scala.home is ${scala.home}." />
     <delete file="SCALA_BIN" />
   </target>
