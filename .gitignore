@@ -6,3 +6,6 @@ build
 git-hash
 *.tar.gz
 .*.swp
+
+# Gradle
+.gradle/
