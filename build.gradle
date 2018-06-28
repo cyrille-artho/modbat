@@ -14,16 +14,12 @@ sourceSets {
     }
 }
 
-tasks.withType(ScalaCompile) {
-    scalaCompileOptions.additionalParameters = ["-nowarn"]
-}
-
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile 'org.scala-lang:scala-library:2.11.1'
+    compile 'org.scala-lang:scala-library:2.11.8'
     compile 'org.ow2.asm:asm:4.0'
     testCompile 'org.hamcrest:hamcrest-core:1.3'
     testCompile 'junit:junit:4.11'
