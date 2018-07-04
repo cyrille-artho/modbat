@@ -4,4 +4,16 @@ dependencies {
 
 version = '1.0.2'
 
-jar.archiveName = "${jar.baseName}.${jar.extension}"
+jar {
+    archiveName = "${jar.baseName}.${jar.extension}"
+    manifest {
+        attributes 'Main-Class': 'modbat.config.ConfigMgr',
+                   'Specification-Title': 'ConfigMgr: Configuration Manager',
+                   'Specification-Vendor': 'AIST',
+                   'Specification-Version': version,
+                   'Implementation-Title': 'modbat.config',
+                   'Implementation-Vendor': 'AIST',
+                   'Implementation-Version': 'TODO'
+    }
+    from "../LICENSE"
+}
