@@ -11,6 +11,10 @@ allprojects {
     repositories {
         mavenCentral()
     }
+
+    tasks.withType(Jar) {
+        destinationDir = file("$rootDir/build")
+    }
 }
 
 sourceSets {

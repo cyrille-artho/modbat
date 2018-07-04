@@ -3,3 +3,5 @@ dependencies {
 }
 
 version = '1.0.2'
+
+jar.archiveName = "${jar.baseName}.${jar.extension}"
