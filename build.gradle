@@ -4,7 +4,14 @@
  * This is a general purpose Gradle build.
  * Learn how to create Gradle builds at https://guides.gradle.org/creating-new-gradle-builds/
  */
-apply plugin: 'scala'
+
+allprojects {
+    apply plugin: 'scala'
+
+    repositories {
+        mavenCentral()
+    }
+}
 
 sourceSets {
     main {
@@ -14,39 +21,13 @@ sourceSets {
     }
 }
 
-repositories {
-    mavenCentral()
-}
+
 
 dependencies {
     compile 'org.scala-lang:scala-library:2.11.8'
     compile 'org.ow2.asm:asm:4.0'
+    compile project(':config') 
     testCompile 'org.hamcrest:hamcrest-core:1.3'
     testCompile 'junit:junit:4.11'
     testCompile 'org.scalatest:scalatest_2.11:2.1.5'
-}
-
-task prepJar(type: Copy, dependsOn: 'compileScala') {
-    from "LICENSE", "README", "CHANGELOG"
-    into "${buildDir}"
-}
-
-task testJar(type: Jar, dependsOn: 'compileScala') {
-    archiveName = "modbat-test.jar"
-    destinationDir = file("${buildDir}")
-    from("${buildDir}/classes/scala/main") {
-        include "modbat/test/*.class"
-        include "NoPackage*.class"
-    }
-}
-
-task configJar(type: Jar, dependsOn: 'prepJar') {
-    archiveName = "config.jar"
-    destinationDir = file("${buildDir}")
-    from("${buildDir}/classes/scala/main") {
-        include "modbat/config/*.class"
-        include "LICENSE"
-        include "modbat/util"
-        include "modbat/util/FieldUtil*.class"
-    }
 }
