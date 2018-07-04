@@ -10,3 +10,5 @@
 rootProject.name = 'modbat'
 
 include 'config'
+include 'modbat-examples'
+include 'modbat-test'
