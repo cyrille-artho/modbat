@@ -105,7 +105,7 @@ run 1 $APP --Quux
 run 1 $APP --baz-Quux
 
 
-APP="scala build/libs/modbat.jar"
+APP="scala build/modbat.jar"
 run 1 $APP --model-class=x
 
 #run 1 $APP
