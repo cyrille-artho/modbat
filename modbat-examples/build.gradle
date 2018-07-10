@@ -2,3 +2,8 @@ dependencies {
     compile 'org.scala-lang:scala-library:2.11.8'
     compile rootProject
 }
+
+jar {
+    from sourceSets.main.allSource
+    from "../LICENSE", "../README"
+}
