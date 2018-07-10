@@ -33,3 +33,15 @@ dependencies {
     testCompile 'junit:junit:4.11'
     testCompile 'org.scalatest:scalatest_2.11:2.1.5'
 }
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'modbat.mbt.Main',
+                   'Name': 'modbat/mbt/',
+                   'Specification-Title': 'Modbat: A model-based tester',
+                   'Specification-Vendor': 'AIST',
+                   'Implementation-Title': 'Modbat',
+                   'Implementation-Vendor': 'AIST'
+    }
+    from "LICENSE", "README", "CHANGELOG", "lib/asm-LICENSE"
+}
