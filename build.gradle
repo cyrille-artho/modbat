@@ -47,4 +47,7 @@ jar {
                    'Implementation-Vendor': 'AIST'
     }
     from "LICENSE", "README", "CHANGELOG", "lib/asm-LICENSE"
+    from configurations.runtimeClasspath.
+                                         findAll { it.name.endsWith('jar') && (it.name.contains('asm') || it.name.contains('config')) }.
+                                         collect { zipTree(it) }
 }
