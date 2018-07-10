@@ -5,6 +5,9 @@
  * Learn how to create Gradle builds at https://guides.gradle.org/creating-new-gradle-builds/
  */
 
+apply plugin: 'application'
+mainClassName = 'modbat.mbt.Main'
+
 allprojects {
     apply plugin: 'scala'
 
@@ -36,7 +39,7 @@ dependencies {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'modbat.mbt.Main',
+        attributes 'Main-Class': mainClassName,
                    'Name': 'modbat/mbt/',
                    'Specification-Title': 'Modbat: A model-based tester',
                    'Specification-Vendor': 'AIST',
