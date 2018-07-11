@@ -15,8 +15,7 @@ jar {
                    'Specification-Vendor': 'AIST',
                    'Specification-Version': version,
                    'Implementation-Title': 'modbat.config',
-                   'Implementation-Vendor': 'AIST',
-                   'Implementation-Version': 'TODO'
+                   'Implementation-Vendor': 'AIST'
     }
     from "../LICENSE"
 }
