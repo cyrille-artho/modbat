@@ -27,14 +27,6 @@ allprojects {
     }
 }
 
-sourceSets {
-    main {
-        scala {
-            srcDirs = ['src/scala']
-        }
-    }
-}
-
 dependencies {
     compile 'org.scala-lang:scala-library:2.11.8'
     compile 'org.ow2.asm:asm:4.0'
