@@ -44,7 +44,7 @@ jar {
                    'Specification-Version': '3.3-dev',
                    'Implementation-Title': 'Modbat'
     }
-    from "LICENSE", "README", "CHANGELOG", "lib/asm-LICENSE"
+    from "LICENSE", "README", "CHANGELOG", "asm-LICENSE"
     from configurations.runtimeClasspath.
                                          findAll { it.name.endsWith('jar') && (it.name.contains('asm') || it.name.contains('config')) }.
                                          collect { zipTree(it) }
