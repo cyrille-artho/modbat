@@ -18,6 +18,13 @@ allprojects {
     tasks.withType(Jar) {
         destinationDir = file("$rootDir/build")
     }
+    jar {
+        manifest {
+            attributes 'Specification-Vendor': 'AIST',
+                       'Implementation-Vendor': 'AIST',
+                       'Implementation-Version': 'f941e7a01af3d72db9decebc0fe03d39082d0ee3'
+        }
+    }
 }
 
 sourceSets {
@@ -42,9 +49,8 @@ jar {
         attributes 'Main-Class': mainClassName,
                    'Name': 'modbat/mbt/',
                    'Specification-Title': 'Modbat: A model-based tester',
-                   'Specification-Vendor': 'AIST',
-                   'Implementation-Title': 'Modbat',
-                   'Implementation-Vendor': 'AIST'
+                   'Specification-Version': '3.3-dev',
+                   'Implementation-Title': 'Modbat'
     }
     from "LICENSE", "README", "CHANGELOG", "lib/asm-LICENSE"
     from configurations.runtimeClasspath.
