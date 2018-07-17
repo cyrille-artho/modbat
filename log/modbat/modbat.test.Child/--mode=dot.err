@@ -1,4 +1,0 @@
-[ERROR] No suitable constructor found.
-[ERROR] A public nullary constructor is needed to instantiate the primary model.
-[ERROR] Consider adding a constructor variant:
-[ERROR]   def this() = this(...)

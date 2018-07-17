@@ -1,7 +1,0 @@
-[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
-[WARNING] Error found, model trace:
-[WARNING] (empty transition function): ok => ok
-[WARNING] (empty transition function): ok => ok
-[WARNING] (empty transition function): ok => ok
-[WARNING] (empty transition function): ok => ok
-[WARNING] modbat/test/ChooseTest.scala:16: ok => err

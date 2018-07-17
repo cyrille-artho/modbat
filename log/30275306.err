@@ -1,7 +1,0 @@
-[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
-[WARNING] Error found, model trace:
-[WARNING] modbat/examples/SimpleModel.scala:13: reset => zero
-[WARNING] modbat/examples/SimpleModel.scala:16: zero => zero
-[WARNING] modbat/examples/SimpleModel.scala:19: zero => one
-[WARNING] modbat/examples/SimpleModel.scala:22: one => two
-[WARNING] modbat/examples/SimpleModel.scala:28: two => end
