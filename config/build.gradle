@@ -11,10 +11,8 @@ jar {
     manifest {
         attributes 'Main-Class': mainClassName,
                    'Specification-Title': 'ConfigMgr: Configuration Manager',
-                   'Specification-Vendor': 'AIST',
                    'Specification-Version': version,
-                   'Implementation-Title': 'modbat.config',
-                   'Implementation-Vendor': 'AIST'
+                   'Implementation-Title': 'modbat.config'
     }
     from "../LICENSE"
 }
