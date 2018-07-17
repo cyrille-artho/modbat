@@ -1,0 +1,18 @@
+dependencies {
+    compile 'org.scala-lang:scala-library:2.11.8'
+}
+
+version = '1.0.2'
+
+apply plugin: 'application'
+mainClassName = 'modbat.config.ConfigMgr'
+
+jar {
+    manifest {
+        attributes 'Main-Class': mainClassName,
+                   'Specification-Title': 'ConfigMgr: Configuration Manager',
+                   'Specification-Version': version,
+                   'Implementation-Title': 'modbat.config'
+    }
+    from "../LICENSE"
+}
