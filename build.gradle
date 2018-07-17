@@ -21,8 +21,8 @@ allprojects {
     jar {
         archiveName = "${jar.baseName}.${jar.extension}"
         manifest {
-            attributes 'Specification-Vendor': 'AIST',
-                       'Implementation-Vendor': 'AIST',
+            attributes 'Specification-Vendor': 'KTH',
+                       'Implementation-Vendor': 'KTH',
                        'Implementation-Version': 'f941e7a01af3d72db9decebc0fe03d39082d0ee3'
         }
     }
