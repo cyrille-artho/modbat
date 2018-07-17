@@ -19,6 +19,7 @@ allprojects {
         destinationDir = file("$rootDir/build")
     }
     jar {
+        archiveName = "${jar.baseName}.${jar.extension}"
         manifest {
             attributes 'Specification-Vendor': 'AIST',
                        'Implementation-Vendor': 'AIST',
