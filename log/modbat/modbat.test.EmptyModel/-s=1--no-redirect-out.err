@@ -1,4 +1,0 @@
-[ERROR] Model modbat.test.EmptyModel has no transitions.
-[ERROR] Make sure at least one transition exists of type
-[ERROR]   "a" -> "b" := { code } // or, for an empty transition:
-[ERROR]   "a" -> "b" := skip

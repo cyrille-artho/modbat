@@ -1,9 +1,0 @@
-       1 3ba471c1785a0175
-       2 402b73cd0066eaea
-[INFO] 2 tests executed, 1 ok, 1 failed.
-[INFO] One type of test failure:
-[INFO] 1) java.lang.AssertionError: assertion failed: n = 10 at assert
-[INFO]    402b73cd0066eaea
-[INFO] 1 states covered (100 % out of 1),
-[INFO] 2 transitions covered (100 % out of 2).
-[INFO] Random seed for next test would be: 41530f4040856586
