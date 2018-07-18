@@ -26,6 +26,10 @@ def gitDetails = versionDetails()
 allprojects {
     apply plugin: 'scala'
 
+    dependencies {
+        compile 'org.scala-lang:scala-library:2.11.8'
+    }
+
     repositories {
         mavenCentral()
     }
@@ -44,7 +48,6 @@ allprojects {
 }
 
 dependencies {
-    compile 'org.scala-lang:scala-library:2.11.8'
     compile 'org.ow2.asm:asm:4.0'
     compile project(':config')
     testCompile 'org.hamcrest:hamcrest-core:1.3'
