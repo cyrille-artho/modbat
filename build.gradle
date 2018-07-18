@@ -21,6 +21,7 @@ buildscript {
 
 apply plugin: "com.palantir.git-version"
 version gitVersion()
+def gitDetails = versionDetails()
 
 allprojects {
     apply plugin: 'scala'
@@ -37,7 +38,7 @@ allprojects {
         manifest {
             attributes 'Specification-Vendor': 'KTH',
                        'Implementation-Vendor': 'KTH',
-                       'Implementation-Version': 'f941e7a01af3d72db9decebc0fe03d39082d0ee3'
+                       'Implementation-Version': gitDetails.gitHashFull
         }
     }
 }
@@ -56,8 +57,7 @@ jar {
         attributes 'Main-Class': mainClassName,
                    'Name': 'modbat/mbt/',
                    'Specification-Title': 'Modbat: A model-based tester',
-                   'Specification-Version': '3.3-dev',
-                   'Implementation-Version': version,
+                   'Specification-Version': gitDetails.lastTag,
                    'Implementation-Title': 'Modbat'
     }
     from "LICENSE", "README", "CHANGELOG", "asm-LICENSE"
