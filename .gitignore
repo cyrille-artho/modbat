@@ -9,3 +9,7 @@ git-hash
 
 # Gradle
 .gradle/
+
+# Intellij
+.idea/
+modbat.iml

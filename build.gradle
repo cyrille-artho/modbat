@@ -8,8 +8,27 @@
 apply plugin: 'application'
 mainClassName = 'modbat.mbt.Main'
 
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "gradle.plugin.com.palantir.gradle.gitversion:gradle-git-version:0.11.0"
+  }
+}
+
+apply plugin: "com.palantir.git-version"
+version gitVersion()
+def gitDetails = versionDetails()
+
 allprojects {
     apply plugin: 'scala'
+
+    dependencies {
+        compile 'org.scala-lang:scala-library:2.11.8'
+    }
 
     repositories {
         mavenCentral()
@@ -23,13 +42,12 @@ allprojects {
         manifest {
             attributes 'Specification-Vendor': 'KTH',
                        'Implementation-Vendor': 'KTH',
-                       'Implementation-Version': 'f941e7a01af3d72db9decebc0fe03d39082d0ee3'
+                       'Implementation-Version': gitDetails.gitHashFull
         }
     }
 }
 
 dependencies {
-    compile 'org.scala-lang:scala-library:2.11.8'
     compile 'org.ow2.asm:asm:4.0'
     compile project(':config')
     testCompile 'org.hamcrest:hamcrest-core:1.3'
@@ -42,7 +60,7 @@ jar {
         attributes 'Main-Class': mainClassName,
                    'Name': 'modbat/mbt/',
                    'Specification-Title': 'Modbat: A model-based tester',
-                   'Specification-Version': '3.3-dev',
+                   'Specification-Version': gitDetails.lastTag,
                    'Implementation-Title': 'Modbat'
     }
     from "LICENSE", "README", "CHANGELOG", "asm-LICENSE"
