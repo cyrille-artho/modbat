@@ -41,6 +41,13 @@ needed to group multiple statements inside a transition function.
 
 --- Basic usage ---
 
+The examples below assume that Modbat is compiled into build/, so
+the commands below have to be preceded with
+
+	cd build
+
+once.
+
 	scala modbat.jar [OPTIONS] MODELCLASS...
 
 For help, try
