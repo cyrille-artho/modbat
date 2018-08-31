@@ -226,6 +226,17 @@ object Modbat {
     rng.z << 32 | rng.w
   }
 
+  def runTest = {
+    MBT.clearLaunchedModels
+    MBT.testHasFailed = false
+    val model = MBT.launch(null)
+
+    val result = exploreModel(model)
+
+    MBT.cleanup()
+    result
+  }
+
   def runTests(n: Int) {
    for (i <- 1 to n) {
       MBT.rng = masterRNG.clone
@@ -255,14 +266,8 @@ object Modbat {
       } else {
 	Console.println
       }
-      MBT.clearLaunchedModels
-      MBT.testHasFailed = false
       MBT.checkDuplicates = (i == 1)
-      val model = MBT.launch(null)
-
-      val result = exploreModel(model)
-
-      MBT.cleanup()
+      val result = runTest
       count = i
       restoreChannels
       if (TransitionResult.isErr(result)) {
