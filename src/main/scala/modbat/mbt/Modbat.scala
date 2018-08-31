@@ -195,11 +195,9 @@ object Modbat {
 	}
       }
       if (isErr) {
-	Console.setErr(orig)
 	System.setErr(orig)
 	Log.err = orig
       } else {
-	Console.setOut(orig)
 	System.setOut(orig)
         Console.print("[2K\r")
 	Log.log = orig
@@ -226,15 +224,21 @@ object Modbat {
     rng.z << 32 | rng.w
   }
 
+  def wrapRun = {
+    Console.withErr(err) {
+      Console.withOut(out) {
+	 val model = MBT.launch(null)
+	 val result = exploreModel(model)
+	 MBT.cleanup()
+	 result
+      }
+    }
+  }
+
   def runTest = {
     MBT.clearLaunchedModels
     MBT.testHasFailed = false
-    val model = MBT.launch(null)
-
-    val result = exploreModel(model)
-
-    MBT.cleanup()
-    result
+    wrapRun
   }
 
   def runTests(n: Int) {
@@ -255,12 +259,10 @@ object Modbat {
       errFile = Main.config.logPath + "/" + seed + ".err"
       if (Main.config.redirectOut) {
 	out = new PrintStream(new FileOutputStream(logFile))
-	Console.setOut(out)
 	System.setOut(out)
 	Log.log = out
 
 	err = new PrintStream(new FileOutputStream(errFile), true)
-	Console.setErr(err)
 	System.setErr(err)
 	Log.err = err
       } else {
