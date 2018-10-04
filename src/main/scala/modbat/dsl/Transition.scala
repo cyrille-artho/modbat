@@ -45,7 +45,8 @@ class Transition (var origin:		State,
       nonDetExcConv += new NextStateOnException(nonDetE._1, t)
     }
 
-    var i: Int = 1
+    var i: Int = 1 // count index of next state predicate, if there are
+    // several "nextIf" defintions for one transition (very rare)
     val len = action.nextStatePred.length
     for (nextSt <- action.nextStatePred) {
       val t = new Transition(origin, nextSt._2, true,
