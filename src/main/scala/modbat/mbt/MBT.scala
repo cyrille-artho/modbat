@@ -707,12 +707,14 @@ class MBT (val model: Model, val trans: List[Transition]) {
     }
   }
 
+  /* check result of "nextIf", choose different successor state if
+     condition holds */
   def checkNextStPred(trans: Transition):
     (TransitionResult, RecordedTransition) = {
     for (nextSt <- trans.nextStatePredicates) {
       if (!(nextSt.nonDet) ||
 	  (MBT.rng.nextFloat(true) < MBT.maybeProbability)) {
-	val envCallResult = nextSt.action()
+	val envCallResult = nextSt.action() // result of "nextIf" condition
 	Log.debug("Call to nextIf returns " + envCallResult + ".")
 	// remember outcome of RNG if next state predicate should be checked
 	// record outcome of nextSt.action() and check for consistency
