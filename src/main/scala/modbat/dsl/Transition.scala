@@ -2,9 +2,8 @@ package modbat.dsl
 
 import scala.collection.mutable.ListBuffer
 import scala.util.matching.Regex
-
 import modbat.cov.TransitionCoverage
-import modbat.mbt.Main
+import modbat.mbt.{MBT, Main}
 import modbat.util.SourceInfo
 
 object Transition {
@@ -30,6 +29,8 @@ class Transition (var origin:		State,
   val nonDetExcConv = ListBuffer[NextStateOnException]()
   val nextStatePredConv = ListBuffer[NextStatePredicate]()
   var coverage: TransitionCoverage = _
+  // TODO: Add a master field
+  var master: MBT = _
   var n: Int = 0
 
   def expectedExceptions = action.expectedExc.toList
