@@ -9,6 +9,7 @@ import java.lang.reflect.Field
 import java.lang.reflect.Modifier
 import java.net.URL
 import java.util.BitSet
+
 import scala.collection.JavaConversions._
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.HashMap
@@ -16,8 +17,7 @@ import scala.collection.mutable.HashSet
 import scala.collection.mutable.LinkedHashMap
 import scala.collection.mutable.ListBuffer
 import scala.util.matching.Regex
-
-import modbat.cov.StateCoverage
+import modbat.cov.{StateCoverage, TransitionCoverage}
 import modbat.dsl.Action
 import modbat.dsl.Init
 import modbat.dsl.Shutdown
@@ -59,7 +59,7 @@ object Modbat {
   private val timesVisited = new HashMap[RecordedState, Int]
   val testFailures =
     new HashMap[(TransitionResult, String), ListBuffer[Long]]()
- 
+
   def init {
     if (Main.config.init) {
       MBT.invokeAnnotatedStaticMethods(classOf[Init], null)
@@ -136,6 +136,7 @@ object Modbat {
   }
 
   def coverage {
+    Log.info("Hello")
     Log.info(count + " tests executed, " + (count - failed) + " ok, " +
 	     failed + " failed.")
     if (count == 0) {
@@ -242,7 +243,7 @@ object Modbat {
   }
 
   def runTests(n: Int) {
-   for (i <- 1 to n) {
+   for (i <- 1 to n) { // n is the number of test cases
       MBT.rng = masterRNG.clone
       // advance RNG by one step for each path
       // so each path stays the same even if the length of other paths
@@ -303,6 +304,7 @@ object Modbat {
       model.tracedFields.values(f) = value
     }
     val result = exploreSuccessors
+    Log.info("-- Print info -- result of exploreSuccessors call in exploreModel func: " + result) // TODO: Print info
     val retVal = result._1
     val recordedTrans = result._2
     assert (retVal == Ok() || TransitionResult.isErr(retVal))
@@ -331,7 +333,7 @@ object Modbat {
 	  (timesVisited.getOrElseUpdate(RecordedState(m, s.dest), 0)
 	   >= limit)) {
 	if (!quiet) {
-	  Log.fine("Detected beginning of loop " + limit + 
+	  Log.fine("Detected beginning of loop " + limit +
 		   " (model " + m.name + ", state " + s.dest +
 		   "), filtering transition " + s + ".")
 	}
@@ -373,6 +375,7 @@ object Modbat {
       i = i + 1
       w = w + choices(i)._2.action.weight
     }
+    Log.info("-- Print info -- the value of i in weightedChoice:" + i) // TODO: Print info, value of i
     choices(i)
   }
 
@@ -434,9 +437,12 @@ object Modbat {
       val successor = weightedChoice(successors, totalW)
       val model = successor._1
       val trans = successor._2
+      Log.info("-- Print info -- trans of successor in exploreSuccessors func: " + trans) // TODO: Print info, here is the transition that is about to execute
       assert (!trans.isSynthetic)
 // TODO: Path coverage
       val result = model.executeTransition(trans)
+      Log.info("-- Print info -- executed transition: " + result._2) // TODO: Print info, executed transition
+
       var updates: List[(Field, Any)] = Nil
       updates  = model.tracedFields.updates
       for (u <- updates) {
