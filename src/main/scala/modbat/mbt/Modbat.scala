@@ -59,7 +59,7 @@ object Modbat {
   private val timesVisited = new HashMap[RecordedState, Int]
   val testFailures =
     new HashMap[(TransitionResult, String), ListBuffer[Long]]()
- 
+
   def init {
     if (Main.config.init) {
       MBT.invokeAnnotatedStaticMethods(classOf[Init], null)
@@ -196,11 +196,9 @@ object Modbat {
 	}
       }
       if (isErr) {
-	Console.setErr(orig)
 	System.setErr(orig)
 	Log.err = orig
       } else {
-	Console.setOut(orig)
 	System.setOut(orig)
         Console.print("[2K\r")
 	Log.log = orig
@@ -227,6 +225,23 @@ object Modbat {
     rng.z << 32 | rng.w
   }
 
+  def wrapRun = {
+    Console.withErr(err) {
+      Console.withOut(out) {
+	 val model = MBT.launch(null)
+	 val result = exploreModel(model)
+	 MBT.cleanup()
+	 result
+      }
+    }
+  }
+
+  def runTest = {
+    MBT.clearLaunchedModels
+    MBT.testHasFailed = false
+    wrapRun
+  }
+
   def runTests(n: Int) {
    for (i <- 1 to n) { // n is the number of test cases
       MBT.rng = masterRNG.clone
@@ -245,28 +260,18 @@ object Modbat {
       errFile = Main.config.logPath + "/" + seed + ".err"
       if (Main.config.redirectOut) {
 	out = new PrintStream(new FileOutputStream(logFile))
-	Console.setOut(out)
 	System.setOut(out)
 	Log.log = out
 
 	err = new PrintStream(new FileOutputStream(errFile), true)
-	Console.setErr(err)
 	System.setErr(err)
 	Log.err = err
       } else {
 	Console.println
       }
-      MBT.clearLaunchedModels
-      MBT.testHasFailed = false
       MBT.checkDuplicates = (i == 1)
-      val model = MBT.launch(null)
-
-      val result = exploreModel(model)
-      Log.info("result in modbat: " + result) // print info
-
-
-      MBT.cleanup()
-      count = i // count is the number of excuted test cases
+      val result = runTest
+      count = i
       restoreChannels
       if (TransitionResult.isErr(result)) {
 	failed += 1
@@ -328,7 +333,7 @@ object Modbat {
 	  (timesVisited.getOrElseUpdate(RecordedState(m, s.dest), 0)
 	   >= limit)) {
 	if (!quiet) {
-	  Log.fine("Detected beginning of loop " + limit + 
+	  Log.fine("Detected beginning of loop " + limit +
 		   " (model " + m.name + ", state " + s.dest +
 		   "), filtering transition " + s + ".")
 	}
