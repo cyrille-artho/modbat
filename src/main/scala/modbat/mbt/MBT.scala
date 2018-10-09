@@ -610,7 +610,7 @@ class MBT (val model: Model, val trans: List[Transition]) {
       }
     }
     transitions += tr
-    Log.info("-- Print info -- transitions list: " + transitions) // TODO: Print info, transitions
+
     if (isChild) {
       return
     }

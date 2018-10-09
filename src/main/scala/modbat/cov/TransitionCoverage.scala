@@ -11,8 +11,10 @@ import modbat.mbt.Modbat
 import modbat.trace.Ok
 import modbat.trace.RecordedTransition
 import modbat.trace.TransitionResult
+import scala.collection.mutable.ListBuffer
 
 object TransitionCoverage {
+
   def cover(model: MBT, t: Transition, nextState: Transition = null,
 	    excType: String = null, sameAgain: Boolean = false) = {
     assert (t.coverage != null,
