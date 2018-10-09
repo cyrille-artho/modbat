@@ -29,8 +29,8 @@ class Transition (var origin:		State,
   val nonDetExcConv = ListBuffer[NextStateOnException]()
   val nextStatePredConv = ListBuffer[NextStatePredicate]()
   var coverage: TransitionCoverage = _
-  // TODO: Add a master field
-  var master: MBT = _
+
+  var idx:Int = 0 // TODO: add a transition ID, initialized as 0 -RUI
   var n: Int = 0
 
   def expectedExceptions = action.expectedExc.toList
