@@ -354,10 +354,9 @@ class MBT (val model: Model, val trans: List[Transition]) {
   /* isChild is true when coverage information of initial instance is
    * to be re-used; this is the case when a child is launched, but also
    * when a model instance is created again after the first test run. */
-  def init(isChild: Boolean, master: MBT /*TODO: add a master parameter*/) {
+  def init(isChild: Boolean) {
     for (tr <- trans) {
-      // TODO: pass master into regTrans
-      regTrans(tr, isChild, master)
+      regTrans(tr, isChild)
     }
   }
 
@@ -419,19 +418,20 @@ class MBT (val model: Model, val trans: List[Transition]) {
     if (Modbat.firstInstance.contains(className)) {
       val master =
 	initChildInstance(className, trans.toArray)
-      // TODO: Pass master into regSynthTrans and registerStateSelfTrans
-      regSynthTrans(true, master)
-      registerStateSelfTrans(model, true, master)
+      regSynthTrans(true)
+      registerStateSelfTrans(model, true)
       TransitionCoverage.reuseCoverageInfo(this, master, className)
     } else {
       Modbat.firstInstance.put(className, this)
-      // TODO: Add an assertion to check
+      // TODO: Add an assertion to check - RUI
       assert (Modbat.firstInstance(className) == this)
-      // TODO: Pass this into init, regSynthTrans and registerStateSelfTrans, as master
-      init (false, this)
-      regSynthTrans(false, this)
-      registerStateSelfTrans(model, false, this)
+      init (false)
+      regSynthTrans(false)
+      registerStateSelfTrans(model, false)
     }
+    // TODO: print model name
+    Log.info("** model info ** :" + model.getClass.getName)
+    Log.info("** get model name ** :" + this.getModel().getClass.getName)
     model.efsm = this
     MBT.prepare(model)
     Log.fine("Launching new model instance " + name + "...")
@@ -470,39 +470,35 @@ class MBT (val model: Model, val trans: List[Transition]) {
     Log.debug("Identical model found: " + master.name)
     states = master.states
     initialState = master.initialState
-    // TODO: Pass this into init as master
-    init (true, master)
+    init (true)
     master
   }
 
-  def regSynthTrans(isChild: Boolean, master: MBT /*TODO: add a master parameter*/) {
+  def regSynthTrans(isChild: Boolean) {
     for (tr <- transitions) {
       for (t <- tr.nonDetExceptions) {
 	assert (t.target.isSynthetic)
-  // TODO: Pass master into regTrans
-	regTrans(t.target, isChild, master)
+	regTrans(t.target, isChild)
       }
       for (t <- tr.nextStatePredicates) {
 	assert (t.target.isSynthetic)
-  // TODO: Pass master into regTrans
-	regTrans(t.target, isChild, master)
+	regTrans(t.target, isChild)
       }
     }
   }
 
-  def registerStateSelfTrans(model: Model, isChild: Boolean, master:MBT /*TODO: add a master parameter*/) {
+  def registerStateSelfTrans(model: Model, isChild: Boolean) {
     val methods = MBT.getMethods(model)
     for (m <- methods) {
       val annotation = m.getAnnotation(classOf[States])
       if (annotation != null) {
-  // TODO: Pass master into registerTrans
-	registerTrans(model, m, annotation, isChild, master)
+	registerTrans(model, m, annotation, isChild)
       }
     }
   }
 
   def registerTrans(model: Model, m: Method,
-		    annotation: States, isChild: Boolean, master: MBT /*TODO: add a master parameter*/) {
+		    annotation: States, isChild: Boolean) {
     val params = m.getParameterTypes
     if (params.length != 0) {
       if (!MBT.warningIssued(m)) {
@@ -510,8 +506,7 @@ class MBT (val model: Model, val trans: List[Transition]) {
 		 ", which has @State annotation but more than zero arguments.")
       }
     } else {
-      // TODO: Pass master into registerTransForStates
-      registerTransForStates(model, m, annotation, isChild, master)
+      registerTransForStates(model, m, annotation, isChild)
     }
   }
 
@@ -528,7 +523,7 @@ class MBT (val model: Model, val trans: List[Transition]) {
   }
 
   def registerTransForStates(model: Model, m: Method,
-			     annotation: States, isChild: Boolean, master:MBT /*TODO: add a master parameter*/) {
+			     annotation: States, isChild: Boolean) {
     assert(Transition.pendingTransitions.isEmpty)
     val transStates = annotation.value()
     val n = (transStates filter(t => states.contains(t))).size
@@ -546,8 +541,7 @@ class MBT (val model: Model, val trans: List[Transition]) {
 	  action.throws(exceptions.value())
 	}
 	val t = new Transition(st, st, false, action, false)
-  // TODO: pass master into regTrans
-	regTrans(t, isChild, master, true)
+	regTrans(t, isChild, true)
       } else {
 	if (!MBT.warningIssued((state, m))) {
 	  Log.warn("Ignoring non-existent state " + state +
@@ -589,12 +583,10 @@ class MBT (val model: Model, val trans: List[Transition]) {
     s.coverage = new StateCoverage
   }
 
-  def regTrans(tr: Transition, isChild: Boolean, master: MBT /*TODO: add a master parameter*/,
+  def regTrans(tr: Transition, isChild: Boolean,
 	       ignoreDuplicates: Boolean = false) {
     tr.origin = uniqueState(tr.origin)
     tr.dest = uniqueState(tr.dest)
-    // TODO: set master
-    tr.master = master
     Log.debug (name + ": Registered state transition from " + tr.origin +
 	      " to " + tr.dest)
     if (MBT.checkDuplicates && !ignoreDuplicates) {
@@ -609,6 +601,8 @@ class MBT (val model: Model, val trans: List[Transition]) {
 	}
       }
     }
+    //TODO: set the transition ID for the new transition -RUI
+    tr.idx = transitions.size
     transitions += tr
 
     if (isChild) {
