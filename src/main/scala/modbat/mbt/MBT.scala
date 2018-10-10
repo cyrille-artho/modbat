@@ -350,7 +350,7 @@ class MBT (val model: Model, val trans: List[Transition]) {
   var isObserver = false
   var joining: MBT = null
   val tracedFields = new TracedFields(getTracedFields, model)
-  val mIdx = MBT.launchedModels.count(_.className.equals(className)) // TODO: mIdx gives the ID of the model -RUI
+  val mIdx = MBT.launchedModels.count(_.className.equals(className)) // TODO: mIdx gives the ID of the model -Rui
 
   /* isChild is true when coverage information of initial instance is
    * to be re-used; this is the case when a child is launched, but also

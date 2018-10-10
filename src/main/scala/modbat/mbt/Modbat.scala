@@ -62,7 +62,7 @@ object Modbat {
 
   // TODO: create a trie for putting executed transtions paths -Rui
   var trie = new Trie()
-  // TODO: give a Listbuffer to store a tuple: <ModelName, ModelIndex, TransIndex> = [String, Int, Int]
+  // TODO: give a Listbuffer to store a tuple: <ModelName, ModelIndex, transition> = [String, Int, Transition] -Rui
   private var pathInfo = new ListBuffer[(String,Int,Transition)]
 
   def init {
@@ -307,14 +307,14 @@ object Modbat {
     Log.debug("--- Exploring model ---")
     timesVisited.clear
     executedTransitions.clear
-    pathInfo.clear() // TODO: clear path information - RUI
+    pathInfo.clear() // TODO: clear path information - Rui
     timesVisited += ((RecordedState(model, model.initialState), 1))
     for (f <- model.tracedFields.fields) {
       val value = FieldUtil.getValue(f, model.model)
       Log.fine("Trace field " + f.getName + " has initial value " + value)
       model.tracedFields.values(f) = value
     }
-    val result = exploreSuccessors // TODO: pass model into exploreSuccessors - RUI
+    val result = exploreSuccessors
     val retVal = result._1
     val recordedTrans = result._2
     assert (retVal == Ok() || TransitionResult.isErr(retVal))
@@ -501,14 +501,10 @@ object Modbat {
       }
       totalW = totalWeight(successors)
     }
-    // TODO: print all executed transitions -Rui
-    for (et <- executedTransitions)  Log.info("-- Print info -- executed transition in list buffer, in modbat: " + et.transition.toString())
-    // TODO: put all executed transitions of the current test into a Trie - Rui
+    // TODO: put all executed transitions of the current test - Rui
     for (p <- pathInfo) Log.info("-- Print info -- path info: "+ p + " transID:"+p._3.idx)
-    //var trie = new Trie()
-    //
+    // TODO: insert all executed transitions of the current test into a trie - Rui
     trie.insert(pathInfo)
-    //trie.display(trie.root)
     Log.info("****** separate test cases ******")
 
     if (successors.isEmpty && backtracked) {
