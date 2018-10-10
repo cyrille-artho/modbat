@@ -59,7 +59,6 @@ object TransitionCoverage {
     newTrans.origin = master.origin
     newTrans.dest = master.dest
     newTrans.coverage = master.coverage
-    //Log.info("-- Print info -- newtrans coverage got from master coverage: " + newTrans.coverage.count) // TODO: Print info
     newTrans.n = master.n
     assert (newTrans.isSynthetic == master.isSynthetic,
       { newTrans.toString + ".isSynthetic == " + newTrans.isSynthetic +
