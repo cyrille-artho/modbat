@@ -62,6 +62,8 @@ object Modbat {
 
   // TODO: create a trie for putting executed transtions paths -Rui
   var trie = new Trie()
+  // TODO: give a Listbuffer to store a tuple: <ModelName, ModelIndex, TransIndex> = [String, Int, Int]
+  private var pathInfo = new ListBuffer[(String,Int,Transition)]
 
   def init {
     if (Main.config.init) {
@@ -142,6 +144,8 @@ object Modbat {
     Log.info("Hello")
     // TODO: display executed transitions paths -Rui
     trie.display(trie.root)
+    val numOfPaths = trie.numOfPaths(trie.root)
+    Log.info(numOfPaths + " paths executed.")
 
     Log.info(count + " tests executed, " + (count - failed) + " ok, " +
 	     failed + " failed.")
@@ -303,13 +307,14 @@ object Modbat {
     Log.debug("--- Exploring model ---")
     timesVisited.clear
     executedTransitions.clear
+    pathInfo.clear() // TODO: clear path information - RUI
     timesVisited += ((RecordedState(model, model.initialState), 1))
     for (f <- model.tracedFields.fields) {
       val value = FieldUtil.getValue(f, model.model)
       Log.fine("Trace field " + f.getName + " has initial value " + value)
       model.tracedFields.values(f) = value
     }
-    val result = exploreSuccessors
+    val result = exploreSuccessors // TODO: pass model into exploreSuccessors - RUI
     val retVal = result._1
     val recordedTrans = result._2
     assert (retVal == Ok() || TransitionResult.isErr(retVal))
@@ -444,7 +449,10 @@ object Modbat {
       assert (!trans.isSynthetic)
 // TODO: Path coverage
       val result = model.executeTransition(trans)
-      Log.info("-- Print info -- current executed transition: " + result._2) // TODO: Print info, current executed transition
+
+      Log.info("-- Print info -- current executed transition: " + result._2) // TODO: Print info, current executed transition - Rui
+
+      pathInfo += ((model.className, model.mIdx, trans)) // TODO: store path info including the model name, model ID and executed transition - Rui
 
       var updates: List[(Field, Any)] = Nil
       updates  = model.tracedFields.updates
@@ -494,11 +502,13 @@ object Modbat {
       totalW = totalWeight(successors)
     }
     // TODO: print all executed transitions -Rui
-    for (et <- executedTransitions)  Log.info("-- Print info -- executed transition in list buffer, in modbat: " + et.transition.toString()) // TODO: Print info, executed transition
+    for (et <- executedTransitions)  Log.info("-- Print info -- executed transition in list buffer, in modbat: " + et.transition.toString())
     // TODO: put all executed transitions of the current test into a Trie - Rui
+    for (p <- pathInfo) Log.info("-- Print info -- path info: "+ p + " transID:"+p._3.idx)
     //var trie = new Trie()
-    trie.insert(executedTransitions)
-    trie.display(trie.root)
+    //
+    trie.insert(pathInfo)
+    //trie.display(trie.root)
     Log.info("****** separate test cases ******")
 
     if (successors.isEmpty && backtracked) {

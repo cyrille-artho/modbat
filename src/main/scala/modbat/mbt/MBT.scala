@@ -350,6 +350,7 @@ class MBT (val model: Model, val trans: List[Transition]) {
   var isObserver = false
   var joining: MBT = null
   val tracedFields = new TracedFields(getTracedFields, model)
+  val mIdx = MBT.launchedModels.count(_.className.equals(className)) // TODO: mIdx gives the ID of the model -RUI
 
   /* isChild is true when coverage information of initial instance is
    * to be re-used; this is the case when a child is launched, but also
@@ -429,9 +430,6 @@ class MBT (val model: Model, val trans: List[Transition]) {
       regSynthTrans(false)
       registerStateSelfTrans(model, false)
     }
-    // TODO: print model name
-    Log.info("** model info ** :" + model.getClass.getName)
-    Log.info("** get model name ** :" + this.getModel().getClass.getName)
     model.efsm = this
     MBT.prepare(model)
     Log.fine("Launching new model instance " + name + "...")
