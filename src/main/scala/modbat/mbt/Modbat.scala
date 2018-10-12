@@ -146,6 +146,8 @@ object Modbat {
     trie.display(trie.root)
     val numOfPaths = trie.numOfPaths(trie.root)
     Log.info(numOfPaths + " paths executed.")
+    new PathVisualize(trie, "Point").dotify()
+    new PathVisualize(trie, "Box").dotify()
 
     Log.info(count + " tests executed, " + (count - failed) + " ok, " +
 	     failed + " failed.")
@@ -174,7 +176,7 @@ object Modbat {
     Log.info("Random seed for next test would be: " + randomSeed.toHexString)
     if (Main.config.dotifyCoverage) {
       for ((modelName, modelInst) <- firstInstance) {
-	new Dotify(modelInst, modelName + ".dot").dotify(true)
+        new Dotify(modelInst, modelName + ".dot").dotify(true)
       }
     }
   }
