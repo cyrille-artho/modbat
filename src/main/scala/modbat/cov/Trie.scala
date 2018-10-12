@@ -6,7 +6,7 @@ import scala.collection.mutable.{HashMap, ListBuffer}
 
 class Trie {
   val root: TrieNode = TrieNode()
-
+  // The insert method inserts the transition of each test into a trie data structure
   def insert(pathInfo:ListBuffer[(String, Int, Transition)]) = {
     var currentNode: TrieNode = root
     for (p <- pathInfo) {
@@ -34,7 +34,6 @@ class Trie {
     currentNode.isLeaf = true
   }
 
-
   def display(root:TrieNode, level:Int = 0):Unit = {
     if (root.isLeaf) println()
 
@@ -47,7 +46,7 @@ class Trie {
       display(node,level+1)
     }
   }
-
+  // The method numOfPaths computes the total number of paths
   def numOfPaths(root:TrieNode):Int = {
     var result = 0
 
@@ -60,12 +59,11 @@ class Trie {
   }
 }
 
-
 case class TrieNode() {
-  var children: HashMap[String,TrieNode] = HashMap.empty[String,TrieNode] // children stores the transition in string and the next node
+  var children: HashMap[String,TrieNode] = HashMap.empty[String,TrieNode] // children store the transitions in string and the next nodes
   var isLeaf: Boolean = false
-  var selfTransCounter = 1
-  var previousTransition:Transition = null
+  var selfTransCounter = 1 // this counter counts the number of times for a transition occurring to the same state itself during a test
+  var previousTransition:Transition = null  // previousTransition stores the transition leading to the next state
   var modelInfo: (String, Int) = _ // modelInfo stores the name of the model and its id
-  var transitionInfo: (String, Int, Int) = _ // transitionInfo store the transition, its id, and the times that transition are executed
+  var transitionInfo: (String, Int, Int) = _ // transitionInfo store the transition as a string, its id, and the times that transition are executed
 }
