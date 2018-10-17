@@ -35,7 +35,7 @@ class PathVisualize(trie:Trie, shape:String) {
       val node = root.children.getOrElse(t,sys.error(s"unexpected key: $t"))
       val modelName = node.modelInfo._1.toString
       val modelID = node.modelInfo._2.toString
-      val transName = node.transitionInfo._1.toString
+      val transName = node.transitionInfo._1.toString.stripSuffix(" (1)")
       val transID = node.transitionInfo._2.toString
       val transExecutionCounter = node.transitionInfo._3.toString
       val selfTransCounter = "(Transition Self-execution Times:"+ node.selfTransCounter +")"
@@ -47,7 +47,7 @@ class PathVisualize(trie:Trie, shape:String) {
         selfTransCounter + "\"];"
       shape.toLowerCase match {
         case "box" => val nodeIDFrom = node.transitionInfo._1.split("=>")(0)
-                      val nodeIDTo = node.transitionInfo._1.split("=>")(1)
+                      val nodeIDTo = node.transitionInfo._1.split("=>")(1).stripSuffix(" (1)")
                       out.println("  " + nodeIDFrom + "->" + nodeIDTo  + newlabel)
         case "point" => val nodeIDFrom = node.transitionInfo._2 -1
                         val nodeIDTo = node.transitionInfo._2
