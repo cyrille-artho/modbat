@@ -2,30 +2,33 @@ package modbat.cov
 
 import modbat.dsl.Transition
 import modbat.log.Log
+import modbat.mbt.PathInfo
+
 import scala.collection.mutable.{HashMap, ListBuffer}
 
 class Trie {
   val root: TrieNode = TrieNode()
   // The insert method inserts the transition of each test into a trie data structure
-  def insert(pathInfo:ListBuffer[(String, Int, Transition)]) = {
+  def insert(pathInfo:ListBuffer[PathInfo]) = {
     var currentNode: TrieNode = root
     for (p <- pathInfo) {
-      var node:TrieNode = currentNode.children.getOrElse(p._3.toString(),null)
-      if (currentNode.previousTransition != null && currentNode.previousTransition == p._3) {
+      var node:TrieNode = currentNode.children.getOrElse(p.transition.toString(),null)
+      if (currentNode.previousTransition != null && currentNode.previousTransition == p.transition) {
         currentNode.selfTransCounter += 1
-       Log.info("the transition stored in trie node:" + p._3.toString() + " counter:" + currentNode.selfTransCounter)
+       Log.info("the transition stored in trie node:" + p.transition.toString() + " counter:" + currentNode.selfTransCounter)
       }else {
         if (node == null) {
           node = TrieNode()
-          node.previousTransition = p._3
-          node.modelInfo = (p._1,p._2)
-          node.transitionInfo = (p._3.toString(), p._3.idx,1)
-          currentNode.children.put(node.transitionInfo._1, node)
+          node.previousTransition = p.transition
+          node.modelInfo = ModelInfo(p.modelName,p.modelID)
+          node.transitionInfo = TransitionInfo(p.transition.toString(), p.transition.idx,1)
+          currentNode.children.put(node.transitionInfo.transitionName, node)
         }else{
           Log.info("transition already exist in trie:" + node.transitionInfo)
-          if (node.transitionInfo._2 == p._3.idx) {
-            node.transitionInfo = node.transitionInfo.copy(_3 = node.transitionInfo._3 + 1)
-            Log.info ("got a same transition executed: " + node.transitionInfo._3 + " times")
+          if (node.transitionInfo.transitionID == p.transition.idx) {
+            node.transitionInfo.transCounter = node.transitionInfo.transCounter + 1
+           // node.transitionInfo = node.transitionInfo.copy(_3 = node.transitionInfo._3 + 1)
+            Log.info ("got a same transition executed: " + node.transitionInfo.transCounter + " times")
           }
         }
         currentNode = node
@@ -64,6 +67,9 @@ case class TrieNode() {
   var isLeaf: Boolean = false
   var selfTransCounter = 1 // this counter counts the number of times for a transition occurring to the same state itself during a test
   var previousTransition:Transition = null  // previousTransition stores the transition leading to the next state
-  var modelInfo: (String, Int) = _ // modelInfo stores the name of the model and its id
-  var transitionInfo: (String, Int, Int) = _ // transitionInfo store the transition as a string, its id, and the times that transition are executed
+  var modelInfo: ModelInfo  = _ // modelInfo stores the name of the model and its id
+  var transitionInfo: TransitionInfo  = _ // transitionInfo store the transition as a string, its id, and the times that transition are executed
 }
+
+case class ModelInfo(modelName:String, modelID:Int)
+case class TransitionInfo(transitionName:String, transitionID:Int, var transCounter:Int)

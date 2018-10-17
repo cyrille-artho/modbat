@@ -38,10 +38,13 @@ import modbat.util.FieldUtil
 
 /** Contains code to explore model */
 object Modbat {
+
   object AppState extends Enumeration {
     val AppExplore, AppShutdown = Value
   }
+
   import AppState._
+
   val origOut = Console.out
   val origErr = Console.err
   var out: PrintStream = origOut
@@ -63,7 +66,8 @@ object Modbat {
   // TODO: create a trie for putting executed transtions paths -Rui
   var trie = new Trie()
   // TODO: give a Listbuffer to store a tuple: <ModelName, ModelIndex, transition> = [String, Int, Transition] -Rui
-  private var pathInfo = new ListBuffer[(String,Int,Transition)]
+  //private var pathInfoRecorder = new ListBuffer[(String, Int, Transition)]
+  private var pathInfoRecorder = new ListBuffer[PathInfo]
 
   def init {
     if (Main.config.init) {
@@ -80,11 +84,11 @@ object Modbat {
   def showFailure(f: (TransitionResult, String)) = {
     val failureType = f._1
     val failedTrans = f._2
-    assert (TransitionResult.isErr(failureType))
+    assert(TransitionResult.isErr(failureType))
     (failureType: @unchecked) match {
       case ExceptionOccurred(e) => e + " at " + failedTrans
       case ExpectedExceptionMissing =>
-      "Expected exception did not occur at " + failedTrans
+        "Expected exception did not occur at " + failedTrans
     }
   }
 
@@ -115,27 +119,28 @@ object Modbat {
   }
 
   def warnPrecond(modelInst: MBT, t: Transition, idx: Int) {
-    Log.info("Precondition " + (idx + 1) + " always " +
-	     passFailed(t.coverage.precond.precondPassed.get(idx)) +
-	     " at transition " +
-	     ppTrans(new RecordedTransition(modelInst, t)))
+    Log.info(
+      "Precondition " + (idx + 1) + " always " +
+        passFailed(t.coverage.precond.precondPassed.get(idx)) +
+        " at transition " +
+        ppTrans(new RecordedTransition(modelInst, t)))
   }
 
   def preconditionCoverage {
     for ((modelName, modelInst) <- firstInstance) {
       for (t <- modelInst.transitions) {
-	val diffSet =
-	  t.coverage.precond.precondPassed.clone.asInstanceOf[BitSet]
-	diffSet.xor(t.coverage.precond.precondFailed)
-	var idx = diffSet.nextSetBit(0)
-	while (idx != -1) {
-	  warnPrecond(modelInst, t, idx)
-	  if (t.coverage.precond.precondFailed.get(idx)) {
-	    idx = -1
-	  } else {
-	    idx = diffSet.nextSetBit(idx + 1)
-	  }
-	}
+        val diffSet =
+          t.coverage.precond.precondPassed.clone.asInstanceOf[BitSet]
+        diffSet.xor(t.coverage.precond.precondFailed)
+        var idx = diffSet.nextSetBit(0)
+        while (idx != -1) {
+          warnPrecond(modelInst, t, idx)
+          if (t.coverage.precond.precondFailed.get(idx)) {
+            idx = -1
+          } else {
+            idx = diffSet.nextSetBit(idx + 1)
+          }
+        }
       }
     }
   }
@@ -146,30 +151,33 @@ object Modbat {
     trie.display(trie.root)
     val numOfPaths = trie.numOfPaths(trie.root)
     Log.info(numOfPaths + " paths executed.")
-    new PathVisualize(trie, "Point").dotify()
-    new PathVisualize(trie, "Box").dotify()
+    new PathVisualizer(trie, "Point").dotify()
+    new PathVisualizer(trie, "Box").dotify()
 
-    Log.info(count + " tests executed, " + (count - failed) + " ok, " +
-	     failed + " failed.")
+    Log.info(
+      count + " tests executed, " + (count - failed) + " ok, " +
+        failed + " failed.")
     if (count == 0) {
       return
     }
     showErrors
     for ((modelName, modelInst) <- firstInstance) {
       val nCoveredStates =
-	(modelInst.states.values filter (_.coverage.isCovered)).size
+        (modelInst.states.values filter (_.coverage.isCovered)).size
       val nCoveredTrans =
-	(modelInst.transitions filter (_.coverage.isCovered)).size
+        (modelInst.transitions filter (_.coverage.isCovered)).size
       var modelStr = ""
       if (firstInstance.size != 1) {
-	modelStr = modelName + ": "
+        modelStr = modelName + ": "
       }
       val nStates = modelInst.states.size
       val nTrans = modelInst.transitions.size
-      Log.info(modelStr + nCoveredStates + " states covered (" +
-	       nCoveredStates * 100 / nStates + " % out of " + nStates + "),")
-      Log.info(modelStr + nCoveredTrans + " transitions covered (" +
-	       nCoveredTrans * 100 / nTrans + " % out of " + nTrans + ").")
+      Log.info(
+        modelStr + nCoveredStates + " states covered (" +
+          nCoveredStates * 100 / nStates + " % out of " + nStates + "),")
+      Log.info(
+        modelStr + nCoveredTrans + " transitions covered (" +
+          nCoveredTrans * 100 / nTrans + " % out of " + nTrans + ").")
     }
     preconditionCoverage
     randomSeed = (masterRNG.z << 32 | masterRNG.w)
@@ -184,9 +192,9 @@ object Modbat {
   object ShutdownHandler extends Thread {
     override def run() {
       if (appState == AppExplore) {
-	restoreChannels
-	Console.println
-	coverage
+        restoreChannels
+        Console.println
+        coverage
       }
     }
   }
@@ -196,24 +204,26 @@ object Modbat {
     restoreChannel(err, origErr, errFile, true)
   }
 
-  def restoreChannel(ch: PrintStream, orig: PrintStream,
-		     filename: String, isErr: Boolean = false) {
+  def restoreChannel(ch: PrintStream,
+                     orig: PrintStream,
+                     filename: String,
+                     isErr: Boolean = false) {
     if (Main.config.redirectOut) {
       ch.close()
       val file = new File(filename)
       if ((Main.config.deleteEmptyLog && (file.length == 0)) ||
-	  (Main.config.removeLogOnSuccess && !MBT.testHasFailed)) {
-	if (!file.delete()) {
-	  Log.warn("Cannot delete file " + filename)
-	}
+          (Main.config.removeLogOnSuccess && !MBT.testHasFailed)) {
+        if (!file.delete()) {
+          Log.warn("Cannot delete file " + filename)
+        }
       }
       if (isErr) {
-	System.setErr(orig)
-	Log.err = orig
+        System.setErr(orig)
+        Log.err = orig
       } else {
-	System.setOut(orig)
+        System.setOut(orig)
         Console.print("[2K\r")
-	Log.log = orig
+        Log.log = orig
       }
     }
   }
@@ -232,18 +242,18 @@ object Modbat {
 
   def getRandomSeed = {
     val rng = MBT.rng.asInstanceOf[CloneableRandom]
-    assert (rng.w <= 0xffffffffL)
-    assert (rng.z <= 0xffffffffL)
+    assert(rng.w <= 0xffffffffL)
+    assert(rng.z <= 0xffffffffL)
     rng.z << 32 | rng.w
   }
 
   def wrapRun = {
     Console.withErr(err) {
       Console.withOut(out) {
-	 val model = MBT.launch(null)
-	 val result = exploreModel(model)
-	 MBT.cleanup()
-	 result
+        val model = MBT.launch(null)
+        val result = exploreModel(model)
+        MBT.cleanup()
+        result
       }
     }
   }
@@ -255,7 +265,7 @@ object Modbat {
   }
 
   def runTests(n: Int) {
-   for (i <- 1 to n) { // n is the number of test cases
+    for (i <- 1 to n) { // n is the number of test cases
       MBT.rng = masterRNG.clone
       // advance RNG by one step for each path
       // so each path stays the same even if the length of other paths
@@ -263,36 +273,35 @@ object Modbat {
       randomSeed = getRandomSeed
       val seed = randomSeed.toHexString
       failed match {
-	case 0 => Console.printf("%8d %16s", i, seed)
-	case 1 => Console.printf("%8d %16s, one test failed.", i, seed)
-	case _ => Console.printf("%8d %16s, %d tests failed.",
-				 i, seed, failed)
+        case 0 => Console.printf("%8d %16s", i, seed)
+        case 1 => Console.printf("%8d %16s, one test failed.", i, seed)
+        case _ => Console.printf("%8d %16s, %d tests failed.", i, seed, failed)
       }
       logFile = Main.config.logPath + "/" + seed + ".log"
       errFile = Main.config.logPath + "/" + seed + ".err"
       if (Main.config.redirectOut) {
-	out = new PrintStream(new FileOutputStream(logFile))
-	System.setOut(out)
-	Log.log = out
+        out = new PrintStream(new FileOutputStream(logFile))
+        System.setOut(out)
+        Log.log = out
 
-	err = new PrintStream(new FileOutputStream(errFile), true)
-	System.setErr(err)
-	Log.err = err
+        err = new PrintStream(new FileOutputStream(errFile), true)
+        System.setErr(err)
+        Log.err = err
       } else {
-	Console.println
+        Console.println
       }
       MBT.checkDuplicates = (i == 1)
       val result = runTest
       count = i
       restoreChannels
       if (TransitionResult.isErr(result)) {
-	failed += 1
+        failed += 1
       } else {
-	assert (result == Ok())
+        assert(result == Ok())
       }
       masterRNG.nextInt(false) // get one iteration in RNG
       if (TransitionResult.isErr(result) && Main.config.stopOnFailure) {
-	return
+        return
       }
     }
   }
@@ -309,7 +318,7 @@ object Modbat {
     Log.debug("--- Exploring model ---")
     timesVisited.clear
     executedTransitions.clear
-    pathInfo.clear() // TODO: clear path information - Rui
+    pathInfoRecorder.clear() // TODO: clear path information - Rui
     timesVisited += ((RecordedState(model, model.initialState), 1))
     for (f <- model.tracedFields.fields) {
       val value = FieldUtil.getValue(f, model.model)
@@ -319,7 +328,7 @@ object Modbat {
     val result = exploreSuccessors
     val retVal = result._1
     val recordedTrans = result._2
-    assert (retVal == Ok() || TransitionResult.isErr(retVal))
+    assert(retVal == Ok() || TransitionResult.isErr(retVal))
     MBT.testHasFailed = TransitionResult.isErr(retVal)
     if (TransitionResult.isErr(retVal)) {
       val entry = (retVal, showTrans(recordedTrans))
@@ -331,27 +340,30 @@ object Modbat {
     retVal
   }
 
-  def addSuccessors(m: MBT, result: ArrayBuffer[(MBT, Transition)],
-		    quiet: Boolean = false) {
+  def addSuccessors(m: MBT,
+                    result: ArrayBuffer[(MBT, Transition)],
+                    quiet: Boolean = false) {
     for (s <- m.successors(quiet)) {
       if (!quiet) {
-	Log.debug("State " + s.dest +
-		  " in model " + m.name + " was visited " +
-		  timesVisited.getOrElseUpdate(RecordedState(m, s.dest), 0)
-		  + " times.")
+        Log.debug(
+          "State " + s.dest +
+            " in model " + m.name + " was visited " +
+            timesVisited.getOrElseUpdate(RecordedState(m, s.dest), 0)
+            + " times.")
       }
       val limit = Main.config.loopLimit
       if ((limit != 0) &&
-	  (timesVisited.getOrElseUpdate(RecordedState(m, s.dest), 0)
-	   >= limit)) {
-	if (!quiet) {
-	  Log.fine("Detected beginning of loop " + limit +
-		   " (model " + m.name + ", state " + s.dest +
-		   "), filtering transition " + s + ".")
-	}
+          (timesVisited.getOrElseUpdate(RecordedState(m, s.dest), 0)
+            >= limit)) {
+        if (!quiet) {
+          Log.fine(
+            "Detected beginning of loop " + limit +
+              " (model " + m.name + ", state " + s.dest +
+              "), filtering transition " + s + ".")
+        }
       } else {
-	val succ = (m, s)
-	result += succ
+        val succ = (m, s)
+        result += succ
       }
     }
   }
@@ -360,12 +372,12 @@ object Modbat {
     var result = new ArrayBuffer[(MBT, Transition)]()
     if (givenModel == null) {
       for (m <- MBT.launchedModels filterNot (_ isObserver)
-	   filter (_.joining == null)) {
+             filter (_.joining == null)) {
         addSuccessors(m, result)
       }
     } else {
       if (givenModel.joining == null) {
-	addSuccessors(givenModel, result)
+        addSuccessors(givenModel, result)
       }
     }
     result.toArray
@@ -391,44 +403,43 @@ object Modbat {
   }
 
   def updateExecHistory(model: MBT,
-			localStoredRNGState: CloneableRandom,
-			result: (TransitionResult, RecordedTransition),
-			updates: List[(Field, Any)]) {
+                        localStoredRNGState: CloneableRandom,
+                        result: (TransitionResult, RecordedTransition),
+                        updates: List[(Field, Any)]) {
     result match {
       case (Ok(_), successorTrans: RecordedTransition) =>
-	successorTrans.updates = updates
-	successorTrans.randomTrace =
-	  MBT.rng.asInstanceOf[CloneableRandom].trace
-	successorTrans.debugTrace =
-	  MBT.rng.asInstanceOf[CloneableRandom].debugTrace
-	MBT.rng.asInstanceOf[CloneableRandom].clear
-	executedTransitions += successorTrans
-	val timesSeen =
-	  timesVisited.getOrElseUpdate(RecordedState(model,
-						     successorTrans.dest), 0)
-	timesVisited += ((RecordedState(model, successorTrans.dest),
-			  timesSeen + 1))
+        successorTrans.updates = updates
+        successorTrans.randomTrace = MBT.rng.asInstanceOf[CloneableRandom].trace
+        successorTrans.debugTrace =
+          MBT.rng.asInstanceOf[CloneableRandom].debugTrace
+        MBT.rng.asInstanceOf[CloneableRandom].clear
+        executedTransitions += successorTrans
+        val timesSeen =
+          timesVisited.getOrElseUpdate(
+            RecordedState(model, successorTrans.dest),
+            0)
+        timesVisited += ((RecordedState(model, successorTrans.dest),
+                          timesSeen + 1))
       case (Backtrack, _) =>
-	MBT.rng = localStoredRNGState // backtrack RNG state
-	// retry with other successor states in next loop iteration
+        MBT.rng = localStoredRNGState // backtrack RNG state
+      // retry with other successor states in next loop iteration
       case (r: TransitionResult, failedTrans: RecordedTransition) =>
-	assert(TransitionResult.isErr(r))
-	failedTrans.randomTrace =
-	  MBT.rng.asInstanceOf[CloneableRandom].trace
-	failedTrans.debugTrace =
-	  MBT.rng.asInstanceOf[CloneableRandom].debugTrace
-	MBT.rng.asInstanceOf[CloneableRandom].clear
-	executedTransitions += failedTrans
+        assert(TransitionResult.isErr(r))
+        failedTrans.randomTrace = MBT.rng.asInstanceOf[CloneableRandom].trace
+        failedTrans.debugTrace =
+          MBT.rng.asInstanceOf[CloneableRandom].debugTrace
+        MBT.rng.asInstanceOf[CloneableRandom].clear
+        executedTransitions += failedTrans
     }
   }
 
   def otherThreadFailed = {
     MBT.synchronized {
       if (MBT.testHasFailed) {
-	printTrace(executedTransitions.toList)
-	true
+        printTrace(executedTransitions.toList)
+        true
       } else {
-	false
+        false
       }
     }
   }
@@ -442,86 +453,90 @@ object Modbat {
       val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone
 
       if (MBT.rng.nextFloat(false) < Main.config.abortProbability) {
-	Log.debug("Aborting...")
-	return (Ok(), null)
+        Log.debug("Aborting...")
+        return (Ok(), null)
       }
       val successor = weightedChoice(successors, totalW)
       val model = successor._1
       val trans = successor._2
-      assert (!trans.isSynthetic)
-// TODO: Path coverage
+      assert(!trans.isSynthetic)
+      // TODO: Path coverage
       val result = model.executeTransition(trans)
 
       Log.info("-- Print info -- current executed transition: " + result._2) // TODO: Print info, current executed transition - Rui
 
-      pathInfo += ((model.className, model.mIdx, trans)) // TODO: store path info including the model name, model ID and executed transition - Rui
-
       var updates: List[(Field, Any)] = Nil
-      updates  = model.tracedFields.updates
+      updates = model.tracedFields.updates
       for (u <- updates) {
-	Log.fine("Trace field " + u._1 + " now has value " + u._2)
+        Log.fine("Trace field " + u._1 + " now has value " + u._2)
       }
       updateExecHistory(model, localStoredRNGState, result, updates)
       result match {
         case (Ok(sameAgain: Boolean), _) => {
-	  val succ = new ArrayBuffer[(MBT, Transition)]()
-	  addSuccessors(model, succ, true)
-	  if (succ.size == 0) {
-	    Log.debug("Model " + model.name + " has terminated.")
-	    // Unblock all models that are joining this one.
-	    for (m <- MBT.launchedModels filter (_.joining == model)) {
-	      m.joining = null
-	    }
-	  }
-	  if (otherThreadFailed) {
-	    return (ExceptionOccurred(MBT.externalException.toString), null)
-	  }
-	  if (sameAgain) {
-	    successors = allSuccessors(model)
-	  } else {
-	    successors = allSuccessors(null)
-	  }
-	  val observerResult = updateObservers
-	  if (TransitionResult.isErr(observerResult)) {
-	    return (observerResult, result._2)
-	  }
-	  if (otherThreadFailed) {
-	    return (ExceptionOccurred(MBT.externalException.toString), null)
-	  }
-	  backtracked = false
-	  allSucc = successors.clone
-	}
+          val succ = new ArrayBuffer[(MBT, Transition)]()
+          addSuccessors(model, succ, true)
+          if (succ.size == 0) {
+            Log.debug("Model " + model.name + " has terminated.")
+            // Unblock all models that are joining this one.
+            for (m <- MBT.launchedModels filter (_.joining == model)) {
+              m.joining = null
+            }
+          }
+          if (otherThreadFailed) {
+            return (ExceptionOccurred(MBT.externalException.toString), null)
+          }
+          if (sameAgain) {
+            successors = allSuccessors(model)
+          } else {
+            successors = allSuccessors(null)
+          }
+          val observerResult = updateObservers
+          if (TransitionResult.isErr(observerResult)) {
+            return (observerResult, result._2)
+          }
+          if (otherThreadFailed) {
+            return (ExceptionOccurred(MBT.externalException.toString), null)
+          }
+          backtracked = false
+          allSucc = successors.clone
+        }
         case (Backtrack, _) => {
-	  successors = successors filterNot (_ == successor)
-	  backtracked = true
-	}
+          successors = successors filterNot (_ == successor)
+          backtracked = true
+        }
         case (t: TransitionResult, _) => {
-	  assert(TransitionResult.isErr(t))
-	  printTrace(executedTransitions.toList)
-	  return result
-	}
+          assert(TransitionResult.isErr(t))
+          printTrace(executedTransitions.toList)
+          return result
+        }
       }
+      if (!backtracked)
+        pathInfoRecorder += new PathInfo(model.className, model.mIdx, trans) // TODO: store path info including the model name, model ID and executed transition - Rui
       totalW = totalWeight(successors)
     }
     // TODO: put all executed transitions of the current test - Rui
-    for (p <- pathInfo) Log.info("-- Print info -- path info: "+ p + " transID:"+p._3.idx)
+    for (p <- pathInfoRecorder)
+      Log.info(
+        "-- Print info -- path info: " + p.toString + ", transID:" + p.transition.idx)
     // TODO: insert all executed transitions of the current test into a trie - Rui
-    trie.insert(pathInfo)
+    trie.insert(pathInfoRecorder)
     Log.info("****** separate test cases ******")
 
     if (successors.isEmpty && backtracked) {
       for (succ <- allSucc) {
-	Log.warn("All preconditions false at transition " +
-		 ppTrans(new RecordedTransition(succ._1, succ._2)))
+        Log.warn(
+          "All preconditions false at transition " +
+            ppTrans(new RecordedTransition(succ._1, succ._2)))
       }
       Log.warn("Maybe the preconditions are too strict?")
     }
     Log.debug("No more successors.")
     if ((MBT.launchedModels filter (_.joining != null)).size != 0) {
-      Log.warn("Deadlock: Some models stuck waiting for another model to finish.")
+      Log.warn(
+        "Deadlock: Some models stuck waiting for another model to finish.")
       for (m <- MBT.launchedModels filter (_.joining != null)) {
-	val trans = (executedTransitions filter (_.model eq m)).last
-	Log.warn(m.name + ": " + ppTrans(trans))
+        val trans = (executedTransitions filter (_.model eq m)).last
+        Log.warn(m.name + ": " + ppTrans(trans))
       }
     }
     Transition.pendingTransitions.clear
@@ -534,7 +549,7 @@ object Modbat {
       assert(observer.isObserver)
       val observerResult = updateObserver(observer)
       if (TransitionResult.isErr(observerResult)) {
-	return observerResult
+        return observerResult
       }
     }
     Ok()
@@ -555,39 +570,41 @@ object Modbat {
 
   def executeObserverStep(observer: MBT): TransitionResult = {
     for (trans <- observer.successors(false)) {
-      assert (!trans.isSynthetic)
+      assert(!trans.isSynthetic)
       val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone
       val result = observer.executeTransition(trans)
       Modbat.updateExecHistory(observer, localStoredRNGState, result, Nil)
       if (TransitionResult.isErr(result._1)) {
-	printTrace(executedTransitions.toList)
+        printTrace(executedTransitions.toList)
       }
       if (result._1 != Backtrack) {
-	return result._1
+        return result._1
       }
     }
     Ok() // ignore case where no transition executes
   }
-
 
   def sourceInfo(action: Action, recordedAction: StackTraceElement) = {
     if (recordedAction != null) {
       val fullClsName = recordedAction.getClassName
       val idx = fullClsName.lastIndexOf('.')
       if (idx == -1) {
-	recordedAction.getFileName + ":" + recordedAction.getLineNumber
+        recordedAction.getFileName + ":" + recordedAction.getLineNumber
       } else {
-	fullClsName.substring(0, idx + 1).replace('.', File.separatorChar) +
-	recordedAction.getFileName + ":" + recordedAction.getLineNumber
+        fullClsName.substring(0, idx + 1).replace('.', File.separatorChar) +
+          recordedAction.getFileName + ":" + recordedAction.getLineNumber
       }
     } else {
-      assert (action.transfunc != null)
+      assert(action.transfunc != null)
       SourceInfo.sourceInfo(action, false)
     }
   }
 
-  def ppTrans(nModels: Int, transName: String, action: Action,
-	      recAction: StackTraceElement, modelName: String) = {
+  def ppTrans(nModels: Int,
+              transName: String,
+              action: Action,
+              recAction: StackTraceElement,
+              modelName: String) = {
     val sourceInfoStr = sourceInfo(action, recAction)
     if (nModels > 1) {
       sourceInfoStr + ": " + modelName + ": " + transName
@@ -598,11 +615,13 @@ object Modbat {
 
   def ppTrans(recTrans: RecordedTransition): String = {
     val transStr =
-      ppTrans (MBT.launchedModels.size, recTrans.trans.ppTrans(true),
-	       recTrans.transition.action,
-	       recTrans.recordedAction, recTrans.model.name)
+      ppTrans(MBT.launchedModels.size,
+              recTrans.trans.ppTrans(true),
+              recTrans.transition.action,
+              recTrans.recordedAction,
+              recTrans.model.name)
     if (Main.config.showChoices && recTrans.randomTrace != null &&
-	recTrans.randomTrace.length != 0) {
+        recTrans.randomTrace.length != 0) {
       val choices = recTrans.debugTrace.mkString(", ")
       transStr + "; choices = (" + choices + ")"
     } else {
@@ -615,7 +634,7 @@ object Modbat {
     for (t <- transitions) {
       Log.warn(ppTrans(t))
       for (u <- t.updates) {
-	Log.warn("  " + u._1 + " = " + u._2)
+        Log.warn("  " + u._1 + " = " + u._2)
       }
     }
   }
