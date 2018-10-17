@@ -20,7 +20,7 @@ class Trie {
           node.previousTransition = p._3
           node.modelInfo = (p._1,p._2)
           node.transitionInfo = (p._3.toString(), p._3.idx,1)
-          currentNode.children.put(p._3.toString(), node)
+          currentNode.children.put(node.transitionInfo._1, node)
         }else{
           Log.info("transition already exist in trie:" + node.transitionInfo)
           if (node.transitionInfo._2 == p._3.idx) {
