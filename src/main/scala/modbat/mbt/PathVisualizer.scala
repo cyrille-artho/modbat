@@ -65,10 +65,12 @@ class PathVisualizer(trie:Trie, shape:String) {
       val modelID = node.modelInfo.modelID.toString
       val transName = node.transitionInfo.transitionName.stripSuffix(" (1)")
       val transID = node.transitionInfo.transitionID.toString
+      val transQuality = node.transitionInfo.transitionQuality
       val transExecutionCounter = node.transitionInfo.transCounter.toString
       val selfTransCounter = "(Transition Self-execution Times:"+ node.selfTransCounter +")"
-      // the newlabel is used for constructing a label for the output of the "point" graph
-      val newLabel =  "[label = \"" + "Model Name:" + modelName  + "\\n" +
+      val edgeStyle:String = if (transQuality == TransitionQuality.Failed) "style=dotted, color=red," else ""
+      // the newlabel here is used for constructing a label for the output of the "point" graph
+      val newLabel =  "[" + edgeStyle + "label = \"" + "Model Name:" + modelName  + "\\n" +
         "Model ID:" + modelID + "\\n" +
         "Transition Name:" + transName  + "\\n" +
         "Transition ID:" + transID  + "\\n" +
@@ -93,15 +95,15 @@ class PathVisualizer(trie:Trie, shape:String) {
                         nodeRecorder += newNodeInfo
                       }
                       display(node,level+1,0,null,nodeRecorder)
-        case "point" => val newlabelInfo =
+        case "point" =>   val newlabelInfo =
                             if (transName.split(" => ")(0) == transName.split(" => ")(1).stripSuffix(" (1)"))
                               LabelInfo(newLabel,true)
                             else LabelInfo(newLabel)
-                        newLabelStack += newlabelInfo
-                       // Log.info("new stack:" + newStack)
-                        val result = display(node,level+1, newNodeNumber, newLabelStack)
-                        newNodeNumber = result._1
-                        newLabelStack = result._2
+                          newLabelStack += newlabelInfo
+                          // Log.info("new stack:" + newStack)
+                          val result = display(node,level+1, newNodeNumber, newLabelStack)
+                          newNodeNumber = result._1
+                          newLabelStack = result._2
       }
     }
     if (newLabelStack != null){
@@ -111,9 +113,12 @@ class PathVisualizer(trie:Trie, shape:String) {
     if (level == 0 && nodeRecorder != null && nodeRecorder.nonEmpty) {
       //Log.info(nodeRecorder.toString())
       for (n <- nodeRecorder) {
+        val edgeStyle = if (n.node.transitionInfo.transitionQuality == TransitionQuality.Failed) "style=dotted, color=red," else ""
+        if (n.node.transitionInfo.transitionQuality == TransitionQuality.Failed)
+          out.println(n.node.transitionInfo.transitionName.split(" => ")(1).stripSuffix(" (1)") + "[color=red];")
         out.println("  " + n.node.transitionInfo.transitionName.split(" => ")(0)
           + "->" + n.node.transitionInfo.transitionName.split(" => ")(1).stripSuffix(" (1)")
-          + "[label = \"" + "Model Name:" + n.node.modelInfo.modelName  + "\\n" +
+          + "[" + edgeStyle + "label = \"" + "Model Name:" + n.node.modelInfo.modelName  + "\\n" +
           "Model ID:" + n.node.modelInfo.modelID.toString + "\\n" +
           "Transition Name:" + n.node.transitionInfo.transitionName.stripSuffix(" (1)")  + "\\n" +
           "Transition ID:" + n.node.transitionInfo.transitionID.toString  + "\\n" +

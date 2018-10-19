@@ -510,8 +510,10 @@ object Modbat {
           return result
         }
       }
-      if (!backtracked)
-        pathInfoRecorder += new PathInfo(model.className, model.mIdx, trans) // TODO: store path info including the model name, model ID and executed transition - Rui
+      if (backtracked)
+        pathInfoRecorder += new PathInfo(model.className, model.mIdx, trans, TransitionQuality.Failed) // TODO: store path info including the model name, model ID and executed transition - Rui
+      else pathInfoRecorder += new PathInfo(model.className, model.mIdx, trans)
+
       totalW = totalWeight(successors)
     }
     // TODO: put all executed transitions of the current test - Rui
