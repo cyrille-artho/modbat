@@ -1,6 +1,6 @@
 package modbat.cov
 
-import modbat.dsl.Transition
+import modbat.dsl.{State, Transition}
 import modbat.log.Log
 import modbat.mbt.PathInfo
 import modbat.mbt.TransitionQuality.Quality
@@ -13,7 +13,7 @@ class Trie {
   def insert(pathInfo:ListBuffer[PathInfo]) = {
     var currentNode: TrieNode = root
     for (p <- pathInfo) {
-      var node:TrieNode = currentNode.children.getOrElse(p.transition.toString(),null)
+      var node:TrieNode = currentNode.children.getOrElse(p.transition.idx,null)
       if (currentNode.currentTransition != null && currentNode.currentTransition == p.transition) {
         currentNode.selfTransCounter += 1
        Log.info("the transition stored in trie node:" + p.transition.toString() + " counter:" + currentNode.selfTransCounter)
@@ -22,8 +22,8 @@ class Trie {
           node = TrieNode()
           node.currentTransition = p.transition
           node.modelInfo = ModelInfo(p.modelName,p.modelID)
-          node.transitionInfo = TransitionInfo(p.transition.toString(), p.transition.idx,1,p.transitionQuality)
-          currentNode.children.put(node.transitionInfo.transitionName, node)
+          node.transitionInfo = TransitionInfo(p.transition.origin, p.transition.dest, /*p.transition.toString(),*/ p.transition.idx,1,p.transitionQuality)
+          currentNode.children.put(node.transitionInfo.transitionID, node)
         }else{
           Log.info("transition already exist in trie:" + node.transitionInfo)
           if (node.transitionInfo.transitionID == p.transition.idx) {
@@ -64,7 +64,7 @@ class Trie {
 }
 
 case class TrieNode() {
-  var children: HashMap[String,TrieNode] = HashMap.empty[String,TrieNode] // children store the transitions in string and the next nodes
+  var children: HashMap[Int,TrieNode] = HashMap.empty[Int,TrieNode] // children store the transitions in string and the next nodes
   var isLeaf: Boolean = false
   var selfTransCounter = 1 // this counter counts the number of times for a transition occurring to the same state itself during a test
   var currentTransition:Transition = null  // previousTransition stores the transition leading to the next state
@@ -73,4 +73,4 @@ case class TrieNode() {
 }
 
 case class ModelInfo(modelName:String, modelID:Int)
-case class TransitionInfo(transitionName:String, transitionID:Int, var transCounter:Int, transitionQuality:Quality)
+case class TransitionInfo(transOrigin:State, transDest:State, /*transitionName:String,*/ transitionID:Int, var transCounter:Int, transitionQuality:Quality)
