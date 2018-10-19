@@ -12,5 +12,5 @@ class PathInfo(val modelName:String, val modelID:Int, val transition:Transition,
 
 object TransitionQuality extends Enumeration {
   type Quality = Value
-  val OK, Failed = Value
+  val OK, backtrack, fail = Value
 }

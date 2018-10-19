@@ -63,12 +63,16 @@ class PathVisualizer(trie:Trie, shape:String) {
       val node = root.children.getOrElse(t,sys.error(s"unexpected key: $t"))
       val modelName = node.modelInfo.modelName
       val modelID = node.modelInfo.modelID.toString
-      val transName = node.transitionInfo.transitionName.stripSuffix(" (1)")
+     // val transName = node.transitionInfo.transitionName//.stripSuffix(" (1)") //TODO: need to fix based on "(" - drop things after "("
+      //Log.info("trans:" + transName.take(transName.indexOf("(")))
       val transID = node.transitionInfo.transitionID.toString
+      val transOriginState = node.transitionInfo.transOrigin
+      val transDestState = node.transitionInfo.transDest
+      val transName = transOriginState.toString + " => " + transDestState.toString
       val transQuality = node.transitionInfo.transitionQuality
       val transExecutionCounter = node.transitionInfo.transCounter.toString
       val selfTransCounter = "(Transition Self-execution Times:"+ node.selfTransCounter +")"
-      val edgeStyle:String = if (transQuality == TransitionQuality.Failed) "style=dotted, color=red," else ""
+      val edgeStyle:String = if (transQuality == TransitionQuality.backtrack) "style=dotted, color=red," else ""
       // the newlabel here is used for constructing a label for the output of the "point" graph
       val newLabel =  "[" + edgeStyle + "label = \"" + "Model Name:" + modelName  + "\\n" +
         "Model ID:" + modelID + "\\n" +
@@ -84,7 +88,7 @@ class PathVisualizer(trie:Trie, shape:String) {
                       if (nodeRecorder != null){
                         for (n <- nodeRecorder){
                           // check if the transition already in the nodeRecorder list
-                          if (n.node.transitionInfo.transitionName == node.transitionInfo.transitionName){
+                          if (n.node.transitionInfo.transitionID == node.transitionInfo.transitionID){
                             sameTransition = true
                             n.transCounter = n.transCounter.concat(";" + node.transitionInfo.transCounter.toString)
                           }
@@ -96,7 +100,7 @@ class PathVisualizer(trie:Trie, shape:String) {
                       }
                       display(node,level+1,0,null,nodeRecorder)
         case "point" =>   val newlabelInfo =
-                            if (transName.split(" => ")(0) == transName.split(" => ")(1).stripSuffix(" (1)"))
+                            if (transOriginState  == transDestState)
                               LabelInfo(newLabel,true)
                             else LabelInfo(newLabel)
                           newLabelStack += newlabelInfo
@@ -113,14 +117,15 @@ class PathVisualizer(trie:Trie, shape:String) {
     if (level == 0 && nodeRecorder != null && nodeRecorder.nonEmpty) {
       //Log.info(nodeRecorder.toString())
       for (n <- nodeRecorder) {
-        val edgeStyle = if (n.node.transitionInfo.transitionQuality == TransitionQuality.Failed) "style=dotted, color=red," else ""
-        if (n.node.transitionInfo.transitionQuality == TransitionQuality.Failed)
-          out.println(n.node.transitionInfo.transitionName.split(" => ")(1).stripSuffix(" (1)") + "[color=red];")
-        out.println("  " + n.node.transitionInfo.transitionName.split(" => ")(0)
-          + "->" + n.node.transitionInfo.transitionName.split(" => ")(1).stripSuffix(" (1)")
+        val transName = n.node.transitionInfo.transOrigin.toString + " => " + n.node.transitionInfo.transDest.toString
+        val edgeStyle = if (n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack) "style=dotted, color=red," else ""
+        if (n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
+          out.println(n.node.transitionInfo.transDest + "[color=red];")
+        out.println("  " + n.node.transitionInfo.transOrigin.toString
+          + "->" + n.node.transitionInfo.transDest.toString
           + "[" + edgeStyle + "label = \"" + "Model Name:" + n.node.modelInfo.modelName  + "\\n" +
           "Model ID:" + n.node.modelInfo.modelID.toString + "\\n" +
-          "Transition Name:" + n.node.transitionInfo.transitionName.stripSuffix(" (1)")  + "\\n" +
+          "Transition Name:" + transName  + "\\n" +
           "Transition ID:" + n.node.transitionInfo.transitionID.toString  + "\\n" +
           "Transition Execution Counter:" + n.transCounter  + "\\n" +
           "(Transition Self-execution Times:"+ n.node.selfTransCounter +")" + "\"];")

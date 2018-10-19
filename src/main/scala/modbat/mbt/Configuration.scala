@@ -35,6 +35,9 @@ class Configuration extends modbat.config.Configuration {
   @Doc("show coverage in dot file format")
   var dotifyCoverage: Boolean = false
 
+  @Doc("show path coverage in dot file format")
+  var dotifyPathCoverage: Boolean = false
+
   @Doc("output directory for dot files")
   var dotDir: String = "."
 
