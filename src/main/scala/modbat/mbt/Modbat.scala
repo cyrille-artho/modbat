@@ -151,8 +151,10 @@ object Modbat {
     trie.display(trie.root)
     val numOfPaths = trie.numOfPaths(trie.root)
     Log.info(numOfPaths + " paths executed.")
-    new PathVisualizer(trie, "Point").dotify()
-    new PathVisualizer(trie, "Box").dotify()
+    //new PathVisualizer(trie, "Point").dotify()
+    //new PathVisualizer(trie, "Box").dotify()
+    new PathInPoint(trie, "Point").dotify()
+    new PathInBox(trie, "Box").dotify()
 
     Log.info(
       count + " tests executed, " + (count - failed) + " ok, " +
@@ -511,7 +513,11 @@ object Modbat {
         }
       }
       if (backtracked)
-        pathInfoRecorder += new PathInfo(model.className, model.mIdx, trans, TransitionQuality.backtrack) // TODO: store path info including the model name, model ID and executed transition - Rui
+        pathInfoRecorder += new PathInfo(
+          model.className,
+          model.mIdx,
+          trans,
+          TransitionQuality.backtrack) // TODO: store path info including the model name, model ID and executed transition - Rui
       else pathInfoRecorder += new PathInfo(model.className, model.mIdx, trans)
 
       totalW = totalWeight(successors)
