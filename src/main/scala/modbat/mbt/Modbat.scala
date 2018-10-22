@@ -146,7 +146,6 @@ object Modbat {
   }
 
   def coverage {
-    Log.info("Hello")
     // TODO: display executed transitions paths -Rui
     trie.display(trie.root)
     val numOfPaths = trie.numOfPaths(trie.root)
@@ -465,7 +464,7 @@ object Modbat {
       // TODO: Path coverage
       val result = model.executeTransition(trans)
 
-      Log.info("-- Print info -- current executed transition: " + result._2) // TODO: Print info, current executed transition - Rui
+      //Log.info("-- Print info -- current executed transition: " + result._2) // Print info, current executed transition - Rui
 
       var updates: List[(Field, Any)] = Nil
       updates = model.tracedFields.updates
@@ -522,13 +521,12 @@ object Modbat {
 
       totalW = totalWeight(successors)
     }
-    // TODO: put all executed transitions of the current test - Rui
+    /* // output all executed transitions of the current test - Rui
     for (p <- pathInfoRecorder)
       Log.info(
-        "-- Print info -- path info: " + p.toString + ", transID:" + p.transition.idx)
+        "-- Print info -- path info: " + p.toString + ", transID:" + p.transition.idx)*/
     // TODO: insert all executed transitions of the current test into a trie - Rui
     trie.insert(pathInfoRecorder)
-    Log.info("****** separate test cases ******")
 
     if (successors.isEmpty && backtracked) {
       for (succ <- allSucc) {
