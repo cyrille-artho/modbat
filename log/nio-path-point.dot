@@ -1,0 +1,38 @@
+digraph model {
+  orientation = landscape;
+  graph [ rankdir = "TB", ranksep="0.3", nodesep="0.2" ];
+  node [ fontname = "Helvetica", fontsize="6.0", shape="point", margin="0.07", height="0.1" ];
+  edge [ fontname = "Helvetica", fontsize="6.0", margin="0.05" ];
+0->1[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:reset => open\nT-ID:0\nT-Counter:20\n(T-Self:1)"];
+1->2[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:open => connected\nT-ID:2\nT-Counter:2\n(T-Self:1)"];
+2->2[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:connected => connected\nT-ID:12\nT-Counter:1\n(T-Self:4)"];
+2->3[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:connected => err\nT-ID:9\nT-Counter:1\n(T-Self:1)"];
+0->4[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:reset => open\nT-ID:0\nT-Counter:20\n(T-Self:1)"];
+4->5[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:open => connected\nT-ID:2\nT-Counter:2\n(T-Self:1)"];
+5->6[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:connected => closed\nT-ID:15\nT-Counter:1\n(T-Self:1)"];
+6->7[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:closed => err\nT-ID:18\nT-Counter:1\n(T-Self:1)"];
+0->8[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:reset => open\nT-ID:0\nT-Counter:20\n(T-Self:1)"];
+8->9[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:open => closed\nT-ID:14\nT-Counter:2\n(T-Self:1)"];
+9->9[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:closed => closed\nT-ID:17\nT-Counter:1\n(T-Self:7)"];
+9->10[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:closed => err\nT-ID:18\nT-Counter:1\n(T-Self:1)"];
+0->11[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:reset => open\nT-ID:0\nT-Counter:20\n(T-Self:1)"];
+11->12[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:open => closed\nT-ID:14\nT-Counter:2\n(T-Self:1)"];
+12->13[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:closed => err\nT-ID:18\nT-Counter:1\n(T-Self:1)"];
+0->14[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:reset => open\nT-ID:0\nT-Counter:20\n(T-Self:1)"];
+14->15[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:open => err\nT-ID:7\nT-Counter:5\n(T-Self:1)"];
+0->16[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:reset => open\nT-ID:0\nT-Counter:20\n(T-Self:1)"];
+16->16[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:open => open\nT-ID:1\nT-Counter:2\n(T-Self:1)"];
+16->17[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:open => err\nT-ID:7\nT-Counter:2\n(T-Self:1)"];
+0->18[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:reset => open\nT-ID:0\nT-Counter:20\n(T-Self:1)"];
+18->18[style=dotted, color=red,label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:open => maybeconnected\nT-ID:3\nT-Counter:9\n(T-Self:1)"];
+18->19[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:open => connected\nT-ID:2\nT-Counter:3\n(T-Self:1)"];
+19->20[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:connected => err\nT-ID:9\nT-Counter:1\n(T-Self:1)"];
+0->21[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:reset => open\nT-ID:0\nT-Counter:20\n(T-Self:1)"];
+21->21[style=dotted, color=red,label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:open => maybeconnected\nT-ID:3\nT-Counter:9\n(T-Self:1)"];
+21->22[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:open => connected\nT-ID:2\nT-Counter:3\n(T-Self:1)"];
+22->22[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:connected => connected\nT-ID:12\nT-Counter:2\n(T-Self:1)"];
+22->23[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:connected => err\nT-ID:9\nT-Counter:2\n(T-Self:1)"];
+0->24[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:reset => open\nT-ID:0\nT-Counter:20\n(T-Self:1)"];
+24->24[style=dotted, color=red,label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:open => maybeconnected\nT-ID:3\nT-Counter:9\n(T-Self:1)"];
+24->25[label = "M:modbat.examples.NioSocket1\nM-ID:0\nT:open => err\nT-ID:7\nT-Counter:6\n(T-Self:1)"];
+}
