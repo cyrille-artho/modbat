@@ -1,6 +1,6 @@
 This is a test
 for the splash screen
-ConfigTest v3.3-dev
+ConfigTest vRELEASE-3.2
 Usage: ConfigTest [--OPTION=value] ... [FILE]
   -h, --help                    show this help and exit
   -s, --show                    show current configuration

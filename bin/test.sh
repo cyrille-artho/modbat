@@ -216,6 +216,20 @@ run 0 $APP --mode=dot --auto-labels \
 savemv modbat.examples.JavaNioServerSocket.dot nioserv-auto.dot
 checkfile nioserv-auto.dot
 
+run 0 $APP -n=20 -s=1 --no-redirect-out --dotify-path-coverage \
+	modbat.examples.NioSocket1
+savemv pathInfoInBoxGraph.dot nio-path-box-20.dot
+checkfile nio-path-box-20.dot
+savemv pathInfoInPointGraph.dot nio-path-point-20.dot
+checkfile nio-path-point-20.dot
+
+run 0 $APP -n=200 -s=1 --no-redirect-out --dotify-path-coverage \
+	modbat.examples.NioSocket1
+savemv pathInfoInBoxGraph.dot nio-path-box-200.dot
+checkfile nio-path-box-200.dot
+savemv pathInfoInPointGraph.dot nio-path-point-200.dot
+checkfile nio-path-point-200.dot
+
 run 0 $APP --mode=dot --log-level=debug \
 	--auto-labels \
 	modbat.examples.JavaNioServerSocket
