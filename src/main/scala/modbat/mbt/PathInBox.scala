@@ -7,7 +7,7 @@ import scala.collection.mutable.ListBuffer
 case class NodeInfo(node: TrieNode, var transCounter: String) // NodeInfo is used for recode  the node information used for "box" output
 
 class PathInBox(trie: Trie, val shape: String) extends PathVisualizer {
-
+  require(shape == "Box", "the input of path visualizer must be Box")
   override def dotify() {
     out.println("digraph model {")
     out.println("  orientation = landscape;")
@@ -64,7 +64,7 @@ class PathInBox(trie: Trie, val shape: String) extends PathVisualizer {
           if (n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
             "style=dotted, color=red,"
           else ""
-        if (n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
+        if (n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack) // backtrack
           out.println(n.node.transitionInfo.transDest + "[color=red];")
         out.println("  " + n.node.transitionInfo.transOrigin.toString
           + "->" + n.node.transitionInfo.transDest.toString
@@ -77,5 +77,4 @@ class PathInBox(trie: Trie, val shape: String) extends PathVisualizer {
       }
     }
   }
-
 }

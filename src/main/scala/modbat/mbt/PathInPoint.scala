@@ -2,12 +2,16 @@ package modbat.mbt
 
 import modbat.cov.{Trie, TrieNode}
 import modbat.dsl.State
+
 import scala.collection.mutable.ListBuffer
 
-case class LabelInfo(label: String, self: Boolean = false) // LabelInfo is used for record the label information used for "point" output
+case class LabelInfo(label: String,
+                     selfTrans: Boolean = false,
+                     transQuality: TransitionQuality.Quality =
+                       TransitionQuality.OK) // LabelInfo is used for record the label information used for "point" output
 
 class PathInPoint(trie: Trie, val shape: String) extends PathVisualizer {
-
+  require(shape == "Point", "the input of path visualizer must be Point")
   override def dotify() {
     out.println("digraph model {")
     out.println("  orientation = landscape;")
@@ -20,12 +24,11 @@ class PathInPoint(trie: Trie, val shape: String) extends PathVisualizer {
       "  edge [ fontname = \"Helvetica\", fontsize=\"6.0\"," + " margin=\"0.05\" ];")
     val labelRecoderStack
       : ListBuffer[LabelInfo] = new ListBuffer[LabelInfo] // stack is used for recode label information for "point" output
-    display(trie.root, 0, 0, labelRecoderStack)
+    display(trie.root, 0, labelRecoderStack)
     out.println("}")
   }
 
   def display(root: TrieNode,
-              level: Int = 0,
               nodeNumber: Int = 0,
               labelRecoderStack: ListBuffer[LabelInfo] = null)
     : (Int, ListBuffer[LabelInfo]) = {
@@ -41,7 +44,7 @@ class PathInPoint(trie: Trie, val shape: String) extends PathVisualizer {
           newNodeNumber = newNodeNumber + 1
           if (i == 0)
             out.println(i + "->" + newNodeNumber + newLabelStack(i).label)
-          else if (newLabelStack(i).self) {
+          else if (newLabelStack(i).selfTrans || newLabelStack(i).transQuality == TransitionQuality.backtrack) {
             newNodeNumber = newNodeNumber - 1
             out.println(
               newNodeNumber + "->" + newNodeNumber + newLabelStack(i).label)
@@ -80,12 +83,16 @@ class PathInPoint(trie: Trie, val shape: String) extends PathVisualizer {
         "T-Counter:" + transExecutionCounter + "\\n" +
         selfTransCounter + "\"];"
       val newlabelInfo =
-        if (transOriginState == transDestState)
+        if (transOriginState == transDestState && transQuality == TransitionQuality.backtrack)
+          LabelInfo(newLabel, true, transQuality)
+        else if (transOriginState == transDestState)
           LabelInfo(newLabel, true)
+        else if (transQuality == TransitionQuality.backtrack)
+          LabelInfo(newLabel, false, transQuality)
         else LabelInfo(newLabel)
       newLabelStack += newlabelInfo
       // Log.info("new stack:" + newStack)
-      val result = display(node, level + 1, newNodeNumber, newLabelStack)
+      val result = display(node, newNodeNumber, newLabelStack)
       newNodeNumber = result._1
       newLabelStack = result._2
     }
