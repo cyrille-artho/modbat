@@ -20,9 +20,6 @@ class Trie {
       // check if the new transition is a self loop in the path
       if (currentNode.currentTransition != null && currentNode.currentTransition.idx == p.transition.idx) {
         currentNode.selfTransCounter += 1
-        /*        Log.info(
-          "the transition stored in trie node:" + p.transition.toString +
-            " counter:" + currentNode.selfTransCounter)*/
       } else {
         if (node == null) {
           // new node
@@ -37,12 +34,8 @@ class Trie {
           currentNode.children.put(node.transitionInfo.transitionID, node)
         } else {
           // existing node
-          // Log.info("transition already exist in trie:" + node.transitionInfo)
           if (node.transitionInfo.transitionID == p.transition.idx) {
             node.transitionInfo.transCounter = node.transitionInfo.transCounter + 1
-            // node.transitionInfo = node.transitionInfo.copy(_3 = node.transitionInfo._3 + 1)
-            /*            Log.info(
-              "got a same transition executed: " + node.transitionInfo.transCounter + " times")*/
           }
         }
         currentNode = node
@@ -52,20 +45,19 @@ class Trie {
   }
 
   def display(root: TrieNode, level: Int = 0): Unit = {
-    if (root.isLeaf) Log.debug("")
-
-    for (t <- root.children.keySet) {
-      val node: TrieNode =
-        root.children.getOrElse(t, sys.error(s"unexpected key: $t"))
-      if (level == 0) {
-        Log.debug(
-          node.modelInfo.toString + node.transitionInfo.toString + " (" + node.selfTransCounter + ")")
-      } else
-        Log.debug(
-          "-" * level + node.modelInfo.toString + node.transitionInfo.toString +
-            " (" + node.selfTransCounter + ")")
-      display(node, level + 1)
-    }
+    if (root.isLeaf) //Log.debug("")
+      for (t <- root.children.keySet) {
+        val node: TrieNode =
+          root.children.getOrElse(t, sys.error(s"unexpected key: $t"))
+        if (level == 0) {
+          Log.debug(
+            node.modelInfo.toString + node.transitionInfo.toString + " (" + node.selfTransCounter + ")")
+        } else
+          Log.debug(
+            "-" * level + node.modelInfo.toString + node.transitionInfo.toString +
+              " (" + node.selfTransCounter + ")")
+        display(node, level + 1)
+      }
   }
   // The method numOfPaths computes the total number of paths
   def numOfPaths(root: TrieNode): Int = {

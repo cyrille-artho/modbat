@@ -91,7 +91,6 @@ class PathInPoint(trie: Trie, val shape: String) extends PathVisualizer {
           LabelInfo(newLabel, false, transQuality)
         else LabelInfo(newLabel)
       newLabelStack += newlabelInfo
-      // Log.info("new stack:" + newStack)
       val result = display(node, newNodeNumber, newLabelStack)
       newNodeNumber = result._1
       newLabelStack = result._2
