@@ -63,9 +63,9 @@ object Modbat {
   val testFailures =
     new HashMap[(TransitionResult, String), ListBuffer[Long]]()
 
-  // TODO: create a trie for putting executed transtions paths -Rui
+  // TODO: The trie for putting executed transtions paths -Rui
   var trie = new Trie()
-  // TODO: give a Listbuffer to store a tuple: <ModelName, ModelIndex, transition> = [String, Int, Transition] -Rui
+  // TODO: Listbuffer to store a tuple: <ModelName, ModelIndex, transition> = [String, Int, Transition] -Rui
   //private var pathInfoRecorder = new ListBuffer[(String, Int, Transition)]
   private var pathInfoRecorder = new ListBuffer[PathInfo]
 
@@ -146,14 +146,16 @@ object Modbat {
   }
 
   def coverage {
-    // TODO: display executed transitions paths -Rui
-    trie.display(trie.root)
-    val numOfPaths = trie.numOfPaths(trie.root)
-    Log.info(numOfPaths + " paths executed.")
-    //new PathVisualizer(trie, "Point").dotify()
-    //new PathVisualizer(trie, "Box").dotify()
-    new PathInPoint(trie, "Point").dotify()
-    new PathInBox(trie, "Box").dotify()
+    // TODO: display path coverage
+    // Display executed transitions paths in graphs
+    // if the configuration of path coverage is true -Rui
+    if (Main.config.dotifyPathCoverage) {
+      trie.display(trie.root)
+      val numOfPaths = trie.numOfPaths(trie.root)
+      Log.info(numOfPaths + " paths executed.")
+      new PathInPoint(trie, "Point").dotify()
+      new PathInBox(trie, "Box").dotify()
+    }
 
     Log.info(
       count + " tests executed, " + (count - failed) + " ok, " +
@@ -464,8 +466,6 @@ object Modbat {
       // TODO: Path coverage
       val result = model.executeTransition(trans)
 
-      //Log.info("-- Print info -- current executed transition: " + result._2) // Print info, current executed transition - Rui
-
       var updates: List[(Field, Any)] = Nil
       updates = model.tracedFields.updates
       for (u <- updates) {
@@ -511,22 +511,30 @@ object Modbat {
           return result
         }
       }
-      if (backtracked)
-        pathInfoRecorder += new PathInfo(
-          model.className,
-          model.mIdx,
-          trans,
-          TransitionQuality.backtrack) // TODO: store path info including the model name, model ID and executed transition - Rui
-      else pathInfoRecorder += new PathInfo(model.className, model.mIdx, trans)
+      // TODO: Store path information -Rui
+      // Store path information including the model name,
+      // model ID and executed transition for path coverage,
+      // if the configuration of path coverage is true. -Rui
+      if (Main.config.dotifyPathCoverage) {
+        if (backtracked)
+          pathInfoRecorder += new PathInfo(model.className,
+                                           model.mIdx,
+                                           trans,
+                                           TransitionQuality.backtrack)
+        else
+          pathInfoRecorder += new PathInfo(model.className, model.mIdx, trans)
+      }
 
       totalW = totalWeight(successors)
     }
-    /* // output all executed transitions of the current test - Rui
+    // TODO: output all executed transitions of the current test - Rui
     for (p <- pathInfoRecorder)
-      Log.info(
-        "-- Print info -- path info: " + p.toString + ", transID:" + p.transition.idx)*/
-    // TODO: insert all executed transitions of the current test into a trie - Rui
-    trie.insert(pathInfoRecorder)
+      Log.debug(
+        "All recorded information for path coverage: " + p.toString + ", transID:" + p.transition.idx)
+    // TODO: Put information in pathInfoRecoder to the trie -Rui
+    // Insert all the information of the current test into a trie for path coverage,
+    // if the configuration of path coverage is true. - Rui
+    if (Main.config.dotifyPathCoverage) trie.insert(pathInfoRecorder)
 
     if (successors.isEmpty && backtracked) {
       for (succ <- allSucc) {

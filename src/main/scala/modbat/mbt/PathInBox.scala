@@ -56,7 +56,6 @@ class PathInBox(trie: Trie, val shape: String) extends PathVisualizer {
 
     // output "box" graph
     if (level == 0 && nodeRecorder != null && nodeRecorder.nonEmpty) {
-      //Log.info(nodeRecorder.toString())
       for (n <- nodeRecorder) {
         val transName: String = n.node.transitionInfo.transOrigin.toString +
           " => " + n.node.transitionInfo.transDest.toString
