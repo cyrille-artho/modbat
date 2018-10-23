@@ -9,7 +9,11 @@ import scala.collection.mutable.{HashMap, ListBuffer}
 /** Trie stores the path information for the path coverage. */
 class Trie {
   val root: TrieNode = TrieNode()
-  // The insert method inserts the transition of each test into a trie data structure
+
+  /** Insert recorded path information into trie
+    *
+    *  @param pathInfo The recorded path information in a listBuffer
+    */
   def insert(pathInfo: ListBuffer[PathInfo]): Unit = {
     var currentNode: TrieNode = root
 
@@ -44,6 +48,11 @@ class Trie {
     currentNode.isLeaf = true
   }
 
+  /** Display tire
+    *
+    * @param root The TrieNode starting from root node
+    * @param level The level number of the trie tree structure
+    */
   def display(root: TrieNode, level: Int = 0): Unit = {
     if (root.isLeaf) //Log.debug("")
       for (t <- root.children.keySet) {
@@ -59,7 +68,12 @@ class Trie {
         display(node, level + 1)
       }
   }
-  // The method numOfPaths computes the total number of paths
+
+  /** Compute the number of paths
+    *
+    * @param root The TrieNode starting from root node
+    * @return Returns the number of paths
+    */
   def numOfPaths(root: TrieNode): Int = {
     var result = 0
 
@@ -72,7 +86,7 @@ class Trie {
   }
 }
 
-/** rieNode stores each current transition's information
+/** TrieNode stores each current transition's information
   * and next node in the trie.
   */
 case class TrieNode() {
@@ -90,21 +104,21 @@ case class TrieNode() {
 
 /** ModelInfo stores a model's information.
   *
-  * @constructor create a new modelInfo with a modelName and modelID.
-  * @param modelName the model's name
-  * @param modelID the model's ID
+  * @constructor Create a new modelInfo with a modelName and modelID.
+  * @param modelName The model's name
+  * @param modelID The model's ID
   */
 case class ModelInfo(modelName: String, modelID: Int)
 
 /** TransitionInfo stores a transition's information.
   *
-  * @constructor create a new transitionInfo with a transOrigin, transDest,
+  * @constructor Create a new transitionInfo with a transOrigin, transDest,
   *              transitionID, transCounter, and transitionQuality.
-  * @param transOrigin the origin state of the transition
-  * @param transDest the target state of the transition
-  * @param transitionID the transition's ID
-  * @param transCounter the number of time that transition is executed in a path
-  * @param transitionQuality the quality of the transition, which could be OK, Backtrack, or Fail
+  * @param transOrigin The origin state of the transition
+  * @param transDest The target state of the transition
+  * @param transitionID The transition's ID
+  * @param transCounter The number of time that transition is executed in a path
+  * @param transitionQuality The quality of the transition, which could be OK, Backtrack, or Fail
   */
 case class TransitionInfo(transOrigin: State,
                           transDest: State,

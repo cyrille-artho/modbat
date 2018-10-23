@@ -1,11 +1,17 @@
 package modbat.mbt
 
 import modbat.cov.{Trie, TrieNode}
-
 import scala.collection.mutable.ListBuffer
 
-case class NodeInfo(node: TrieNode, var transCounter: String) // NodeInfo is used for recode  the node information used for "box" output
+case class NodeInfo(node: TrieNode, var transCounter: String) // NodeInfo is used for record  the node information used for "box" output
 
+/** PathInBox extends PathVisualizer for showing path coverage in "Box" tree graph.
+  *
+  * @constructor Create a new pathInBox with a trie, and shape (Box),
+  *
+  * @param trie The trie that has path information stored
+  * @param shape The shape should be "Box"
+  */
 class PathInBox(trie: Trie, val shape: String) extends PathVisualizer {
   require(shape == "Box", "the input of path visualizer must be Box")
   override def dotify() {
@@ -19,7 +25,7 @@ class PathInBox(trie: Trie, val shape: String) extends PathVisualizer {
     out.println(
       "  edge [ fontname = \"Helvetica\", fontsize=\"6.0\"," + " margin=\"0.05\" ];")
     val nodeRecorder
-      : ListBuffer[NodeInfo] = new ListBuffer[NodeInfo] // nodeRecorder is used for recode node information for "box" output
+      : ListBuffer[NodeInfo] = new ListBuffer[NodeInfo] // nodeRecorder is used for record node information for "box" output
     display(trie.root, 0, nodeRecorder)
     out.println("}")
   }

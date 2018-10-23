@@ -2,7 +2,6 @@ package modbat.mbt
 
 import modbat.cov.{Trie, TrieNode}
 import modbat.dsl.State
-
 import scala.collection.mutable.ListBuffer
 
 case class LabelInfo(label: String,
@@ -10,6 +9,13 @@ case class LabelInfo(label: String,
                      transQuality: TransitionQuality.Quality =
                        TransitionQuality.OK) // LabelInfo is used for record the label information used for "point" output
 
+/** PathInPoint extends PathVisualizer for showing path coverage in "Point" tree graph.
+  *
+  * @constructor Create a new pathInPoint with a trie, and shape (Point),
+  *
+  * @param trie The trie that has path information stored
+  * @param shape The shape should be "Point"
+  */
 class PathInPoint(trie: Trie, val shape: String) extends PathVisualizer {
   require(shape == "Point", "the input of path visualizer must be Point")
   override def dotify() {
@@ -22,32 +28,32 @@ class PathInPoint(trie: Trie, val shape: String) extends PathVisualizer {
         "\", margin=\"0.07\"," + " height=\"0.1\" ];")
     out.println(
       "  edge [ fontname = \"Helvetica\", fontsize=\"6.0\"," + " margin=\"0.05\" ];")
-    val labelRecoderStack
-      : ListBuffer[LabelInfo] = new ListBuffer[LabelInfo] // stack is used for recode label information for "point" output
-    display(trie.root, 0, labelRecoderStack)
+    val labelRecorderStack
+      : ListBuffer[LabelInfo] = new ListBuffer[LabelInfo] // stack is used for record label information for "point" output
+    display(trie.root, 0, labelRecorderStack)
     out.println("}")
   }
 
   def display(root: TrieNode,
               nodeNumber: Int = 0,
-              labelRecoderStack: ListBuffer[LabelInfo] = null)
+              labelRecorderStack: ListBuffer[LabelInfo] = null)
     : (Int, ListBuffer[LabelInfo]) = {
 
     var newNodeNumber
       : Int = nodeNumber // newNodeNumber is used to generate the number(ID) of the node for the "point" graph
-    var newLabelStack: ListBuffer[LabelInfo] = labelRecoderStack
+    var newLabelStack: ListBuffer[LabelInfo] = labelRecorderStack
 
-    if (root.isLeaf) {
+    if (root.isLeaf) { // print graph when the node in trie is a leaf
       if (newLabelStack != null) {
         // output "point" graph
         for (i <- newLabelStack.indices) {
           newNodeNumber = newNodeNumber + 1
           if (i == 0)
-            out.println(i + "->" + newNodeNumber + newLabelStack(i).label)
+            out.println(i + "->" + newNodeNumber + newLabelStack(i).label) // starting point
           else if (newLabelStack(i).selfTrans || newLabelStack(i).transQuality == TransitionQuality.backtrack) {
             newNodeNumber = newNodeNumber - 1
             out.println(
-              newNodeNumber + "->" + newNodeNumber + newLabelStack(i).label)
+              newNodeNumber + "->" + newNodeNumber + newLabelStack(i).label) // same point if self or backtracked transition
           } else
             out.println(
               newNodeNumber - 1 + "->" + newNodeNumber + newLabelStack(i).label)
@@ -58,6 +64,7 @@ class PathInPoint(trie: Trie, val shape: String) extends PathVisualizer {
       }
       return (newNodeNumber, newLabelStack)
     }
+
     for (t <- root.children.keySet) {
       val node: TrieNode =
         root.children.getOrElse(t, sys.error(s"unexpected key: $t"))
@@ -82,6 +89,7 @@ class PathInPoint(trie: Trie, val shape: String) extends PathVisualizer {
         "T-ID:" + transID + "\\n" +
         "T-Counter:" + transExecutionCounter + "\\n" +
         selfTransCounter + "\"];"
+      // check if the transition has the same original and target states, and if backtracked
       val newlabelInfo =
         if (transOriginState == transDestState && transQuality == TransitionQuality.backtrack)
           LabelInfo(newLabel, true, transQuality)
@@ -90,7 +98,7 @@ class PathInPoint(trie: Trie, val shape: String) extends PathVisualizer {
         else if (transQuality == TransitionQuality.backtrack)
           LabelInfo(newLabel, false, transQuality)
         else LabelInfo(newLabel)
-      newLabelStack += newlabelInfo
+      newLabelStack += newlabelInfo // store label information
       val result = display(node, newNodeNumber, newLabelStack)
       newNodeNumber = result._1
       newLabelStack = result._2

@@ -1,7 +1,6 @@
 package modbat.mbt
 
 import java.io.{File, FileOutputStream, IOException, PrintStream}
-
 import modbat.log.Log
 
 trait PathVisualizer {
