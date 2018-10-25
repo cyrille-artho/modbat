@@ -17,6 +17,21 @@ modbat-examples.jar. The first file is an executable JAR file that has to
 be run using the Scala runtime environment. The second file is optional
 and contains examples.
 
+### Building from source
+
+Requirements: [Gradle Build Tool](https://gradle.org/) version 4.
+
+Clone the repository and `cd` into it.
+
+    $ git clone https://github.com/cyrille-artho/modbat.git
+    $ cd modbat
+
+Assemble the project by running:
+
+    $ gradle assemble
+
+This will build the project and place the JAR files in "./build".
+
 ## Model syntax
 
 A Modbat model inherits from modbat.dsl.Model. Inside the class body
