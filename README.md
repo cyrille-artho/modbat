@@ -1,6 +1,6 @@
-*** Check LICENSE for licensing conditions. ***
+*Check LICENSE for licensing conditions.*
 
-=== Modbat: Model-based Tester ===
+# Modbat: Model-based Tester
 
 Modbat is specialized to testing the application programming interface
 (API) of software. The model used by Modbat is compatible with Java
@@ -8,7 +8,7 @@ bytecode. The user defines and compiles a model, which is then explored
 by Modbat and executed against the system under test. Failed test runs
 are reported as an error trace.
 
---- Installation ---
+## Installation
 
 Requirements: Scala 2.11 or higher (tested on 2.11.1).
 
@@ -17,29 +17,31 @@ modbat-examples.jar. The first file is an executable JAR file that has to
 be run using the Scala runtime environment. The second file is optional
 and contains examples.
 
---- Model syntax ---
+## Model syntax
 
 A Modbat model inherits from modbat.dsl.Model. Inside the class body
 (effectively, its default constructor), model transitions can be declared:
 
-	package modbat
+```scala
+package modbat
 
-	import modbat.dsl._
+import modbat.dsl._
 
-	class ModelTemplate extends Model {
-	  // transitions
-	  "reset" -> "somestate" := {
-	    // insert code here
-	  }
-	  "somestate" -> "end" := skip // empty transition function
-	  "reset" -> "end" := {
-	  }
-	}
+class ModelTemplate extends Model {
+  // transitions
+  "reset" -> "somestate" := {
+    // insert code here
+  }
+  "somestate" -> "end" := skip // empty transition function
+  "reset" -> "end" := {
+  }
+}
+```
 
 Note that direct calls to functions are possible; curly braces are only
 needed to group multiple statements inside a transition function.
 
---- Basic usage ---
+## Basic usage
 
 The examples below assume that Modbat is compiled into build/, so
 the commands below have to be preceded with
@@ -66,7 +68,7 @@ file using
 The examples are contained in modbat/examples, while the template
 is in modbat/ModelTemplate.scala.
 
---- Semantics of basic models ---
+## Semantics of basic models
 
 See the following publication:
 
@@ -76,7 +78,7 @@ Modbat: A Model-based API Tester for Event-driven Systems.
 9th Haifa Verification Conference (HVC 2013), November 2013,
 Haifa, Israel.
 
---- How to run the examples ---
+## How to run the examples
 
 Usage is as above. The examples can be run either from the JAR file
 examples.jar, or using the class files from the unpacked JAR file.
@@ -131,7 +133,7 @@ also map one issue to two failures (in case multiple transitions
 trigger the same fauilure). However, it gives a good overview if
 a model exhibits multiple types of failures.
 
---- How to read the error trace ---
+## How to read the error trace
 
 If a model run causes an assertion violation or other unhandled exception,
 an error trace is generated in a .err file. The name of the .err file
@@ -149,32 +151,38 @@ Example:
 
 Note that the random seed must not be 0.
 
---- Semantics of model ---
+## Semantics of model
 
 The model is given as an "extended finite state machine" in a
 domain-specific language that is embedded in Scala. Basic transitions
 between two states are given as
 
-	"pre" -> "post"
+```scala
+"pre" -> "post"
+```
 
 Most transitions will have a transition function attached to them, using
 ":="
 
-	"pre" -> "post" := { // Scala code }
+```scala
+"pre" -> "post" := { // Scala code }
+```
 
 Any Scala code is allowed, but preconditions have a special semantics:
 Exploration of the model backtracks if a precondition is violated.
 Therefore, all preconditions should be stated at the beginning of a
 transition function, and be side-effect-free:
 
-	"pre" -> "post" := {
-		require (x < 0)
-	}
+```scala
+"pre" -> "post" := {
+	require (x < 0)
+}
+```
 
 A model will contain multiple transitions, separated by a comma, as
 shown in src/scala/modbat/ModelTemplate.scala.
 
---- Preconditions and assertions ---
+## Preconditions and assertions
 
 Preconditions are defined by "require(predicate)". If a precondition
 fails in the model, the transition is considered not to be eligible,
@@ -201,13 +209,13 @@ in unintended effects if an assertion fails in a separate thread:
     Modbat assert fails in model -> stop (directly or before next transition);
     Predef assert fails -> stop if in main thread, no effect otherwise.
 
---- Inheritance ---
+## Inheritance
 
 Inheritance of methods works normally as in Scala. Transitions defined
 normally ("a" -> "b" := transfunc) are also inherited, as are annotated
 methods from the super class.
 
---- Advanced features ---
+## Advanced features
 
 Advanced choices give flexibility when modeling non-determinism:
 
@@ -229,9 +237,11 @@ function. These are:
 
 * throws:
 
-	"pre" -> "post" := {
-		codeThrowingException
-	} throws("IOException", "SecurityException")
+```scala
+"pre" -> "post" := {
+	codeThrowingException
+} throws("IOException", "SecurityException")
+```
 
 "throws" specifies that an exception must always occur in that transition;
 the absence of an exception is regarded as an error.  A list of exception
@@ -241,9 +251,11 @@ Pattern "Exception" will match almost anything.
 
 * catches:
 
-	"pre" -> "post" := {
-		codeWithPossibleException
-	} catches("Exception" -> "handlerState")
+```scala
+"pre" -> "post" := {
+	codeWithPossibleException
+} catches("Exception" -> "handlerState")
+```
 
 "catches" deals with non-deterministic exceptions that may occur, but
 are not always expected. Input/output errors can be handled in the model
@@ -259,9 +271,11 @@ next executed transition is one of the available transitions in state
 
 * nextIf:
 
-	"pre" -> "post" := {
-		n = choose(0, 40)
-	} nextIf({ () => n > 30 } -> "nextState")
+```scala
+"pre" -> "post" := {
+	n = choose(0, 40)
+} nextIf({ () => n > 30 } -> "nextState")
+```
 
 Non-deterministic conditions other than exceptions can be handled using
 "nextIf"; given a list of (condition, nextState) pairs, the transition
@@ -272,9 +286,11 @@ Conditions are usually given as an anonymous function in Scala, using the
 
 * maybe:
 
-	"pre" -> "post" := {
-		maybe (doSomething)
-	}
+```scala
+"pre" -> "post" := {
+	maybe (doSomething)
+}
+```
 
 An action is only executed with a certain probability (default: 0.5).
 If a random number between 0 and 1 exceeds that probability, then the
@@ -287,10 +303,12 @@ the state of the model or SUT via side effects.
 "maybe" can be used with an optional "or_else", which executes only
 if "maybe" is not chosen, similar to an "if"/"else" statement:
 
-	"pre" -> "post" := {
-		maybe (doSomething)
-		or_else (doSomethingElse)
-	}
+```scala
+"pre" -> "post" := {
+	maybe (doSomething)
+	or_else (doSomethingElse)
+}
+```
 
 * maybeBool:
 
@@ -299,15 +317,19 @@ Same as "maybe" but returns a boolean. If the function is not executed
 
 * maybeNextIf:
 
-	"pre" -> "post" := {
-		n = choose(0, 40)
-	} maybeNextIf({ () => n > 30 } -> "nextState")
+```scala
+"pre" -> "post" := {
+	n = choose(0, 40)
+} maybeNextIf({ () => n > 30 } -> "nextState")
+```
 
 Same as "nextIf", but the condition is only evaluated with a certain
 probability (default: 0.5). Otherwise, the given condition is ignored,
 and the default transition is chosen. This function is syntactic sugar for
 
-	nextIf({ () => maybeBool({ () => n > 30 }) } -> "nextState")
+```scala
+nextIf({ () => maybeBool({ () => n > 30 }) } -> "nextState")
+```
 
 * label:
 
@@ -316,7 +338,9 @@ by looking at the code of the transition function. The result is not
 always the best possible description, but it is possible to override
 the default label with a "label" declaration following the transition:
 
-	"pre" -> "post" := { code } label "initialization"
+```scala
+"pre" -> "post" := { code } label "initialization"
+```
 
 The label is not used in the error trace as the state information,
 together with the code location, is already sufficient to identify
@@ -329,9 +353,11 @@ a weight > 1.0 to it. Weights are integers representing how often a
 transition is represented w.r.t. the default weight 1.0. A weight of 0
 disables a transition:
 
-	"pre" -> "post" := { code } weight 2
+```scala
+"pre" -> "post" := { code } weight 2
+```
 
---- API functions ---
+## API functions
 
 In addition to variants of choose (see above), Modbat also has other API
 functions:
@@ -348,7 +374,7 @@ functions:
   (see below): Returns whether the just-finished test failed. Undefined
   otherwise.
 
---- Observer models ---
+## Observer models
 
 If a model extends Observer (rather than Model), it is considered to
 be a passive observer state machine. These machines have the following
@@ -369,11 +395,11 @@ key differences compared to normal Modbat models:
 With registered observers, model execution therefore works in an
 alternating fashion:
 
-1) Execute an eligible transition from one of all available models.
+1. Execute an eligible transition from one of all available models.
 
-2) Execute all eligible transitions from all available observers.
+2. Execute all eligible transitions from all available observers.
 
---- Helper method annotations ---
+## Helper method annotations
 
 Modbat supports several method annotations. These methods are invoked
 at certain times. Annotated methods must take zero arguments, or they
@@ -438,9 +464,11 @@ declaring class. An inherited annotated method will NOT be recognized
 and used! To use inheritance, declare another annotated method that
 delegates the call, such as
 
-	@Before def setup { super.setup }
+```scala
+@Before def setup { super.setup }
+```
 
---- Field annotations ---
+## Field annotations
 
 Modbat currently supports one model field annotation, @Trace.
 Model fields with this annotation are traced throughout test execution.
@@ -448,16 +476,16 @@ After each step, all annotated fields of the model whose transition
 just executed, is checked for updates of these fields. Updates are
 logged and shown as part of the error trace.
 
---- Visualization ---
+## Visualization
 
 The tool supports a basic visualization (requiring graphviz), using
 
 	scala modbat.jar --mode=dot <model>
 
-The output file is <modelname>.dot. The destination directory can
+The output file is `<modelname>.dot`. The destination directory can
 be changed using --dot-dir=...; default is the current directory.
 
---- How to compile your own model ---
+## How to compile your own model
 
 It is recommended that you copy ModelTemplate.scala to create your own
 model. Compilation of a model requires modbat.jar in the classpath.
@@ -467,7 +495,7 @@ directory, use:
 
 	scalac -cp modbat.jar Model.scala
 
---- Replaying traces ---
+## Replaying traces
 
 Error traces can be reproduced by supplying the same random seed to
 Modbat. For example, a test on modbat.examples.NioSocket1 produces a
@@ -481,14 +509,14 @@ When replaying a trace, Modbat explores the model again, making the same
 choices as originally made when the random number generator was in a
 given state.
 
---- Other test configuration options ---
+## Other test configuration options
 
 Also see the output of "scala modbat/modbat.jar -h".
 
 Note that a loop limit of 1 means no loops will be allowed, so
 self-loops will never be executed.
 
---- Troubleshooting ---
+## Troubleshooting
 
 At this stage, many problems encountered are class path/class loader
 issues. Please check the following:
