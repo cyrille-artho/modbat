@@ -405,26 +405,30 @@ Modbat supports several method annotations. These methods are invoked
 at certain times. Annotated methods must take zero arguments, or they
 will be ignored. Supported annotations include:
 
-* @States(Array("state1" [, "state2"[, ...]])):
+* `@States(Array("state1" [, "state2"[, ...]]))`:
   This annotation specifies that the given action may be executed
   at any time at a given state. It gets executed like any regular
   model transition, but it does not change the model state.
   This annotation results in self-loop transitions being added to
   the model before it is executed. For example
 
+  ```scala
   @States(Array("state1", "state2")) def invariantCheck { ... }
+  ```
 
   results in transitions
 
+  ```scala
   "state1" -> "state1" := invariantCheck
   "state2" -> "state2" := invariantCheck
+  ```
 
-* @Throws(Array("Exception1" [, ...])):
+* `@Throws(Array("Exception1" [, ...]))`:
   If used together with "@States", specifies which exceptions this
   method is expected to throws. Counterpart to ``throws "Exception1"``
   for normal model transitions.
 
-* @Weight(double):
+* `@Weight(double)`:
   If used together with "@States", specifies the weight for each resulting
   transition function. As one copy of the function is created for each
   self-loop, such functions would be executed very often if their weight
@@ -434,15 +438,15 @@ will be ignored. Supported annotations include:
   SUT state (such as invariant checks). For functions modifying
   parts of the SUT, consider using @Weight(1.0).
 
-* @Init: The given method is executed before the first test is run,
+* `@Init`: The given method is executed before the first test is run,
   but not before each test. This is useful, for example, to execute
   a server instance for testing client-side behavior, as is done in
   model modbat.test.JavaNioSocket.
 
-* @Shutdown: This method is executed after the last test completes,
+* `@Shutdown`: This method is executed after the last test completes,
   or when Modbat is forcibly shut down by signal TERM.
 
-* @Before: This action is execute before each test is executed, but
+* `@Before`: This action is execute before each test is executed, but
   not when a new instance model is launched. This annotation therefore
   allows a differentiation between the need to initialize data before
   each test (using the annotation) or before a model instance is
@@ -450,12 +454,12 @@ will be ignored. Supported annotations include:
   functionality of the model). The action is executed on the default
   instance of the model.
 
-* @After: This action is executed after each test execution run,
+* `@After`: This action is executed after each test execution run,
   on the default instance of the model.
 
-@Before annotations are also executed on a newly launched model instance
+`@Before` annotations are also executed on a newly launched model instance
 (using launch), right when the model is launched (while the transition
-of the parent model is executing). @After annotations are also executed
+of the parent model is executing). `@After` annotations are also executed
 on all launched model instances at the end of a given test (regardless
 of when a model instance completed its last transition).
 
@@ -470,7 +474,7 @@ delegates the call, such as
 
 ## Field annotations
 
-Modbat currently supports one model field annotation, @Trace.
+Modbat currently supports one model field annotation, `@Trace`.
 Model fields with this annotation are traced throughout test execution.
 After each step, all annotated fields of the model whose transition
 just executed, is checked for updates of these fields. Updates are
@@ -511,7 +515,7 @@ given state.
 
 ## Other test configuration options
 
-Also see the output of "scala modbat/modbat.jar -h".
+Also see the output of "`scala modbat/modbat.jar -h`".
 
 Note that a loop limit of 1 means no loops will be allowed, so
 self-loops will never be executed.
@@ -523,7 +527,7 @@ issues. Please check the following:
 
 * CLASSPATH setting.
 
-* Use "scala modbat.jar --classpath=..." to override this setting.
+* Use "`scala modbat.jar --classpath=...`" to override this setting.
 
 * Note that any CLASSPATH setting or -cp/-classpath argument to
   scala itself is ignored when using an executable JAR file.
@@ -538,5 +542,7 @@ issues. Please check the following:
 * Scala compiler errors: If you get "error: reassignment to val" for
   each transition declaration (at ":="), then you have probably
   accidentally deleted the import statement:
+  ```scala
   import modbat.dsl._
+  ```
   This statement is necessary for internal type conversions.
