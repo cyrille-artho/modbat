@@ -192,8 +192,8 @@ has the same effect unless option --precond-as-failure is used.
 This distinction is possible because Modbat defines its own "require"
 implementation, resulting in two cases:
 
-    Modbat require fails in model -> backtrack;
-    Predef require fails in SUT   -> backtrack or abort (according to option).
+* Modbat require fails in model -> backtrack;
+* Predef require fails in SUT   -> backtrack or abort (according to option).
 
 Assertions behave in the same way in both the model and the SUT, but
 standard assertions that fail in a separate thread (not the main thread)
@@ -206,8 +206,8 @@ the model, if multiple threads or asynchronous callbacks are used.
 Assertions are therefore evaluated in two possible ways, which may result
 in unintended effects if an assertion fails in a separate thread:
 
-    Modbat assert fails in model -> stop (directly or before next transition);
-    Predef assert fails -> stop if in main thread, no effect otherwise.
+* Modbat assert fails in model -> stop (directly or before next transition);
+* Predef assert fails -> stop if in main thread, no effect otherwise.
 
 ## Inheritance
 
