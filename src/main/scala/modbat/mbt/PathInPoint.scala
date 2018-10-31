@@ -48,9 +48,10 @@ class PathInPoint(trie: Trie, val shape: String) extends PathVisualizer {
         // output "point" graph
         for (i <- newLabelStack.indices) {
           newNodeNumber = newNodeNumber + 1
-          if (i == 0)
+          if (i == 0) {
+            //TODO: An issue needs to be fixed, here is a situation that when i is 0 (root), the self transition and backtracked transition is not a circle currently -Rui
             out.println(i + "->" + newNodeNumber + newLabelStack(i).label) // starting point
-          else if (newLabelStack(i).selfTrans || newLabelStack(i).transQuality == TransitionQuality.backtrack) {
+          } else if (newLabelStack(i).selfTrans || newLabelStack(i).transQuality == TransitionQuality.backtrack) {
             newNodeNumber = newNodeNumber - 1
             out.println(
               newNodeNumber + "->" + newNodeNumber + newLabelStack(i).label) // same point if self or backtracked transition
