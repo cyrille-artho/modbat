@@ -43,9 +43,9 @@ class PathInBox(trie: Trie, val shape: String) extends PathVisualizer {
       var sameTransition = false
       if (nodeRecorder != null) {
         for (n <- nodeRecorder) {
-          // check if the transition already in the nodeRecorder list, and this transition is not backtracked
+          // the transition already in the nodeRecorder, and the transition quality is also the same
           if (n.node.transitionInfo.transitionID == node.transitionInfo.transitionID &&
-              node.transitionInfo.transitionQuality != TransitionQuality.backtrack) {
+              n.node.transitionInfo.transitionQuality == node.transitionInfo.transitionQuality) {
             sameTransition = true
             n.transCounter = n.transCounter.concat(
               ";" + node.transitionInfo.transCounter.toString)
