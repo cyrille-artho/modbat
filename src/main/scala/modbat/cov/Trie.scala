@@ -4,6 +4,8 @@ import modbat.dsl.{State, Transition}
 import modbat.log.Log
 import modbat.mbt.PathInfo
 import modbat.mbt.TransitionQuality.Quality
+import modbat.trace.RecordedChoice
+
 import scala.collection.mutable.{HashMap, ListBuffer}
 
 /** Trie stores the path information for the path coverage. */
@@ -34,7 +36,8 @@ class Trie {
                                                p.transition.dest,
                                                p.transition.idx,
                                                1,
-                                               p.transitionQuality)
+                                               p.transitionQuality,
+                                               p.transition.recordedChoices)
           currentNode.children.put(node.transitionInfo.transitionID, node)
         } else {
           // existing node
@@ -124,4 +127,5 @@ case class TransitionInfo(transOrigin: State,
                           transDest: State,
                           transitionID: Int,
                           var transCounter: Int,
-                          transitionQuality: Quality)
+                          transitionQuality: Quality,
+                          transitionChoices: List[RecordedChoice])
