@@ -24,14 +24,7 @@ import modbat.dsl.Shutdown
 import modbat.dsl.State
 import modbat.dsl.Transition
 import modbat.log.Log
-import modbat.trace.Backtrack
-import modbat.trace.ErrOrdering
-import modbat.trace.ExceptionOccurred
-import modbat.trace.ExpectedExceptionMissing
-import modbat.trace.Ok
-import modbat.trace.RecordedState
-import modbat.trace.RecordedTransition
-import modbat.trace.TransitionResult
+import modbat.trace._
 import modbat.util.CloneableRandom
 import modbat.util.SourceInfo
 import modbat.util.FieldUtil
@@ -146,6 +139,7 @@ object Modbat {
   }
 
   def coverage {
+    Log.info("Hello")
     // TODO: display path coverage
     // Display executed transitions paths in graphs
     // if the configuration of path coverage is true -Rui
@@ -413,8 +407,28 @@ object Modbat {
       case (Ok(_), successorTrans: RecordedTransition) =>
         successorTrans.updates = updates
         successorTrans.randomTrace = MBT.rng.asInstanceOf[CloneableRandom].trace
+
         successorTrans.debugTrace =
           MBT.rng.asInstanceOf[CloneableRandom].debugTrace
+
+        // TODO: get recorded choices - Rui
+        successorTrans.recordedChoices =
+          MBT.rng.asInstanceOf[CloneableRandom].getRecordedChoices()
+
+        // TODO: the code below to print recorded choices -RUI
+        if (successorTrans.recordedChoices != null) {
+          if (successorTrans.recordedChoices.nonEmpty) {
+            Log.info(
+              "--print--info-- length of recordedChoices:" + successorTrans.recordedChoices.length)
+            //Log.info("--print--info-- random trace number after mkString:  " + successorTrans.randomTrace.mkString(","))
+            successorTrans.recordedChoices.foreach(x =>
+              Log.info("--print--info-- recordedChoices:" + x.toString + " "))
+
+          } else Log.info("--print--info-- recordedChoices is empty")
+
+        } else Log.info("--print--info-- recordedChoices is null")
+        // TODO: code finish -RUI
+
         MBT.rng.asInstanceOf[CloneableRandom].clear
         executedTransitions += successorTrans
         val timesSeen =
@@ -431,9 +445,28 @@ object Modbat {
         failedTrans.randomTrace = MBT.rng.asInstanceOf[CloneableRandom].trace
         failedTrans.debugTrace =
           MBT.rng.asInstanceOf[CloneableRandom].debugTrace
+        failedTrans.recordedChoices = MBT.rng
+          .asInstanceOf[CloneableRandom]
+          .getRecordedChoices() //todo: get recorded choices for failed trans -rui
+
+        // TODO: the code below to print recorded choices -RUI
+        if (failedTrans.recordedChoices != null) {
+          if (failedTrans.recordedChoices.nonEmpty) {
+            Log.info(
+              "--print**info-- length of recordedChoices:" + failedTrans.recordedChoices.length)
+            //Log.info("--print--info-- random trace number after mkString:  " + successorTrans.randomTrace.mkString(","))
+            failedTrans.recordedChoices.foreach(x =>
+              Log.info("--print**info-- recordedChoices:" + x.toString + " "))
+
+          } else Log.info("--print**info-- recordedChoices is empty")
+
+        } else Log.info("--print**info-- recordedChoices is null")
+        // TODO: code finish -RUI
+
         MBT.rng.asInstanceOf[CloneableRandom].clear
         executedTransitions += failedTrans
     }
+
   }
 
   def otherThreadFailed = {
@@ -448,6 +481,9 @@ object Modbat {
   }
 
   def exploreSuccessors: (TransitionResult, RecordedTransition) = {
+
+    Log.info("*********** separate each test *************") // TODO: print info -RUi
+
     var successors = allSuccessors(null)
     var allSucc = successors.clone
     var totalW = totalWeight(successors)
@@ -465,15 +501,63 @@ object Modbat {
       assert(!trans.isSynthetic)
       // TODO: Path coverage
       val result = model.executeTransition(trans)
+      // TODO: Note that the returned result._2.transition is null when backtrack
 
       var updates: List[(Field, Any)] = Nil
       updates = model.tracedFields.updates
       for (u <- updates) {
         Log.fine("Trace field " + u._1 + " now has value " + u._2)
       }
+
       updateExecHistory(model, localStoredRNGState, result, updates)
+
       result match {
         case (Ok(sameAgain: Boolean), _) => {
+
+          // TODO: the code below to print recorded choices -RUI
+          if (result._2.recordedChoices != null) {
+            if (result._2.recordedChoices.nonEmpty) {
+              Log.info(
+                "**print--info** length of recordedChoices:" + result._2.recordedChoices.length)
+              //Log.info("--print--info-- random trace number after mkString:  " + successorTrans.randomTrace.mkString(","))
+              result._2.recordedChoices.foreach(x =>
+                Log.info("**print--info** recordedChoices:" + x.toString + " "))
+
+            } else Log.info("**print--info** recordedChoices is empty")
+
+          } else Log.info("**print--info** recordedChoices is null")
+          // TODO: code finish -RUI
+
+          // TODO: the code below to print random trace -RUI
+          if (result._2.randomTrace != null) {
+            if (result._2.randomTrace.length != 0) {
+              Log.info(
+                "-%print--info%- length of random trace array:" + result._2.randomTrace.length)
+              result._2.randomTrace.foreach(
+                x =>
+                  Log.info(
+                    "-%print--info%- random trace number:" + x.toString + " "))
+
+            } else Log.info("-%print--info%- random trace is empty")
+
+          } else Log.info("-%print--info%- random trace is null")
+          // TODO: code finish -RUI
+
+          // TODO: the code below to print debug trace -RUI
+          if (result._2.debugTrace != null) {
+            if (result._2.debugTrace.length != 0) {
+              Log.info(
+                "-%print--info%- length of debug trace array:" + result._2.debugTrace.length)
+              result._2.debugTrace.foreach(
+                x =>
+                  Log.info(
+                    "-%print--info%- debug trace number:" + x.toString + " "))
+
+            } else Log.info("-%print--info%- debug trace is empty")
+
+          } else Log.info("-%print--info%- debug trace is null")
+          // TODO: code finish -RUI
+
           val succ = new ArrayBuffer[(MBT, Transition)]()
           addSuccessors(model, succ, true)
           if (succ.size == 0) {
@@ -511,6 +595,22 @@ object Modbat {
           return result
         }
       }
+
+      // TODO: record choices in transition when it is not backtracked
+      if (!backtracked) {
+        if (result._2.recordedChoices != null) {
+          if (result._2.recordedChoices.nonEmpty) {
+            trans.recordedChoices = result._2.recordedChoices //TODO: record choices to the transition -RUI
+
+            Log.info(
+              "**print**info** length of recorded choices in transition:" + trans.recordedChoices.length)
+            Log.info(
+              "**print**info** recorded choices in transition:" + trans.recordedChoices
+                .mkString(","))
+          }
+        }
+      }
+
       // TODO: Store path information -Rui
       // Store path information including the model name,
       // model ID and executed transition for path coverage,
@@ -527,6 +627,7 @@ object Modbat {
 
       totalW = totalWeight(successors)
     }
+
     // TODO: output all executed transitions of the current test - Rui
     for (p <- pathInfoRecorder)
       Log.debug(
