@@ -3,6 +3,7 @@ package modbat.util
 import java.lang.Integer.MAX_VALUE
 
 import modbat.log.Log
+import modbat.trace.RecordedChoice
 
 trait Random {
   def getRandomSeed: Long // get original random seed
@@ -39,4 +40,7 @@ trait Random {
       res
     }
   }
+
+  // TODO: record choice - Rui
+  def recordChoice(anyChoice: RecordedChoice): Unit
 }

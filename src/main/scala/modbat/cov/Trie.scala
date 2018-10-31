@@ -54,19 +54,19 @@ class Trie {
     * @param level The level number of the trie tree structure
     */
   def display(root: TrieNode, level: Int = 0): Unit = {
-    if (root.isLeaf) //Log.debug("")
-      for (t <- root.children.keySet) {
-        val node: TrieNode =
-          root.children.getOrElse(t, sys.error(s"unexpected key: $t"))
-        if (level == 0) {
-          Log.debug(
-            node.modelInfo.toString + node.transitionInfo.toString + " (" + node.selfTransCounter + ")")
-        } else
-          Log.debug(
-            "-" * level + node.modelInfo.toString + node.transitionInfo.toString +
-              " (" + node.selfTransCounter + ")")
-        display(node, level + 1)
-      }
+    if (root.isLeaf) return //Log.debug("")
+    for (t <- root.children.keySet) {
+      val node: TrieNode =
+        root.children.getOrElse(t, sys.error(s"unexpected key: $t"))
+      if (level == 0) {
+        Log.info(
+          node.modelInfo.toString + node.transitionInfo.toString + " (" + node.selfTransCounter + ")")
+      } else
+        Log.info(
+          "-" * level + node.modelInfo.toString + node.transitionInfo.toString +
+            " (" + node.selfTransCounter + ")")
+      display(node, level + 1)
+    }
   }
 
   /** Compute the number of paths

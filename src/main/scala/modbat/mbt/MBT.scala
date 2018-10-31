@@ -9,6 +9,7 @@ import java.lang.reflect.Method
 import java.lang.reflect.Modifier
 import java.net.URL
 import java.net.URLClassLoader
+
 import scala.collection.Iterator
 import scala.collection.JavaConversions._
 import scala.collection.mutable.HashMap
@@ -16,7 +17,6 @@ import scala.collection.mutable.HashSet
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.ListBuffer
 import scala.util.matching.Regex
-
 import modbat.RequirementFailedException
 import modbat.cov.StateCoverage
 import modbat.cov.TransitionCoverage
@@ -33,13 +33,7 @@ import modbat.dsl.Trace
 import modbat.dsl.Weight
 import modbat.dsl.Transition
 import modbat.log.Log
-import modbat.trace.Backtrack
-import modbat.trace.ExceptionOccurred
-import modbat.trace.ExpectedExceptionMissing
-import modbat.trace.Ok
-import modbat.trace.RecordedTransition
-import modbat.trace.TracedFields
-import modbat.trace.TransitionResult
+import modbat.trace._
 import modbat.util.CloneableRandom
 import modbat.util.Random
 
@@ -322,14 +316,19 @@ object MBT {
   }
 
   def maybe(action: Action) = {
+    val choice: Boolean = MBT.rng.nextFloat(true) < MBT.maybeProbability //TODO: compute choice -Rui
+
+    val maybeChoice = MaybeChoice(choice) //TODO: maybe choice -Rui
+    MBT.rng.recordChoice(maybeChoice) //TODO: record maybe choice -Rui
+
     if (MBT.or_else) {
       MBT.or_else = false
       action.transfunc()
-    } else if (MBT.rng.nextFloat(true) < MBT.maybeProbability) {
+    } else if (choice) { //TODO: use maybeChoice value instead of MBT.rng.nextFloat(true) < MBT.maybeProbabilit
       action.transfunc()
     }
   }
-
+  //TODO: all maybeBool things need to be deleted -Rui
   def maybeBool(pred: () => Boolean) = {
     if (MBT.rng.nextFloat(true) < MBT.maybeProbability) {
       pred()

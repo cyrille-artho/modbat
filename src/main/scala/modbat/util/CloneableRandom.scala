@@ -1,9 +1,12 @@
 package modbat.util
 
 import java.lang.Integer.MAX_VALUE
-import scala.collection.mutable.ArrayBuffer
+import java.lang.Math.floorMod
 
+import scala.collection.mutable.{ArrayBuffer, ListBuffer}
 import modbat.dsl.Action
+import modbat.log.Log
+import modbat.trace.RecordedChoice
 
 /* Class to replace scala.util.Random with. This class can be cloned
    keeping its exact current state. */
@@ -12,7 +15,7 @@ import modbat.dsl.Action
    compatibility with the existing RNG in Scala. */
 
 class CloneableRandom(rngTrace: Array[Int], dbgTrace: Array[String])
-  extends Random {
+    extends Random {
   val storedResults = new ArrayBuffer[Int](rngTrace.size)
   val resultsAsString = new ArrayBuffer[String](dbgTrace.size)
   storedResults ++= rngTrace
@@ -20,6 +23,10 @@ class CloneableRandom(rngTrace: Array[Int], dbgTrace: Array[String])
   var z: Long = 0
   var w: Long = 0
   var seed: Long = 0
+
+  // TODO: recordedChoices is used to record choices -RUI
+  var recordedChoices: ListBuffer[RecordedChoice] =
+    new ListBuffer[RecordedChoice]
 
   /** Return random seed from last time when it was actually set */
   override def getRandomSeed = seed
@@ -63,6 +70,7 @@ class CloneableRandom(rngTrace: Array[Int], dbgTrace: Array[String])
   def clear = {
     storedResults.clear
     resultsAsString.clear
+    recordedChoices.clear() // TODO: clear recorded choices -rui
   }
 
   override def nextInt(remember: Boolean = true): Int = {
@@ -82,17 +90,18 @@ class CloneableRandom(rngTrace: Array[Int], dbgTrace: Array[String])
     resultsAsString += SourceInfo.actionInfo(action, true)
     result
   }
-
+  // TODO: need to take a look at rsultsAsString and super.choose
   override def choose(min: Int, max: Int): Int = {
     val result = super.choose(min, max)
     resultsAsString += Integer.toString(result)
     result
   }
-
+  // TODO: need to take a look at this function
   override def nextFloat(remember: Boolean = true) = {
     val result = super.nextFloat(remember)
     if (remember) {
-      resultsAsString(resultsAsString.size - 1) = java.lang.Float.toString(result)
+      resultsAsString(resultsAsString.size - 1) =
+        java.lang.Float.toString(result)
       // replace redundant info on Int
     }
     result
@@ -101,7 +110,8 @@ class CloneableRandom(rngTrace: Array[Int], dbgTrace: Array[String])
   override def nextDouble(remember: Boolean = true) = {
     val result = super.nextDouble(remember)
     if (remember) {
-      resultsAsString(resultsAsString.size - 1) = java.lang.Double.toString(result)
+      resultsAsString(resultsAsString.size - 1) =
+        java.lang.Double.toString(result)
       // replace redundant info on Int
     }
     result
@@ -131,6 +141,16 @@ class CloneableRandom(rngTrace: Array[Int], dbgTrace: Array[String])
     }
     result
   }
+
+  // TODO: recordChoice method can update the choices recorded - Rui
+  override def recordChoice(anyChoice: RecordedChoice): Unit = {
+    recordedChoices += anyChoice
+    Log.info(
+      "$$$$$$ the recordedChoices has values stored:" + recordedChoices
+        .mkString(", ")) //TODO: print info -rui
+  }
+  // TODO: getRecordedChoices get recorded choices in a list -RUi
+  def getRecordedChoices() = recordedChoices.toList
 
   def trace() = storedResults.toArray
 
