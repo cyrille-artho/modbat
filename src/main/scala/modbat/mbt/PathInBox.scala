@@ -69,6 +69,16 @@ class PathInBox(trie: Trie, val shape: String) extends PathVisualizer {
           if (n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
             "style=dotted, color=red,"
           else ""
+        // make choices into a String
+        val choices: String =
+          if (n.node.transitionInfo.transitionChoices != null) {
+            if (n.node.transitionInfo.transitionChoices.nonEmpty)
+              //n.node.transitionInfo.transitionChoices.mkString(", ")
+              n.node.transitionInfo.transitionChoices.toList
+                .map(_.mkString(", "))
+                .mkString("||\\n")
+            else "Empty"
+          } else "Null"
         if (n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack) // backtrack
           out.println(n.node.transitionInfo.transDest + "[color=red];")
         out.println("  " + n.node.transitionInfo.transOrigin.toString
@@ -78,6 +88,7 @@ class PathInBox(trie: Trie, val shape: String) extends PathVisualizer {
           "T:" + transName + "\\n" +
           "T-ID:" + n.node.transitionInfo.transitionID.toString + "\\n" +
           "T-Counter:" + n.transCounter + "\\n" +
+          "T-Choices:" + choices + "\\n" +
           "(T-Self:" + n.node.selfTransCounter + ")" + "\"];")
       }
     }
