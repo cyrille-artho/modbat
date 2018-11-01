@@ -46,18 +46,35 @@ class PathInPoint(trie: Trie, val shape: String) extends PathVisualizer {
     if (root.isLeaf) { // print graph when the node in trie is a leaf
       if (newLabelStack != null) {
         // output "point" graph
+        var rootIsCircle = false //TODO: new
         for (i <- newLabelStack.indices) {
           newNodeNumber = newNodeNumber + 1
           if (i == 0) {
+            //TODO: new
+            if (newLabelStack(i).selfTrans || newLabelStack(i).transQuality == TransitionQuality.backtrack) {
+              rootIsCircle = true
+              newNodeNumber = newNodeNumber - 1
+              out.println(0 + "->" + 0 + newLabelStack(i).label)
+            }
             //TODO: An issue needs to be fixed, here is a situation that when i is 0 (root), the self transition and backtracked transition is not a circle currently -Rui
-            out.println(i + "->" + newNodeNumber + newLabelStack(i).label) // starting point
+            else //TODO: new
+              out.println(i + "->" + newNodeNumber + newLabelStack(i).label) // starting point
           } else if (newLabelStack(i).selfTrans || newLabelStack(i).transQuality == TransitionQuality.backtrack) {
-            newNodeNumber = newNodeNumber - 1
-            out.println(
-              newNodeNumber + "->" + newNodeNumber + newLabelStack(i).label) // same point if self or backtracked transition
-          } else
-            out.println(
-              newNodeNumber - 1 + "->" + newNodeNumber + newLabelStack(i).label)
+            if (rootIsCircle) {
+              newNodeNumber = newNodeNumber - 1
+              out.println(0 + "->" + 0 + newLabelStack(i).label) //TODO: new
+            } else {
+              newNodeNumber = newNodeNumber - 1
+              out.println(newNodeNumber + "->" + newNodeNumber + newLabelStack(
+                i).label) // same point if self or backtracked transition
+            }
+          } else {
+            if (rootIsCircle)
+              out.println(0 + "->" + newNodeNumber + newLabelStack(i).label) //TODO: new
+            else
+              out.println(
+                newNodeNumber - 1 + "->" + newNodeNumber + newLabelStack(i).label)
+          }
         }
       }
       if (newLabelStack != null) {
