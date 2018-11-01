@@ -316,15 +316,16 @@ object MBT {
   }
 
   def maybe(action: Action) = {
-    val choice: Boolean = MBT.rng.nextFloat(true) < MBT.maybeProbability //TODO: compute choice -Rui
-
-    val maybeChoice = MaybeChoice(choice) //TODO: maybe choice -Rui
-    MBT.rng.recordChoice(maybeChoice) //TODO: record maybe choice -Rui
+    //TODO: compute choice for "maybe" -Rui
+    val choice: Boolean = MBT.rng.nextFloat(true) < MBT.maybeProbability
+    //TODO: record choice for "maybe" -Rui
+    val maybeChoice = MaybeChoice(choice)
+    MBT.rng.recordChoice(maybeChoice)
 
     if (MBT.or_else) {
       MBT.or_else = false
       action.transfunc()
-    } else if (choice) { //TODO: use maybeChoice value instead of MBT.rng.nextFloat(true) < MBT.maybeProbabilit
+    } else if (choice) {
       action.transfunc()
     }
   }
