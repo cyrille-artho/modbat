@@ -32,7 +32,7 @@ class PathInBox(trie: Trie, val shape: String) extends PathVisualizer {
 
   def display(root: TrieNode,
               level: Int = 0,
-              nodeRecorder: ListBuffer[NodeInfo] = null) {
+              nodeRecorder: ListBuffer[NodeInfo] = null): Unit = {
 
     if (root.isLeaf) return
 
@@ -55,6 +55,7 @@ class PathInBox(trie: Trie, val shape: String) extends PathVisualizer {
             // append choices to the same list buffer
             n.node.transitionInfo.transitionChoices ++= node.transitionInfo.transitionChoices
           }
+
         }
       }
       if (!sameTransition) {
