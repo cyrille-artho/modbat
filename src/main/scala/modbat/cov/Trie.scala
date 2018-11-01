@@ -73,10 +73,10 @@ class Trie {
       val node: TrieNode =
         root.children.getOrElse(t, sys.error(s"unexpected key: $t"))
       if (level == 0) {
-        Log.info(
+        Log.debug(
           node.modelInfo.toString + node.transitionInfo.toString + " (" + node.selfTransCounter + ")")
       } else
-        Log.info(
+        Log.debug(
           "-" * level + node.modelInfo.toString + node.transitionInfo.toString +
             " (" + node.selfTransCounter + ")")
       display(node, level + 1)

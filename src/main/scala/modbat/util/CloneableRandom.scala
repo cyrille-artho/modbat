@@ -3,7 +3,6 @@ package modbat.util
 import java.lang.Integer.MAX_VALUE
 import scala.collection.mutable.{ArrayBuffer, ListBuffer}
 import modbat.dsl.Action
-import modbat.log.Log
 import modbat.trace.RecordedChoice
 
 /* Class to replace scala.util.Random with. This class can be cloned
@@ -143,9 +142,6 @@ class CloneableRandom(rngTrace: Array[Int], dbgTrace: Array[String])
   // TODO: recordChoice method can update the choices recorded - Rui
   override def recordChoice(anyChoice: RecordedChoice): Unit = {
     recordedChoices += anyChoice
-    Log.info(
-      "$$$$$$ the recordedChoices has values stored:" + recordedChoices
-        .mkString(", ")) //TODO: print info -rui
   }
   // TODO: getRecordedChoices get recorded choices in a list -RUi
   def getRecordedChoices() = recordedChoices.toList

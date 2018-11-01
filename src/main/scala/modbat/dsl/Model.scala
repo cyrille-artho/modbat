@@ -80,17 +80,17 @@ abstract trait Model {
   def join(modelInstance: Model) = efsm.join(modelInstance)
 
   def choose(min: Int, max: Int) = {
-    val choice = MBT.choose(min, max) //TODO: change to return choose instead of MBT.choose(min, max) -Rui
-    val numChoice = NumChoice(choice) //TODO: num choice -Rui
-    MBT.rng.recordChoice(numChoice) //TODO: record num choice -Rui
+    val choice = MBT.choose(min, max)
+    val numChoice = NumChoice(choice) //TODO: create a number choice -Rui
+    MBT.rng.recordChoice(numChoice) //TODO: record number choice -Rui
 
     choice
   }
 
   def choose() = {
-    val choice = (MBT.choose(0, 2) == 0) //TODO: change to return choose instead of (MBT.choose(0, 2) == 0) -Rui
-    val boolChoice = BoolChoice(choice) //TODO: bool choice -Rui
-    MBT.rng.recordChoice(boolChoice) //TODO: record bool choice -Rui
+    val choice = (MBT.choose(0, 2) == 0)
+    val boolChoice = BoolChoice(choice) //TODO: create a boolean choice -Rui
+    MBT.rng.recordChoice(boolChoice) //TODO: record boolean choice -Rui
 
     choice
   }
@@ -111,9 +111,8 @@ abstract trait Model {
   type AnyFunc = () => Any
   def choose(actions: AnyFunc*): Any = {
     val choice = MBT.rng.nextFunc(actions.toArray)
-    //MBT.rng.recordChoice
-    val funcChoice = FuncChoice(choice) //TODO: func choice -Rui
-    MBT.rng.recordChoice(funcChoice) //TODO: record func choice
+    val funcChoice = FuncChoice(choice) //TODO: create a func choice -Rui
+    MBT.rng.recordChoice(funcChoice) //TODO: record func choice - Rui
 
     choice()
   }
