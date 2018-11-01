@@ -78,6 +78,16 @@ class PathInPoint(trie: Trie, val shape: String) extends PathVisualizer {
       val transQuality: TransitionQuality.Quality =
         node.transitionInfo.transitionQuality
       val transExecutionCounter = node.transitionInfo.transCounter.toString
+      // get choices into a string for the output
+      val choices: String =
+        if (node.transitionInfo.transitionChoices != null) {
+          if (node.transitionInfo.transitionChoices.nonEmpty)
+            node.transitionInfo.transitionChoices.toList
+              .map(_.mkString(", "))
+              .mkString("||\\n")
+          else "Empty"
+        } else "Null"
+
       val selfTransCounter = "(T-Self:" + node.selfTransCounter + ")"
       val edgeStyle: String =
         if (transQuality == TransitionQuality.backtrack)
@@ -89,6 +99,7 @@ class PathInPoint(trie: Trie, val shape: String) extends PathVisualizer {
         "T:" + transName + "\\n" +
         "T-ID:" + transID + "\\n" +
         "T-Counter:" + transExecutionCounter + "\\n" +
+        "T-Choices:" + choices + "\\n" +
         selfTransCounter + "\"];"
       // check if the transition has the same original and target states, and if backtracked
       val newlabelInfo =
