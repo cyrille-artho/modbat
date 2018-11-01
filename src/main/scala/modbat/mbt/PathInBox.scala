@@ -47,8 +47,13 @@ class PathInBox(trie: Trie, val shape: String) extends PathVisualizer {
           if (n.node.transitionInfo.transitionID == node.transitionInfo.transitionID &&
               n.node.transitionInfo.transitionQuality == node.transitionInfo.transitionQuality) {
             sameTransition = true
+
+            // merge the value of the transition counter
             n.transCounter = n.transCounter.concat(
               ";" + node.transitionInfo.transCounter.toString)
+
+            // append choices to the same list buffer
+            n.node.transitionInfo.transitionChoices ++= node.transitionInfo.transitionChoices
           }
         }
       }
