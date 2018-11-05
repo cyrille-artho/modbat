@@ -83,7 +83,8 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
 
   }
 
-  private def drawBoxGraph(level: Int, nodeRecorder: ListBuffer[NodeInfo]) = {
+  private def drawBoxGraph(level: Int,
+                           nodeRecorder: ListBuffer[NodeInfo]): Unit = {
     // output "box" graph
     if (level == 0 && nodeRecorder != null && nodeRecorder.nonEmpty) {
       for (n <- nodeRecorder) {
