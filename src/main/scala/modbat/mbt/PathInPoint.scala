@@ -16,7 +16,7 @@ case class LabelInfo(label: String,
   * @param trie The trie that has path information stored
   * @param shape The shape should be "Point"
   */
-class PathInPoint(trie: Trie, val shape: String) extends PathVisualizer {
+class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
   require(shape == "Point", "the input of path visualizer must be Point")
   override def dotify() {
     out.println("digraph model {")
