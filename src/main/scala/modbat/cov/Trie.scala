@@ -6,7 +6,7 @@ import modbat.mbt.PathInfo
 import modbat.mbt.TransitionQuality.Quality
 import modbat.trace.RecordedChoice
 
-import scala.collection.mutable.{HashMap, ListBuffer}
+import scala.collection.mutable.{HashMap, ListBuffer, Map}
 
 /** Trie stores the path information for the path coverage. */
 class Trie {
@@ -23,40 +23,57 @@ class Trie {
       // check and get node in trie
       var node: TrieNode =
         currentNode.children.getOrElse(p.transition.idx, null)
+
       // check if the new transition is a self loop in the path
+      //TODO: currentTransition could be null
       if (currentNode.currentTransition != null && currentNode.currentTransition.idx == p.transition.idx) {
         currentNode.selfTransCounter += 1
-      } else {
-        if (node == null) {
-          // obtain transition choices and add to list buffer from the 1st transition that has choices
-          val choices: ListBuffer[List[RecordedChoice]] =
-            new ListBuffer[List[RecordedChoice]]
-          if (p.transition.recordedChoices != null && p.transition.recordedChoices.nonEmpty)
-            choices += p.transition.recordedChoices
+      } else if (node == null) { // new node situation
+        // obtain transition choices and add to list buffer from the 1st transition that has choices
+        /*        val choices: ListBuffer[List[RecordedChoice]] =
+          new ListBuffer[List[RecordedChoice]]
+        if (p.transition.recordedChoices != null && p.transition.recordedChoices.nonEmpty)
+          choices += p.transition.recordedChoices*/
 
-          // new node
-          node = TrieNode()
-          node.currentTransition = p.transition
-          node.modelInfo = ModelInfo(p.modelName, p.modelID)
-          node.transitionInfo = TransitionInfo(p.transition.origin,
-                                               p.transition.dest,
-                                               p.transition.idx,
-                                               1,
-                                               p.transitionQuality,
-                                               choices)
-          currentNode.children.put(node.transitionInfo.transitionID, node)
-        } else {
-          // existing node
-          if (node.transitionInfo.transitionID == p.transition.idx) {
-            // update transition counter
-            node.transitionInfo.transCounter = node.transitionInfo.transCounter + 1
+        // record choices into map
+        var choicesMap: Map[List[RecordedChoice], Int] =
+          Map[List[RecordedChoice], Int]()
+        if (p.transition.recordedChoices != null && p.transition.recordedChoices.nonEmpty)
+          choicesMap += (p.transition.recordedChoices -> 1)
 
-            // update transition choices list buffer from other transitions
-            if (p.transition.recordedChoices != null && p.transition.recordedChoices.nonEmpty)
-              node.transitionInfo.transitionChoices += p.transition.recordedChoices
-          }
+        // new node
+        node = TrieNode()
+        node.currentTransition = p.transition
+        node.modelInfo = ModelInfo(p.modelName, p.modelID)
+        node.transitionInfo = TransitionInfo(p.transition.origin,
+                                             p.transition.dest,
+                                             p.transition.idx,
+                                             1,
+                                             p.transitionQuality,
+                                             //       choices,
+                                             choicesMap)
+        currentNode.children.put(node.transitionInfo.transitionID, node)
+        currentNode = node // next node
+      } else if (node != null && node.transitionInfo.transitionID == p.transition.idx) { // existing node situation
+        // update transition counter
+        node.transitionInfo.transCounter = node.transitionInfo.transCounter + 1
+
+        /*       // update transition choices list buffer from other transitions
+        if (p.transition.recordedChoices != null && p.transition.recordedChoices.nonEmpty)
+          node.transitionInfo.transitionChoices += p.transition.recordedChoices*/
+        // update choices in map
+        if (p.transition.recordedChoices != null && p.transition.recordedChoices.nonEmpty) {
+          if (node.transitionInfo.transitionChoicesMap.contains(
+                p.transition.recordedChoices))
+            node.transitionInfo
+              .transitionChoicesMap(p.transition.recordedChoices) =
+                node.transitionInfo.transitionChoicesMap(
+                  p.transition.recordedChoices) + 1
+          else
+            node.transitionInfo.transitionChoicesMap += (p.transition.recordedChoices -> 1)
         }
-        currentNode = node
+
+        currentNode = node // next node
       }
     }
     currentNode.isLeaf = true
@@ -140,4 +157,5 @@ case class TransitionInfo(transOrigin: State,
                           transitionID: Int,
                           var transCounter: Int,
                           transitionQuality: Quality,
-                          transitionChoices: ListBuffer[List[RecordedChoice]])
+                          //  transitionChoices: ListBuffer[List[RecordedChoice]],
+                          transitionChoicesMap: Map[List[RecordedChoice], Int])

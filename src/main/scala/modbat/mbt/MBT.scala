@@ -803,7 +803,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
     Log.fine(
       "Precondition violated, backtracking to " +
         successor.origin + ".")
-    (Backtrack, null)
+    (Backtrack, new RecordedTransition(this, successor)) //TODO: return the RecordedTransition when backtracking - Rui
   }
 
   /* returns result of transition function and next state (if available) */
