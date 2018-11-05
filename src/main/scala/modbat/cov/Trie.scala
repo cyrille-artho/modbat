@@ -29,11 +29,6 @@ class Trie {
       if (currentNode.currentTransition != null && currentNode.currentTransition.idx == p.transition.idx) {
         currentNode.selfTransCounter += 1
       } else if (node == null) { // new node situation
-        // obtain transition choices and add to list buffer from the 1st transition that has choices
-        /*        val choices: ListBuffer[List[RecordedChoice]] =
-          new ListBuffer[List[RecordedChoice]]
-        if (p.transition.recordedChoices != null && p.transition.recordedChoices.nonEmpty)
-          choices += p.transition.recordedChoices*/
 
         // record choices into map
         var choicesMap: Map[List[RecordedChoice], Int] =
@@ -58,10 +53,6 @@ class Trie {
         // update transition counter
         node.transitionInfo.transCounter = node.transitionInfo.transCounter + 1
 
-        /*       // update transition choices list buffer from other transitions
-        if (p.transition.recordedChoices != null && p.transition.recordedChoices.nonEmpty)
-          node.transitionInfo.transitionChoices += p.transition.recordedChoices*/
-        // update choices in map
         if (p.transition.recordedChoices != null && p.transition.recordedChoices.nonEmpty) {
           if (node.transitionInfo.transitionChoicesMap.contains(
                 p.transition.recordedChoices))
@@ -150,12 +141,11 @@ case class ModelInfo(modelName: String, modelID: Int)
   * @param transitionID The transition's ID
   * @param transCounter The number of time that transition is executed in a path
   * @param transitionQuality The quality of the transition, which could be OK, Backtrack, or Fail
-  * @param transitionChoices The choices of each transition for each tests stored
+  * @param transitionChoicesMap The choices of each transition for each tests stored, and a counter to counter same choices
   */
 case class TransitionInfo(transOrigin: State,
                           transDest: State,
                           transitionID: Int,
                           var transCounter: Int,
                           transitionQuality: Quality,
-                          //  transitionChoices: ListBuffer[List[RecordedChoice]],
                           transitionChoicesMap: Map[List[RecordedChoice], Int])
