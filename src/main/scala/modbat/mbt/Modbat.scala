@@ -147,8 +147,8 @@ object Modbat {
       trie.display(trie.root)
       val numOfPaths = trie.numOfPaths(trie.root)
       Log.info(numOfPaths + " paths executed.")
-      new PathInPoint(trie, "Point").dotify()
-      new PathInBox(trie, "Box").dotify()
+      new PathInPointGraph(trie, "Point").dotify()
+      new PathInBoxGraph(trie, "Box").dotify()
     }
 
     Log.info(

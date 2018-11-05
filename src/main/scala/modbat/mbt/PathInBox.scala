@@ -14,8 +14,9 @@ case class NodeInfo(node: TrieNode, var transCounter: String) // NodeInfo is use
   * @param trie The trie that has path information stored
   * @param shape The shape should be "Box"
   */
-class PathInBox(trie: Trie, val shape: String) extends PathVisualizer {
+class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
   require(shape == "Box", "the input of path visualizer must be Box")
+
   override def dotify() {
     out.println("digraph model {")
     out.println("  orientation = landscape;")
@@ -32,9 +33,9 @@ class PathInBox(trie: Trie, val shape: String) extends PathVisualizer {
     out.println("}")
   }
 
-  def display(root: TrieNode,
-              level: Int = 0,
-              nodeRecorder: ListBuffer[NodeInfo] = null): Unit = {
+  private def display(root: TrieNode,
+                      level: Int = 0,
+                      nodeRecorder: ListBuffer[NodeInfo] = null): Unit = {
 
     if (root.isLeaf) return
 
@@ -77,6 +78,12 @@ class PathInBox(trie: Trie, val shape: String) extends PathVisualizer {
       display(node, level + 1, nodeRecorder)
     }
 
+    // output "box" graph
+    drawBoxGraph(level, nodeRecorder)
+
+  }
+
+  private def drawBoxGraph(level: Int, nodeRecorder: ListBuffer[NodeInfo]) = {
     // output "box" graph
     if (level == 0 && nodeRecorder != null && nodeRecorder.nonEmpty) {
       for (n <- nodeRecorder) {
@@ -139,7 +146,6 @@ class PathInBox(trie: Trie, val shape: String) extends PathVisualizer {
               // "T-Choices:" + choices + "\\n" +
               "(T-Self:" + n.node.selfTransCounter + ")" + "\"];")
         }
-
       }
     }
   }
