@@ -1,6 +1,8 @@
 package modbat.mbt
 
 import modbat.cov.{Trie, TrieNode}
+import modbat.log.Log
+
 import scala.collection.mutable.ListBuffer
 
 case class NodeInfo(node: TrieNode, var transCounter: String) // NodeInfo is used for record  the node information used for "box" output
@@ -52,10 +54,20 @@ class PathInBox(trie: Trie, val shape: String) extends PathVisualizer {
             n.transCounter = n.transCounter.concat(
               ";" + node.transitionInfo.transCounter.toString)
 
+            // merge the counter in map of choices
+            for (key <- node.transitionInfo.transitionChoicesMap.keySet) {
+              if (n.node.transitionInfo.transitionChoicesMap.contains(key)) {
+                val mergedCoutner = n.node.transitionInfo
+                  .transitionChoicesMap(key) +
+                  node.transitionInfo.transitionChoicesMap(key)
+                Log.info(
+                  " the counter in the same transition are merged as:" + mergedCoutner)
+                n.node.transitionInfo.transitionChoicesMap(key) = mergedCoutner
+              }
+            }
             // append choices to the same list buffer
-            n.node.transitionInfo.transitionChoices ++= node.transitionInfo.transitionChoices
+            //n.node.transitionInfo.transitionChoices ++= node.transitionInfo.transitionChoices
           }
-
         }
       }
       if (!sameTransition) {
@@ -75,7 +87,7 @@ class PathInBox(trie: Trie, val shape: String) extends PathVisualizer {
           if (n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
             "style=dotted, color=red,"
           else ""
-        // make choices into a String
+        /*        // make choices into a String
         val choices: String =
           if (n.node.transitionInfo.transitionChoices != null) {
             if (n.node.transitionInfo.transitionChoices.nonEmpty)
@@ -84,18 +96,50 @@ class PathInBox(trie: Trie, val shape: String) extends PathVisualizer {
                 .map(_.mkString(", "))
                 .mkString("||\\n")
             else "Empty"
-          } else "Null"
+          } else "Null"*/
+
         if (n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack) // backtrack
           out.println(n.node.transitionInfo.transDest + "[color=red];")
-        out.println("  " + n.node.transitionInfo.transOrigin.toString
-          + "->" + n.node.transitionInfo.transDest.toString
-          + "[" + edgeStyle + "label = \"" + "M:" + n.node.modelInfo.modelName + "\\n" +
-          "M-ID:" + n.node.modelInfo.modelID.toString + "\\n" +
-          "T:" + transName + "\\n" +
-          "T-ID:" + n.node.transitionInfo.transitionID.toString + "\\n" +
-          "T-Counter:" + n.transCounter + "\\n" +
-          "T-Choices:" + choices + "\\n" +
-          "(T-Self:" + n.node.selfTransCounter + ")" + "\"];")
+
+        if (n.node.transitionInfo.transitionChoicesMap != null && n.node.transitionInfo.transitionChoicesMap.nonEmpty) {
+          Log.info("map info:" + n.node.transitionInfo.transitionChoicesMap)
+          for ((choiceList, counter) <- n.node.transitionInfo.transitionChoicesMap) {
+            Log.info("choices list info:" + choiceList + "counter:" + counter)
+            var currentNode: String = ""
+            for (i <- 0 to choiceList.length) {
+              var destNode: String = ""
+              if (i < choiceList.length)
+                destNode = choiceList.apply(i).recordedChoice.toString
+              if (i == 0) {
+                out.println(" " + n.node.transitionInfo.transOrigin.toString +
+                  "->" + destNode +
+                  "[" + edgeStyle + "label = \"" + "counter:" + counter + "\"];")
+
+              } else if (i == choiceList.length) {
+                out.println(" " + currentNode +
+                  "->" + n.node.transitionInfo.transDest.toString +
+                  "[" + edgeStyle + "label = \"" + "counter:" + counter + "\"];")
+              } else {
+                // mid trans
+                out.println(" " + currentNode +
+                  "->" + destNode +
+                  "[" + edgeStyle + "label = \"" + "counter:" + counter + "\"];")
+              }
+              currentNode = destNode
+            }
+          }
+        } else {
+          out.println("  " + n.node.transitionInfo.transOrigin.toString +
+            "->" + n.node.transitionInfo.transDest.toString +
+            "[" + edgeStyle + "label = \"" + "M:" + n.node.modelInfo.modelName + "\\n" +
+            "M-ID:" + n.node.modelInfo.modelID.toString + "\\n" +
+            "T:" + transName + "\\n" +
+            "T-ID:" + n.node.transitionInfo.transitionID.toString + "\\n" +
+            "T-Counter:" + n.transCounter + "\\n" +
+            // "T-Choices:" + choices + "\\n" +
+            "(T-Self:" + n.node.selfTransCounter + ")" + "\"];")
+        }
+
       }
     }
   }

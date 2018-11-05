@@ -422,7 +422,11 @@ object Modbat {
             0)
         timesVisited += ((RecordedState(model, successorTrans.dest),
                           timesSeen + 1))
-      case (Backtrack, _) =>
+      case (Backtrack, backTrackedTrans: RecordedTransition) =>
+        //TODO: get recorded choices for backtracked trans -Rui
+        backTrackedTrans.recordedChoices =
+          MBT.rng.asInstanceOf[CloneableRandom].getRecordedChoices()
+
         MBT.rng = localStoredRNGState // backtrack RNG state
       // retry with other successor states in next loop iteration
       case (r: TransitionResult, failedTrans: RecordedTransition) =>
@@ -432,7 +436,7 @@ object Modbat {
           MBT.rng.asInstanceOf[CloneableRandom].debugTrace
         failedTrans.recordedChoices = MBT.rng
           .asInstanceOf[CloneableRandom]
-          .getRecordedChoices() //todo: get recorded choices for failed trans -rui
+          .getRecordedChoices() //TODO: get recorded choices for failed trans -Rui
 
         MBT.rng.asInstanceOf[CloneableRandom].clear
         executedTransitions += failedTrans
@@ -469,7 +473,6 @@ object Modbat {
       assert(!trans.isSynthetic)
       // TODO: Path coverage
       val result = model.executeTransition(trans)
-      // TODO: Note that the returned result._2.transition is null when backtrack - Rui
 
       var updates: List[(Field, Any)] = Nil
       updates = model.tracedFields.updates
@@ -511,22 +514,19 @@ object Modbat {
         case (Backtrack, _) => {
           successors = successors filterNot (_ == successor)
           backtracked = true
+
         }
         case (t: TransitionResult, _) => {
           assert(TransitionResult.isErr(t))
           printTrace(executedTransitions.toList)
-          return result
+          return result //TODO: need to see how to record failed transitions
         }
       }
 
-      // TODO: record choices in transition when it is not backtracked
-      if (!backtracked) {
-        if (result._2.recordedChoices != null) {
-          if (result._2.recordedChoices.nonEmpty) {
-            trans.recordedChoices = result._2.recordedChoices //TODO: record choices to the transition -RUI
-          }
-        }
-      }
+      // TODO: record choices in the current transition
+      if (result._2.recordedChoices.nonEmpty)
+        trans.recordedChoices = result._2.recordedChoices
+
       // TODO: Store path information -Rui
       // Store path information including the model name,
       // model ID and executed transition for path coverage,

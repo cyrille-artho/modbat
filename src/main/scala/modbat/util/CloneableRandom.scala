@@ -1,8 +1,10 @@
 package modbat.util
 
 import java.lang.Integer.MAX_VALUE
+
 import scala.collection.mutable.{ArrayBuffer, ListBuffer}
 import modbat.dsl.Action
+import modbat.log.Log
 import modbat.trace.RecordedChoice
 
 /* Class to replace scala.util.Random with. This class can be cloned
