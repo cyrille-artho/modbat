@@ -79,74 +79,72 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
     }
 
     // output "box" graph
-    drawBoxGraph(level, nodeRecorder)
-
+    if (level == 0 && nodeRecorder != null && nodeRecorder.nonEmpty) {
+      drawBoxGraph(nodeRecorder)
+    }
   }
 
-  private def drawBoxGraph(level: Int,
-                           nodeRecorder: ListBuffer[NodeInfo]): Unit = {
-    // output "box" graph
-    if (level == 0 && nodeRecorder != null && nodeRecorder.nonEmpty) {
-      for (n <- nodeRecorder) {
-        val transOrigin: String = n.node.transitionInfo.transOrigin.toString
-        val transDest: String = n.node.transitionInfo.transDest.toString
-        val transName: String = transOrigin + " => " + transDest
-        val edgeStyle: String =
-          if (n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
-            "style=dotted, color=red,"
-          else ""
-        val modelName: String = n.node.modelInfo.modelName
-        val modelID: String = n.node.modelInfo.modelID.toString
-        val transitionID: String = n.node.transitionInfo.transitionID.toString
+  private def drawBoxGraph(nodeRecorder: ListBuffer[NodeInfo]): Unit = {
 
+    for (n <- nodeRecorder) {
+      val transOrigin: String = n.node.transitionInfo.transOrigin.toString
+      val transDest: String = n.node.transitionInfo.transDest.toString
+      val transName: String = transOrigin + " => " + transDest
+      val edgeStyle: String =
         if (n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
-          out.println(" " + transDest + " [color=red];")
-        // have choices
-        if (n.node.transitionInfo.transitionChoicesMap != null && n.node.transitionInfo.transitionChoicesMap.nonEmpty) {
-          Log.info("map info:" + n.node.transitionInfo.transitionChoicesMap)
-          for ((choiceList, counter) <- n.node.transitionInfo.transitionChoicesMap) {
+          "style=dotted, color=red,"
+        else ""
+      val modelName: String = n.node.modelInfo.modelName
+      val modelID: String = n.node.modelInfo.modelID.toString
+      val transitionID: String = n.node.transitionInfo.transitionID.toString
 
-            val label: String = "[" + edgeStyle + "label = \"" +
-              "M:" + modelName + "\\n" +
-              "M-ID:" + modelID + "\\n" +
-              "T:" + transName + "\\n" +
-              "T-ID:" + transitionID + "\\n" +
-              "T-Counter:" + n.transCounter + "\\n" +
-              "Choice-Counter:" + counter + "\\n" +
-              "(T-Self:" + n.node.selfTransCounter + ")" + "\"];"
-            val choiceNodeStyle: String =
-              " [shape=diamond, width=0.1, height=0.1];"
-            var currentNode: String = ""
+      if (n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
+        out.println(" " + transDest + " [color=red];")
+      // have choices
+      if (n.node.transitionInfo.transitionChoicesMap != null && n.node.transitionInfo.transitionChoicesMap.nonEmpty) {
+        Log.info("map info:" + n.node.transitionInfo.transitionChoicesMap)
+        for ((choiceList, counter) <- n.node.transitionInfo.transitionChoicesMap) {
 
-            for (i <- 0 to choiceList.length) {
-              var destNode: String = ""
-              if (i < choiceList.length) {
-                destNode = choiceList.apply(i).recordedChoice.toString
-                out.println(" " + destNode + choiceNodeStyle)
-              }
-              if (i == 0) {
-                out.println(" " + transOrigin + "->" + destNode + label)
-              } else if (i == choiceList.length) {
-                out.println(" " + currentNode + choiceNodeStyle)
-                out.println(" " + currentNode + "->" + transDest + label)
-              } else {
-                out.println(" " + currentNode + choiceNodeStyle)
-                out.println(" " + currentNode + "->" + destNode + label)
-              }
-              currentNode = destNode
+          val label: String = "[" + edgeStyle + "label = \"" +
+            "M:" + modelName + "\\n" +
+            "M-ID:" + modelID + "\\n" +
+            "T:" + transName + "\\n" +
+            "T-ID:" + transitionID + "\\n" +
+            "T-Counter:" + n.transCounter + "\\n" +
+            "Choice-Counter:" + counter + "\\n" +
+            "(T-Self:" + n.node.selfTransCounter + ")" + "\"];"
+          val choiceNodeStyle: String =
+            " [shape=diamond, width=0.1, height=0.1];"
+          var currentNode: String = ""
+
+          for (i <- 0 to choiceList.length) {
+            var destNode: String = ""
+            if (i < choiceList.length) {
+              destNode = choiceList.apply(i).recordedChoice.toString
+              out.println(" " + destNode + choiceNodeStyle)
             }
+            if (i == 0) {
+              out.println(" " + transOrigin + "->" + destNode + label)
+            } else if (i == choiceList.length) {
+              out.println(" " + currentNode + choiceNodeStyle)
+              out.println(" " + currentNode + "->" + transDest + label)
+            } else {
+              out.println(" " + currentNode + choiceNodeStyle)
+              out.println(" " + currentNode + "->" + destNode + label)
+            }
+            currentNode = destNode
           }
-        } else { // no choices
-          out.println(
-            "  " + transOrigin + "->" + transDest +
-              "[" + edgeStyle + "label = \"" + "M:" + modelName + "\\n" +
-              "M-ID:" + modelID + "\\n" +
-              "T:" + transName + "\\n" +
-              "T-ID:" + transitionID + "\\n" +
-              "T-Counter:" + n.transCounter + "\\n" +
-              // "T-Choices:" + choices + "\\n" +
-              "(T-Self:" + n.node.selfTransCounter + ")" + "\"];")
         }
+      } else { // no choices
+        out.println(
+          "  " + transOrigin + "->" + transDest +
+            "[" + edgeStyle + "label = \"" + "M:" + modelName + "\\n" +
+            "M-ID:" + modelID + "\\n" +
+            "T:" + transName + "\\n" +
+            "T-ID:" + transitionID + "\\n" +
+            "T-Counter:" + n.transCounter + "\\n" +
+            // "T-Choices:" + choices + "\\n" +
+            "(T-Self:" + n.node.selfTransCounter + ")" + "\"];")
       }
     }
   }
