@@ -19,10 +19,9 @@ class PathInBox(trie: Trie, val shape: String) extends PathVisualizer {
   override def dotify() {
     out.println("digraph model {")
     out.println("  orientation = landscape;")
+    out.println("  graph [ rankdir = \"TB\", ranksep=\"3\", nodesep=\"0.2\" ];")
     out.println(
-      "  graph [ rankdir = \"TB\", ranksep=\"0.3\", nodesep=\"0.2\" ];")
-    out.println(
-      "  node [ fontname = \"Helvetica\", fontsize=\"6.0\", shape=\"" + shape.toLowerCase +
+      "  node [ fontname = \"Helvetica\", fontsize=\"6.0\", style=rounded, shape=\"" + shape.toLowerCase +
         "\", margin=\"0.07\"," + " height=\"0.1\" ];")
     out.println(
       "  edge [ fontname = \"Helvetica\", fontsize=\"6.0\"," + " margin=\"0.05\" ];")
@@ -60,8 +59,6 @@ class PathInBox(trie: Trie, val shape: String) extends PathVisualizer {
                 val mergedCoutner = n.node.transitionInfo
                   .transitionChoicesMap(key) +
                   node.transitionInfo.transitionChoicesMap(key)
-                Log.info(
-                  " the counter in the same transition are merged as:" + mergedCoutner)
                 n.node.transitionInfo.transitionChoicesMap(key) = mergedCoutner
               }
             }
@@ -99,28 +96,32 @@ class PathInBox(trie: Trie, val shape: String) extends PathVisualizer {
           } else "Null"*/
 
         if (n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack) // backtrack
-          out.println(n.node.transitionInfo.transDest + "[color=red];")
+          out.println(" " + n.node.transitionInfo.transDest + " [color=red];")
 
         if (n.node.transitionInfo.transitionChoicesMap != null && n.node.transitionInfo.transitionChoicesMap.nonEmpty) {
           Log.info("map info:" + n.node.transitionInfo.transitionChoicesMap)
           for ((choiceList, counter) <- n.node.transitionInfo.transitionChoicesMap) {
-            Log.info("choices list info:" + choiceList + "counter:" + counter)
             var currentNode: String = ""
             for (i <- 0 to choiceList.length) {
               var destNode: String = ""
-              if (i < choiceList.length)
+              if (i < choiceList.length) {
                 destNode = choiceList.apply(i).recordedChoice.toString
+                out.println(
+                  " " + destNode + " [shape=diamond, width=0.1, height=0.1];")
+              }
               if (i == 0) {
                 out.println(" " + n.node.transitionInfo.transOrigin.toString +
                   "->" + destNode +
                   "[" + edgeStyle + "label = \"" + "counter:" + counter + "\"];")
-
               } else if (i == choiceList.length) {
+                out.println(
+                  " " + currentNode + " [shape=diamond, width=0.1, height=0.1];")
                 out.println(" " + currentNode +
                   "->" + n.node.transitionInfo.transDest.toString +
                   "[" + edgeStyle + "label = \"" + "counter:" + counter + "\"];")
               } else {
-                // mid trans
+                out.println(
+                  " " + currentNode + " [shape=diamond, width=0.1, height=0.1];")
                 out.println(" " + currentNode +
                   "->" + destNode +
                   "[" + edgeStyle + "label = \"" + "counter:" + counter + "\"];")
