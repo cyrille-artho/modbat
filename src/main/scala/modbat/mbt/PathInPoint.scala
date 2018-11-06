@@ -21,8 +21,7 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
   override def dotify() {
     out.println("digraph model {")
     out.println("  orientation = landscape;")
-    out.println(
-      "  graph [ rankdir = \"TB\", ranksep=\"0.3\", nodesep=\"0.2\" ];")
+    out.println("  graph [ rankdir = \"TB\", ranksep=\"2\", nodesep=\"0.2\" ];")
     out.println(
       "  node [ fontname = \"Helvetica\", fontsize=\"6.0\", shape=\"" + shape.toLowerCase +
         "\", margin=\"0.07\"," + " height=\"0.1\" ];")
@@ -34,19 +33,18 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
     out.println("}")
   }
 
-  def display(root: TrieNode,
-              nodeNumber: Int = 0,
-              labelRecorderStack: ListBuffer[LabelInfo] = null)
+  private def display(root: TrieNode,
+                      nodeNumber: Int = 0,
+                      labelRecorderStack: ListBuffer[LabelInfo] = null)
     : (Int, ListBuffer[LabelInfo]) = {
-
-    var newNodeNumber
-      : Int = nodeNumber // newNodeNumber is used to generate the number(ID) of the node for the "point" graph
+    // newNodeNumber is used to generate the number(ID) of the node for the "point" graph
+    var newNodeNumber: Int = nodeNumber
     var newLabelStack: ListBuffer[LabelInfo] = labelRecorderStack
 
     if (root.isLeaf) { // print graph when the node in trie is a leaf
       if (newLabelStack != null) {
         // output "point" graph
-        var rootPointIsCircle = false // rootPointIsCircle marks if the root point of the current path is a circle or not
+        /*var rootPointIsCircle = false // rootPointIsCircle marks if the root point of the current path is a circle or not
         for (i <- newLabelStack.indices) {
           newNodeNumber = newNodeNumber + 1 // update new number for the number point
           if (i == 0) { // starting point
@@ -64,8 +62,7 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
               out.println(0 + "->" + 0 + newLabelStack(i).label) // same point if self or backtracked transition and
             } else {
               newNodeNumber = newNodeNumber - 1 // node number should the same as previous one
-              out.println(newNodeNumber + "->" + newNodeNumber + newLabelStack(
-                i).label) // same point if self or backtracked transition
+              out.println(newNodeNumber + "->" + newNodeNumber + newLabelStack(i).label) // same point if self or backtracked transition
             }
           } else {
             if (rootPointIsCircle) { // the root point of the current path is a circle
@@ -76,7 +73,8 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
                 newNodeNumber - 1 + "->" + newNodeNumber + newLabelStack(i).label)
             }
           }
-        }
+        }*/
+        newNodeNumber = drawPointGraph(newLabelStack, newNodeNumber)
       }
       if (newLabelStack != null) {
         newLabelStack.trimEnd(1)
@@ -137,6 +135,44 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
       newLabelStack.trimEnd(1)
     }
     (newNodeNumber, newLabelStack)
+  }
+
+  private def drawPointGraph(newLabelStack: ListBuffer[LabelInfo],
+                             nodeNumber: Int): Int = {
+    var newNodeNumber = nodeNumber
+    // output "point" graph
+    var rootPointIsCircle = false // rootPointIsCircle marks if the root point of the current path is a circle or not
+    for (i <- newLabelStack.indices) {
+      newNodeNumber = newNodeNumber + 1 // update new number for the number point
+      if (i == 0) { // starting point
+        // check if the root point of the current path is a circle or not
+        if (newLabelStack(i).selfTrans || newLabelStack(i).transQuality == TransitionQuality.backtrack) {
+          rootPointIsCircle = true // set rootPointIsCircle to true showing the root point is a circle
+          newNodeNumber = newNodeNumber - 1 // node number should the same as previous one
+          out.println(0 + "->" + 0 + newLabelStack(i).label) // the root point is a circle
+        } else {
+          out.println(i + "->" + newNodeNumber + newLabelStack(i).label)
+        }
+      } else if (newLabelStack(i).selfTrans || newLabelStack(i).transQuality == TransitionQuality.backtrack) {
+        if (rootPointIsCircle) { // the root point of the current path is a circle
+          newNodeNumber = newNodeNumber - 1 // node number should the same as previous one
+          out.println(0 + "->" + 0 + newLabelStack(i).label) // same point if self or backtracked transition and
+        } else {
+          newNodeNumber = newNodeNumber - 1 // node number should the same as previous one
+          out.println(
+            newNodeNumber + "->" + newNodeNumber + newLabelStack(i).label) // same point if self or backtracked transition
+        }
+      } else {
+        if (rootPointIsCircle) { // the root point of the current path is a circle
+          out.println(0 + "->" + newNodeNumber + newLabelStack(i).label)
+          rootPointIsCircle = false // next starting point is not the root point again
+        } else {
+          out.println(
+            newNodeNumber - 1 + "->" + newNodeNumber + newLabelStack(i).label)
+        }
+      }
+    }
+    newNodeNumber
   }
 
 }

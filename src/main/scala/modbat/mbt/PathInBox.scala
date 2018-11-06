@@ -2,8 +2,9 @@ package modbat.mbt
 
 import modbat.cov.{Trie, TrieNode}
 import modbat.log.Log
+import modbat.trace.RecordedChoice
 
-import scala.collection.mutable.ListBuffer
+import scala.collection.mutable.{HashMap, ListBuffer}
 
 case class NodeInfo(node: TrieNode, var transCounter: String) // NodeInfo is used for record  the node information used for "box" output
 
@@ -50,7 +51,6 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
           if (n.node.transitionInfo.transitionID == node.transitionInfo.transitionID &&
               n.node.transitionInfo.transitionQuality == node.transitionInfo.transitionQuality) {
             sameTransition = true
-
             // merge the value of the transition counter
             n.transCounter = n.transCounter.concat(
               ";" + node.transitionInfo.transCounter.toString)
@@ -76,6 +76,7 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
       }
 
       display(node, level + 1, nodeRecorder)
+      // TODO: I think there's no need to repeat the same father node in the graph - Rui
     }
 
     // output "box" graph
@@ -90,61 +91,141 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
       val transOrigin: String = n.node.transitionInfo.transOrigin.toString
       val transDest: String = n.node.transitionInfo.transDest.toString
       val transName: String = transOrigin + " => " + transDest
+      val transitionID: String = n.node.transitionInfo.transitionID.toString
+      val modelName: String = n.node.modelInfo.modelName
+      val modelID: String = n.node.modelInfo.modelID.toString
       val edgeStyle: String =
         if (n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
           "style=dotted, color=red,"
         else ""
-      val modelName: String = n.node.modelInfo.modelName
-      val modelID: String = n.node.modelInfo.modelID.toString
-      val transitionID: String = n.node.transitionInfo.transitionID.toString
-
       if (n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
         out.println(" " + transDest + " [color=red];")
+
       // have choices
+      // choiceTree can record choices
+      val choiceTree: ChoiceTree = new ChoiceTree()
+
       if (n.node.transitionInfo.transitionChoicesMap != null && n.node.transitionInfo.transitionChoicesMap.nonEmpty) {
-        Log.info("map info:" + n.node.transitionInfo.transitionChoicesMap)
+        // transition with choices
         for ((choiceList, counter) <- n.node.transitionInfo.transitionChoicesMap) {
-
-          val label: String = "[" + edgeStyle + "label = \"" +
-            "M:" + modelName + "\\n" +
-            "M-ID:" + modelID + "\\n" +
-            "T:" + transName + "\\n" +
-            "T-ID:" + transitionID + "\\n" +
-            "T-Counter:" + n.transCounter + "\\n" +
-            "Choice-Counter:" + counter + "\\n" +
-            "(T-Self:" + n.node.selfTransCounter + ")" + "\"];"
-          val choiceNodeStyle: String =
-            " [shape=diamond, width=0.1, height=0.1];"
-          var currentNode: String = ""
-
-          for (i <- 0 to choiceList.length) {
-            var destNode: String = ""
-            if (i < choiceList.length) {
-              destNode = choiceList.apply(i).recordedChoice.toString
-              out.println(" " + destNode + choiceNodeStyle)
-            }
-            if (i == 0) {
-              out.println(" " + transOrigin + "->" + destNode + label)
-            } else if (i == choiceList.length) {
-              out.println(" " + currentNode + choiceNodeStyle)
-              out.println(" " + currentNode + "->" + transDest + label)
-            } else {
-              out.println(" " + currentNode + choiceNodeStyle)
-              out.println(" " + currentNode + "->" + destNode + label)
-            }
-            currentNode = destNode
-          }
+          // insert choices and choice counter into choiceTree
+          choiceTree.insert(choiceList, counter)
         }
-      } else { // no choices
+        // draw Choices with transitions
+        drawChoices(n, choiceTree.root, 0, "")
+        //choiceTree.display(choiceRecorderTree.root, 0)
+      } else {
+        // transitions without choices
         out.println(
-          "  " + transOrigin + "->" + transDest +
+          transOrigin + "->" + transDest +
             "[" + edgeStyle + "label = \"" + "M:" + modelName + "\\n" +
             "M-ID:" + modelID + "\\n" +
             "T:" + transName + "\\n" +
             "T-ID:" + transitionID + "\\n" +
             "T-Counter:" + n.transCounter + "\\n" +
-            // "T-Choices:" + choices + "\\n" +
             "(T-Self:" + n.node.selfTransCounter + ")" + "\"];")
+      }
+    }
+  }
+
+  private def drawChoices(nodeInfo: NodeInfo,
+                          root: PathInBoxGraph.this.ChoiceTree#ChoiceNode,
+                          level: Int = 0,
+                          currentNodeID: String): Unit = {
+
+    val transOrigin: String = nodeInfo.node.transitionInfo.transOrigin.toString
+    val transDest: String = nodeInfo.node.transitionInfo.transDest.toString
+    val transName: String = transOrigin + " => " + transDest
+    val edgeStyle: String =
+      if (nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
+        "style=dotted, color=red,"
+      else ""
+    val modelName: String = nodeInfo.node.modelInfo.modelName
+    val modelID: String = nodeInfo.node.modelInfo.modelID.toString
+    val transitionID: String =
+      nodeInfo.node.transitionInfo.transitionID.toString
+    val label: String = "[" + edgeStyle + "label = \"" +
+      "M:" + modelName + "\\n" +
+      "M-ID:" + modelID + "\\n" +
+      "T:" + transName + "\\n" +
+      "T-ID:" + transitionID + "\\n" +
+      "T-Counter:" + nodeInfo.transCounter + "\\n" +
+      "(T-Self:" + nodeInfo.node.selfTransCounter + ")" + "\"];"
+
+    if (root.isLeaf) out.println(currentNodeID + "->" + transDest + label)
+
+    for (choiceKey <- root.children.keySet) {
+      val choiceNode = root.children(choiceKey)
+
+      val choiceNodeStyle: String =
+        " , shape=diamond, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
+      val destNodeValue = choiceNode.recordedChoice.toString
+      val destNodeID = "\"" + transitionID + "-" + level.toString + "-" + destNodeValue + "\""
+      out.println(
+        destNodeID + " [label=\"" + destNodeValue + "\"" + choiceNodeStyle)
+
+      if (level == 0) {
+        out.println(transOrigin + "->" + destNodeID + label)
+      } else {
+        out.println(currentNodeID + "->" + destNodeID + label)
+      }
+
+      drawChoices(nodeInfo, choiceNode, level + 1, destNodeID)
+    }
+  }
+
+  class ChoiceTree {
+    case class ChoiceNode() {
+      var children: HashMap[Any, ChoiceNode] = HashMap
+        .empty[Any, ChoiceNode] // children store the transitions in string and the next nodes
+      var isLeaf: Boolean = false
+      var choiceCounter: Int = 0
+      var recordedChoice: Any = _
+    }
+
+    val root: ChoiceNode = ChoiceNode()
+
+    def insert(choiceList: List[RecordedChoice], counter: Int): Unit = {
+      var currentNode: ChoiceNode = root
+
+      for (choice <- choiceList) {
+
+        val hasNode: Boolean =
+          currentNode.children.contains(choice.recordedChoice)
+
+        if (!hasNode) { // add new child
+          // new node
+          val node = ChoiceNode()
+          node.choiceCounter = counter
+          node.recordedChoice = choice.recordedChoice
+          currentNode.children.put(node.recordedChoice, node)
+          currentNode = node // next node
+        } else { // existing node
+          val node = currentNode.children(choice.recordedChoice)
+          if (node.recordedChoice == choice.recordedChoice) {
+            node.choiceCounter = node.choiceCounter + counter
+          }
+          currentNode = node // next node
+        }
+      }
+      currentNode.isLeaf = true
+    }
+
+    def display(root: PathInBoxGraph.this.ChoiceTree#ChoiceNode,
+                level: Int = 0): Unit = {
+      if (root.isLeaf) return
+      for (choice <- root.children.keySet) {
+
+        val node: PathInBoxGraph.this.ChoiceTree#ChoiceNode =
+          root.children.getOrElse(choice, sys.error(s"unexpected key: $choice"))
+        if (level == 0) {
+          Log.debug(
+            "recorded choice:" + node.recordedChoice + ", choice counter:" + node.choiceCounter)
+        } else {
+          Log.debug("*" * level +
+            "recorded choice:" + node.recordedChoice + ", choice counter:" + node.choiceCounter)
+        }
+        display(node, level + 1)
       }
     }
   }
