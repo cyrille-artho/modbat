@@ -101,7 +101,6 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
       if (n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
         out.println(" " + transDest + " [color=red];")
 
-      // have choices
       // choiceTree can record choices
       val choiceTree: ChoiceTree = new ChoiceTree()
 
@@ -129,7 +128,7 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
   }
 
   private def drawChoices(nodeInfo: NodeInfo,
-                          root: PathInBoxGraph.this.ChoiceTree#ChoiceNode,
+                          root: this.ChoiceTree#ChoiceNode,
                           level: Int = 0,
                           currentNodeID: String): Unit = {
 
@@ -211,12 +210,11 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
       currentNode.isLeaf = true
     }
 
-    def display(root: PathInBoxGraph.this.ChoiceTree#ChoiceNode,
-                level: Int = 0): Unit = {
+    def display(root: ChoiceNode, level: Int = 0): Unit = {
       if (root.isLeaf) return
       for (choice <- root.children.keySet) {
 
-        val node: PathInBoxGraph.this.ChoiceTree#ChoiceNode =
+        val node: ChoiceNode =
           root.children.getOrElse(choice, sys.error(s"unexpected key: $choice"))
         if (level == 0) {
           Log.debug(
