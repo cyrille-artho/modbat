@@ -43,37 +43,7 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
 
     if (root.isLeaf) { // print graph when the node in trie is a leaf
       if (newLabelStack != null) {
-        // output "point" graph
-        /*var rootPointIsCircle = false // rootPointIsCircle marks if the root point of the current path is a circle or not
-        for (i <- newLabelStack.indices) {
-          newNodeNumber = newNodeNumber + 1 // update new number for the number point
-          if (i == 0) { // starting point
-            // check if the root point of the current path is a circle or not
-            if (newLabelStack(i).selfTrans || newLabelStack(i).transQuality == TransitionQuality.backtrack) {
-              rootPointIsCircle = true // set rootPointIsCircle to true showing the root point is a circle
-              newNodeNumber = newNodeNumber - 1 // node number should the same as previous one
-              out.println(0 + "->" + 0 + newLabelStack(i).label) // the root point is a circle
-            } else {
-              out.println(i + "->" + newNodeNumber + newLabelStack(i).label)
-            }
-          } else if (newLabelStack(i).selfTrans || newLabelStack(i).transQuality == TransitionQuality.backtrack) {
-            if (rootPointIsCircle) { // the root point of the current path is a circle
-              newNodeNumber = newNodeNumber - 1 // node number should the same as previous one
-              out.println(0 + "->" + 0 + newLabelStack(i).label) // same point if self or backtracked transition and
-            } else {
-              newNodeNumber = newNodeNumber - 1 // node number should the same as previous one
-              out.println(newNodeNumber + "->" + newNodeNumber + newLabelStack(i).label) // same point if self or backtracked transition
-            }
-          } else {
-            if (rootPointIsCircle) { // the root point of the current path is a circle
-              out.println(0 + "->" + newNodeNumber + newLabelStack(i).label)
-              rootPointIsCircle = false // next starting point is not the root point again
-            } else {
-              out.println(
-                newNodeNumber - 1 + "->" + newNodeNumber + newLabelStack(i).label)
-            }
-          }
-        }*/
+        // draw point graph
         newNodeNumber = drawPointGraph(newLabelStack, newNodeNumber)
       }
       if (newLabelStack != null) {
