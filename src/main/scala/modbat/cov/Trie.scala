@@ -76,8 +76,14 @@ class Trie {
     * @param level The level number of the trie tree structure
     */
   def display(root: TrieNode, level: Int = 0): Unit = {
-    if (root.isLeaf) return //Log.debug("")
+    if (root.isLeaf) return
     for (t <- root.children.keySet) {
+      /*      if (!root.isLeaf && root != null && t._2 != 0 && level != 0) {
+        Log.debug(root.toString)
+        Log.debug(
+          "-" * (level - 1) + root.modelInfo.toString + root.transitionInfo.toString +
+            " (" + root.selfTransCounter + ")")
+      }*/
       val node: TrieNode =
         root.children.getOrElse(t, sys.error(s"unexpected key: $t"))
       if (level == 0) {

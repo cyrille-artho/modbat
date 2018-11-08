@@ -26,7 +26,7 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
       "  node [ fontname = \"Helvetica\", fontsize=\"6.0\", style=rounded, shape=\"" + shape.toLowerCase +
         "\", margin=\"0.07\"," + " height=\"0.1\" ];")
     out.println(
-      "  edge [ fontname = \"Helvetica\", fontsize=\"6.0\"," + " margin=\"0.05\" ];")
+      "  edge [ fontname = \"Helvetica\", arrowsize=\".3\", arrowhead=\"vee\", fontsize=\"6.0\"," + " margin=\"0.05\" ];")
 
     val nodeRecorder
       : ListBuffer[NodeInfo] = new ListBuffer[NodeInfo] // nodeRecorder is used for record node information for "box" output
@@ -111,8 +111,8 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
           choiceTree.insert(choiceList, counter)
         }
         // draw Choices with transitions
-        drawChoices(n, choiceTree.root, 0, "")
-        //choiceTree.display(choiceRecorderTree.root, 0)
+        drawTransWithChoices(n, choiceTree.root, 0, "")
+        //choiceTree.display(choiceTree.root, 0)
       } else {
         // transitions without choices
         out.println(
@@ -127,10 +127,11 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
     }
   }
 
-  private def drawChoices(nodeInfo: NodeInfo,
-                          root: this.ChoiceTree#ChoiceNode,
-                          level: Int = 0,
-                          currentNodeID: String): Unit = {
+  private def drawTransWithChoices(
+      nodeInfo: NodeInfo,
+      root: ChoiceTree#ChoiceNode /*this.ChoiceTree#ChoiceNode*/,
+      level: Int = 0,
+      currentNodeID: String): Unit = {
 
     val transOrigin: String = nodeInfo.node.transitionInfo.transOrigin.toString
     val transDest: String = nodeInfo.node.transitionInfo.transDest.toString
@@ -169,11 +170,11 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
         out.println(currentNodeID + "->" + destNodeID + label)
       }
 
-      drawChoices(nodeInfo, choiceNode, level + 1, destNodeID)
+      drawTransWithChoices(nodeInfo, choiceNode, level + 1, destNodeID)
     }
   }
 
-  class ChoiceTree {
+  /*  class ChoiceTree {
     case class ChoiceNode() {
       var children: HashMap[Any, ChoiceNode] = HashMap
         .empty[Any, ChoiceNode] // children store the transitions in string and the next nodes
@@ -226,5 +227,5 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
         display(node, level + 1)
       }
     }
-  }
+  }*/
 }
