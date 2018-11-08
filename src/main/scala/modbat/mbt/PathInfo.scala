@@ -1,7 +1,11 @@
 package modbat.mbt
 
 import modbat.dsl.Transition
+import modbat.log.Log
 import modbat.mbt.TransitionQuality.Quality
+import modbat.trace.RecordedChoice
+
+import scala.collection.mutable.HashMap
 
 /** PathInfo stores path information of current executed transition and model.
   *
@@ -19,7 +23,6 @@ class PathInfo(val modelName: String,
 
   override def toString: String =
     s"model Name: $modelName, model ID: $modelID, transition: $transition, transition quality: $transitionQuality"
-
 }
 
 /** Enumeration of the transition's quality */
