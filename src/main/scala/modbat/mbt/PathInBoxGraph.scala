@@ -4,8 +4,6 @@ import modbat.cov.{Trie, TrieNode}
 
 import scala.collection.mutable.ListBuffer
 
-case class NodeInfo(node: TrieNode, var transCounter: String) // NodeInfo is used for record  the node information used for "box" output
-
 /** PathInBox extends PathVisualizer for showing path coverage in "Box" tree graph.
   *
   * @constructor Create a new pathInBox with a trie, and shape (Box),
@@ -15,6 +13,9 @@ case class NodeInfo(node: TrieNode, var transCounter: String) // NodeInfo is use
   */
 class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
   require(shape == "Box", "the input of path visualizer must be Box")
+
+  // case class NodeInfo is used for record the node information used for "box" output
+  case class boxNodeInfo(node: TrieNode, var transCounter: String)
 
   override def dotify() {
     out.println("digraph model {")
@@ -27,14 +28,14 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
       "  edge [ fontname = \"Helvetica\", arrowsize=\".3\", arrowhead=\"vee\", fontsize=\"6.0\"," + " margin=\"0.05\" ];")
 
     val nodeRecorder
-      : ListBuffer[NodeInfo] = new ListBuffer[NodeInfo] // nodeRecorder is used for record node information for "box" output
+      : ListBuffer[boxNodeInfo] = new ListBuffer[boxNodeInfo] // nodeRecorder is used for record node information for "box" output
     display(trie.root, 0, nodeRecorder)
     out.println("}")
   }
 
   private def display(root: TrieNode,
                       level: Int = 0,
-                      nodeRecorder: ListBuffer[NodeInfo] = null): Unit = {
+                      nodeRecorder: ListBuffer[boxNodeInfo] = null): Unit = {
 
     if (root.isLeaf) return
 
@@ -69,7 +70,7 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
 
       if (!sameTransition) {
         val newNodeInfo =
-          NodeInfo(node, node.transitionInfo.transCounter.toString)
+          boxNodeInfo(node, node.transitionInfo.transCounter.toString)
         nodeRecorder += newNodeInfo
       }
 
@@ -83,7 +84,7 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
     }
   }
 
-  private def drawBoxGraph(nodeRecorder: ListBuffer[NodeInfo]): Unit = {
+  private def drawBoxGraph(nodeRecorder: ListBuffer[boxNodeInfo]): Unit = {
 
     for (n <- nodeRecorder) {
       val transOrigin: String = n.node.transitionInfo.transOrigin.toString
@@ -110,7 +111,7 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
         }
         // draw Choices with transitions
         drawTransWithChoices(n, choiceTree.root, 0, "")
-        //choiceTree.display(choiceTree.root, 0)
+        //choiceTree.displayChoices(choiceTree.root, 0)
       } else {
         // transitions without choices
         out.println(
@@ -126,7 +127,7 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
   }
 
   private def drawTransWithChoices(
-      nodeInfo: NodeInfo,
+      nodeInfo: boxNodeInfo,
       root: ChoiceTree#ChoiceNode /*this.ChoiceTree#ChoiceNode*/,
       level: Int = 0,
       currentNodeID: String): Unit = {
