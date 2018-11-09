@@ -2,7 +2,6 @@ package modbat.mbt
 
 import modbat.cov.{Trie, TrieNode}
 import modbat.dsl.State
-import modbat.log.Log
 
 import scala.collection.mutable.ListBuffer
 
@@ -88,16 +87,12 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
         selfTransCounter + "\"];"
 
       val transHasChoices = node.transitionInfo.transitionChoicesMap != null && node.transitionInfo.transitionChoicesMap.nonEmpty
-      // TODO: record choices into a tree
-      // choiceTree can record choices
+
+      // choiceTree records choices
       val choiceTree: ChoiceTree = new ChoiceTree()
       if (transHasChoices) {
         // transition with choices
-        Log.info("******* print the choice list")
         for ((choiceList, counter) <- node.transitionInfo.transitionChoicesMap) {
-
-          Log.info(
-            "******* the choice list in point graph:" + choiceList + ", counter:" + counter)
           // insert choices and choice counter into choiceTree
           choiceTree.insert(choiceList, counter)
         }
@@ -126,129 +121,77 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
                              nodeNumber: Int): Int = {
     var newNodeNumber = nodeNumber
     // output "point" graph
-    var rootPointIsCircle = false // rootPointIsCircle marks if the root point of the current path is a circle or not
-    for (i <- newNodeStack.indices) {
-
-      //TODO: see transition
-      Log.info("******* see transition ******")
-      Log.info("index of label stack:" + i)
-      Log.info("transition ID:" + newNodeStack(i).transID)
-      Log.info("transition has choices:" + newNodeStack(i).transHasChoices)
-      Log.info(
-        "transition has choice tree:" + newNodeStack(i).choiceTree.toString)
-      Log.info("******* labal info:" + newNodeStack(i).label)
+    var rootPointHasCircleEdge = false // rootPointIsCircle marks if the root point of the current path is a circle or not
+    for (idx <- newNodeStack.indices) {
 
       newNodeNumber = newNodeNumber + 1 // update new number for the number point
+
+      // circle edge is for current self transition or backtracked transition
       val circleEdge
-        : Boolean = newNodeStack(i).selfTrans || newNodeStack(i).transQuality == TransitionQuality.backtrack
+        : Boolean = newNodeStack(idx).selfTrans || newNodeStack(idx).transQuality == TransitionQuality.backtrack
 
-      if (i == 0) { // starting point
-        // check if the root point of the current path is a circle or not
-        if (circleEdge) {
-          rootPointIsCircle = true // set rootPointIsCircle to true showing the root point is a circle
+      if (idx == 0) { // starting root point
+
+        if (circleEdge) { // self transition or backtracked transition
+          rootPointHasCircleEdge = true // set rootPointIsCircle to true showing the root point is a circle
           newNodeNumber = newNodeNumber - 1 // node number should the same as previous one
+          val originNodeID: Int = idx
+          val destNodeID: Int = idx
           // TODO: draw transitions with choices
-          if (newNodeStack(i).transHasChoices) {
-            out.println("# when i = 0, self and backtrack, and has choices")
-            drawTransWithChoices(newNodeStack(i).choiceTree.root,
-                                 newNodeStack(i).transID,
-                                 newNodeStack(i).label,
-                                 i,
-                                 i)
-          } else {
-            out.println("# when i = 0, self and backtrack, and no choices")
-            out.println(i + "->" + i + newNodeStack(i).label) // the root point is a circle
-          }
+          printOut(newNodeStack, idx, originNodeID, destNodeID)
         } else {
+          val originNodeID: Int = idx
+          val destNodeID: Int = newNodeNumber
           // TODO: draw transitions with choices
-          if (newNodeStack(i).transHasChoices) {
-            out.println(
-              "# when i = 0, no self and backtrack, but has choices, ")
-            drawTransWithChoices(newNodeStack(i).choiceTree.root,
-                                 newNodeStack(i).transID,
-                                 newNodeStack(i).label,
-                                 i,
-                                 newNodeNumber)
-          } else {
-            out.println("# when i = 0, no self and backtrack, and no choices")
-            out.println(i + "->" + newNodeNumber + newNodeStack(i).label)
-          }
+          printOut(newNodeStack, idx, originNodeID, destNodeID)
         }
-      } else if (circleEdge) {
-        if (rootPointIsCircle) { // the root point of the current path is a circle
+
+      } else { // non root point
+
+        if (circleEdge && rootPointHasCircleEdge) { // the new edge is a circle again
           newNodeNumber = newNodeNumber - 1 // node number should the same as previous one
+          val originNodeID: Int = idx - 1
+          val destNodeID: Int = idx - 1
           // TODO: draw transitions with choices
-          if (newNodeStack(i).transHasChoices) {
-            out.println(
-              "# when i is not 0, self and backtrack, root Point Is Circle, and has choices")
-            drawTransWithChoices(newNodeStack(i).choiceTree.root,
-                                 newNodeStack(i).transID,
-                                 newNodeStack(i).label,
-                                 0,
-                                 0)
-          } else {
-            out.println(
-              "# when i is not 0, self and backtrack, root Point Is Circle, and no choices, ")
-            out.println(0 + "->" + 0 + newNodeStack(i).label) // same point if self or backtracked transition and
-          }
-        } else {
+          printOut(newNodeStack, idx, originNodeID, destNodeID)
+        } else if (circleEdge && !rootPointHasCircleEdge) {
           newNodeNumber = newNodeNumber - 1 // node number should the same as previous one
+          val originNodeID: Int = newNodeNumber
+          val destNodeID: Int = newNodeNumber
           // TODO: draw transitions with choices
-          if (newNodeStack(i).transHasChoices) {
-            out.println(
-              "# when i is not 0, self and backtrack, root Point Is NOT Circle, and has choices")
-            drawTransWithChoices(newNodeStack(i).choiceTree.root,
-                                 newNodeStack(i).transID,
-                                 newNodeStack(i).label,
-                                 newNodeNumber,
-                                 newNodeNumber)
-          } else {
-            out.println(
-              "# when i is not 0, self and backtrack, root Point Is NOT Circle, and no choices")
-            out.println(
-              newNodeNumber + "->" + newNodeNumber + newNodeStack(i).label) // same point if self or backtracked transition
-
-          }
-        }
-      } else {
-        if (rootPointIsCircle) { // the root point of the current path is a circle
+          printOut(newNodeStack, idx, originNodeID, destNodeID)
+        } else if (!circleEdge && rootPointHasCircleEdge) {
+          val originNodeID: Int = idx - 1
+          val destNodeID: Int = newNodeNumber
           // TODO: draw transitions with choices
-          if (newNodeStack(i).transHasChoices) {
-            out.println(
-              "# when i is not 0, NOT self and backtrack, root Point Is Circle, and has choices")
-            drawTransWithChoices(newNodeStack(i).choiceTree.root,
-                                 newNodeStack(i).transID,
-                                 newNodeStack(i).label,
-                                 0,
-                                 newNodeNumber)
-          } else {
-            out.println(
-              "# when i is not 0, NOT self and backtrack, root Point Is Circle, and no choices")
-            out.println(0 + "->" + newNodeNumber + newNodeStack(i).label)
-          }
+          printOut(newNodeStack, idx, originNodeID, destNodeID)
 
-          rootPointIsCircle = false // next starting point is not the root point again
+          rootPointHasCircleEdge = false // next starting point is not the root point again
         } else {
+          val originNodeID: Int = newNodeNumber - 1
+          val destNodeID: Int = newNodeNumber
           // TODO: draw transitions with choices
-          if (newNodeStack(i).transHasChoices) {
-            out.println(
-              "# when i is not 0, NOT self and backtrack, root Point Is NOT Circle, and has choices")
-            drawTransWithChoices(newNodeStack(i).choiceTree.root,
-                                 newNodeStack(i).transID,
-                                 newNodeStack(i).label,
-                                 newNodeNumber - 1,
-                                 newNodeNumber)
-          } else {
-            out.println(
-              "# when i is not 0, NOT self and backtrack, root Point Is NOT Circle, and no choices")
-            out.println(
-              newNodeNumber - 1 + "->" + newNodeNumber + newNodeStack(i).label)
-          }
-
+          printOut(newNodeStack, idx, originNodeID, destNodeID)
         }
       }
     }
     newNodeNumber
+  }
+
+  private def printOut(nodeStack: ListBuffer[LabelInfo],
+                       idx: Int,
+                       originNodeID: Int,
+                       destNodeID: Int): Unit = {
+    // draw transitions with choices
+    if (nodeStack(idx).transHasChoices) {
+      drawTransWithChoices(nodeStack(idx).choiceTree.root,
+                           nodeStack(idx).transID,
+                           nodeStack(idx).label,
+                           originNodeID,
+                           destNodeID)
+    } else { // draw transition, no choices
+      out.println(originNodeID + "->" + destNodeID + nodeStack(idx).label)
+    }
   }
 
   private def drawTransWithChoices(root: ChoiceTree#ChoiceNode,
@@ -258,9 +201,6 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
                                    destNodeID: Int,
                                    level: Int = 0,
                                    currentNodeID: String = ""): Unit = {
-
-    // val edgeStyle: String = "style=dotted, color=blue,"
-    // val label: String = "[" + edgeStyle + "label = \"" + "\"];"
 
     if (root.isLeaf) out.println(currentNodeID + "->" + destNodeID + label)
 
@@ -274,9 +214,6 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
       val choiceNodeID
         : String = "\"" + transID + "-" + originNodeID.toString + "-" + destNodeID.toString + "-" +
         level.toString + "-" + choiceNodeCounter.toString + "-" + choiceNodeValue + "\""
-
-      Log.info("****** print choice node id ******")
-      Log.info("the choiceNodeID:" + choiceNodeID)
 
       out.println(
         choiceNodeID + " [label=\"" + choiceNodeValue + "\"" + choiceNodeStyle)
