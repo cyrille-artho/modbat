@@ -42,7 +42,7 @@ class ChoiceTree {
     currentNode.isLeaf = true
   }
 
-  def display(root: ChoiceNode, level: Int = 0): Unit = {
+  def displayChoices(root: ChoiceNode, level: Int = 0): Unit = {
     if (root.isLeaf) return
     for (choice <- root.children.keySet) {
 
@@ -55,7 +55,7 @@ class ChoiceTree {
         Log.debug("*" * level +
           "recorded choice:" + node.recordedChoice + ", choice counter:" + node.choiceCounter)
       }
-      display(node, level + 1)
+      displayChoices(node, level + 1)
     }
   }
 }
