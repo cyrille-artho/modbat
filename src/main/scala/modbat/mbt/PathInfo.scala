@@ -1,11 +1,7 @@
 package modbat.mbt
 
 import modbat.dsl.Transition
-import modbat.log.Log
 import modbat.mbt.TransitionQuality.Quality
-import modbat.trace.RecordedChoice
-
-import scala.collection.mutable.HashMap
 
 /** PathInfo stores path information of current executed transition and model.
   *
