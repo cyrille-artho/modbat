@@ -460,6 +460,7 @@ object Modbat {
     var allSucc = successors.clone
     var totalW = totalWeight(successors)
     var backtracked = false
+    var failed = false // TODO: failed case - Rui
     while (!successors.isEmpty && totalW > 0) {
       val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone
 
@@ -509,17 +510,19 @@ object Modbat {
             return (ExceptionOccurred(MBT.externalException.toString), null)
           }
           backtracked = false
+          failed = false // TODO: failed case -Rui
           allSucc = successors.clone
         }
         case (Backtrack, _) => {
           successors = successors filterNot (_ == successor)
           backtracked = true
-
+          failed = false // TODO: failed case -Rui
         }
         case (t: TransitionResult, _) => {
           assert(TransitionResult.isErr(t))
           printTrace(executedTransitions.toList)
-          return result //TODO: need to see how to record failed transitions
+          failed = true
+          //return result //TODO: need to see how to record failed transitions
         }
       }
 
@@ -537,7 +540,17 @@ object Modbat {
                                            model.mIdx,
                                            trans,
                                            TransitionQuality.backtrack)
-        else
+        else if (failed) { // TODO: failed case
+          Log.info(
+            "failed transition choices:" + trans.recordedChoices
+              .mkString(", ")) //TODO - print info -Rui
+          pathInfoRecorder += new PathInfo(model.className,
+                                           model.mIdx,
+                                           trans,
+                                           TransitionQuality.fail)
+          if (Main.config.dotifyPathCoverage) trie.insert(pathInfoRecorder) // TODO: add this failed transition to trie
+          return result // TODO: return
+        } else
           pathInfoRecorder += new PathInfo(model.className, model.mIdx, trans)
       }
 

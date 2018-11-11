@@ -96,9 +96,13 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
       val edgeStyle: String =
         if (n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
           "style=dotted, color=red,"
+        else if (n.node.transitionInfo.transitionQuality == TransitionQuality.fail)
+          "color=blue,"
         else ""
       if (n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
         out.println(" " + transDest + " [color=red];")
+      else if (n.node.transitionInfo.transitionQuality == TransitionQuality.fail)
+        out.println(" " + transDest + " [color=blue];")
 
       // choiceTree can record choices
       val choiceTree: ChoiceTree = new ChoiceTree()
@@ -126,11 +130,10 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
     }
   }
 
-  private def drawTransWithChoices(
-      nodeInfo: boxNodeInfo,
-      root: ChoiceTree#ChoiceNode /*this.ChoiceTree#ChoiceNode*/,
-      level: Int = 0,
-      currentNodeID: String): Unit = {
+  private def drawTransWithChoices(nodeInfo: boxNodeInfo,
+                                   root: ChoiceTree#ChoiceNode,
+                                   level: Int = 0,
+                                   currentNodeID: String): Unit = {
 
     val transOrigin: String = nodeInfo.node.transitionInfo.transOrigin.toString
     val transDest: String = nodeInfo.node.transitionInfo.transDest.toString
@@ -138,6 +141,8 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
     val edgeStyle: String =
       if (nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
         "style=dotted, color=red,"
+      else if (nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.fail)
+        "color=blue,"
       else ""
     val modelName: String = nodeInfo.node.modelInfo.modelName
     val modelID: String = nodeInfo.node.modelInfo.modelID.toString
@@ -156,10 +161,19 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
     for (choiceKey <- root.children.keySet) {
       val choiceNode = root.children(choiceKey)
 
-      val choiceNodeStyle: String =
+      var choiceNodeStyle: String =
         " , shape=diamond, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
       val destNodeValue = choiceNode.recordedChoice.toString
       val destNodeID = "\"" + transitionID + "-" + level.toString + "-" + destNodeValue + "\""
+
+      // check special case for failure when the recorded choice "maybe" is true
+      choiceNode.recordedChoice match {
+        case _: Boolean =>
+          if (choiceNode.recordedChoice.equals(true))
+            choiceNodeStyle = " , shape=diamond, color= blue, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
+        case _ =>
+      }
+
       out.println(
         destNodeID + " [label=\"" + destNodeValue + "\"" + choiceNodeStyle)
 
