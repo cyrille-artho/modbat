@@ -45,7 +45,6 @@ class Trie {
                                              p.transition.idx,
                                              1,
                                              p.transitionQuality,
-                                             //       choices,
                                              choicesMap)
         currentNode.children.put(node.transitionInfo.transitionID, node)
         currentNode = node // next node

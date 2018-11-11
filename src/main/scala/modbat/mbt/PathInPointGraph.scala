@@ -31,7 +31,7 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
     out.println("  orientation = landscape;")
     out.println("  graph [ rankdir = \"TB\", ranksep=\"2\", nodesep=\"0.2\" ];")
     out.println(
-      "  node [ fontname = \"Helvetica\", fontsize=\"6.0\", shape=\"" + shape.toLowerCase +
+      "  node [ fontname = \"Helvetica\", fontsize=\"6.0\", style=rounded, shape=\"" + shape.toLowerCase +
         "\", margin=\"0.07\"," + " height=\"0.1\" ];")
     out.println(
       "  edge [ fontname = \"Helvetica\", arrowsize=\".3\", arrowhead=\"vee\", fontsize=\"6.0\"," + " margin=\"0.05\" ];")
@@ -80,6 +80,8 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
       val edgeStyle: String =
         if (transQuality == TransitionQuality.backtrack)
           "style=dotted, color=red,"
+        else if (transQuality == TransitionQuality.fail)
+          "color=blue,"
         else ""
       // the newlabel here is used for constructing a label for the output of the "point" graph
       val newLabel = "[" + edgeStyle + "label = \"" + "M:" + modelName + "\\n" +
@@ -211,12 +213,20 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
       choiceNodeCounter = choiceNodeCounter + 1
       val choiceNode = root.children(choiceKey)
 
-      val choiceNodeStyle: String =
+      var choiceNodeStyle: String =
         " , shape=diamond, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
       val choiceNodeValue = choiceNode.recordedChoice.toString
       val choiceNodeID
         : String = "\"" + transID + "-" + originNodeID.toString + "-" + destNodeID.toString + "-" +
         level.toString + "-" + choiceNodeCounter.toString + "-" + choiceNodeValue + "\""
+
+      // check special case for failure when the recorded choice "maybe" is true
+      choiceNode.recordedChoice match {
+        case _: Boolean =>
+          if (choiceNode.recordedChoice.equals(true))
+            choiceNodeStyle = " , shape=diamond, color= blue, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
+        case _ =>
+      }
 
       out.println(
         choiceNodeID + " [label=\"" + choiceNodeValue + "\"" + choiceNodeStyle)
