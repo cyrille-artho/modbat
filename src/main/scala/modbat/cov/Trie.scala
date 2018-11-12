@@ -45,6 +45,7 @@ class Trie {
                                              p.transition.idx,
                                              1,
                                              p.transitionQuality,
+                                             p.transition.nextState,
                                              choicesMap)
         currentNode.children.put(node.transitionInfo.transitionID, node)
         currentNode = node // next node
@@ -81,12 +82,12 @@ class Trie {
       val node: TrieNode =
         root.children.getOrElse(t, sys.error(s"unexpected key: $t"))
       if (level == 0) {
-        Log.debug(
-          node.modelInfo.toString + node.transitionInfo.toString + " (" + node.selfTransCounter + ")")
+        Log.debug("[" +
+          node.modelInfo.toString + node.transitionInfo.toString + " (" + "self:" + node.selfTransCounter + ") ]")
       } else
         Log.debug(
-          "-" * level + node.modelInfo.toString + node.transitionInfo.toString +
-            " (" + node.selfTransCounter + ")")
+          "-" * level + "[" + node.modelInfo.toString + node.transitionInfo.toString +
+            " (" + "self:" + node.selfTransCounter + ") ]")
       display(node, level + 1)
     }
   }
@@ -130,7 +131,10 @@ case class TrieNode() {
   * @param modelName The model's name
   * @param modelID The model's ID
   */
-case class ModelInfo(modelName: String, modelID: Int)
+case class ModelInfo(modelName: String, modelID: Int) {
+  override def toString: String =
+    s" model name: $modelName, model ID: $modelID."
+}
 
 /** TransitionInfo stores a transition's information.
   *
@@ -143,9 +147,17 @@ case class ModelInfo(modelName: String, modelID: Int)
   * @param transitionQuality The quality of the transition, which could be OK, Backtrack, or Fail
   * @param transitionChoicesMap The choices of each transition for each tests stored, and a counter to counter same choices
   */
-case class TransitionInfo(transOrigin: State,
-                          transDest: State,
-                          transitionID: Int,
-                          var transCounter: Int,
-                          transitionQuality: Quality,
-                          transitionChoicesMap: Map[List[RecordedChoice], Int])
+case class TransitionInfo(
+    transOrigin: State,
+    transDest: State,
+    transitionID: Int,
+    var transCounter: Int,
+    transitionQuality: Quality,
+    nextState: State,
+    transitionChoicesMap: Map[List[RecordedChoice], Int]) {
+  override def toString: String =
+    s" trans Origin: $transOrigin, trans Dest: $transDest, transitionID: $transitionID, " +
+      s"trans counter: $transCounter, transition quality: $transitionQuality, next state: $nextState, " +
+      s"trans choices map: $transitionChoicesMap."
+
+}

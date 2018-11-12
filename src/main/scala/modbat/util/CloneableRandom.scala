@@ -88,13 +88,13 @@ class CloneableRandom(rngTrace: Array[Int], dbgTrace: Array[String])
     resultsAsString += SourceInfo.actionInfo(action, true)
     result
   }
-  // TODO: need to take a look at rsultsAsString and super.choose
+
   override def choose(min: Int, max: Int): Int = {
     val result = super.choose(min, max)
     resultsAsString += Integer.toString(result)
     result
   }
-  // TODO: need to take a look at this function
+
   override def nextFloat(remember: Boolean = true) = {
     val result = super.nextFloat(remember)
     if (remember) {

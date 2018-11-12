@@ -485,6 +485,19 @@ object Modbat {
 
       result match {
         case (Ok(sameAgain: Boolean), _) => {
+
+          if (result._2.nextState != null) {
+            Log.debug(
+              "---print debug--- nextSate of transition: " + result._2.nextState.dest
+                .toString()) // todo print debug
+            Log.debug(
+              "---print debug--- Current state of transition when nextState!=null: " + result._2.transition.dest
+                .toString()) // todo print debug
+          } else
+            Log.debug(
+              "---print debug--- Current state of transition when nextState is null: " + result._2.transition.dest
+                .toString()) // todo print debug
+
           val succ = new ArrayBuffer[(MBT, Transition)]()
           addSuccessors(model, succ, true)
           if (succ.size == 0) {
@@ -535,23 +548,32 @@ object Modbat {
       // model ID and executed transition for path coverage,
       // if the configuration of path coverage is true. -Rui
       if (Main.config.dotifyPathCoverage) {
-        if (backtracked)
+        if (backtracked) { // backtracked case
+          // record next state into current transition,
+          // when backtracked, the next state is the origin state
+          trans.nextState = result._2.transition.origin
           pathInfoRecorder += new PathInfo(model.className,
                                            model.mIdx,
                                            trans,
                                            TransitionQuality.backtrack)
-        else if (failed) { // TODO: failed case
-          Log.info(
-            "failed transition choices:" + trans.recordedChoices
-              .mkString(", ")) //TODO - print info -Rui
+        } else if (failed) { // failed case
           pathInfoRecorder += new PathInfo(model.className,
                                            model.mIdx,
                                            trans,
                                            TransitionQuality.fail)
-          if (Main.config.dotifyPathCoverage) trie.insert(pathInfoRecorder) // TODO: add this failed transition to trie
+          // TODO: add this failed transition to trie
+          if (Main.config.dotifyPathCoverage) trie.insert(pathInfoRecorder)
           return result // TODO: return
-        } else
+        } else { // success case
+          // record next state into current transition.
+          // next state is NOT null when result of "nextIf" condition is true,
+          // record this next state, otherwise,
+          // record the current transition's dest as the next state
+          trans.nextState =
+            if (result._2.nextState != null) result._2.nextState.dest
+            else result._2.transition.dest
           pathInfoRecorder += new PathInfo(model.className, model.mIdx, trans)
+        }
       }
 
       totalW = totalWeight(successors)

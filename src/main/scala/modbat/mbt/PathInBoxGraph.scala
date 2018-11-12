@@ -91,6 +91,10 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
       val transDest: String = n.node.transitionInfo.transDest.toString
       val transName: String = transOrigin + " => " + transDest
       val transitionID: String = n.node.transitionInfo.transitionID.toString
+      val nextState: String =
+        if (n.node.transitionInfo.nextState != null)
+          n.node.transitionInfo.nextState.toString
+        else "null"
       val modelName: String = n.node.modelInfo.modelName
       val modelID: String = n.node.modelInfo.modelID.toString
       val edgeStyle: String =
@@ -125,6 +129,7 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
             "T:" + transName + "\\n" +
             "T-ID:" + transitionID + "\\n" +
             "T-Counter:" + n.transCounter + "\\n" +
+            "next state:" + nextState + "\\n" +
             "(T-Self:" + n.node.selfTransCounter + ")" + "\"];")
       }
     }
@@ -148,12 +153,17 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
     val modelID: String = nodeInfo.node.modelInfo.modelID.toString
     val transitionID: String =
       nodeInfo.node.transitionInfo.transitionID.toString
+    val nextState: String =
+      if (nodeInfo.node.transitionInfo.nextState != null)
+        nodeInfo.node.transitionInfo.nextState.toString
+      else "null"
     val label: String = "[" + edgeStyle + "label = \"" +
       "M:" + modelName + "\\n" +
       "M-ID:" + modelID + "\\n" +
       "T:" + transName + "\\n" +
       "T-ID:" + transitionID + "\\n" +
       "T-Counter:" + nodeInfo.transCounter + "\\n" +
+      "next state:" + nextState + "\\n" +
       "(T-Self:" + nodeInfo.node.selfTransCounter + ")" + "\"];"
 
     if (root.isLeaf) out.println(currentNodeID + "->" + transDest + label)

@@ -76,6 +76,10 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
       val transQuality: TransitionQuality.Quality =
         node.transitionInfo.transitionQuality
       val transExecutionCounter = node.transitionInfo.transCounter.toString
+      val nextState: String =
+        if (node.transitionInfo.nextState != null)
+          node.transitionInfo.nextState.toString
+        else "null"
       val selfTransCounter = "(T-Self:" + node.selfTransCounter + ")"
       val edgeStyle: String =
         if (transQuality == TransitionQuality.backtrack)
@@ -89,6 +93,7 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
         "T:" + transName + "\\n" +
         "T-ID:" + transID + "\\n" +
         "T-Counter:" + transExecutionCounter + "\\n" +
+        "next state:" + nextState + "\\n" +
         selfTransCounter + "\"];"
 
       val transHasChoices = node.transitionInfo.transitionChoicesMap != null && node.transitionInfo.transitionChoicesMap.nonEmpty
