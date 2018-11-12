@@ -35,6 +35,7 @@ class Transition(var origin: State,
   var n: Int = 0
 
   var recordedChoices: List[RecordedChoice] = _ // TODO: record choices -Rui
+  var nextState: State = _ // TODO: record next state -Rui
 
   def expectedExceptions = action.expectedExc.toList
   def nonDetExceptions = nonDetExcConv.toList
