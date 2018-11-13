@@ -132,6 +132,7 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
     var newNodeNumber = nodeNumber
     // output "point" graph
     var rootPointHasCircleEdge = false // rootPointIsCircle marks if the root point of the current path is a circle or not
+    var numOfCirclePath = 0
     for (idx <- newNodeStack.indices) {
 
       newNodeNumber = newNodeNumber + 1 // update new number for the number point
@@ -147,6 +148,7 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
           newNodeNumber = newNodeNumber - 1 // node number should the same as previous one
           val originNodeID: Int = idx
           val destNodeID: Int = idx
+          numOfCirclePath = numOfCirclePath + 1 // update the number of circle path
           // TODO: draw transitions with choices
           printOut(newNodeStack, idx, originNodeID, destNodeID)
         } else {
@@ -160,19 +162,22 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
 
         if (circleEdge && rootPointHasCircleEdge) { // the new edge is a circle again
           newNodeNumber = newNodeNumber - 1 // node number should the same as previous one
-          val originNodeID: Int = idx - 1
-          val destNodeID: Int = idx - 1
+          val originNodeID: Int = idx - numOfCirclePath
+          val destNodeID: Int = originNodeID
+          numOfCirclePath = numOfCirclePath + 1 // update the number of circle path
           // TODO: draw transitions with choices
           printOut(newNodeStack, idx, originNodeID, destNodeID)
         } else if (circleEdge && !rootPointHasCircleEdge) {
           newNodeNumber = newNodeNumber - 1 // node number should the same as previous one
           val originNodeID: Int = newNodeNumber
           val destNodeID: Int = newNodeNumber
+          //numOfCirclePath = numOfCirclePath + 1
           // TODO: draw transitions with choices
           printOut(newNodeStack, idx, originNodeID, destNodeID)
         } else if (!circleEdge && rootPointHasCircleEdge) {
-          val originNodeID: Int = idx - 1
+          val originNodeID: Int = idx - numOfCirclePath
           val destNodeID: Int = newNodeNumber
+          numOfCirclePath = numOfCirclePath + 1 // update the number of circle path
           // TODO: draw transitions with choices
           printOut(newNodeStack, idx, originNodeID, destNodeID)
 
@@ -198,7 +203,8 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
                            nodeStack(idx).transID,
                            nodeStack(idx).label,
                            originNodeID,
-                           destNodeID)
+                           destNodeID,
+                           nodeStack(idx).transQuality)
     } else { // draw transition, no choices
       out.println(originNodeID + "->" + destNodeID + nodeStack(idx).label)
     }
@@ -209,6 +215,7 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
                                    label: String,
                                    originNodeID: Int,
                                    destNodeID: Int,
+                                   transQuality: TransitionQuality.Quality,
                                    level: Int = 0,
                                    currentNodeID: String = ""): Unit = {
 
@@ -219,7 +226,10 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
       val choiceNode = root.children(choiceKey)
 
       var choiceNodeStyle: String =
-        " , shape=diamond, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
+        if (transQuality == TransitionQuality.backtrack)
+          " , shape=diamond, color=red, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
+        else
+          " , shape=diamond, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
       val choiceNodeValue = choiceNode.recordedChoice.toString
       val choiceNodeID
         : String = "\"" + transID + "-" + originNodeID.toString + "-" + destNodeID.toString + "-" +
@@ -228,7 +238,8 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
       // check special case for failure when the recorded choice "maybe" is true
       choiceNode.recordedChoice match {
         case _: Boolean =>
-          if (choiceNode.recordedChoice.equals(true))
+          if (transQuality == TransitionQuality.fail && choiceNode.recordedChoice
+                .equals(true))
             choiceNodeStyle = " , shape=diamond, color= blue, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
         case _ =>
       }
@@ -247,6 +258,7 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
                            label,
                            originNodeID,
                            destNodeID,
+                           transQuality,
                            level + 1,
                            choiceNodeID)
     }

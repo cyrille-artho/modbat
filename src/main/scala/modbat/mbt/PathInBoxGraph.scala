@@ -172,15 +172,19 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
       val choiceNode = root.children(choiceKey)
 
       var choiceNodeStyle: String =
-        " , shape=diamond, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
+        if (nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
+          " , shape=diamond, color=red, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
+        else
+          " , shape=diamond, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
       val destNodeValue = choiceNode.recordedChoice.toString
       val destNodeID = "\"" + transitionID + "-" + level.toString + "-" + destNodeValue + "\""
 
       // check special case for failure when the recorded choice "maybe" is true
       choiceNode.recordedChoice match {
         case _: Boolean =>
-          if (choiceNode.recordedChoice.equals(true))
-            choiceNodeStyle = " , shape=diamond, color= blue, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
+          if (nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.fail && choiceNode.recordedChoice
+                .equals(true))
+            choiceNodeStyle = " , shape=diamond, color=blue, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
         case _ =>
       }
 
