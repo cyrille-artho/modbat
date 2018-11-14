@@ -22,7 +22,7 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
     out.println("  orientation = landscape;")
     out.println("  graph [ rankdir = \"TB\", ranksep=\"2\", nodesep=\"0.2\" ];")
     out.println(
-      "  node [ fontname = \"Helvetica\", fontsize=\"6.0\", style=rounded, shape=\"" + shape.toLowerCase +
+      "  node [ fontname = \"Helvetica\", fontsize=\"6.0\", style=rounded, shape=\"" + "ellipse" +
         "\", margin=\"0.07\"," + " height=\"0.1\" ];")
     out.println(
       "  edge [ fontname = \"Helvetica\", arrowsize=\".3\", arrowhead=\"vee\", fontsize=\"6.0\"," + " margin=\"0.05\" ];")
