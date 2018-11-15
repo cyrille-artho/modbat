@@ -87,26 +87,23 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
   private def drawBoxGraph(nodeRecorder: ListBuffer[boxNodeInfo]): Unit = {
 
     for (n <- nodeRecorder) {
+
       val transOrigin: String = n.node.transitionInfo.transOrigin.toString
       val transDest: String = n.node.transitionInfo.transDest.toString
-      val transName: String = transOrigin + " => " + transDest
-      val transitionID: String = n.node.transitionInfo.transitionID.toString
-      val nextState: String =
-        if (n.node.transitionInfo.nextState != null)
-          n.node.transitionInfo.nextState.toString
-        else "null"
-      val modelName: String = n.node.modelInfo.modelName
-      val modelID: String = n.node.modelInfo.modelID.toString
+
+      // edge style
       val edgeStyle: String =
         if (n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
           "style=dotted, color=red,"
         else if (n.node.transitionInfo.transitionQuality == TransitionQuality.fail)
           "color=blue,"
         else ""
-      if (n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
+
+      // node color style
+      /*      if (n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
         out.println(" " + transDest + " [color=red];")
       else if (n.node.transitionInfo.transitionQuality == TransitionQuality.fail)
-        out.println(" " + transDest + " [color=blue];")
+        out.println(" " + transDest + " [color=blue];")*/
 
       // choiceTree can record choices
       val choiceTree: ChoiceTree = new ChoiceTree()
@@ -123,14 +120,8 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
       } else {
         // transitions without choices
         out.println(
-          transOrigin + "->" + transDest +
-            "[" + edgeStyle + "label = \"" + "M:" + modelName + "\\n" +
-            "M-ID:" + modelID + "\\n" +
-            "T:" + transName + "\\n" +
-            "T-ID:" + transitionID + "\\n" +
-            "T-Counter:" + n.transCounter + "\\n" +
-            "next state:" + nextState + "\\n" +
-            "(T-Self:" + n.node.selfTransCounter + ")" + "\"];")
+          transOrigin + "->" + transDest + createEdgeLabel(n.node, edgeStyle)
+        )
       }
     }
   }
@@ -138,53 +129,45 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
   private def drawTransWithChoices(nodeInfo: boxNodeInfo,
                                    root: ChoiceTree#ChoiceNode,
                                    level: Int = 0,
-                                   currentNodeID: String): Unit = {
+                                   currentNodeID: String,
+                                   choiceOfMaybe: Boolean = false): Unit = {
 
     val transOrigin: String = nodeInfo.node.transitionInfo.transOrigin.toString
     val transDest: String = nodeInfo.node.transitionInfo.transDest.toString
-    val transName: String = transOrigin + " => " + transDest
+    val transID: String = nodeInfo.node.transitionInfo.transitionID.toString
+
     val edgeStyle: String =
-      if (nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
+      if (root.isLeaf && nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
         "style=dotted, color=red,"
-      else if (nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.fail)
+      else if (root.isLeaf && nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.fail && choiceOfMaybe)
         "color=blue,"
       else ""
-    val modelName: String = nodeInfo.node.modelInfo.modelName
-    val modelID: String = nodeInfo.node.modelInfo.modelID.toString
-    val transitionID: String =
-      nodeInfo.node.transitionInfo.transitionID.toString
-    val nextState: String =
-      if (nodeInfo.node.transitionInfo.nextState != null)
-        nodeInfo.node.transitionInfo.nextState.toString
-      else "null"
-    val label: String = "[" + edgeStyle + "label = \"" +
-      "M:" + modelName + "\\n" +
-      "M-ID:" + modelID + "\\n" +
-      "T:" + transName + "\\n" +
-      "T-ID:" + transitionID + "\\n" +
-      "T-Counter:" + nodeInfo.transCounter + "\\n" +
-      "next state:" + nextState + "\\n" +
-      "(T-Self:" + nodeInfo.node.selfTransCounter + ")" + "\"];"
 
-    if (root.isLeaf) out.println(currentNodeID + "->" + transDest + label)
-
+    if (root.isLeaf)
+      out.println(
+        currentNodeID + "->" + transDest + createEdgeLabel(nodeInfo.node,
+                                                           edgeStyle))
     for (choiceKey <- root.children.keySet) {
       val choiceNode = root.children(choiceKey)
 
-      var choiceNodeStyle: String =
+      /*      var choiceNodeStyle: String =
         if (nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
           " , shape=diamond, color=red, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
         else
-          " , shape=diamond, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
+          " , shape=diamond, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"*/
+      var choiceNodeStyle
+        : String = " , shape=diamond, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
       val destNodeValue = choiceNode.recordedChoice.toString
-      val destNodeID = "\"" + transitionID + "-" + level.toString + "-" + destNodeValue + "\""
+      val destNodeID = "\"" + transID + "-" + level.toString + "-" + destNodeValue + "\""
 
+      var choiceOfMaybe: Boolean = false
       // check special case for failure when the recorded choice "maybe" is true
       choiceNode.recordedChoice match {
         case _: Boolean =>
           if (nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.fail && choiceNode.recordedChoice
                 .equals(true))
-            choiceNodeStyle = " , shape=diamond, color=blue, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
+            choiceOfMaybe = true
+        //choiceNodeStyle = " , shape=diamond, color=blue, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
         case _ =>
       }
 
@@ -192,12 +175,50 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
         destNodeID + " [label=\"" + destNodeValue + "\"" + choiceNodeStyle)
 
       if (level == 0) {
-        out.println(transOrigin + "->" + destNodeID + label)
+        out.println(
+          transOrigin + "->" + destNodeID + createEdgeLabel(nodeInfo.node,
+                                                            edgeStyle))
       } else {
-        out.println(currentNodeID + "->" + destNodeID + label)
+        out.println(
+          currentNodeID + "->" + destNodeID + createEdgeLabel(nodeInfo.node,
+                                                              edgeStyle))
       }
 
-      drawTransWithChoices(nodeInfo, choiceNode, level + 1, destNodeID)
+      drawTransWithChoices(nodeInfo,
+                           choiceNode,
+                           level + 1,
+                           destNodeID,
+                           choiceOfMaybe)
     }
+  }
+
+  private def createEdgeLabel(node: TrieNode, edgeStyle: String): String = {
+
+    val modelName: String = node.modelInfo.modelName
+    val modelID: String = node.modelInfo.modelID.toString
+
+    val transOrigin: String = node.transitionInfo.transOrigin.toString
+    val transDest: String = node.transitionInfo.transDest.toString
+    val transName: String = transOrigin + " => " + transDest
+    val transID: String = node.transitionInfo.transitionID.toString
+    val transCounter: String = node.transitionInfo.transCounter.toString
+    val selfTransCounter: String = node.selfTransCounter.toString
+
+    val nextState: String =
+      if (node.transitionInfo.nextState != null)
+        node.transitionInfo.nextState.toString
+      else "null"
+
+    val label: String =
+      "[" + edgeStyle + "label = \"" +
+        "M:" + modelName + "\\n" +
+        "M-ID:" + modelID + "\\n" +
+        "T:" + transName + "\\n" +
+        "T-ID:" + transID + "\\n" +
+        "T-Counter:" + transCounter + "\\n" +
+        "next state:" + nextState + "\\n" +
+        "(T-Self:" + selfTransCounter + ")" + "\"];"
+
+    label
   }
 }

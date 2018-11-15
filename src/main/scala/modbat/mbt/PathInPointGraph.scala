@@ -2,6 +2,7 @@ package modbat.mbt
 
 import modbat.cov.{Trie, TrieNode}
 import modbat.dsl.State
+import modbat.log.Log
 
 import scala.collection.mutable.ListBuffer
 
@@ -15,16 +16,14 @@ import scala.collection.mutable.ListBuffer
 class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
   require(shape == "Point", "the input of path visualizer must be Point")
 
-  // LabelInfo is used to record the node information used for "point" output
-  case class pointNodeInfo(label: String,
-                           transID: String,
+  // pointNodeInfo is used to record the node information used for "point" output
+  case class PointNodeInfo(node: TrieNode,
                            transHasChoices: Boolean,
                            choiceTree: ChoiceTree = null,
-                           isSelfTrans: Boolean,
-                           transQuality: TransitionQuality.Quality)
+                           isSelfTrans: Boolean)
 
-  private var choiceNodeCounter
-    : Int = 0 // the choice node counter is used to construct the IDs of choice nodes
+  // the choice node counter is used to construct the IDs of choice nodes
+  private var choiceNodeCounter: Int = 0
 
   override def dotify() {
     out.println("digraph model {")
@@ -37,8 +36,8 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
       "  edge [ fontname = \"Helvetica\", arrowsize=\".3\", arrowhead=\"vee\", fontsize=\"6.0\"," + " margin=\"0.05\" ];")
 
     // stack is used for record label information for "point" output
-    val nodeRecordStack: ListBuffer[pointNodeInfo] =
-      new ListBuffer[pointNodeInfo]
+    val nodeRecordStack: ListBuffer[PointNodeInfo] =
+      new ListBuffer[PointNodeInfo]
     // display
     display(trie.root, 0, nodeRecordStack)
     out.println("}")
@@ -46,11 +45,12 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
 
   private def display(root: TrieNode,
                       nodeNumber: Int,
-                      nodeRecordStack: ListBuffer[pointNodeInfo])
-    : (Int, ListBuffer[pointNodeInfo]) = {
+                      nodeRecordStack: ListBuffer[PointNodeInfo])
+    : (Int, ListBuffer[PointNodeInfo]) = {
+
     // newNodeNumber is used to generate the number(ID) of the node for the "point" graph
     var newNodeNumber: Int = nodeNumber
-    var newNodeStack: ListBuffer[pointNodeInfo] = nodeRecordStack
+    var newNodeStack: ListBuffer[PointNodeInfo] = nodeRecordStack
 
     if (root.isLeaf) { // print graph when the node in trie is a leaf
 
@@ -66,37 +66,15 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
     for (t <- root.children.keySet) {
       val node: TrieNode =
         root.children.getOrElse(t, sys.error(s"unexpected key: $t"))
-      val modelName: String = node.modelInfo.modelName
-      val modelID = node.modelInfo.modelID.toString
-      val transID = node.transitionInfo.transitionID.toString
+
+      // check if the transition is a self-transition
       val transOriginState: State = node.transitionInfo.transOrigin
       val transDestState: State = node.transitionInfo.transDest
       val isSelfTrans: Boolean = transOriginState == transDestState
-      val transName = transOriginState.toString + " => " + transDestState.toString
-      val transQuality: TransitionQuality.Quality =
-        node.transitionInfo.transitionQuality
-      val transExecutionCounter = node.transitionInfo.transCounter.toString
-      val nextState: String =
-        if (node.transitionInfo.nextState != null)
-          node.transitionInfo.nextState.toString
-        else "null"
-      val selfTransCounter = "(T-Self:" + node.selfTransCounter + ")"
-      val edgeStyle: String =
-        if (transQuality == TransitionQuality.backtrack)
-          "style=dotted, color=red,"
-        else if (transQuality == TransitionQuality.fail)
-          "color=blue,"
-        else ""
-      // the newlabel here is used for constructing a label for the output of the "point" graph
-      val newLabel = "[" + edgeStyle + "label = \"" + "M:" + modelName + "\\n" +
-        "M-ID:" + modelID + "\\n" +
-        "T:" + transName + "\\n" +
-        "T-ID:" + transID + "\\n" +
-        "T-Counter:" + transExecutionCounter + "\\n" +
-        "next state:" + nextState + "\\n" +
-        selfTransCounter + "\"];"
 
-      val transHasChoices = node.transitionInfo.transitionChoicesMap != null && node.transitionInfo.transitionChoicesMap.nonEmpty
+      // check if transition has choices
+      val transHasChoices =
+        node.transitionInfo.transitionChoicesMap != null && node.transitionInfo.transitionChoicesMap.nonEmpty
 
       // choiceTree records choices
       val choiceTree: ChoiceTree = new ChoiceTree()
@@ -108,15 +86,11 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
         }
         //choiceTree.displayChoices(choiceTree.root, 0)
       }
-      // check if the transition has the same original and target states, and if backtracked
-      val newLabelInfo = pointNodeInfo(newLabel,
-                                       transID,
-                                       transHasChoices,
-                                       choiceTree,
-                                       isSelfTrans,
-                                       transQuality)
 
-      newNodeStack += newLabelInfo // store label information for each transition
+      val newNodeInfo =
+        PointNodeInfo(node, transHasChoices, choiceTree, isSelfTrans)
+
+      newNodeStack += newNodeInfo // store node information for each transition
       val result = display(node, newNodeNumber, newNodeStack)
       newNodeNumber = result._1
       newNodeStack = result._2
@@ -124,10 +98,11 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
     if (newNodeStack != null) {
       newNodeStack.trimEnd(1)
     }
+
     (newNodeNumber, newNodeStack)
   }
 
-  private def drawPointGraph(newNodeStack: ListBuffer[pointNodeInfo],
+  private def drawPointGraph(newNodeStack: ListBuffer[PointNodeInfo],
                              nodeNumber: Int): Int = {
     var newNodeNumber = nodeNumber
     // output "point" graph
@@ -139,7 +114,7 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
 
       // circle edge is for current self transition or backtracked transition
       val circleEdge: Boolean = newNodeStack(idx).isSelfTrans || newNodeStack(
-        idx).transQuality == TransitionQuality.backtrack
+        idx).node.transitionInfo.transitionQuality == TransitionQuality.backtrack
 
       if (idx == 0) { // starting root point
 
@@ -193,54 +168,81 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
     newNodeNumber
   }
 
-  private def printOut(nodeStack: ListBuffer[pointNodeInfo],
+  private def printOut(nodeStack: ListBuffer[PointNodeInfo],
                        idx: Int,
                        originNodeID: Int,
                        destNodeID: Int): Unit = {
+
+    val transQuality: TransitionQuality.Quality =
+      nodeStack(idx).node.transitionInfo.transitionQuality
+
+    val edgeStyle: String =
+      if (transQuality == TransitionQuality.backtrack)
+        "style=dotted, color=red,"
+      else if (transQuality == TransitionQuality.fail)
+        "color=blue,"
+      else ""
+
     // draw transitions with choices
     if (nodeStack(idx).transHasChoices) {
-      drawTransWithChoices(nodeStack(idx).choiceTree.root,
-                           nodeStack(idx).transID,
-                           nodeStack(idx).label,
+      drawTransWithChoices(nodeStack(idx),
+                           nodeStack(idx).choiceTree.root,
                            originNodeID,
-                           destNodeID,
-                           nodeStack(idx).transQuality)
+                           destNodeID)
     } else { // draw transition, no choices
-      out.println(originNodeID + "->" + destNodeID + nodeStack(idx).label)
+      out.println(
+        originNodeID + "->" + destNodeID + createEdgeLabel(nodeStack(idx).node,
+                                                           edgeStyle))
     }
   }
 
-  private def drawTransWithChoices(root: ChoiceTree#ChoiceNode,
-                                   transID: String,
-                                   label: String,
+  private def drawTransWithChoices(nodeInfo: PointNodeInfo,
+                                   root: ChoiceTree#ChoiceNode,
                                    originNodeID: Int,
                                    destNodeID: Int,
-                                   transQuality: TransitionQuality.Quality,
                                    level: Int = 0,
-                                   currentNodeID: String = ""): Unit = {
+                                   currentNodeID: String = "",
+                                   choiceOfMaybe: Boolean = false): Unit = {
 
-    if (root.isLeaf) out.println(currentNodeID + "->" + destNodeID + label)
+    val transID: String = nodeInfo.node.transitionInfo.transitionID.toString
+
+    val edgeStyle: String =
+      if (root.isLeaf && nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
+        "style=dotted, color=red,"
+      else if (root.isLeaf && nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.fail && choiceOfMaybe)
+        "color=blue,"
+      else ""
+
+    if (root.isLeaf)
+      out.println(
+        currentNodeID + "->" + destNodeID + createEdgeLabel(nodeInfo.node,
+                                                            edgeStyle))
 
     for (choiceKey <- root.children.keySet) {
       choiceNodeCounter = choiceNodeCounter + 1
       val choiceNode = root.children(choiceKey)
 
-      var choiceNodeStyle: String =
-        if (transQuality == TransitionQuality.backtrack)
+      var choiceNodeStyle
+        : String = " , shape=diamond, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
+      /*      var choiceNodeStyle: String =
+        if (nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
           " , shape=diamond, color=red, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
         else
-          " , shape=diamond, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
+          " , shape=diamond, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"*/
+
       val choiceNodeValue = choiceNode.recordedChoice.toString
       val choiceNodeID
         : String = "\"" + transID + "-" + originNodeID.toString + "-" + destNodeID.toString + "-" +
         level.toString + "-" + choiceNodeCounter.toString + "-" + choiceNodeValue + "\""
 
       // check special case for failure when the recorded choice "maybe" is true
+      var choiceOfMaybe: Boolean = false
       choiceNode.recordedChoice match {
         case _: Boolean =>
-          if (transQuality == TransitionQuality.fail && choiceNode.recordedChoice
+          if (nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.fail && choiceNode.recordedChoice
                 .equals(true))
-            choiceNodeStyle = " , shape=diamond, color= blue, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
+            choiceOfMaybe = true
+        //choiceNodeStyle = " , shape=diamond, color= blue, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
         case _ =>
       }
 
@@ -248,19 +250,52 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
         choiceNodeID + " [label=\"" + choiceNodeValue + "\"" + choiceNodeStyle)
 
       if (level == 0) {
-        out.println(originNodeID + "->" + choiceNodeID + label)
+        out.println(
+          originNodeID + "->" + choiceNodeID + createEdgeLabel(nodeInfo.node,
+                                                               edgeStyle))
       } else {
-        out.println(currentNodeID + "->" + choiceNodeID + label)
+        out.println(
+          currentNodeID + "->" + choiceNodeID + createEdgeLabel(nodeInfo.node,
+                                                                edgeStyle))
       }
 
-      drawTransWithChoices(choiceNode,
-                           transID,
-                           label,
+      drawTransWithChoices(nodeInfo,
+                           choiceNode,
                            originNodeID,
                            destNodeID,
-                           transQuality,
                            level + 1,
-                           choiceNodeID)
+                           choiceNodeID,
+                           choiceOfMaybe)
     }
+  }
+
+  private def createEdgeLabel(node: TrieNode, edgeStyle: String): String = {
+
+    val modelName: String = node.modelInfo.modelName
+    val modelID: String = node.modelInfo.modelID.toString
+
+    val transOrigin: String = node.transitionInfo.transOrigin.toString
+    val transDest: String = node.transitionInfo.transDest.toString
+    val transName: String = transOrigin + " => " + transDest
+    val transID: String = node.transitionInfo.transitionID.toString
+    val transCounter: String = node.transitionInfo.transCounter.toString
+    val selfTransCounter: String = node.selfTransCounter.toString
+
+    val nextState: String =
+      if (node.transitionInfo.nextState != null)
+        node.transitionInfo.nextState.toString
+      else "null"
+
+    val label: String =
+      "[" + edgeStyle + "label = \"" +
+        "M:" + modelName + "\\n" +
+        "M-ID:" + modelID + "\\n" +
+        "T:" + transName + "\\n" +
+        "T-ID:" + transID + "\\n" +
+        "T-Counter:" + transCounter + "\\n" +
+        "next state:" + nextState + "\\n" +
+        "(T-Self:" + selfTransCounter + ")" + "\"];"
+
+    label
   }
 }
