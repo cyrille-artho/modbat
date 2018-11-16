@@ -7,8 +7,8 @@ import scala.collection.mutable.HashMap
 
 class ChoiceTree {
   case class ChoiceNode() {
-    var children
-      : HashMap[Any, ChoiceNode] = HashMap.empty[Any, ChoiceNode] // children store the transitions in string and the next nodes
+    // children store the transitions in string and the next nodes
+    var children: HashMap[Any, ChoiceNode] = HashMap.empty[Any, ChoiceNode]
     var isLeaf: Boolean = false
     var choiceCounter: Int = 0
     var recordedChoice: Any = _
