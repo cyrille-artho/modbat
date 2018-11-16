@@ -88,10 +88,12 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
 
     // initial node is "none"
     val graphNoneNode: String = "None"
-    out.println(graphNoneNode + " [shape=none, width=0.1, height=0.1]")
+    out.println(graphNoneNode + " [shape=none, width=0.1, height=0.1];")
     val graphRootNode: String =
       nodeRecorder.head.node.transitionInfo.transOrigin.toString
-    out.println(graphNoneNode + "->" + graphRootNode)
+    out.println(graphNoneNode + "->" + graphRootNode + ";")
+
+    var jumpedNodeOriginNextIf: String = ""
 
     for (n <- nodeRecorder) {
 
@@ -138,6 +140,15 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
                                                                   edgeStyle)
         )
       }
+      // jumped edge when nextIf is true
+      if (n.node.transitionInfo.nextStateNextIf != null && n.node.transitionInfo.nextStateNextIf.nextIf) {
+        jumpedNodeOriginNextIf =
+          if (backtracked) nextStateOfBacktrack else transDest
+        val jumpedNodeDestNextIf =
+          n.node.transitionInfo.nextStateNextIf.nextState
+        out.println(
+          jumpedNodeOriginNextIf + "->" + jumpedNodeDestNextIf + "[style=dotted];")
+      }
     }
   }
 
@@ -147,22 +158,6 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
                                    currentNodeID: String,
                                    choiceOfMaybe: Boolean = false): Unit = {
 
-    /*    val transOrigin: String = nodeInfo.node.transitionInfo.transOrigin.toString
-    val transDest: String = nodeInfo.node.transitionInfo.transDest.toString
-    val transID: String = nodeInfo.node.transitionInfo.transitionID.toString
-    val backtracked
-      : Boolean = nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.backtrack
-    val failed
-      : Boolean = nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.fail
-    val nextStateOfBacktrack: String =
-      nodeInfo.node.transitionInfo.nextState.toString
-
-    val edgeStyle: String =
-      if (root.isLeaf && backtracked)
-        "style=dotted, color=red,"
-      else if (root.isLeaf && failed && choiceOfMaybe)
-        "color=blue,"
-      else ""*/
     val transOrigin: String = nodeInfo.node.transitionInfo.transOrigin.toString
     val transDest: String = nodeInfo.node.transitionInfo.transDest.toString
     val transID: String = nodeInfo.node.transitionInfo.transitionID.toString
@@ -184,9 +179,8 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
     if (root.isLeaf)
       out.println(
         currentNodeID + "->" + (if (backtracked) nextStateOfBacktrack
-                                else
-                                  transDest) + createEdgeLabel(nodeInfo.node,
-                                                               edgeStyle))
+                                else transDest) + createEdgeLabel(nodeInfo.node,
+                                                                  edgeStyle))
 
     for (choiceKey <- root.children.keySet) {
       val choiceNode = root.children(choiceKey)

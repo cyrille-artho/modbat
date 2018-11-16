@@ -552,6 +552,8 @@ object Modbat {
           // record next state into current transition,
           // when backtracked, the next state is the origin state
           trans.nextState = result._2.transition.origin
+          trans.nextStateNextIf =
+            trans.getNextStateNextIf(result._2.transition.origin, false)
           pathInfoRecorder += new PathInfo(model.className,
                                            model.mIdx,
                                            trans,
@@ -569,9 +571,20 @@ object Modbat {
           // next state is NOT null when result of "nextIf" condition is true,
           // record this next state, otherwise,
           // record the current transition's dest as the next state
-          trans.nextState =
+          /*          trans.nextState =
             if (result._2.nextState != null) result._2.nextState.dest
-            else result._2.transition.dest
+            else result._2.transition.dest*/
+
+          if (result._2.nextState != null) {
+            trans.nextState = result._2.nextState.dest
+            trans.nextStateNextIf =
+              trans.getNextStateNextIf(result._2.nextState.dest, true)
+          } else {
+            trans.nextState = result._2.transition.dest
+            trans.nextStateNextIf =
+              trans.getNextStateNextIf(result._2.transition.dest, false)
+          }
+
           pathInfoRecorder += new PathInfo(model.className, model.mIdx, trans)
         }
       }
@@ -582,7 +595,7 @@ object Modbat {
     // TODO: output all executed transitions of the current test - Rui
     for (p <- pathInfoRecorder)
       Log.debug(
-        "All recorded information for path coverage: " + p.toString + ", transID:" + p.transition.idx)
+        "Recorded information for path coverage: " + p.toString + ", transID:" + p.transition.idx)
     // TODO: Put information in pathInfoRecoder to the trie -Rui
     // Insert all the information of the current test into a trie for path coverage,
     // if the configuration of path coverage is true. - Rui
