@@ -46,6 +46,7 @@ class Trie {
                                              1,
                                              p.transitionQuality,
                                              p.transition.nextState,
+                                             p.transition.nextStateNextIf,
                                              choicesMap)
         currentNode.children.put(node.transitionInfo.transitionID, node)
         currentNode = node // next node
@@ -154,10 +155,12 @@ case class TransitionInfo(
     var transCounter: Int,
     transitionQuality: Quality,
     nextState: State,
+    nextStateNextIf: Transition#NextStateNextIf,
     transitionChoicesMap: Map[List[RecordedChoice], Int]) {
   override def toString: String =
     s" trans Origin: $transOrigin, trans Dest: $transDest, transitionID: $transitionID, " +
       s"trans counter: $transCounter, transition quality: $transitionQuality, next state: $nextState, " +
+      s"nextIf: $nextStateNextIf, " +
       s"trans choices map: $transitionChoicesMap."
 
 }

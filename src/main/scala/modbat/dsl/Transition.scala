@@ -14,6 +14,7 @@ object Transition {
   def clear {
     pendingTransitions.clear
   }
+
 }
 
 /* Create a new transition. This usually happens as a side-effect
@@ -26,6 +27,11 @@ class Transition(var origin: State,
                  val isSynthetic: Boolean,
                  val action: Action,
                  remember: Boolean = true) {
+
+  case class NextStateNextIf(nextState: State, nextIf: Boolean) // TODO: record next state -Rui
+  def getNextStateNextIf(nextState: State, nextIf: Boolean): NextStateNextIf =
+    NextStateNextIf(nextState, nextIf)
+  var nextStateNextIf: NextStateNextIf = _
 
   val nonDetExcConv = ListBuffer[NextStateOnException]()
   val nextStatePredConv = ListBuffer[NextStatePredicate]()
