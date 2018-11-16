@@ -2,7 +2,6 @@ package modbat.mbt
 
 import modbat.cov.{Trie, TrieNode}
 import modbat.dsl.State
-import modbat.log.Log
 
 import scala.collection.mutable.ListBuffer
 
@@ -38,8 +37,15 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
     // stack is used for record label information for "point" output
     val nodeRecordStack: ListBuffer[PointNodeInfo] =
       new ListBuffer[PointNodeInfo]
+
+    // initial node is "none"
+    val graphNoneNode: String = "None"
+    out.println(graphNoneNode + " [shape=none, width=0.1, height=0.1]")
+    val graphRootNode: Int = 0
+    out.println(graphNoneNode + "->" + graphRootNode.toString)
+
     // display
-    display(trie.root, 0, nodeRecordStack)
+    display(trie.root, graphRootNode, nodeRecordStack)
     out.println("}")
   }
 
@@ -108,6 +114,7 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
     // output "point" graph
     var rootPointHasCircleEdge = false // rootPointIsCircle marks if the root point of the current path is a circle or not
     var numOfCirclePath = 0
+
     for (idx <- newNodeStack.indices) {
 
       newNodeNumber = newNodeNumber + 1 // update new number for the number point

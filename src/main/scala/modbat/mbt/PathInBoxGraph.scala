@@ -86,6 +86,13 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
 
   private def drawBoxGraph(nodeRecorder: ListBuffer[boxNodeInfo]): Unit = {
 
+    // initial node is "none"
+    val graphNoneNode: String = "None"
+    out.println(graphNoneNode + " [shape=none, width=0.1, height=0.1]")
+    val graphRootNode: String =
+      nodeRecorder.head.node.transitionInfo.transOrigin.toString
+    out.println(graphNoneNode + "->" + graphRootNode)
+
     for (n <- nodeRecorder) {
 
       val transOrigin: String = n.node.transitionInfo.transOrigin.toString
