@@ -93,6 +93,9 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
       nodeRecorder.head.node.transitionInfo.transOrigin.toString
     out.println(graphNoneNode + "->" + graphRootNode + ";")
 
+    // source level node on the top
+    out.println("{rank = source; " + graphNoneNode + "}")
+
     var jumpedNodeOriginNextIf: String = ""
 
     for (n <- nodeRecorder) {
