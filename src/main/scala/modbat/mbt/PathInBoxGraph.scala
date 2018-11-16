@@ -139,8 +139,7 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
         // transitions without choices
         out.println(
           transOrigin + "->" + (if (backtracked) nextStateOfBacktrack
-                                else transDest) + createEdgeLabel(n.node,
-                                                                  edgeStyle)
+                                else transDest) + createEdgeLabel(n, edgeStyle)
         )
       }
       // jumped edge when nextIf is true
@@ -182,7 +181,7 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
     if (root.isLeaf)
       out.println(
         currentNodeID + "->" + (if (backtracked) nextStateOfBacktrack
-                                else transDest) + createEdgeLabel(nodeInfo.node,
+                                else transDest) + createEdgeLabel(nodeInfo,
                                                                   edgeStyle))
 
     for (choiceKey <- root.children.keySet) {
@@ -214,11 +213,11 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
 
       if (level == 0) {
         out.println(
-          transOrigin + "->" + destNodeID + createEdgeLabel(nodeInfo.node,
+          transOrigin + "->" + destNodeID + createEdgeLabel(nodeInfo,
                                                             edgeStyle))
       } else {
         out.println(
-          currentNodeID + "->" + destNodeID + createEdgeLabel(nodeInfo.node,
+          currentNodeID + "->" + destNodeID + createEdgeLabel(nodeInfo,
                                                               edgeStyle))
       }
 
@@ -230,30 +229,31 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
     }
   }
 
-  private def createEdgeLabel(node: TrieNode, edgeStyle: String): String = {
+  private def createEdgeLabel(nodeInfo: boxNodeInfo,
+                              edgeStyle: String): String = {
 
-    val modelName: String = node.modelInfo.modelName
-    val modelID: String = node.modelInfo.modelID.toString
+    val modelName: String = nodeInfo.node.modelInfo.modelName.toString
+    val modelID: String = nodeInfo.node.modelInfo.modelID.toString
 
-    val transOrigin: String = node.transitionInfo.transOrigin.toString
-    val transDest: String = node.transitionInfo.transDest.toString
+    val transOrigin: String = nodeInfo.node.transitionInfo.transOrigin.toString
+    val transDest: String = nodeInfo.node.transitionInfo.transDest.toString
     val transName: String = transOrigin + " => " + transDest
-    val transID: String = node.transitionInfo.transitionID.toString
-    val transCounter: String = node.transitionInfo.transCounter.toString
-    val selfTransCounter: String = node.selfTransCounter.toString
+    val transID: String = nodeInfo.node.transitionInfo.transitionID.toString
+    val transCounter: String = nodeInfo.transCounter
+    val selfTransCounter: String = nodeInfo.node.selfTransCounter.toString
 
     val backtracked
-      : Boolean = node.transitionInfo.transitionQuality == TransitionQuality.backtrack
+      : Boolean = nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.backtrack
 
     // next state
     val nextState: String =
-      if (node.transitionInfo.nextState != null)
-        node.transitionInfo.nextState.toString
+      if (nodeInfo.node.transitionInfo.nextState != null)
+        nodeInfo.node.transitionInfo.nextState.toString
       else "null"
 
     val nextStateOfBacktrack: String =
       if (backtracked)
-        "(backtracked to " + node.transitionInfo.nextState.toString + ")\\n"
+        "(backtracked to " + nodeInfo.node.transitionInfo.nextState.toString + ")\\n"
       else ""
 
     val label: String =
