@@ -291,8 +291,8 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
     val selfTransCounter: String = node.selfTransCounter.toString
 
     val nextState: String =
-      if (node.transitionInfo.nextState != null)
-        node.transitionInfo.nextState.toString
+      if (node.transitionInfo.nextStateNextIf != null)
+        node.transitionInfo.nextStateNextIf.nextState.toString
       else "null"
 
     val label: String =

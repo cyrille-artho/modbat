@@ -28,12 +28,9 @@ class Transition(var origin: State,
                  val action: Action,
                  remember: Boolean = true) {
 
-  // TODO: the result of the nextIf with the next state -Rui
+  // TODO: NextStateNextIf records the result of the nextIf with the next state -Rui
   case class NextStateNextIf(nextState: State, nextIf: Boolean)
-  def getNextStateNextIf(nextState: State, nextIf: Boolean): NextStateNextIf =
-    NextStateNextIf(nextState, nextIf)
   var nextStateNextIf: NextStateNextIf = _
-  var nextState: State = _ // TODO: record next state -Rui
 
   val nonDetExcConv = ListBuffer[NextStateOnException]()
   val nextStatePredConv = ListBuffer[NextStatePredicate]()
@@ -112,4 +109,7 @@ class Transition(var origin: State,
   def launchesAndChoices: List[SourceInfo.InternalAction] = {
     SourceInfo.launchAndChoiceInfo(action)
   }
+  // TODO: get the next state with the result of the nextIf -Rui
+  def getNextStateNextIf(nextState: State, nextIf: Boolean): NextStateNextIf =
+    NextStateNextIf(nextState, nextIf)
 }
