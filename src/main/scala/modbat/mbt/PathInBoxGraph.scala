@@ -108,7 +108,8 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
         : Boolean = n.node.transitionInfo.transitionQuality == TransitionQuality.fail
 
       val nextStateOfBacktrack: String =
-        if (backtracked) n.node.transitionInfo.nextState.toString
+        if (backtracked)
+          n.node.transitionInfo.nextStateNextIf.nextState.toString
         else ""
 
       // edge style
@@ -168,7 +169,8 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
     val failed
       : Boolean = nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.fail
     val nextStateOfBacktrack: String =
-      if (backtracked) nodeInfo.node.transitionInfo.nextState.toString
+      if (backtracked)
+        nodeInfo.node.transitionInfo.nextStateNextIf.nextState.toString
       else ""
 
     val edgeStyle: String =
@@ -247,13 +249,13 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
 
     // next state
     val nextState: String =
-      if (nodeInfo.node.transitionInfo.nextState != null)
-        nodeInfo.node.transitionInfo.nextState.toString
+      if (nodeInfo.node.transitionInfo.nextStateNextIf != null)
+        nodeInfo.node.transitionInfo.nextStateNextIf.nextState.toString
       else "null"
 
     val nextStateOfBacktrack: String =
       if (backtracked)
-        "(backtracked to " + nodeInfo.node.transitionInfo.nextState.toString + ")\\n"
+        "(backtracked to " + nodeInfo.node.transitionInfo.nextStateNextIf.nextState.toString + ")\\n"
       else ""
 
     val label: String =
