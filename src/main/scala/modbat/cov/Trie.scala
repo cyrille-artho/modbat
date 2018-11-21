@@ -2,7 +2,7 @@ package modbat.cov
 
 import modbat.dsl.{State, Transition}
 import modbat.log.Log
-import modbat.mbt.PathInfo
+import modbat.mbt.{PathInfo, TransitionQuality}
 import modbat.mbt.TransitionQuality.Quality
 import modbat.trace.RecordedChoice
 
@@ -21,8 +21,16 @@ class Trie {
 
     for (p <- pathInfo) {
       // check and get node in trie
+
+      // todo: create a nodeKey and check if the node exist
+      /*      val nodeKey
+        : String = p.transition.idx.toString + p.transitionQuality.toString
+      var node: TrieNode =
+        currentNode.children.getOrElse(nodeKey, null)*/
       var node: TrieNode =
         currentNode.children.getOrElse(p.transition.idx, null)
+
+      Log.debug("---*print debug*---node:" + node)
 
       // check if the new transition is a self loop in the path
       //TODO: currentTransition could be null
@@ -38,6 +46,8 @@ class Trie {
 
         // new node
         node = TrieNode()
+        Log.debug("---*print debug*---quality:" + p.transitionQuality)
+        node.qualityBuffer += p.transitionQuality // todo: add transition quality to buffer
         node.currentTransition = p.transition
         node.modelInfo = ModelInfo(p.modelName, p.modelID)
         node.transitionInfo = TransitionInfo(p.transition.origin,
@@ -47,10 +57,30 @@ class Trie {
                                              p.transitionQuality,
                                              p.transition.nextStateNextIf,
                                              choicesMap)
+        // todo: create a nodeKey and check if the node exist
+        /*        val nodeKey
+          : String = p.transition.idx.toString + p.transitionQuality.toString
+        currentNode.children.put(nodeKey, node)*/
         currentNode.children.put(node.transitionInfo.transitionID, node)
         currentNode = node // next node
       } else if (node != null && node.transitionInfo.transitionID == p.transition.idx) { // existing node situation
         // update transition counter
+        Log.debug(
+          "---*print debug*---node.transitionInfo:" + node.transitionInfo.toString)
+        Log.debug("---*print debug*---p.transition.idx:" + p.transition.idx)
+        Log.debug(
+          "---*print debug*---recorded transition Q:" + node.transitionInfo.transitionQuality)
+        Log.debug("---*print debug*---new transition Q:" + p.transitionQuality)
+        node.qualityBuffer += p.transitionQuality // todo: add transition quality to buffer
+        Log.debug(
+          "---*print debug*---quality buffer:" + node.qualityBuffer.mkString(
+            ", "))
+        Log.debug(
+          "--*print debug*---all same quality:" + node.qualityBuffer.toList
+            .forall(_ == node.qualityBuffer.toList.head))
+        Log.debug(
+          "--------------------------------------------------------------")
+
         node.transitionInfo.transCounter = node.transitionInfo.transCounter + 1
 
         if (p.transition.recordedChoices != null && p.transition.recordedChoices.nonEmpty) {
@@ -97,7 +127,7 @@ class Trie {
     * @param root The TrieNode starting from root node
     * @return Returns the number of paths
     */
-  def numOfPaths(root: TrieNode): Int = {
+  /*  def numOfPaths(root: TrieNode): Int = {
     var result = 0
 
     if (root.isLeaf) result += 1
@@ -106,6 +136,18 @@ class Trie {
       result += numOfPaths(node)
     }
     result
+  }*/
+
+  def numOfPaths(root: TrieNode): Int = {
+    var leave = 0
+
+    if (root == null) return 0
+    if (root.isLeaf) return 1
+    for (t <- root.children.keySet) {
+      val node = root.children.getOrElse(t, sys.error(s"unexpected key: $t"))
+      leave += numOfPaths(node)
+    }
+    leave
   }
 }
 
@@ -113,6 +155,8 @@ class Trie {
   * and next node in the trie.
   */
 case class TrieNode() {
+  var qualityBuffer: ListBuffer[TransitionQuality.Quality] =
+    new ListBuffer[TransitionQuality.Quality] //todo: transition quality buffer
   var children
     : HashMap[Int, TrieNode] = HashMap.empty[Int, TrieNode] // children store the transitions in string and the next nodes
   var isLeaf: Boolean = false
@@ -156,7 +200,8 @@ case class TransitionInfo(
     nextStateNextIf: Transition#NextStateNextIf,
     transitionChoicesMap: Map[List[RecordedChoice], Int]) {
   override def toString: String =
-    s" trans Origin: $transOrigin, trans Dest: $transDest, transitionID: $transitionID, " +
+    s" trans: $transOrigin=>$transDest, " +
+      s"trans Origin: $transOrigin, trans Dest: $transDest, transitionID: $transitionID, " +
       s"trans counter: $transCounter, transition quality: $transitionQuality, " +
       s"nextIf: $nextStateNextIf, " +
       s"trans choices map: $transitionChoicesMap."
