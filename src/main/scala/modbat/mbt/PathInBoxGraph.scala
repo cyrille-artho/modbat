@@ -1,6 +1,7 @@
 package modbat.mbt
 
 import modbat.cov.{Trie, TrieNode}
+import modbat.log.Log
 
 import scala.collection.mutable.ListBuffer
 
@@ -176,15 +177,17 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
     val edgeStyle: String =
       if (root.isLeaf && backtracked)
         "style=dotted, color=red,"
-      else if (root.isLeaf && failed && choiceOfMaybe)
+      else if (root.isLeaf && ((failed && choiceOfMaybe) || failed))
         "color=blue,"
       else ""
 
-    if (root.isLeaf)
+    if (root.isLeaf) {
+      //Log.debug("failed: " + failed + ", choice of maybe: " + choiceOfMaybe + ", edgeStyle: " + edgeStyle)
       out.println(
         currentNodeID + "->" + (if (backtracked) nextStateOfBacktrack
                                 else transDest) + createEdgeLabel(nodeInfo,
                                                                   edgeStyle))
+    }
 
     for (choiceKey <- root.children.keySet) {
       val choiceNode = root.children(choiceKey)

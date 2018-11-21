@@ -214,11 +214,15 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
                                    choiceOfMaybe: Boolean = false): Unit = {
 
     val transID: String = nodeInfo.node.transitionInfo.transitionID.toString
+    val backtracked
+      : Boolean = nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.backtrack
+    val failed
+      : Boolean = nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.fail
 
     val edgeStyle: String =
-      if (root.isLeaf && nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
+      if (root.isLeaf && backtracked)
         "style=dotted, color=red,"
-      else if (root.isLeaf && nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.fail && choiceOfMaybe)
+      else if (root.isLeaf && ((failed && choiceOfMaybe) || failed))
         "color=blue,"
       else ""
 
