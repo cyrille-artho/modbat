@@ -23,12 +23,12 @@ class Trie {
       // check and get node in trie
 
       // todo: create a nodeKey and check if the node exist
-      /*      val nodeKey
+      val nodeKey
         : String = p.transition.idx.toString + p.transitionQuality.toString
       var node: TrieNode =
-        currentNode.children.getOrElse(nodeKey, null)*/
-      var node: TrieNode =
-        currentNode.children.getOrElse(p.transition.idx, null)
+        currentNode.children.getOrElse(nodeKey, null)
+      /*      var node: TrieNode =
+        currentNode.children.getOrElse(p.transition.idx, null)*/
 
       Log.debug("---*print debug*---node:" + node)
 
@@ -58,10 +58,10 @@ class Trie {
                                              p.transition.nextStateNextIf,
                                              choicesMap)
         // todo: create a nodeKey and check if the node exist
-        /*        val nodeKey
+        val nodeKey
           : String = p.transition.idx.toString + p.transitionQuality.toString
-        currentNode.children.put(nodeKey, node)*/
-        currentNode.children.put(node.transitionInfo.transitionID, node)
+        currentNode.children.put(nodeKey, node)
+        //currentNode.children.put(node.transitionInfo.transitionID, node)
         currentNode = node // next node
       } else if (node != null && node.transitionInfo.transitionID == p.transition.idx) { // existing node situation
         // update transition counter
@@ -156,9 +156,9 @@ class Trie {
   */
 case class TrieNode() {
   var qualityBuffer: ListBuffer[TransitionQuality.Quality] =
-    new ListBuffer[TransitionQuality.Quality] //todo: transition quality buffer
+    new ListBuffer[TransitionQuality.Quality] //todo: transition quality buffer, need to clean/remove it later
   var children
-    : HashMap[Int, TrieNode] = HashMap.empty[Int, TrieNode] // children store the transitions in string and the next nodes
+    : HashMap[String, TrieNode] = HashMap.empty[String, TrieNode] // children store the transitions in string and the next nodes
   var isLeaf: Boolean = false
   var selfTransCounter = 1 // this counter counts the number of times for a transition occurring to the same state itself during a test
   var currentTransition
