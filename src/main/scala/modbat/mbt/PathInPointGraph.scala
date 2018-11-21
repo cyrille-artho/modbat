@@ -40,7 +40,8 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
 
     // initial node is "none"
     val graphNoneNode: String = "None"
-    out.println(graphNoneNode + " [shape=none, width=0.1, height=0.1]")
+    out.println(
+      graphNoneNode + " [shape=none, style=invis, width=0.1, height=0.1]")
     val graphRootNode: Int = 0
     out.println(graphNoneNode + "->" + graphRootNode.toString)
     // source level node on the top
