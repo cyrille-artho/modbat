@@ -11,7 +11,6 @@ import scala.collection.mutable.{HashMap, ListBuffer, Map}
 /** Trie stores the path information for the path coverage. */
 class Trie {
   val root: TrieNode = TrieNode()
-  var pathIDx: Int = 1
 
   /** Insert recorded path information into trie
     *
@@ -53,7 +52,6 @@ class Trie {
         // todo: debug
         Log.debug(
           "---* print debug *---updated selfTransCounter in same transition:" + currentNode.selfTransRepeatCounter + ", for " + currentNode.transitionInfo.transOrigin + "=>" + currentNode.transitionInfo.transDest)
-        //Log.debug("---* print debug *---pathIDx:" + pathIDx)
 
         // todo: update transition stack
         val updatedCounter: Int = currentNode.selfTransRepeatStack.last + 1
@@ -94,8 +92,7 @@ class Trie {
             .mkString(", "))
         Log.debug(
           "---*print debug*--------------------------------------------------------------------------------------")
-        //Log.debug("---*print debug*---quality:" + p.transitionQuality)
-        //node.qualityBuffer += p.transitionQuality // todo: add transition quality to buffer
+
         node.currentTransition = p.transition
         node.modelInfo = ModelInfo(p.modelName, p.modelID)
         node.transitionInfo = TransitionInfo(p.transition.origin,
@@ -108,8 +105,9 @@ class Trie {
         // todo: create a nodeKey and check if the node exist
         val nodeKey
           : String = p.transition.idx.toString + p.transitionQuality.toString
+
         currentNode.children.put(nodeKey, node)
-        //currentNode.children.put(node.transitionInfo.transitionID, node)
+
         currentNode = node // next node
       } else if (node != null && node.transitionInfo.transitionID == p.transition.idx) { // existing node situation
 
@@ -151,7 +149,6 @@ class Trie {
     }
 
     currentNode.isLeaf = true
-    pathIDx += 1 // increase path idx
   }
 
   /** Display tire
