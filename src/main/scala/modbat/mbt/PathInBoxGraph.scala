@@ -286,14 +286,6 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
     val selfTransRepeatExecuteTotalTimes: String =
       nodeInfo.selfTransRepeatExecuteTotalTimes
     val selfTransRepeatExecuteList: String = nodeInfo.selfTransRepeatExecuteList
-    /*    val selfTransExecuteTotalTimes: String =
-      if (nodeInfo.node.selfTransRepeat)
-        nodeInfo.node.selfTransRepeatStack.toList.init.sum.toString
-      else "0"
-    val selfTransExecuteList: String =
-      if (nodeInfo.node.selfTransRepeat)
-        nodeInfo.node.selfTransRepeatStack.toList.init.mkString(";")
-      else "null"*/
 
     val backtracked
       : Boolean = nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.backtrack
