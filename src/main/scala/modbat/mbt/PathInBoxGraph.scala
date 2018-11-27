@@ -16,7 +16,10 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
   require(shape == "Box", "the input of path visualizer must be Box")
 
   // case class NodeInfo is used for record the node information used for "box" output
-  case class boxNodeInfo(node: TrieNode, var transCounter: String)
+  case class boxNodeInfo(node: TrieNode,
+                         var transCounter: String,
+                         var selfTransRepeatExecuteTotalTimes: String,
+                         var selfTransRepeatExecuteList: String)
 
   override def dotify() {
     out.println("digraph model {")
@@ -55,6 +58,25 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
             n.transCounter = n.transCounter.concat(
               ";" + node.transitionInfo.transCounter.toString)
 
+            // get self transition repeatedly executed in total times
+            val selfTransExecuteTotalTimes: String =
+              if (node.selfTransRepeat)
+                node.selfTransRepeatStack.toList.init.sum.toString
+              else "0"
+            // merge the value of self transition repeatedly executed in total times
+            n.selfTransRepeatExecuteTotalTimes =
+              n.selfTransRepeatExecuteTotalTimes.concat(
+                ";" + selfTransExecuteTotalTimes)
+
+            // get self transition repeatedly executed list
+            val selfTransExecuteList: String =
+              if (node.selfTransRepeat)
+                node.selfTransRepeatStack.toList.init.mkString(",")
+              else "null"
+            // merge the self transition repeatedly executed list
+            n.selfTransRepeatExecuteList =
+              n.selfTransRepeatExecuteList.concat(";" + selfTransExecuteList)
+
             // merge the counter in map of choices
             for (key <- node.transitionInfo.transitionChoicesMap.keySet) {
               if (n.node.transitionInfo.transitionChoicesMap.contains(key)) {
@@ -70,8 +92,22 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
       }
 
       if (!sameTransition) {
+        // get self transition repeatedly executed in total times
+        val selfTransExecuteTotalTimes: String =
+          if (node.selfTransRepeat)
+            node.selfTransRepeatStack.toList.init.sum.toString
+          else "0"
+        // get self transition repeatedly executed list
+        val selfTransExecuteList: String =
+          if (node.selfTransRepeat)
+            node.selfTransRepeatStack.toList.init.mkString(",")
+          else "null"
+
         val newNodeInfo =
-          boxNodeInfo(node, node.transitionInfo.transCounter.toString)
+          boxNodeInfo(node,
+                      node.transitionInfo.transCounter.toString,
+                      selfTransExecuteTotalTimes,
+                      selfTransExecuteList)
         nodeRecorder += newNodeInfo
       }
 
@@ -246,7 +282,18 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
     val transName: String = transOrigin + " => " + transDest
     val transID: String = nodeInfo.node.transitionInfo.transitionID.toString
     val transCounter: String = nodeInfo.transCounter
-    val selfTransCounter: String = nodeInfo.node.selfTransCounter.toString
+    val selfTransCounter: String = nodeInfo.node.selfTransRepeatCounter.toString
+    val selfTransRepeatExecuteTotalTimes: String =
+      nodeInfo.selfTransRepeatExecuteTotalTimes
+    val selfTransRepeatExecuteList: String = nodeInfo.selfTransRepeatExecuteList
+    /*    val selfTransExecuteTotalTimes: String =
+      if (nodeInfo.node.selfTransRepeat)
+        nodeInfo.node.selfTransRepeatStack.toList.init.sum.toString
+      else "0"
+    val selfTransExecuteList: String =
+      if (nodeInfo.node.selfTransRepeat)
+        nodeInfo.node.selfTransRepeatStack.toList.init.mkString(";")
+      else "null"*/
 
     val backtracked
       : Boolean = nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.backtrack
@@ -270,7 +317,9 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
         "T-ID:" + transID + "\\n" +
         "T-Counter:" + transCounter + "\\n" +
         "next state:" + nextState + "\\n" +
-        "(T-Self:" + selfTransCounter + ")" + "\"];"
+        "selfTransExecuteTotalTimes:" + selfTransRepeatExecuteTotalTimes + "\\n" +
+        "selfTransExecuteList:" + selfTransRepeatExecuteList + "\\n" +
+        /*"(T-Self:" + selfTransCounter + ")" +*/ "\"];"
 
     label
   }
