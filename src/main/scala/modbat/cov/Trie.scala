@@ -44,14 +44,14 @@ class Trie {
       // check if the new transition is a self loop in the path
       //TODO: currentTransition could be null
       if (currentNode.currentTransition != null && currentNode.currentTransition.idx == p.transition.idx) {
-        currentNode.selfTransRepeatCounter += 1
+
+        //todo: selfTransMap counter
+        currentNode.transExecuteCounter += 1
+        Log.debug(
+          "****** print debug ****** currentNode update selfTransExecuteCounter:" + currentNode.transExecuteCounter)
 
         currentNode.selfTransRepeat = true
         selfTrans = true
-
-        // todo: debug
-        Log.debug(
-          "---* print debug *---updated selfTransCounter in same transition:" + currentNode.selfTransRepeatCounter + ", for " + currentNode.transitionInfo.transOrigin + "=>" + currentNode.transitionInfo.transDest)
 
         // todo: update transition stack
         val updatedCounter: Int = currentNode.selfTransRepeatStack.last + 1
@@ -80,18 +80,35 @@ class Trie {
         if (p.transition.recordedChoices != null && p.transition.recordedChoices.nonEmpty)
           choicesMap += (p.transition.recordedChoices -> 1)
 
+        // todo: selfTransMap:
+        if (currentNode.transExecuteCounter != 0) {
+          if (currentNode.transExecuteMap.contains(
+                currentNode.transExecuteCounter))
+            currentNode.transExecuteMap(currentNode.transExecuteCounter) += 1
+          else
+            currentNode.transExecuteMap += (currentNode.transExecuteCounter -> 1)
+          currentNode.transExecuteCounter = 0
+        }
+
         // new node
         node = TrieNode()
 
         // toDO: add transition stack
-        Log.debug(
-          "---*print debug*---child node selfTransCounter when node=null:" + node.selfTransRepeatCounter)
         node.selfTransRepeatStack += 1
         Log.debug(
           "---*print debug*---child node selfTransStack when node=null:" + node.selfTransRepeatStack
             .mkString(", "))
         Log.debug(
           "---*print debug*--------------------------------------------------------------------------------------")
+
+        //todo: selfTransMap counter
+        node.transExecuteCounter += 1
+
+        Log.debug(
+          "****** print debug ****** currentNode selfTransRepeatMap when node=null:" + currentNode.transExecuteMap
+            .mkString(", "))
+        Log.debug(
+          "****** print debug ****** child Node selfTransExecuteCounter when node=null:" + node.transExecuteCounter)
 
         node.currentTransition = p.transition
         node.modelInfo = ModelInfo(p.modelName, p.modelID)
@@ -123,9 +140,25 @@ class Trie {
           selfTrans = false
         }
 
-        // toDO: add transition stack
+        // todo: selfTransMap:
+        if (currentNode.transExecuteCounter != 0) {
+          if (currentNode.transExecuteMap.contains(
+                currentNode.transExecuteCounter))
+            currentNode.transExecuteMap(currentNode.transExecuteCounter) += 1
+          else
+            currentNode.transExecuteMap += (currentNode.transExecuteCounter -> 1)
+          currentNode.transExecuteCounter = 0
+        }
+        //todo: selfTransMap counter
+        node.transExecuteCounter += 1
+
         Log.debug(
-          "---*print debug*---child node selfTransCounter when node!=null:" + node.selfTransRepeatCounter)
+          "****** print debug ****** currentNode selfTransRepeatMap when node!=null:" + currentNode.transExecuteMap
+            .mkString(", "))
+        Log.debug(
+          "****** print debug ****** child Node selfTransExecuteCounter when node!=null:" + node.transExecuteCounter)
+
+        // toDO: add transition stack
         //node.selfTransStack += node.selfTransCounter
         Log.debug(
           "---*print debug*---child node selfTransStack when node!=null:" + node.selfTransRepeatStack
@@ -147,7 +180,13 @@ class Trie {
         currentNode = node // next node
       }
     }
-
+    if (currentNode.transExecuteCounter != 0) {
+      if (currentNode.transExecuteMap.contains(currentNode.transExecuteCounter))
+        currentNode.transExecuteMap(currentNode.transExecuteCounter) += 1
+      else
+        currentNode.transExecuteMap += (currentNode.transExecuteCounter -> 1)
+      currentNode.transExecuteCounter = 0
+    }
     currentNode.isLeaf = true
   }
 
@@ -163,12 +202,11 @@ class Trie {
       val node: TrieNode =
         root.children.getOrElse(t, sys.error(s"unexpected key: $t"))
       if (level == 0) {
-        Log.debug("[" +
-          node.modelInfo.toString + node.transitionInfo.toString + " (" + "self:" + node.selfTransRepeatCounter + ") ]")
+        Log.debug(
+          "[" + node.modelInfo.toString + node.transitionInfo.toString + "]")
       } else
         Log.debug(
-          "-" * level + "[" + node.modelInfo.toString + node.transitionInfo.toString +
-            " (" + "self:" + node.selfTransRepeatCounter + ") ]")
+          "-" * level + "[" + node.modelInfo.toString + node.transitionInfo.toString + "]")
       display(node, level + 1)
     }
   }
@@ -211,11 +249,15 @@ case class TrieNode() {
   var children
     : HashMap[String, TrieNode] = HashMap.empty[String, TrieNode] // children store the transitions in string and the next nodes
   var isLeaf: Boolean = false
-  var selfTransRepeatCounter = 1 // this counter counts the number of times for a transition occurring to the same state itself during a test
-  // TODO: stack to record selfTransCounter for each transition
+
+  // TODO: stack to record selfTransCounter for each transition, the stack implementation and boolean var can be deleted later
   var selfTransRepeatStack: ListBuffer[Int] = new ListBuffer[Int]
   var selfTransRepeat = false
-  //var selfTransMap: Map[Int, Int] = Map[Int, Int]()
+
+  // the key of the map is the execution times (self-loop times) of the self transition
+  // the value of the map is the times for the specific execution times (self-loop times) that happened
+  var transExecuteMap: Map[Int, Int] = Map[Int, Int]()
+  var transExecuteCounter: Int = 0
 
   var currentTransition
     : Transition = null // previousTransition stores the transition leading to the next state

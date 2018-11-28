@@ -282,7 +282,6 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
     val transName: String = transOrigin + " => " + transDest
     val transID: String = nodeInfo.node.transitionInfo.transitionID.toString
     val transCounter: String = nodeInfo.transCounter
-    val selfTransCounter: String = nodeInfo.node.selfTransRepeatCounter.toString
     val selfTransRepeatExecuteTotalTimes: String =
       nodeInfo.selfTransRepeatExecuteTotalTimes
     val selfTransRepeatExecuteList: String = nodeInfo.selfTransRepeatExecuteList
@@ -310,8 +309,7 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
         "T-Counter:" + transCounter + "\\n" +
         "next state:" + nextState + "\\n" +
         "selfTransExecuteTotalTimes:" + selfTransRepeatExecuteTotalTimes + "\\n" +
-        "selfTransExecuteList:" + selfTransRepeatExecuteList + "\\n" +
-        /*"(T-Self:" + selfTransCounter + ")" +*/ "\"];"
+        "selfTransExecuteList:" + selfTransRepeatExecuteList + "\\n" + "\"];"
 
     label
   }
