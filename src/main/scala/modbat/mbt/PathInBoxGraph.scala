@@ -19,7 +19,8 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
   case class boxNodeInfo(node: TrieNode,
                          var transCounter: String,
                          var selfTransRepeatExecuteTotalTimes: String,
-                         var selfTransRepeatExecuteList: String)
+                         var selfTransRepeatExecuteList: String,
+                         var transExecutedRecords: String)
 
   override def dotify() {
     out.println("digraph model {")
@@ -77,6 +78,14 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
             n.selfTransRepeatExecuteList =
               n.selfTransRepeatExecuteList.concat(";" + selfTransExecuteList)
 
+            //get executed transitions' number records
+            val transExecutedRecords: String = node.transExecutedRecords.toList
+              .map { case (int1, int2) => s"$int1:$int2" }
+              .mkString(",")
+            // merge the executed transitions's number records:
+            n.transExecutedRecords =
+              n.transExecutedRecords.concat(";" + transExecutedRecords)
+
             // merge the counter in map of choices
             for (key <- node.transitionInfo.transitionChoicesMap.keySet) {
               if (n.node.transitionInfo.transitionChoicesMap.contains(key)) {
@@ -103,11 +112,17 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
             node.selfTransRepeatStack.toList.init.mkString(",")
           else "null"
 
+        //get executed transitions' number records
+        val transExecutedRecords: String = node.transExecutedRecords.toList
+          .map { case (int1, int2) => s"$int1:$int2" }
+          .mkString(",")
+
         val newNodeInfo =
           boxNodeInfo(node,
                       node.transitionInfo.transCounter.toString,
                       selfTransExecuteTotalTimes,
-                      selfTransExecuteList)
+                      selfTransExecuteList,
+                      transExecutedRecords)
         nodeRecorder += newNodeInfo
       }
 
@@ -286,6 +301,8 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
       nodeInfo.selfTransRepeatExecuteTotalTimes
     val selfTransRepeatExecuteList: String = nodeInfo.selfTransRepeatExecuteList
 
+    val transExecutedRecords: String = nodeInfo.transExecutedRecords
+
     val backtracked
       : Boolean = nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.backtrack
 
@@ -309,7 +326,8 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
         "T-Counter:" + transCounter + "\\n" +
         "next state:" + nextState + "\\n" +
         "selfTransExecuteTotalTimes:" + selfTransRepeatExecuteTotalTimes + "\\n" +
-        "selfTransExecuteList:" + selfTransRepeatExecuteList + "\\n" + "\"];"
+        "selfTransExecuteList:" + selfTransRepeatExecuteList + "\\n" +
+        "T-ExecutedRecords:" + transExecutedRecords + "\\n" + "\"];"
 
     label
   }
