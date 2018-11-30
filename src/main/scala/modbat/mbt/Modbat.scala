@@ -547,14 +547,10 @@ object Modbat {
       storePathInfo(result, successor, backtracked, failed)
       if (failed) return result
 
-      Log.debug(
-        "**************** executed the current transition *************")
-
       totalW = totalWeight(successors)
 
     }
 
-    Log.debug("******************* out side while loop *****************")
     // TODO: insert all path information of the current test in trie - Rui
     insertPathInfoInTrie()
 
@@ -622,15 +618,10 @@ object Modbat {
         if (result._2.nextState != null) {
           trans.nextStateNextIf =
             trans.getNextStateNextIf(result._2.nextState.dest, true)
-          Log.debug(
-            "*******************check the next state:" + result._2.nextState
-              .toString())
         } else {
           trans.nextStateNextIf =
             trans.getNextStateNextIf(result._2.transition.dest, false)
         }
-        Log.debug(
-          "*******************check the current trans:" + trans.toString())
         pathInfoRecorder += new PathInfo(model.className, model.mIdx, trans)
       }
     }
