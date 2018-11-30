@@ -46,9 +46,9 @@ class Trie {
       if (currentNode.currentTransition != null && currentNode.currentTransition.idx == p.transition.idx) {
 
         //todo: selfTransMap counter
-        currentNode.transExecuteCounter += 1
+        currentNode.transExecutedCounter += 1
         Log.debug(
-          "****** print debug ****** currentNode update selfTransExecuteCounter:" + currentNode.transExecuteCounter)
+          "****** print debug ****** currentNode update selfTransExecuteCounter:" + currentNode.transExecutedCounter)
 
         currentNode.selfTransRepeat = true
         selfTrans = true
@@ -81,13 +81,13 @@ class Trie {
           choicesMap += (p.transition.recordedChoices -> 1)
 
         // todo: selfTransMap:
-        if (currentNode.transExecuteCounter != 0) {
-          if (currentNode.transExecuteMap.contains(
-                currentNode.transExecuteCounter))
-            currentNode.transExecuteMap(currentNode.transExecuteCounter) += 1
+        if (currentNode.transExecutedCounter != 0) {
+          if (currentNode.transExecutedRecords.contains(
+                currentNode.transExecutedCounter))
+            currentNode.transExecutedRecords(currentNode.transExecutedCounter) += 1
           else
-            currentNode.transExecuteMap += (currentNode.transExecuteCounter -> 1)
-          currentNode.transExecuteCounter = 0
+            currentNode.transExecutedRecords += (currentNode.transExecutedCounter -> 1)
+          currentNode.transExecutedCounter = 0
         }
 
         // new node
@@ -102,13 +102,13 @@ class Trie {
           "---*print debug*--------------------------------------------------------------------------------------")
 
         //todo: selfTransMap counter
-        node.transExecuteCounter += 1
+        node.transExecutedCounter += 1
 
         Log.debug(
-          "****** print debug ****** currentNode selfTransRepeatMap when node=null:" + currentNode.transExecuteMap
+          "****** print debug ****** currentNode selfTransRepeatMap when node=null:" + currentNode.transExecutedRecords
             .mkString(", "))
         Log.debug(
-          "****** print debug ****** child Node selfTransExecuteCounter when node=null:" + node.transExecuteCounter)
+          "****** print debug ****** child Node selfTransExecuteCounter when node=null:" + node.transExecutedCounter)
 
         node.currentTransition = p.transition
         node.modelInfo = ModelInfo(p.modelName, p.modelID)
@@ -141,22 +141,22 @@ class Trie {
         }
 
         // todo: selfTransMap:
-        if (currentNode.transExecuteCounter != 0) {
-          if (currentNode.transExecuteMap.contains(
-                currentNode.transExecuteCounter))
-            currentNode.transExecuteMap(currentNode.transExecuteCounter) += 1
+        if (currentNode.transExecutedCounter != 0) {
+          if (currentNode.transExecutedRecords.contains(
+                currentNode.transExecutedCounter))
+            currentNode.transExecutedRecords(currentNode.transExecutedCounter) += 1
           else
-            currentNode.transExecuteMap += (currentNode.transExecuteCounter -> 1)
-          currentNode.transExecuteCounter = 0
+            currentNode.transExecutedRecords += (currentNode.transExecutedCounter -> 1)
+          currentNode.transExecutedCounter = 0
         }
         //todo: selfTransMap counter
-        node.transExecuteCounter += 1
+        node.transExecutedCounter += 1
 
         Log.debug(
-          "****** print debug ****** currentNode selfTransRepeatMap when node!=null:" + currentNode.transExecuteMap
+          "****** print debug ****** currentNode selfTransRepeatMap when node!=null:" + currentNode.transExecutedRecords
             .mkString(", "))
         Log.debug(
-          "****** print debug ****** child Node selfTransExecuteCounter when node!=null:" + node.transExecuteCounter)
+          "****** print debug ****** child Node selfTransExecuteCounter when node!=null:" + node.transExecutedCounter)
 
         // toDO: add transition stack
         //node.selfTransStack += node.selfTransCounter
@@ -180,12 +180,13 @@ class Trie {
         currentNode = node // next node
       }
     }
-    if (currentNode.transExecuteCounter != 0) {
-      if (currentNode.transExecuteMap.contains(currentNode.transExecuteCounter))
-        currentNode.transExecuteMap(currentNode.transExecuteCounter) += 1
+    if (currentNode.transExecutedCounter != 0) {
+      if (currentNode.transExecutedRecords.contains(
+            currentNode.transExecutedCounter))
+        currentNode.transExecutedRecords(currentNode.transExecutedCounter) += 1
       else
-        currentNode.transExecuteMap += (currentNode.transExecuteCounter -> 1)
-      currentNode.transExecuteCounter = 0
+        currentNode.transExecutedRecords += (currentNode.transExecutedCounter -> 1)
+      currentNode.transExecutedCounter = 0
     }
     currentNode.isLeaf = true
   }
@@ -256,8 +257,8 @@ case class TrieNode() {
 
   // the key of the map is the execution times (self-loop times) of the self transition
   // the value of the map is the times for the specific execution times (self-loop times) that happened
-  var transExecuteMap: Map[Int, Int] = Map[Int, Int]()
-  var transExecuteCounter: Int = 0
+  var transExecutedRecords: Map[Int, Int] = Map[Int, Int]()
+  var transExecutedCounter: Int = 0
 
   var currentTransition
     : Transition = null // previousTransition stores the transition leading to the next state
