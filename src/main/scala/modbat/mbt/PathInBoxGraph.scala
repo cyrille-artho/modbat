@@ -18,8 +18,6 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
   // case class NodeInfo is used for record the node information used for "box" output
   case class boxNodeInfo(node: TrieNode,
                          var transCounter: String,
-                         var selfTransRepeatExecuteTotalTimes: String,
-                         var selfTransRepeatExecuteList: String,
                          var transExecutedRecords: String)
 
   override def dotify() {
@@ -59,25 +57,6 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
             n.transCounter = n.transCounter.concat(
               ";" + node.transitionInfo.transCounter.toString)
 
-            // get self transition repeatedly executed in total times
-            val selfTransExecuteTotalTimes: String =
-              if (node.selfTransRepeat)
-                node.selfTransRepeatStack.toList.init.sum.toString
-              else "0"
-            // merge the value of self transition repeatedly executed in total times
-            n.selfTransRepeatExecuteTotalTimes =
-              n.selfTransRepeatExecuteTotalTimes.concat(
-                ";" + selfTransExecuteTotalTimes)
-
-            // get self transition repeatedly executed list
-            val selfTransExecuteList: String =
-              if (node.selfTransRepeat)
-                node.selfTransRepeatStack.toList.init.mkString(",")
-              else "null"
-            // merge the self transition repeatedly executed list
-            n.selfTransRepeatExecuteList =
-              n.selfTransRepeatExecuteList.concat(";" + selfTransExecuteList)
-
             //get executed transitions' number records
             val transExecutedRecords: String = node.transExecutedRecords.toList
               .map { case (int1, int2) => s"$int1:$int2" }
@@ -101,16 +80,6 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
       }
 
       if (!sameTransition) {
-        // get self transition repeatedly executed in total times
-        val selfTransExecuteTotalTimes: String =
-          if (node.selfTransRepeat)
-            node.selfTransRepeatStack.toList.init.sum.toString
-          else "0"
-        // get self transition repeatedly executed list
-        val selfTransExecuteList: String =
-          if (node.selfTransRepeat)
-            node.selfTransRepeatStack.toList.init.mkString(",")
-          else "null"
 
         //get executed transitions' number records
         val transExecutedRecords: String = node.transExecutedRecords.toList
@@ -120,8 +89,6 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
         val newNodeInfo =
           boxNodeInfo(node,
                       node.transitionInfo.transCounter.toString,
-                      selfTransExecuteTotalTimes,
-                      selfTransExecuteList,
                       transExecutedRecords)
         nodeRecorder += newNodeInfo
       }
@@ -297,9 +264,6 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
     val transName: String = transOrigin + " => " + transDest
     val transID: String = nodeInfo.node.transitionInfo.transitionID.toString
     val transCounter: String = nodeInfo.transCounter
-    val selfTransRepeatExecuteTotalTimes: String =
-      nodeInfo.selfTransRepeatExecuteTotalTimes
-    val selfTransRepeatExecuteList: String = nodeInfo.selfTransRepeatExecuteList
 
     val transExecutedRecords: String = nodeInfo.transExecutedRecords
 
@@ -325,8 +289,6 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
         "T-ID:" + transID + "\\n" +
         "T-Counter:" + transCounter + "\\n" +
         "next state:" + nextState + "\\n" +
-        "selfTransExecuteTotalTimes:" + selfTransRepeatExecuteTotalTimes + "\\n" +
-        "selfTransExecuteList:" + selfTransRepeatExecuteList + "\\n" +
         "T-ExecutedRecords:" + transExecutedRecords + "\\n" + "\"];"
 
     label

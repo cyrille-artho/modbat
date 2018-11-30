@@ -18,177 +18,109 @@ class Trie {
     */
   def insert(pathInfo: ListBuffer[PathInfo]): Unit = {
     var currentNode: TrieNode = root
-    var selfTrans: Boolean = false
 
     for (p <- pathInfo) {
-      // check and get node in trie
 
-      // todo: create a nodeKey and check if the node exist
+      // Create a nodeKey and check if the node exist.
       val nodeKey
         : String = p.transition.idx.toString + p.transitionQuality.toString
-      var node: TrieNode =
+      var childNode: TrieNode =
         currentNode.children.getOrElse(nodeKey, null)
 
-      // todo: debug
-      Log.debug(
-        "---*print debug*--------------------------------------------------------------------------------------")
-      val currentTransitionID =
-        if (currentNode.currentTransition != null)
-          currentNode.currentTransition.idx.toString
-        else ""
-      Log.debug(
-        "---*print debug*---current node has transition:" + currentNode.currentTransition +
-          ", has tID:" + currentTransitionID + ", nodekey:" + nodeKey)
-      Log.debug("---*print debug*---child node:" + node)
-
-      // check if the new transition is a self loop in the path
-      //TODO: currentTransition could be null
+      // Check if the new transition is a self loop in the path.
       if (currentNode.currentTransition != null && currentNode.currentTransition.idx == p.transition.idx) {
 
-        //todo: selfTransMap counter
+        // Update the counter for this current executed transition of current test case
         currentNode.transExecutedCounter += 1
         Log.debug(
           "****** print debug ****** currentNode update selfTransExecuteCounter:" + currentNode.transExecutedCounter)
 
-        currentNode.selfTransRepeat = true
-        selfTrans = true
+      } else if (childNode == null) { // new node situation
 
-        // todo: update transition stack
-        val updatedCounter: Int = currentNode.selfTransRepeatStack.last + 1
-        currentNode.selfTransRepeatStack.trimEnd(1)
-        currentNode.selfTransRepeatStack.append(updatedCounter)
+        // Update same repetition times happening for this transition during the whole test
+        updateTransSameRepetitionTimes(currentNode)
 
-        // todo: debug
-        Log.debug(
-          "---*print debug*---updated selfTransStack in same transition:" + currentNode.selfTransRepeatStack
-            .mkString(", ") + ", for " + currentNode.transitionInfo.transOrigin + "=>" + currentNode.transitionInfo.transDest)
-
-      } else if (node == null) { // new node situation
-
-        // todo: update selfTransStack
-        if (selfTrans) {
-          currentNode.selfTransRepeatStack += 1
-          Log.debug(
-            "---*print debug*---current node selfTransStack when node=null:" + currentNode.selfTransRepeatStack
-              .mkString(", "))
-          selfTrans = false
-        }
-
-        // record choices into map
+        // Record choices into map
         var choicesMap: Map[List[RecordedChoice], Int] =
           Map[List[RecordedChoice], Int]()
         if (p.transition.recordedChoices != null && p.transition.recordedChoices.nonEmpty)
           choicesMap += (p.transition.recordedChoices -> 1)
 
-        // todo: selfTransMap:
-        if (currentNode.transExecutedCounter != 0) {
-          if (currentNode.transExecutedRecords.contains(
-                currentNode.transExecutedCounter))
-            currentNode.transExecutedRecords(currentNode.transExecutedCounter) += 1
-          else
-            currentNode.transExecutedRecords += (currentNode.transExecutedCounter -> 1)
-          currentNode.transExecutedCounter = 0
-        }
+        // Creat a new node
+        childNode = TrieNode()
 
-        // new node
-        node = TrieNode()
-
-        // toDO: add transition stack
-        node.selfTransRepeatStack += 1
-        Log.debug(
-          "---*print debug*---child node selfTransStack when node=null:" + node.selfTransRepeatStack
-            .mkString(", "))
-        Log.debug(
-          "---*print debug*--------------------------------------------------------------------------------------")
-
-        //todo: selfTransMap counter
-        node.transExecutedCounter += 1
+        // Update the counter for this executed transition of current test case
+        childNode.transExecutedCounter += 1
 
         Log.debug(
           "****** print debug ****** currentNode selfTransRepeatMap when node=null:" + currentNode.transExecutedRecords
             .mkString(", "))
         Log.debug(
-          "****** print debug ****** child Node selfTransExecuteCounter when node=null:" + node.transExecutedCounter)
+          "****** print debug ****** child Node selfTransExecuteCounter when node=null:" + childNode.transExecutedCounter)
 
-        node.currentTransition = p.transition
-        node.modelInfo = ModelInfo(p.modelName, p.modelID)
-        node.transitionInfo = TransitionInfo(p.transition.origin,
-                                             p.transition.dest,
-                                             p.transition.idx,
-                                             1,
-                                             p.transitionQuality,
-                                             p.transition.nextStateNextIf,
-                                             choicesMap)
-        // todo: create a nodeKey and check if the node exist
+        childNode.currentTransition = p.transition
+        childNode.modelInfo = ModelInfo(p.modelName, p.modelID)
+        childNode.transitionInfo = TransitionInfo(p.transition.origin,
+                                                  p.transition.dest,
+                                                  p.transition.idx,
+                                                  1,
+                                                  p.transitionQuality,
+                                                  p.transition.nextStateNextIf,
+                                                  choicesMap)
+        // Create a nodeKey and new child node
         val nodeKey
           : String = p.transition.idx.toString + p.transitionQuality.toString
 
-        currentNode.children.put(nodeKey, node)
+        currentNode.children.put(nodeKey, childNode)
 
-        currentNode = node // next node
-      } else if (node != null && node.transitionInfo.transitionID == p.transition.idx) { // existing node situation
+        currentNode = childNode // next node
+      } else if (childNode != null && childNode.transitionInfo.transitionID == p.transition.idx) { // existing node situation
 
-        Log.debug(
-          "--------------------------------------------------------------")
-        //todo: add a new element to self trans stack starting from 1
+        // Update same repetition times happening for this transition during the whole test
+        updateTransSameRepetitionTimes(currentNode)
 
-        if (selfTrans) {
-          currentNode.selfTransRepeatStack += 1
-          Log.debug(
-            "---*print debug*---current node selfTransStack when node!=null:" + currentNode.selfTransRepeatStack
-              .mkString(", "))
-          selfTrans = false
-        }
-
-        // todo: selfTransMap:
-        if (currentNode.transExecutedCounter != 0) {
-          if (currentNode.transExecutedRecords.contains(
-                currentNode.transExecutedCounter))
-            currentNode.transExecutedRecords(currentNode.transExecutedCounter) += 1
-          else
-            currentNode.transExecutedRecords += (currentNode.transExecutedCounter -> 1)
-          currentNode.transExecutedCounter = 0
-        }
-        //todo: selfTransMap counter
-        node.transExecutedCounter += 1
+        // Update the counter for this executed transition of current test case
+        childNode.transExecutedCounter += 1
 
         Log.debug(
           "****** print debug ****** currentNode selfTransRepeatMap when node!=null:" + currentNode.transExecutedRecords
             .mkString(", "))
         Log.debug(
-          "****** print debug ****** child Node selfTransExecuteCounter when node!=null:" + node.transExecutedCounter)
+          "****** print debug ****** child Node selfTransExecuteCounter when node!=null:" + childNode.transExecutedCounter)
 
-        // toDO: add transition stack
-        //node.selfTransStack += node.selfTransCounter
-        Log.debug(
-          "---*print debug*---child node selfTransStack when node!=null:" + node.selfTransRepeatStack
-            .mkString(", "))
-
-        node.transitionInfo.transCounter = node.transitionInfo.transCounter + 1
+        childNode.transitionInfo.transCounter = childNode.transitionInfo.transCounter + 1
 
         if (p.transition.recordedChoices != null && p.transition.recordedChoices.nonEmpty) {
-          if (node.transitionInfo.transitionChoicesMap.contains(
+          if (childNode.transitionInfo.transitionChoicesMap.contains(
                 p.transition.recordedChoices))
-            node.transitionInfo
+            childNode.transitionInfo
               .transitionChoicesMap(p.transition.recordedChoices) =
-                node.transitionInfo.transitionChoicesMap(
+                childNode.transitionInfo.transitionChoicesMap(
                   p.transition.recordedChoices) + 1
           else
-            node.transitionInfo.transitionChoicesMap += (p.transition.recordedChoices -> 1)
+            childNode.transitionInfo.transitionChoicesMap += (p.transition.recordedChoices -> 1)
         }
 
-        currentNode = node // next node
+        currentNode = childNode // next node
       }
     }
+    // Update same repetition times happening for this transition during the whole test
+    updateTransSameRepetitionTimes(currentNode)
+    // Set this node to leaf
+    currentNode.isLeaf = true
+  }
+
+  private def updateTransSameRepetitionTimes(currentNode: TrieNode): Unit = {
+    // Update same repetition times happening for this transition during the whole test
     if (currentNode.transExecutedCounter != 0) {
       if (currentNode.transExecutedRecords.contains(
             currentNode.transExecutedCounter))
         currentNode.transExecutedRecords(currentNode.transExecutedCounter) += 1
       else
         currentNode.transExecutedRecords += (currentNode.transExecutedCounter -> 1)
+      // Reset the counter for the next text case
       currentNode.transExecutedCounter = 0
     }
-    currentNode.isLeaf = true
   }
 
   /** Display tire
@@ -217,17 +149,6 @@ class Trie {
     * @param root The TrieNode starting from root node
     * @return Returns the number of paths
     */
-  /*  def numOfPaths(root: TrieNode): Int = {
-    var result = 0
-
-    if (root.isLeaf) result += 1
-    for (t <- root.children.keySet) {
-      val node = root.children.getOrElse(t, sys.error(s"unexpected key: $t"))
-      result += numOfPaths(node)
-    }
-    result
-  }*/
-
   def numOfPaths(root: TrieNode): Int = {
     var leave = 0
 
@@ -245,19 +166,18 @@ class Trie {
   * and next node in the trie.
   */
 case class TrieNode() {
-  /* var qualityBuffer: ListBuffer[TransitionQuality.Quality] =
-    new ListBuffer[TransitionQuality.Quality] //todo: transition quality buffer, need to clean/remove it later*/
-  var children
-    : HashMap[String, TrieNode] = HashMap.empty[String, TrieNode] // children store the transitions in string and the next nodes
+
+  // children store the transitions in string and the next nodes
+  var children: HashMap[String, TrieNode] = HashMap.empty[String, TrieNode]
   var isLeaf: Boolean = false
 
-  // TODO: stack to record selfTransCounter for each transition, the stack implementation and boolean var can be deleted later
-  var selfTransRepeatStack: ListBuffer[Int] = new ListBuffer[Int]
-  var selfTransRepeat = false
-
-  // the key of the map is the execution times (self-loop times) of the self transition
-  // the value of the map is the times for the specific execution times (self-loop times) that happened
+  // The key of the map represents how many times a transition can be repeatedly
+  // executed continuously for the current test case, and key = 1 means no repetition happens.
+  // The value of the map represents how many times the same key (same repetition times)
+  // is happened for this transition during the whole test, and if value is 1, then it means
+  //  there is no same repetition times happening for this transition during the whole test
   var transExecutedRecords: Map[Int, Int] = Map[Int, Int]()
+  // This counter counter how many times for this current transition occurs during the current test case
   var transExecutedCounter: Int = 0
 
   var currentTransition

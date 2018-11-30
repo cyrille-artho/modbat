@@ -294,15 +294,6 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
     val transID: String = node.transitionInfo.transitionID.toString
     val transCounter: String = node.transitionInfo.transCounter.toString
 
-    val selfTransRepeatExecuteTotalTimes: String =
-      if (node.selfTransRepeat)
-        node.selfTransRepeatStack.toList.init.sum.toString
-      else "0"
-    val selfTransRepeatExecuteList: String =
-      if (node.selfTransRepeat)
-        node.selfTransRepeatStack.toList.init.mkString(",")
-      else "null"
-
     // executed transitions' number records
     val transExecutedRecords: String = node.transExecutedRecords.toList
       .map { case (int1, int2) => s"$int1:$int2" }
@@ -321,8 +312,6 @@ class PathInPointGraph(trie: Trie, val shape: String) extends PathVisualizer {
         "T-ID:" + transID + "\\n" +
         "T-Counter:" + transCounter + "\\n" +
         "next state:" + nextState + "\\n" +
-        "selfTransRepeatExecuteTotalTimes:" + selfTransRepeatExecuteTotalTimes + "\\n" +
-        "selfTransRepeatExecuteList:" + selfTransRepeatExecuteList + "\\n" +
         "T-ExecutedRecords:" + transExecutedRecords + "\\n" + "\"];"
 
     label
