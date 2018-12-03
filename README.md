@@ -58,13 +58,10 @@ needed to group multiple statements inside a transition function.
 
 ## Basic usage
 
-The examples below assume that Modbat is compiled into build/, so
-the commands below have to be preceded with
+Modbat is run by executing the modbat.jar file which is placed
+in the ./build directory during compilation by default.
 
 	cd build
-
-once.
-
 	scala modbat.jar [OPTIONS] MODELCLASS...
 
 For help, try
@@ -160,7 +157,8 @@ output to a file, use
 
 Example:
 
-	scala modbat.jar -n=1 -s=2455cfedeadbeef \
+	modbat/build$ scala modbat.jar --classpath=modbat-examples.jar \
+    -n=1 -s=2455cfedeadbeef \
 		--no-redirect-out \
 		modbat.examples.SimpleModel
 
@@ -522,7 +520,9 @@ failure using random seed 61a342c60d18ff4d. The random seed is used as
 the name of the file containing the error trace (61a342c60d18ff4d.err).
 It can also be used to reproduce the same trace:
 
-	scala modbat.jar -n=1 -s=61a342c60d18ff4d modbat.examples.NioSocket1
+	modbat/build$ scala modbat.jar --classpath=modbat-examples.jar \
+                                 -n=1 -s=61a342c60d18ff4d \
+                                 modbat.examples.NioSocket1
 
 When replaying a trace, Modbat explores the model again, making the same
 choices as originally made when the random number generator was in a
