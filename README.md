@@ -1,4 +1,4 @@
-*Check LICENSE for licensing conditions.*
+*Check [LICENSE](LICENSE) for licensing conditions.*
 
 # Modbat: Model-based Tester
 
