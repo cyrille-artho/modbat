@@ -502,6 +502,30 @@ The tool supports a basic visualization (requiring graphviz), using
 The output file is `<modelname>.dot`. The destination directory can
 be changed using --dot-dir=...; default is the current directory.
 
+Example:
+
+    modbat/build$ scala modbat.jar --classpath=modbat-examples.jar \
+                                   --mode=dot \
+                                   -n=1 -s=2455cfedeadbeef \
+                                   --no-redirect-out \
+                                   modbat.examples.SimpleModel
+    modbat/build$ cat modbat.examples.SimpleModel.dot
+    digraph model {
+      orientation = landscape;
+      graph [ rankdir = "TB", ranksep="0.4", nodesep="0.2" ];
+      node [ fontname = "Helvetica", fontsize="12.0", margin="0.07" ];
+      edge [ fontname = "Helvetica", fontsize="12.0", margin="0.05" ];
+      "" [ shape = "point", height="0.1" ];
+      "" -> reset
+      reset -> zero [ label = " new SimpleCounter " ];
+      zero  -> zero [ label = " toggleSwitch " ];
+      zero  -> one [ label = " inc " ];
+      one   -> two [ label = " inc " ];
+      zero  -> two [ label = " inc2 " ];
+      two   -> end [ label = " assert " ];
+    }
+
+
 ## How to compile your own model
 
 It is recommended that you copy ModelTemplate.scala to create your own
