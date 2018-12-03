@@ -28,7 +28,7 @@ Clone the repository and `cd` into it.
 
 Assemble the project by running:
 
-    $ gradle assemble
+    modbat$ gradle assemble
 
 This will build the project and place the JAR files in "./build".
 
@@ -61,21 +61,21 @@ needed to group multiple statements inside a transition function.
 Modbat is run by executing the modbat.jar file which is placed
 in the ./build directory during compilation by default.
 
-	cd build
-	scala modbat.jar [OPTIONS] MODELCLASS...
+	modbat$ cd build
+	modbat/build$ scala modbat.jar [OPTIONS] MODELCLASS...
 
 For help, try
 
-	scala modbat.jar -h
+	modbat/build$ scala modbat.jar -h
 
 and to check the current configuration, use
 
-	scala modbat.jar -s
+	modbat/build$ scala modbat.jar -s
 
 The second file contains examples and a model template; unpack that
 file using
 
-	jar xf modbat-examples.jar
+	modbat/build$ jar xf modbat-examples.jar
 
 The examples are contained in modbat/examples, while the template
 is in modbat/ModelTemplate.scala.
