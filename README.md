@@ -554,7 +554,7 @@ given state.
 
 ## Other test configuration options
 
-Also see the output of "`scala modbat/modbat.jar -h`".
+Also see the output of "`scala build/modbat.jar -h`".
 
 Note that a loop limit of 1 means no loops will be allowed, so
 self-loops will never be executed.
