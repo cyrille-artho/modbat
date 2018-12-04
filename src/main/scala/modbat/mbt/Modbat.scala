@@ -144,11 +144,11 @@ object Modbat {
     // Display executed transitions paths in graphs
     // if the configuration of path coverage is true -Rui
     if (Main.config.dotifyPathCoverage) {
-      trie.display(trie.root)
+      if (Main.config.logLevel == Log.Debug) trie.display(trie.root)
       val numOfPaths = trie.numOfPaths(trie.root)
       Log.info(numOfPaths + " paths executed.")
       new PathInPointGraph(trie, "Point").dotify()
-      new PathInBoxGraph(trie, "Box").dotify()
+      new PathInStateGraph(trie, "State").dotify()
     }
 
     Log.info(
@@ -467,7 +467,7 @@ object Modbat {
 
       if (MBT.rng.nextFloat(false) < Main.config.abortProbability) {
         Log.debug("Aborting...")
-        // todo: insert pathInfo to trie before return - Rui
+        // TODO: insert pathInfo to trie before return - Rui
         if (Main.config.dotifyPathCoverage) trie.insert(pathInfoRecorder)
         return (Ok(), null)
       }
@@ -539,11 +539,11 @@ object Modbat {
           assert(TransitionResult.isErr(t))
           printTrace(executedTransitions.toList)
           failed = true
-          //return result //TODO: need to see how to record failed transitions
+          //return result
         }
       }
 
-      // todo: Store path information and return if it is a failed case -Rui
+      // TODO: Store path information and return if it is a failed case -Rui
       storePathInfo(result, successor, backtracked, failed)
       if (failed) return result
 
@@ -590,11 +590,11 @@ object Modbat {
 
     // TODO: Store path information -Rui
     // Store path information including the model name,
-    // model ID and executed transition for path coverage,
+    // model ID, executed transition and transition quality for path coverage,
     // if the configuration of path coverage is true. -Rui
     if (Main.config.dotifyPathCoverage) {
       if (backtracked) { // backtracked case
-        // record next state into current transition,
+        // Record next state into current transition,
         // when backtracked, the next state is the origin state
         trans.nextStateNextIf =
           trans.getNextStateNextIf(result._2.transition.origin, false)
@@ -609,9 +609,9 @@ object Modbat {
                                          TransitionQuality.fail)
         // TODO: add this failed transition to trie
         if (Main.config.dotifyPathCoverage) trie.insert(pathInfoRecorder)
-        //return result // TODO: return
+        //return result
       } else { // success case
-        // record next state into current transition.
+        // Record next state into current transition.
         // next state is NOT null when result of "nextIf" condition is true,
         // record this next state, otherwise,
         // record the current transition's dest as the next state

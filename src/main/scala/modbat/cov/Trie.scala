@@ -2,7 +2,7 @@ package modbat.cov
 
 import modbat.dsl.{State, Transition}
 import modbat.log.Log
-import modbat.mbt.{PathInfo, TransitionQuality}
+import modbat.mbt.PathInfo
 import modbat.mbt.TransitionQuality.Quality
 import modbat.trace.RecordedChoice
 
@@ -22,20 +22,21 @@ class Trie {
     for (p <- pathInfo) {
 
       // Create a nodeKey and check if the node exist.
+      // This key combines the transition ID and transition's quality
       val nodeKey
         : String = p.transition.idx.toString + p.transitionQuality.toString
       var childNode: TrieNode =
         currentNode.children.getOrElse(nodeKey, null)
 
-      // Check if the new transition is a self loop in the path.
+      // Check if the new transition is a self loop and repeated in the path.
       if (currentNode.currentTransition != null && currentNode.currentTransition.idx == p.transition.idx) {
 
-        // Update the counter for this current executed transition of current test case
+        // Only update the counter for this current repeatedly executed same transition of current test case
         currentNode.transExecutedCounter += 1
         Log.debug(
           "****** print debug ****** currentNode update selfTransExecuteCounter:" + currentNode.transExecutedCounter)
 
-      } else if (childNode == null) { // new node situation
+      } else if (childNode == null) { // new childNode situation
 
         // Update same repetition times happening for this transition during the whole test
         updateTransSameRepetitionTimes(currentNode)
@@ -49,47 +50,26 @@ class Trie {
         // Creat a new node
         childNode = TrieNode()
 
-        // Update the counter for this executed transition of current test case
-        childNode.transExecutedCounter += 1
+        // Store path information and choices into the new child node
+        storePathInforIntoChildNode(childNode, p, choicesMap)
 
-        Log.debug(
-          "****** print debug ****** currentNode selfTransRepeatMap when node=null:" + currentNode.transExecutedRecords
-            .mkString(", "))
-        Log.debug(
-          "****** print debug ****** child Node selfTransExecuteCounter when node=null:" + childNode.transExecutedCounter)
-
-        childNode.currentTransition = p.transition
-        childNode.modelInfo = ModelInfo(p.modelName, p.modelID)
-        childNode.transitionInfo = TransitionInfo(p.transition.origin,
-                                                  p.transition.dest,
-                                                  p.transition.idx,
-                                                  1,
-                                                  p.transitionQuality,
-                                                  p.transition.nextStateNextIf,
-                                                  choicesMap)
-        // Create a nodeKey and new child node
+        // Create a nodeKey for linking to the child node
         val nodeKey
           : String = p.transition.idx.toString + p.transitionQuality.toString
-
+        // Put childNode into the trie
         currentNode.children.put(nodeKey, childNode)
 
         currentNode = childNode // next node
-      } else if (childNode != null && childNode.transitionInfo.transitionID == p.transition.idx) { // existing node situation
+      } else if (childNode != null && childNode.transitionInfo.transitionID == p.transition.idx) { // existing childNode situation
 
         // Update same repetition times happening for this transition during the whole test
         updateTransSameRepetitionTimes(currentNode)
 
         // Update the counter for this executed transition of current test case
         childNode.transExecutedCounter += 1
-
-        Log.debug(
-          "****** print debug ****** currentNode selfTransRepeatMap when node!=null:" + currentNode.transExecutedRecords
-            .mkString(", "))
-        Log.debug(
-          "****** print debug ****** child Node selfTransExecuteCounter when node!=null:" + childNode.transExecutedCounter)
-
-        childNode.transitionInfo.transCounter = childNode.transitionInfo.transCounter + 1
-
+        // Update the transition counter in transition info stored
+        childNode.transitionInfo.transCounter += 1
+        // Update choices in map
         if (p.transition.recordedChoices != null && p.transition.recordedChoices.nonEmpty) {
           if (childNode.transitionInfo.transitionChoicesMap.contains(
                 p.transition.recordedChoices))
@@ -108,6 +88,25 @@ class Trie {
     updateTransSameRepetitionTimes(currentNode)
     // Set this node to leaf
     currentNode.isLeaf = true
+  }
+
+  private def storePathInforIntoChildNode(
+      childNode: TrieNode,
+      p: PathInfo,
+      choicesMap: Map[List[RecordedChoice], Int]): Unit = {
+
+    // Update the counter for this executed transition of current test case
+    childNode.transExecutedCounter += 1
+    // Store current transition, model and transition information into child node
+    childNode.currentTransition = p.transition
+    childNode.modelInfo = ModelInfo(p.modelName, p.modelID)
+    childNode.transitionInfo = TransitionInfo(p.transition.origin,
+                                              p.transition.dest,
+                                              p.transition.idx,
+                                              1,
+                                              p.transitionQuality,
+                                              p.transition.nextStateNextIf,
+                                              choicesMap)
   }
 
   private def updateTransSameRepetitionTimes(currentNode: TrieNode): Unit = {
