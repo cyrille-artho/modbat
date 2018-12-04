@@ -5,20 +5,19 @@ import modbat.log.Log
 
 import scala.collection.mutable.ListBuffer
 
-/** PathInBox extends PathVisualizer for showing path coverage in "Box" tree graph.
-  *
-  * @constructor Create a new pathInBox with a trie, and shape (Box),
+/** PathInStateGraph extends PathVisualizer for showing path coverage in "State" tree graph.
   *
   * @param trie The trie that has path information stored
-  * @param shape The shape should be "Box"
+  * @param typeName The type of the graph is state graph
   */
-class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
-  require(shape == "Box", "the input of path visualizer must be Box")
+class PathInStateGraph(trie: Trie, val typeName: String)
+    extends PathVisualizer {
+  require(typeName == "State", "the input of path visualizer must be Ellipse")
 
-  // case class NodeInfo is used for record the node information used for "box" output
-  case class boxNodeInfo(node: TrieNode,
-                         var transCounter: String,
-                         var transExecutedRecords: String)
+  // case class StateNodeInfo is used for record the node information used for "State" output graph
+  case class StateNodeInfo(node: TrieNode,
+                           var transCounter: String,
+                           var transExecutedRecords: String)
 
   override def dotify() {
     out.println("digraph model {")
@@ -31,14 +30,14 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
       "  edge [ fontname = \"Helvetica\", arrowsize=\".3\", arrowhead=\"vee\", fontsize=\"6.0\"," + " margin=\"0.05\" ];")
 
     val nodeRecorder
-      : ListBuffer[boxNodeInfo] = new ListBuffer[boxNodeInfo] // nodeRecorder is used for record node information for "box" output
+      : ListBuffer[StateNodeInfo] = new ListBuffer[StateNodeInfo] // nodeRecorder is used for record node information for "State" output graph
     display(trie.root, 0, nodeRecorder)
     out.println("}")
   }
 
   private def display(root: TrieNode,
                       level: Int = 0,
-                      nodeRecorder: ListBuffer[boxNodeInfo] = null): Unit = {
+                      nodeRecorder: ListBuffer[StateNodeInfo] = null): Unit = {
 
     if (root.isLeaf) return
 
@@ -57,7 +56,7 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
             n.transCounter = n.transCounter.concat(
               ";" + node.transitionInfo.transCounter.toString)
 
-            //get executed transitions' number records
+            // get executed transitions' number records
             val transExecutedRecords: String = node.transExecutedRecords.toList
               .map { case (int1, int2) => s"$int1:$int2" }
               .mkString(",")
@@ -69,41 +68,46 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
             for (key <- node.transitionInfo.transitionChoicesMap.keySet) {
               if (n.node.transitionInfo.transitionChoicesMap.contains(key)) {
                 val mergedChoiceCoutner = n.node.transitionInfo
-                  .transitionChoicesMap(key) +
-                  node.transitionInfo.transitionChoicesMap(key)
+                  .transitionChoicesMap(key) + node.transitionInfo
+                  .transitionChoicesMap(key)
                 n.node.transitionInfo.transitionChoicesMap(key) =
                   mergedChoiceCoutner
+              } else {
+                //todo check if it is right
+                n.node.transitionInfo.transitionChoicesMap += (key -> node.transitionInfo
+                  .transitionChoicesMap(key))
+
               }
             }
           }
         }
+
       }
 
       if (!sameTransition) {
-
-        //get executed transitions' number records
+        // get executed transitions' number records
         val transExecutedRecords: String = node.transExecutedRecords.toList
           .map { case (int1, int2) => s"$int1:$int2" }
           .mkString(",")
 
         val newNodeInfo =
-          boxNodeInfo(node,
-                      node.transitionInfo.transCounter.toString,
-                      transExecutedRecords)
+          StateNodeInfo(node,
+                        node.transitionInfo.transCounter.toString,
+                        transExecutedRecords)
         nodeRecorder += newNodeInfo
       }
 
       display(node, level + 1, nodeRecorder)
-      // TODO: I think there's no need to repeat the same father node in the graph - Rui
+      // TODO: I think there's no need to repeat the same father node (prefix) in the graph - Rui
     }
 
-    // output "box" graph
+    // output "State" graph
     if (level == 0 && nodeRecorder != null && nodeRecorder.nonEmpty) {
-      drawBoxGraph(nodeRecorder)
+      drawStateGraph(nodeRecorder)
     }
   }
 
-  private def drawBoxGraph(nodeRecorder: ListBuffer[boxNodeInfo]): Unit = {
+  private def drawStateGraph(nodeRecorder: ListBuffer[StateNodeInfo]): Unit = {
 
     // initial node is "none"
     val graphNoneNode: String = "None"
@@ -155,7 +159,9 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
         }
         // draw Choices with transitions
         drawTransWithChoices(n, choiceTree.root, 0, "")
-        //choiceTree.displayChoices(choiceTree.root, 0)
+        // display choice tree for debug
+        if (Main.config.logLevel == Log.Debug)
+          choiceTree.displayChoices(choiceTree.root, 0)
       } else {
         // transitions without choices
         out.println(
@@ -175,7 +181,7 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
     }
   }
 
-  private def drawTransWithChoices(nodeInfo: boxNodeInfo,
+  private def drawTransWithChoices(nodeInfo: StateNodeInfo,
                                    root: ChoiceTree#ChoiceNode,
                                    level: Int = 0,
                                    currentNodeID: String,
@@ -201,7 +207,6 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
       else ""
 
     if (root.isLeaf) {
-      //Log.debug("failed: " + failed + ", choice of maybe: " + choiceOfMaybe + ", edgeStyle: " + edgeStyle)
       out.println(
         currentNodeID + "->" + (if (backtracked) nextStateOfBacktrack
                                 else transDest) + createEdgeLabel(nodeInfo,
@@ -217,9 +222,9 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
         else
           " , shape=diamond, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"*/
       var choiceNodeStyle
-        : String = " , shape=diamond, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
+        : String = " , shape=diamond, width=0.1, height=0.1, xlabel=\"Count:" + choiceNode.choiceCounter + "\"];"
       val destNodeValue = choiceNode.recordedChoice.toString
-      val destNodeID = "\"" + transID + "-" + level.toString + "-" + destNodeValue + "\""
+      val destNodeID = "\"" + transID + "-" + level.toString + "-" + destNodeValue + "-" + nodeInfo.node.transitionInfo.transitionQuality + "\""
 
       var choiceOfMaybe: Boolean = false
       // check special case for failure when the recorded choice "maybe" is true
@@ -253,22 +258,35 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
     }
   }
 
-  private def createEdgeLabel(nodeInfo: boxNodeInfo,
+  private def createEdgeLabel(nodeInfo: StateNodeInfo,
                               edgeStyle: String): String = {
+
+    // create transition arrow
+    def transitionArrow(
+        transitionQuality: TransitionQuality.Quality): String = {
+      transitionQuality match {
+        case TransitionQuality.backtrack => "-->" //backtracked transition
+        case TransitionQuality.fail      => "--|" //failed transition
+        case TransitionQuality.OK        => "=>" //ok transition
+      }
+    }
+
+    // set output label optional
+    def labelOutputOptional(labelName: String, labelValue: String): String =
+      if (Main.config.pathLabelDetail) labelName + labelValue + "\\n"
+      else ""
 
     val modelName: String = nodeInfo.node.modelInfo.modelName.toString
     val modelID: String = nodeInfo.node.modelInfo.modelID.toString
 
     val transOrigin: String = nodeInfo.node.transitionInfo.transOrigin.toString
     val transDest: String = nodeInfo.node.transitionInfo.transDest.toString
-    val transName: String = transOrigin + " => " + transDest
+    val transName: String = transOrigin + transitionArrow(
+      nodeInfo.node.transitionInfo.transitionQuality) + transDest
     val transID: String = nodeInfo.node.transitionInfo.transitionID.toString
     val transCounter: String = nodeInfo.transCounter
 
     val transExecutedRecords: String = nodeInfo.transExecutedRecords
-
-    val backtracked
-      : Boolean = nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.backtrack
 
     // next state
     val nextState: String =
@@ -276,21 +294,25 @@ class PathInBoxGraph(trie: Trie, val shape: String) extends PathVisualizer {
         nodeInfo.node.transitionInfo.nextStateNextIf.nextState.toString
       else "null"
 
+    val backtracked
+      : Boolean = nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.backtrack
+
     val nextStateOfBacktrack: String =
       if (backtracked)
-        "(backtracked to " + nodeInfo.node.transitionInfo.nextStateNextIf.nextState.toString + ")\\n"
-      else ""
+        "(" + nodeInfo.node.transitionInfo.nextStateNextIf.nextState.toString + ")\\n"
+      else "\\n"
 
     val label: String =
       "[" + edgeStyle + "label = \"" +
-        "M:" + modelName + "\\n" +
+        labelOutputOptional("M:", modelName) +
         "M-ID:" + modelID + "\\n" +
-        "T:" + transName + "\\n" + nextStateOfBacktrack +
-        "T-ID:" + transID + "\\n" +
-        "T-Counter:" + transCounter + "\\n" +
-        "next state:" + nextState + "\\n" +
-        "T-ExecutedRecords:" + transExecutedRecords + "\\n" + "\"];"
-
+        "T:" + transName + nextStateOfBacktrack +
+        labelOutputOptional("T-ID:", transID) +
+        labelOutputOptional("T-Counter:", transCounter) +
+        labelOutputOptional("next state:", nextState) +
+        labelOutputOptional("T-ExecutedRecords:", transExecutedRecords) +
+        "\"];"
     label
   }
+
 }
