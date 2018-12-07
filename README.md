@@ -23,12 +23,12 @@ Requirements: [Gradle Build Tool](https://gradle.org/) version 4.
 
 Clone the repository and `cd` into it.
 
-    $ git clone https://github.com/cyrille-artho/modbat.git
-    $ cd modbat
+    git clone https://github.com/cyrille-artho/modbat.git
+    cd modbat
 
 Assemble the project by running:
 
-    modbat$ gradle assemble
+    gradle assemble
 
 This will build the project and place the JAR files in "./build".
 
@@ -61,21 +61,21 @@ needed to group multiple statements inside a transition function.
 Modbat is run by executing the modbat.jar file which is placed
 in the ./build directory during compilation by default.
 
-	modbat$ cd build
-	modbat/build$ scala modbat.jar [OPTIONS] MODELCLASS...
+	cd build
+	scala modbat.jar [OPTIONS] MODELCLASS...
 
 For help, try
 
-	modbat/build$ scala modbat.jar -h
+	scala modbat.jar -h
 
 and to check the current configuration, use
 
-	modbat/build$ scala modbat.jar -s
+	scala modbat.jar -s
 
 The second file contains examples and a model template; unpack that
 file using
 
-	modbat/build$ jar xf modbat-examples.jar
+	jar xf modbat-examples.jar
 
 The examples are contained in modbat/examples, while the template
 is in modbat/ModelTemplate.scala.
@@ -157,7 +157,7 @@ output to a file, use
 
 Example:
 
-	modbat/build$ scala modbat.jar --classpath=modbat-examples.jar \
+	scala modbat.jar --classpath=modbat-examples.jar \
     -n=1 -s=2455cfedeadbeef \
 		--no-redirect-out \
 		modbat.examples.SimpleModel
@@ -544,7 +544,7 @@ failure using random seed 61a342c60d18ff4d. The random seed is used as
 the name of the file containing the error trace (61a342c60d18ff4d.err).
 It can also be used to reproduce the same trace:
 
-	modbat/build$ scala modbat.jar --classpath=modbat-examples.jar \
+	scala modbat.jar --classpath=modbat-examples.jar \
                                  -n=1 -s=61a342c60d18ff4d \
                                  modbat.examples.NioSocket1
 
