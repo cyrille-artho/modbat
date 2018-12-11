@@ -334,7 +334,7 @@ class PathInPointGraph(trie: Trie, val typeName: String)
         "M-ID:" + modelID + "\\n" +
         "T:" + transName + nextStateOfBacktrack +
         labelOutputOptional("T-ID:", transID) +
-        labelOutputOptional("T-Counter:", transCounter) +
+        labelOutputOptional("T-Path-Counter:", transCounter) +
         labelOutputOptional("next state:", nextState) +
         labelOutputOptional("T-ExecutedRecords:", transExecutedRecords) +
         " \"];"
