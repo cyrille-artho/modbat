@@ -27,7 +27,7 @@ class PathInPointGraph(trie: Trie, val typeName: String)
 
   override def dotify() {
     out.println("digraph model {")
-    out.println("  orientation = landscape;")
+    out.println("  orientation = portrait;")
     out.println("  graph [ rankdir = \"TB\", ranksep=\"2\", nodesep=\"0.2\" ];")
     out.println(
       "  node [ fontname = \"Helvetica\", fontsize=\"6.0\", style=rounded, shape=\"" + "point" +
