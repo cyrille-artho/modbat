@@ -128,19 +128,29 @@ class Trie {
     * @param level The level number of the trie tree structure
     */
   def display(root: TrieNode, level: Int = 0): Unit = {
-    if (root.isLeaf) return
+    if (root.isLeaf) {
+      // Log.debug("reached leaf and path ended, and the total depth (without counting loops):" + level)
+      return
+    }
     for (t <- root.children.keySet) {
 
       val node: TrieNode =
         root.children.getOrElse(t, sys.error(s"unexpected key: $t"))
       if (level == 0) {
         Log.debug(
-          "[" + node.modelInfo.toString + node.transitionInfo.toString + "]")
+          "[" + node.modelInfo.toString + node.transitionInfo.toString +
+            " counters of execution:" + node.transExecutedRecords +
+            ", current depth:" + (level + 1) + checkLeaf(node) + "]")
       } else
         Log.debug(
-          "-" * level + "[" + node.modelInfo.toString + node.transitionInfo.toString + "]")
+          "-" * level + "[" + node.modelInfo.toString + node.transitionInfo.toString +
+            " counters of execution:" + node.transExecutedRecords +
+            ", current depth:" + (level + 1) + checkLeaf(node) + "]")
       display(node, level + 1)
     }
+
+    def checkLeaf(node: TrieNode): String =
+      if (node.isLeaf) ", leaf:end" else ""
   }
 
   /** Compute the number of paths
@@ -222,6 +232,6 @@ case class TransitionInfo(
       s"trans Origin: $transOrigin, trans Dest: $transDest, transitionID: $transitionID, " +
       s"trans counter: $transCounter, transition quality: $transitionQuality, " +
       s"nextIf: $nextStateNextIf, " +
-      s"trans choices map: $transitionChoicesMap."
+      s"trans choices map: $transitionChoicesMap,"
 
 }
