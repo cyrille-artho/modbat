@@ -1,0 +1,33 @@
+digraph model {
+  orientation = portrait;
+  graph [ rankdir = "TB", ranksep="2", nodesep="0.2" ];
+  node [ fontname = "Helvetica", fontsize="6.0", style=rounded, shape="ellipse", margin="0.07", height="0.1" ];
+  edge [ fontname = "Helvetica", arrowsize=".3", arrowhead="vee", fontsize="6.0", margin="0.05" ];
+None [shape=none, style=invis, width=0.1, height=0.1];
+None->reset;
+{rank = source; None}
+reset->open[penwidth="3.0",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:1000"];
+open->err[penwidth="2.421603926869831",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:146;1:24;1:4;1:1;1:89"];
+open->open[penwidth="2.24551266781415",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:2:29,5:2,4:2,1:136,3:4;2:1,1:2"];
+open->closed[penwidth="2.3263358609287517",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:44;1:1;1:167"];
+closed->err[penwidth="2.5378190950732744",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:17;1:27;1:1;1:1;1:2;1:1;1:1;1:4;1:3;1:1;1:1;1:1;1:2;1:1;1:1;1:1;1:1;1:1;1:2;1:1;1:1;1:1;1:74;1:93;1:2;1:3;1:1;1:8;1:9;1:8;1:7;1:31;1:24;1:3;1:3;1:7"];
+closed->closed[penwidth="2.269512944217916",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:2:6,1:21;1:1;2:2,4:1;2:1;1:1;2:1,1:1;2:1;2:1;1:1;3:1;2:1;2:24,5:2,4:9,7:1,1:45,9:1,3:10,6:1;2:2,3:1;2:5,4:1,1:1,3:2;2:4,4:1,3:2;2:10,4:1,1:8,9:1,3:4;2:2,9:1;2:1,4:1,1:4,3:1"];
+open->maybeconnected[penwidth="1.7075701760979363",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:30;1:21"];
+maybeconnected->maybeconnected[penwidth="0.9542425094393249",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:3;1:1;2:1;2:1,1:2;1:1"];
+maybeconnected->maybeconnected[style=dotted, color=red,penwidth="0.30102999566398125",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:2"];
+maybeconnected->err[penwidth="1.1139433523068367",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:2;1:1;1:8;1:2"];
+maybeconnected->err[penwidth="0.8450980400142568",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:1;1:2;1:1;1:3"];
+maybeconnected->maybeconnected[style=dotted, color=red,penwidth="1.0791812460476249",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:5;1:1;1:1;1:5"];
+maybeconnected->connected[penwidth="0.0",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:1"];
+connected->closed[penwidth="2.0718820073061255",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:1;1:1;1:2;1:1;1:1;1:1;1:1;1:1;1:1;1:1;1:1;1:5;1:1;1:17;1:15;1:55;1:6;1:7"];
+maybeconnected->maybeconnected[penwidth="1.3222192947339193",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:4;2:1,1:4;1:1;1:1;1:5;1:5"];
+maybeconnected->connected[style=dotted];
+connected->err[penwidth="2.103803720955957",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:2;1:1;1:2;1:3;1:1;1:1;1:7;1:1;1:3;1:18;1:11;1:52;1:7;1:18"];
+connected->connected[penwidth="1.919078092376074",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:2:2;1:1;1:1;1:1;1:1;1:1;3:1;1:1;2:3,1:14;1:2;2:7,4:2,1:29,3:2;2:1,1:13,3:1"];
+connected->connected[penwidth="1.9294189257142929",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:1;1:1;1:1;1:2;1:1;2:1,1:4;1:1;2:6,1:10,3:1;2:2,1:11,3:1;2:4,1:36;2:1,1:1"];
+maybeconnected->closed[penwidth="1.1760912590556813",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:1;1:7;1:2;1:1;1:1;1:3"];
+open->open[style=dotted, color=red,penwidth="2.214843848047698",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:5;1:1;1:158"];
+open->connected[penwidth="2.4183012913197457",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:1;1:1;1:4;1:69;1:187"];
+open->open[style=dotted, color=red,penwidth="1.380211241711606",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:24"];
+open->err[penwidth="2.3242824552976926",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:42;1:169"];
+}

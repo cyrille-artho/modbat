@@ -198,7 +198,7 @@
      198 59dc5a9b1e4edff8, one test failed.
      199 331cb36f3d83ebce, one test failed.
      200 65383ba340c441e3, one test failed.
-[INFO] 37 paths executed.
+[INFO] 34 paths executed.
 [INFO] 200 tests executed, 199 ok, 1 failed.
 [INFO] One type of test failure:
 [INFO] 1) java.lang.AssertionError: assertion failed at readFrom
