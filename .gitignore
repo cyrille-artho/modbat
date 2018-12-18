@@ -13,3 +13,4 @@ git-hash
 # Intellij
 .idea/
 modbat.iml
+openmodbat.iml
