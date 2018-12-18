@@ -139,7 +139,6 @@ object Modbat {
   }
 
   def coverage {
-    Log.info("Hello")
     // TODO: display path coverage
     // Display executed transitions paths in graphs
     // if the configuration of path coverage is true -Rui
