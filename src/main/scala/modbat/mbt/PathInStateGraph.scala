@@ -299,18 +299,18 @@ class PathInStateGraph(trie: Trie, val typeName: String)
 
     val nextStateOfBacktrack: String =
       if (backtracked)
-        "(" + nodeInfo.node.transitionInfo.nextStateNextIf.nextState.toString + ")\\n"
-      else "\\n"
+        "(" + nodeInfo.node.transitionInfo.nextStateNextIf.nextState.toString + ")"
+      else ""
 
     val label: String =
       "[" + edgeStyle + "label = \"" +
-        labelOutputOptional("M:", modelName) +
-        "M-ID:" + modelID + "\\n" +
-        "T:" + transName + nextStateOfBacktrack +
-        labelOutputOptional("T-ID:", transID) +
+        "M:" + modelName + "\\n" +
+        "MID:" + modelID + "\\n" +
+        labelOutputOptional("T:", transName + nextStateOfBacktrack) +
+        labelOutputOptional("TID:", transID) +
         labelOutputOptional("T-Path-Counter:", transCounter) +
         labelOutputOptional("next state:", nextState) +
-        labelOutputOptional("T-ExecutedRecords:", transExecutedRecords) +
+        "Count:" + transExecutedRecords +
         "\"];"
     label
   }
