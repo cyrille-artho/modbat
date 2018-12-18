@@ -4,6 +4,7 @@ import modbat.cov.{Trie, TrieNode}
 import modbat.dsl.State
 
 import scala.collection.mutable.ListBuffer
+import scala.math.log10
 
 /** PathInPoint extends PathVisualizer for showing path coverage in "Point" tree graph.
   *
@@ -328,8 +329,17 @@ class PathInPointGraph(trie: Trie, val typeName: String)
         "(" + node.transitionInfo.nextStateNextIf.nextState.toString + ")"
       else ""
 
+    // calculate penwidth
+    val edgeWidth = "penwidth=\"" + (log10(
+      transCounter
+        .split(";")
+        .map(_.toDouble)
+        .sum * 100 / Main.config.nRuns) + 1).toString + "\","
+
     val label: String =
-      "[" + edgeStyle + "label = \" " +
+      "[" + edgeStyle +
+        edgeWidth +
+        "label = \" " +
         "M:" + modelName + "\\n" +
         "MID:" + modelID + "\\n" +
         labelOutputOptional("T:", transName + nextStateOfBacktrack) +
