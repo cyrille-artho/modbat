@@ -1,0 +1,28 @@
+digraph model {
+  orientation = portrait;
+  graph [ rankdir = "TB", ranksep="2", nodesep="0.2" ];
+  node [ fontname = "Helvetica", fontsize="6.0", style=rounded, shape="ellipse", margin="0.07", height="0.1" ];
+  edge [ fontname = "Helvetica", arrowsize=".3", arrowhead="vee", fontsize="6.0", margin="0.05" ];
+None [shape=none, style=invis, width=0.1, height=0.1];
+None->reset;
+{rank = source; None}
+reset->open[penwidth="3.0",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:100"];
+open->err[penwidth="2.5051499783199063",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:14;1:5;1:13"];
+open->open[penwidth="2.3010299956639813",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:2:3,1:16,3:1"];
+open->closed[penwidth="2.4771212547196626",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:8;1:22"];
+closed->err[penwidth="2.623249290397901",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:3;1:5;1:1;1:1;1:8;1:14;1:2;1:1;1:1;1:1;1:1;1:1;1:3"];
+closed->closed[penwidth="2.414973347970818",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:5;1:1;2:6,7:1,1:6,3:1;2:1;2:1;2:1;2:3"];
+open->maybeconnected[penwidth="1.4771212547196624",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:2;1:1"];
+maybeconnected->err[penwidth="1.0",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:1"];
+maybeconnected->closed[penwidth="1.0",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:1"];
+open->open[style=dotted, color=red,penwidth="1.0",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:1"];
+maybeconnected->maybeconnected[penwidth="1.0",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:1"];
+maybeconnected->connected[style=dotted];
+connected->connected[penwidth="1.845098040014257",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:1;1:2;4:1,1:3"];
+connected->closed[penwidth="2.0413926851582254",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:1;1:2;1:2;1:1;1:1;1:4"];
+open->err[penwidth="2.146128035678238",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:4;1:10"];
+open->open[style=dotted, color=red,penwidth="2.3222192947339195",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:21"];
+open->connected[penwidth="2.3222192947339195",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:8;1:13"];
+connected->err[penwidth="2.0413926851582254",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:1:2;1:2;1:2;1:5"];
+connected->connected[penwidth="1.4771212547196624",label = "M:modbat.examples.NioSocket1\nMID:0\nCount:2:1,1:1;1:1"];
+}
