@@ -166,7 +166,10 @@ class PathInStateGraph(trie: Trie, val typeName: String)
         // transitions without choices
         out.println(
           transOrigin + "->" + (if (backtracked) nextStateOfBacktrack
-                                else transDest) + createEdgeLabel(n, edgeStyle)
+                                else
+                                  transDest) + createEdgeLabel(n,
+                                                               edgeStyle,
+                                                               n.transCounter)
         )
       }
       // jumped edge when nextIf is true
@@ -209,8 +212,10 @@ class PathInStateGraph(trie: Trie, val typeName: String)
     if (root.isLeaf) {
       out.println(
         currentNodeID + "->" + (if (backtracked) nextStateOfBacktrack
-                                else transDest) + createEdgeLabel(nodeInfo,
-                                                                  edgeStyle))
+                                else transDest) + createEdgeLabel(
+          nodeInfo,
+          edgeStyle,
+          root.choiceCounter.toString))
     }
 
     for (choiceKey <- root.children.keySet) {
@@ -242,12 +247,16 @@ class PathInStateGraph(trie: Trie, val typeName: String)
 
       if (level == 0) {
         out.println(
-          transOrigin + "->" + destNodeID + createEdgeLabel(nodeInfo,
-                                                            edgeStyle))
+          transOrigin + "->" + destNodeID + createEdgeLabel(
+            nodeInfo,
+            edgeStyle,
+            choiceNode.choiceCounter.toString))
       } else {
         out.println(
-          currentNodeID + "->" + destNodeID + createEdgeLabel(nodeInfo,
-                                                              edgeStyle))
+          currentNodeID + "->" + destNodeID + createEdgeLabel(
+            nodeInfo,
+            edgeStyle,
+            choiceNode.choiceCounter.toString))
       }
 
       drawTransWithChoices(nodeInfo,
@@ -259,7 +268,8 @@ class PathInStateGraph(trie: Trie, val typeName: String)
   }
 
   private def createEdgeLabel(nodeInfo: StateNodeInfo,
-                              edgeStyle: String): String = {
+                              edgeStyle: String,
+                              count: String): String = {
 
     // create transition arrow
     def transitionArrow(
@@ -304,7 +314,7 @@ class PathInStateGraph(trie: Trie, val typeName: String)
 
     // calculate penwidth
     val edgeWidth = "penwidth=\"" + (log10(
-      transCounter
+      count
         .split(";")
         .map(_.toDouble)
         .sum * 100 / Main.config.nRuns) + 1).toString + "\","

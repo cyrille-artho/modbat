@@ -136,12 +136,12 @@ class PathInPointGraph(trie: Trie, val typeName: String)
           val originNodeID: Int = idx
           val destNodeID: Int = idx
           numOfCirclePath = numOfCirclePath + 1 // update the number of circle path
-          // draw transitions with choices
+          // draw
           printOut(newNodeStack, idx, originNodeID, destNodeID)
         } else {
           val originNodeID: Int = idx
           val destNodeID: Int = newNodeNumber
-          // draw transitions with choices
+          // draw
           printOut(newNodeStack, idx, originNodeID, destNodeID)
         }
 
@@ -152,27 +152,27 @@ class PathInPointGraph(trie: Trie, val typeName: String)
           val originNodeID: Int = idx - numOfCirclePath
           val destNodeID: Int = originNodeID
           numOfCirclePath = numOfCirclePath + 1 // update the number of circle path
-          // draw transitions with choices
+          // draw
           printOut(newNodeStack, idx, originNodeID, destNodeID)
         } else if (circleEdge && !rootPointHasCircleEdge) {
           newNodeNumber = newNodeNumber - 1 // node number should the same as previous one
           val originNodeID: Int = newNodeNumber
           val destNodeID: Int = newNodeNumber
           //numOfCirclePath = numOfCirclePath + 1
-          // draw transitions with choices
+          // draw
           printOut(newNodeStack, idx, originNodeID, destNodeID)
         } else if (!circleEdge && rootPointHasCircleEdge) {
           val originNodeID: Int = idx - numOfCirclePath
           val destNodeID: Int = newNodeNumber
           numOfCirclePath = numOfCirclePath + 1 // update the number of circle path
-          // draw transitions with choices
+          // draw
           printOut(newNodeStack, idx, originNodeID, destNodeID)
 
           rootPointHasCircleEdge = false // next starting point is not the root point again
         } else {
           val originNodeID: Int = newNodeNumber - 1
           val destNodeID: Int = newNodeNumber
-          // draw transitions with choices
+          // draw
           printOut(newNodeStack, idx, originNodeID, destNodeID)
         }
       }
@@ -203,8 +203,10 @@ class PathInPointGraph(trie: Trie, val typeName: String)
                            destNodeID)
     } else { // draw transition, no choices
       out.println(
-        originNodeID + "->" + destNodeID + createEdgeLabel(nodeStack(idx).node,
-                                                           edgeStyle))
+        originNodeID + "->" + destNodeID + createEdgeLabel(
+          nodeStack(idx).node,
+          edgeStyle,
+          nodeStack(idx).node.transitionInfo.transCounter.toString))
     }
   }
 
@@ -231,8 +233,10 @@ class PathInPointGraph(trie: Trie, val typeName: String)
 
     if (root.isLeaf)
       out.println(
-        currentNodeID + "->" + destNodeID + createEdgeLabel(nodeInfo.node,
-                                                            edgeStyle))
+        currentNodeID + "->" + destNodeID + createEdgeLabel(
+          nodeInfo.node,
+          edgeStyle,
+          root.choiceCounter.toString))
 
     for (choiceKey <- root.children.keySet) {
       choiceNodeCounter = choiceNodeCounter + 1
@@ -267,12 +271,16 @@ class PathInPointGraph(trie: Trie, val typeName: String)
 
       if (level == 0) {
         out.println(
-          originNodeID + "->" + choiceNodeID + createEdgeLabel(nodeInfo.node,
-                                                               edgeStyle))
+          originNodeID + "->" + choiceNodeID + createEdgeLabel(
+            nodeInfo.node,
+            edgeStyle,
+            choiceNode.choiceCounter.toString))
       } else {
         out.println(
-          currentNodeID + "->" + choiceNodeID + createEdgeLabel(nodeInfo.node,
-                                                                edgeStyle))
+          currentNodeID + "->" + choiceNodeID + createEdgeLabel(
+            nodeInfo.node,
+            edgeStyle,
+            choiceNode.choiceCounter.toString))
       }
 
       drawTransWithChoices(nodeInfo,
@@ -285,7 +293,9 @@ class PathInPointGraph(trie: Trie, val typeName: String)
     }
   }
 
-  private def createEdgeLabel(node: TrieNode, edgeStyle: String): String = {
+  private def createEdgeLabel(node: TrieNode,
+                              edgeStyle: String,
+                              count: String): String = {
 
     // create transition arrow
     def transitionArrow(
@@ -331,7 +341,7 @@ class PathInPointGraph(trie: Trie, val typeName: String)
 
     // calculate penwidth
     val edgeWidth = "penwidth=\"" + (log10(
-      transCounter
+      count
         .split(";")
         .map(_.toDouble)
         .sum * 100 / Main.config.nRuns) + 1).toString + "\","
