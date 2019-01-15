@@ -1,4 +1,4 @@
 language: scala
 scala:
    - 2.11.11
-script: ./gradlew buildDependents && ls -lR && bash bin/test.sh && find . -name '*.log' -o -name '*.err' | sed -e 's/\(.*\)/echo \1; cat \1/' | sh
+script: ./gradlew buildDependents && ls -lR && (bash bin/test.sh; find . -name '*.log' -o -name '*.err' | sed -e 's/\(.*\)/echo \1; cat \1/' | sh)
