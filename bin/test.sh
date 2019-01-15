@@ -685,3 +685,4 @@ checkfile counterpn1.dot
 ######################## Test summary ########################
 
 echo "# count=$count ok=$ok failed=$failed skipped=$skipped"
+exit $failed
