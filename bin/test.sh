@@ -1,7 +1,6 @@
 #!/bin/bash
 # script to test various configurations of the trace server
 
-ls -lR /usr/share/java
 TEST_LOG_PATH=log
 
 . bin/testtool.sh
