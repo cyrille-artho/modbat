@@ -13,3 +13,5 @@ git-hash
 # Intellij
 .idea/
 modbat.iml
+*.log
+*.err
