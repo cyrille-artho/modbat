@@ -86,7 +86,7 @@ Version	Description
 	  instance (class).
 
 3.1	Added a classification of test failures based on the exact
-        exception and the transition in which they occurred.
+	exception and the transition in which they occurred.
 	Added a feature to trace model variables using annotation @Trace.
 
 3.2	- After a declared exception is caught, the next transition is
@@ -104,3 +104,8 @@ Version	Description
 	  recognize transitions with impossible preconditions, but
 	  only models with no outgoing transitions or where the loop
 	  limit is reached.
+
+3.3	- Build is now on gradle; the documentation has been updated
+	  accordingly.
+	- A system test suite with the test script bin/test.sh has been
+	  added.
