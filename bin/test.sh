@@ -243,12 +243,6 @@ run 0 $APP -n=100 -s=1 --dotify-coverage \
 	modbat.examples.JavaNioServerSocket
 savemv modbat.examples.JavaNioServerSocket.dot scov_100.dot
 checkfile scov_100.dot
-checkfile 19b6aa1b14a29017.err \
-	log/modbat/modbat.examples.JavaNioServerSocket
-checkfile 402b73cd0066eaea.err \
-	log/modbat/modbat.examples.JavaNioServerSocket
-checkfile af39d7b440c7619.err \
-	log/modbat/modbat.examples.JavaNioServerSocket
 
 run 0 $APP -n=1 -s=321e7808 --no-redirect-out \
 	modbat.examples.JavaNioServerSocket
