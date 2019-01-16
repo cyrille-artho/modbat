@@ -1,6 +1,21 @@
 dist: xenial
+
 language: scala
-before_install: sudo jdk_switcher use oraclejdk8 && sudo apt-get install scala
+
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+      - scala
+
+jdk:
+  - oraclejdk8
+
 scala:
-   - 2.11.11
-script: scala -version; ./gradlew buildDependents && (bash bin/test.sh; find . -name '*.log' -o -name '*.err' | sed -e 's/\(.*\)/echo \1; cat \1/' | sh)
+  - 2.11.11
+
+script:
+  - scala -version
+  - ./gradlew buildDependents
+  - bash bin/test.sh
+  - find . -name '*.log' -o -name '*.err' | sed -e 's/\(.*\)/echo \1; cat \1/' | sh
