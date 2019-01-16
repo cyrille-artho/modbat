@@ -1,15 +1,15 @@
 language: scala
 
-addons:
-  apt:
-    packages:
-      - scala=2.11
-
 jdk:
   - oraclejdk8
 
 scala:
   - 2.11.11
+
+before_install:
+  - wget https://downloads.lightbend.com/scala/2.11.12/scala-2.11.12.tgz
+  - tar xzf scala-2.11.12.tgz
+  - PATH=${PATH}:scala-2.11.12/bin
 
 script:
   - scala -version
