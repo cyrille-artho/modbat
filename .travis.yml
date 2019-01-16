@@ -14,8 +14,4 @@ before_install:
 script:
   - scala -version
   - ./gradlew buildDependents
-  - bash bin/test.sh &> test.log
-  - grep -B12 'Unexpected exit code' test.log
-  - grep ^diff test.log | sed -e 's/diff \(.*\) \(.*\)/echo diff \1 \2; diff -u \1 \2/' | sh
-  - javap ./modbat-test/build/classes/scala/main/modbat/test/GenLabel3
-  - CLASSPATH=build/modbat-test.jar scala build/modbat.jar --mode=dot --auto-labels --log-level=debug modbat.test.GenLabel3
+  - bash bin/test.sh
