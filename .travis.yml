@@ -1,11 +1,9 @@
-dist: xenial
-
 language: scala
 
 addons:
   apt:
     packages:
-      - scala
+      - scala=2.11
 
 jdk:
   - oraclejdk8
