@@ -15,4 +15,5 @@ script:
   - scala -version
   - ./gradlew buildDependents
   - bash bin/test.sh &> test.log
+  - grep -B12 'Unexpected exit code' test.log
   - grep ^diff test.log | sed -e 's/diff \(.*\) \(.*\)/echo diff \1 \2; diff -u \1 \2/' | sh
