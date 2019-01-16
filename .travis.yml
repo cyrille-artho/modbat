@@ -1,5 +1,6 @@
+dist: xenial
 language: scala
 before_install: sudo apt-get install scala
 scala:
    - 2.11.11
-script: scala -version #./gradlew buildDependents && (bash bin/test.sh; find . -name '*.log' -o -name '*.err' | sed -e 's/\(.*\)/echo \1; cat \1/' | sh)
+script: scala -version; ./gradlew buildDependents && (bash bin/test.sh; find . -name '*.log' -o -name '*.err' | sed -e 's/\(.*\)/echo \1; cat \1/' | sh)
