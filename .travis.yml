@@ -14,5 +14,5 @@ before_install:
 script:
   - scala -version
   - ./gradlew buildDependents
-  - bash bin/test.sh
-  - find . -name '*.log' -o -name '*.err' | sed -e 's/\(.*\)/echo \1; cat \1/' | sh
+  - bash bin/test.sh &> test.log
+  - grep ^diff test.log | sed -e 's/diff \(.*\) \(.*\)/echo diff \1 \2; diff -u \1 \2/' | sh
