@@ -483,7 +483,7 @@ class MBT (val model: Model, val trans: List[Transition]) {
   }
 
   def registerStateSelfTrans(model: Model, isChild: Boolean) {
-    val methods = MBT.getMethods(model)
+    val methods = MBT.getMethods(model).sortBy(_.toGenericString)
     for (m <- methods) {
       val annotation = m.getAnnotation(classOf[States])
       if (annotation != null) {

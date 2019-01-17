@@ -6,6 +6,6 @@ digraph model {
   "" [ shape = "point", height="0.1" ];
   "" -> init
   init	-> init [ label = " skip " ];
-  init	-> init [ label = " inc " ];
   init	-> init [ label = " dec " ];
+  init	-> init [ label = " inc " ];
 }
