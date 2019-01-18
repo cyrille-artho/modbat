@@ -1,4 +1,4 @@
-ConfigMgr v1.0.2
+ConfigMgr vx.yz
 Usage: ConfigMgr [--OPTION=value] ... [FILE]
   -h, --help                    show this help and exit
   -s, --show                    show current configuration
