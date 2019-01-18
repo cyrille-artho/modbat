@@ -52,7 +52,6 @@ dependencies {
     compile project(':config')
     testCompile 'org.hamcrest:hamcrest-core:1.3'
     testCompile 'junit:junit:4.11'
-//    testCompile 'org.scalatest:scalatest_2.11:2.1.5'
 //    testCompile 'org.scalatest:scalatest_2.11:3.0.1'
 //    testRuntime 'org.pegdown:pegdown:1.4.2'
 }
