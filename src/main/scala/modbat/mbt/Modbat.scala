@@ -2,21 +2,15 @@ package modbat.mbt
 
 import java.io.File
 import java.io.FileOutputStream
-import java.io.OutputStream
 import java.io.PrintStream
-import java.lang.annotation.Annotation
 import java.lang.reflect.Field
-import java.lang.reflect.Modifier
-import java.net.URL
 import java.util.BitSet
 
-import scala.collection.JavaConversions._
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.HashMap
 import scala.collection.mutable.HashSet
 import scala.collection.mutable.LinkedHashMap
 import scala.collection.mutable.ListBuffer
-import scala.util.matching.Regex
 import modbat.cov.{StateCoverage, TransitionCoverage, Trie}
 import modbat.dsl.Action
 import modbat.dsl.Init
@@ -466,6 +460,7 @@ object Modbat {
 
       if (MBT.rng.nextFloat(false) < Main.config.abortProbability) {
         Log.debug("Aborting...")
+
         // TODO: insert pathInfo to trie before return - Rui
         if (Main.config.dotifyPathCoverage) trie.insert(pathInfoRecorder)
         return (Ok(), null)
