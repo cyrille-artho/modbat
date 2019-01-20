@@ -17,6 +17,10 @@ class Trie {
     *  @param pathInfo The recorded path information in a listBuffer
     */
   def insert(pathInfo: ListBuffer[PathInfo]): Unit = {
+
+    // TODO: fixed a bug here: if the the pathInfo buffer is empty, then return
+    if (pathInfo.isEmpty) return
+
     var currentNode: TrieNode = root
 
     for (p <- pathInfo) {

@@ -323,13 +323,15 @@ class PathInStateGraph(trie: Trie, val typeName: String)
       "[" + edgeStyle +
         edgeWidth +
         "label = \"" +
-        "M:" + modelName + "\\n" +
+        labelOutputOptional("M:", modelName) +
+        //"M:" + modelName + "\\n" +
         "MID:" + modelID + "\\n" +
         labelOutputOptional("T:", transName + nextStateOfBacktrack) +
         labelOutputOptional("TID:", transID) +
         labelOutputOptional("T-Path-Counter:", transCounter) +
         labelOutputOptional("next state:", nextState) +
-        "Count:" + transExecutedRecords +
+        labelOutputOptional("Count:", transExecutedRecords) +
+        //"Count:" + transExecutedRecords +
         "\"];"
     label
   }
