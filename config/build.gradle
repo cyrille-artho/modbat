@@ -1,7 +1,30 @@
-version = '1.0.2'
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "gradle.plugin.com.palantir.gradle.gitversion:gradle-git-version:0.11.0"
+    classpath "gradle.plugin.com.github.maiflai:gradle-scalatest:0.23"
+  }
+}
+
+plugins {
+  id "com.github.maiflai.scalatest"
+}
+
 
 apply plugin: 'application'
+
+version = '1.1'
 mainClassName = 'modbat.config.ConfigMgr'
+
+dependencies {
+    testCompile 'org.scalatest:scalatest_2.11:3.0.1'
+    testRuntime 'org.pegdown:pegdown:1.4.2'
+}
+
 
 jar {
     manifest {
@@ -12,3 +35,5 @@ jar {
     }
     from "../LICENSE"
 }
+
+apply plugin: "com.github.maiflai.scalatest"
