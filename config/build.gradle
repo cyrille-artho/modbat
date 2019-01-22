@@ -17,7 +17,11 @@ plugins {
 
 apply plugin: 'application'
 
-version = '1.1'
+// version = '1.1'
+// TODO: Bump up version number once config tests are replaced
+// with tests that are agnostic to the exact version,
+// but check only the output format
+version = '1.0.2'
 mainClassName = 'modbat.config.ConfigMgr'
 
 dependencies {
