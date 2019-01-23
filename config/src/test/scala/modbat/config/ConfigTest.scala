@@ -9,8 +9,8 @@ import org.scalatest._
 
 object ConfigTest {
   def testCtor(args: Array[String]) {
-    var out: ByteArrayOutputStream = new ByteArrayOutputStream() 
-    var err: ByteArrayOutputStream = new ByteArrayOutputStream()
+    val out: ByteArrayOutputStream = new ByteArrayOutputStream() 
+    val err: ByteArrayOutputStream = new ByteArrayOutputStream()
 
     Console.withErr(err) {
       Console.withOut(out) {
