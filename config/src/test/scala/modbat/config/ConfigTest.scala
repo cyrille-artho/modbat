@@ -9,15 +9,17 @@ import org.scalatest._
 
 object ConfigTest {
   def testCtor(args: Array[String]) {
-    val baos = new ByteArrayOutputStream()
-    System.setOut(new PrintStream(baos))
+    val out: ByteArrayOutputStream = new ByteArrayOutputStream() 
+    val err: ByteArrayOutputStream = new ByteArrayOutputStream()
 
-    val c = new ConfigMgr("ConfigTest", "[FILE]", new TestConfiguration(),
+    Console.withErr(err) {
+      Console.withOut(out) {
+        val c = new ConfigMgr("ConfigTest", "[FILE]", new TestConfiguration(),
 			  new Version ("modbat.config"), true)
-    c.setSplashScreen(List("This is a test", "for the splash screen"))
-    c.parseArgs(args)
-
-    System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)))
+        c.setSplashScreen(List("This is a test", "for the splash screen"))
+        c.parseArgs(args)
+      }
+    }
   }
 }
 
