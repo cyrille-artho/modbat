@@ -8,7 +8,7 @@ import java.io.PrintStream
 import org.scalatest._
 
 object ConfigTest {
-  def testCtor(args: Array[String]) {
+  def testCtor(args: Array[String]): (List[String], List[String]) = {
     val out: ByteArrayOutputStream = new ByteArrayOutputStream() 
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
 
@@ -20,12 +20,15 @@ object ConfigTest {
         c.parseArgs(args)
       }
     }
+    (scala.io.Source.fromString(out.toString).getLines().toList, scala.io.Source.fromString(err.toString).getLines().toList)
   }
 }
 
 class ConfigTest extends FlatSpec with Matchers {
   "ConfigTest" should "run normally" in {
-    ConfigTest.testCtor(Array()) // no arguments
+    val result = ConfigTest.testCtor(Array()) // no arguments
+    result._1 should contain theSameElementsInOrderAs List("This is a test", "for the splash screen")
+    result._2 shouldBe empty
   }
 }
 
