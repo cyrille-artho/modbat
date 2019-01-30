@@ -9,7 +9,6 @@ TEST_LOG_PATH=log
 
 APP="scala -cp build/modbat.jar modbat.config.ConfigTest"
 
-run 0 $APP
 run 0 $APP -h
 run 0 $APP -s
 
