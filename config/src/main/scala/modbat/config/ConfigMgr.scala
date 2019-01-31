@@ -22,23 +22,32 @@ object ConfigMgr {
   import ArgParse._
 
   def main(args: Array[String]) {
+    System.exit(run(args))
+  }
+
+  def run(args: Array[String]): Int = {
     // parse arguments
     var c: ConfigMgr = null
     try {
       c = new ConfigMgr("ConfigMgr", "[FILE]", new TestConfiguration(),
 			new Version ("modbat.config"), true)
-      val remainingArgs = c.parseArgs(args)
+      val remainder = c.parseArgs(args)
 
-      // app-specific handling of left-over args; here: pretty-print
-      val hasMore = remainingArgs.hasNext
-      while (remainingArgs.hasNext) {
-	print (remainingArgs.next())
-	if (remainingArgs.hasNext) {
-	  print (" ")
+      remainder match {
+	case Some(remainingArgs) => {
+	  // app-specific handling of left-over args; here: pretty-print
+	  val hasMore = remainingArgs.hasNext
+	  while (remainingArgs.hasNext) {
+	    print (remainingArgs.next())
+	    if (remainingArgs.hasNext) {
+	      print (" ")
+	    }
+	  }
+	  if (hasMore) {
+	    println
+	  }
 	}
-      }
-      if (hasMore) {
-	println
+	case None => // nothing
       }
     } catch {
       case e: IllegalArgumentException => {
@@ -46,9 +55,10 @@ object ConfigMgr {
 	  Console.err.println(c.header)
 	}
 	Console.err.println(e.getMessage())
-	System.exit(1)
+	return 1
       }
     }
+    return 0
   }
 }
 
@@ -185,7 +195,7 @@ class ConfigMgr (progName: String, argName: String,
     }
   }
 
-  def parseArgs(args: Array[String]): Iterator[String] = {
+  def parseArgs(args: Array[String]): Option[Iterator[String]] = {
     showSplashScreen
     var finished: Boolean = false
     val argIt: Iterator[String] = args.iterator
@@ -194,8 +204,8 @@ class ConfigMgr (progName: String, argName: String,
       val ap: ArgParse = parseArg(current)
       ap match {
 	case BareArg => bareArgs += current
-	case Done => return bareArgs.iterator ++ argIt
-	case Exit => System.exit(0)
+	case Done => return Some(bareArgs.iterator ++ argIt)
+	case Exit => return None
 	case Ok => // nothing
       }
     }
@@ -203,7 +213,7 @@ class ConfigMgr (progName: String, argName: String,
     for (f <- fields) {
       checkDependencies(f)
     }
-    return bareArgs.iterator ++ argIt
+    return Some(bareArgs.iterator ++ argIt)
   }
 
   def optionNotSupported(optionName: String) = {

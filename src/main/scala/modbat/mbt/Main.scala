@@ -17,17 +17,22 @@ object Main {
 			  config, new Version ("modbat.mbt"))
     /* delegate parsing args to config library */
     try {
-      val remainingArgs = c.parseArgs(args)
-      if (!remainingArgs.hasNext) {
-	Log.error(c.header)
-	Log.error("Model class argument missing. Try --help.")
-	return 1
-      }
-      modelClassName = remainingArgs.next
-      if (remainingArgs.hasNext) {
-	Log.error("Extra arguments starting at \"" + remainingArgs.next() +
-		  "\" are not supported.")
-	return 1
+      val remainder = c.parseArgs(args)
+      remainder match {
+        case Some(remainingArgs) => {
+	  if (!remainingArgs.hasNext) {
+	    Log.error(c.header)
+	    Log.error("Model class argument missing. Try --help.")
+	    return 1
+	  }
+	  modelClassName = remainingArgs.next
+	  if (remainingArgs.hasNext) {
+	    Log.error("Extra arguments starting at \"" + remainingArgs.next() +
+		      "\" are not supported.")
+	    return 1
+	  }
+	}
+	case None => // nothing
       }
     } catch {
       case e: IllegalArgumentException => {
