@@ -176,7 +176,7 @@ class Dotify(val model: MBT, outFile: String = "") {
     }
   }
 
-  def dotify(coverage: Boolean = false) {
+  def dotify(coverage: Boolean = false) = {
     out.println("digraph model {")
     out.println("  orientation = landscape;")
     out.println("  graph [ rankdir = \"TB\", ranksep=\"0.4\", nodesep=\"0.2\" ];")
@@ -199,5 +199,6 @@ class Dotify(val model: MBT, outFile: String = "") {
       }
     }
     out.println("}")
+    0 // TODO (issue #27): replace interal System.exit usage with error code
   }
 }

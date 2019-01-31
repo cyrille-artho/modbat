@@ -215,6 +215,8 @@ object Modbat {
     appState = AppShutdown
     shutdown
     Runtime.getRuntime().removeShutdownHook(ShutdownHandler)
+    // TODO (issue #27): Replace internal System.exit usage with return code
+    0
   }
 
   def getRandomSeed = {

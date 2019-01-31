@@ -8,6 +8,10 @@ object Main {
   val config = new Configuration()
 
   def main(args: Array[String]) {
+    System.exit(run(args))
+  }
+
+  def run(args: Array[String]): Int = {
     var modelClassName: String = null
     val c = new ConfigMgr("scala modbat.jar", "CLASSNAME",
 			  config, new Version ("modbat.mbt"))
@@ -17,18 +21,18 @@ object Main {
       if (!remainingArgs.hasNext) {
 	Log.error(c.header)
 	Log.error("Model class argument missing. Try --help.")
-	System.exit(1)
+	return 1
       }
       modelClassName = remainingArgs.next
       if (remainingArgs.hasNext) {
 	Log.error("Extra arguments starting at \"" + remainingArgs.next() +
 		  "\" are not supported.")
-	System.exit(1)
+	return 1
       }
     } catch {
       case e: IllegalArgumentException => {
 	Log.error(e.getMessage())
-	System.exit(1)
+	return 1
       }
     }
 
@@ -40,6 +44,7 @@ object Main {
 	new Dotify(MBT.launch(null), modelClassName + ".dot").dotify()
       case _ => Modbat.explore(config.nRuns)
     }
+    // TODO (issue #27): Dotify.dotify() and Modbat.explore() should use return code
   }
 
   def setup(modelClassName: String) {
