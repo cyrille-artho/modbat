@@ -16,16 +16,19 @@ import modbat.util.SourceInfo.Launch
 class Dotify(val model: MBT, outFile: String = "") {
   var out: PrintStream = null
 
-  assert (outFile != "")
-  val fullOutFile = Main.config.dotDir + File.separatorChar + outFile
-  try {
-    out = new PrintStream(new FileOutputStream(fullOutFile), false, "UTF-8")
-  } catch {
-    case ioe: IOException => {
-      Log.error("Cannot open file " + fullOutFile + ":")
-      Log.error(ioe.getMessage)
-      System.exit(1)
+  def init: Int = {
+    assert (outFile != "")
+    val fullOutFile = Main.config.dotDir + File.separatorChar + outFile
+    try {
+      out = new PrintStream(new FileOutputStream(fullOutFile), false, "UTF-8")
+    } catch {
+      case ioe: IOException => {
+	Log.error("Cannot open file " + fullOutFile + ":")
+	Log.error(ioe.getMessage)
+	return 1
+      }
     }
+    0
   }
 
   def pad(label: String) = {
@@ -176,7 +179,11 @@ class Dotify(val model: MBT, outFile: String = "") {
     }
   }
 
-  def dotify(coverage: Boolean = false) = {
+  def dotify(coverage: Boolean = false): Int = {
+    val ret = init
+    if (ret != 0) {
+      return ret
+    }
     out.println("digraph model {")
     out.println("  orientation = landscape;")
     out.println("  graph [ rankdir = \"TB\", ranksep=\"0.4\", nodesep=\"0.2\" ];")
