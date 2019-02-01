@@ -14,3 +14,4 @@ class ChooseInBefore extends Model {
     assert(n == 1, "n = " + n)
   }
 }
+

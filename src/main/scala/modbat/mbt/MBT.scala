@@ -833,4 +833,13 @@ class MBT (val model: Model, val trans: List[Transition]) {
     })
     return false
   }
+
+  def setWeight(label: String, weight: Double): Unit = {
+    assert(weight >= 0)
+    transitions.filter(_.action.label == label)
+      .foreach(_.action.weight(weight))
+  }
+
+  //def getWeight(label: String): Double = {
+  //}
 }
