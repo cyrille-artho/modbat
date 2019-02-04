@@ -1,9 +1,0 @@
-dependencies {
-    testCompile 'org.scala-lang:scala-library:2.11.8'
-    testCompile rootProject
-}
-
-jar {
-    from sourceSets.main.allSource
-    from "../LICENSE", "../README"
-}

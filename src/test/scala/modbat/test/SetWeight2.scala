@@ -7,8 +7,8 @@ class SetWeight2 extends Model {
 
   "init" -> "init" := {
     assert(n == 0)
-    setWeight("loop", 0)
-    setWeight("end", 1)
+//    setWeight("loop", 0)
+//    setWeight("end", 1)
     n += 1
   } label "loop"
 
