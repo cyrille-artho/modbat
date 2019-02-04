@@ -1,6 +1,6 @@
 dependencies {
-    compile 'org.scala-lang:scala-library:2.11.8'
-    compile rootProject
+    testCompile 'org.scala-lang:scala-library:2.11.8'
+    testCompile rootProject
 }
 
 jar {

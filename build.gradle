@@ -53,6 +53,7 @@ dependencies {
     testCompile 'org.hamcrest:hamcrest-core:1.3'
     testCompile 'junit:junit:4.11'
     testCompile 'org.scalatest:scalatest_2.11:3.0.1'
+    testRuntime project(':modbat-test')
     testRuntime 'org.pegdown:pegdown:1.4.2'
 }
 

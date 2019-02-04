@@ -11,3 +11,4 @@ class SetWeight1 extends Model {
     assert(false)
   } label "end"
 }
+
