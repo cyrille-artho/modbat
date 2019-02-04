@@ -21,7 +21,6 @@ object ModbatTestHarness {
   }
 
   def setTestJar() = {
-Console.out.println("!!!")
     System.setProperty("CLASSPATH", "build/modbat-test.jar")
   }
 }
