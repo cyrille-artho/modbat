@@ -12,16 +12,15 @@ object ModbatTestHarness {
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
     var ret = 0
 
-   // Console.withErr(err) {
-   //   Console.withOut(out) {
+    Console.withErr(err) {
+      Console.withOut(out) {
         ret = Main.run(args)
-   //   }
-   // }
+      }
+    }
     (ret, scala.io.Source.fromString(out.toString).getLines().toList, scala.io.Source.fromString(err.toString).getLines().toList)
   }
 
   def setTestJar() = {
-Console.out.println("!!!")
     System.setProperty("CLASSPATH", "build/modbat-test.jar")
   }
 }
