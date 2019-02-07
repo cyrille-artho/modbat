@@ -196,11 +196,9 @@ object Modbat {
       }
       if (isErr) {
 	System.setErr(orig)
-	Log.err = orig
       } else {
 	System.setOut(orig)
         Console.print("[2K\r")
-	Log.log = orig
       }
     }
   }
@@ -262,11 +260,9 @@ object Modbat {
       if (Main.config.redirectOut) {
 	out = new PrintStream(new FileOutputStream(logFile))
 	System.setOut(out)
-	Log.log = out
 
 	err = new PrintStream(new FileOutputStream(errFile), true)
 	System.setErr(err)
-	Log.err = err
       } else {
 	Console.println
       }
