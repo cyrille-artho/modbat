@@ -429,7 +429,23 @@ object Modbat {
 	Log.debug("Aborting...")
 	return (Ok(), null)
       }
-      val successor = weightedChoice(successors, totalW)
+
+      //invokeTransition
+      var successor: (MBT, Transition) = null
+      while (!MBT.transitionQueue.isEmpty && successor == null) {
+        val (model, label) = MBT.transitionQueue.dequeue
+        val trs = model.transitions.filter(_.action.label == label)
+          .filter(_.origin == model.currentState)
+        if(trs.size != 1) {
+          Log.warn(s"${label} matches ${trs.size} transitions")
+        } else {
+          successor = (model, trs.head)
+        }
+      }
+      if (successor == null) {
+        successor = weightedChoice(successors, totalW)
+      }
+
       val model = successor._1
       val trans = successor._2
       assert (!trans.isSynthetic)

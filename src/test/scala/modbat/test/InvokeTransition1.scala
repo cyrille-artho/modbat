@@ -3,15 +3,16 @@ package modbat.test
 import modbat.dsl._
 
 class InvokeTransition1 extends Model {
-  "init" -> "mid" :={
+  var first = true
+
+  "init" -> "init" := {
+    assert(first)
     invokeTransition("invoked")
+    first = false
   } label "init"
 
-  "mid" -> "end" :={
+  "init" -> "end" := {
+    assert(!first)
   } label "invoked" weight 0
-
-  "mid" -> "end" :={
-    //assert(false)
-  } label "false"
 }
 
