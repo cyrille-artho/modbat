@@ -65,7 +65,7 @@ class Trie {
 
         currentNode = childNode // next node
       } else if (childNode != null && childNode.transitionInfo.transitionID == p.transition.idx) { // existing childNode situation
-
+        Log.debug("something happened here?")
         // Update same repetition times happening for this transition during the whole test
         updateTransSameRepetitionTimes(currentNode)
 
@@ -75,6 +75,8 @@ class Trie {
         childNode.transitionInfo.transCounter += 1
         // Update choices in map
         if (p.transition.recordedChoices != null && p.transition.recordedChoices.nonEmpty) {
+          Log.debug(
+            "something happened for choices here?:" + p.transition.recordedChoices)
           if (childNode.transitionInfo.transitionChoicesMap.contains(
                 p.transition.recordedChoices))
             childNode.transitionInfo
@@ -90,8 +92,10 @@ class Trie {
     }
     // Update same repetition times happening for this transition during the whole test
     updateTransSameRepetitionTimes(currentNode)
+    if (currentNode.children.nonEmpty) Log.debug("not a leaf")
     // Set this node to leaf
-    currentNode.isLeaf = true
+    // TODO: fix a bug here: the node is a leaf only when the children is empty
+    if (currentNode.children.isEmpty) currentNode.isLeaf = true
   }
 
   private def storePathInforIntoChildNode(

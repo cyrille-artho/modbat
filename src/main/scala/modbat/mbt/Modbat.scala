@@ -460,8 +460,21 @@ object Modbat {
 
       if (MBT.rng.nextFloat(false) < Main.config.abortProbability) {
         Log.debug("Aborting...")
+        Log.debug("path info recorder size:" + pathInfoRecorder.size) // TODO: the size is 0
+        for (p <- pathInfoRecorder) {
+          Log.debug("************ pathInfo ************")
+          Log.debug("model name:" + p.modelName)
+          Log.debug("model ID:" + p.modelID)
+          Log.debug("transition name:" + p.transition.toString())
+          Log.debug("transition ID:" + p.transition.idx)
+          Log.debug("transition quality:" + p.transitionQuality)
+          Log.debug(
+            "transition nextif:" + p.transition.nextStateNextIf.toString)
+        }
+        // TODO: there is something wrong here about the recording and return
 
         // TODO: insert pathInfo to trie before return - Rui
+        // TODO: It seems a bug here, how to handle the aborting case in the trie tree?
         if (Main.config.dotifyPathCoverage) trie.insert(pathInfoRecorder)
         return (Ok(), null)
       }
