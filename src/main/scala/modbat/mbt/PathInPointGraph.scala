@@ -34,7 +34,7 @@ class PathInPointGraph(trie: Trie, val typeName: String)
       "  node [ fontname = \"Helvetica\", fontsize=\"6.0\", style=rounded, shape=\"" + "point" +
         "\", margin=\"0.07\"," + " height=\"0.1\" ];")
     out.println(
-      "  edge [ fontname = \"Helvetica\", arrowsize=\".3\", arrowhead=\"vee\", fontsize=\"6.0\"," + " margin=\"0.05\" ];")
+      "  edge [ fontname = \"Helvetica\", arrowsize=\".3\", arrowhead=\"normal\", fontsize=\"6.0\"," + " margin=\"0.05\" ];")
 
     // The stack is used to record label information for "point" output
     val nodeRecordStack: ListBuffer[PointNodeInfo] =

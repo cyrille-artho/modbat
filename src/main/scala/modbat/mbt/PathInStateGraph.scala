@@ -27,7 +27,7 @@ class PathInStateGraph(trie: Trie, val typeName: String)
       "  node [ fontname = \"Helvetica\", fontsize=\"6.0\", style=rounded, shape=\"" + "ellipse" +
         "\", margin=\"0.07\"," + " height=\"0.1\" ];")
     out.println(
-      "  edge [ fontname = \"Helvetica\", arrowsize=\".3\", arrowhead=\"vee\", fontsize=\"6.0\"," + " margin=\"0.05\" ];")
+      "  edge [ fontname = \"Helvetica\", arrowsize=\".3\", arrowhead=\"normal\", fontsize=\"6.0\"," + " margin=\"0.05\" ];")
 
     val nodeRecorder
       : ListBuffer[StateNodeInfo] = new ListBuffer[StateNodeInfo] // nodeRecorder is used for record node information for "State" output graph
