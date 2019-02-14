@@ -59,6 +59,7 @@ object Modbat {
   private val timesVisited = new HashMap[RecordedState, Int]
   val testFailures =
     new HashMap[(TransitionResult, String), ListBuffer[Long]]()
+  var shutdownHookRegistered = false
  
   def init {
     if (Main.config.init) {
@@ -205,7 +206,10 @@ object Modbat {
 
   def explore(n: Int) = {
     init
-    Runtime.getRuntime().addShutdownHook(ShutdownHandler)
+    if (!shutdownHookRegistered) {
+      Runtime.getRuntime().addShutdownHook(ShutdownHandler)
+      shutdownHookRegistered = true
+    }
 
     runTests(n)
 
@@ -432,6 +436,8 @@ object Modbat {
 
       //invokeTransition
       var successor: (MBT, Transition) = null
+      Log.debug("Current InvokeTransitionQueue = " + MBT.transitionQueue.mkString)
+
       while (!MBT.transitionQueue.isEmpty && successor == null) {
         val (model, label) = MBT.transitionQueue.dequeue
         val trs = model.transitions.filter(_.action.label == label)

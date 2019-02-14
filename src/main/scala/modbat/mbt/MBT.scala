@@ -846,6 +846,7 @@ class MBT (val model: Model, val trans: List[Transition]) {
   //}
   def invokeTransition(label: String): Unit = {
     MBT.transitionQueue.enqueue((this, label))
+    //Log.debug("InvokeTransitionQueue = " + MBT.transitionQueue.mkString)
   }
 
 }
