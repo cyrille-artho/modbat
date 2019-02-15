@@ -13,5 +13,9 @@ class InvokeTransition2 extends Model {
 
   "mid" -> "end" := {
   } label "snd" weight 0
+
+  //"mid" -> "end" := {
+  //  assert(false)
+  //} label "fail"
 }
 

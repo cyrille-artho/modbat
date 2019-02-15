@@ -426,7 +426,7 @@ object Modbat {
     var allSucc = successors.clone
     var totalW = totalWeight(successors)
     var backtracked = false
-    while (!successors.isEmpty && totalW > 0) {
+    while (!successors.isEmpty && (totalW > 0 || !MBT.transitionQueue.isEmpty)) {
       val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone
 
       if (MBT.rng.nextFloat(false) < Main.config.abortProbability) {
@@ -436,7 +436,7 @@ object Modbat {
 
       //invokeTransition
       var successor: (MBT, Transition) = null
-      Log.debug("Current InvokeTransitionQueue = " + MBT.transitionQueue.mkString)
+      Log.debug("Current InvokeTransitionQueue = (" + MBT.transitionQueue.mkString + ")")
 
       while (!MBT.transitionQueue.isEmpty && successor == null) {
         val (model, label) = MBT.transitionQueue.dequeue
@@ -448,14 +448,14 @@ object Modbat {
           successor = (model, trs.head)
         }
       }
-      if (successor == null) {
+      if (successor == null && totalW > 0) {
         successor = weightedChoice(successors, totalW)
       }
-
+if(successor != null) {
       val model = successor._1
       val trans = successor._2
       assert (!trans.isSynthetic)
-// TODO: Path coverage
+      // TODO: Path coverage
       val result = model.executeTransition(trans)
       var updates: List[(Field, Any)] = Nil
       updates  = model.tracedFields.updates
@@ -503,6 +503,7 @@ object Modbat {
 	}
       }
       totalW = totalWeight(successors)
+}
     }
     if (successors.isEmpty && backtracked) {
       for (succ <- allSucc) {
