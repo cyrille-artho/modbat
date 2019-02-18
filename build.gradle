@@ -1,5 +1,4 @@
 /** Build script for Modbat. */
-
 buildscript {
   repositories {
     maven {
@@ -70,4 +69,26 @@ jar {
                                          collect { zipTree(it) }
 }
 
+
 apply plugin: "com.github.maiflai.scalatest"
+
+task examplesJar(type: Jar) {
+    archiveName = "modbat-examples.jar"
+    destinationDir = file("$buildDir")
+
+    from "$buildDir/classes/scala/test" findAll { it.name.endsWith('class') && it.path.contains('examples') }.collect { zipTree(it) }
+    from "$buildDir/classes/java/test" findAll { it.name.endsWith('class') && it.path.contains('examples')}.collect { zipTree(it) }
+}
+task testsJar(type: Jar) {
+    archiveName = "modbat-test.jar"
+    destinationDir = file("$buildDir")
+
+    from "$buildDir/classes/scala/test" findAll { it.name.endsWith('class')}.collect { zipTree(it) }
+    from "$buildDir/classes/java/test" findAll { it.name.endsWith('class')}.collect { zipTree(it) }
+}
+
+test {
+  dependsOn examplesJar
+  dependsOn testsJar
+}
+
