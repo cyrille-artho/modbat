@@ -1,17 +1,14 @@
 #!/bin/sh
-CWD=`pwd`
-cd build/classes/scala/test
-jar cf build/modbat-examples.jar modbat/examples/
-jar cf build/modbat-test.jar modbat/test
-mv modbat-*.jar ../../..
-cd ${CWD}
-
-#!/bin/bash
-# script to test various configurations of the trace server
-
 TEST_LOG_PATH=log
 
 . bin/testtool.sh
+
+CWD=`pwd`
+cd build/classes/scala/test
+jar cf modbat-examples.jar modbat/examples/
+jar cf modbat-test.jar modbat/test
+mv modbat-*.jar ../../..
+cd ${CWD}
 
 ######################## Test declarations ########################
 
