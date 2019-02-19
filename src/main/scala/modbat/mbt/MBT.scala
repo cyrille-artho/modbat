@@ -75,7 +75,6 @@ object MBT {
   var currentTransition: Transition = null
 
   def init {
-    modelClass = null
     warningIssuedOn.clear
   }
 
