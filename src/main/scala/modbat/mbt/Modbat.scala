@@ -343,17 +343,27 @@ object Modbat {
       }
     }
   }
-
-  def allSuccessors(givenModel: MBT) = {
+  def allSuccessors(givenModel: MBT): Array[(MBT, Transition)] = {
     var result = new ArrayBuffer[(MBT, Transition)]()
     if (givenModel == null) {
-      for (m <- MBT.launchedModels filterNot (_ isObserver)
-	   filter (_.joining == null)) {
-        addSuccessors(m, result)
+      MBT.stayLock.synchronized {
+        // TODO: allow selection to be overridden by invokeTransition
+        val (staying, notStaying) = MBT.launchedModels partition (_.staying)
+        for (m <- notStaying filterNot (_ isObserver)
+          filter (_.joining == null)) {
+          addSuccessors(m, result)
+        }
+        if (result.isEmpty && !staying.isEmpty) {
+          MBT.stayLock.wait()
+          return allSuccessors(givenModel)
+        }
       }
     } else {
       if (givenModel.joining == null) {
-	addSuccessors(givenModel, result)
+        MBT.stayLock.synchronized {
+          MBT.stayLock.wait()
+        }
+        addSuccessors(givenModel, result)
       }
     }
     result.toArray

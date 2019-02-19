@@ -73,6 +73,8 @@ object MBT {
   val warningIssuedOn = new HashSet[Object]()
   // do not issue same warning twice for static model problem
   var currentTransition: Transition = null
+  val stayLock = new AnyRef()
+
 
   // TODO: If necessary, add another argument (tag) to distinguish between
   // different types of warnings for the same type of object/data.
@@ -352,6 +354,7 @@ class MBT (val model: Model, val trans: List[Transition]) {
   var isObserver = false
   var joining: MBT = null
   val tracedFields = new TracedFields(getTracedFields, model)
+  @volatile var staying = false
 
   /* isChild is true when coverage information of initial instance is
    * to be re-used; this is the case when a child is launched, but also
@@ -783,6 +786,16 @@ class MBT (val model: Model, val trans: List[Transition]) {
 	MBT.currentTransition = successor
 	TransitionCoverage.prep(successor)
 	successor.action.transfunc()
+        successor.action.stayTime match {
+          case Some((t1, t2)) => {
+            MBT.stayLock.synchronized {
+              staying = true
+            }
+            val stayTime = (if (t1 == t2) t1 else rng.choose(t1, t2)).asInstanceOf[Long]
+            new Timer(stayTime).start()
+          }
+          case _ => ()
+        }
 	if (!successor.expectedExceptions.isEmpty) {
 	  Log.warn("Expected exception did not occur, aborting.")
 	  (ExpectedExceptionMissing, new RecordedTransition(this, successor))
@@ -842,11 +855,19 @@ class MBT (val model: Model, val trans: List[Transition]) {
       .foreach(_.action.weight(weight))
   }
 
-  //def getWeight(label: String): Double = {
-  //}
   def invokeTransition(label: String): Unit = {
     MBT.transitionQueue.enqueue((this, label))
-    //Log.debug("InvokeTransitionQueue = " + MBT.transitionQueue.mkString)
   }
 
+  class Timer(val t: Long) extends Thread {
+    override def run() {
+      Log.fine(name + ": Started staying for " + t + " ms.")
+      Thread.sleep(t)
+      MBT.stayLock.synchronized {
+        staying = false
+        MBT.stayLock.notify()
+      }
+      Log.fine(name + ": Finished staying.")
+    }
+  }
 }
