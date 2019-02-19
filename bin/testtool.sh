@@ -170,6 +170,7 @@ checkdiff() {
     echo
     echo "# Output difference: " >& 2
     echo "$diffcmd" >& 2
+    $diffcmd >& 2
     return 1
   fi
   return 0
