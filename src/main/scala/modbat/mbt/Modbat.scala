@@ -62,6 +62,15 @@ object Modbat {
   var shutdownHookRegistered = false
  
   def init {
+    // reset all static variables
+    failed = 0
+    count = 0
+    firstInstance.clear
+    appState = AppExplore
+    executedTransitions.clear
+    timesVisited.clear
+    testFailures.clear
+    // call init if needed
     if (Main.config.init) {
       MBT.invokeAnnotatedStaticMethods(classOf[Init], null)
     }
