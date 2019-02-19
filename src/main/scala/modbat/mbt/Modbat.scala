@@ -70,6 +70,7 @@ object Modbat {
     executedTransitions.clear
     timesVisited.clear
     testFailures.clear
+    MBT.init
     // call init if needed
     if (Main.config.init) {
       MBT.invokeAnnotatedStaticMethods(classOf[Init], null)

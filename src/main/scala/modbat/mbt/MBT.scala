@@ -74,6 +74,11 @@ object MBT {
   // do not issue same warning twice for static model problem
   var currentTransition: Transition = null
 
+  def init {
+    modelClass = null
+    warningIssuedOn.clear
+  }
+
   // TODO: If necessary, add another argument (tag) to distinguish between
   // different types of warnings for the same type of object/data.
   def warningIssued(o: Object) = {
@@ -184,6 +189,10 @@ object MBT {
   def clearLaunchedModels() {
     launchedModels.clear
     launchedModelInst.clear
+    transitionQueue.clear
+    or_else = false
+    testHasFailed = false
+    currentTransition = null
   }
 
   def getLaunchedModel(i: Int) = launchedModels(i)
