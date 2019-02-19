@@ -227,6 +227,7 @@ object Modbat {
     appState = AppShutdown
     shutdown
     Runtime.getRuntime().removeShutdownHook(ShutdownHandler)
+    shutdownHookRegistered = false
     // TODO (issue #27): Replace internal System.exit usage with return code
     0
   }
