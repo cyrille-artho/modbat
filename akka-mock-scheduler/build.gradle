@@ -13,9 +13,6 @@ plugins {
   id "com.github.maiflai.scalatest"
 }
 
-
-apply plugin: 'application'
-
 dependencies {
     compile 'com.typesafe.akka:akka-actor_2.11:2.5.19'
     testCompile 'org.scalatest:scalatest_2.11:3.0.1'
