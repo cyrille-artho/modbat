@@ -8,6 +8,7 @@ object Main {
   val config = new Configuration()
 
   def main(args: Array[String]) {
+    Modbat.isUnitTest = false
     System.exit(run(args))
   }
 

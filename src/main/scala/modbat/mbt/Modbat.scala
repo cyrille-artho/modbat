@@ -59,7 +59,7 @@ object Modbat {
   private val timesVisited = new HashMap[RecordedState, Int]
   val testFailures =
     new HashMap[(TransitionResult, String), ListBuffer[Long]]()
-  var shutdownHookRegistered = false
+  var isUnitTest = true
  
   def init {
     // reset all static variables
@@ -216,9 +216,8 @@ object Modbat {
 
   def explore(n: Int) = {
     init
-    if (!shutdownHookRegistered) {
+    if (!isUnitTest) {
       Runtime.getRuntime().addShutdownHook(ShutdownHandler)
-      shutdownHookRegistered = true
     }
 
     runTests(n)
@@ -227,7 +226,6 @@ object Modbat {
     appState = AppShutdown
     shutdown
     Runtime.getRuntime().removeShutdownHook(ShutdownHandler)
-    shutdownHookRegistered = false
     // TODO (issue #27): Replace internal System.exit usage with return code
     0
   }
