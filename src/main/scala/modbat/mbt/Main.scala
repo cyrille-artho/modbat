@@ -8,6 +8,7 @@ object Main {
   val config = new Configuration()
 
   def main(args: Array[String]) {
+    Modbat.isUnitTest = false
     System.exit(run(args))
   }
 
@@ -43,6 +44,7 @@ object Main {
 
     setup(modelClassName) // TODO: refactor into case code below once needed
 
+    Modbat.init
     /* execute */
     config.mode match {
       case "dot" =>

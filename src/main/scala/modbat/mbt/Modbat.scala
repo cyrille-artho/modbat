@@ -55,12 +55,24 @@ object Modbat {
   // shutdown handler is registered at time when model exploration starts
   private var executedTransitions = new ListBuffer[RecordedTransition]
   private var randomSeed: Long = 0 // current random seed
-  val masterRNG: CloneableRandom = MBT.rng.asInstanceOf[CloneableRandom].clone
+  var masterRNG: CloneableRandom = _
   private val timesVisited = new HashMap[RecordedState, Int]
   val testFailures =
     new HashMap[(TransitionResult, String), ListBuffer[Long]]()
+  var isUnitTest = true
  
   def init {
+    // reset all static variables
+    failed = 0
+    count = 0
+    firstInstance.clear
+    appState = AppExplore
+    executedTransitions.clear
+    timesVisited.clear
+    testFailures.clear
+    masterRNG = MBT.rng.asInstanceOf[CloneableRandom].clone
+    MBT.init
+    // call init if needed
     if (Main.config.init) {
       MBT.invokeAnnotatedStaticMethods(classOf[Init], null)
     }
@@ -196,18 +208,18 @@ object Modbat {
       }
       if (isErr) {
 	System.setErr(orig)
-	Log.err = orig
       } else {
 	System.setOut(orig)
         Console.print("[2K\r")
-	Log.log = orig
       }
     }
   }
 
   def explore(n: Int) = {
     init
-    Runtime.getRuntime().addShutdownHook(ShutdownHandler)
+    if (!isUnitTest) {
+      Runtime.getRuntime().addShutdownHook(ShutdownHandler)
+    }
 
     runTests(n)
 
@@ -262,11 +274,9 @@ object Modbat {
       if (Main.config.redirectOut) {
 	out = new PrintStream(new FileOutputStream(logFile))
 	System.setOut(out)
-	Log.log = out
 
 	err = new PrintStream(new FileOutputStream(errFile), true)
 	System.setErr(err)
-	Log.err = err
       } else {
 	Console.println
       }
@@ -426,18 +436,36 @@ object Modbat {
     var allSucc = successors.clone
     var totalW = totalWeight(successors)
     var backtracked = false
-    while (!successors.isEmpty && totalW > 0) {
+    while (!successors.isEmpty && (totalW > 0 || !MBT.transitionQueue.isEmpty)) {
       val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone
 
       if (MBT.rng.nextFloat(false) < Main.config.abortProbability) {
 	Log.debug("Aborting...")
 	return (Ok(), null)
       }
-      val successor = weightedChoice(successors, totalW)
+
+      //invokeTransition
+      var successor: (MBT, Transition) = null
+      Log.debug("Current InvokeTransitionQueue = (" + MBT.transitionQueue.mkString + ")")
+
+      while (!MBT.transitionQueue.isEmpty && successor == null) {
+        val (model, label) = MBT.transitionQueue.dequeue
+        val trs = model.transitions.filter(_.action.label == label)
+          .filter(_.origin == model.currentState)
+        if(trs.size != 1) {
+          Log.warn(s"${label} matches ${trs.size} transitions")
+        } else {
+          successor = (model, trs.head)
+        }
+      }
+      if (successor == null && totalW > 0) {
+        successor = weightedChoice(successors, totalW)
+      }
+if(successor != null) {
       val model = successor._1
       val trans = successor._2
       assert (!trans.isSynthetic)
-// TODO: Path coverage
+      // TODO: Path coverage
       val result = model.executeTransition(trans)
       var updates: List[(Field, Any)] = Nil
       updates  = model.tracedFields.updates
@@ -485,6 +513,7 @@ object Modbat {
 	}
       }
       totalW = totalWeight(successors)
+}
     }
     if (successors.isEmpty && backtracked) {
       for (succ <- allSucc) {

@@ -1,6 +1,4 @@
-#!/bin/bash
-# script to test various configurations of the trace server
-
+#!/bin/sh
 TEST_LOG_PATH=log
 
 . bin/testtool.sh
@@ -556,8 +554,6 @@ modbat.test.LoopTestWithLaunch
 
 run 0 $APP -s=1 -n=200 --no-redirect-out --stop-on-failure \
 modbat.test.CrashSoon
-
-run 0 $APP -s=1 -n=1 --no-redirect-out modbat.test.Choose00
 
 run 0 $APP -s=1 -n=5 --no-redirect-out modbat.test.ChooseBool
 
