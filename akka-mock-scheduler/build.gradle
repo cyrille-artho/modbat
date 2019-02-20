@@ -1,0 +1,26 @@
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+  }
+  dependencies {
+    classpath "gradle.plugin.com.github.maiflai:gradle-scalatest:0.23"
+  }
+}
+
+plugins {
+  id "com.github.maiflai.scalatest"
+}
+
+
+apply plugin: 'application'
+
+dependencies {
+    compile 'com.typesafe.akka:akka-actor_2.11:2.5.19'
+    testCompile 'org.scalatest:scalatest_2.11:3.0.1'
+    testCompile 'org.mockito:mockito-all:1.10.19'
+    testRuntime 'org.pegdown:pegdown:1.4.2'
+}
+
+apply plugin: "com.github.maiflai.scalatest"
