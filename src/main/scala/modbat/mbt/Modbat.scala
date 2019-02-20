@@ -61,7 +61,6 @@ object Modbat {
   private val timesVisited = new HashMap[RecordedState, Int]
   val testFailures =
     new HashMap[(TransitionResult, String), ListBuffer[Long]]()
-  var shutdownHookRegistered = false
   val time = new VirtualTime
   var isUnitTest = true
  
