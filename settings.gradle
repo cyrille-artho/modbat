@@ -9,6 +9,5 @@
 
 rootProject.name = 'modbat'
 
+include 'akka-mock-scheduler'
 include 'config'
-include 'modbat-examples'
-include 'modbat-test'
