@@ -800,7 +800,7 @@ class MBT (val model: Model, val trans: List[Transition]) {
               staying = true
             }
             val stayTime = (if (t1 == t2) t1 else rng.choose(t1, t2)).asInstanceOf[Long]
-            time.scheduler.schedule(0, stayTime, new WakeUp())
+////            time.scheduler.schedule(0, stayTime, new WakeUp())
           }
           case _ => ()
         }

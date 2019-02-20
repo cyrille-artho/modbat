@@ -61,12 +61,8 @@ object Modbat {
   private val timesVisited = new HashMap[RecordedState, Int]
   val testFailures =
     new HashMap[(TransitionResult, String), ListBuffer[Long]]()
-<<<<<<< HEAD
-  var shutdownHookRegistered = false
   val time = new VirtualTime
-=======
   var isUnitTest = true
->>>>>>> 1c3411aa619d5cb55d8892127d078b9b3edda439
  
   def init {
     // reset all static variables
@@ -371,20 +367,20 @@ object Modbat {
           addSuccessors(m, result)
         }
         if (result.isEmpty && !staying.isEmpty) {
-          time.scheduler.timeUntilNextTask {
-            case Some(s) => time.scheduler.advance(s)
-            case None =>
-          }
+////          time.scheduler.timeUntilNextTask {
+////            case Some(s) => time.scheduler.advance(s)
+////            case None =>
+////          }
           return allSuccessors(givenModel)
         }
       }
     } else {
       if (givenModel.joining == null) {
         MBT.stayLock.synchronized {
-          time.scheduler.timeUntilNextTask {
-            case Some(s) => time.scheduler.advance(s)
-            case None =>
-          }
+////          time.scheduler.timeUntilNextTask {
+////            case Some(s) => time.scheduler.advance(s)
+////            case None =>
+////          }
         }
         addSuccessors(givenModel, result)
       }
