@@ -44,6 +44,9 @@ import modbat.trace.TransitionResult
 import modbat.util.CloneableRandom
 import modbat.util.Random
 
+import com.miguno.akka.testing.VirtualTime
+
+//import com.miguno.akka.testing.VirtualTime
 /** Contains core functionality for loading and running model.
   * Model exploration code is in Modbat. */
 object MBT {
@@ -74,7 +77,7 @@ object MBT {
   // do not issue same warning twice for static model problem
   var currentTransition: Transition = null
   val stayLock = new AnyRef()
-
+val time = new VirtualTime
 
   def init {
     warningIssuedOn.clear
@@ -800,7 +803,8 @@ class MBT (val model: Model, val trans: List[Transition]) {
               staying = true
             }
             val stayTime = (if (t1 == t2) t1 else rng.choose(t1, t2)).asInstanceOf[Long]
-            time.scheduler.schedule(0, stayTime, new WakeUp())
+            new Timer(stayTime).start()
+//            time.scheduler.schedule(0, stayTime, new WakeUp())
           }
           case _ => ()
         }
@@ -867,8 +871,11 @@ class MBT (val model: Model, val trans: List[Transition]) {
     MBT.transitionQueue.enqueue((this, label))
   }
 
-  class WakeUp(val t: Long) extends Thread {
+//  class WakeUp(val t: Long) extends Thread {
+  class Timer(val t: Long) extends Thread {
     override def run() {
+      Log.fine(name + ": Started staying for " + t + " ms.")
+      Thread.sleep(t)
       MBT.stayLock.synchronized {
         staying = false
         MBT.stayLock.notify()
