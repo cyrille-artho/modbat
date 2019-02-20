@@ -303,6 +303,7 @@ exec_eval() {
 	-e 's/.*//' \
 	-e 's/ in .*[0-9]* milliseconds//' \
 	-e 's/RELEASE-\([0-9.]*\)/\1/' \
+	-e 's/ v[0-9a-f]* rev [0-9a-f]*/ vx.yz/' \
 	-e 's/ v[0-9][0-9]*\.[0-9][^ ]* rev [0-9a-f]*/ vx.yz/' \
 	-e 's/^Time: [0-9.]*//' \
 	-e 's/\(at .*\):[0-9]*/\1/' \
@@ -324,7 +325,8 @@ exec_eval() {
 
   cat $ETMP \
 	| sed -e 's/RELEASE-3.2/3.3/' \
-	-e 's/\( v[^ ]*\) rev [0-9a-f]*/\1/' \
+	-e 's/ v[0-9a-f]* rev [0-9a-f]*/ vx.yz/' \
+	-e 's/ v[^ ]* rev [0-9a-f]*/ vx.yz/' \
 	-e 's/\(at .*\):[0-9]*/\1/' \
 	-e 's/\(Exception in thread "Thread-\)[0-9][0-9]*/\1X/' \
 	| grep -v 'CommonRunner.*.run.*(ObjectRunner.scala' \
