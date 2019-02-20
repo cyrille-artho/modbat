@@ -76,6 +76,10 @@ object MBT {
   val stayLock = new AnyRef()
 
 
+  def init {
+    warningIssuedOn.clear
+  }
+
   // TODO: If necessary, add another argument (tag) to distinguish between
   // different types of warnings for the same type of object/data.
   def warningIssued(o: Object) = {
@@ -186,6 +190,10 @@ object MBT {
   def clearLaunchedModels() {
     launchedModels.clear
     launchedModelInst.clear
+    transitionQueue.clear
+    or_else = false
+    testHasFailed = false
+    currentTransition = null
   }
 
   def getLaunchedModel(i: Int) = launchedModels(i)

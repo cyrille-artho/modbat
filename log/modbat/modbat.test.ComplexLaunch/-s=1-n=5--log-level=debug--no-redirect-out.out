@@ -8,12 +8,14 @@
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: init
 [DEBUG] modbat.test.ComplexLaunch-1: Possible successor: active
 [DEBUG] State active in model modbat.test.ComplexLaunch-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.ComplexLaunch-1: Executing transition init => active...
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: active
 [DEBUG] modbat.test.ComplexLaunch-1: Possible successor: active
 [DEBUG] modbat.test.ComplexLaunch-1: Possible successor: done
 [DEBUG] State active in model modbat.test.ComplexLaunch-1 was visited 1 times.
 [DEBUG] State done in model modbat.test.ComplexLaunch-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.ComplexLaunch-1: Executing transition active => done...
 [DEBUG] Model modbat.test.ComplexLaunch-1 has terminated.
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: done
@@ -29,12 +31,14 @@
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: init
 [DEBUG] modbat.test.ComplexLaunch-1: Possible successor: active
 [DEBUG] State active in model modbat.test.ComplexLaunch-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.ComplexLaunch-1: Executing transition init => active...
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: active
 [DEBUG] modbat.test.ComplexLaunch-1: Possible successor: active
 [DEBUG] modbat.test.ComplexLaunch-1: Possible successor: done
 [DEBUG] State active in model modbat.test.ComplexLaunch-1 was visited 1 times.
 [DEBUG] State done in model modbat.test.ComplexLaunch-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.ComplexLaunch-1: Executing transition active => active...
 [DEBUG] modbat.test.Child-1: Registered state transition from init to running
 [DEBUG] modbat.test.Child-1: Registered state transition from running to running
@@ -48,12 +52,14 @@
 [DEBUG] modbat.test.Child-1: Current state: init
 [DEBUG] modbat.test.Child-1: Possible successor: running
 [DEBUG] State running in model modbat.test.Child-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.ComplexLaunch-1: Executing transition active => done...
 [DEBUG] Model modbat.test.ComplexLaunch-1 has terminated.
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: done
 [DEBUG] modbat.test.Child-1: Current state: init
 [DEBUG] modbat.test.Child-1: Possible successor: running
 [DEBUG] State running in model modbat.test.Child-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.Child-1: Executing transition init => running...
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: done
 [DEBUG] modbat.test.Child-1: Current state: running
@@ -61,6 +67,7 @@
 [DEBUG] modbat.test.Child-1: Possible successor: done
 [DEBUG] State running in model modbat.test.Child-1 was visited 1 times.
 [DEBUG] State done in model modbat.test.Child-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.Child-1: Executing transition running => running...
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: done
 [DEBUG] modbat.test.Child-1: Current state: running
@@ -68,6 +75,7 @@
 [DEBUG] modbat.test.Child-1: Possible successor: done
 [DEBUG] State running in model modbat.test.Child-1 was visited 2 times.
 [DEBUG] State done in model modbat.test.Child-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.Child-1: Executing transition running => running...
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: done
 [DEBUG] modbat.test.Child-1: Current state: running
@@ -75,6 +83,7 @@
 [DEBUG] modbat.test.Child-1: Possible successor: done
 [DEBUG] State running in model modbat.test.Child-1 was visited 3 times.
 [DEBUG] State done in model modbat.test.Child-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.Child-1: Executing transition running => done...
 [DEBUG] Model modbat.test.Child-1 has terminated.
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: done
@@ -91,12 +100,14 @@
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: init
 [DEBUG] modbat.test.ComplexLaunch-1: Possible successor: active
 [DEBUG] State active in model modbat.test.ComplexLaunch-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.ComplexLaunch-1: Executing transition init => active...
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: active
 [DEBUG] modbat.test.ComplexLaunch-1: Possible successor: active
 [DEBUG] modbat.test.ComplexLaunch-1: Possible successor: done
 [DEBUG] State active in model modbat.test.ComplexLaunch-1 was visited 1 times.
 [DEBUG] State done in model modbat.test.ComplexLaunch-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.ComplexLaunch-1: Executing transition active => active...
 [DEBUG] Identical model found: modbat.test.Child-1
 [DEBUG] modbat.test.Child-1: Registered state transition from init to running
@@ -111,6 +122,7 @@
 [DEBUG] modbat.test.Child-1: Current state: init
 [DEBUG] modbat.test.Child-1: Possible successor: running
 [DEBUG] State running in model modbat.test.Child-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.ComplexLaunch-1: Executing transition active => active...
 [DEBUG] Identical model found: modbat.test.Child-1
 [DEBUG] modbat.test.Child-2: Registered state transition from init to running
@@ -128,6 +140,7 @@
 [DEBUG] modbat.test.Child-2: Current state: init
 [DEBUG] modbat.test.Child-2: Possible successor: running
 [DEBUG] State running in model modbat.test.Child-2 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.ComplexLaunch-1: Executing transition active => done...
 [DEBUG] Model modbat.test.ComplexLaunch-1 has terminated.
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: done
@@ -137,6 +150,7 @@
 [DEBUG] modbat.test.Child-2: Current state: init
 [DEBUG] modbat.test.Child-2: Possible successor: running
 [DEBUG] State running in model modbat.test.Child-2 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.Child-1: Executing transition init => running...
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: done
 [DEBUG] modbat.test.Child-1: Current state: running
@@ -147,6 +161,7 @@
 [DEBUG] modbat.test.Child-2: Current state: init
 [DEBUG] modbat.test.Child-2: Possible successor: running
 [DEBUG] State running in model modbat.test.Child-2 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.Child-1: Executing transition running => done...
 [DEBUG] Model modbat.test.Child-1 has terminated.
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: done
@@ -154,6 +169,7 @@
 [DEBUG] modbat.test.Child-2: Current state: init
 [DEBUG] modbat.test.Child-2: Possible successor: running
 [DEBUG] State running in model modbat.test.Child-2 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.Child-2: Executing transition init => running...
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: done
 [DEBUG] modbat.test.Child-1: Current state: done
@@ -162,6 +178,7 @@
 [DEBUG] modbat.test.Child-2: Possible successor: done
 [DEBUG] State running in model modbat.test.Child-2 was visited 1 times.
 [DEBUG] State done in model modbat.test.Child-2 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.Child-2: Executing transition running => running...
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: done
 [DEBUG] modbat.test.Child-1: Current state: done
@@ -170,6 +187,7 @@
 [DEBUG] modbat.test.Child-2: Possible successor: done
 [DEBUG] State running in model modbat.test.Child-2 was visited 2 times.
 [DEBUG] State done in model modbat.test.Child-2 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.Child-2: Executing transition running => done...
 [DEBUG] Model modbat.test.Child-2 has terminated.
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: done
@@ -187,12 +205,14 @@
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: init
 [DEBUG] modbat.test.ComplexLaunch-1: Possible successor: active
 [DEBUG] State active in model modbat.test.ComplexLaunch-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.ComplexLaunch-1: Executing transition init => active...
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: active
 [DEBUG] modbat.test.ComplexLaunch-1: Possible successor: active
 [DEBUG] modbat.test.ComplexLaunch-1: Possible successor: done
 [DEBUG] State active in model modbat.test.ComplexLaunch-1 was visited 1 times.
 [DEBUG] State done in model modbat.test.ComplexLaunch-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.ComplexLaunch-1: Executing transition active => active...
 [DEBUG] Identical model found: modbat.test.Child-1
 [DEBUG] modbat.test.Child-1: Registered state transition from init to running
@@ -207,12 +227,14 @@
 [DEBUG] modbat.test.Child-1: Current state: init
 [DEBUG] modbat.test.Child-1: Possible successor: running
 [DEBUG] State running in model modbat.test.Child-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.ComplexLaunch-1: Executing transition active => done...
 [DEBUG] Model modbat.test.ComplexLaunch-1 has terminated.
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: done
 [DEBUG] modbat.test.Child-1: Current state: init
 [DEBUG] modbat.test.Child-1: Possible successor: running
 [DEBUG] State running in model modbat.test.Child-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.Child-1: Executing transition init => running...
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: done
 [DEBUG] modbat.test.Child-1: Current state: running
@@ -220,6 +242,7 @@
 [DEBUG] modbat.test.Child-1: Possible successor: done
 [DEBUG] State running in model modbat.test.Child-1 was visited 1 times.
 [DEBUG] State done in model modbat.test.Child-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.Child-1: Executing transition running => running...
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: done
 [DEBUG] modbat.test.Child-1: Current state: running
@@ -227,6 +250,7 @@
 [DEBUG] modbat.test.Child-1: Possible successor: done
 [DEBUG] State running in model modbat.test.Child-1 was visited 2 times.
 [DEBUG] State done in model modbat.test.Child-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.Child-1: Executing transition running => done...
 [DEBUG] Model modbat.test.Child-1 has terminated.
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: done
@@ -243,12 +267,14 @@
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: init
 [DEBUG] modbat.test.ComplexLaunch-1: Possible successor: active
 [DEBUG] State active in model modbat.test.ComplexLaunch-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.ComplexLaunch-1: Executing transition init => active...
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: active
 [DEBUG] modbat.test.ComplexLaunch-1: Possible successor: active
 [DEBUG] modbat.test.ComplexLaunch-1: Possible successor: done
 [DEBUG] State active in model modbat.test.ComplexLaunch-1 was visited 1 times.
 [DEBUG] State done in model modbat.test.ComplexLaunch-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.ComplexLaunch-1: Executing transition active => active...
 [DEBUG] Identical model found: modbat.test.Child-1
 [DEBUG] modbat.test.Child-1: Registered state transition from init to running
@@ -263,12 +289,14 @@
 [DEBUG] modbat.test.Child-1: Current state: init
 [DEBUG] modbat.test.Child-1: Possible successor: running
 [DEBUG] State running in model modbat.test.Child-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.ComplexLaunch-1: Executing transition active => done...
 [DEBUG] Model modbat.test.ComplexLaunch-1 has terminated.
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: done
 [DEBUG] modbat.test.Child-1: Current state: init
 [DEBUG] modbat.test.Child-1: Possible successor: running
 [DEBUG] State running in model modbat.test.Child-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.Child-1: Executing transition init => running...
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: done
 [DEBUG] modbat.test.Child-1: Current state: running
@@ -276,6 +304,7 @@
 [DEBUG] modbat.test.Child-1: Possible successor: done
 [DEBUG] State running in model modbat.test.Child-1 was visited 1 times.
 [DEBUG] State done in model modbat.test.Child-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.Child-1: Executing transition running => running...
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: done
 [DEBUG] modbat.test.Child-1: Current state: running
@@ -283,6 +312,7 @@
 [DEBUG] modbat.test.Child-1: Possible successor: done
 [DEBUG] State running in model modbat.test.Child-1 was visited 2 times.
 [DEBUG] State done in model modbat.test.Child-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.Child-1: Executing transition running => running...
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: done
 [DEBUG] modbat.test.Child-1: Current state: running
@@ -290,6 +320,7 @@
 [DEBUG] modbat.test.Child-1: Possible successor: done
 [DEBUG] State running in model modbat.test.Child-1 was visited 3 times.
 [DEBUG] State done in model modbat.test.Child-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.Child-1: Executing transition running => running...
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: done
 [DEBUG] modbat.test.Child-1: Current state: running
@@ -297,6 +328,7 @@
 [DEBUG] modbat.test.Child-1: Possible successor: done
 [DEBUG] State running in model modbat.test.Child-1 was visited 4 times.
 [DEBUG] State done in model modbat.test.Child-1 was visited 0 times.
+[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.Child-1: Executing transition running => done...
 [DEBUG] Model modbat.test.Child-1 has terminated.
 [DEBUG] modbat.test.ComplexLaunch-1: Current state: done

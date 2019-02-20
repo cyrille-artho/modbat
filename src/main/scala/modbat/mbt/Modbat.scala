@@ -57,14 +57,29 @@ object Modbat {
   // shutdown handler is registered at time when model exploration starts
   private var executedTransitions = new ListBuffer[RecordedTransition]
   private var randomSeed: Long = 0 // current random seed
-  val masterRNG: CloneableRandom = MBT.rng.asInstanceOf[CloneableRandom].clone
+  var masterRNG: CloneableRandom = _
   private val timesVisited = new HashMap[RecordedState, Int]
   val testFailures =
     new HashMap[(TransitionResult, String), ListBuffer[Long]]()
+<<<<<<< HEAD
   var shutdownHookRegistered = false
   val time = new VirtualTime
+=======
+  var isUnitTest = true
+>>>>>>> 1c3411aa619d5cb55d8892127d078b9b3edda439
  
   def init {
+    // reset all static variables
+    failed = 0
+    count = 0
+    firstInstance.clear
+    appState = AppExplore
+    executedTransitions.clear
+    timesVisited.clear
+    testFailures.clear
+    masterRNG = MBT.rng.asInstanceOf[CloneableRandom].clone
+    MBT.init
+    // call init if needed
     if (Main.config.init) {
       MBT.invokeAnnotatedStaticMethods(classOf[Init], null)
     }
@@ -209,9 +224,8 @@ object Modbat {
 
   def explore(n: Int) = {
     init
-    if (!shutdownHookRegistered) {
+    if (!isUnitTest) {
       Runtime.getRuntime().addShutdownHook(ShutdownHandler)
-      shutdownHookRegistered = true
     }
 
     runTests(n)
