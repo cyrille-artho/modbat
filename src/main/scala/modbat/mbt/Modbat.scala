@@ -36,6 +36,8 @@ import modbat.util.CloneableRandom
 import modbat.util.SourceInfo
 import modbat.util.FieldUtil
 
+import com.miguno.akka.testing.VirtualTime
+
 /** Contains code to explore model */
 object Modbat {
   object AppState extends Enumeration {
@@ -59,7 +61,12 @@ object Modbat {
   private val timesVisited = new HashMap[RecordedState, Int]
   val testFailures =
     new HashMap[(TransitionResult, String), ListBuffer[Long]]()
+<<<<<<< HEAD
+  var shutdownHookRegistered = false
+  val time = new VirtualTime
+=======
   var isUnitTest = true
+>>>>>>> 1c3411aa619d5cb55d8892127d078b9b3edda439
  
   def init {
     // reset all static variables
@@ -353,17 +360,33 @@ object Modbat {
       }
     }
   }
-
-  def allSuccessors(givenModel: MBT) = {
+  def allSuccessors(givenModel: MBT): Array[(MBT, Transition)] = {
     var result = new ArrayBuffer[(MBT, Transition)]()
     if (givenModel == null) {
-      for (m <- MBT.launchedModels filterNot (_ isObserver)
-	   filter (_.joining == null)) {
-        addSuccessors(m, result)
+      MBT.stayLock.synchronized {
+        // TODO: allow selection to be overridden by invokeTransition
+        val (staying, notStaying) = MBT.launchedModels partition (_.staying)
+        for (m <- notStaying filterNot (_ isObserver)
+          filter (_.joining == null)) {
+          addSuccessors(m, result)
+        }
+        if (result.isEmpty && !staying.isEmpty) {
+          time.scheduler.timeUntilNextTask {
+            case Some(s) => time.scheduler.advance(s)
+            case None =>
+          }
+          return allSuccessors(givenModel)
+        }
       }
     } else {
       if (givenModel.joining == null) {
-	addSuccessors(givenModel, result)
+        MBT.stayLock.synchronized {
+          time.scheduler.timeUntilNextTask {
+            case Some(s) => time.scheduler.advance(s)
+            case None =>
+          }
+        }
+        addSuccessors(givenModel, result)
       }
     }
     result.toArray
