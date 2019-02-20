@@ -8,38 +8,50 @@ object Main {
   val config = new Configuration()
 
   def main(args: Array[String]) {
+    Modbat.isUnitTest = false
+    System.exit(run(args))
+  }
+
+  def run(args: Array[String]): Int = {
     var modelClassName: String = null
     val c = new ConfigMgr("scala modbat.jar", "CLASSNAME",
 			  config, new Version ("modbat.mbt"))
     /* delegate parsing args to config library */
     try {
-      val remainingArgs = c.parseArgs(args)
-      if (!remainingArgs.hasNext) {
-	Log.error(c.header)
-	Log.error("Model class argument missing. Try --help.")
-	System.exit(1)
-      }
-      modelClassName = remainingArgs.next
-      if (remainingArgs.hasNext) {
-	Log.error("Extra arguments starting at \"" + remainingArgs.next() +
-		  "\" are not supported.")
-	System.exit(1)
+      val remainder = c.parseArgs(args)
+      remainder match {
+        case Some(remainingArgs) => {
+	  if (!remainingArgs.hasNext) {
+	    Log.error(c.header)
+	    Log.error("Model class argument missing. Try --help.")
+	    return 1
+	  }
+	  modelClassName = remainingArgs.next
+	  if (remainingArgs.hasNext) {
+	    Log.error("Extra arguments starting at \"" + remainingArgs.next() +
+		      "\" are not supported.")
+	    return 1
+	  }
+	}
+	case None => // nothing
       }
     } catch {
       case e: IllegalArgumentException => {
 	Log.error(e.getMessage())
-	System.exit(1)
+	return 1
       }
     }
 
     setup(modelClassName) // TODO: refactor into case code below once needed
 
+    Modbat.init
     /* execute */
     config.mode match {
       case "dot" =>
 	new Dotify(MBT.launch(null), modelClassName + ".dot").dotify()
       case _ => Modbat.explore(config.nRuns)
     }
+    // TODO (issue #27): Dotify.dotify() and Modbat.explore() should use return code
   }
 
   def setup(modelClassName: String) {

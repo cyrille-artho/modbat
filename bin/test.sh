@@ -1,6 +1,4 @@
-#!/bin/bash
-# script to test various configurations of the trace server
-
+#!/bin/sh
 TEST_LOG_PATH=log
 
 . bin/testtool.sh

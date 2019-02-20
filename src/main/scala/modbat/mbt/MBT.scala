@@ -15,6 +15,7 @@ import scala.collection.mutable.HashMap
 import scala.collection.mutable.HashSet
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.ListBuffer
+import scala.collection.mutable.Queue
 import scala.util.matching.Regex
 
 import modbat.RequirementFailedException
@@ -50,6 +51,7 @@ object MBT {
   val launchedModels = new ArrayBuffer[MBT]()
   val launchedModelInst = new ArrayBuffer[Model]()
   val invokedStaticMethods = new HashSet[Method]()
+  val transitionQueue = new Queue[(MBT, String)]()
   var rng: Random = null
   var enableStackTrace = true
   var maybeProbability = 1.0
@@ -71,6 +73,10 @@ object MBT {
   val warningIssuedOn = new HashSet[Object]()
   // do not issue same warning twice for static model problem
   var currentTransition: Transition = null
+
+  def init {
+    warningIssuedOn.clear
+  }
 
   // TODO: If necessary, add another argument (tag) to distinguish between
   // different types of warnings for the same type of object/data.
@@ -182,6 +188,10 @@ object MBT {
   def clearLaunchedModels() {
     launchedModels.clear
     launchedModelInst.clear
+    transitionQueue.clear
+    or_else = false
+    testHasFailed = false
+    currentTransition = null
   }
 
   def getLaunchedModel(i: Int) = launchedModels(i)
@@ -833,4 +843,18 @@ class MBT (val model: Model, val trans: List[Transition]) {
     })
     return false
   }
+
+  def setWeight(label: String, weight: Double): Unit = {
+    assert(weight >= 0)
+    transitions.filter(_.action.label == label)
+      .foreach(_.action.weight(weight))
+  }
+
+  //def getWeight(label: String): Double = {
+  //}
+  def invokeTransition(label: String): Unit = {
+    MBT.transitionQueue.enqueue((this, label))
+    //Log.debug("InvokeTransitionQueue = " + MBT.transitionQueue.mkString)
+  }
+
 }

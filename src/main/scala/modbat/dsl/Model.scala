@@ -107,4 +107,12 @@ abstract trait Model {
       validChoices(choice)._2()
     }
   }
+
+  def setWeight(label: String, weight: Double): Unit = {
+    efsm.setWeight(label, weight)
+  }
+  def invokeTransition(label: String): Unit = {
+    efsm.invokeTransition(label)
+  }
+
 }

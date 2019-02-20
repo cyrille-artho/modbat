@@ -8,8 +8,6 @@ object Log {
   val Warning = 4
   val Error = 5
   val None = 10
-  var log = new java.io.PrintStream(System.out, true, "UTF-8")
-  var err = new java.io.PrintStream(System.err, true, "UTF-8")
 
   private var level = Info
   // errLevel can currently not be set - this can be added later
@@ -25,9 +23,9 @@ object Log {
   def log(msg: String, level: Int) {
     if (isLogging(level)) {
       if (errLevel <= level) {
-	err.println(msg)
+	Console.err.println(msg)
       } else {
-	log.println(msg)
+	Console.out.println(msg)
       }
     }
   }
