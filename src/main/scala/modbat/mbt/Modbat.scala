@@ -36,6 +36,8 @@ import modbat.util.CloneableRandom
 import modbat.util.SourceInfo
 import modbat.util.FieldUtil
 
+import com.miguno.akka.testing.VirtualTime
+
 /** Contains code to explore model */
 object Modbat {
   object AppState extends Enumeration {
@@ -60,6 +62,7 @@ object Modbat {
   val testFailures =
     new HashMap[(TransitionResult, String), ListBuffer[Long]]()
   var shutdownHookRegistered = false
+  val time = new VirtualTime
  
   def init {
     if (Main.config.init) {
@@ -354,14 +357,20 @@ object Modbat {
           addSuccessors(m, result)
         }
         if (result.isEmpty && !staying.isEmpty) {
-          MBT.stayLock.wait()
+          time.scheduler.timeUntilNextTask {
+            case Some(s) => time.scheduler.advance(s)
+            case None =>
+          }
           return allSuccessors(givenModel)
         }
       }
     } else {
       if (givenModel.joining == null) {
         MBT.stayLock.synchronized {
-          MBT.stayLock.wait()
+          time.scheduler.timeUntilNextTask {
+            case Some(s) => time.scheduler.advance(s)
+            case None =>
+          }
         }
         addSuccessors(givenModel, result)
       }
