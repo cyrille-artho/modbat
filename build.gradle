@@ -79,12 +79,17 @@ task examplesJar(type: Jar) {
     from "$buildDir/classes/scala/test" findAll { it.name.endsWith('class') && it.path.contains('examples') }.collect { zipTree(it) }
     from "$buildDir/classes/java/test" findAll { it.name.endsWith('class') && it.path.contains('examples')}.collect { zipTree(it) }
 }
+
 task testsJar(type: Jar) {
     archiveName = "modbat-test.jar"
     destinationDir = file("$buildDir")
 
     from "$buildDir/classes/scala/test" findAll { it.name.endsWith('class')}.collect { zipTree(it) }
     from "$buildDir/classes/java/test" findAll { it.name.endsWith('class')}.collect { zipTree(it) }
+}
+
+tasks.withType(Test)  {
+  maxParallelForks = 1
 }
 
 test {
