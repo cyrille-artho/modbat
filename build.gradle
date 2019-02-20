@@ -92,10 +92,6 @@ tasks.withType(Test)  {
   maxParallelForks = 1
 }
 
-tasks.withType(ScalaCompile) {
-    scalaCompileOptions.additionalParameters = ["-g:source"]
-}
-
 test {
   dependsOn examplesJar
   dependsOn testsJar

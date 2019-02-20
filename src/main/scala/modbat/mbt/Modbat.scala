@@ -55,7 +55,7 @@ object Modbat {
   // shutdown handler is registered at time when model exploration starts
   private var executedTransitions = new ListBuffer[RecordedTransition]
   private var randomSeed: Long = 0 // current random seed
-  val masterRNG: CloneableRandom = MBT.rng.asInstanceOf[CloneableRandom].clone
+  var masterRNG: CloneableRandom = _
   private val timesVisited = new HashMap[RecordedState, Int]
   val testFailures =
     new HashMap[(TransitionResult, String), ListBuffer[Long]]()
@@ -70,6 +70,7 @@ object Modbat {
     executedTransitions.clear
     timesVisited.clear
     testFailures.clear
+    masterRNG = MBT.rng.asInstanceOf[CloneableRandom].clone
     MBT.init
     // call init if needed
     if (Main.config.init) {
