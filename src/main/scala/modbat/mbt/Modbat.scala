@@ -367,23 +367,23 @@ object Modbat {
           addSuccessors(m, result)
         }
         if (result.isEmpty && !staying.isEmpty) {
-          MBT.stayLock.wait()
+//          MBT.stayLock.wait()
 
-//          time.scheduler.timeUntilNextTask {
-//            case Some(s) => time.scheduler.advance(s)
-//            case None =>
-//          }
+          time.scheduler.timeUntilNextTask match {
+            case Some(s) => time.advance(s)
+            case None =>
+          }
           return allSuccessors(givenModel)
         }
       }
     } else {
       if (givenModel.joining == null) {
         MBT.stayLock.synchronized {
-          MBT.stayLock.wait()
-//          time.scheduler.timeUntilNextTask {
-//            case Some(s) => time.scheduler.advance(s)
-//            case None =>
-//          }
+//          MBT.stayLock.wait()
+          time.scheduler.timeUntilNextTask match {
+            case Some(s) => time.advance(s)
+            case None =>
+          }
         }
         addSuccessors(givenModel, result)
       }

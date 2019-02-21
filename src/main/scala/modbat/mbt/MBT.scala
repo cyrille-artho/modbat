@@ -16,6 +16,8 @@ import scala.collection.mutable.HashSet
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.ListBuffer
 import scala.collection.mutable.Queue
+import scala.concurrent.duration._
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.matching.Regex
 
 import modbat.RequirementFailedException
@@ -77,7 +79,7 @@ object MBT {
   // do not issue same warning twice for static model problem
   var currentTransition: Transition = null
   val stayLock = new AnyRef()
-val time = new VirtualTime
+  val time = new VirtualTime
 
   def init {
     warningIssuedOn.clear
@@ -803,8 +805,9 @@ class MBT (val model: Model, val trans: List[Transition]) {
               staying = true
             }
             val stayTime = (if (t1 == t2) t1 else rng.choose(t1, t2)).asInstanceOf[Long]
-            new Timer(stayTime).start()
-//            time.scheduler.schedule(0, stayTime, new WakeUp())
+//            new Timer(stayTime).start()
+            val wakeUp = new WakeUp()
+            MBT.time.scheduler.scheduleOnce(stayTime.millis)(wakeUp.run)
           }
           case _ => ()
         }
@@ -871,11 +874,11 @@ class MBT (val model: Model, val trans: List[Transition]) {
     MBT.transitionQueue.enqueue((this, label))
   }
 
-//  class WakeUp(val t: Long) extends Thread {
-  class Timer(val t: Long) extends Thread {
+  class WakeUp() extends Thread {
+//  class Timer(val t: Long) extends Thread {
     override def run() {
-      Log.fine(name + ": Started staying for " + t + " ms.")
-      Thread.sleep(t)
+//      Log.fine(name + ": Started staying for " + t + " ms.")
+//      Thread.sleep(t)
       MBT.stayLock.synchronized {
         staying = false
         MBT.stayLock.notify()

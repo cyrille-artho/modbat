@@ -64,6 +64,16 @@ class MockScheduler(time: VirtualTime) extends Scheduler {
     }
   }
 
+  def timeUntilNextTask(): Option[FiniteDuration] = {
+    time.lock synchronized {
+      if(!tasks.nonEmpty) {
+        None
+      } else {
+        Some(tasks.head.delay - time.elapsed)
+      }
+    }
+  }
+
   /**
     * The maximum frequency is 1000 Hz.
     */
