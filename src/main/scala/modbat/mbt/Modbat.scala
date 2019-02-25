@@ -7,6 +7,7 @@ import java.io.PrintStream
 import java.lang.annotation.Annotation
 import java.lang.reflect.Field
 import java.lang.reflect.Modifier
+import java.lang.RuntimeException
 import java.net.URL
 import java.util.BitSet
 import scala.collection.JavaConversions._
@@ -38,6 +39,8 @@ import modbat.util.FieldUtil
 
 import com.miguno.akka.testing.VirtualTime
 
+class NoTaskException(message :String = null, cause :Throwable = null) extends RuntimeException(message, cause)
+
 /** Contains code to explore model */
 object Modbat {
   object AppState extends Enumeration {
@@ -61,9 +64,10 @@ object Modbat {
   private val timesVisited = new HashMap[RecordedState, Int]
   val testFailures =
     new HashMap[(TransitionResult, String), ListBuffer[Long]]()
-  val time = new VirtualTime
+//  val time = new VirtualTime
   var isUnitTest = true
- 
+
+
   def init {
     // reset all static variables
     failed = 0
@@ -361,6 +365,7 @@ object Modbat {
     if (givenModel == null) {
       MBT.stayLock.synchronized {
         // TODO: allow selection to be overridden by invokeTransition
+        //for(l <- MBT.launchedModels) Log.debug("launchedModel: "+l.className)
         val (staying, notStaying) = MBT.launchedModels partition (_.staying)
         for (m <- notStaying filterNot (_ isObserver)
           filter (_.joining == null)) {
@@ -368,10 +373,9 @@ object Modbat {
         }
         if (result.isEmpty && !staying.isEmpty) {
 //          MBT.stayLock.wait()
-
-          time.scheduler.timeUntilNextTask match {
-            case Some(s) => time.advance(s)
-            case None =>
+          MBT.time.scheduler.timeUntilNextTask match {
+            case Some(s) => MBT.time.advance(s)
+            case None => throw new NoTaskException()
           }
           return allSuccessors(givenModel)
         }
@@ -380,9 +384,9 @@ object Modbat {
       if (givenModel.joining == null) {
         MBT.stayLock.synchronized {
 //          MBT.stayLock.wait()
-          time.scheduler.timeUntilNextTask match {
-            case Some(s) => time.advance(s)
-            case None =>
+          MBT.time.scheduler.timeUntilNextTask match {
+            case Some(s) => MBT.time.advance(s)
+            case None => throw new NoTaskException()
           }
         }
         addSuccessors(givenModel, result)
@@ -468,7 +472,7 @@ object Modbat {
 
       //invokeTransition
       var successor: (MBT, Transition) = null
-      Log.debug("Current InvokeTransitionQueue = (" + MBT.transitionQueue.mkString + ")")
+      if(!MBT.transitionQueue.isEmpty) Log.debug("Current InvokeTransitionQueue = (" + MBT.transitionQueue.mkString + ")")
 
       while (!MBT.transitionQueue.isEmpty && successor == null) {
         val (model, label) = MBT.transitionQueue.dequeue
@@ -483,59 +487,59 @@ object Modbat {
       if (successor == null && totalW > 0) {
         successor = weightedChoice(successors, totalW)
       }
-if(successor != null) {
-      val model = successor._1
-      val trans = successor._2
-      assert (!trans.isSynthetic)
-      // TODO: Path coverage
-      val result = model.executeTransition(trans)
-      var updates: List[(Field, Any)] = Nil
-      updates  = model.tracedFields.updates
-      for (u <- updates) {
-	Log.fine("Trace field " + u._1 + " now has value " + u._2)
-      }
-      updateExecHistory(model, localStoredRNGState, result, updates)
-      result match {
-        case (Ok(sameAgain: Boolean), _) => {
-	  val succ = new ArrayBuffer[(MBT, Transition)]()
-	  addSuccessors(model, succ, true)
-	  if (succ.size == 0) {
-	    Log.debug("Model " + model.name + " has terminated.")
-	    // Unblock all models that are joining this one.
-	    for (m <- MBT.launchedModels filter (_.joining == model)) {
-	      m.joining = null
+      if(successor != null) {
+        val model = successor._1
+        val trans = successor._2
+        assert (!trans.isSynthetic)
+        // TODO: Path coverage
+        val result = model.executeTransition(trans)
+        var updates: List[(Field, Any)] = Nil
+        updates  = model.tracedFields.updates
+        for (u <- updates) {
+	  Log.fine("Trace field " + u._1 + " now has value " + u._2)
+        }
+        updateExecHistory(model, localStoredRNGState, result, updates)
+        result match {
+          case (Ok(sameAgain: Boolean), _) => {
+	    val succ = new ArrayBuffer[(MBT, Transition)]()
+	    addSuccessors(model, succ, true)
+	    if (succ.size == 0) {
+	      Log.debug("Model " + model.name + " has terminated.")
+	      // Unblock all models that are joining this one.
+	      for (m <- MBT.launchedModels filter (_.joining == model)) {
+	        m.joining = null
+	      }
 	    }
+	    if (otherThreadFailed) {
+	      return (ExceptionOccurred(MBT.externalException.toString), null)
+	    }
+	    if (sameAgain) {
+	      successors = allSuccessors(model)
+	    } else {
+	      successors = allSuccessors(null)
+	    }
+	    val observerResult = updateObservers
+	    if (TransitionResult.isErr(observerResult)) {
+	      return (observerResult, result._2)
+	    }
+	    if (otherThreadFailed) {
+	      return (ExceptionOccurred(MBT.externalException.toString), null)
+	    }
+	    backtracked = false
+	    allSucc = successors.clone
 	  }
-	  if (otherThreadFailed) {
-	    return (ExceptionOccurred(MBT.externalException.toString), null)
+          case (Backtrack, _) => {
+	    successors = successors filterNot (_ == successor)
+	    backtracked = true
 	  }
-	  if (sameAgain) {
-	    successors = allSuccessors(model)
-	  } else {
-	    successors = allSuccessors(null)
+          case (t: TransitionResult, _) => {
+	    assert(TransitionResult.isErr(t))
+	    printTrace(executedTransitions.toList)
+	    return result
 	  }
-	  val observerResult = updateObservers
-	  if (TransitionResult.isErr(observerResult)) {
-	    return (observerResult, result._2)
-	  }
-	  if (otherThreadFailed) {
-	    return (ExceptionOccurred(MBT.externalException.toString), null)
-	  }
-	  backtracked = false
-	  allSucc = successors.clone
-	}
-        case (Backtrack, _) => {
-	  successors = successors filterNot (_ == successor)
-	  backtracked = true
-	}
-        case (t: TransitionResult, _) => {
-	  assert(TransitionResult.isErr(t))
-	  printTrace(executedTransitions.toList)
-	  return result
-	}
+        }
+        totalW = totalWeight(successors)
       }
-      totalW = totalWeight(successors)
-}
     }
     if (successors.isEmpty && backtracked) {
       for (succ <- allSucc) {

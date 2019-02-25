@@ -808,6 +808,7 @@ class MBT (val model: Model, val trans: List[Transition]) {
 //            new Timer(stayTime).start()
             val wakeUp = new WakeUp()
             MBT.time.scheduler.scheduleOnce(stayTime.millis)(wakeUp.run)
+//            MBT.time.scheduler.scheduleOnce(stayTime.millis)(new WakeUp())
           }
           case _ => ()
         }
@@ -881,7 +882,7 @@ class MBT (val model: Model, val trans: List[Transition]) {
 //      Thread.sleep(t)
       MBT.stayLock.synchronized {
         staying = false
-        MBT.stayLock.notify()
+//        MBT.stayLock.notify()
       }
       Log.fine(name + ": Finished staying.")
     }
