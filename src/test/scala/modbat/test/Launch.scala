@@ -3,17 +3,19 @@ package modbat.test
 import modbat.dsl._
 
 class Launch extends Model {
-  val child = new Child(this)
-  var run = true
+  var child :LaunchChild = _
   "parent-init" -> "parent-main" := {
+    child = new LaunchChild()
     launch(child)
-  }
+    println("launched child")
+  } label "launch-child"
   "parent-main" -> "parent-end" := {
-    run = false
-  }
-  class Child(parent: Launch) extends Model {
-    "child-init" -> "child-end" := {
-      //require(!parent.run)
-    }
-  }
+    println("parent second transition")
+  } label "parent-finish"
+}
+
+class LaunchChild() extends Model {
+  "child-init" -> "child-end" := {
+    println("child transition")
+  } label "child-trans"
 }
