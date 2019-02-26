@@ -365,14 +365,12 @@ object Modbat {
     if (givenModel == null) {
       MBT.stayLock.synchronized {
         // TODO: allow selection to be overridden by invokeTransition
-        //for(l <- MBT.launchedModels) Log.debug("launchedModel: "+l.className)
         val (staying, notStaying) = MBT.launchedModels partition (_.staying)
         for (m <- notStaying filterNot (_ isObserver)
           filter (_.joining == null)) {
           addSuccessors(m, result)
         }
         if (result.isEmpty && !staying.isEmpty) {
-//          MBT.stayLock.wait()
           MBT.time.scheduler.timeUntilNextTask match {
             case Some(s) => MBT.time.advance(s)
             case None => throw new NoTaskException()
@@ -382,13 +380,14 @@ object Modbat {
       }
     } else {
       if (givenModel.joining == null) {
-        MBT.stayLock.synchronized {
+/*        MBT.stayLock.synchronized {
 //          MBT.stayLock.wait()
           MBT.time.scheduler.timeUntilNextTask match {
             case Some(s) => MBT.time.advance(s)
             case None => throw new NoTaskException()
           }
         }
+*/
         addSuccessors(givenModel, result)
       }
     }
@@ -463,6 +462,9 @@ object Modbat {
     var totalW = totalWeight(successors)
     var backtracked = false
     while (!successors.isEmpty && (totalW > 0 || !MBT.transitionQueue.isEmpty)) {
+      /* Pop invokeTransition queue until a feasible transition is popped.
+       * If there is, execute it.
+       * Otherwise, if total weight > 0, choose one transition by weight and execute it. */
       val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone
 
       if (MBT.rng.nextFloat(false) < Main.config.abortProbability) {
