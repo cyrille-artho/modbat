@@ -9,28 +9,24 @@
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 1 times.
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 1 times.
-[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
 [DEBUG] modbat.test.WeightedTest2-1: Current state: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 2 times.
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 2 times.
-[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
 [DEBUG] modbat.test.WeightedTest2-1: Current state: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 3 times.
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 3 times.
-[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
 [DEBUG] modbat.test.WeightedTest2-1: Current state: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 4 times.
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 4 times.
-[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
 [FINE] Precondition violated, backtracking to init.
 [DEBUG] No more successors.
@@ -46,28 +42,24 @@
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 1 times.
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 1 times.
-[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
 [DEBUG] modbat.test.WeightedTest2-1: Current state: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 2 times.
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 2 times.
-[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
 [DEBUG] modbat.test.WeightedTest2-1: Current state: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 3 times.
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 3 times.
-[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
 [DEBUG] modbat.test.WeightedTest2-1: Current state: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 4 times.
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 4 times.
-[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
 [FINE] Precondition violated, backtracking to init.
 [DEBUG] No more successors.
@@ -83,28 +75,24 @@
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 1 times.
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 1 times.
-[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
 [DEBUG] modbat.test.WeightedTest2-1: Current state: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 2 times.
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 2 times.
-[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
 [DEBUG] modbat.test.WeightedTest2-1: Current state: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 3 times.
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 3 times.
-[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
 [DEBUG] modbat.test.WeightedTest2-1: Current state: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 4 times.
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 4 times.
-[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
 [FINE] Precondition violated, backtracking to init.
 [DEBUG] No more successors.
@@ -120,28 +108,24 @@
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 1 times.
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 1 times.
-[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
 [DEBUG] modbat.test.WeightedTest2-1: Current state: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 2 times.
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 2 times.
-[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
 [DEBUG] modbat.test.WeightedTest2-1: Current state: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 3 times.
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 3 times.
-[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
 [DEBUG] modbat.test.WeightedTest2-1: Current state: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 4 times.
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 4 times.
-[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
 [FINE] Precondition violated, backtracking to init.
 [DEBUG] No more successors.
@@ -157,28 +141,24 @@
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 1 times.
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 1 times.
-[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
 [DEBUG] modbat.test.WeightedTest2-1: Current state: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 2 times.
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 2 times.
-[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
 [DEBUG] modbat.test.WeightedTest2-1: Current state: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 3 times.
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 3 times.
-[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
 [DEBUG] modbat.test.WeightedTest2-1: Current state: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 4 times.
 [DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 4 times.
-[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
 [FINE] Precondition violated, backtracking to init.
 [DEBUG] No more successors.

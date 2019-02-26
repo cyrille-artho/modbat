@@ -7,7 +7,6 @@
 [DEBUG] modbat.test.SubModel-1: Current state: init
 [DEBUG] modbat.test.SubModel-1: Possible successor: err
 [DEBUG] State err in model modbat.test.SubModel-1 was visited 0 times.
-[DEBUG] Current InvokeTransitionQueue = ()
 [FINE] modbat.test.SubModel-1: Executing transition init => err...
 [DEBUG] Model modbat.test.SubModel-1 has terminated.
 [DEBUG] modbat.test.SubModel-1: Current state: err
