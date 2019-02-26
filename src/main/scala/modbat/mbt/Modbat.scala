@@ -381,14 +381,11 @@ object Modbat {
       }
     } else {
       if (givenModel.joining == null) {
-/*        MBT.stayLock.synchronized {
-//          MBT.stayLock.wait()
-          MBT.time.scheduler.timeUntilNextTask match {
-            case Some(s) => MBT.time.advance(s)
-            case None => throw new NoTaskException()
-          }
-        }
-*/
+	/* No need to check the queue of "staying" tasks here because as
+	   of now, the model of which the next transition is used is only
+	   enforced in the case of an exception that overrides the default
+	   successor state, by using "catches".
+	   This branch is therefore not taken for "staying" tasks. */
         addSuccessors(givenModel, result)
       }
     }
