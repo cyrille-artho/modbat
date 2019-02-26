@@ -360,8 +360,9 @@ object Modbat {
       }
     }
   }
+
   def allSuccessors(givenModel: MBT): Array[(MBT, Transition)] = {
-    var result = new ArrayBuffer[(MBT, Transition)]()
+    val result = new ArrayBuffer[(MBT, Transition)]()
     if (givenModel == null) {
       MBT.stayLock.synchronized {
         // TODO: allow selection to be overridden by invokeTransition
