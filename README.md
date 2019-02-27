@@ -228,6 +228,15 @@ Inheritance of methods works normally as in Scala. Transitions defined
 normally ("a" -> "b" := transfunc) are also inherited, as are annotated
 methods from the super class.
 
+## Testing Modbat itself
+
+Modbat's test are currently split into unit tests run from ScalaTest, and
+system tests. Unit tests are run with
+`./gradlew test`
+whereas system tests are run with
+`bin/test.sh`
+Both test suites should pass for a new pull request to be acceptable.
+
 ## Advanced features
 
 Advanced choices give flexibility when modeling non-determinism:
