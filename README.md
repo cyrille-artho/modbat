@@ -232,9 +232,14 @@ methods from the super class.
 
 Modbat's test are currently split into unit tests run from ScalaTest, and
 system tests. Unit tests are run with
-`./gradlew test`
+```
+./gradlew test
+```
 whereas system tests are run with
-`bin/test.sh`
+```
+./gradlew buildDependents
+bin/test.sh
+```
 Both test suites should pass for a new pull request to be acceptable.
 
 ## Advanced features
