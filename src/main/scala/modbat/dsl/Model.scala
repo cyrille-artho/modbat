@@ -115,6 +115,11 @@ abstract trait Model {
     efsm.invokeTransition(label)
   }
 
-  def randomSearch(paths: String*) = MBT.randomSearch(paths)
+  def randomSearch(classes: Seq[String]): Unit = MBT.randomSearch(classes, Seq.empty[Any], Seq.empty[String], Seq.empty[String])
 
+  def randomSearch(classes: Seq[String], objects: Seq[Any]): Unit = MBT.randomSearch(classes, objects, Seq.empty[String], Seq.empty[String])
+
+  def randomSearch(classes: Seq[String], objects: Seq[Any], observers: Seq[String]): Unit = MBT.randomSearch(classes, objects, observers, Seq.empty[String])
+
+  def randomSearch(classes: Seq[String], objects: Seq[Any], observers: Seq[String], methods: Seq[String]): Unit = MBT.randomSearch(classes, objects, observers, methods)
 }

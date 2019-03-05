@@ -4,7 +4,7 @@ import java.util
 import java.util.function.Predicate
 
 import org.junit.Assert.assertTrue
-import randoop.generation._
+import randoop.generation.{ForwardGenerator, _}
 import randoop.main.GenInputsAbstract.{methodlist, require_classname_in_test}
 import randoop.main._
 import randoop.operation.{OperationParseException, TypedOperation}
@@ -19,7 +19,13 @@ import scala.collection.JavaConverters._
 
 class RandoopManager extends RandomTestManager {
 
-  override def init(paths: Seq[String]): Unit = {
+  object RandoopManager{
+
+     var forwardGenerator : ForwardGenerator = _
+
+  }
+
+  override def init(classes: Seq[String], objects: Seq[Any], observers: Seq[String], methods: Seq[String]): Unit = {
 
     val optionsCache = new OptionsCache
     optionsCache.saveState() //TODO is it necessary?
@@ -30,29 +36,28 @@ class RandoopManager extends RandomTestManager {
     GenInputsAbstract.generated_limit = 100
     GenInputsAbstract.output_limit = 50
     GenInputsAbstract.silently_ignore_bad_class_names = false
-    GenInputsAbstract.testclass = paths.toList.asJava
+    GenInputsAbstract.testclass = classes.toList.asJava
     GenInputsAbstract.require_classname_in_test = null
     GenInputsAbstract.require_covered_classes = null
 
-    val testGenerator = getGenerator
-
-    testGenerator.createAndClassifySequences()
-    val rTests = testGenerator.getRegressionSequences
-    val eTests = testGenerator.getErrorTestSequences
-
-    System.out.println("number of regression tests: " + rTests.size)
-    assertTrue("should have some regression tests", !rTests.isEmpty)
-    assertTrue("should have some error tests", !eTests.isEmpty)
-
+    createForwardGenerator(objects, observers, methods)
   }
 
   override def run: Unit = {
 
+    RandoopManager.forwardGenerator.createAndClassifySequences()
   }
 
-  override def validate: Unit = ???
+  override def validate: Unit = {
 
-  def getGenerator: ForwardGenerator = {
+    val rTests = RandoopManager.forwardGenerator.getRegressionSequences
+    val eTests = RandoopManager.forwardGenerator.getErrorTestSequences
+
+    assertTrue("should have some regression tests", !rTests.isEmpty)
+    assertTrue("should have some error tests", !eTests.isEmpty)
+  }
+
+  def createForwardGenerator(objects: Seq[Any], observers: Seq[String], methods: Seq[String]): Unit = {
 
     var operationModel: OperationModel = null
     try
@@ -107,6 +112,6 @@ class RandoopManager extends RandomTestManager {
     val checkGenerator: TestCheckGenerator = GenTests.createTestCheckGenerator(IS_PUBLIC, contracts, observerMap)
     testGenerator.setTestCheckGenerator(checkGenerator)
 
-    testGenerator
+    RandoopManager.forwardGenerator = testGenerator
   }
 }

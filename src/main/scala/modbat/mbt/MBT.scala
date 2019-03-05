@@ -351,16 +351,13 @@ object MBT {
     }
   }
 
-  def randomSearch(paths: Seq[String]) = {
+  def randomSearch(classes: Seq[String], objects: Seq[Any], observers: Seq[String], methods: Seq[String]) = {
 
-    var rtm : RandomTestManager = new RandoopManager
+    val rtm : RandomTestManager = new RandoopManager
 
-    rtm.init(paths)
-    //rtm.run
+    rtm.init(classes, objects, observers, methods)
+    rtm.run
     rtm.validate
-
-    paths.map(println)
-    println("randomSearch works!")
   }
 }
 

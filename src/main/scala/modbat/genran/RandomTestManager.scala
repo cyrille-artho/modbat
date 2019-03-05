@@ -1,11 +1,12 @@
 package modbat.genran
 
-trait RandomTestManager {
+abstract class RandomTestManager {
 
 
-  def init(paths: Seq[String])
+  def init(classes: Seq[String], objects: Seq[Any], observers: Seq[String], methods: Seq[String])
 
   def run
+
   def validate
 
 }

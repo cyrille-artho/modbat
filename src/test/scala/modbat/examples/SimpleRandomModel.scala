@@ -3,6 +3,7 @@ package modbat.examples
 import modbat.dsl._
 
 class SimpleRandomModel extends Model {
+
   var counter: SimpleCounter = _
 
   // transitions
@@ -12,6 +13,6 @@ class SimpleRandomModel extends Model {
   "zero" -> "one" := {
     counter.inc
   }
-  "one" -> "random" := randomSearch("modbat.examples.SimpleCounter")
+  "one" -> "random" := randomSearch(Seq("modbat.examples.SimpleCounter"))
 
 }
