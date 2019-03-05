@@ -27,6 +27,7 @@ allprojects {
 
     dependencies {
         compile 'org.scala-lang:scala-library:2.11.8'
+        compile files('libs/randoop-all-4.1.0.jar')
     }
 
     repositories {

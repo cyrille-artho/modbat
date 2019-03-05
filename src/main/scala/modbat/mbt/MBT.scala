@@ -9,6 +9,7 @@ import java.lang.reflect.Method
 import java.lang.reflect.Modifier
 import java.net.URL
 import java.net.URLClassLoader
+
 import scala.collection.Iterator
 import scala.collection.JavaConversions._
 import scala.collection.mutable.HashMap
@@ -19,7 +20,6 @@ import scala.collection.mutable.Queue
 import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.matching.Regex
-
 import modbat.RequirementFailedException
 import modbat.cov.StateCoverage
 import modbat.cov.TransitionCoverage
@@ -45,8 +45,8 @@ import modbat.trace.TracedFields
 import modbat.trace.TransitionResult
 import modbat.util.CloneableRandom
 import modbat.util.Random
-
 import com.miguno.akka.testing.VirtualTime
+import modbat.genran.{RandomTestManager, RandoopManager}
 
 //import com.miguno.akka.testing.VirtualTime
 /** Contains core functionality for loading and running model.
@@ -349,6 +349,18 @@ object MBT {
     } else {
       false
     }
+  }
+
+  def randomSearch(paths: Seq[String]) = {
+
+    var rtm : RandomTestManager = new RandoopManager
+
+    rtm.init(paths)
+    //rtm.run
+    rtm.validate
+
+    paths.map(println)
+    println("randomSearch works!")
   }
 }
 

@@ -115,4 +115,6 @@ abstract trait Model {
     efsm.invokeTransition(label)
   }
 
+  def randomSearch(paths: String*) = MBT.randomSearch(paths)
+
 }
