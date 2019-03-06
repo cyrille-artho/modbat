@@ -1,10 +1,24 @@
 package modbat.genran;
 
+import modbat.examples.ControlCounter;
 import org.objenesis.ObjenesisStd;
+import randoop.DummyVisitor;
+import randoop.ExecutionOutcome;
+import randoop.Globals;
+import randoop.NormalExecution;
+import randoop.operation.TypedOperation;
 import randoop.org.apache.commons.lang3.reflect.FieldUtils;
+import randoop.sequence.ExecutableSequence;
 import randoop.sequence.Sequence;
+import randoop.test.DummyCheckGenerator;
+import randoop.types.*;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.*;
+
+import static junit.framework.TestCase.fail;
+import static org.junit.Assert.assertEquals;
 
 public class RandoopUtils {
 
@@ -14,7 +28,7 @@ public class RandoopUtils {
      * @return
      * @throws IllegalAccessException
      */
-    public static Sequence createSequenceForObject(Object object) throws IllegalAccessException {
+    public static Sequence createSequenceForObject(Object object) throws Exception {
 
         if(object == null)
         {
@@ -23,22 +37,95 @@ public class RandoopUtils {
         {
             ObjenesisStd objenesisStd = new ObjenesisStd();
             Class<?> objectClass = object.getClass();
-            Object newOb = objenesisStd.newInstance(objectClass);
-            Field[] fields = FieldUtils.getAllFields(objectClass);
+
+            String className = objectClass.getCanonicalName();
+
+            Class<?> objectClassReflection = Class.forName(className);
+
+            Object newOb = objenesisStd.newInstance(objectClassReflection);
+            Field[] fields = FieldUtils.getAllFields(objectClassReflection);
 
             for(int i = 0; i< fields.length; i++)
             {
                 Field field = fields[i];
                 field.setAccessible(true);
                 Object of = field.get(object);
+
                 field.set(newOb,of);
+            }
+
+            Method[] te12 =  RandoopUtils.class.getMethods();
+
+            TypedOperation TobjenesisStd = TypedOperation.forConstructor(ObjenesisStd.class.getConstructor());
+
+            TypedOperation TclassName = TypedOperation.createPrimitiveInitialization(JavaTypes.STRING_TYPE, className);
+
+            TypedOperation TobjectClassReflection = TypedOperation.forMethod(Class.class.getMethod("forName", String.class));
+
+            TypedOperation TnewOb = TypedOperation.forMethod(RandoopUtils.class.getMethod("newInstance", ObjenesisStd.class, Class.class));
+
+            TypedOperation Tfields = TypedOperation.forMethod(FieldUtils.class.getMethod("getAllFields", Class.class));
+
+            TypedOperation Telem1 = TypedOperation.createPrimitiveInitialization(JavaTypes.INT_TYPE, 0);
+
+            TypedOperation Tgetfield = TypedOperation.forMethod(RandoopUtils.class.getMethod("getFiled", java.lang.reflect.Field[].class, int.class));
+
+            TypedOperation Ttrue = TypedOperation.createPrimitiveInitialization(JavaTypes.BOOLEAN_TYPE, true);
+
+            TypedOperation TsetAccessible = TypedOperation.forMethod(Field.class.getMethod("setAccessible", boolean.class));
+
+            TypedOperation Telem8 = TypedOperation.createPrimitiveInitialization(JavaTypes.INT_TYPE, 8);
+
+            TypedOperation TfieldSet = TypedOperation.forMethod(Field.class.getMethod("set", Object.class, Object.class));
+
+            Sequence s = new Sequence();
+            s = s.extend(TobjenesisStd);//0
+            s = s.extend(TclassName);//1
+            s = s.extend(TobjectClassReflection, s.getVariable(1));//2
+            s = s.extend(TnewOb, s.getVariable(0), s.getVariable(2));//3
+            s = s.extend(Tfields, s.getVariable(2));//4
+            s = s.extend(Telem1);//5
+            s = s.extend(Tgetfield, s.getVariable(4), s.getVariable(5));//6
+            s = s.extend(Ttrue);//7
+            s = s.extend(TsetAccessible, s.getVariable(6), s.getVariable(7) );//8
+            s = s.extend(Telem8);//9
+            s = s.extend(TfieldSet, s.getVariable(6), s.getVariable(3) , s.getVariable(9)  );//10
+
+            String par1 = s.toParsableString();
+            String par2 = s.toCodeString();
+
+            ExecutableSequence es = new ExecutableSequence(s);
+           es.execute(new DummyVisitor(), new DummyCheckGenerator());
+
+            // Assuming statement at index 3 returned normally, print the runtime value
+            ExecutionOutcome resultAt3 = es.getResult(3);
+            if (resultAt3 instanceof NormalExecution) {
+
+                Object oo = ((NormalExecution)resultAt3).getRuntimeValue();
+
+                if (oo instanceof ControlCounter)
+                {
+                    System.out.println(((ControlCounter) oo).value());
+                }
+
+                System.out.println(oo.toString());
             }
         }
 
         return null;
     }
 
-    /*
+    public static Object newInstance(ObjenesisStd objenesisStd, Class<?> lass)
+    {
+        return (Object) objenesisStd.newInstance(lass);
+    }
+
+    public static Field getFiled(Field[] fields, int id)
+    {
+        return fields[id];
+    }
+
+
     public static void devDocExampleTest() {
         try {
             // Want constructor for LinkedList<String>
@@ -101,6 +188,6 @@ public class RandoopUtils {
         } catch (NoSuchMethodException e) {
             fail("didn't find method: " + e.getMessage());
         }
-    }*/
+    }
 
 }

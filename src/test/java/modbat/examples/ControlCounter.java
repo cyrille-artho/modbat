@@ -31,4 +31,9 @@ public class ControlCounter {
 
   public boolean isValid() {
     return count == trueCount; }
+
+  public String toString()
+  {
+    return "ControlCounter, count=" + count +"; trueCount=" + trueCount + "; flag=" + flag;
+  }
 }
