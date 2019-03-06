@@ -4,15 +4,15 @@ import modbat.dsl._
 
 class SimpleRandomModel extends Model {
 
-  var counter: SimpleCounter = _
+  var counter: ControlCounter = _
 
   // transitions
   "reset" -> "zero" := {
-    counter = new SimpleCounter()
+    counter = new ControlCounter()
   }
   "zero" -> "one" := {
     counter.inc
   }
-  "one" -> "random" := randomSearch(Seq("modbat.examples.SimpleCounter"))
+  "one" -> "random" := randomSearch(Seq("modbat.examples.ControlCounter"), Seq(counter), Seq("modbat.examples.ControlCounter.isValid()"))
 
 }
