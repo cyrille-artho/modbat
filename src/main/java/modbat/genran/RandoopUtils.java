@@ -6,7 +6,6 @@ import randoop.operation.TypedOperation;
 import randoop.org.apache.commons.lang3.reflect.FieldUtils;
 import randoop.sequence.Sequence;
 import randoop.sequence.Value;
-import randoop.sequence.Variable;
 import randoop.types.JavaTypes;
 import randoop.types.NonParameterizedType;
 import randoop.types.Type;
@@ -16,7 +15,23 @@ import java.util.Arrays;
 
 public class RandoopUtils {
 
-
+    /**
+     *
+     *       Randoop Sequence logic of:
+     *
+     *       val objenesis = new ObjenesisStd
+     *       val newOb = objenesis.newInstance(ob.getClass)
+     *
+     *       val allFields : Array[Field] = FieldUtils.getAllFields(ob.getClass)
+     *       for(f <- allFields)
+     *       {
+     *         f.setAccessible(true)
+     *         f.set(newOb,f.get(ob))
+     *       }
+     * @param object
+     * @return
+     * @throws Exception
+     */
     public static Sequence createSequenceForObject(Object object) throws Exception {
 
         if (object == null) {
@@ -65,18 +80,15 @@ public class RandoopUtils {
 
                 Field[] fields = FieldUtils.getAllFields(object.getClass());
 
-
                 for(int i = 0; i < fields.length; i++)
                 {
                     fields[i].setAccessible(true);
                     Object o = fields[i].get(object);
 
-
                     TypedOperation Telem1 = TypedOperation.createPrimitiveInitialization(JavaTypes.INT_TYPE, i);
                     TypedOperation Tgetfield = TypedOperation.forMethod(RandoopUtils.class.getMethod("getFiled", java.lang.reflect.Field[].class, int.class));
                     TypedOperation Ttrue = TypedOperation.createPrimitiveInitialization(JavaTypes.BOOLEAN_TYPE, true);
                     TypedOperation TsetAccessible = TypedOperation.forMethod(Field.class.getMethod("setAccessible", boolean.class)); //TODO maybe we dont need it if we did it already from JAVA code?
-                    TypedOperation Telem8 = TypedOperation.createPrimitiveInitialization(JavaTypes.INT_TYPE, 8);
                     TypedOperation TfieldSet = TypedOperation.forMethod(Field.class.getMethod("set", Object.class, Object.class));
 
                     sBase = sBase.extend(Telem1);//5
@@ -89,16 +101,13 @@ public class RandoopUtils {
                     int indexTtrue = index++;
 
                     sBase = sBase.extend(TsetAccessible, sBase.getVariable(indexTgetfield), sBase.getVariable(indexTtrue));//8
-                    int indexTsetAccessible = index++;
+                    index++;
 
                     Sequence sInner = createSequenceForObject(o);
 
                     sBase = Sequence.concatenate(Arrays.asList(sBase,sInner));
-
-                    Variable vv = sBase.getLastVariable();
                     index = sBase.statements.size();
 
-                  //  sBase = sBase.extend(Telem8);//9 //TODO here concate
                     sBase = sBase.extend(TfieldSet, sBase.getVariable(indexTgetfield), sBase.getVariable(indexTnewOb) , sBase.getVariable(index-1)  );//10
                     index++;
 
