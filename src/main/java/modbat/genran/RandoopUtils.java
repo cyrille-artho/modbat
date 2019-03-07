@@ -1,5 +1,6 @@
 package modbat.genran;
 
+import modbat.examples.ControlCounter;
 import org.objenesis.ObjenesisStd;
 import randoop.main.GenInputsAbstract;
 import randoop.operation.TypedOperation;
@@ -56,7 +57,11 @@ public class RandoopUtils {
                 TypedOperation TobjenesisStd = TypedOperation.forConstructor(ObjenesisStd.class.getConstructor());
                 TypedOperation TclassName = TypedOperation.createPrimitiveInitialization(JavaTypes.STRING_TYPE, className);
                 TypedOperation TobjectClassReflection = TypedOperation.forMethod(Class.class.getMethod("forName", String.class));
+
                 TypedOperation TnewOb = TypedOperation.forMethod(RandoopUtils.class.getMethod("newInstance", ObjenesisStd.class, Class.class));
+               // TypedOperation TnewOb = TypedOperation.forMethod(RandoopUtils.class.getMethod("newInstanceTest", ObjenesisStd.class, object.getClass()));
+
+
                 TypedOperation Tfields = TypedOperation.forMethod(FieldUtils.class.getMethod("getAllFields", Class.class));
 
                 int index = 0;
@@ -112,6 +117,36 @@ public class RandoopUtils {
                     index++;
 
                 }
+
+                String a = sBase.toParsableString();
+                String b = sBase.toString();
+                String c = sBase.toCodeString();
+
+                try {
+                    Sequence AA = Sequence.parse(a);
+                    String asd = "Klopcik";
+                } catch (Throwable e)
+                {
+                    String asd = "Klopcik";
+                }
+
+                try {
+                    Sequence AA = Sequence.parse(b);
+                    String asd = "Klopcik";
+                } catch (Throwable e)
+                {
+                    String asd = "Klopcik";
+                }
+
+                try {
+                    Sequence AA = Sequence.parse(c);
+                    String asd = "Klopcik";
+                } catch (Throwable e)
+                {
+                    String asd = "Klopcik";
+                }
+
+
                 return sBase;
 
             }
@@ -119,9 +154,14 @@ public class RandoopUtils {
         }
     }
 
-    public static Object newInstance(ObjenesisStd objenesisStd, Class<?> lass)
+    public static ControlCounter newInstance(ObjenesisStd objenesisStd, Class<?> lass)
     {
-        return objenesisStd.newInstance(lass);
+        return (ControlCounter)objenesisStd.newInstance(lass);
+    }
+
+    public static <T> T newInstanceTest(ObjenesisStd objenesisStd, T lass)
+    {
+        return null;//lass.cast(objenesisStd.newInstance(lass));
     }
 
     public static Field getFiled(Field[] fields, int id)

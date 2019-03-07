@@ -1,21 +1,18 @@
 package modbat.genran
 
-import java.lang.reflect.Field
 import java.util
 import java.util.function.Predicate
 
 import org.junit.Assert.assertTrue
-import org.objenesis.{Objenesis, ObjenesisStd}
 import randoop.generation.{ForwardGenerator, _}
-import randoop.main.GenInputsAbstract.{methodlist, require_classname_in_test}
+import randoop.main.GenInputsAbstract.require_classname_in_test
 import randoop.main._
-import randoop.operation.{ConstructorCall, OperationParseException, TypedOperation}
-import randoop.org.apache.commons.lang3.reflect.FieldUtils
+import randoop.operation.{OperationParseException, TypedOperation}
 import randoop.reflection.VisibilityPredicate.IS_PUBLIC
 import randoop.reflection._
 import randoop.sequence.{ExecutableSequence, Sequence}
 import randoop.test.{ContractSet, TestCheckGenerator}
-import randoop.types.{InstantiatedType, JDKTypes, Type}
+import randoop.types.Type
 import randoop.util.MultiMap
 
 import scala.collection.JavaConverters._
@@ -34,7 +31,7 @@ class RandoopManager extends RandomTestManager {
 
     GenInputsAbstract.deterministic = true
     GenInputsAbstract.minimize_error_test = false
-    GenInputsAbstract.time_limit = 20
+    GenInputsAbstract.time_limit = 60
     GenInputsAbstract.generated_limit = 100
     GenInputsAbstract.output_limit = 50
     GenInputsAbstract.silently_ignore_bad_class_names = false
@@ -55,36 +52,19 @@ class RandoopManager extends RandomTestManager {
     val rTests = RandoopManager.forwardGenerator.getRegressionSequences
     val eTests = RandoopManager.forwardGenerator.getErrorTestSequences
 
+    for(i <- 0 to rTests.size()){
+
+      var kdas123 = eTests.get(i).sequence.toCodeString
+
+      var ontest = "as"
+
+    }
+
     assertTrue("should have some regression tests", !rTests.isEmpty)
     assertTrue("should have some error tests", eTests.isEmpty)
   }
 
-  def createSequenceForObject(ob: Object) : Sequence = {
-
-    if (ob == null)
-    {
-      throw new IllegalArgumentException("value is null")
-    }
-    else
-    {
-      val objenesis = new ObjenesisStd
-      val newOb = objenesis.newInstance(ob.getClass)
-
-      val allFields : Array[Field] = FieldUtils.getAllFields(ob.getClass)
-
-      for(f <- allFields)
-      {
-        f.setAccessible(true) //TODO do we need to set it back
-        f.set(newOb,f.get(ob))
-      }
-
-      null
-    }
-  }
-
   def createForwardGenerator(objects: Seq[AnyRef], observers: Seq[String], methods: Seq[String]): Unit = {
-
-    objects.foreach(createSequenceForObject)
 
     var operationModel: OperationModel = null
     try
@@ -100,7 +80,9 @@ class RandoopManager extends RandomTestManager {
     val components: util.Set[Sequence] = new util.LinkedHashSet[Sequence]
     components.addAll(SeedSequences.defaultSeeds) //TODO here mabe its a place for adding sequence, the moment where we add the trait
     components.addAll(operationModel.getAnnotatedTestValues)
-    //components.addAll(SeedSequences.objectsToSeeds(objects.toList.asJava))
+
+    objects.foreach(f => components.add(RandoopUtils.createSequenceForObject(f)))
+
 
     val componentMgr: ComponentManager = new ComponentManager(components)
     operationModel.addClassLiterals(componentMgr, GenInputsAbstract.literals_file, GenInputsAbstract.literals_level)

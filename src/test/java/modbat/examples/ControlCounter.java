@@ -1,5 +1,7 @@
 package modbat.examples;
 
+import randoop.CheckRep;
+
 public class ControlCounter {
 
   int count = 0;
@@ -29,11 +31,8 @@ public class ControlCounter {
     return count;
   }
 
+  @CheckRep
   public boolean isValid() {
-    return count == trueCount; }
-
- /* public String toString()
-  {
-    return "ControlCounter, count=" + count +"; trueCount=" + trueCount + "; flag=" + flag;
-  }*/
+    return count == trueCount;
+  }
 }

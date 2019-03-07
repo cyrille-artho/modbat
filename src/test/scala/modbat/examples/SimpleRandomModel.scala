@@ -11,7 +11,8 @@ class SimpleRandomModel extends Model {
     counter = new ControlCounter()
   }
   "zero" -> "one" := {
-    counter.inc
+   // counter.toggleSwitch()
+    counter.inc()
   }
   "one" -> "random" := randomSearch(Seq("modbat.examples.ControlCounter"), Seq(counter), Seq("modbat.examples.ControlCounter.isValid()"))
 
