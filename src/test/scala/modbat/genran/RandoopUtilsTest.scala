@@ -6,6 +6,13 @@ import randoop.sequence.{ExecutableSequence, Sequence}
 import randoop.test.DummyCheckGenerator
 import randoop.{DummyVisitor, NormalExecution}
 
+/* TODO Add :
+  * Private field
+  * Package field
+  * Final field
+  * String more then limit?
+  *
+  */
 class RandoopUtilsTest extends FunSuite {
 
   test("testCreateSequenceForObject-ControlCounter") {

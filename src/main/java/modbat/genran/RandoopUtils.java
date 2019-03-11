@@ -17,6 +17,7 @@ import java.util.Arrays;
 public class RandoopUtils {
 
     /**
+     *       TODO add proper javadoc
      *
      *       Randoop Sequence logic of:
      *
@@ -25,10 +26,10 @@ public class RandoopUtils {
      *
      *       val allFields : Array[Field] = FieldUtils.getAllFields(ob.getClass)
      *       for(f <- allFields)
-     *       {
-     *         f.setAccessible(true)
-     *         f.set(newOb,f.get(ob))
-     *       }
+     *      *       {
+     *      *         f.setAccessible(true)
+     *      *         f.set(newOb,f.get(ob))
+     *      *       }
      * @param object
      * @return
      * @throws Exception
@@ -47,7 +48,7 @@ public class RandoopUtils {
                 if (type.equals(JavaTypes.STRING_TYPE) && !Value.stringLengthOK((String)object)) {
                     throw new IllegalArgumentException("value is a string of length > " + GenInputsAbstract.string_maxlen);
                 } else {
-                    return (new Sequence()).extend(TypedOperation.createPrimitiveInitialization((Type)type, object));
+                    return (new Sequence()).extend(TypedOperation.createPrimitiveInitialization(type, object));
                 }
 
             } else {
@@ -57,11 +58,7 @@ public class RandoopUtils {
                 TypedOperation TobjenesisStd = TypedOperation.forConstructor(ObjenesisStd.class.getConstructor());
                 TypedOperation TclassName = TypedOperation.createPrimitiveInitialization(JavaTypes.STRING_TYPE, className);
                 TypedOperation TobjectClassReflection = TypedOperation.forMethod(Class.class.getMethod("forName", String.class));
-
                 TypedOperation TnewOb = TypedOperation.forMethod(RandoopUtils.class.getMethod("newInstance", ObjenesisStd.class, Class.class));
-               // TypedOperation TnewOb = TypedOperation.forMethod(RandoopUtils.class.getMethod("newInstanceTest", ObjenesisStd.class, object.getClass()));
-
-
                 TypedOperation Tfields = TypedOperation.forMethod(FieldUtils.class.getMethod("getAllFields", Class.class));
 
                 int index = 0;
@@ -91,9 +88,9 @@ public class RandoopUtils {
                     Object o = fields[i].get(object);
 
                     TypedOperation Telem1 = TypedOperation.createPrimitiveInitialization(JavaTypes.INT_TYPE, i);
-                    TypedOperation Tgetfield = TypedOperation.forMethod(RandoopUtils.class.getMethod("getFiled", java.lang.reflect.Field[].class, int.class));
+                    TypedOperation Tgetfield = TypedOperation.forMethod(RandoopUtils.class.getMethod("getField", java.lang.reflect.Field[].class, int.class));
                     TypedOperation Ttrue = TypedOperation.createPrimitiveInitialization(JavaTypes.BOOLEAN_TYPE, true);
-                    TypedOperation TsetAccessible = TypedOperation.forMethod(Field.class.getMethod("setAccessible", boolean.class)); //TODO maybe we dont need it if we did it already from JAVA code?
+                    TypedOperation TsetAccessible = TypedOperation.forMethod(Field.class.getMethod("setAccessible", boolean.class));
                     TypedOperation TfieldSet = TypedOperation.forMethod(Field.class.getMethod("set", Object.class, Object.class));
 
                     sBase = sBase.extend(Telem1);//5
@@ -118,54 +115,23 @@ public class RandoopUtils {
 
                 }
 
-                String a = sBase.toParsableString();
-                String b = sBase.toString();
-                String c = sBase.toCodeString();
-
-                try {
-                    Sequence AA = Sequence.parse(a);
-                    String asd = "Klopcik";
-                } catch (Throwable e)
-                {
-                    String asd = "Klopcik";
-                }
-
-                try {
-                    Sequence AA = Sequence.parse(b);
-                    String asd = "Klopcik";
-                } catch (Throwable e)
-                {
-                    String asd = "Klopcik";
-                }
-
-                try {
-                    Sequence AA = Sequence.parse(c);
-                    String asd = "Klopcik";
-                } catch (Throwable e)
-                {
-                    String asd = "Klopcik";
-                }
-
+                TypedOperation tCast = TypedOperation.createCast(Type.forClass(Object.class),Type.forClass(ControlCounter.class));
+                sBase = sBase.extend(tCast, sBase.getVariable(indexTnewOb));
 
                 return sBase;
-
             }
 
         }
     }
 
-    public static ControlCounter newInstance(ObjenesisStd objenesisStd, Class<?> lass)
+
+    public static Object newInstance(ObjenesisStd objenesisStd, Class<?> lass)
     {
-        return (ControlCounter)objenesisStd.newInstance(lass);
+        return objenesisStd.newInstance(lass);
     }
 
-    public static <T> T newInstanceTest(ObjenesisStd objenesisStd, T lass)
+    public static Field getField(Field[] field, int id)
     {
-        return null;//lass.cast(objenesisStd.newInstance(lass));
-    }
-
-    public static Field getFiled(Field[] fields, int id)
-    {
-        return fields[id];
+        return field[id];
     }
 }
