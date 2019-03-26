@@ -24,7 +24,7 @@ class PathInStateGraph(trie: Trie, val typeName: String)
     out.println("  orientation = portrait;")
     out.println("  graph [ rankdir = \"TB\", ranksep=\"2\", nodesep=\"0.2\" ];")
     out.println(
-      "  node [ fontname = \"Helvetica\", fontsize=\"6.0\", style=rounded, shape=\"" + "ellipse" +
+      "  node [ fontname = \"Helvetica\", fontsize=\"6.0\", shape=\"" + "ellipse" +
         "\", margin=\"0.07\"," + " height=\"0.1\" ];")
     out.println(
       "  edge [ fontname = \"Helvetica\", arrowsize=\".3\", arrowhead=\"normal\", fontsize=\"6.0\"," + " margin=\"0.05\" ];")
@@ -138,8 +138,8 @@ class PathInStateGraph(trie: Trie, val typeName: String)
 
       // edge style
       val edgeStyle: String =
-        if (backtracked) "style=dotted, color=red,"
-        else if (failed) "color=blue,"
+        if (backtracked) "style=dotted, color=blue,"
+        else if (failed) "color=red,"
         else ""
 
       // node color style
@@ -204,9 +204,9 @@ class PathInStateGraph(trie: Trie, val typeName: String)
 
     val edgeStyle: String =
       if (root.isLeaf && backtracked)
-        "style=dotted, color=red,"
+        "style=dotted, color=blue,"
       else if (root.isLeaf && ((failed && choiceOfMaybe) || failed))
-        "color=blue,"
+        "color=red,"
       else ""
 
     if (root.isLeaf) {

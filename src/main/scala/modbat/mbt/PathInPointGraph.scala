@@ -31,7 +31,7 @@ class PathInPointGraph(trie: Trie, val typeName: String)
     out.println("  orientation = portrait;")
     out.println("  graph [ rankdir = \"TB\", ranksep=\"2\", nodesep=\"0.2\" ];")
     out.println(
-      "  node [ fontname = \"Helvetica\", fontsize=\"6.0\", style=rounded, shape=\"" + "point" +
+      "  node [ fontname = \"Helvetica\", fontsize=\"6.0\", shape=\"" + "point" +
         "\", margin=\"0.07\"," + " height=\"0.1\" ];")
     out.println(
       "  edge [ fontname = \"Helvetica\", arrowsize=\".3\", arrowhead=\"normal\", fontsize=\"6.0\"," + " margin=\"0.05\" ];")
@@ -190,9 +190,9 @@ class PathInPointGraph(trie: Trie, val typeName: String)
 
     val edgeStyle: String =
       if (transQuality == TransitionQuality.backtrack)
-        "style=dotted, color=red,"
+        "style=dotted, color=blue,"
       else if (transQuality == TransitionQuality.fail)
-        "color=blue,"
+        "color=red,"
       else ""
 
     // draw transitions with choices
@@ -226,9 +226,9 @@ class PathInPointGraph(trie: Trie, val typeName: String)
 
     val edgeStyle: String =
       if (root.isLeaf && backtracked)
-        "style=dotted, color=red,"
+        "style=dotted, color=blue,"
       else if (root.isLeaf && ((failed && choiceOfMaybe) || failed))
-        "color=blue,"
+        "color=red,"
       else ""
 
     if (root.isLeaf)
