@@ -227,7 +227,7 @@ class PathInStateGraph(trie: Trie, val typeName: String)
         else
           " , shape=diamond, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"*/
       var choiceNodeStyle
-        : String = " , shape=diamond, width=0.1, height=0.1, xlabel=\"Count:" + choiceNode.choiceCounter + "\"];"
+        : String = " , shape=diamond, width=0.2, height=0.3, xlabel=\"" + choiceNode.choiceCounter + "\"];"
       val destNodeValue = choiceNode.recordedChoice.toString
       val destNodeID = "\"" + transID + "-" + level.toString + "-" + destNodeValue + "-" + nodeInfo.node.transitionInfo.transitionQuality + "\""
 
@@ -325,7 +325,8 @@ class PathInStateGraph(trie: Trie, val typeName: String)
         "label = \"" +
         labelOutputOptional("M:", modelName) +
         //"M:" + modelName + "\\n" +
-        "MID:" + modelID + "\\n" +
+        labelOutputOptional("MID:", modelID) +
+        //"MID:" + modelID + "\\n" +
         labelOutputOptional("T:", transName + nextStateOfBacktrack) +
         labelOutputOptional("TID:", transID) +
         labelOutputOptional("T-Path-Counter:", transCounter) +
