@@ -22,10 +22,11 @@ class PathInStateGraph(trie: Trie, val typeName: String)
   override def dotify() {
     out.println("digraph model {")
     out.println("  orientation = portrait;")
-    out.println("  graph [ rankdir = \"TB\", ranksep=\"1\", nodesep=\"0.2\" ];")
+    out.println(
+      "  graph [ rankdir = \"TB\", ranksep=\"0.5\", nodesep=\"0.1\" ];")
     out.println(
       "  node [ fontname = \"Helvetica\", fontsize=\"6.0\", shape=\"" + "ellipse" +
-        "\", margin=\"0.07\"," + " height=\"0.1\" ];")
+        "\", margin=\"0.01\"," + " height=\"0.1\"," + " width=\"0.5\" ];")
     out.println(
       "  edge [ fontname = \"Helvetica\", arrowsize=\".3\", arrowhead=\"normal\", fontsize=\"6.0\"," + " margin=\"0.05\" ];")
 
