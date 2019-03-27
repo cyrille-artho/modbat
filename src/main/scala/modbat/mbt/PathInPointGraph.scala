@@ -5,6 +5,7 @@ import modbat.dsl.State
 
 import scala.collection.mutable.ListBuffer
 import scala.math.log10
+import modbat.log.Log
 
 /** PathInPoint extends PathVisualizer for showing path coverage in "Point" tree graph.
   *
@@ -358,8 +359,8 @@ class PathInPointGraph(trie: Trie, val typeName: String)
         labelOutputOptional("TID:", transID) +
         labelOutputOptional("T-Path-Counter:", transCounter) +
         labelOutputOptional("next state:", nextState) +
-        labelOutputOptional("Count:", transExecutedRecords) +
-        //"Count:" + transExecutedRecords +
+        //labelOutputOptional("Count:", transExecutedRecords) +
+        transExecutedRecords +
         " \"];"
 
     label
