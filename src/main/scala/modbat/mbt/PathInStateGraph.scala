@@ -323,7 +323,7 @@ class PathInStateGraph(trie: Trie, val typeName: String)
     val label: String =
       "[" + edgeStyle +
         edgeWidth +
-        "label = \"" +
+        "label = \" " +
         labelOutputOptional("M:", modelName) +
         //"M:" + modelName + "\\n" +
         labelOutputOptional("MID:", modelID) +
