@@ -543,6 +543,7 @@ object Modbat {
           failed = false // TODO: failed case -Rui
         }
         case (t: TransitionResult, _) => {
+          Log.debug("an error occurs")
           assert(TransitionResult.isErr(t))
           printTrace(executedTransitions.toList)
           failed = true

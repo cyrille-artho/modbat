@@ -33,7 +33,7 @@ class Trie {
         currentNode.children.getOrElse(nodeKey, null)
 
       // Check if the new transition is a self loop and repeated in the path.
-      if (currentNode.currentTransition != null && currentNode.currentTransition.idx == p.transition.idx) {
+      if (currentNode.currentTransition != null && currentNode.currentTransition.idx == p.transition.idx && currentNode.transitionInfo.transitionQuality == p.transitionQuality) {
 
         // Only update the counter for this current repeatedly executed same transition of current test case
         currentNode.transExecutedCounter += 1
@@ -65,7 +65,6 @@ class Trie {
 
         currentNode = childNode // next node
       } else if (childNode != null && childNode.transitionInfo.transitionID == p.transition.idx) { // existing childNode situation
-        Log.debug("something happened here?")
         // Update same repetition times happening for this transition during the whole test
         updateTransSameRepetitionTimes(currentNode)
 
@@ -75,8 +74,6 @@ class Trie {
         childNode.transitionInfo.transCounter += 1
         // Update choices in map
         if (p.transition.recordedChoices != null && p.transition.recordedChoices.nonEmpty) {
-          Log.debug(
-            "something happened for choices here?:" + p.transition.recordedChoices)
           if (childNode.transitionInfo.transitionChoicesMap.contains(
                 p.transition.recordedChoices))
             childNode.transitionInfo
