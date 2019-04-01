@@ -139,7 +139,9 @@ object Modbat {
     if (Main.config.dotifyPathCoverage) {
       if (Main.config.logLevel == Log.Debug) trie.display(trie.root)
       val numOfPaths = trie.numOfPaths(trie.root)
-      Log.info(numOfPaths + " paths executed.")
+      Log.info(numOfPaths + " main paths executed.")
+      val longestPath = trie.longestPath(trie.root)
+      Log.info("the longest path has " + longestPath + " transitions.")
       new PathInPointGraph(trie, "Point").dotify()
       new PathInStateGraph(trie, "State").dotify()
     }
