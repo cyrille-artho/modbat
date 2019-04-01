@@ -314,11 +314,11 @@ class PathInStateGraph(trie: Trie, val typeName: String)
       else ""
 
     // calculate penwidth
-    val edgeWidth = "penwidth=\"" + (log10(
+    val edgeWidth = "penwidth=\"" + log10(
       count
         .split(";")
         .map(_.toDouble)
-        .sum * 100 / Main.config.nRuns) + 1).toString + "\","
+        .sum * 100.0d / Main.config.nRuns.toDouble + 1.0d).toString + "\","
 
     val label: String =
       "[" + edgeStyle +

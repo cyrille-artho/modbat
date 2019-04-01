@@ -174,6 +174,21 @@ class Trie {
     }
     leave
   }
+  //  compute the longest path based on the number of transitions
+  def longestPath(root: TrieNode, level: Int = 0): Int = {
+    var longest = level
+    if (root.isLeaf) return level
+
+    for (t <- root.children.keySet) {
+      val node: TrieNode =
+        root.children.getOrElse(t, sys.error(s"unexpected key: $t"))
+
+      var currentPathlong = longestPath(node, level + 1)
+      longest = if (currentPathlong > longest) currentPathlong else longest
+    }
+
+    longest
+  }
 }
 
 /** TrieNode stores each current transition's information
