@@ -26,6 +26,10 @@ class PathInPointGraph(trie: Trie, val typeName: String)
 
   // The choice node counter is used to construct the IDs of choice nodes
   private var choiceNodeCounter: Int = 0
+  private var backtrackedEdgeCounter: Int = 0
+  private var failedEdgeCounter: Int = 0
+  private var nonChoiceEdgeCounter: Int = 0
+  private var choiceEdgeCounter: Int = 0
 
   override def dotify() {
     out.println("digraph model {")
@@ -52,8 +56,21 @@ class PathInPointGraph(trie: Trie, val typeName: String)
     out.println("{rank = source; " + graphNoneNode + "}")
 
     // display
-    display(trie.root, graphRootNodeNumber, nodeRecordStack)
+    val (numNodeCount, _) =
+      display(trie.root, graphRootNodeNumber, nodeRecordStack)
     out.println("}")
+    Log.debug(
+      "the total number of nodes in path-based graph:" + (numNodeCount + 1))
+    Log.debug(
+      "the total number of choice nodes in path-based graph: " + choiceNodeCounter)
+    Log.debug(
+      "the total number of backtracked edges in path-based graph: " + backtrackedEdgeCounter)
+    Log.debug(
+      "the total number of failed edges in path-based graph: " + failedEdgeCounter)
+    Log.debug(
+      "the total number of non choice edges in path-based graph: " + nonChoiceEdgeCounter)
+    Log.debug(
+      "the total number of choice edges in path-based graph: " + choiceEdgeCounter)
   }
 
   private def display(root: TrieNode,
@@ -186,17 +203,6 @@ class PathInPointGraph(trie: Trie, val typeName: String)
                        idx: Int,
                        originNodeID: Int,
                        destNodeID: Int): Unit = {
-
-    val transQuality: TransitionQuality.Quality =
-      nodeStack(idx).node.transitionInfo.transitionQuality
-
-    val edgeStyle: String =
-      if (transQuality == TransitionQuality.backtrack)
-        "style=dotted, color=blue,"
-      else if (transQuality == TransitionQuality.fail)
-        "color=red,"
-      else ""
-
     // draw transitions with choices
     if (nodeStack(idx).transHasChoices) {
       drawTransWithChoices(nodeStack(idx),
@@ -204,6 +210,21 @@ class PathInPointGraph(trie: Trie, val typeName: String)
                            originNodeID,
                            destNodeID)
     } else { // draw transition, no choices
+      val transQuality: TransitionQuality.Quality =
+        nodeStack(idx).node.transitionInfo.transitionQuality
+
+      val edgeStyle: String =
+        if (transQuality == TransitionQuality.backtrack) {
+          backtrackedEdgeCounter += 1
+          "style=dotted, color=blue,"
+        } else if (transQuality == TransitionQuality.fail) {
+          failedEdgeCounter += 1
+          "color=red,"
+        } else {
+          nonChoiceEdgeCounter += 1
+          ""
+        }
+
       out.println(
         originNodeID + "->" + destNodeID + createEdgeLabel(
           nodeStack(idx).node,
@@ -227,18 +248,24 @@ class PathInPointGraph(trie: Trie, val typeName: String)
       : Boolean = nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.fail
 
     val edgeStyle: String =
-      if (root.isLeaf && backtracked)
+      if (root.isLeaf && backtracked) {
+        backtrackedEdgeCounter += 1
         "style=dotted, color=blue,"
-      else if (root.isLeaf && ((failed && choiceOfMaybe) || failed))
+      } else if (root.isLeaf && ((failed && choiceOfMaybe) || failed)) {
+        failedEdgeCounter += 1
         "color=red,"
-      else ""
+      } else {
+        ""
+      }
 
-    if (root.isLeaf)
+    if (root.isLeaf) {
+      choiceEdgeCounter += 1
       out.println(
         currentNodeID + "->" + destNodeID + createEdgeLabel(
           nodeInfo.node,
           edgeStyle,
           root.choiceCounter.toString))
+    }
 
     for (choiceKey <- root.children.keySet) {
       choiceNodeCounter = choiceNodeCounter + 1
@@ -272,12 +299,14 @@ class PathInPointGraph(trie: Trie, val typeName: String)
         choiceNodeID + " [label=\"" + choiceNodeValue + "\"" + choiceNodeStyle)
 
       if (level == 0) {
+        choiceEdgeCounter += 1
         out.println(
           originNodeID + "->" + choiceNodeID + createEdgeLabel(
             nodeInfo.node,
             edgeStyle,
             choiceNode.choiceCounter.toString))
       } else {
+        choiceEdgeCounter += 1
         out.println(
           currentNodeID + "->" + choiceNodeID + createEdgeLabel(
             nodeInfo.node,
