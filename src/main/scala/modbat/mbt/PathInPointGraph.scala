@@ -30,8 +30,9 @@ class PathInPointGraph(trie: Trie, val typeName: String)
   private var failedEdgeCounter: Int = 0
   private var nonChoiceEdgeCounter: Int = 0
   private var choiceEdgeCounter: Int = 0
+  private var cycleSelfTranCounter: Int = 0
 
-  override def dotify() {
+  override def dotify(): (Int, Int, Int, Int, Int, Int, Int) = {
     out.println("digraph model {")
     out.println("  orientation = portrait;")
     out.println(
@@ -59,18 +60,29 @@ class PathInPointGraph(trie: Trie, val typeName: String)
     val (numNodeCount, _) =
       display(trie.root, graphRootNodeNumber, nodeRecordStack)
     out.println("}")
-    Log.debug(
-      "the total number of nodes in path-based graph:" + (numNodeCount + 1))
-    Log.debug(
-      "the total number of choice nodes in path-based graph: " + choiceNodeCounter)
-    Log.debug(
-      "the total number of backtracked edges in path-based graph: " + backtrackedEdgeCounter)
-    Log.debug(
-      "the total number of failed edges in path-based graph: " + failedEdgeCounter)
-    Log.debug(
-      "the total number of non choice edges in path-based graph: " + nonChoiceEdgeCounter)
-    Log.debug(
-      "the total number of choice edges in path-based graph: " + choiceEdgeCounter)
+
+//    Log.info(
+//      "the total number of nodes in path-based graph:" + (numNodeCount + 1))
+//    Log.info(
+//      "the total number of choice nodes in path-based graph: " + choiceNodeCounter)
+//    Log.info(
+//      "the total number of backtracked edges in path-based graph: " + backtrackedEdgeCounter)
+//    Log.info(
+//      "the total number of failed edges in path-based graph: " + failedEdgeCounter)
+//    Log.info(
+//      "the total number of non choice edges in path-based graph: " + nonChoiceEdgeCounter)
+//    Log.info(
+//      "the total number of choice edges in path-based graph: " + choiceEdgeCounter)
+//    Log.info(
+//      "the total number of cycles in path-based graph: " + cycleSelfTranCounter)
+
+    (numNodeCount + 1,
+     choiceNodeCounter,
+     backtrackedEdgeCounter,
+     failedEdgeCounter,
+     nonChoiceEdgeCounter,
+     choiceEdgeCounter,
+     cycleSelfTranCounter)
   }
 
   private def display(root: TrieNode,
@@ -203,6 +215,7 @@ class PathInPointGraph(trie: Trie, val typeName: String)
                        idx: Int,
                        originNodeID: Int,
                        destNodeID: Int): Unit = {
+
     // draw transitions with choices
     if (nodeStack(idx).transHasChoices) {
       drawTransWithChoices(nodeStack(idx),
@@ -210,6 +223,7 @@ class PathInPointGraph(trie: Trie, val typeName: String)
                            originNodeID,
                            destNodeID)
     } else { // draw transition, no choices
+
       val transQuality: TransitionQuality.Quality =
         nodeStack(idx).node.transitionInfo.transitionQuality
 
@@ -222,6 +236,7 @@ class PathInPointGraph(trie: Trie, val typeName: String)
           "color=red,"
         } else {
           nonChoiceEdgeCounter += 1
+          if (originNodeID == destNodeID) cycleSelfTranCounter += 1 //update cycle counter
           ""
         }
 
@@ -269,6 +284,9 @@ class PathInPointGraph(trie: Trie, val typeName: String)
 
     for (choiceKey <- root.children.keySet) {
       choiceNodeCounter = choiceNodeCounter + 1
+      if (!backtracked && !failed && originNodeID == destNodeID && level == 0)
+        cycleSelfTranCounter += 1 //update cycle counter
+
       val choiceNode = root.children(choiceKey)
 
       var choiceNodeStyle

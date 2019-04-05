@@ -142,8 +142,47 @@ object Modbat {
       Log.info(numOfPaths + " main paths executed.")
       val longestPath = trie.longestPath(trie.root)
       Log.info("the longest path has " + longestPath + " transitions.")
-      new PathInPointGraph(trie, "Point").dotify()
-      new PathInStateGraph(trie, "State").dotify()
+
+      val (numNodePG,
+           numChoiceNodePG,
+           numBacktrackedEdgePG,
+           numFailedEdgePG,
+           numNonChoiceEdgePG,
+           numChoiceEdgePG,
+           numCycleSelfTranPG) = new PathInPointGraph(trie, "Point").dotify()
+      Log.info("the total number of nodes in path-based graph:" + numNodePG)
+      Log.info(
+        "the total number of choice nodes in path-based graph: " + numChoiceNodePG)
+      Log.info(
+        "the total number of backtracked edges in path-based graph: " + numBacktrackedEdgePG)
+      Log.info(
+        "the total number of failed edges in path-based graph: " + numFailedEdgePG)
+      Log.info(
+        "the total number of non choice related edges in path-based graph: " + numNonChoiceEdgePG)
+      Log.info(
+        "the total number of choice related edges in path-based graph: " + numChoiceEdgePG)
+      Log.info(
+        "the total number of cycles in path-based graph: " + numCycleSelfTranPG)
+
+      val (_,
+           numChoiceNodeSG,
+           numBacktrackedEdgeSG,
+           numFailedEdgeSG,
+           numNonChoiceEdgeSG,
+           numChoiceEdgeSG,
+           numCycleSelfTranSG) = new PathInStateGraph(trie, "State").dotify()
+      Log.info(
+        "the total number of choice nodes in state-based graph: " + numChoiceNodeSG)
+      Log.info(
+        "the total number of backtracked edges in state-based graph: " + numBacktrackedEdgeSG)
+      Log.info(
+        "the total number of failed edges in state-based graph: " + numFailedEdgeSG)
+      Log.info(
+        "the total number of non choice related edges in state-based graph: " + numNonChoiceEdgeSG)
+      Log.info(
+        "the total number of choice related edges in state-based graph: " + numChoiceEdgeSG)
+      Log.info(
+        "the total number of cycles in state-based graph: " + numCycleSelfTranSG)
     }
 
     Log.info(
@@ -499,17 +538,18 @@ object Modbat {
       result match {
         case (Ok(sameAgain: Boolean), _) => {
 
-          if (result._2.nextState != null) {
-            Log.debug(
-              "---print debug--- nextSate of transition: " + result._2.nextState.dest
-                .toString()) // todo print debug
-            Log.debug(
-              "---print debug--- Current state of transition when nextState!=null: " + result._2.transition.dest
-                .toString()) // todo print debug
-          } else
-            Log.debug(
-              "---print debug--- Current state of transition when nextState is null: " + result._2.transition.dest
-                .toString()) // todo print debug
+          // debug code:
+//          if (result._2.nextState != null) {
+//            Log.debug(
+//              "---print debug--- nextSate of transition: " + result._2.nextState.dest
+//                .toString()) // todo print debug
+//            Log.debug(
+//              "---print debug--- Current state of transition when nextState!=null: " + result._2.transition.dest
+//                .toString()) // todo print debug
+//          } else
+//            Log.debug(
+//              "---print debug--- Current state of transition when nextState is null: " + result._2.transition.dest
+//                .toString()) // todo print debug
 
           val succ = new ArrayBuffer[(MBT, Transition)]()
           addSuccessors(model, succ, true)
