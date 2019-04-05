@@ -18,5 +18,5 @@ trait PathVisualizer {
       //System.exit(1)
     }
   }
-  def dotify(): Unit
+  def dotify(): (Int, Int, Int, Int, Int, Int, Int)
 }

@@ -19,7 +19,14 @@ class PathInStateGraph(trie: Trie, val typeName: String)
                            var transCounter: String,
                            var transExecutedRecords: String)
 
-  override def dotify() {
+  private var choiceNodeCounter: Int = 0
+  private var backtrackedEdgeCounter: Int = 0
+  private var failedEdgeCounter: Int = 0
+  private var nonChoiceEdgeCounter: Int = 0
+  private var choiceEdgeCounter: Int = 0
+  private var cycleSelfTranCounter: Int = 0
+
+  override def dotify(): (Int, Int, Int, Int, Int, Int, Int) = {
     out.println("digraph model {")
     out.println("  orientation = portrait;")
     out.println(
@@ -32,8 +39,32 @@ class PathInStateGraph(trie: Trie, val typeName: String)
 
     val nodeRecorder
       : ListBuffer[StateNodeInfo] = new ListBuffer[StateNodeInfo] // nodeRecorder is used for record node information for "State" output graph
+
+    //display
     display(trie.root, 0, nodeRecorder)
+
     out.println("}")
+
+//    Log.info(
+//      "the total number of choice nodes in state-based graph: " + choiceNodeCounter)
+//    Log.info(
+//      "the total number of backtracked edges in state-based graph: " + backtrackedEdgeCounter)
+//    Log.info(
+//      "the total number of failed edges in state-based graph: " + failedEdgeCounter)
+//    Log.info(
+//      "the total number of non choice edges in state-based graph: " + nonChoiceEdgeCounter)
+//    Log.info(
+//      "the total number of choice edges in state-based graph: " + choiceEdgeCounter)
+//    Log.info(
+//      "the total number of cycles in path-based graph: " + cycleSelfTranCounter)
+
+    (-1,
+     choiceNodeCounter,
+     backtrackedEdgeCounter,
+     failedEdgeCounter,
+     nonChoiceEdgeCounter,
+     choiceEdgeCounter,
+     cycleSelfTranCounter)
   }
 
   private def display(root: TrieNode,
@@ -137,12 +168,6 @@ class PathInStateGraph(trie: Trie, val typeName: String)
           n.node.transitionInfo.nextStateNextIf.nextState.toString
         else ""
 
-      // edge style
-      val edgeStyle: String =
-        if (backtracked) "style=dotted, color=blue,"
-        else if (failed) "color=red,"
-        else ""
-
       // node color style
       /*      if (n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
         out.println(" " + transDest + " [color=red];")
@@ -165,6 +190,20 @@ class PathInStateGraph(trie: Trie, val typeName: String)
           choiceTree.displayChoices(choiceTree.root, 0)
       } else {
         // transitions without choices
+        // edge style
+        val edgeStyle: String =
+          if (backtracked) {
+            backtrackedEdgeCounter += 1 // update backtracked edges counter
+            "style=dotted, color=blue,"
+          } else if (failed) {
+            failedEdgeCounter += 1 // update failed edges counter
+            "color=red,"
+          } else {
+            nonChoiceEdgeCounter += 1 // update back normal edges counter
+            if (transOrigin == transDest) cycleSelfTranCounter += 1 //update cycle counter
+            ""
+          }
+
         out.println(
           transOrigin + "->" + (if (backtracked) nextStateOfBacktrack
                                 else
@@ -204,13 +243,18 @@ class PathInStateGraph(trie: Trie, val typeName: String)
       else ""
 
     val edgeStyle: String =
-      if (root.isLeaf && backtracked)
+      if (root.isLeaf && backtracked) {
+        backtrackedEdgeCounter += 1 // update backtracked edge counter
         "style=dotted, color=blue,"
-      else if (root.isLeaf && ((failed && choiceOfMaybe) || failed))
+      } else if (root.isLeaf && ((failed && choiceOfMaybe) || failed)) {
+        failedEdgeCounter += 1 // update failed edge counter
         "color=red,"
-      else ""
+      } else {
+        ""
+      }
 
     if (root.isLeaf) {
+      choiceEdgeCounter += 1 // update choice edge counter
       out.println(
         currentNodeID + "->" + (if (backtracked) nextStateOfBacktrack
                                 else transDest) + createEdgeLabel(
@@ -220,8 +264,11 @@ class PathInStateGraph(trie: Trie, val typeName: String)
     }
 
     for (choiceKey <- root.children.keySet) {
-      val choiceNode = root.children(choiceKey)
+      choiceNodeCounter = choiceNodeCounter + 1 // update the choice node counter
+      if (!backtracked && !failed && transOrigin == transDest && level == 0)
+        cycleSelfTranCounter += 1 //update cycle counter
 
+      val choiceNode = root.children(choiceKey)
       /*      var choiceNodeStyle: String =
         if (nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
           " , shape=diamond, color=red, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
@@ -247,12 +294,14 @@ class PathInStateGraph(trie: Trie, val typeName: String)
         destNodeID + " [label=\"" + destNodeValue + "\"" + choiceNodeStyle)
 
       if (level == 0) {
+        choiceEdgeCounter += 1 // update choice edge counter
         out.println(
           transOrigin + "->" + destNodeID + createEdgeLabel(
             nodeInfo,
             edgeStyle,
             choiceNode.choiceCounter.toString))
       } else {
+        choiceEdgeCounter += 1 // update choice edge counter
         out.println(
           currentNodeID + "->" + destNodeID + createEdgeLabel(
             nodeInfo,

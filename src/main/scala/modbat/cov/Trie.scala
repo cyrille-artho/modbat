@@ -37,8 +37,7 @@ class Trie {
 
         // Only update the counter for this current repeatedly executed same transition of current test case
         currentNode.transExecutedCounter += 1
-        Log.debug(
-          "****** print debug ****** currentNode update selfTransExecuteCounter:" + currentNode.transExecutedCounter)
+        //Log.debug("****** print debug ****** currentNode update selfTransExecuteCounter:" + currentNode.transExecutedCounter)
 
       } else if (childNode == null) { // new childNode situation
 
