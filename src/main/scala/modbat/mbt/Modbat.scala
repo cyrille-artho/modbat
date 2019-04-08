@@ -142,7 +142,21 @@ object Modbat {
       Log.info(numOfPaths + " main paths executed.")
       val longestPath = trie.longestPath(trie.root)
       Log.info("the longest path has " + longestPath + " transitions.")
-
+      // pathLengthResults is a map that records the all length of paths (keys),
+      // and the number of the same length (values), based on the number of transitions
+      val pathLengthResults = trie.pathLengthRecorder(trie.root)
+      Log.info("path length results: " + pathLengthResults)
+      // the average length of all paths, based on the number of transitions
+      val averageLength = pathLengthResults.foldLeft(0.0) {
+        case (a, (k, v)) => a + k * v
+      } / numOfPaths
+      Log.info("the average length of paths is: " + averageLength)
+      // the standard deviation for the length of paths, based on the number of transtions
+      val stdDev = math.sqrt(pathLengthResults.foldLeft(0.0) {
+        case (a, (k, v)) => a + math.pow(k - averageLength, 2) * v
+      } / numOfPaths)
+      Log.info("the standard deviation for the length of paths is: " + stdDev)
+      // information for the path based graph
       val (numNodePG,
            numChoiceNodePG,
            numBacktrackedEdgePG,
@@ -163,7 +177,7 @@ object Modbat {
         "the total number of choice related edges in path-based graph: " + numChoiceEdgePG)
       Log.info(
         "the total number of cycles in path-based graph: " + numCycleSelfTranPG)
-
+      // information for the state based graph
       val (_,
            numChoiceNodeSG,
            numBacktrackedEdgeSG,
