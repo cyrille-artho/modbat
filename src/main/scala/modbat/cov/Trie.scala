@@ -190,6 +190,26 @@ class Trie {
     longest
   }
 
+  def shortestPath(root: TrieNode, level: Int = 0, pathLength: Int = 0): Int = {
+    var shortest = pathLength
+    if (root.isLeaf) {
+      if (pathLength == 0) return level
+      else if (level < pathLength) return level
+      else return pathLength
+    }
+
+    for (t <- root.children.keySet) {
+      val node: TrieNode =
+        root.children.getOrElse(t, sys.error(s"unexpected key: $t"))
+
+      shortest = shortestPath(node, level + 1, shortest)
+    }
+    shortest
+  }
+
+  // pathLengthRecorder returns the pathLengthResults,
+  // pathLengthResults is a map that records the all length of paths (keys),
+  // and the number of the same length (values), based on the number of transitions
   def pathLengthRecorder(
       root: TrieNode,
       level: Int = 0,
