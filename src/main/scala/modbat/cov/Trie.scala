@@ -11,6 +11,7 @@ import scala.collection.mutable.{HashMap, ListBuffer, Map}
 /** Trie stores the path information for the path coverage. */
 class Trie {
   val root: TrieNode = TrieNode()
+  //var pathLengthRecorder: Map[Int, Int] = Map[Int, Int]()
 
   /** Insert recorded path information into trie
     *
@@ -187,6 +188,23 @@ class Trie {
     }
 
     longest
+  }
+
+  def pathLengthRecorder(
+      root: TrieNode,
+      level: Int = 0,
+      pathLengthResults: Map[Int, Int] = Map[Int, Int]()): Map[Int, Int] = {
+    if (root.isLeaf) {
+      if (pathLengthResults.contains(level)) pathLengthResults(level) += 1
+      else pathLengthResults += (level -> 1)
+      return pathLengthResults
+    }
+    for (t <- root.children.keySet) {
+      val node: TrieNode =
+        root.children.getOrElse(t, sys.error(s"unexpected key: $t"))
+      pathLengthRecorder(node, level + 1, pathLengthResults)
+    }
+    pathLengthResults
   }
 }
 
