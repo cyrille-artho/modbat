@@ -140,6 +140,8 @@ object Modbat {
       if (Main.config.logLevel == Log.Debug) trie.display(trie.root)
       val numOfPaths = trie.numOfPaths(trie.root)
       Log.info(numOfPaths + " main paths executed.")
+      val shortestPath = trie.shortestPath(trie.root)
+      Log.info("the shortest path has " + shortestPath + " transitions.")
       val longestPath = trie.longestPath(trie.root)
       Log.info("the longest path has " + longestPath + " transitions.")
       // pathLengthResults is a map that records the all length of paths (keys),
