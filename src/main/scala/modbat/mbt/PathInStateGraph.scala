@@ -98,6 +98,11 @@ class PathInStateGraph(trie: Trie, val typeName: String)
 
             // merge the counter in map of choices
             for (key <- node.transitionInfo.transitionChoicesMap.keySet) {
+              // TODO debug
+              Log.debug("key of choicesMap:" + key)
+              Log.debug(
+                "choices map:" + n.node.transitionInfo.transitionChoicesMap
+                  .toString())
               if (n.node.transitionInfo.transitionChoicesMap.contains(key)) {
                 val mergedChoiceCoutner = n.node.transitionInfo
                   .transitionChoicesMap(key) + node.transitionInfo
@@ -108,12 +113,10 @@ class PathInStateGraph(trie: Trie, val typeName: String)
                 //todo check if it is right
                 n.node.transitionInfo.transitionChoicesMap += (key -> node.transitionInfo
                   .transitionChoicesMap(key))
-
               }
             }
           }
         }
-
       }
 
       if (!sameTransition) {
@@ -276,8 +279,9 @@ class PathInStateGraph(trie: Trie, val typeName: String)
           " , shape=diamond, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"*/
       var choiceNodeStyle
         : String = " , shape=diamond, width=0.2, height=0.3, xlabel=\"" + choiceNode.choiceCounter + "\"];"
+
       val destNodeValue = choiceNode.recordedChoice.toString
-      val destNodeID = "\"" + transID + "-" + level.toString + "-" + destNodeValue + "-" + nodeInfo.node.transitionInfo.transitionQuality + "\""
+      val destNodeID = "\"" + transID + "-" + level.toString + "-" + destNodeValue + "-" + nodeInfo.node.transitionInfo.transitionQuality + "-" + choiceNodeCounter + "\""
 
       var choiceOfMaybe: Boolean = false
       // check special case for failure when the recorded choice "maybe" is true
