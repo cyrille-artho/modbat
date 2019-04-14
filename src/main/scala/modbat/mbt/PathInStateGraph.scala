@@ -98,11 +98,6 @@ class PathInStateGraph(trie: Trie, val typeName: String)
 
             // merge the counter in map of choices
             for (key <- node.transitionInfo.transitionChoicesMap.keySet) {
-              // TODO debug
-              Log.debug("key of choicesMap:" + key)
-              Log.debug(
-                "choices map:" + n.node.transitionInfo.transitionChoicesMap
-                  .toString())
               if (n.node.transitionInfo.transitionChoicesMap.contains(key)) {
                 val mergedChoiceCoutner = n.node.transitionInfo
                   .transitionChoicesMap(key) + node.transitionInfo
@@ -110,7 +105,6 @@ class PathInStateGraph(trie: Trie, val typeName: String)
                 n.node.transitionInfo.transitionChoicesMap(key) =
                   mergedChoiceCoutner
               } else {
-                //todo check if it is right
                 n.node.transitionInfo.transitionChoicesMap += (key -> node.transitionInfo
                   .transitionChoicesMap(key))
               }
