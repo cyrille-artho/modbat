@@ -15,6 +15,7 @@ import modbat.mbt.TransitionQuality.Quality
 class PathInfo(val modelName: String,
                val modelID: Int,
                val transition: Transition,
+               val nextStateNextIf: Transition#NextStateNextIf,
                val transitionQuality: Quality = TransitionQuality.OK) {
 
   override def toString: String =

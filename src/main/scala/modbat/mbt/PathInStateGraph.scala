@@ -196,11 +196,10 @@ class PathInStateGraph(trie: Trie, val typeName: String)
             failedEdgeCounter += 1 // update failed edges counter
             "color=red,"
           } else {
-            nonChoiceEdgeCounter += 1 // update back normal edges counter
             if (transOrigin == transDest) cycleSelfTranCounter += 1 //update cycle counter
             ""
           }
-
+        nonChoiceEdgeCounter += 1 // update back normal edges counter
         out.println(
           transOrigin + "->" + (if (backtracked) nextStateOfBacktrack
                                 else
@@ -379,8 +378,8 @@ class PathInStateGraph(trie: Trie, val typeName: String)
         labelOutputOptional("TID:", transID) +
         labelOutputOptional("T-Path-Counter:", transCounter) +
         labelOutputOptional("next state:", nextState) +
-        //labelOutputOptional("Count:", transExecutedRecords) +
-        transExecutedRecords +
+        labelOutputOptional("", transExecutedRecords) +
+        //transExecutedRecords +
         "\"];"
     label
   }

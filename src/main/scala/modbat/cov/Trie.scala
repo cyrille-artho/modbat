@@ -19,7 +19,7 @@ class Trie {
     */
   def insert(pathInfo: ListBuffer[PathInfo]): Unit = {
 
-    // TODO: fixed a bug here: if the the pathInfo buffer is empty, then return
+    // if the the pathInfo buffer is empty, then return
     if (pathInfo.isEmpty) return
 
     var currentNode: TrieNode = root
@@ -34,11 +34,11 @@ class Trie {
         currentNode.children.getOrElse(nodeKey, null)
 
       // Check if the new transition is a self loop and repeated in the path.
-      if (currentNode.currentTransition != null && currentNode.currentTransition.idx == p.transition.idx && currentNode.transitionInfo.transitionQuality == p.transitionQuality) {
+      if (currentNode.currentTransition != null && currentNode.currentTransition.idx == p.transition.idx
+          && currentNode.transitionInfo.transitionQuality == p.transitionQuality) {
 
         // Only update the counter for this current repeatedly executed same transition of current test case
         currentNode.transExecutedCounter += 1
-        //Log.debug("****** print debug ****** currentNode update selfTransExecuteCounter:" + currentNode.transExecutedCounter)
 
       } else if (childNode == null) { // new childNode situation
 
@@ -91,7 +91,6 @@ class Trie {
     updateTransSameRepetitionTimes(currentNode)
     if (currentNode.children.nonEmpty) Log.debug("not a leaf")
     // Set this node to leaf
-    // TODO: fix a bug here: the node is a leaf only when the children is empty
     if (currentNode.children.isEmpty) currentNode.isLeaf = true
   }
 
@@ -105,13 +104,15 @@ class Trie {
     // Store current transition, model and transition information into child node
     childNode.currentTransition = p.transition
     childNode.modelInfo = ModelInfo(p.modelName, p.modelID)
-    childNode.transitionInfo = TransitionInfo(p.transition.origin,
-                                              p.transition.dest,
-                                              p.transition.idx,
-                                              1,
-                                              p.transitionQuality,
-                                              p.transition.nextStateNextIf,
-                                              choicesMap)
+    childNode.transitionInfo = TransitionInfo(
+      p.transition.origin,
+      p.transition.dest,
+      p.transition.idx,
+      1,
+      p.transitionQuality,
+      p.nextStateNextIf,
+      choicesMap
+    )
   }
 
   private def updateTransSameRepetitionTimes(currentNode: TrieNode): Unit = {
@@ -122,7 +123,7 @@ class Trie {
         currentNode.transExecutedRecords(currentNode.transExecutedCounter) += 1
       else
         currentNode.transExecutedRecords += (currentNode.transExecutedCounter -> 1)
-      // Reset the counter for the next text case
+      // Reset the counter for the next case
       currentNode.transExecutedCounter = 0
     }
   }

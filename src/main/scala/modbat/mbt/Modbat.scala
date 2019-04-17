@@ -52,8 +52,8 @@ object Modbat {
 
   // TODO: The trie for putting executed transtions paths -Rui
   var trie = new Trie()
+
   // TODO: Listbuffer to store a tuple: <ModelName, ModelIndex, transition> = [String, Int, Transition] -Rui
-  //private var pathInfoRecorder = new ListBuffer[(String, Int, Transition)]
   private var pathInfoRecorder = new ListBuffer[PathInfo]
 
   def init {
@@ -166,24 +166,37 @@ object Modbat {
            numNonChoiceEdgePG,
            numChoiceEdgePG,
            numCycleSelfTranPG) = new PathInPointGraph(trie, "Point").dotify()
-      Log.info("the total number of nodes in path-based graph:" + numNodePG)
+
+      Log.info(
+        "the total number of nodes in path-based graph:" + (numNodePG + numChoiceNodePG))
       Log.info(
         "the total number of choice nodes in path-based graph: " + numChoiceNodePG)
+
+      Log.info(
+        "the total number of edges in path-based graph: " + (numNonChoiceEdgePG + numChoiceEdgePG))
+
+      Log.info(
+        "the total number of non choice related edges in path-based graph: " + numNonChoiceEdgePG)
+
       Log.info(
         "the total number of backtracked edges in path-based graph: " + numBacktrackedEdgePG)
       Log.info(
         "the total number of failed edges in path-based graph: " + numFailedEdgePG)
-      Log.info(
-        "the total number of non choice related edges in path-based graph: " + numNonChoiceEdgePG)
+
       Log.info(
         "the total number of choice related edges in path-based graph: " + numChoiceEdgePG)
       Log.info(
         "the total number of cycles in path-based graph: " + numCycleSelfTranPG)
 
       Log.info(
-        "table data of PG: " + numNodePG + " & " + numChoiceNodePG + " & " + numNonChoiceEdgePG + " & " +
-          numBacktrackedEdgePG + " & " + numFailedEdgePG + " & " + numChoiceEdgePG + " & " + numCycleSelfTranPG + " & " +
-          numOfPaths + " & " + longestPath + " & " + shortestPath + " & " + averageLength + " & " + stdDev)
+        "---------------------- table data of PG -----------------------\n" +
+          "Nodes" + " & " + "Edges" + " & " + "failEdges" + " & " + "Cycles" + " & " +
+          "LIP" + " & " + "LP" + " & " + "SP" + " & " + "AVE" + " & " + "SD" + "\n" +
+          (numNodePG + numChoiceNodePG) + "  & " + (numNonChoiceEdgePG + numChoiceEdgePG) +
+          "   & " + numFailedEdgePG + "         & " + numCycleSelfTranPG + "    & " +
+          numOfPaths + "   & " + longestPath + " & " + shortestPath + "  & " + averageLength + " & " + stdDev + "\n" +
+          "--------------------------------------------------------------"
+      )
       // information for the state based graph
       val (_,
            numChoiceNodeSG,
@@ -192,22 +205,33 @@ object Modbat {
            numNonChoiceEdgeSG,
            numChoiceEdgeSG,
            numCycleSelfTranSG) = new PathInStateGraph(trie, "State").dotify()
+
       Log.info(
         "the total number of choice nodes in state-based graph: " + numChoiceNodeSG)
+
+      Log.info(
+        "the total number of edges in path-based graph: " + (numNonChoiceEdgePG + numChoiceEdgePG))
+
+      Log.info(
+        "the total number of non choice related edges in state-based graph: " + numNonChoiceEdgeSG)
+
       Log.info(
         "the total number of backtracked edges in state-based graph: " + numBacktrackedEdgeSG)
       Log.info(
         "the total number of failed edges in state-based graph: " + numFailedEdgeSG)
-      Log.info(
-        "the total number of non choice related edges in state-based graph: " + numNonChoiceEdgeSG)
+
       Log.info(
         "the total number of choice related edges in state-based graph: " + numChoiceEdgeSG)
       Log.info(
         "the total number of cycles in state-based graph: " + numCycleSelfTranSG)
 
       Log.info(
-        "table data of SG: " + numChoiceNodeSG + " & " + numNonChoiceEdgeSG + " & " +
-          numBacktrackedEdgeSG + " & " + numFailedEdgeSG + " & " + numChoiceEdgeSG + " & " + numCycleSelfTranSG)
+        "---------------------- table data of SG -----------------------\n" +
+          "Edges" + " & " + "failEdges" + " & " + "Cycles" + "\n" +
+          (numNonChoiceEdgeSG + numChoiceEdgeSG) +
+          "    & " + numFailedEdgeSG + "         & " + numCycleSelfTranSG + "\n" +
+          "--------------------------------------------------------------"
+      )
     }
 
     Log.info(
@@ -534,13 +558,9 @@ object Modbat {
           Log.debug("transition name:" + p.transition.toString())
           Log.debug("transition ID:" + p.transition.idx)
           Log.debug("transition quality:" + p.transitionQuality)
-          Log.debug(
-            "transition nextif:" + p.transition.nextStateNextIf.toString)
+          Log.debug("transition nextif:" + p.nextStateNextIf)
         }
-        // TODO: there is something wrong here about the recording and return
 
-        // TODO: insert pathInfo to trie before return - Rui
-        // TODO: It seems a bug here, how to handle the aborting case in the trie tree?
         if (Main.config.dotifyPathCoverage) trie.insert(pathInfoRecorder)
         return (Ok(), null)
       }
@@ -562,19 +582,19 @@ object Modbat {
 
       result match {
         case (Ok(sameAgain: Boolean), _) => {
+          backtracked = false
+          failed = false // TODO: failed case -Rui
 
           // debug code:
-//          if (result._2.nextState != null) {
-//            Log.debug(
-//              "---print debug--- nextSate of transition: " + result._2.nextState.dest
-//                .toString()) // todo print debug
-//            Log.debug(
-//              "---print debug--- Current state of transition when nextState!=null: " + result._2.transition.dest
-//                .toString()) // todo print debug
-//          } else
-//            Log.debug(
-//              "---print debug--- Current state of transition when nextState is null: " + result._2.transition.dest
-//                .toString()) // todo print debug
+          if (result._2.nextState != null) {
+            Log.debug(
+              "---print debug--- ok case, nextSate of transition: " + result._2.nextState.dest
+                .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug
+            Log.debug("---print debug--- ok case, Current state of transition when nextState!=null: " + result._2.transition.dest
+              .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug
+          } else
+            Log.debug("---print debug--- ok case, Current state of transition when nextState is null: " + result._2.transition.dest
+              .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug
 
           val succ = new ArrayBuffer[(MBT, Transition)]()
           addSuccessors(model, succ, true)
@@ -600,25 +620,35 @@ object Modbat {
           if (otherThreadFailed) {
             return (ExceptionOccurred(MBT.externalException.toString), null)
           }
-          backtracked = false
-          failed = false // TODO: failed case -Rui
+
           allSucc = successors.clone
         }
         case (Backtrack, _) => {
-          successors = successors filterNot (_ == successor)
           backtracked = true
           failed = false // TODO: failed case -Rui
+          //debug
+          if (result._2.nextState != null) {
+            Log.debug(
+              "---print debug--- nextSate of transition when backtracking: " + result._2.nextState.dest
+                .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug
+            Log.debug("---print debug--- Current state of transition when nextState!=null & backtracking: " + result._2.transition.dest
+              .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug
+          } else
+            Log.debug("---print debug--- Current state of transition when nextState is null & when backtracking: " + result._2.transition.dest
+              .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug
+
+          successors = successors filterNot (_ == successor)
         }
         case (t: TransitionResult, _) => {
+          failed = true
           Log.debug("an error occurs")
           assert(TransitionResult.isErr(t))
           printTrace(executedTransitions.toList)
-          failed = true
           //return result
         }
       }
 
-      // TODO: Store path information and return if it is a failed case -Rui
+      // store path information and return if it is a failed case -Rui
       storePathInfo(result, successor, backtracked, failed)
       if (failed) return result
 
@@ -626,7 +656,7 @@ object Modbat {
 
     }
 
-    // TODO: insert all path information of the current test in trie - Rui
+    // insert all path information of the current test in trie - Rui
     insertPathInfoInTrie()
 
     if (successors.isEmpty && backtracked) {
@@ -659,11 +689,11 @@ object Modbat {
     val model = successor._1
     val trans = successor._2
 
-    // TODO: record choices in the current transition
+    // record choices in the current transition
     if (result._2.recordedChoices.nonEmpty)
       trans.recordedChoices = result._2.recordedChoices
 
-    // TODO: Store path information -Rui
+    // Store path information -Rui
     // Store path information including the model name,
     // model ID, executed transition and transition quality for path coverage,
     // if the configuration of path coverage is true. -Rui
@@ -671,18 +701,23 @@ object Modbat {
       if (backtracked) { // backtracked case
         // Record next state into current transition,
         // when backtracked, the next state is the origin state
-        trans.nextStateNextIf =
+
+        val nextStateNextIf =
           trans.getNextStateNextIf(result._2.transition.origin, false)
+
         pathInfoRecorder += new PathInfo(model.className,
                                          model.mIdx,
                                          trans,
+                                         nextStateNextIf,
                                          TransitionQuality.backtrack)
+
       } else if (failed) { // failed case
         pathInfoRecorder += new PathInfo(model.className,
                                          model.mIdx,
                                          trans,
+                                         null,
                                          TransitionQuality.fail)
-        // TODO: add this failed transition to trie
+        // add this failed transition to trie
         if (Main.config.dotifyPathCoverage) trie.insert(pathInfoRecorder)
         //return result
       } else { // success case
@@ -691,23 +726,34 @@ object Modbat {
         // record this next state, otherwise,
         // record the current transition's dest as the next state
         if (result._2.nextState != null) {
-          trans.nextStateNextIf =
+          val nextStateNextIf =
             trans.getNextStateNextIf(result._2.nextState.dest, true)
+
+          pathInfoRecorder += new PathInfo(model.className,
+                                           model.mIdx,
+                                           trans,
+                                           nextStateNextIf,
+                                           TransitionQuality.OK)
         } else {
-          trans.nextStateNextIf =
+          val nextStateNextIf =
             trans.getNextStateNextIf(result._2.transition.dest, false)
+
+          pathInfoRecorder += new PathInfo(model.className,
+                                           model.mIdx,
+                                           trans,
+                                           nextStateNextIf,
+                                           TransitionQuality.OK)
         }
-        pathInfoRecorder += new PathInfo(model.className, model.mIdx, trans)
       }
     }
   }
 
   private def insertPathInfoInTrie(): Unit = {
-    // TODO: output all executed transitions of the current test - Rui
+    // output all executed transitions of the current test - Rui
     for (p <- pathInfoRecorder)
       Log.debug(
-        "Recorded information for path coverage: " + p.toString + ", transID:" + p.transition.idx)
-    // TODO: Put information in pathInfoRecoder to the trie -Rui
+        "Recorded information for path coverage: " + p.toString + ", transID:" + p.transition.idx + ", nextif:" + p.nextStateNextIf)
+    // Put information in pathInfoRecoder to the trie -Rui
     // Insert all the information of the current test into a trie for path coverage,
     // if the configuration of path coverage is true. - Rui
     if (Main.config.dotifyPathCoverage) trie.insert(pathInfoRecorder)

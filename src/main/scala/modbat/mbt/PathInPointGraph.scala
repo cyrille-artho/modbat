@@ -235,11 +235,10 @@ class PathInPointGraph(trie: Trie, val typeName: String)
           failedEdgeCounter += 1
           "color=red,"
         } else {
-          nonChoiceEdgeCounter += 1
           if (originNodeID == destNodeID) cycleSelfTranCounter += 1 //update cycle counter
           ""
         }
-
+      nonChoiceEdgeCounter += 1
       out.println(
         originNodeID + "->" + destNodeID + createEdgeLabel(
           nodeStack(idx).node,
@@ -407,8 +406,8 @@ class PathInPointGraph(trie: Trie, val typeName: String)
         labelOutputOptional("TID:", transID) +
         labelOutputOptional("T-Path-Counter:", transCounter) +
         labelOutputOptional("next state:", nextState) +
-        //labelOutputOptional("Count:", transExecutedRecords) +
-        transExecutedRecords +
+        labelOutputOptional("", transExecutedRecords) +
+        //transExecutedRecords +
         " \"];"
 
     label
