@@ -82,7 +82,8 @@ class PathInStateGraph(trie: Trie, val typeName: String)
         for (n <- nodeRecorder) {
           // the transition already in the nodeRecorder, and the transition quality is also the same
           if (n.node.transitionInfo.transitionID == node.transitionInfo.transitionID &&
-              n.node.transitionInfo.transitionQuality == node.transitionInfo.transitionQuality) {
+              n.node.transitionInfo.transitionQuality == node.transitionInfo.transitionQuality &&
+              n.node.transitionInfo.nextStateNextIf.nextState == node.transitionInfo.nextStateNextIf.nextState) { // fixed nextif problem -Rui
             sameTransition = true
             // merge the value of the transition counter
             n.transCounter = n.transCounter.concat(
@@ -127,7 +128,7 @@ class PathInStateGraph(trie: Trie, val typeName: String)
       }
 
       display(node, level + 1, nodeRecorder)
-      // TODO: I think there's no need to repeat the same father node (prefix) in the graph - Rui
+      // I think there's no need to repeat the same prefix node in the graph - Rui
     }
 
     // output "State" graph
@@ -165,11 +166,8 @@ class PathInStateGraph(trie: Trie, val typeName: String)
           n.node.transitionInfo.nextStateNextIf.nextState.toString
         else ""
 
-      // node color style
-      /*      if (n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
-        out.println(" " + transDest + " [color=red];")
-      else if (n.node.transitionInfo.transitionQuality == TransitionQuality.fail)
-        out.println(" " + transDest + " [color=blue];")*/
+      // debug code:
+      //Log.debug("before drew the transition:" + transOrigin + " => " + transDest + ", its nextif:" + n.node.transitionInfo.nextStateNextIf)
 
       // choiceTree can record choices
       val choiceTree: ChoiceTree = new ChoiceTree()
@@ -208,12 +206,25 @@ class PathInStateGraph(trie: Trie, val typeName: String)
                                                                n.transCounter)
         )
       }
+      // debug code:
+      //Log.debug(" after drew the transition:" + n.node.transitionInfo.transOrigin + " => " + n.node.transitionInfo.transDest + ", its nextif:" + n.node.transitionInfo.nextStateNextIf)
+
       // jumped edge when nextIf is true
       if (n.node.transitionInfo.nextStateNextIf != null && n.node.transitionInfo.nextStateNextIf.nextIf) {
         jumpedNodeOriginNextIf =
           if (backtracked) nextStateOfBacktrack else transDest
         val jumpedNodeDestNextIf =
           n.node.transitionInfo.nextStateNextIf.nextState
+
+        /*        // debug code:
+        Log.debug(
+          "--- print debug --- transition that needs to jump:" + n.node.transitionInfo.transDest +
+            " => " + n.node.transitionInfo.transDest + ", nextif:" + n.node.transitionInfo.nextStateNextIf)
+        Log.debug(
+          "--- print debug --- jumpedNodeOriginNextIf:" + jumpedNodeOriginNextIf)
+        Log.debug(
+          "--- print debug --- jumpedNodeDestNextIf:" + jumpedNodeDestNextIf)*/
+
         out.println(
           jumpedNodeOriginNextIf + "->" + jumpedNodeDestNextIf + "[style=dotted];")
       }
@@ -378,8 +389,8 @@ class PathInStateGraph(trie: Trie, val typeName: String)
         labelOutputOptional("TID:", transID) +
         labelOutputOptional("T-Path-Counter:", transCounter) +
         labelOutputOptional("next state:", nextState) +
-        labelOutputOptional("", transExecutedRecords) +
-        //transExecutedRecords +
+        //labelOutputOptional("", transExecutedRecords) +
+        transExecutedRecords +
         "\"];"
     label
   }

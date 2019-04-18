@@ -30,6 +30,7 @@ class Trie {
       // This key combines the transition ID and transition's quality
       val nodeKey
         : String = p.transition.idx.toString + p.transitionQuality.toString
+
       var childNode: TrieNode =
         currentNode.children.getOrElse(nodeKey, null)
 
@@ -60,11 +61,13 @@ class Trie {
         // Create a nodeKey for linking to the child node
         val nodeKey
           : String = p.transition.idx.toString + p.transitionQuality.toString
+
         // Put childNode into the trie
         currentNode.children.put(nodeKey, childNode)
 
         currentNode = childNode // next node
-      } else if (childNode != null && childNode.transitionInfo.transitionID == p.transition.idx) { // existing childNode situation
+      } else if (childNode != null && childNode.transitionInfo.transitionID == p.transition.idx) {
+        // existing childNode situation
         // Update same repetition times happening for this transition during the whole test
         updateTransSameRepetitionTimes(currentNode)
 
@@ -86,10 +89,15 @@ class Trie {
 
         currentNode = childNode // next node
       }
+      // debug code:
+      /*else {
+        Log.debug(
+          "the missing transition:" + p.transition + ", its quality:" + p.transitionQuality + ", and nextIf:" + p.nextStateNextIf)
+      }*/
     }
     // Update same repetition times happening for this transition during the whole test
     updateTransSameRepetitionTimes(currentNode)
-    if (currentNode.children.nonEmpty) Log.debug("not a leaf")
+    //if (currentNode.children.nonEmpty) Log.debug("not a leaf")
     // Set this node to leaf
     if (currentNode.children.isEmpty) currentNode.isLeaf = true
   }
@@ -135,6 +143,7 @@ class Trie {
     */
   def display(root: TrieNode, level: Int = 0): Unit = {
     if (root.isLeaf) {
+      // debug code:
       // Log.debug("reached leaf and path ended, and the total depth (without counting loops):" + level)
       return
     }
@@ -142,6 +151,7 @@ class Trie {
 
       val node: TrieNode =
         root.children.getOrElse(t, sys.error(s"unexpected key: $t"))
+      // debug code:
       if (level == 0) {
         Log.debug(
           "[" + node.modelInfo.toString + node.transitionInfo.toString +

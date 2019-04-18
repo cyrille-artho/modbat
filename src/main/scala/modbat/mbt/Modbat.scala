@@ -542,15 +542,17 @@ object Modbat {
     var successors = allSuccessors(null)
     var allSucc = successors.clone
     var totalW = totalWeight(successors)
-    var backtracked = false
-    var failed = false // TODO: failed case - Rui
+    var backtracked = false // for backtracked case -Rui
+    var failed = false // for failed case - Rui
 
     while (!successors.isEmpty && totalW > 0) {
       val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone
 
       if (MBT.rng.nextFloat(false) < Main.config.abortProbability) {
         Log.debug("Aborting...")
-        Log.debug("path info recorder size:" + pathInfoRecorder.size) // TODO: the size is 0
+
+        /*        // debug code:
+        Log.debug("path info recorder size:" + pathInfoRecorder.size)
         for (p <- pathInfoRecorder) {
           Log.debug("************ pathInfo ************")
           Log.debug("model name:" + p.modelName)
@@ -559,7 +561,7 @@ object Modbat {
           Log.debug("transition ID:" + p.transition.idx)
           Log.debug("transition quality:" + p.transitionQuality)
           Log.debug("transition nextif:" + p.nextStateNextIf)
-        }
+        }*/
 
         if (Main.config.dotifyPathCoverage) trie.insert(pathInfoRecorder)
         return (Ok(), null)
@@ -583,10 +585,10 @@ object Modbat {
       result match {
         case (Ok(sameAgain: Boolean), _) => {
           backtracked = false
-          failed = false // TODO: failed case -Rui
+          failed = false
 
           // debug code:
-          if (result._2.nextState != null) {
+          /*          if (result._2.nextState != null) {
             Log.debug(
               "---print debug--- ok case, nextSate of transition: " + result._2.nextState.dest
                 .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug
@@ -594,7 +596,7 @@ object Modbat {
               .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug
           } else
             Log.debug("---print debug--- ok case, Current state of transition when nextState is null: " + result._2.transition.dest
-              .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug
+              .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug*/
 
           val succ = new ArrayBuffer[(MBT, Transition)]()
           addSuccessors(model, succ, true)
@@ -625,8 +627,9 @@ object Modbat {
         }
         case (Backtrack, _) => {
           backtracked = true
-          failed = false // TODO: failed case -Rui
-          //debug
+          failed = false
+
+          /*          // debug code:
           if (result._2.nextState != null) {
             Log.debug(
               "---print debug--- nextSate of transition when backtracking: " + result._2.nextState.dest
@@ -635,12 +638,24 @@ object Modbat {
               .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug
           } else
             Log.debug("---print debug--- Current state of transition when nextState is null & when backtracking: " + result._2.transition.dest
-              .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug
+              .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug*/
 
           successors = successors filterNot (_ == successor)
         }
         case (t: TransitionResult, _) => {
           failed = true
+
+          /*          // debug code:
+          if (result._2.nextState != null) {
+            Log.debug(
+              "---print debug--- fail case, nextSate of transition: " + result._2.nextState.dest
+                .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug
+            Log.debug("---print debug--- fail case, Current state of transition when nextState!=null: " + result._2.transition.dest
+              .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug
+          } else
+            Log.debug("---print debug--- fail case, Current state of transition when nextState is null: " + result._2.transition.dest
+              .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug*/
+
           Log.debug("an error occurs")
           assert(TransitionResult.isErr(t))
           printTrace(executedTransitions.toList)
@@ -712,10 +727,12 @@ object Modbat {
                                          TransitionQuality.backtrack)
 
       } else if (failed) { // failed case
+        val nextStateNextIf =
+          trans.getNextStateNextIf(result._2.transition.dest, false)
         pathInfoRecorder += new PathInfo(model.className,
                                          model.mIdx,
                                          trans,
-                                         null,
+                                         nextStateNextIf,
                                          TransitionQuality.fail)
         // add this failed transition to trie
         if (Main.config.dotifyPathCoverage) trie.insert(pathInfoRecorder)
