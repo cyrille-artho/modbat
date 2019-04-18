@@ -4,6 +4,7 @@ import modbat.cov.{Trie, TrieNode}
 import modbat.log.Log
 import math.log10
 import scala.collection.mutable.ListBuffer
+import util.control.Breaks._
 
 /** PathInStateGraph extends PathVisualizer for showing path coverage in "State" tree graph.
   *
@@ -80,37 +81,65 @@ class PathInStateGraph(trie: Trie, val typeName: String)
 
       var sameTransition = false
       if (nodeRecorder != null) {
-        for (n <- nodeRecorder) {
-          // the transition already in the nodeRecorder, and the transition quality is also the same
-          if (n.node.transitionInfo.transitionID == node.transitionInfo.transitionID &&
-              n.node.transitionInfo.transitionQuality == node.transitionInfo.transitionQuality &&
-              n.node.transitionInfo.nextStateNextIf.nextState == node.transitionInfo.nextStateNextIf.nextState) { // fixed nextif problem -Rui
-            sameTransition = true
-            // merge the value of the transition counter
-            n.transCounter = n.transCounter.concat(
-              ";" + node.transitionInfo.transCounter.toString)
+        breakable { // break this look if found the same transition
+          for (n <- nodeRecorder) {
+            // debug code:
+            /*            Log.debug(
+              "--- print debug --- has transition:" + n.node.transitionInfo.transOrigin +
+                " =>" + n.node.transitionInfo.transDest +
+                ", " + n.node.transitionInfo.transitionID + ", " +
+                n.node.transitionInfo.transitionQuality + ", " + n.node.transitionInfo.nextStateNextIf.nextState)*/
 
-            // get executed transitions' number records
-            val transExecutedRecords: String = node.transExecutedRecords.toList
-              .map { case (int1, int2) => s"$int1:$int2" }
-              .mkString(",")
-            // merge the executed transitions's number records:
-            n.transExecutedRecords =
-              n.transExecutedRecords.concat(";" + transExecutedRecords)
+            // the transition already in the nodeRecorder, and the transition quality is also the same
+            if (n.node.transitionInfo.transitionID == node.transitionInfo.transitionID &&
+                n.node.transitionInfo.transitionQuality == node.transitionInfo.transitionQuality &&
+                n.node.transitionInfo.nextStateNextIf.nextState.toString == node.transitionInfo.nextStateNextIf.nextState.toString) { // fixed nextif problem -Rui
+              sameTransition = true
+              // debug code:
+              /*              Log.debug(
+                "--- print debug --- same transition:" + node.transitionInfo.transOrigin +
+                  " =>" + node.transitionInfo.transDest +
+                  ", " + node.transitionInfo.transitionID + ", " +
+                  node.transitionInfo.transitionQuality + ", " + node.transitionInfo.nextStateNextIf.nextState)*/
 
-            // merge the counter in map of choices
-            for (key <- node.transitionInfo.transitionChoicesMap.keySet) {
-              if (n.node.transitionInfo.transitionChoicesMap.contains(key)) {
-                val mergedChoiceCoutner = n.node.transitionInfo
-                  .transitionChoicesMap(key) + node.transitionInfo
-                  .transitionChoicesMap(key)
-                n.node.transitionInfo.transitionChoicesMap(key) =
-                  mergedChoiceCoutner
-              } else {
-                n.node.transitionInfo.transitionChoicesMap += (key -> node.transitionInfo
-                  .transitionChoicesMap(key))
+              // merge the value of the transition counter
+              n.transCounter = n.transCounter.concat(
+                ";" + node.transitionInfo.transCounter.toString)
+
+              // get executed transitions' number records
+              val transExecutedRecords: String =
+                node.transExecutedRecords.toList
+                  .map { case (int1, int2) => s"$int1:$int2" }
+                  .mkString(",")
+              // merge the executed transitions's number records:
+              n.transExecutedRecords =
+                n.transExecutedRecords.concat(";" + transExecutedRecords)
+
+              // merge the counter in map of choices
+              for (key <- node.transitionInfo.transitionChoicesMap.keySet) {
+                if (n.node.transitionInfo.transitionChoicesMap.contains(key)) {
+                  val mergedChoiceCoutner = n.node.transitionInfo
+                    .transitionChoicesMap(key) + node.transitionInfo
+                    .transitionChoicesMap(key)
+                  n.node.transitionInfo.transitionChoicesMap(key) =
+                    mergedChoiceCoutner
+                } else {
+                  n.node.transitionInfo.transitionChoicesMap += (key -> node.transitionInfo
+                    .transitionChoicesMap(key))
+                }
               }
-            }
+
+              break
+            } /*else {
+              // debug code:
+              Log.debug(
+                "--- print debug --- NOT same transition:" + node.transitionInfo.transOrigin +
+                  " =>" + node.transitionInfo.transDest +
+                  ", " + node.transitionInfo.transitionID + ", " +
+                  node.transitionInfo.transitionQuality + ", " + node.transitionInfo.nextStateNextIf.nextState)
+
+              //sameTransition = false
+            }*/
           }
         }
       }
