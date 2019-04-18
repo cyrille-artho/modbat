@@ -25,6 +25,7 @@ class PathInStateGraph(trie: Trie, val typeName: String)
   private var nonChoiceEdgeCounter: Int = 0
   private var choiceEdgeCounter: Int = 0
   private var cycleSelfTranCounter: Int = 0
+  private var jumpedEdgeCounter: Int = 0
 
   override def dotify(): (Int, Int, Int, Int, Int, Int, Int) = {
     out.println("digraph model {")
@@ -58,7 +59,7 @@ class PathInStateGraph(trie: Trie, val typeName: String)
 //    Log.info(
 //      "the total number of cycles in path-based graph: " + cycleSelfTranCounter)
 
-    (-1,
+    (jumpedEdgeCounter,
      choiceNodeCounter,
      backtrackedEdgeCounter,
      failedEdgeCounter,
@@ -224,7 +225,7 @@ class PathInStateGraph(trie: Trie, val typeName: String)
           "--- print debug --- jumpedNodeOriginNextIf:" + jumpedNodeOriginNextIf)
         Log.debug(
           "--- print debug --- jumpedNodeDestNextIf:" + jumpedNodeDestNextIf)*/
-
+        jumpedEdgeCounter += 1
         out.println(
           jumpedNodeOriginNextIf + "->" + jumpedNodeDestNextIf + "[style=dotted];")
       }
