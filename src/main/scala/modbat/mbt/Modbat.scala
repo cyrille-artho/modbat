@@ -198,7 +198,7 @@ object Modbat {
           "--------------------------------------------------------------"
       )
       // information for the state based graph
-      val (_,
+      val (numJumpedEdge,
            numChoiceNodeSG,
            numBacktrackedEdgeSG,
            numFailedEdgeSG,
@@ -210,7 +210,7 @@ object Modbat {
         "the total number of choice nodes in state-based graph: " + numChoiceNodeSG)
 
       Log.info(
-        "the total number of edges in path-based graph: " + (numNonChoiceEdgePG + numChoiceEdgePG))
+        "the total number of edges in state-based graph: " + (numNonChoiceEdgePG + numChoiceEdgePG + numJumpedEdge))
 
       Log.info(
         "the total number of non choice related edges in state-based graph: " + numNonChoiceEdgeSG)
@@ -222,13 +222,17 @@ object Modbat {
 
       Log.info(
         "the total number of choice related edges in state-based graph: " + numChoiceEdgeSG)
+
+      Log.info(
+        "the total number of Jumped dotted edges in state-based graph: " + numJumpedEdge)
+
       Log.info(
         "the total number of cycles in state-based graph: " + numCycleSelfTranSG)
 
       Log.info(
         "---------------------- table data of SG -----------------------\n" +
           "Edges" + " & " + "failEdges" + " & " + "Cycles" + "\n" +
-          (numNonChoiceEdgeSG + numChoiceEdgeSG) +
+          (numNonChoiceEdgeSG + numChoiceEdgeSG + numJumpedEdge) +
           "    & " + numFailedEdgeSG + "         & " + numCycleSelfTranSG + "\n" +
           "--------------------------------------------------------------"
       )
