@@ -612,6 +612,12 @@ object Modbat {
             }
           }
           if (otherThreadFailed) {
+            // debug code:
+            Log.debug(
+              "--- print debug --- something is wrong here: the first otherThreadFailed in ok case")
+            failed = true
+            // store path information -Rui
+            storePathInfo(result, successor, backtracked, failed)
             return (ExceptionOccurred(MBT.externalException.toString), null)
           }
           if (sameAgain) {
@@ -621,9 +627,19 @@ object Modbat {
           }
           val observerResult = updateObservers
           if (TransitionResult.isErr(observerResult)) {
+            // debug code:
+            Log.debug(
+              "--- print debug --- something is wrong here: err of the observerResult in ok case")
             return (observerResult, result._2)
           }
           if (otherThreadFailed) {
+            // TODO: here cause the failed cases for zookeeper - RUI
+            // debug code:
+            Log.debug(
+              "--- print debug --- something is wrong here: the second otherThreadFailed in ok case")
+            failed = true
+            // store path information -Rui
+            storePathInfo(result, successor, backtracked, failed)
             return (ExceptionOccurred(MBT.externalException.toString), null)
           }
 
@@ -661,15 +677,18 @@ object Modbat {
               .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug*/
 
           Log.debug("an error occurs")
+          // store path information -Rui
+          storePathInfo(result, successor, backtracked, failed)
+
           assert(TransitionResult.isErr(t))
           printTrace(executedTransitions.toList)
-          //return result
+          return result
         }
       }
 
-      // store path information and return if it is a failed case -Rui
+      // store path information -Rui
       storePathInfo(result, successor, backtracked, failed)
-      if (failed) return result
+      //if (failed) return result
 
       totalW = totalWeight(successors)
 
