@@ -210,7 +210,7 @@ object Modbat {
         "the total number of choice nodes in state-based graph: " + numChoiceNodeSG)
 
       Log.info(
-        "the total number of edges in state-based graph: " + (numNonChoiceEdgePG + numChoiceEdgePG + numJumpedEdge))
+        "the total number of edges in state-based graph: " + (numNonChoiceEdgeSG + numChoiceEdgeSG + numJumpedEdge))
 
       Log.info(
         "the total number of non choice related edges in state-based graph: " + numNonChoiceEdgeSG)
