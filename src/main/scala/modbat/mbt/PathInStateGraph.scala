@@ -312,7 +312,10 @@ class PathInStateGraph(trie: Trie, val typeName: String)
         else
           " , shape=diamond, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"*/
       var choiceNodeStyle
-        : String = " , shape=diamond, width=0.2, height=0.3, xlabel=\"" + choiceNode.choiceCounter + "\"];"
+        : String = " , shape=diamond, width=0.2, height=0.3, xlabel=\"" + (if (Main.config.pathLabelDetail)
+                                                                             choiceNode.choiceCounter
+                                                                           else
+                                                                             "") + "\"];"
 
       val destNodeValue = choiceNode.recordedChoice.toString
       val destNodeID = "\"" + transID + "-" + level.toString + "-" + destNodeValue + "-" + nodeInfo.node.transitionInfo.transitionQuality + "-" + choiceNodeCounter + "\""
@@ -419,8 +422,8 @@ class PathInStateGraph(trie: Trie, val typeName: String)
         labelOutputOptional("TID:", transID) +
         labelOutputOptional("T-Path-Counter:", transCounter) +
         labelOutputOptional("next state:", nextState) +
-        //labelOutputOptional("", transExecutedRecords) +
-        transExecutedRecords +
+        labelOutputOptional("", transExecutedRecords) +
+        //transExecutedRecords +
         "\"];"
     label
   }

@@ -289,7 +289,10 @@ class PathInPointGraph(trie: Trie, val typeName: String)
       val choiceNode = root.children(choiceKey)
 
       var choiceNodeStyle
-        : String = " , shape=diamond, width=0.05, height=0.05, xlabel=\"" + choiceNode.choiceCounter + " \"];"
+        : String = " , shape=diamond, width=0.05, height=0.05, xlabel=\"" + (if (Main.config.pathLabelDetail)
+                                                                               choiceNode.choiceCounter
+                                                                             else
+                                                                               "") + " \"];"
       /*      var choiceNodeStyle: String =
         if (nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
           " , shape=diamond, color=red, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
@@ -406,8 +409,8 @@ class PathInPointGraph(trie: Trie, val typeName: String)
         labelOutputOptional("TID:", transID) +
         labelOutputOptional("T-Path-Counter:", transCounter) +
         labelOutputOptional("next state:", nextState) +
-        //labelOutputOptional("", transExecutedRecords) +
-        transExecutedRecords +
+        labelOutputOptional("", transExecutedRecords) +
+        //transExecutedRecords +
         " \"];"
 
     label
