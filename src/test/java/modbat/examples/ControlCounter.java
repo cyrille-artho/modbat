@@ -1,12 +1,12 @@
 package modbat.examples;
 
 import randoop.CheckRep;
+import randoop.org.apache.commons.lang3.builder.HashCodeBuilder;
 
 public class ControlCounter {
 
   int count = 0;
   int trueCount = 0;
-
   boolean flag = true;
 
   public void toggleSwitch() {
@@ -35,4 +35,31 @@ public class ControlCounter {
   public boolean isValid() {
     return count == trueCount;
   }
+
+  @Override
+  public boolean equals(Object o)
+  {
+    if (this == o) {
+      return true;
+    }
+
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+
+    ControlCounter c = (ControlCounter) o;
+
+    return count == c.count && trueCount == c.trueCount &&
+            flag == c.flag;
+  }
+
+  @Override
+  public int hashCode() {
+    return new HashCodeBuilder()
+            .append(count)
+            .append(trueCount)
+            .append(flag)
+            .toHashCode();
+  }
+
 }

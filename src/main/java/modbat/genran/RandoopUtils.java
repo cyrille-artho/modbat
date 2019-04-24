@@ -1,6 +1,5 @@
 package modbat.genran;
 
-import modbat.examples.ControlCounter;
 import org.objenesis.ObjenesisStd;
 import randoop.main.GenInputsAbstract;
 import randoop.operation.TypedOperation;
@@ -115,7 +114,7 @@ public class RandoopUtils {
 
                 }
 
-                TypedOperation tCast = TypedOperation.createCast(Type.forClass(Object.class),Type.forClass(ControlCounter.class));
+                TypedOperation tCast = TypedOperation.createCast(Type.forClass(Object.class),Type.forClass(object.getClass()));
                 sBase = sBase.extend(tCast, sBase.getVariable(indexTnewOb));
 
                 return sBase;
