@@ -36,7 +36,7 @@ class PathInPointGraph(trie: Trie, val typeName: String)
     out.println("digraph model {")
     out.println("  orientation = portrait;")
     out.println(
-      "  graph [ rankdir = \"TB\", ranksep=\"0.5\", nodesep=\"0.1\" ];")
+      "  graph [ rankdir = \"TB\", ranksep=\"0.1\", nodesep=\"0.05\" ];")
     out.println(
       "  node [ fontname = \"Helvetica\", fontsize=\"6.0\", shape=\"" + "point" +
         "\", margin=\"0.01\"," + " height=\"0.1\"," + " width=\"0.5\" ];")
@@ -289,10 +289,10 @@ class PathInPointGraph(trie: Trie, val typeName: String)
       val choiceNode = root.children(choiceKey)
 
       var choiceNodeStyle
-        : String = " , shape=diamond, width=0.05, height=0.05, xlabel=\"" + (if (Main.config.pathLabelDetail)
-                                                                               choiceNode.choiceCounter
-                                                                             else
-                                                                               "") + " \"];"
+        : String = " , shape=diamond, width=0.05, height=0.05, fontsize=11, xlabel=\"" + (if (Main.config.pathLabelDetail)
+                                                                                            choiceNode.choiceCounter
+                                                                                          else
+                                                                                            "") + " \"];"
       /*      var choiceNodeStyle: String =
         if (nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
           " , shape=diamond, color=red, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"

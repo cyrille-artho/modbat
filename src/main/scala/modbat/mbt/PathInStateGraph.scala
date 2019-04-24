@@ -32,9 +32,9 @@ class PathInStateGraph(trie: Trie, val typeName: String)
     out.println("digraph model {")
     out.println("  orientation = portrait;")
     out.println(
-      "  graph [ rankdir = \"TB\", ranksep=\"0.5\", nodesep=\"0.1\" ];")
+      "  graph [ rankdir = \"TB\", ranksep=\"0.1\", nodesep=\"0.1\" ];")
     out.println(
-      "  node [ fontname = \"Helvetica\", fontsize=\"6.0\", shape=\"" + "ellipse" +
+      "  node [ fontname = \"Helvetica\", fontsize=\"11.0\", shape=\"" + "ellipse" +
         "\", margin=\"0.01\"," + " height=\"0.1\"," + " width=\"0.5\" ];")
     out.println(
       "  edge [ fontname = \"Helvetica\", arrowsize=\".3\", arrowhead=\"normal\", fontsize=\"6.0\"," + " margin=\"0.05\" ];")
@@ -312,10 +312,10 @@ class PathInStateGraph(trie: Trie, val typeName: String)
         else
           " , shape=diamond, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"*/
       var choiceNodeStyle
-        : String = " , shape=diamond, width=0.2, height=0.3, xlabel=\"" + (if (Main.config.pathLabelDetail)
-                                                                             choiceNode.choiceCounter
-                                                                           else
-                                                                             "") + "\"];"
+        : String = " , shape=diamond, width=0.2, height=0.3, fontsize=11, xlabel=\"" + (if (Main.config.pathLabelDetail)
+                                                                                          choiceNode.choiceCounter
+                                                                                        else
+                                                                                          "") + "\"];"
 
       val destNodeValue = choiceNode.recordedChoice.toString
       val destNodeID = "\"" + transID + "-" + level.toString + "-" + destNodeValue + "-" + nodeInfo.node.transitionInfo.transitionQuality + "-" + choiceNodeCounter + "\""
