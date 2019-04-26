@@ -14,7 +14,9 @@ import modbat.log.Log
   * @param trie The trie that has path information stored
   * @param typeName The type of the graph is point graph
   */
-class PathInPointGraph(trie: Trie, val typeName: String)
+class PathInPointGraph(root: TrieNode,
+                       val typeName: String,
+                       val graphInitNode: String)
     extends PathVisualizer {
   require(typeName == "Point", "the input of path visualizer must be Point")
 
@@ -58,7 +60,7 @@ class PathInPointGraph(trie: Trie, val typeName: String)
 
     // display
     val (numNodeCount, _) =
-      display(trie.root, graphRootNodeNumber, nodeRecordStack)
+      display(root, graphRootNodeNumber, nodeRecordStack)
     out.println("}")
 
 //    Log.info(

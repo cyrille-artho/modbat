@@ -165,7 +165,8 @@ object Modbat {
            numFailedEdgePG,
            numNonChoiceEdgePG,
            numChoiceEdgePG,
-           numCycleSelfTranPG) = new PathInPointGraph(trie, "Point").dotify()
+           numCycleSelfTranPG) =
+        new PathInPointGraph(trie.root, "Point", "root").dotify()
 
       Log.info(
         "the total number of nodes in path-based graph:" + (numNodePG + numChoiceNodePG))
@@ -204,7 +205,8 @@ object Modbat {
            numFailedEdgeSG,
            numNonChoiceEdgeSG,
            numChoiceEdgeSG,
-           numCycleSelfTranSG) = new PathInStateGraph(trie, "State").dotify()
+           numCycleSelfTranSG) =
+        new PathInStateGraph(trie.root, "State", "root").dotify()
 
       Log.info(
         "the total number of choice nodes in state-based graph: " + numChoiceNodeSG)
@@ -236,6 +238,22 @@ object Modbat {
           "    & " + numFailedEdgeSG + "         & " + numCycleSelfTranSG + "\n" +
           "--------------------------------------------------------------"
       )
+
+      // search
+      var input: String = ""
+      import scala.io.StdIn.readLine
+      while (input != "q") {
+        input = readLine()
+        if (input != "q") {
+          val goal = input.split("-")
+          val foundNode =
+            trie.dfSearchT(trie.root, goal(0), goal(1).toInt, goal(2).toInt)
+          trie.display(foundNode)
+          new PathInStateGraph(foundNode, "State", input).dotify()
+          new PathInPointGraph(foundNode, "Point", input).dotify()
+        }
+      }
+
     }
 
     Log.info(

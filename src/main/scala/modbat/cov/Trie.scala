@@ -169,6 +169,36 @@ class Trie {
       if (node.isLeaf) ", leaf:end" else ""
   }
 
+  def dfSearchT(root: TrieNode,
+                key: String,
+                targetLevel: Int,
+                parentNodeTranID: Int,
+                level: Int = 0): TrieNode = {
+
+    if (root.isLeaf) return null //resultNode
+
+    val v = root.children.getOrElse(key, null)
+    Log.debug(key ++ ":" ++ root.children.map(i => i._1).toString())
+
+    if (v != null && targetLevel == level) {
+      if (root.currentTransition != null) {
+        if (root.currentTransition.idx == parentNodeTranID) {
+          return v
+        } else return null //resultNode
+      } else return v
+    } else {
+      val root2 = TrieNode()
+      for (i <- root.children) {
+        for (j <- i._2.children) {
+          root2.children.put(j._1, j._2)
+        }
+      }
+      if (root2.children.isEmpty)
+        root2.isLeaf = true // xxx should probably be in TrieNode!
+      return dfSearchT(root2, key, targetLevel, parentNodeTranID, level + 1)
+    }
+  }
+
   /** Compute the number of paths
     *
     * @param root The TrieNode starting from root node

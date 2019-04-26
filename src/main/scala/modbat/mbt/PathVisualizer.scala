@@ -6,8 +6,9 @@ import modbat.log.Log
 trait PathVisualizer {
 
   val typeName: String
+  val graphInitNode: String
   var out: PrintStream = null
-  val outFile = MBT.modelClass.getName + "-" + typeName + "Graph.dot"
+  val outFile = MBT.modelClass.getName + "-" + graphInitNode + "-" + typeName + "Graph.dot"
   val fullOutFile = Main.config.dotDir + File.separatorChar + outFile
   try {
     out = new PrintStream(new FileOutputStream(fullOutFile), false, "UTF-8")
