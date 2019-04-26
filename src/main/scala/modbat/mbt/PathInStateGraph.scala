@@ -11,7 +11,9 @@ import util.control.Breaks._
   * @param trie The trie that has path information stored
   * @param typeName The type of the graph is state graph
   */
-class PathInStateGraph(trie: Trie, val typeName: String)
+class PathInStateGraph(root: TrieNode,
+                       val typeName: String,
+                       val graphInitNode: String)
     extends PathVisualizer {
   require(typeName == "State", "the input of path visualizer must be Ellipse")
 
@@ -43,7 +45,7 @@ class PathInStateGraph(trie: Trie, val typeName: String)
       : ListBuffer[StateNodeInfo] = new ListBuffer[StateNodeInfo] // nodeRecorder is used for record node information for "State" output graph
 
     //display
-    display(trie.root, 0, nodeRecorder)
+    display(root, 0, nodeRecorder)
 
     out.println("}")
 
