@@ -142,9 +142,7 @@ class Trie {
     * @param level The level number of the trie tree structure
     */
   def display(root: TrieNode, level: Int = 0): Unit = {
-    if (root.isLeaf) {
-      // debug code:
-      // Log.debug("reached leaf and path ended, and the total depth (without counting loops):" + level)
+    if (root.isLeaf || root == null) {
       return
     }
     for (t <- root.children.keySet) {
@@ -178,7 +176,7 @@ class Trie {
     if (root.isLeaf) return null //resultNode
 
     val v = root.children.getOrElse(key, null)
-    Log.debug(key ++ ":" ++ root.children.map(i => i._1).toString())
+    //Log.debug(key ++ ":" ++ root.children.map(i => i._1).toString())
 
     if (v != null && targetLevel == level) {
       if (root.currentTransition != null) {
@@ -276,7 +274,7 @@ case class TrieNode() {
 
   // children store the transitions in string and the next nodes
   var children: HashMap[String, TrieNode] = HashMap.empty[String, TrieNode]
-  var isLeaf: Boolean = if (children.isEmpty) true else false
+  var isLeaf: Boolean = false
 
   // The key of the map represents how many times a transition can be repeatedly
   // executed continuously for the current test case, and key = 1 means no repetition happens.

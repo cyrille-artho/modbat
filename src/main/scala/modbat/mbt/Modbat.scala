@@ -252,9 +252,15 @@ object Modbat {
           val goal = input.split("-")
           val foundNode =
             trie.bfSearchT(trie.root, goal(0), goal(1).toInt, goal(2).toInt)
-          trie.display(foundNode)
-          new PathInStateGraph(foundNode, "State", input).dotify()
-          new PathInPointGraph(foundNode, "Point", input).dotify()
+          if (foundNode.isLeaf)
+            Log.debug(
+              "the found transition is recorded in a leaf of the trie, so there is no children to print in graphs.")
+          else {
+            trie.display(foundNode)
+            new PathInStateGraph(foundNode, "State", input).dotify()
+            new PathInPointGraph(foundNode, "Point", input).dotify()
+          }
+
         }
       }
 
