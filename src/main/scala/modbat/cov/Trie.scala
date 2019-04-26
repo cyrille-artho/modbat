@@ -169,7 +169,7 @@ class Trie {
       if (node.isLeaf) ", leaf:end" else ""
   }
 
-  def dfSearchT(root: TrieNode,
+  def bfSearchT(root: TrieNode,
                 key: String,
                 targetLevel: Int,
                 parentNodeTranID: Int,
@@ -195,7 +195,7 @@ class Trie {
       }
       if (root2.children.isEmpty)
         root2.isLeaf = true // xxx should probably be in TrieNode!
-      return dfSearchT(root2, key, targetLevel, parentNodeTranID, level + 1)
+      return bfSearchT(root2, key, targetLevel, parentNodeTranID, level + 1)
     }
   }
 
@@ -276,7 +276,7 @@ case class TrieNode() {
 
   // children store the transitions in string and the next nodes
   var children: HashMap[String, TrieNode] = HashMap.empty[String, TrieNode]
-  var isLeaf: Boolean = false
+  var isLeaf: Boolean = if (children.isEmpty) true else false
 
   // The key of the map represents how many times a transition can be repeatedly
   // executed continuously for the current test case, and key = 1 means no repetition happens.

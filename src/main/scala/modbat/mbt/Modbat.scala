@@ -239,7 +239,11 @@ object Modbat {
           "--------------------------------------------------------------"
       )
 
-      // search
+      // bfsearch a recorded transition in the trie by using a string format,
+      // key-level-parentNodeTranID as the input from terminal, where
+      // key is the concatenation of the target transition's ID and quality;
+      // level is the level of the target transition recorded in the trie initialized from 0 level
+      // parentNodeTranID is the target transition's parent transition's ID
       var input: String = ""
       import scala.io.StdIn.readLine
       while (input != "q") {
@@ -247,7 +251,7 @@ object Modbat {
         if (input != "q") {
           val goal = input.split("-")
           val foundNode =
-            trie.dfSearchT(trie.root, goal(0), goal(1).toInt, goal(2).toInt)
+            trie.bfSearchT(trie.root, goal(0), goal(1).toInt, goal(2).toInt)
           trie.display(foundNode)
           new PathInStateGraph(foundNode, "State", input).dotify()
           new PathInPointGraph(foundNode, "Point", input).dotify()
