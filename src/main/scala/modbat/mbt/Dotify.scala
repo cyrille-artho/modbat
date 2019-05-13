@@ -16,7 +16,7 @@ import modbat.util.SourceInfo.Launch
 class Dotify(val model: MBT, outFile: String = "") {
   var out: PrintStream = null
 
-  def init: Int = {
+  def init {
     assert (outFile != "")
     val fullOutFile = Main.config.dotDir + File.separatorChar + outFile
     try {
@@ -25,10 +25,9 @@ class Dotify(val model: MBT, outFile: String = "") {
       case ioe: IOException => {
 	Log.error("Cannot open file " + fullOutFile + ":")
 	Log.error(ioe.getMessage)
-	return 1
+	throw ioe
       }
     }
-    0
   }
 
   def pad(label: String) = {
@@ -179,11 +178,8 @@ class Dotify(val model: MBT, outFile: String = "") {
     }
   }
 
-  def dotify(coverage: Boolean = false): Int = {
+  def dotify(coverage: Boolean = false) {
     val ret = init
-    if (ret != 0) {
-      return ret
-    }
     out.println("digraph model {")
     out.println("  orientation = landscape;")
     out.println("  graph [ rankdir = \"TB\", ranksep=\"0.4\", nodesep=\"0.2\" ];")
@@ -206,6 +202,5 @@ class Dotify(val model: MBT, outFile: String = "") {
       }
     }
     out.println("}")
-    0 // TODO (issue #27): replace interal System.exit usage with error code
   }
 }
