@@ -9,7 +9,11 @@ object Main {
 
   def main(args: Array[String]) {
     Modbat.isUnitTest = false
-    System.exit(run(args))
+    try {
+        System.exit(run(args)) // TODO: do not call exit once exceptions are used
+    } catch {
+      case e: Exception => System.exit(1)
+    }
   }
 
   def run(args: Array[String]): Int = {
@@ -51,6 +55,7 @@ object Main {
 	new Dotify(MBT.launch(null), modelClassName + ".dot").dotify()
       case _ => Modbat.explore(config.nRuns)
     }
+    0 // TODO replace with exception
     // TODO (issue #27): Dotify.dotify() and Modbat.explore() should use return code
   }
 
