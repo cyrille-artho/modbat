@@ -42,7 +42,7 @@ object Main {
     } catch {
       case e: IllegalArgumentException => {
 	Log.error(e.getMessage())
-	return 1
+	throw e
       }
     }
 
