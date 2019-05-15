@@ -301,12 +301,13 @@ object MBT {
   // if modelInstance == null: initial model
   def launch(modelInstance: Model): MBT = {
     val model = mkModel(modelInstance)
+    
     if (Transition.pendingTransitions.isEmpty) {
       Log.error("Model " + model.getClass.getName + " has no transitions.")
       Log.error("Make sure at least one transition exists of type")
       Log.error("  \"a\" -> \"b\" := { code } // or, for an empty transition:")
       Log.error("  \"a\" -> \"b\" := skip")
-      System.exit(1)
+      throw new NoTransitionsException(model.getClass.getName)
     }
     val inst = new MBT(model, Transition.getTransitions)
     Transition.clear
