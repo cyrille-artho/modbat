@@ -55,8 +55,7 @@ object Main {
 	new Dotify(MBT.launch(null), modelClassName + ".dot").dotify()
       case _ => Modbat.explore(config.nRuns)
     }
-    0 // TODO replace with exception
-    // TODO (issue #27): Dotify.dotify() and Modbat.explore() should use return code
+    0 // TODO (issue #27) remove once code in main is fully refactored to use exceptions or no return code (and no System.exit)
   }
 
   def setup(modelClassName: String) {
