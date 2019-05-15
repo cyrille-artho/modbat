@@ -213,7 +213,7 @@ object MBT {
     } catch {
       case e: ClassNotFoundException => {
 	Log.error("Class \"" + className + "\" not found.")
-	System.exit(1)
+	  throw e
       }
     }
   }
@@ -301,6 +301,7 @@ object MBT {
   // if modelInstance == null: initial model
   def launch(modelInstance: Model): MBT = {
     val model = mkModel(modelInstance)
+    
     if (Transition.pendingTransitions.isEmpty) {
       Log.error("Model " + model.getClass.getName + " has no transitions.")
       Log.error("Make sure at least one transition exists of type")
