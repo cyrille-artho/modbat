@@ -250,7 +250,7 @@ object MBT {
 		  "to instantiate the primary model.")
 	Log.error("Consider adding a constructor variant:")
 	Log.error("  def this() = this(...)")
-	System.exit(1)
+	throw (e)
 	null
       }
     }
@@ -269,13 +269,13 @@ object MBT {
       case c: ClassCastException => {
 	Log.error("Model class does not extend Model.")
 	Log.error("Check if the right class was specified.")
-	System.exit(1)
+	throw (c)
 	null
       }
       case e: InstantiationException => {
 	Log.error("Cannot instantiate model class.")
 	Log.error("The class must not be abstract or an interface.")
-	System.exit(1)
+	throw (e)
 	null
       }
       case e: InvocationTargetException => {
@@ -289,7 +289,7 @@ object MBT {
 	  Log.error(cause.toString)
 	  printStackTrace(cause.getStackTrace)
 	}
-	System.exit(1)
+	throw (e)
 	null
       }
     }
