@@ -1,0 +1,1825 @@
+
+scala \
+-cp \
+build/modbat.jar \
+modbat.config.ConfigTest \
+-h \
+> log/modbat.config.ConfigTest/-h.log \
+2> log/modbat.config.ConfigTest/-h.err
+# ok
+
+scala \
+-cp \
+build/modbat.jar \
+modbat.config.ConfigTest \
+-s \
+> log/modbat.config.ConfigTest/-s.log \
+2> log/modbat.config.ConfigTest/-s.err
+# ok
+
+scala \
+build/config.jar \
+> log/config/.log \
+2> log/config/.err
+# ok
+
+scala \
+build/config.jar \
+-s \
+> log/config/-s.log \
+2> log/config/-s.err
+# ok
+
+CLASSPATH=foo \
+scala \
+build/config.jar \
+-s \
+cp_1 \
+> log/config/cp_1/-s.log \
+2> log/config/cp_1/-s.err
+# ok
+
+scala \
+build/config.jar \
+-s \
+cp_2 \
+> log/config/cp_2/-s.log \
+2> log/config/cp_2/-s.err
+
+# Output difference: 
+diff log/config/cp_2/-s.err log/config/cp_2/-s.eout
+2,26d1
+< java.lang.IllegalArgumentException: Option string for environment variable CLASSPATH must be non-empty.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseString(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$$anonfun$1.apply(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$$anonfun$1.apply(ConfigMgr.scala)
+< 	at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala)
+< 	at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala)
+< 	at modbat.config.ConfigMgr.<init>(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+CLASSPATH=foo \
+scala \
+build/config.jar \
+--classpath=bar \
+-s \
+> log/config/--classpath=bar-s.log \
+2> log/config/--classpath=bar-s.err
+# ok
+
+CLASSPATH=foo \
+scala \
+build/config.jar \
+-classp=baz \
+-s \
+> log/config/-classp=baz-s.log \
+2> log/config/-classp=baz-s.err
+
+# Output difference: 
+diff log/config/-classp=baz-s.err log/config/-classp=baz-s.eout
+3,24d2
+< java.lang.IllegalArgumentException: Option -classp=baz not supported. Try ConfigMgr --help.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.optionNotSupported(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+-h \
+> log/config/-h.log \
+2> log/config/-h.err
+# ok
+
+scala \
+build/config.jar \
+-v \
+> log/config/-v.log \
+2> log/config/-v.err
+# ok
+
+scala \
+build/config.jar \
+--version \
+> log/config/--version.log \
+2> log/config/--version.err
+# ok
+
+scala \
+build/config.jar \
+--show \
+> log/config/--show.log \
+2> log/config/--show.err
+# ok
+
+scala \
+build/config.jar \
+--help \
+> log/config/--help.log \
+2> log/config/--help.err
+# ok
+
+scala \
+build/config.jar \
+-x \
+> log/config/-x.log \
+2> log/config/-x.err
+
+# Output difference: 
+diff log/config/-x.err log/config/-x.eout
+3,24d2
+< java.lang.IllegalArgumentException: Option -x not supported. Try ConfigMgr --help.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.optionNotSupported(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+--x \
+> log/config/--x.log \
+2> log/config/--x.err
+
+# Output difference: 
+diff log/config/--x.err log/config/--x.eout
+3,25d2
+< java.lang.IllegalArgumentException: Option --x not supported. Try ConfigMgr --help.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.optionNotSupported(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLongOption(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+-s \
+--mode=exec \
+> log/config/-s--mode=exec.log \
+2> log/config/-s--mode=exec.err
+# ok
+
+scala \
+build/config.jar \
+-s \
+--mode=exec \
+-s \
+> log/config/-s--mode=exec-s.log \
+2> log/config/-s--mode=exec-s.err
+# ok
+
+scala \
+build/config.jar \
+-s \
+--mode=quux \
+-s \
+> log/config/-s--mode=quux-s.log \
+2> log/config/-s--mode=quux-s.err
+
+# Output difference: 
+diff log/config/-s--mode=quux-s.err log/config/-s--mode=quux-s.eout
+3,26d2
+< java.lang.IllegalArgumentException: Invalid option for mode: Must be one of {dot, exec}.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.setFieldAgainstChoice(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseString(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLongOption(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+a \
+b \
+c \
+> log/config/a/bc.log \
+2> log/config/a/bc.err
+# ok
+
+scala \
+build/config.jar \
+-- \
+a \
+b \
+c \
+> log/config/a/--bc.log \
+2> log/config/a/--bc.err
+# ok
+
+scala \
+build/config.jar \
+-- \
+-h \
+a \
+b \
+c \
+> log/config/a/---hbc.log \
+2> log/config/a/---hbc.err
+# ok
+
+scala \
+build/config.jar \
+-- \
+--help \
+a \
+b \
+c \
+> log/config/a/----helpbc.log \
+2> log/config/a/----helpbc.err
+# ok
+
+scala \
+build/config.jar \
+--redirectOut \
+-s \
+> log/config/--redirectOut-s.log \
+2> log/config/--redirectOut-s.err
+# ok
+
+scala \
+build/config.jar \
+--redirectOut=true \
+-s \
+> log/config/--redirectOut=true-s.log \
+2> log/config/--redirectOut=true-s.err
+# ok
+
+scala \
+build/config.jar \
+--redirectOut=false \
+-s \
+> log/config/--redirectOut=false-s.log \
+2> log/config/--redirectOut=false-s.err
+# ok
+
+scala \
+build/config.jar \
+--redirectOut=xx \
+-s \
+> log/config/--redirectOut=xx-s.log \
+2> log/config/--redirectOut=xx-s.err
+
+# Output difference: 
+diff log/config/--redirectOut=xx-s.err log/config/--redirectOut=xx-s.eout
+3,26d2
+< java.lang.IllegalArgumentException: Illegal value xx for boolean option redirectOut.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseBool(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parsePrimitiveType(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLongOption(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+--no-redirect-out \
+--no-some-flag \
+> log/config/--no-redirect-out--no-some-flag.log \
+2> log/config/--no-redirect-out--no-some-flag.err
+# ok
+
+scala \
+build/config.jar \
+--no-some-flag \
+--no-redirect-out \
+> log/config/--no-some-flag--no-redirect-out.log \
+2> log/config/--no-some-flag--no-redirect-out.err
+# ok
+
+scala \
+build/config.jar \
+--no-redirect-out \
+--some-flag \
+> log/config/--no-redirect-out--some-flag.log \
+2> log/config/--no-redirect-out--some-flag.err
+
+# Output difference: 
+diff log/config/--no-redirect-out--some-flag.err log/config/--no-redirect-out--some-flag.eout
+3,27d2
+< java.lang.IllegalArgumentException: Usage of someFlag requires redirectOut (currently false) to be set to true.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.checkDependencies(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$$anonfun$parseArgs$2.apply(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$$anonfun$parseArgs$2.apply(ConfigMgr.scala)
+< 	at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala)
+< 	at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+--odd-prime \
+> log/config/--odd-prime.log \
+2> log/config/--odd-prime.err
+
+# Output difference: 
+diff log/config/--odd-prime.err log/config/--odd-prime.eout
+3,27d2
+< java.lang.IllegalArgumentException: Usage of oddPrime requires smallPrime to be set to value other than two.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.checkDependencies(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$$anonfun$parseArgs$2.apply(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$$anonfun$parseArgs$2.apply(ConfigMgr.scala)
+< 	at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala)
+< 	at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+--no-odd-prime \
+> log/config/--no-odd-prime.log \
+2> log/config/--no-odd-prime.err
+# ok
+
+scala \
+build/config.jar \
+--odd-prime \
+--small-prime=three \
+> log/config/--odd-prime--small-prime=three.log \
+2> log/config/--odd-prime--small-prime=three.err
+# ok
+
+scala \
+build/config.jar \
+--even-prime \
+> log/config/--even-prime.log \
+2> log/config/--even-prime.err
+# ok
+
+scala \
+build/config.jar \
+--no-even-prime \
+> log/config/--no-even-prime.log \
+2> log/config/--no-even-prime.err
+# ok
+
+scala \
+build/config.jar \
+--even-prime \
+--small-prime=three \
+> log/config/--even-prime--small-prime=three.log \
+2> log/config/--even-prime--small-prime=three.err
+
+# Output difference: 
+diff log/config/--even-prime--small-prime=three.err log/config/--even-prime--small-prime=three.eout
+3,27d2
+< java.lang.IllegalArgumentException: Usage of evenPrime requires smallPrime (currently three) to be set to two.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.checkDependencies(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$$anonfun$parseArgs$2.apply(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$$anonfun$parseArgs$2.apply(ConfigMgr.scala)
+< 	at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala)
+< 	at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+--no-redirectOut \
+-s \
+> log/config/--no-redirectOut-s.log \
+2> log/config/--no-redirectOut-s.err
+# ok
+
+scala \
+build/config.jar \
+--no-redirectOut=true \
+-s \
+> log/config/--no-redirectOut=true-s.log \
+2> log/config/--no-redirectOut=true-s.err
+
+# Output difference: 
+diff log/config/--no-redirectOut=true-s.err log/config/--no-redirectOut=true-s.eout
+3,25d2
+< java.lang.IllegalArgumentException: Arguments are not allowed for setting boolean option redirectOut to false.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.handleNegBool(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLongOption(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+--no-redirectOut=false \
+-s \
+> log/config/--no-redirectOut=false-s.log \
+2> log/config/--no-redirectOut=false-s.err
+
+# Output difference: 
+diff log/config/--no-redirectOut=false-s.err log/config/--no-redirectOut=false-s.eout
+3,25d2
+< java.lang.IllegalArgumentException: Arguments are not allowed for setting boolean option redirectOut to false.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.handleNegBool(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLongOption(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+--no-redirectOut=xx \
+-s \
+> log/config/--no-redirectOut=xx-s.log \
+2> log/config/--no-redirectOut=xx-s.err
+
+# Output difference: 
+diff log/config/--no-redirectOut=xx-s.err log/config/--no-redirectOut=xx-s.eout
+3,25d2
+< java.lang.IllegalArgumentException: Arguments are not allowed for setting boolean option redirectOut to false.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.handleNegBool(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLongOption(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+--no-mode \
+> log/config/--no-mode.log \
+2> log/config/--no-mode.err
+
+# Output difference: 
+diff log/config/--no-mode.err log/config/--no-mode.eout
+3,25d2
+< java.lang.IllegalArgumentException: Argument --no-mode not allowed for non-boolean option.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.handleNegBool(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLongOption(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+--nRuns \
+> log/config/--nRuns.log \
+2> log/config/--nRuns.err
+
+# Output difference: 
+diff log/config/--nRuns.err log/config/--nRuns.eout
+3,25d2
+< java.lang.IllegalArgumentException: Option nRuns requires a value.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parsePrimitiveType(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLongOption(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+--nRuns= \
+> log/config/--nRuns=.log \
+2> log/config/--nRuns=.err
+
+# Output difference: 
+diff log/config/--nRuns=.err log/config/--nRuns=.eout
+3,25d2
+< java.lang.IllegalArgumentException: Option nRuns requires a value.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parsePrimitiveType(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLongOption(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+--nRuns=0 \
+> log/config/--nRuns=0.log \
+2> log/config/--nRuns=0.err
+
+# Output difference: 
+diff log/config/--nRuns=0.err log/config/--nRuns=0.eout
+3,27d2
+< java.lang.IllegalArgumentException: Value 0 for option nRuns must be at least 1.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.checkRange(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseInt(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parsePrimitiveType(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLongOption(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+--nRuns=a \
+> log/config/--nRuns=a.log \
+2> log/config/--nRuns=a.err
+
+# Output difference: 
+diff log/config/--nRuns=a.err log/config/--nRuns=a.eout
+3,26d2
+< java.lang.IllegalArgumentException: Illegal value a for integer nRuns.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseInt(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parsePrimitiveType(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLongOption(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+--nRuns=1 \
+-s \
+> log/config/--nRuns=1-s.log \
+2> log/config/--nRuns=1-s.err
+# ok
+
+scala \
+build/config.jar \
+--nRuns=999999 \
+-s \
+> log/config/--nRuns=999999-s.log \
+2> log/config/--nRuns=999999-s.err
+# ok
+
+scala \
+build/config.jar \
+--nRuns=999999999999 \
+> log/config/--nRuns=999999999999.log \
+2> log/config/--nRuns=999999999999.err
+
+# Output difference: 
+diff log/config/--nRuns=999999999999.err log/config/--nRuns=999999999999.eout
+3,26d2
+< java.lang.IllegalArgumentException: Illegal value 999999999999 for integer nRuns.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseInt(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parsePrimitiveType(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLongOption(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+-s \
+--small-prime=three \
+-s \
+> log/config/-s--small-prime=three-s.log \
+2> log/config/-s--small-prime=three-s.err
+# ok
+
+scala \
+build/config.jar \
+-s \
+--small-prime=one \
+> log/config/-s--small-prime=one.log \
+2> log/config/-s--small-prime=one.err
+
+# Output difference: 
+diff log/config/-s--small-prime=one.err log/config/-s--small-prime=one.eout
+3,26d2
+< java.lang.IllegalArgumentException: Invalid option for small-prime: Must be one of {two, three, five, seven}.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.setFieldAgainstChoice(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parsePrimitiveType(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLongOption(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+--abortProbability=0.5 \
+-s \
+> log/config/--abortProbability=0.5-s.log \
+2> log/config/--abortProbability=0.5-s.err
+# ok
+
+scala \
+build/config.jar \
+--abortProbability=-0.5 \
+-s \
+> log/config/--abortProbability=-0.5-s.log \
+2> log/config/--abortProbability=-0.5-s.err
+
+# Output difference: 
+diff log/config/--abortProbability=-0.5-s.err log/config/--abortProbability=-0.5-s.eout
+3,27d2
+< java.lang.IllegalArgumentException: Value -0.5 for option abortProbability must be at least 0.0.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.checkRange(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseDouble(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parsePrimitiveType(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLongOption(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+--abortProbability=1.5 \
+-s \
+> log/config/--abortProbability=1.5-s.log \
+2> log/config/--abortProbability=1.5-s.err
+
+# Output difference: 
+diff log/config/--abortProbability=1.5-s.err log/config/--abortProbability=1.5-s.eout
+3,27d2
+< java.lang.IllegalArgumentException: Value 1.5 for option abortProbability must be at most 1.0.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.checkRange(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseDouble(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parsePrimitiveType(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLongOption(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+-f=x \
+-s \
+> log/config/-f=x-s.log \
+2> log/config/-f=x-s.err
+
+# Output difference: 
+diff log/config/-f=x-s.err log/config/-f=x-s.eout
+3,24d2
+< java.lang.IllegalArgumentException: Option -f=x not supported. Try ConfigMgr --help.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.optionNotSupported(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+-g=x \
+-s \
+> log/config/-g=x-s.log \
+2> log/config/-g=x-s.err
+
+# Output difference: 
+diff log/config/-g=x-s.err log/config/-g=x-s.eout
+3,24d2
+< java.lang.IllegalArgumentException: Option -g=x not supported. Try ConfigMgr --help.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.optionNotSupported(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+-f= \
+> log/config/-f=.log \
+2> log/config/-f=.err
+
+# Output difference: 
+diff log/config/-f=.err log/config/-f=.eout
+3,24d2
+< java.lang.IllegalArgumentException: Option -f= not supported. Try ConfigMgr --help.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.optionNotSupported(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+-f \
+> log/config/-f.log \
+2> log/config/-f.err
+
+# Output difference: 
+diff log/config/-f.err log/config/-f.eout
+3,24d2
+< java.lang.IllegalArgumentException: Option -f not supported. Try ConfigMgr --help.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.optionNotSupported(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+--modelClass= \
+> log/config/--modelClass=.log \
+2> log/config/--modelClass=.err
+
+# Output difference: 
+diff log/config/--modelClass=.err log/config/--modelClass=.eout
+3,25d2
+< java.lang.IllegalArgumentException: Option --modelClass not supported. Try ConfigMgr --help.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.optionNotSupported(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLongOption(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+--modelClass \
+> log/config/--modelClass.log \
+2> log/config/--modelClass.err
+
+# Output difference: 
+diff log/config/--modelClass.err log/config/--modelClass.eout
+3,25d2
+< java.lang.IllegalArgumentException: Option --modelClass not supported. Try ConfigMgr --help.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.optionNotSupported(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLongOption(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+-n-runs=2 \
+> log/config/-n-runs=2.log \
+2> log/config/-n-runs=2.err
+
+# Output difference: 
+diff log/config/-n-runs=2.err log/config/-n-runs=2.eout
+3,24d2
+< java.lang.IllegalArgumentException: Option -n-runs=2 not supported. Try ConfigMgr --help.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.optionNotSupported(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+--n-runs=2 \
+-s \
+> log/config/--n-runs=2-s.log \
+2> log/config/--n-runs=2-s.err
+# ok
+
+scala \
+build/config.jar \
+-s=10c1be9b302682f3 \
+-s \
+> log/config/-s=10c1be9b302682f3-s.log \
+2> log/config/-s=10c1be9b302682f3-s.err
+# ok
+
+scala \
+build/config.jar \
+-s=10c1be9b302682f30 \
+> log/config/-s=10c1be9b302682f30.log \
+2> log/config/-s=10c1be9b302682f30.err
+
+# Output difference: 
+diff log/config/-s=10c1be9b302682f30.err log/config/-s=10c1be9b302682f30.eout
+3,26d2
+< java.lang.IllegalArgumentException: Illegal value 10c1be9b302682f30 for long s.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLong(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parsePrimitiveType(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLongOption(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+-s=ffffffffffffffff \
+-s \
+> log/config/-s=ffffffffffffffff-s.log \
+2> log/config/-s=ffffffffffffffff-s.err
+# ok
+
+scala \
+build/config.jar \
+-n=ffffffff \
+-s \
+> log/config/-n=ffffffff-s.log \
+2> log/config/-n=ffffffff-s.err
+
+# Output difference: 
+diff log/config/-n=ffffffff-s.err log/config/-n=ffffffff-s.eout
+3,26d2
+< java.lang.IllegalArgumentException: Illegal value ffffffff for integer n.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseInt(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parsePrimitiveType(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLongOption(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+--Quux \
+> log/config/--Quux.log \
+2> log/config/--Quux.err
+
+# Output difference: 
+diff log/config/--Quux.err log/config/--Quux.eout
+3,25d2
+< java.lang.IllegalArgumentException: Option --Quux not supported. Try ConfigMgr --help.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.optionNotSupported(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLongOption(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/config.jar \
+--baz-Quux \
+> log/config/--baz-Quux.log \
+2> log/config/--baz-Quux.err
+
+# Output difference: 
+diff log/config/--baz-Quux.err log/config/--baz-Quux.eout
+3,30d2
+< java.lang.IllegalArgumentException: Option --baz-Quux not supported. Try ConfigMgr --help.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.optionNotSupported(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$$anonfun$cmdArgToFieldName$1.apply(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$$anonfun$cmdArgToFieldName$1.apply(ConfigMgr.scala)
+< 	at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala)
+< 	at scala.collection.mutable.ArrayOps$ofChar.foreach(ArrayOps.scala)
+< 	at modbat.config.ConfigMgr.cmdArgToFieldName(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLongOption(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.run(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr$.main(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.main(ConfigMgr.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/modbat.jar \
+--model-class=x \
+> log/modbat/--model-class=x.log \
+2> log/modbat/--model-class=x.err
+
+# Output difference: 
+diff log/modbat/--model-class=x.err log/modbat/--model-class=x.eout
+2,24d1
+< java.lang.IllegalArgumentException: Option --model-class not supported. Try scala modbat.jar --help.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.optionNotSupported(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLongOption(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.mbt.Main$.run(Main.scala)
+< 	at modbat.mbt.Main$.main(Main.scala)
+< 	at modbat.mbt.Main.main(Main.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/modbat.jar \
+a \
+b \
+c \
+> log/modbat/a/bc.log \
+2> log/modbat/a/bc.err
+
+# Output difference: 
+diff log/modbat/a/bc.err log/modbat/a/bc.eout
+2,19d1
+< modbat.mbt.RemainingArgs: c
+< 	at modbat.mbt.Main$.run(Main.scala)
+< 	at modbat.mbt.Main$.main(Main.scala)
+< 	at modbat.mbt.Main.main(Main.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/modbat.jar \
+-n=1 \
+x \
+b \
+c \
+> log/modbat/x/-n=1bc.log \
+2> log/modbat/x/-n=1bc.err
+
+# Output difference: 
+diff log/modbat/x/-n=1bc.err log/modbat/x/-n=1bc.eout
+2,19d1
+< modbat.mbt.RemainingArgs: c
+< 	at modbat.mbt.Main$.run(Main.scala)
+< 	at modbat.mbt.Main$.main(Main.scala)
+< 	at modbat.mbt.Main.main(Main.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/modbat.jar \
+x \
+y \
+-n=1 \
+> log/modbat/x/y-n=1.log \
+2> log/modbat/x/y-n=1.err
+
+# Output difference: 
+diff log/modbat/x/y-n=1.err log/modbat/x/y-n=1.eout
+2,23d1
+< java.util.NoSuchElementException: next on empty iterator
+< 	at scala.collection.Iterator$$anon$2.next(Iterator.scala)
+< 	at scala.collection.Iterator$$anon$2.next(Iterator.scala)
+< 	at scala.collection.IndexedSeqLike$Elements.next(IndexedSeqLike.scala)
+< 	at scala.collection.Iterator$JoinIterator.next(Iterator.scala)
+< 	at modbat.mbt.Main$.run(Main.scala)
+< 	at modbat.mbt.Main$.main(Main.scala)
+< 	at modbat.mbt.Main.main(Main.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/modbat.jar \
+-n=2 \
+-- \
+-n=1 \
+> log/modbat/-n=2---n=1.log \
+2> log/modbat/-n=2---n=1.err
+
+# Output difference: 
+diff log/modbat/-n=2---n=1.err log/modbat/-n=2---n=1.eout
+2,24d1
+< java.lang.ClassNotFoundException: -n=1
+< 	at java.net.URLClassLoader.findClass(URLClassLoader.java)
+< 	at java.lang.ClassLoader.loadClass(ClassLoader.java)
+< 	at java.lang.ClassLoader.loadClass(ClassLoader.java)
+< 	at modbat.mbt.MBT$.loadModelClass(MBT.scala)
+< 	at modbat.mbt.Main$.setup(Main.scala)
+< 	at modbat.mbt.Main$.run(Main.scala)
+< 	at modbat.mbt.Main$.main(Main.scala)
+< 	at modbat.mbt.Main.main(Main.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/modbat.jar \
+a \
+-n=2 \
+-- \
+-n=1 \
+> log/modbat/a/-n=2---n=1.log \
+2> log/modbat/a/-n=2---n=1.err
+
+# Output difference: 
+diff log/modbat/a/-n=2---n=1.err log/modbat/a/-n=2---n=1.eout
+2,23d1
+< java.util.NoSuchElementException: next on empty iterator
+< 	at scala.collection.Iterator$$anon$2.next(Iterator.scala)
+< 	at scala.collection.Iterator$$anon$2.next(Iterator.scala)
+< 	at scala.collection.IndexedSeqLike$Elements.next(IndexedSeqLike.scala)
+< 	at scala.collection.Iterator$JoinIterator.next(Iterator.scala)
+< 	at modbat.mbt.Main$.run(Main.scala)
+< 	at modbat.mbt.Main$.main(Main.scala)
+< 	at modbat.mbt.Main.main(Main.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/modbat.jar \
+-s=0 \
+> log/modbat/-s=0.log \
+2> log/modbat/-s=0.err
+
+# Output difference: 
+diff log/modbat/-s=0.err log/modbat/-s=0.eout
+2,26d1
+< java.lang.IllegalArgumentException: Value 0 for option s must be at least 1.
+< 	at modbat.config.ConfigMgr.die(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.checkRange(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLong(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parsePrimitiveType(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseLongOption(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArg(ConfigMgr.scala)
+< 	at modbat.config.ConfigMgr.parseArgs(ConfigMgr.scala)
+< 	at modbat.mbt.Main$.run(Main.scala)
+< 	at modbat.mbt.Main$.main(Main.scala)
+< 	at modbat.mbt.Main.main(Main.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+scala \
+build/modbat.jar \
+--log-level=fine \
+> log/modbat/--log-level=fine.log \
+2> log/modbat/--log-level=fine.err
+
+# Output difference: 
+diff log/modbat/--log-level=fine.err log/modbat/--log-level=fine.eout
+3,20d2
+< modbat.mbt.NoRemainingArgs: scala modbat.jar vx.yz
+< 	at modbat.mbt.Main$.run(Main.scala)
+< 	at modbat.mbt.Main$.main(Main.scala)
+< 	at modbat.mbt.Main.main(Main.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+--no-redirect-out \
+modbat.examples.SimpleCounter \
+> log/modbat/modbat.examples.SimpleCounter/-s=1--no-redirect-out.log \
+2> log/modbat/modbat.examples.SimpleCounter/-s=1--no-redirect-out.err
+
+# Output difference: 
+diff log/modbat/modbat.examples.SimpleCounter/-s=1--no-redirect-out.err log/modbat/modbat.examples.SimpleCounter/-s=1--no-redirect-out.eout
+3,36d2
+< java.lang.ClassCastException: modbat.examples.SimpleCounter cannot be cast to modbat.dsl.Model
+< 	at modbat.mbt.MBT$.mkModel(MBT.scala)
+< 	at modbat.mbt.MBT$.launch(MBT.scala)
+< 	at modbat.mbt.Modbat$$anonfun$wrapRun$1$$anonfun$apply$5.apply(Modbat.scala)
+< 	at modbat.mbt.Modbat$$anonfun$wrapRun$1$$anonfun$apply$5.apply(Modbat.scala)
+< 	at scala.util.DynamicVariable.withValue(DynamicVariable.scala)
+< 	at scala.Console$.withOut(Console.scala)
+< 	at modbat.mbt.Modbat$$anonfun$wrapRun$1.apply(Modbat.scala)
+< 	at modbat.mbt.Modbat$$anonfun$wrapRun$1.apply(Modbat.scala)
+< 	at scala.util.DynamicVariable.withValue(DynamicVariable.scala)
+< 	at scala.Console$.withErr(Console.scala)
+< 	at modbat.mbt.Modbat$.wrapRun(Modbat.scala)
+< 	at modbat.mbt.Modbat$.runTest(Modbat.scala)
+< 	at modbat.mbt.Modbat$$anonfun$runTests$1.apply$mcVI$sp(Modbat.scala)
+< 	at scala.collection.immutable.Range.foreach$mVc$sp(Range.scala)
+< 	at modbat.mbt.Modbat$.runTests(Modbat.scala)
+< 	at modbat.mbt.Modbat$.explore(Modbat.scala)
+< 	at modbat.mbt.Main$.run(Main.scala)
+< 	at modbat.mbt.Main$.main(Main.scala)
+< 	at modbat.mbt.Main.main(Main.scala)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+< 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+< 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+< 	at java.lang.reflect.Method.invoke(Method.java)
+< 	at scala.reflect.internal.util.ScalaClassLoader$$anonfun$run$1.apply(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.asContext(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$class.run(ScalaClassLoader.scala)
+< 	at scala.reflect.internal.util.ScalaClassLoader$URLClassLoader.run(ScalaClassLoader.scala)
+< 	at scala.tools.nsc.JarRunner$.run(MainGenericRunner.scala)
+< 	at scala.tools.nsc.JarRunner$.runJar(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.process(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner$.main(MainGenericRunner.scala)
+< 	at scala.tools.nsc.MainGenericRunner.main(MainGenericRunner.scala)
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=5 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+--no-init \
+--no-shutdown \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=5-s=1--no-redirect-out--log-level=fine--no-init--no-shutdown.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=5-s=1--no-redirect-out--log-level=fine--no-init--no-shutdown.err
+# ok
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=10 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+--no-init \
+--no-shutdown \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=10-s=1--no-redirect-out--log-level=fine--no-init--no-shutdown.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=10-s=1--no-redirect-out--log-level=fine--no-init--no-shutdown.err
+# ok
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=20 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+--no-init \
+--no-shutdown \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=20-s=1--no-redirect-out--log-level=fine--no-init--no-shutdown.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=20-s=1--no-redirect-out--log-level=fine--no-init--no-shutdown.err
+# ok
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=50 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+--no-init \
+--no-shutdown \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=50-s=1--no-redirect-out--log-level=fine--no-init--no-shutdown.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=50-s=1--no-redirect-out--log-level=fine--no-init--no-shutdown.err
+# ok
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=10 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=10-s=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=10-s=1--no-redirect-out--log-level=fine.err
+# ok
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=20 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=20-s=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=20-s=1--no-redirect-out--log-level=fine.err
+# ok
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=50 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=50-s=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=50-s=1--no-redirect-out--log-level=fine.err
+# ok
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=100 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=100-s=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=100-s=1--no-redirect-out--log-level=fine.err
+# ok
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=200 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=200-s=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=200-s=1--no-redirect-out--log-level=fine.err
+# ok
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=500 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=500-s=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=500-s=1--no-redirect-out--log-level=fine.err
+# ok
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=1000 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=1000-s=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=1000-s=1--no-redirect-out--log-level=fine.err
+# ok
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+--mode=dot \
+--auto-labels \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/--mode=dot--auto-labels.log \
+2> log/modbat/modbat.examples.NioSocket1/--mode=dot--auto-labels.err

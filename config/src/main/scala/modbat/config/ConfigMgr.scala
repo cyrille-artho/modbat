@@ -22,10 +22,14 @@ object ConfigMgr {
   import ArgParse._
 
   def main(args: Array[String]) {
-    System.exit(run(args))
+    try {
+        run(args)
+    } catch {
+      case e: Exception => System.exit(1)
+    }
   }
 
-  def run(args: Array[String]): Int = {
+  def run(args: Array[String]) {
     // parse arguments
     var c: ConfigMgr = null
     try {
@@ -55,10 +59,9 @@ object ConfigMgr {
 	  Console.err.println(c.header)
 	}
 	Console.err.println(e.getMessage())
-	return 1
+	throw e
       }
     }
-    return 0
   }
 }
 
