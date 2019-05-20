@@ -29,11 +29,13 @@ object Main {
 	  if (!remainingArgs.hasNext) {
 	    Log.error(c.header)
 	    Log.error("Model class argument missing. Try --help.")
+      throw new IllegalArgumentException(c.header)
 	  }
 	  modelClassName = remainingArgs.next
 	  if (remainingArgs.hasNext) {
 	    Log.error("Extra arguments starting at \"" + remainingArgs.next() +
 		      "\" are not supported.")
+      throw new IllegalArgumentException(remainingArgs.next())
 	  }
 	}
 	case None => // nothing
