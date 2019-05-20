@@ -22,10 +22,14 @@ object ConfigMgr {
   import ArgParse._
 
   def main(args: Array[String]) {
-    System.exit(run(args))
+    try {
+        run(args)
+    } catch {
+      case e: Exception => System.exit(1)
+    }
   }
 
-  def run(args: Array[String]): Int = {
+  def run(args: Array[String]) {
     // parse arguments
     var c: ConfigMgr = null
     try {
@@ -34,33 +38,32 @@ object ConfigMgr {
       val remainder = c.parseArgs(args)
 
       remainder match {
-	case Some(remainingArgs) => {
-	  // app-specific handling of left-over args; here: pretty-print
-	  val hasMore = remainingArgs.hasNext
-	  while (remainingArgs.hasNext) {
-	    print (remainingArgs.next())
-	    if (remainingArgs.hasNext) {
-	      print (" ")
-	    }
-	  }
-	  if (hasMore) {
-	    println
-	  }
-	}
-	case None => // nothing
-      }
-    } catch {
-      case e: IllegalArgumentException => {
-	if (c != null) {
-	  Console.err.println(c.header)
-	}
-	Console.err.println(e.getMessage())
-	return 1
+	       case Some(remainingArgs) => {
+	         // app-specific handling of left-over args; here: pretty-print
+	         val hasMore = remainingArgs.hasNext
+	         while (remainingArgs.hasNext) {
+	           print (remainingArgs.next())
+	             if (remainingArgs.hasNext) {
+	               print (" ")
+	             }
+        	  }
+        	  if (hasMore) {
+        	    println
+        	  }
+        	}
+	        case None => // nothing
+        }
+      } catch {
+        case e: IllegalArgumentException => {
+	      if (c != null) {
+	         Console.err.println(c.header)
+	      }
+	      Console.err.println(e.getMessage())
+	      throw e
+        }
       }
     }
-    return 0
   }
-}
 
 /** set @param test to <tt>true</tt> to enable assignments from values
     defined in <tt>@test</tt> annotations. */

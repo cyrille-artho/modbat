@@ -14,7 +14,12 @@ object ModbatTestHarness {
 
     Console.withErr(err) {
       Console.withOut(out) {
-        ret = Main.run(args)
+        try {
+          Main.run(args)
+          ret=0
+        } catch {
+          case e: Exception => ret=1
+        }
       }
     }
     (ret, scala.io.Source.fromString(out.toString).getLines().toList, scala.io.Source.fromString(err.toString).getLines().toList)

@@ -451,9 +451,9 @@ class MBT (val model: Model, val trans: List[Transition]) {
     Log.fine("Launching new model instance " + name + "...")
     if (model.isInstanceOf[Observer]) {
       isObserver = true
-      if (firstLaunch) {
-	Log.error("Primary model must not be of type Observer.")
-	System.exit(1)
+        if (firstLaunch) {
+	         Log.error("Primary model must not be of type Observer.")
+           throw new FirstLaunchObserverException(name)
       }
       warnAboutNonDefaultWeights
     }
