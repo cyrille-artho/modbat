@@ -22,7 +22,11 @@ object ConfigMgr {
   import ArgParse._
 
   def main(args: Array[String]) {
-    run(args)
+    try {
+        run(args)
+    } catch {
+      case e: Exception => System.exit(1)
+    }
   }
 
   def run(args: Array[String]) {
