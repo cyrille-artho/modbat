@@ -26,16 +26,17 @@ object Main {
       val remainder = c.parseArgs(args)
       remainder match {
         case Some(remainingArgs) => {
-	  if (!remainingArgs.hasNext) {
-	    Log.error(c.header)
-	    Log.error("Model class argument missing. Try --help.")
-      throw new IllegalArgumentException(c.header)
-	  }
-	  modelClassName = remainingArgs.next
-	  if (remainingArgs.hasNext) {
-	    Log.error("Extra arguments starting at \"" + remainingArgs.next() +
+          if (!remainingArgs.hasNext) {
+            Log.error(c.header)
+            Log.error("Model class argument missing. Try --help.")
+            throw new NoModelClassException(c.header)
+          }
+	        modelClassName = remainingArgs.next
+	        if (remainingArgs.hasNext) {
+          val remaining = remainingArgs.next()
+	    Log.error("Extra arguments starting at \"" + remaining +
 		      "\" are not supported.")
-      throw new IllegalArgumentException(remainingArgs.next())
+      throw new ExtraArgumentsException(remaining)
 	  }
 	}
 	case None => // nothing
