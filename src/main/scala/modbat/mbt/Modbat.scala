@@ -222,7 +222,7 @@ object Modbat {
     }
   }
 
-  def explore(n: Int) = {
+  def explore(n: Int) {
     init
     if (!isUnitTest) {
       Runtime.getRuntime().addShutdownHook(ShutdownHandler)
@@ -234,8 +234,6 @@ object Modbat {
     appState = AppShutdown
     shutdown
     Runtime.getRuntime().removeShutdownHook(ShutdownHandler)
-    // TODO (issue #27): Replace internal System.exit usage with return code
-    0
   }
 
   def getRandomSeed = {
