@@ -10,13 +10,14 @@ object Main {
   def main(args: Array[String]) {
     Modbat.isUnitTest = false
     try {
-        System.exit(run(args)) // TODO: do not call exit once exceptions are used
+        run(args) // TODO: do not call exit once exceptions are used
     } catch {
       case e: Exception => System.exit(1)
     }
+    System.exit(0)
   }
 
-  def run(args: Array[String]): Int = {
+  def run(args: Array[String]){
     var modelClassName: String = null
     val c = new ConfigMgr("scala modbat.jar", "CLASSNAME",
 			  config, new Version ("modbat.mbt"))
@@ -25,16 +26,17 @@ object Main {
       val remainder = c.parseArgs(args)
       remainder match {
         case Some(remainingArgs) => {
-	  if (!remainingArgs.hasNext) {
-	    Log.error(c.header)
-	    Log.error("Model class argument missing. Try --help.")
-	    return 1
-	  }
-	  modelClassName = remainingArgs.next
-	  if (remainingArgs.hasNext) {
-	    Log.error("Extra arguments starting at \"" + remainingArgs.next() +
+          if (!remainingArgs.hasNext) {
+            Log.error(c.header)
+            Log.error("Model class argument missing. Try --help.")
+            throw new NoModelClassException(c.header)
+          }
+	        modelClassName = remainingArgs.next
+	        if (remainingArgs.hasNext) {
+          val remaining = remainingArgs.next()
+	    Log.error("Extra arguments starting at \"" + remaining +
 		      "\" are not supported.")
-	    return 1
+      throw new ExtraArgumentsException(remaining)
 	  }
 	}
 	case None => // nothing
@@ -55,7 +57,6 @@ object Main {
 	new Dotify(MBT.launch(null), modelClassName + ".dot").dotify()
       case _ => Modbat.explore(config.nRuns)
     }
-    0 // TODO (issue #27) remove once code in main is fully refactored to use exceptions or no return code (and no System.exit)
   }
 
   def setup(modelClassName: String) {
