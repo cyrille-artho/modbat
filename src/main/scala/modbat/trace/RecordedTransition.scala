@@ -16,7 +16,7 @@ class RecordedTransition(val model: MBT,
   var debugTrace: Array[String] = null
   var updates: List[(Field, Any)] = Nil
 
-  var recordedChoices: List[RecordedChoice] = _ // TODO: record choices -Rui
+  var recordedChoices: List[RecordedChoice] = _ // record choices -Rui
 
   /* nextState should override default successor state */
   def dest = {
@@ -40,7 +40,7 @@ class RecordedTransition(val model: MBT,
   // TODO: Support exceptionType
 }
 
-/** RecordedChoice */ // TODO: record choices -RUI
+/** RecordedChoice */ // record choices -RUI
 trait RecordedChoice {
   val recordedChoice: Any
 }

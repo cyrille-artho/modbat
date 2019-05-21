@@ -41,6 +41,6 @@ trait Random {
     }
   }
 
-  // TODO: record choice - Rui
+  // record choice - Rui
   def recordChoice(anyChoice: RecordedChoice): Unit
 }

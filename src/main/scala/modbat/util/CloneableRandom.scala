@@ -22,7 +22,7 @@ class CloneableRandom(rngTrace: Array[Int], dbgTrace: Array[String])
   var w: Long = 0
   var seed: Long = 0
 
-  // TODO: recordedChoices is used to record choices -RUI
+  // recordedChoices is used to record choices -RUI
   var recordedChoices: ListBuffer[RecordedChoice] =
     new ListBuffer[RecordedChoice]
 
@@ -68,7 +68,7 @@ class CloneableRandom(rngTrace: Array[Int], dbgTrace: Array[String])
   def clear = {
     storedResults.clear
     resultsAsString.clear
-    recordedChoices.clear() // TODO: clear recorded choices -rui
+    recordedChoices.clear() // clear recorded choices -rui
   }
 
   override def nextInt(remember: Boolean = true): Int = {
@@ -140,11 +140,11 @@ class CloneableRandom(rngTrace: Array[Int], dbgTrace: Array[String])
     result
   }
 
-  // TODO: recordChoice method can update the choices recorded - Rui
+  // recordChoice method can update the choices recorded - Rui
   override def recordChoice(anyChoice: RecordedChoice): Unit = {
     recordedChoices += anyChoice
   }
-  // TODO: getRecordedChoices get recorded choices in a list -RUi
+  // getRecordedChoices gets recorded choices in a list -RUi
   def getRecordedChoices() = recordedChoices.toList
 
   def trace() = storedResults.toArray
