@@ -316,9 +316,9 @@ object MBT {
   }
 
   def maybe(action: Action) = {
-    //TODO: compute choice for "maybe" -Rui
+    // compute choice for "maybe" -Rui
     val choice: Boolean = MBT.rng.nextFloat(true) < MBT.maybeProbability
-    //TODO: record choice for "maybe" -Rui
+    // record choice for "maybe" -Rui
     val maybeChoice = MaybeChoice(choice)
     MBT.rng.recordChoice(maybeChoice)
 
@@ -329,7 +329,7 @@ object MBT {
       action.transfunc()
     }
   }
-  //TODO: all maybeBool things need to be deleted -Rui
+  // all maybeBool things need to be deleted -Rui
   def maybeBool(pred: () => Boolean) = {
     if (MBT.rng.nextFloat(true) < MBT.maybeProbability) {
       pred()
@@ -354,7 +354,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
   var isObserver = false
   var joining: MBT = null
   val tracedFields = new TracedFields(getTracedFields, model)
-  val mIdx = MBT.launchedModels.count(_.className.equals(className)) // TODO: mIdx gives the ID of the model -Rui
+  val mIdx = MBT.launchedModels.count(_.className.equals(className)) // mIdx gives the ID of the model -Rui
 
   /* isChild is true when coverage information of initial instance is
    * to be re-used; this is the case when a child is launched, but also
@@ -430,7 +430,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
       TransitionCoverage.reuseCoverageInfo(this, master, className)
     } else {
       Modbat.firstInstance.put(className, this)
-      // TODO: Add an assertion to check - RUI
+      // Add an assertion to check correctness- Rui
       assert(Modbat.firstInstance(className) == this)
       init(false)
       regSynthTrans(false)
@@ -617,7 +617,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
         }
       }
     }
-    //TODO: set the transition ID for the new transition -RUI
+    // set the transition ID for the new transition -RUI
     tr.idx = transitions.size
     transitions += tr
 
@@ -803,7 +803,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
     Log.fine(
       "Precondition violated, backtracking to " +
         successor.origin + ".")
-    (Backtrack, new RecordedTransition(this, successor)) //TODO: return the RecordedTransition when backtracking - Rui
+    (Backtrack, new RecordedTransition(this, successor)) // return the RecordedTransition when backtracking - Rui
   }
 
   /* returns result of transition function and next state (if available) */

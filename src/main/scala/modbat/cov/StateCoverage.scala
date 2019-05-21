@@ -1,12 +1,10 @@
 package modbat.cov
 
-import modbat.log.Log
 import modbat.dsl.State
 
 object StateCoverage {
   def cover(s: State) {
-    assert (s.coverage != null,
-	    { "No coverage object for state " + s.toString })
+    assert(s.coverage != null, { "No coverage object for state " + s.toString })
     s.coverage.cover
   }
 }

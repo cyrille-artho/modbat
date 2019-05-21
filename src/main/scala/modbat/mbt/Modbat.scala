@@ -50,10 +50,10 @@ object Modbat {
   val testFailures =
     new HashMap[(TransitionResult, String), ListBuffer[Long]]()
 
-  // TODO: The trie for putting executed transtions paths -Rui
+  // The trie to record sequences of executed transitions (execution paths) -Rui
   var trie = new Trie()
 
-  // TODO: Listbuffer to store a tuple: <ModelName, ModelIndex, transition> = [String, Int, Transition] -Rui
+  // Listbuffer to store a tuple: <ModelName, ModelIndex, transition> = [String, Int, Transition] -Rui
   private var pathInfoRecorder = new ListBuffer[PathInfo]
 
   def init {
@@ -133,8 +133,8 @@ object Modbat {
   }
 
   def coverage {
-    // TODO: display path coverage
-    // Display executed transitions paths in graphs
+    // Display path coverage
+    // It means to display execution paths in graphs
     // if the configuration of path coverage is true -Rui
     if (Main.config.dotifyPathCoverage) {
       if (Main.config.logLevel == Log.Debug) trie.display(trie.root)
@@ -153,7 +153,7 @@ object Modbat {
         case (a, (k, v)) => a + k * v
       } / numOfPaths
       Log.info("the average length of paths is: " + averageLength)
-      // the standard deviation for the length of paths, based on the number of transtions
+      // the standard deviation for the length of paths, based on the number of transitions
       val stdDev = math.sqrt(pathLengthResults.foldLeft(0.0) {
         case (a, (k, v)) => a + math.pow(k - averageLength, 2) * v
       } / numOfPaths)
@@ -241,7 +241,7 @@ object Modbat {
 
       // bfsearch a recorded transition in the trie by using a string format,
       // key-level-parentNodeTranID as the input from terminal, where
-      // key is the concatenation of the target transition's ID and quality;
+      // key is the concatenation of the target transition's ID and quality(action outcome);
       // level is the level of the target transition recorded in the trie initialized from 0 level
       // parentNodeTranID is the target transition's parent transition's ID
       var input: String = ""
@@ -525,7 +525,7 @@ object Modbat {
         successorTrans.debugTrace =
           MBT.rng.asInstanceOf[CloneableRandom].debugTrace
 
-        // TODO: get recorded choices - Rui
+        // get recorded choices - Rui
         successorTrans.recordedChoices =
           MBT.rng.asInstanceOf[CloneableRandom].getRecordedChoices()
 
@@ -538,7 +538,7 @@ object Modbat {
         timesVisited += ((RecordedState(model, successorTrans.dest),
                           timesSeen + 1))
       case (Backtrack, backTrackedTrans: RecordedTransition) =>
-        //TODO: get recorded choices for backtracked trans -Rui
+        // get recorded choices for backtracked transition -Rui
         backTrackedTrans.recordedChoices =
           MBT.rng.asInstanceOf[CloneableRandom].getRecordedChoices()
 
@@ -551,7 +551,7 @@ object Modbat {
           MBT.rng.asInstanceOf[CloneableRandom].debugTrace
         failedTrans.recordedChoices = MBT.rng
           .asInstanceOf[CloneableRandom]
-          .getRecordedChoices() //TODO: get recorded choices for failed trans -Rui
+          .getRecordedChoices() // get recorded choices for failed transition -Rui
 
         MBT.rng.asInstanceOf[CloneableRandom].clear
         executedTransitions += failedTrans
@@ -574,8 +574,8 @@ object Modbat {
     var successors = allSuccessors(null)
     var allSucc = successors.clone
     var totalW = totalWeight(successors)
-    var backtracked = false // for backtracked case -Rui
-    var failed = false // for failed case - Rui
+    var backtracked = false // boolean var for backtracked case -Rui
+    var failed = false // boolean var for failed case - Rui
 
     while (!successors.isEmpty && totalW > 0) {
       val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone
@@ -583,7 +583,7 @@ object Modbat {
       if (MBT.rng.nextFloat(false) < Main.config.abortProbability) {
         Log.debug("Aborting...")
 
-        /*        // debug code:
+        /* // debug code:
         Log.debug("path info recorder size:" + pathInfoRecorder.size)
         for (p <- pathInfoRecorder) {
           Log.debug("************ pathInfo ************")
@@ -620,15 +620,15 @@ object Modbat {
           failed = false
 
           // debug code:
-          /*          if (result._2.nextState != null) {
+          /* if (result._2.nextState != null) {
             Log.debug(
               "---print debug--- ok case, nextSate of transition: " + result._2.nextState.dest
-                .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug
+                .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // print debug
             Log.debug("---print debug--- ok case, Current state of transition when nextState!=null: " + result._2.transition.dest
-              .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug
+              .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // print debug
           } else
             Log.debug("---print debug--- ok case, Current state of transition when nextState is null: " + result._2.transition.dest
-              .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug*/
+              .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // print debug*/
 
           val succ = new ArrayBuffer[(MBT, Transition)]()
           addSuccessors(model, succ, true)
@@ -641,8 +641,7 @@ object Modbat {
           }
           if (otherThreadFailed) {
             // debug code:
-            Log.debug(
-              "--- print debug --- something is wrong here: the first otherThreadFailed in ok case")
+            //Log.debug("--- print debug --- something is wrong here: the first otherThreadFailed in ok case")
             failed = true
             // store path information -Rui
             storePathInfo(result, successor, backtracked, failed)
@@ -656,15 +655,13 @@ object Modbat {
           val observerResult = updateObservers
           if (TransitionResult.isErr(observerResult)) {
             // debug code:
-            Log.debug(
-              "--- print debug --- something is wrong here: err of the observerResult in ok case")
+            //Log.debug("--- print debug --- something is wrong here: err of the observerResult in ok case")
             return (observerResult, result._2)
           }
           if (otherThreadFailed) {
-            // TODO: here cause the failed cases for zookeeper - RUI
+            // here cause the failed cases for zookeeper - RUI
             // debug code:
-            Log.debug(
-              "--- print debug --- something is wrong here: the second otherThreadFailed in ok case")
+            //Log.debug("--- print debug --- something is wrong here: the second otherThreadFailed in ok case")
             failed = true
             // store path information -Rui
             storePathInfo(result, successor, backtracked, failed)
@@ -681,12 +678,12 @@ object Modbat {
           if (result._2.nextState != null) {
             Log.debug(
               "---print debug--- nextSate of transition when backtracking: " + result._2.nextState.dest
-                .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug
+                .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // print debug
             Log.debug("---print debug--- Current state of transition when nextState!=null & backtracking: " + result._2.transition.dest
-              .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug
+              .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // print debug
           } else
             Log.debug("---print debug--- Current state of transition when nextState is null & when backtracking: " + result._2.transition.dest
-              .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug*/
+              .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // print debug*/
 
           successors = successors filterNot (_ == successor)
         }
@@ -697,12 +694,12 @@ object Modbat {
           if (result._2.nextState != null) {
             Log.debug(
               "---print debug--- fail case, nextSate of transition: " + result._2.nextState.dest
-                .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug
+                .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // print debug
             Log.debug("---print debug--- fail case, Current state of transition when nextState!=null: " + result._2.transition.dest
-              .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug
+              .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // print debug
           } else
             Log.debug("---print debug--- fail case, Current state of transition when nextState is null: " + result._2.transition.dest
-              .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // todo print debug*/
+              .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // print debug*/
 
           Log.debug("an error occurs")
           // store path information -Rui
@@ -746,7 +743,7 @@ object Modbat {
     // in case a newly constructed model was never launched
     return (Ok(), null)
   }
-
+  // Store path information
   private def storePathInfo(result: (TransitionResult, RecordedTransition),
                             successor: (MBT, Transition),
                             backtracked: Boolean,
@@ -759,7 +756,6 @@ object Modbat {
     if (result._2.recordedChoices.nonEmpty)
       trans.recordedChoices = result._2.recordedChoices
 
-    // Store path information -Rui
     // Store path information including the model name,
     // model ID, executed transition and transition quality for path coverage,
     // if the configuration of path coverage is true. -Rui
@@ -821,8 +817,8 @@ object Modbat {
     for (p <- pathInfoRecorder)
       Log.debug(
         "Recorded information for path coverage: " + p.toString + ", transID:" + p.transition.idx + ", nextif:" + p.nextStateNextIf)
-    // Put information in pathInfoRecoder to the trie -Rui
-    // Insert all the information of the current test into a trie for path coverage,
+    // Put information in pathInfoRecoder to the trie by
+    // inserting all the information of the current test into a trie for path coverage,
     // if the configuration of path coverage is true. - Rui
     if (Main.config.dotifyPathCoverage) trie.insert(pathInfoRecorder)
   }

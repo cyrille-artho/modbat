@@ -10,6 +10,7 @@ import util.control.Breaks._
   *
   * @param trie The trie that has path information stored
   * @param typeName The type of the graph is state graph
+  * @param graphInitNode The name of the initial node in the graph (only used for the generated file name)
   */
 class PathInStateGraph(root: TrieNode,
                        val typeName: String,
@@ -48,7 +49,7 @@ class PathInStateGraph(root: TrieNode,
     display(root, 0, nodeRecorder)
 
     out.println("}")
-
+// debug code:
 //    Log.info(
 //      "the total number of choice nodes in state-based graph: " + choiceNodeCounter)
 //    Log.info(

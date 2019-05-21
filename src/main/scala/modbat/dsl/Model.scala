@@ -81,16 +81,16 @@ abstract trait Model {
 
   def choose(min: Int, max: Int) = {
     val choice = MBT.choose(min, max)
-    val numChoice = NumChoice(choice) //TODO: create a number choice -Rui
-    MBT.rng.recordChoice(numChoice) //TODO: record number choice -Rui
+    val numChoice = NumChoice(choice) // create a number choice -Rui
+    MBT.rng.recordChoice(numChoice) // record number choice -Rui
 
     choice
   }
 
   def choose() = {
     val choice = (MBT.choose(0, 2) == 0)
-    val boolChoice = BoolChoice(choice) //TODO: create a boolean choice -Rui
-    MBT.rng.recordChoice(boolChoice) //TODO: record boolean choice -Rui
+    val boolChoice = BoolChoice(choice) // create a boolean choice -Rui
+    MBT.rng.recordChoice(boolChoice) // record boolean choice -Rui
 
     choice
   }
@@ -111,8 +111,8 @@ abstract trait Model {
   type AnyFunc = () => Any
   def choose(actions: AnyFunc*): Any = {
     val choice = MBT.rng.nextFunc(actions.toArray)
-    val funcChoice = FuncChoice(choice) //TODO: create a func choice -Rui
-    MBT.rng.recordChoice(funcChoice) //TODO: record func choice - Rui
+    val funcChoice = FuncChoice(choice) // create a func choice -Rui
+    MBT.rng.recordChoice(funcChoice) // record func choice - Rui
 
     choice()
   }

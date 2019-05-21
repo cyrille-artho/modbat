@@ -8,18 +8,18 @@ import modbat.trace.RecordedChoice
 
 import scala.collection.mutable.{HashMap, ListBuffer, Map}
 
-/** Trie stores the path information for the path coverage. */
+/** Trie stores sequences of transitions (execution paths) for the path coverage. */
 class Trie {
   val root: TrieNode = TrieNode()
-  //var pathLengthRecorder: Map[Int, Int] = Map[Int, Int]()
 
-  /** Insert recorded path information into trie
+  /** Insert stores each executed path into the trie, and
+    * each trie node stores a transition
     *
-    *  @param pathInfo The recorded path information in a listBuffer
+    *  @param pathInfo The recorded path (a sequence of transitions) in a listBuffer
     */
   def insert(pathInfo: ListBuffer[PathInfo]): Unit = {
 
-    // if the the pathInfo buffer is empty, then return
+    // If the the pathInfo buffer is empty, then return
     if (pathInfo.isEmpty) return
 
     var currentNode: TrieNode = root
@@ -27,23 +27,25 @@ class Trie {
     for (p <- pathInfo) {
 
       // Create a nodeKey and check if the node exist.
-      // This key combines the transition ID and transition's quality
+      // This key combines the transition ID and transition's quality (which is the action outcome in the paper)
       val nodeKey
         : String = p.transition.idx.toString + p.transitionQuality.toString
 
       var childNode: TrieNode =
         currentNode.children.getOrElse(nodeKey, null)
 
-      // Check if the new transition is a self loop and repeated in the path.
+      // Check if the new transition is a self loop and repeated in the path (self-transition).
       if (currentNode.currentTransition != null && currentNode.currentTransition.idx == p.transition.idx
           && currentNode.transitionInfo.transitionQuality == p.transitionQuality) {
 
-        // Only update the counter for this current repeatedly executed same transition of current test case
+        // Only update the counter for this repeatedly executed transition of current test case
         currentNode.transExecutedCounter += 1
 
       } else if (childNode == null) { // new childNode situation
 
-        // Update same repetition times happening for this transition during the whole test
+        // Update same repetition times happening for this transition during the whole test.
+        // It means to update transition repetition counter (trc) and
+        // and transition path counter (tpc) mentioned in the paper
         updateTransSameRepetitionTimes(currentNode)
 
         // Record choices into map
@@ -55,10 +57,10 @@ class Trie {
         // Creat a new node
         childNode = TrieNode()
 
-        // Store path information and choices into the new child node
+        // Store executed transition from path information and its choices into the new child node
         storePathInforIntoChildNode(childNode, p, choicesMap)
 
-        // Create a nodeKey for linking to the child node
+        // Create a nodeKey to link the child node
         val nodeKey
           : String = p.transition.idx.toString + p.transitionQuality.toString
 
@@ -68,12 +70,14 @@ class Trie {
         currentNode = childNode // next node
       } else if (childNode != null && childNode.transitionInfo.transitionID == p.transition.idx) {
         // existing childNode situation
-        // Update same repetition times happening for this transition during the whole test
+        // Update same repetition times happening for this transition during the whole test.
+        // It means to update transition repetition counter (trc) and
+        // and transition path counter (tpc) mentioned in the paper
         updateTransSameRepetitionTimes(currentNode)
 
         // Update the counter for this executed transition of current test case
         childNode.transExecutedCounter += 1
-        // Update the transition counter in transition info stored
+        // Update the transition counter stored in transition info
         childNode.transitionInfo.transCounter += 1
         // Update choices in map
         if (p.transition.recordedChoices != null && p.transition.recordedChoices.nonEmpty) {
@@ -96,12 +100,15 @@ class Trie {
       }*/
     }
     // Update same repetition times happening for this transition during the whole test
+    // It means to update transition repetition counter (trc) and
+    // and transition path counter (tpc) mentioned in the paper
     updateTransSameRepetitionTimes(currentNode)
     //if (currentNode.children.nonEmpty) Log.debug("not a leaf")
     // Set this node to leaf
     if (currentNode.children.isEmpty) currentNode.isLeaf = true
   }
 
+  // Store an executed transition into a child node
   private def storePathInforIntoChildNode(
       childNode: TrieNode,
       p: PathInfo,
@@ -123,8 +130,11 @@ class Trie {
     )
   }
 
+  // Update same repetition times happening for this transition during the whole test
+  // It means to update transition repetition counter (trc) and
+  // and transition path counter (tpc) mentioned in the paper.
+  // trc is the key of the map and tpc is the value of the map
   private def updateTransSameRepetitionTimes(currentNode: TrieNode): Unit = {
-    // Update same repetition times happening for this transition during the whole test
     if (currentNode.transExecutedCounter != 0) {
       if (currentNode.transExecutedRecords.contains(
             currentNode.transExecutedCounter))
@@ -167,6 +177,7 @@ class Trie {
       if (node.isLeaf) ", leaf:end" else ""
   }
 
+  // User-defined search function
   def bfSearchT(root: TrieNode,
                 key: String,
                 targetLevel: Int,
@@ -200,7 +211,7 @@ class Trie {
   /** Compute the number of paths
     *
     * @param root The TrieNode starting from root node
-    * @return Returns the number of paths
+    * @return Returns the number of linearly independent paths
     */
   def numOfPaths(root: TrieNode): Int = {
     var leave = 0
@@ -213,7 +224,7 @@ class Trie {
     }
     leave
   }
-  //  compute the longest path based on the number of transitions
+  //  Compute the longest path based on the number of transitions
   def longestPath(root: TrieNode, level: Int = 0): Int = {
     var longest = level
     if (root.isLeaf) return level
@@ -228,7 +239,7 @@ class Trie {
 
     longest
   }
-
+  //  Compute the shortest path based on the number of transitions
   def shortestPath(root: TrieNode, level: Int = 0, pathLength: Int = 0): Int = {
     var shortest = pathLength
     if (root.isLeaf) {
@@ -267,7 +278,7 @@ class Trie {
   }
 }
 
-/** TrieNode stores each current transition's information
+/** TrieNode stores each current transition
   * and next node in the trie.
   */
 case class TrieNode() {
@@ -279,18 +290,20 @@ case class TrieNode() {
   // The key of the map represents how many times a transition can be repeatedly
   // executed continuously for the current test case, and key = 1 means no repetition happens.
   // The value of the map represents how many times the same key (same repetition times)
-  // is happened for this transition during the whole test, and if value is 1, then it means
-  //  there is no same repetition times happening for this transition during the whole test
+  // happens for this transition during the whole test, and if value is 1, then it means
+  // there is no same repetition times happening for this transition during the whole test
+  // In the paper, this means that the key is transition repetition counter (trc) and
+  // and value is transition path counter (tpc).
   var transExecutedRecords: Map[Int, Int] = Map[Int, Int]()
-  // This counter counter how many times for this current transition occurs during the current test case
+  // This counter counts the number of times for this current transition to occur during the current test case
   var transExecutedCounter: Int = 0
 
   var currentTransition
-    : Transition = null // previousTransition stores the transition leading to the next state
+    : Transition = null // currentTransition stores the transition in this trie node
   var modelInfo
     : ModelInfo = _ // modelInfo stores the name of the model and its id
   var transitionInfo
-    : TransitionInfo = _ // transitionInfo store the transition as a string, its id, and the times that transition are executed
+    : TransitionInfo = _ // transitionInfo store the transition as a string
 }
 
 /** ModelInfo stores a model's information.
@@ -312,7 +325,8 @@ case class ModelInfo(modelName: String, modelID: Int) {
   * @param transDest The target state of the transition
   * @param transitionID The transition's ID
   * @param transCounter The number of time that transition is executed in a path
-  * @param transitionQuality The quality of the transition, which could be OK, Backtrack, or Fail
+  * @param transitionQuality The quality of the transition, which could be OK, Backtrack, or Fail (action outcomes)
+  * @param nextStateNextIf The information for the next state and the boolean result of nextif
   * @param transitionChoicesMap The choices of each transition for each tests stored, and a counter to counter same choices
   */
 case class TransitionInfo(

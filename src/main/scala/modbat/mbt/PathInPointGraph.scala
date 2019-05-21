@@ -13,6 +13,7 @@ import modbat.log.Log
   *
   * @param trie The trie that has path information stored
   * @param typeName The type of the graph is point graph
+  * @param graphInitNode The name of the initial node in the graph (only used for the generated file name)
   */
 class PathInPointGraph(root: TrieNode,
                        val typeName: String,
@@ -62,7 +63,7 @@ class PathInPointGraph(root: TrieNode,
     val (numNodeCount, _) =
       display(root, graphRootNodeNumber, nodeRecordStack)
     out.println("}")
-
+// debug code:
 //    Log.info(
 //      "the total number of nodes in path-based graph:" + (numNodeCount + 1))
 //    Log.info(
