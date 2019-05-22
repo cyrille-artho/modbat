@@ -430,7 +430,7 @@ object Modbat {
     Log.debug("--- Exploring model ---")
     timesVisited.clear
     executedTransitions.clear
-    pathInfoRecorder.clear() // TODO: clear path information - Rui
+    pathInfoRecorder.clear // clear path information - Rui
     timesVisited += ((RecordedState(model, model.initialState), 1))
     for (f <- model.tracedFields.fields) {
       val value = FieldUtil.getValue(f, model.model)
