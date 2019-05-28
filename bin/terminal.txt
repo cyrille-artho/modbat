@@ -1,0 +1,2431 @@
+scala \
+-cp \
+build/modbat.jar \
+modbat.config.ConfigTest \
+-h \
+> log/modbat.config.ConfigTest/-h.log \
+2> log/modbat.config.ConfigTest/-h.err
+
+scala \
+-cp \
+build/modbat.jar \
+modbat.config.ConfigTest \
+-s \
+> log/modbat.config.ConfigTest/-s.log \
+2> log/modbat.config.ConfigTest/-s.err
+
+scala \
+build/config.jar \
+> log/config/.log \
+2> log/config/.err
+
+scala \
+build/config.jar \
+-s \
+> log/config/-s.log \
+2> log/config/-s.err
+
+CLASSPATH=foo \
+scala \
+build/config.jar \
+-s \
+cp_1 \
+> log/config/cp_1/-s.log \
+2> log/config/cp_1/-s.err
+
+scala \
+build/config.jar \
+-s \
+cp_2 \
+> log/config/cp_2/-s.log \
+2> log/config/cp_2/-s.err
+
+CLASSPATH=foo \
+scala \
+build/config.jar \
+--classpath=bar \
+-s \
+> log/config/--classpath=bar-s.log \
+2> log/config/--classpath=bar-s.err
+
+CLASSPATH=foo \
+scala \
+build/config.jar \
+-classp=baz \
+-s \
+> log/config/-classp=baz-s.log \
+2> log/config/-classp=baz-s.err
+
+scala \
+build/config.jar \
+-h \
+> log/config/-h.log \
+2> log/config/-h.err
+
+scala \
+build/config.jar \
+-v \
+> log/config/-v.log \
+2> log/config/-v.err
+
+scala \
+build/config.jar \
+--version \
+> log/config/--version.log \
+2> log/config/--version.err
+
+scala \
+build/config.jar \
+--show \
+> log/config/--show.log \
+2> log/config/--show.err
+
+scala \
+build/config.jar \
+--help \
+> log/config/--help.log \
+2> log/config/--help.err
+
+scala \
+build/config.jar \
+-x \
+> log/config/-x.log \
+2> log/config/-x.err
+
+scala \
+build/config.jar \
+--x \
+> log/config/--x.log \
+2> log/config/--x.err
+
+scala \
+build/config.jar \
+-s \
+--mode=exec \
+> log/config/-s--mode=exec.log \
+2> log/config/-s--mode=exec.err
+
+scala \
+build/config.jar \
+-s \
+--mode=exec \
+-s \
+> log/config/-s--mode=exec-s.log \
+2> log/config/-s--mode=exec-s.err
+
+scala \
+build/config.jar \
+-s \
+--mode=quux \
+-s \
+> log/config/-s--mode=quux-s.log \
+2> log/config/-s--mode=quux-s.err
+
+scala \
+build/config.jar \
+a \
+b \
+c \
+> log/config/a/bc.log \
+2> log/config/a/bc.err
+
+scala \
+build/config.jar \
+-- \
+a \
+b \
+c \
+> log/config/a/--bc.log \
+2> log/config/a/--bc.err
+
+scala \
+build/config.jar \
+-- \
+-h \
+a \
+b \
+c \
+> log/config/a/---hbc.log \
+2> log/config/a/---hbc.err
+
+scala \
+build/config.jar \
+-- \
+--help \
+a \
+b \
+c \
+> log/config/a/----helpbc.log \
+2> log/config/a/----helpbc.err
+
+scala \
+build/config.jar \
+--redirectOut \
+-s \
+> log/config/--redirectOut-s.log \
+2> log/config/--redirectOut-s.err
+
+scala \
+build/config.jar \
+--redirectOut=true \
+-s \
+> log/config/--redirectOut=true-s.log \
+2> log/config/--redirectOut=true-s.err
+
+scala \
+build/config.jar \
+--redirectOut=false \
+-s \
+> log/config/--redirectOut=false-s.log \
+2> log/config/--redirectOut=false-s.err
+
+scala \
+build/config.jar \
+--redirectOut=xx \
+-s \
+> log/config/--redirectOut=xx-s.log \
+2> log/config/--redirectOut=xx-s.err
+
+scala \
+build/config.jar \
+--no-redirect-out \
+--no-some-flag \
+> log/config/--no-redirect-out--no-some-flag.log \
+2> log/config/--no-redirect-out--no-some-flag.err
+
+scala \
+build/config.jar \
+--no-some-flag \
+--no-redirect-out \
+> log/config/--no-some-flag--no-redirect-out.log \
+2> log/config/--no-some-flag--no-redirect-out.err
+
+scala \
+build/config.jar \
+--no-redirect-out \
+--some-flag \
+> log/config/--no-redirect-out--some-flag.log \
+2> log/config/--no-redirect-out--some-flag.err
+
+scala \
+build/config.jar \
+--odd-prime \
+> log/config/--odd-prime.log \
+2> log/config/--odd-prime.err
+
+scala \
+build/config.jar \
+--no-odd-prime \
+> log/config/--no-odd-prime.log \
+2> log/config/--no-odd-prime.err
+
+scala \
+build/config.jar \
+--odd-prime \
+--small-prime=three \
+> log/config/--odd-prime--small-prime=three.log \
+2> log/config/--odd-prime--small-prime=three.err
+
+scala \
+build/config.jar \
+--even-prime \
+> log/config/--even-prime.log \
+2> log/config/--even-prime.err
+
+scala \
+build/config.jar \
+--no-even-prime \
+> log/config/--no-even-prime.log \
+2> log/config/--no-even-prime.err
+
+scala \
+build/config.jar \
+--even-prime \
+--small-prime=three \
+> log/config/--even-prime--small-prime=three.log \
+2> log/config/--even-prime--small-prime=three.err
+
+scala \
+build/config.jar \
+--no-redirectOut \
+-s \
+> log/config/--no-redirectOut-s.log \
+2> log/config/--no-redirectOut-s.err
+
+scala \
+build/config.jar \
+--no-redirectOut=true \
+-s \
+> log/config/--no-redirectOut=true-s.log \
+2> log/config/--no-redirectOut=true-s.err
+
+scala \
+build/config.jar \
+--no-redirectOut=false \
+-s \
+> log/config/--no-redirectOut=false-s.log \
+2> log/config/--no-redirectOut=false-s.err
+
+scala \
+build/config.jar \
+--no-redirectOut=xx \
+-s \
+> log/config/--no-redirectOut=xx-s.log \
+2> log/config/--no-redirectOut=xx-s.err
+
+scala \
+build/config.jar \
+--no-mode \
+> log/config/--no-mode.log \
+2> log/config/--no-mode.err
+
+scala \
+build/config.jar \
+--nRuns \
+> log/config/--nRuns.log \
+2> log/config/--nRuns.err
+
+scala \
+build/config.jar \
+--nRuns= \
+> log/config/--nRuns=.log \
+2> log/config/--nRuns=.err
+
+scala \
+build/config.jar \
+--nRuns=0 \
+> log/config/--nRuns=0.log \
+2> log/config/--nRuns=0.err
+
+scala \
+build/config.jar \
+--nRuns=a \
+> log/config/--nRuns=a.log \
+2> log/config/--nRuns=a.err
+
+scala \
+build/config.jar \
+--nRuns=1 \
+-s \
+> log/config/--nRuns=1-s.log \
+2> log/config/--nRuns=1-s.err
+
+scala \
+build/config.jar \
+--nRuns=999999 \
+-s \
+> log/config/--nRuns=999999-s.log \
+2> log/config/--nRuns=999999-s.err
+
+scala \
+build/config.jar \
+--nRuns=999999999999 \
+> log/config/--nRuns=999999999999.log \
+2> log/config/--nRuns=999999999999.err
+
+scala \
+build/config.jar \
+-s \
+--small-prime=three \
+-s \
+> log/config/-s--small-prime=three-s.log \
+2> log/config/-s--small-prime=three-s.err
+
+scala \
+build/config.jar \
+-s \
+--small-prime=one \
+> log/config/-s--small-prime=one.log \
+2> log/config/-s--small-prime=one.err
+
+scala \
+build/config.jar \
+--abortProbability=0.5 \
+-s \
+> log/config/--abortProbability=0.5-s.log \
+2> log/config/--abortProbability=0.5-s.err
+
+scala \
+build/config.jar \
+--abortProbability=-0.5 \
+-s \
+> log/config/--abortProbability=-0.5-s.log \
+2> log/config/--abortProbability=-0.5-s.err
+
+scala \
+build/config.jar \
+--abortProbability=1.5 \
+-s \
+> log/config/--abortProbability=1.5-s.log \
+2> log/config/--abortProbability=1.5-s.err
+
+scala \
+build/config.jar \
+-f=x \
+-s \
+> log/config/-f=x-s.log \
+2> log/config/-f=x-s.err
+
+scala \
+build/config.jar \
+-g=x \
+-s \
+> log/config/-g=x-s.log \
+2> log/config/-g=x-s.err
+
+scala \
+build/config.jar \
+-f= \
+> log/config/-f=.log \
+2> log/config/-f=.err
+
+scala \
+build/config.jar \
+-f \
+> log/config/-f.log \
+2> log/config/-f.err
+
+scala \
+build/config.jar \
+--modelClass= \
+> log/config/--modelClass=.log \
+2> log/config/--modelClass=.err
+
+scala \
+build/config.jar \
+--modelClass \
+> log/config/--modelClass.log \
+2> log/config/--modelClass.err
+
+scala \
+build/config.jar \
+-n-runs=2 \
+> log/config/-n-runs=2.log \
+2> log/config/-n-runs=2.err
+
+scala \
+build/config.jar \
+--n-runs=2 \
+-s \
+> log/config/--n-runs=2-s.log \
+2> log/config/--n-runs=2-s.err
+
+scala \
+build/config.jar \
+-s=10c1be9b302682f3 \
+-s \
+> log/config/-s=10c1be9b302682f3-s.log \
+2> log/config/-s=10c1be9b302682f3-s.err
+
+scala \
+build/config.jar \
+-s=10c1be9b302682f30 \
+> log/config/-s=10c1be9b302682f30.log \
+2> log/config/-s=10c1be9b302682f30.err
+
+scala \
+build/config.jar \
+-s=ffffffffffffffff \
+-s \
+> log/config/-s=ffffffffffffffff-s.log \
+2> log/config/-s=ffffffffffffffff-s.err
+
+scala \
+build/config.jar \
+-n=ffffffff \
+-s \
+> log/config/-n=ffffffff-s.log \
+2> log/config/-n=ffffffff-s.err
+
+scala \
+build/config.jar \
+--Quux \
+> log/config/--Quux.log \
+2> log/config/--Quux.err
+
+scala \
+build/config.jar \
+--baz-Quux \
+> log/config/--baz-Quux.log \
+2> log/config/--baz-Quux.err
+
+scala \
+build/modbat.jar \
+--model-class=x \
+> log/modbat/--model-class=x.log \
+2> log/modbat/--model-class=x.err
+
+scala \
+build/modbat.jar \
+a \
+b \
+c \
+> log/modbat/a/bc.log \
+2> log/modbat/a/bc.err
+
+scala \
+build/modbat.jar \
+-n=1 \
+x \
+b \
+c \
+> log/modbat/x/-n=1bc.log \
+2> log/modbat/x/-n=1bc.err
+
+scala \
+build/modbat.jar \
+x \
+y \
+-n=1 \
+> log/modbat/x/y-n=1.log \
+2> log/modbat/x/y-n=1.err
+
+scala \
+build/modbat.jar \
+-n=2 \
+-- \
+-n=1 \
+> log/modbat/-n=2---n=1.log \
+2> log/modbat/-n=2---n=1.err
+
+scala \
+build/modbat.jar \
+a \
+-n=2 \
+-- \
+-n=1 \
+> log/modbat/a/-n=2---n=1.log \
+2> log/modbat/a/-n=2---n=1.err
+
+scala \
+build/modbat.jar \
+-s=0 \
+> log/modbat/-s=0.log \
+2> log/modbat/-s=0.err
+
+scala \
+build/modbat.jar \
+--log-level=fine \
+> log/modbat/--log-level=fine.log \
+2> log/modbat/--log-level=fine.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+--no-redirect-out \
+modbat.examples.SimpleCounter \
+> log/modbat/modbat.examples.SimpleCounter/-s=1--no-redirect-out.log \
+2> log/modbat/modbat.examples.SimpleCounter/-s=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=5 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+--no-init \
+--no-shutdown \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=5-s=1--no-redirect-out--log-level=fine--no-init--no-shutdown.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=5-s=1--no-redirect-out--log-level=fine--no-init--no-shutdown.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=10 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+--no-init \
+--no-shutdown \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=10-s=1--no-redirect-out--log-level=fine--no-init--no-shutdown.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=10-s=1--no-redirect-out--log-level=fine--no-init--no-shutdown.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=20 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+--no-init \
+--no-shutdown \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=20-s=1--no-redirect-out--log-level=fine--no-init--no-shutdown.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=20-s=1--no-redirect-out--log-level=fine--no-init--no-shutdown.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=50 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+--no-init \
+--no-shutdown \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=50-s=1--no-redirect-out--log-level=fine--no-init--no-shutdown.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=50-s=1--no-redirect-out--log-level=fine--no-init--no-shutdown.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=10 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=10-s=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=10-s=1--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=20 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=20-s=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=20-s=1--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=50 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=50-s=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=50-s=1--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=100 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=100-s=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=100-s=1--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=200 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=200-s=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=200-s=1--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=500 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=500-s=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=500-s=1--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=1000 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=1000-s=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=1000-s=1--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+--mode=dot \
+--auto-labels \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/--mode=dot--auto-labels.log \
+2> log/modbat/modbat.examples.NioSocket1/--mode=dot--auto-labels.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+--mode=dot \
+--auto-labels \
+--dot-dir=dot_test \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/--mode=dot--auto-labels--dot-dir=dot_test.log \
+2> log/modbat/modbat.examples.NioSocket1/--mode=dot--auto-labels--dot-dir=dot_test.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+--mode=dot \
+--auto-labels \
+--dot-dir=dir_does_not_exit \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/--mode=dot--auto-labels--dot-dir=dir_does_not_exit.log \
+2> log/modbat/modbat.examples.NioSocket1/--mode=dot--auto-labels--dot-dir=dir_does_not_exit.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=10 \
+-s=1 \
+--dotify-coverage \
+--auto-labels \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=10-s=1--dotify-coverage--auto-labels.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=10-s=1--dotify-coverage--auto-labels.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=100 \
+-s=1 \
+--dotify-coverage \
+--auto-labels \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=100-s=1--dotify-coverage--auto-labels.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=100-s=1--dotify-coverage--auto-labels.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=500 \
+-s=1 \
+--dotify-coverage \
+--auto-labels \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=500-s=1--dotify-coverage--auto-labels.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=500-s=1--dotify-coverage--auto-labels.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=500 \
+-s=1 \
+--maybe-probability=0 \
+--dotify-coverage \
+--auto-labels \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=500-s=1--maybe-probability=0--dotify-coverage--auto-labels.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=500-s=1--maybe-probability=0--dotify-coverage--auto-labels.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=1 \
+-s=61a342c60d18ff4d \
+--no-redirect-out \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=1-s=61a342c60d18ff4d--no-redirect-out.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=1-s=61a342c60d18ff4d--no-redirect-out.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=1000 \
+-s=1 \
+--no-redirect-out \
+--stop-on-failure \
+modbat.examples.NioSocket1 \
+> log/modbat/modbat.examples.NioSocket1/-n=1000-s=1--no-redirect-out--stop-on-failure.log \
+2> log/modbat/modbat.examples.NioSocket1/-n=1000-s=1--no-redirect-out--stop-on-failure.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=5 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.examples.JavaNioServerSocket \
+> log/modbat/modbat.examples.JavaNioServerSocket/-n=5-s=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.examples.JavaNioServerSocket/-n=5-s=1--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=10 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.examples.JavaNioServerSocket \
+> log/modbat/modbat.examples.JavaNioServerSocket/-n=10-s=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.examples.JavaNioServerSocket/-n=10-s=1--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=20 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.examples.JavaNioServerSocket \
+> log/modbat/modbat.examples.JavaNioServerSocket/-n=20-s=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.examples.JavaNioServerSocket/-n=20-s=1--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=50 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.examples.JavaNioServerSocket \
+> log/modbat/modbat.examples.JavaNioServerSocket/-n=50-s=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.examples.JavaNioServerSocket/-n=50-s=1--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=100 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.examples.JavaNioServerSocket \
+> log/modbat/modbat.examples.JavaNioServerSocket/-n=100-s=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.examples.JavaNioServerSocket/-n=100-s=1--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=200 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.examples.JavaNioServerSocket \
+> log/modbat/modbat.examples.JavaNioServerSocket/-n=200-s=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.examples.JavaNioServerSocket/-n=200-s=1--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=500 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.examples.JavaNioServerSocket \
+> log/modbat/modbat.examples.JavaNioServerSocket/-n=500-s=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.examples.JavaNioServerSocket/-n=500-s=1--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=1000 \
+-s=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.examples.JavaNioServerSocket \
+> log/modbat/modbat.examples.JavaNioServerSocket/-n=1000-s=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.examples.JavaNioServerSocket/-n=1000-s=1--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+--mode=dot \
+--auto-labels \
+modbat.examples.JavaNioServerSocket \
+> log/modbat/modbat.examples.JavaNioServerSocket/--mode=dot--auto-labels.log \
+2> log/modbat/modbat.examples.JavaNioServerSocket/--mode=dot--auto-labels.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+--mode=dot \
+--log-level=debug \
+--auto-labels \
+modbat.examples.JavaNioServerSocket \
+> log/modbat/modbat.examples.JavaNioServerSocket/--mode=dot--log-level=debug--auto-labels.log \
+2> log/modbat/modbat.examples.JavaNioServerSocket/--mode=dot--log-level=debug--auto-labels.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+--mode=dot \
+modbat.examples.JavaNioServerSocket3 \
+> log/modbat/modbat.examples.JavaNioServerSocket3/--mode=dot.log \
+2> log/modbat/modbat.examples.JavaNioServerSocket3/--mode=dot.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+--mode=dot \
+--show-choices \
+modbat.examples.JavaNioServerSocket3 \
+> log/modbat/modbat.examples.JavaNioServerSocket3/--mode=dot--show-choices.log \
+2> log/modbat/modbat.examples.JavaNioServerSocket3/--mode=dot--show-choices.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=10 \
+-s=1 \
+--dotify-coverage \
+--auto-labels \
+modbat.examples.JavaNioServerSocket \
+> log/modbat/modbat.examples.JavaNioServerSocket/-n=10-s=1--dotify-coverage--auto-labels.log \
+2> log/modbat/modbat.examples.JavaNioServerSocket/-n=10-s=1--dotify-coverage--auto-labels.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=100 \
+-s=1 \
+--dotify-coverage \
+--auto-labels \
+modbat.examples.JavaNioServerSocket \
+> log/modbat/modbat.examples.JavaNioServerSocket/-n=100-s=1--dotify-coverage--auto-labels.log \
+2> log/modbat/modbat.examples.JavaNioServerSocket/-n=100-s=1--dotify-coverage--auto-labels.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=1 \
+-s=321e7808 \
+--no-redirect-out \
+modbat.examples.JavaNioServerSocket \
+> log/modbat/modbat.examples.JavaNioServerSocket/-n=1-s=321e7808--no-redirect-out.log \
+2> log/modbat/modbat.examples.JavaNioServerSocket/-n=1-s=321e7808--no-redirect-out.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=1000 \
+-s=1 \
+--no-redirect-out \
+modbat.examples.JavaNioServerSocket2 \
+> log/modbat/modbat.examples.JavaNioServerSocket2/-n=1000-s=1--no-redirect-out.log \
+2> log/modbat/modbat.examples.JavaNioServerSocket2/-n=1000-s=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=10 \
+-s=1 \
+--no-redirect-out \
+--loop-limit=5 \
+modbat.examples.JavaNioServerSocket3 \
+> log/modbat/modbat.examples.JavaNioServerSocket3/-n=10-s=1--no-redirect-out--loop-limit=5.log \
+2> log/modbat/modbat.examples.JavaNioServerSocket3/-n=10-s=1--no-redirect-out--loop-limit=5.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=100 \
+-s=1 \
+--no-redirect-out \
+--loop-limit=5 \
+modbat.examples.JavaNioServerSocket3 \
+> log/modbat/modbat.examples.JavaNioServerSocket3/-n=100-s=1--no-redirect-out--loop-limit=5.log \
+2> log/modbat/modbat.examples.JavaNioServerSocket3/-n=100-s=1--no-redirect-out--loop-limit=5.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=200 \
+-s=1 \
+--no-redirect-out \
+--loop-limit=5 \
+modbat.examples.JavaNioServerSocket3 \
+> log/modbat/modbat.examples.JavaNioServerSocket3/-n=200-s=1--no-redirect-out--loop-limit=5.log \
+2> log/modbat/modbat.examples.JavaNioServerSocket3/-n=200-s=1--no-redirect-out--loop-limit=5.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=10 \
+-s=1 \
+--no-redirect-out \
+--loop-limit=5 \
+modbat.examples.JavaNioSocket3 \
+> log/modbat/modbat.examples.JavaNioSocket3/-n=10-s=1--no-redirect-out--loop-limit=5.log \
+2> log/modbat/modbat.examples.JavaNioSocket3/-n=10-s=1--no-redirect-out--loop-limit=5.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=100 \
+-s=1 \
+--no-redirect-out \
+--loop-limit=5 \
+modbat.examples.JavaNioSocket3 \
+> log/modbat/modbat.examples.JavaNioSocket3/-n=100-s=1--no-redirect-out--loop-limit=5.log \
+2> log/modbat/modbat.examples.JavaNioSocket3/-n=100-s=1--no-redirect-out--loop-limit=5.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=1000 \
+-s=1 \
+--no-redirect-out \
+--loop-limit=5 \
+modbat.examples.JavaNioSocket3 \
+> log/modbat/modbat.examples.JavaNioSocket3/-n=1000-s=1--no-redirect-out--loop-limit=5.log \
+2> log/modbat/modbat.examples.JavaNioSocket3/-n=1000-s=1--no-redirect-out--loop-limit=5.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=1 \
+-s=c2c2567 \
+--no-redirect-out \
+--loop-limit=5 \
+modbat.examples.JavaNioServerSocket3 \
+> log/modbat/modbat.examples.JavaNioServerSocket3/-n=1-s=c2c2567--no-redirect-out--loop-limit=5.log \
+2> log/modbat/modbat.examples.JavaNioServerSocket3/-n=1-s=c2c2567--no-redirect-out--loop-limit=5.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-n=1000 \
+-s=1 \
+--no-redirect-out \
+--loop-limit=5 \
+modbat.examples.JavaNioServerSocket3 \
+> log/modbat/modbat.examples.JavaNioServerSocket3/-n=1000-s=1--no-redirect-out--loop-limit=5.log \
+2> log/modbat/modbat.examples.JavaNioServerSocket3/-n=1000-s=1--no-redirect-out--loop-limit=5.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1000 \
+modbat.examples.JavaNioSocket \
+> log/modbat/modbat.examples.JavaNioSocket/-s=1-n=1000.log \
+2> log/modbat/modbat.examples.JavaNioSocket/-s=1-n=1000.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=10000 \
+modbat.examples.JavaNioSocket \
+> log/modbat/modbat.examples.JavaNioSocket/-s=1-n=10000.log \
+2> log/modbat/modbat.examples.JavaNioSocket/-s=1-n=10000.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=30 \
+--no-redirect-out \
+--log-level=fine \
+modbat.examples.SimpleModel \
+> log/modbat/modbat.examples.SimpleModel/-s=1-n=30--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.examples.SimpleModel/-s=1-n=30--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-s=49a846e52b813972 \
+-n=1 \
+--no-redirect-out \
+modbat.examples.SimpleModel \
+> log/modbat/modbat.examples.SimpleModel/-s=49a846e52b813972-n=1--no-redirect-out.log \
+2> log/modbat/modbat.examples.SimpleModel/-s=49a846e52b813972-n=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-s=88af43883571af0c \
+-n=1 \
+--no-redirect-out \
+modbat.examples.SimpleModel \
+> log/modbat/modbat.examples.SimpleModel/-s=88af43883571af0c-n=1--no-redirect-out.log \
+2> log/modbat/modbat.examples.SimpleModel/-s=88af43883571af0c-n=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-s=88af43883571af0c \
+-n=1 \
+--no-redirect-out \
+modbat.examples.SimpleModel \
+--print-stack-trace \
+> log/modbat/modbat.examples.SimpleModel/-s=88af43883571af0c-n=1--no-redirect-out--print-stack-trace.log \
+2> log/modbat/modbat.examples.SimpleModel/-s=88af43883571af0c-n=1--no-redirect-out--print-stack-trace.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=30 \
+--no-redirect-out \
+modbat.examples.CounterModel \
+> log/modbat/modbat.examples.CounterModel/-s=1-n=30--no-redirect-out.log \
+2> log/modbat/modbat.examples.CounterModel/-s=1-n=30--no-redirect-out.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+--mode=dot \
+--auto-labels \
+modbat.examples.CounterModel \
+> log/modbat/modbat.examples.CounterModel/--mode=dot--auto-labels.log \
+2> log/modbat/modbat.examples.CounterModel/--mode=dot--auto-labels.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=30 \
+--no-redirect-out \
+modbat.examples.CounterModel2 \
+> log/modbat/modbat.examples.CounterModel2/-s=1-n=30--no-redirect-out.log \
+2> log/modbat/modbat.examples.CounterModel2/-s=1-n=30--no-redirect-out.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+--mode=dot \
+--auto-labels \
+modbat.examples.CounterModel2 \
+> log/modbat/modbat.examples.CounterModel2/--mode=dot--auto-labels.log \
+2> log/modbat/modbat.examples.CounterModel2/--mode=dot--auto-labels.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=10 \
+--no-redirect-out \
+--log-level=fine \
+modbat.test.Redundancy \
+> log/modbat/modbat.test.Redundancy/-s=1-n=10--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.test.Redundancy/-s=1-n=10--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=2e78dcb10b272e5 \
+-n=1 \
+--no-redirect-out \
+modbat.test.Redundancy \
+> log/modbat/modbat.test.Redundancy/-s=2e78dcb10b272e5-n=1--no-redirect-out.log \
+2> log/modbat/modbat.test.Redundancy/-s=2e78dcb10b272e5-n=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+--no-redirect-out \
+modbat.test.EmptyModel \
+> log/modbat/modbat.test.EmptyModel/-s=1--no-redirect-out.log \
+2> log/modbat/modbat.test.EmptyModel/-s=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+--no-redirect-out \
+modbat.test.AbstractCls \
+> log/modbat/modbat.test.AbstractCls/-s=1--no-redirect-out.log \
+2> log/modbat/modbat.test.AbstractCls/-s=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=3 \
+--no-redirect-out \
+--log-level=fine \
+modbat.test.Shortcut \
+> log/modbat/modbat.test.Shortcut/-s=1-n=3--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.test.Shortcut/-s=1-n=3--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+modbat.test.Shortcut \
+> log/modbat/modbat.test.Shortcut/-s=1-n=1--no-redirect-out.log \
+2> log/modbat/modbat.test.Shortcut/-s=1-n=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=5 \
+--no-redirect-out \
+modbat.test.SimpleFileModel \
+> log/modbat/modbat.test.SimpleFileModel/-s=1-n=5--no-redirect-out.log \
+2> log/modbat/modbat.test.SimpleFileModel/-s=1-n=5--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=5 \
+--no-redirect-out \
+modbat.test.PrecondFalse \
+> log/modbat/modbat.test.PrecondFalse/-s=1-n=5--no-redirect-out.log \
+2> log/modbat/modbat.test.PrecondFalse/-s=1-n=5--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=500 \
+modbat.test.FileModel \
+--stop-on-failure \
+> log/modbat/modbat.test.FileModel/-s=1-n=500--stop-on-failure.log \
+2> log/modbat/modbat.test.FileModel/-s=1-n=500--stop-on-failure.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+modbat.test.SingletonTest \
+--no-redirect-out \
+> log/modbat/modbat.test.SingletonTest/-s=1-n=1--no-redirect-out.log \
+2> log/modbat/modbat.test.SingletonTest/-s=1-n=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+modbat.test.MaybeTest \
+--maybe-probability=0.0 \
+--no-redirect-out \
+> log/modbat/modbat.test.MaybeTest/-s=1-n=1--maybe-probability=0.0--no-redirect-out.log \
+2> log/modbat/modbat.test.MaybeTest/-s=1-n=1--maybe-probability=0.0--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+modbat.test.MaybeTest \
+--maybe-probability=1.0 \
+--no-redirect-out \
+> log/modbat/modbat.test.MaybeTest/-s=1-n=1--maybe-probability=1.0--no-redirect-out.log \
+2> log/modbat/modbat.test.MaybeTest/-s=1-n=1--maybe-probability=1.0--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+modbat.test.MaybeElseTest \
+--maybe-probability=0.0 \
+--no-redirect-out \
+> log/modbat/modbat.test.MaybeElseTest/-s=1-n=1--maybe-probability=0.0--no-redirect-out.log \
+2> log/modbat/modbat.test.MaybeElseTest/-s=1-n=1--maybe-probability=0.0--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+modbat.test.MaybeElseTest \
+--maybe-probability=1.0 \
+--no-redirect-out \
+> log/modbat/modbat.test.MaybeElseTest/-s=1-n=1--maybe-probability=1.0--no-redirect-out.log \
+2> log/modbat/modbat.test.MaybeElseTest/-s=1-n=1--maybe-probability=1.0--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+modbat.test.MaybeElseTest2 \
+--maybe-probability=0.0 \
+--no-redirect-out \
+> log/modbat/modbat.test.MaybeElseTest2/-s=1-n=1--maybe-probability=0.0--no-redirect-out.log \
+2> log/modbat/modbat.test.MaybeElseTest2/-s=1-n=1--maybe-probability=0.0--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+modbat.test.MaybeElseTest2 \
+--maybe-probability=1.0 \
+--no-redirect-out \
+> log/modbat/modbat.test.MaybeElseTest2/-s=1-n=1--maybe-probability=1.0--no-redirect-out.log \
+2> log/modbat/modbat.test.MaybeElseTest2/-s=1-n=1--maybe-probability=1.0--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+modbat.test.RequireMaybeTest \
+--no-redirect-out \
+> log/modbat/modbat.test.RequireMaybeTest/-s=1-n=1--no-redirect-out.log \
+2> log/modbat/modbat.test.RequireMaybeTest/-s=1-n=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+modbat.test.RequireMaybeTest2 \
+--no-redirect-out \
+> log/modbat/modbat.test.RequireMaybeTest2/-s=1-n=1--no-redirect-out.log \
+2> log/modbat/modbat.test.RequireMaybeTest2/-s=1-n=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+modbat.test.IllArgTest \
+--no-redirect-out \
+--log-level=fine \
+> log/modbat/modbat.test.IllArgTest/-s=1-n=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.test.IllArgTest/-s=1-n=1--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=3 \
+modbat.test.ChooseInBefore \
+--no-redirect-out \
+> log/modbat/modbat.test.ChooseInBefore/-s=1-n=3--no-redirect-out.log \
+2> log/modbat/modbat.test.ChooseInBefore/-s=1-n=3--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=20 \
+modbat.test.CarModel \
+--no-redirect-out \
+> log/modbat/modbat.test.CarModel/-s=1-n=20--no-redirect-out.log \
+2> log/modbat/modbat.test.CarModel/-s=1-n=20--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=5 \
+--log-level=debug \
+--no-redirect-out \
+modbat.test.ComplexLaunch \
+> log/modbat/modbat.test.ComplexLaunch/-s=1-n=5--log-level=debug--no-redirect-out.log \
+2> log/modbat/modbat.test.ComplexLaunch/-s=1-n=5--log-level=debug--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=50 \
+--log-level=fine \
+--print-stack-trace \
+--no-redirect-out \
+modbat.test.ComplexLaunch \
+> log/modbat/modbat.test.ComplexLaunch/-s=1-n=50--log-level=fine--print-stack-trace--no-redirect-out.log \
+2> log/modbat/modbat.test.ComplexLaunch/-s=1-n=50--log-level=fine--print-stack-trace--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+--mode=dot \
+--show-choices \
+modbat.test.ComplexLaunch \
+> log/modbat/modbat.test.ComplexLaunch/--mode=dot--show-choices.log \
+2> log/modbat/modbat.test.ComplexLaunch/--mode=dot--show-choices.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=2 \
+--log-level=fine \
+--no-redirect-out \
+modbat.test.ComplexLaunch2 \
+> log/modbat/modbat.test.ComplexLaunch2/-s=1-n=2--log-level=fine--no-redirect-out.log \
+2> log/modbat/modbat.test.ComplexLaunch2/-s=1-n=2--log-level=fine--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=2 \
+--log-level=fine \
+--no-redirect-out \
+modbat.test.ComplexLaunch3 \
+> log/modbat/modbat.test.ComplexLaunch3/-s=1-n=2--log-level=fine--no-redirect-out.log \
+2> log/modbat/modbat.test.ComplexLaunch3/-s=1-n=2--log-level=fine--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=2 \
+--log-level=fine \
+--no-redirect-out \
+modbat.test.ComplexLaunch4 \
+> log/modbat/modbat.test.ComplexLaunch4/-s=1-n=2--log-level=fine--no-redirect-out.log \
+2> log/modbat/modbat.test.ComplexLaunch4/-s=1-n=2--log-level=fine--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=2 \
+--log-level=fine \
+--no-redirect-out \
+modbat.test.ComplexLaunch5 \
+> log/modbat/modbat.test.ComplexLaunch5/-s=1-n=2--log-level=fine--no-redirect-out.log \
+2> log/modbat/modbat.test.ComplexLaunch5/-s=1-n=2--log-level=fine--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=2 \
+--log-level=fine \
+--no-redirect-out \
+modbat.test.ComplexLaunch6 \
+> log/modbat/modbat.test.ComplexLaunch6/-s=1-n=2--log-level=fine--no-redirect-out.log \
+2> log/modbat/modbat.test.ComplexLaunch6/-s=1-n=2--log-level=fine--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=10 \
+--no-redirect-out \
+modbat.test.RSeedTestSuccess \
+> log/modbat/modbat.test.RSeedTestSuccess/-s=1-n=10--no-redirect-out.log \
+2> log/modbat/modbat.test.RSeedTestSuccess/-s=1-n=10--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+--mode=dot \
+modbat.test.Child \
+> log/modbat/modbat.test.Child/--mode=dot.log \
+2> log/modbat/modbat.test.Child/--mode=dot.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+--mode=dot \
+modbat.test.InvalidMethod \
+> log/modbat/modbat.test.InvalidMethod/--mode=dot.log \
+2> log/modbat/modbat.test.InvalidMethod/--mode=dot.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=15 \
+--log-level=fine \
+--no-redirect-out \
+modbat.test.InvalidMethod \
+> log/modbat/modbat.test.InvalidMethod/-s=1-n=15--log-level=fine--no-redirect-out.log \
+2> log/modbat/modbat.test.InvalidMethod/-s=1-n=15--log-level=fine--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=20 \
+--no-redirect-out \
+modbat.test.InvariantCheck \
+> log/modbat/modbat.test.InvariantCheck/-s=1-n=20--no-redirect-out.log \
+2> log/modbat/modbat.test.InvariantCheck/-s=1-n=20--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=20 \
+--no-redirect-out \
+modbat.test.InvCheck2 \
+> log/modbat/modbat.test.InvCheck2/-s=1-n=20--no-redirect-out.log \
+2> log/modbat/modbat.test.InvCheck2/-s=1-n=20--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=10 \
+--loop-limit=2 \
+--no-redirect-out \
+modbat.test.InvCheck3 \
+> log/modbat/modbat.test.InvCheck3/-s=1-n=10--loop-limit=2--no-redirect-out.log \
+2> log/modbat/modbat.test.InvCheck3/-s=1-n=10--loop-limit=2--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=20 \
+--loop-limit=2 \
+--no-redirect-out \
+modbat.test.InvCheck3_1 \
+> log/modbat/modbat.test.InvCheck3_1/-s=1-n=20--loop-limit=2--no-redirect-out.log \
+2> log/modbat/modbat.test.InvCheck3_1/-s=1-n=20--loop-limit=2--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=20 \
+--loop-limit=2 \
+--no-redirect-out \
+modbat.test.InvCheck3_2 \
+> log/modbat/modbat.test.InvCheck3_2/-s=1-n=20--loop-limit=2--no-redirect-out.log \
+2> log/modbat/modbat.test.InvCheck3_2/-s=1-n=20--loop-limit=2--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=20 \
+--loop-limit=2 \
+--no-redirect-out \
+modbat.test.InvCheck3_3 \
+> log/modbat/modbat.test.InvCheck3_3/-s=1-n=20--loop-limit=2--no-redirect-out.log \
+2> log/modbat/modbat.test.InvCheck3_3/-s=1-n=20--loop-limit=2--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=10 \
+--loop-limit=2 \
+--no-redirect-out \
+--log-level=fine \
+modbat.test.InvCheck4 \
+> log/modbat/modbat.test.InvCheck4/-s=1-n=10--loop-limit=2--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.test.InvCheck4/-s=1-n=10--loop-limit=2--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+--mode=dot \
+--auto-labels \
+modbat.test.InvalidMethod \
+> log/modbat/modbat.test.InvalidMethod/--mode=dot--auto-labels.log \
+2> log/modbat/modbat.test.InvalidMethod/--mode=dot--auto-labels.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=20 \
+--auto-labels \
+--no-redirect-out \
+modbat.test.InvCheck2 \
+> log/modbat/modbat.test.InvCheck2/-s=1-n=20--auto-labels--no-redirect-out.log \
+2> log/modbat/modbat.test.InvCheck2/-s=1-n=20--auto-labels--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=20 \
+--auto-labels \
+--no-redirect-out \
+modbat.test.InvCheck5 \
+> log/modbat/modbat.test.InvCheck5/-s=1-n=20--auto-labels--no-redirect-out.log \
+2> log/modbat/modbat.test.InvCheck5/-s=1-n=20--auto-labels--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=20 \
+--no-redirect-out \
+modbat.test.InvCheck5 \
+> log/modbat/modbat.test.InvCheck5/-s=1-n=20--no-redirect-out.log \
+2> log/modbat/modbat.test.InvCheck5/-s=1-n=20--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=10 \
+--auto-labels \
+--loop-limit=2 \
+--no-redirect-out \
+modbat.test.InvCheck3 \
+> log/modbat/modbat.test.InvCheck3/-s=1-n=10--auto-labels--loop-limit=2--no-redirect-out.log \
+2> log/modbat/modbat.test.InvCheck3/-s=1-n=10--auto-labels--loop-limit=2--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=10 \
+--auto-labels \
+--loop-limit=2 \
+--no-redirect-out \
+--log-level=fine \
+modbat.test.InvCheck4 \
+> log/modbat/modbat.test.InvCheck4/-s=1-n=10--auto-labels--loop-limit=2--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.test.InvCheck4/-s=1-n=10--auto-labels--loop-limit=2--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=10 \
+--log-level=fine \
+modbat.test.GetState \
+--no-redirect-out \
+> log/modbat/modbat.test.GetState/-s=1-n=10--log-level=fine--no-redirect-out.log \
+2> log/modbat/modbat.test.GetState/-s=1-n=10--log-level=fine--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=10 \
+--log-level=fine \
+modbat.test.GetState2 \
+--no-redirect-out \
+> log/modbat/modbat.test.GetState2/-s=1-n=10--log-level=fine--no-redirect-out.log \
+2> log/modbat/modbat.test.GetState2/-s=1-n=10--log-level=fine--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=100 \
+modbat.test.ChooseTest \
+> log/modbat/modbat.test.ChooseTest/-s=1-n=100.log \
+2> log/modbat/modbat.test.ChooseTest/-s=1-n=100.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+--mode=dot \
+--show-choices \
+modbat.test.ChooseTest \
+> log/modbat/modbat.test.ChooseTest/--mode=dot--show-choices.log \
+2> log/modbat/modbat.test.ChooseTest/--mode=dot--show-choices.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=2 \
+--remove-log-on-success \
+modbat.test.Hello \
+> log/modbat/modbat.test.Hello/-s=1-n=2--remove-log-on-success.log \
+2> log/modbat/modbat.test.Hello/-s=1-n=2--remove-log-on-success.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+--log-level=debug \
+modbat.test.SubModel \
+> log/modbat/modbat.test.SubModel/-s=1-n=1--no-redirect-out--log-level=debug.log \
+2> log/modbat/modbat.test.SubModel/-s=1-n=1--no-redirect-out--log-level=debug.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=10 \
+--no-redirect-out \
+modbat.test.SubModel2 \
+> log/modbat/modbat.test.SubModel2/-s=1-n=10--no-redirect-out.log \
+2> log/modbat/modbat.test.SubModel2/-s=1-n=10--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=10 \
+--no-redirect-out \
+modbat.test.SubModel3 \
+> log/modbat/modbat.test.SubModel3/-s=1-n=10--no-redirect-out.log \
+2> log/modbat/modbat.test.SubModel3/-s=1-n=10--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=100 \
+modbat.test.MaybeTest \
+--maybe-probability=0.01 \
+--no-redirect-out \
+> log/modbat/modbat.test.MaybeTest/-s=1-n=100--maybe-probability=0.01--no-redirect-out.log \
+2> log/modbat/modbat.test.MaybeTest/-s=1-n=100--maybe-probability=0.01--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+modbat.test.PrecondOffline \
+> log/modbat/modbat.test.PrecondOffline/-s=1-n=1--no-redirect-out.log \
+2> log/modbat/modbat.test.PrecondOffline/-s=1-n=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+modbat.test.NextIfTest \
+--no-redirect-out \
+> log/modbat/modbat.test.NextIfTest/-s=1-n=1--no-redirect-out.log \
+2> log/modbat/modbat.test.NextIfTest/-s=1-n=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+modbat.test.NextIfTest2 \
+> log/modbat/modbat.test.NextIfTest2/-s=1-n=1--no-redirect-out.log \
+2> log/modbat/modbat.test.NextIfTest2/-s=1-n=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+modbat.test.NextIfTest3 \
+> log/modbat/modbat.test.NextIfTest3/-s=1-n=1--no-redirect-out.log \
+2> log/modbat/modbat.test.NextIfTest3/-s=1-n=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+modbat.test.NextIfTest4 \
+> log/modbat/modbat.test.NextIfTest4/-s=1-n=1--no-redirect-out.log \
+2> log/modbat/modbat.test.NextIfTest4/-s=1-n=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+modbat.test.NextIfTest5 \
+> log/modbat/modbat.test.NextIfTest5/-s=1-n=1--no-redirect-out.log \
+2> log/modbat/modbat.test.NextIfTest5/-s=1-n=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=2 \
+--log-level=fine \
+--no-redirect-out \
+--maybe-probability=0.3 \
+modbat.test.MaybeNextIfTest \
+> log/modbat/modbat.test.MaybeNextIfTest/-s=1-n=2--log-level=fine--no-redirect-out--maybe-probability=0.3.log \
+2> log/modbat/modbat.test.MaybeNextIfTest/-s=1-n=2--log-level=fine--no-redirect-out--maybe-probability=0.3.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=3 \
+--log-level=fine \
+--no-redirect-out \
+--maybe-probability=0.3 \
+modbat.test.MaybeNextIfTest2 \
+> log/modbat/modbat.test.MaybeNextIfTest2/-s=1-n=3--log-level=fine--no-redirect-out--maybe-probability=0.3.log \
+2> log/modbat/modbat.test.MaybeNextIfTest2/-s=1-n=3--log-level=fine--no-redirect-out--maybe-probability=0.3.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=3 \
+--log-level=fine \
+--no-redirect-out \
+--maybe-probability=0.9 \
+modbat.test.MaybeNextIfTest3 \
+> log/modbat/modbat.test.MaybeNextIfTest3/-s=1-n=3--log-level=fine--no-redirect-out--maybe-probability=0.9.log \
+2> log/modbat/modbat.test.MaybeNextIfTest3/-s=1-n=3--log-level=fine--no-redirect-out--maybe-probability=0.9.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=3 \
+--log-level=fine \
+--no-redirect-out \
+--maybe-probability=0.48 \
+modbat.test.MaybeNextIfTest4 \
+> log/modbat/modbat.test.MaybeNextIfTest4/-s=1-n=3--log-level=fine--no-redirect-out--maybe-probability=0.48.log \
+2> log/modbat/modbat.test.MaybeNextIfTest4/-s=1-n=3--log-level=fine--no-redirect-out--maybe-probability=0.48.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=3 \
+--log-level=fine \
+--no-redirect-out \
+--maybe-probability=0.48 \
+modbat.test.MaybeNextIfTest5 \
+> log/modbat/modbat.test.MaybeNextIfTest5/-s=1-n=3--log-level=fine--no-redirect-out--maybe-probability=0.48.log \
+2> log/modbat/modbat.test.MaybeNextIfTest5/-s=1-n=3--log-level=fine--no-redirect-out--maybe-probability=0.48.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=9999 \
+-n=1 \
+--no-redirect-out \
+--abort-probability=0.2 \
+modbat.test.ExcTest \
+> log/modbat/modbat.test.ExcTest/-s=9999-n=1--no-redirect-out--abort-probability=0.2.log \
+2> log/modbat/modbat.test.ExcTest/-s=9999-n=1--no-redirect-out--abort-probability=0.2.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+modbat.test.ExcTest2 \
+> log/modbat/modbat.test.ExcTest2/-s=1-n=1--no-redirect-out.log \
+2> log/modbat/modbat.test.ExcTest2/-s=1-n=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+modbat.test.ExcTest3 \
+> log/modbat/modbat.test.ExcTest3/-s=1-n=1--no-redirect-out.log \
+2> log/modbat/modbat.test.ExcTest3/-s=1-n=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+modbat.test.ExcTest4 \
+> log/modbat/modbat.test.ExcTest4/-s=1-n=1--no-redirect-out.log \
+2> log/modbat/modbat.test.ExcTest4/-s=1-n=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+modbat.test.ExcTest5 \
+> log/modbat/modbat.test.ExcTest5/-s=1-n=1--no-redirect-out.log \
+2> log/modbat/modbat.test.ExcTest5/-s=1-n=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+modbat.test.ExcTest6 \
+> log/modbat/modbat.test.ExcTest6/-s=1-n=1--no-redirect-out.log \
+2> log/modbat/modbat.test.ExcTest6/-s=1-n=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+modbat.test.ExcTestA3 \
+> log/modbat/modbat.test.ExcTestA3/-s=1-n=1--no-redirect-out.log \
+2> log/modbat/modbat.test.ExcTestA3/-s=1-n=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+modbat.test.ExcTestA4 \
+> log/modbat/modbat.test.ExcTestA4/-s=1-n=1--no-redirect-out.log \
+2> log/modbat/modbat.test.ExcTestA4/-s=1-n=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+modbat.test.ExcTestA5 \
+> log/modbat/modbat.test.ExcTestA5/-s=1-n=1--no-redirect-out.log \
+2> log/modbat/modbat.test.ExcTestA5/-s=1-n=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+modbat.test.ExcTestA5 \
+--log-level=fine \
+> log/modbat/modbat.test.ExcTestA5/-s=1-n=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.test.ExcTestA5/-s=1-n=1--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+NoPackage \
+> log/modbat/NoPackage/-s=1-n=1--no-redirect-out.log \
+2> log/modbat/NoPackage/-s=1-n=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=20 \
+--no-redirect-out \
+modbat.test.AnyFuncTest \
+> log/modbat/modbat.test.AnyFuncTest/-s=1-n=20--no-redirect-out.log \
+2> log/modbat/modbat.test.AnyFuncTest/-s=1-n=20--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--loop-limit=5 \
+modbat.test.ThrowTest \
+> log/modbat/modbat.test.ThrowTest/-s=1-n=1--loop-limit=5.log \
+2> log/modbat/modbat.test.ThrowTest/-s=1-n=1--loop-limit=5.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=100 \
+--loop-limit=3 \
+--no-redirect-out \
+--log-level=fine \
+modbat.test.Immediate \
+> log/modbat/modbat.test.Immediate/-s=1-n=100--loop-limit=3--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.test.Immediate/-s=1-n=100--loop-limit=3--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.test.NoSelfJoin \
+> log/modbat/modbat.test.NoSelfJoin/-s=1-n=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.test.NoSelfJoin/-s=1-n=1--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.test.JoinNull \
+> log/modbat/modbat.test.JoinNull/-s=1-n=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.test.JoinNull/-s=1-n=1--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=30 \
+--no-redirect-out \
+--log-level=fine \
+modbat.test.ForkJoin \
+> log/modbat/modbat.test.ForkJoin/-s=1-n=30--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.test.ForkJoin/-s=1-n=30--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=3 \
+--no-redirect-out \
+--log-level=fine \
+modbat.test.ForkJoin2 \
+> log/modbat/modbat.test.ForkJoin2/-s=1-n=3--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.test.ForkJoin2/-s=1-n=3--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+--log-level=fine \
+--loop-limit=5 \
+modbat.test.LoopTest \
+> log/modbat/modbat.test.LoopTest/-s=1-n=1--no-redirect-out--log-level=fine--loop-limit=5.log \
+2> log/modbat/modbat.test.LoopTest/-s=1-n=1--no-redirect-out--log-level=fine--loop-limit=5.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+--log-level=fine \
+--loop-limit=5 \
+modbat.test.LoopTest2 \
+> log/modbat/modbat.test.LoopTest2/-s=1-n=1--no-redirect-out--log-level=fine--loop-limit=5.log \
+2> log/modbat/modbat.test.LoopTest2/-s=1-n=1--no-redirect-out--log-level=fine--loop-limit=5.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+--log-level=fine \
+--loop-limit=0 \
+modbat.test.LoopTest \
+> log/modbat/modbat.test.LoopTest/-s=1-n=1--no-redirect-out--log-level=fine--loop-limit=0.log \
+2> log/modbat/modbat.test.LoopTest/-s=1-n=1--no-redirect-out--log-level=fine--loop-limit=0.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+--log-level=fine \
+--loop-limit=0 \
+modbat.test.LoopTest2 \
+> log/modbat/modbat.test.LoopTest2/-s=1-n=1--no-redirect-out--log-level=fine--loop-limit=0.log \
+2> log/modbat/modbat.test.LoopTest2/-s=1-n=1--no-redirect-out--log-level=fine--loop-limit=0.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+--log-level=fine \
+--loop-limit=1 \
+modbat.test.LoopTest \
+> log/modbat/modbat.test.LoopTest/-s=1-n=1--no-redirect-out--log-level=fine--loop-limit=1.log \
+2> log/modbat/modbat.test.LoopTest/-s=1-n=1--no-redirect-out--log-level=fine--loop-limit=1.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+--log-level=fine \
+--loop-limit=1 \
+modbat.test.LoopTest2 \
+> log/modbat/modbat.test.LoopTest2/-s=1-n=1--no-redirect-out--log-level=fine--loop-limit=1.log \
+2> log/modbat/modbat.test.LoopTest2/-s=1-n=1--no-redirect-out--log-level=fine--loop-limit=1.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=2 \
+--log-level=fine \
+--no-redirect-out \
+--loop-limit=3 \
+modbat.test.LoopTestWithLaunch \
+> log/modbat/modbat.test.LoopTestWithLaunch/-s=1-n=2--log-level=fine--no-redirect-out--loop-limit=3.log \
+2> log/modbat/modbat.test.LoopTestWithLaunch/-s=1-n=2--log-level=fine--no-redirect-out--loop-limit=3.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=20 \
+--no-redirect-out \
+--loop-limit=4 \
+modbat.test.LoopTestWithLaunch \
+> log/modbat/modbat.test.LoopTestWithLaunch/-s=1-n=20--no-redirect-out--loop-limit=4.log \
+2> log/modbat/modbat.test.LoopTestWithLaunch/-s=1-n=20--no-redirect-out--loop-limit=4.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=200 \
+--no-redirect-out \
+--stop-on-failure \
+modbat.test.CrashSoon \
+> log/modbat/modbat.test.CrashSoon/-s=1-n=200--no-redirect-out--stop-on-failure.log \
+2> log/modbat/modbat.test.CrashSoon/-s=1-n=200--no-redirect-out--stop-on-failure.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=5 \
+--no-redirect-out \
+modbat.test.ChooseBool \
+> log/modbat/modbat.test.ChooseBool/-s=1-n=5--no-redirect-out.log \
+2> log/modbat/modbat.test.ChooseBool/-s=1-n=5--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+--loop-limit=50 \
+modbat.test.PredActions \
+> log/modbat/modbat.test.PredActions/-s=1-n=1--no-redirect-out--loop-limit=50.log \
+2> log/modbat/modbat.test.PredActions/-s=1-n=1--no-redirect-out--loop-limit=50.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=5 \
+--no-redirect-out \
+modbat.test.PreCond \
+> log/modbat/modbat.test.PreCond/-s=1-n=5--no-redirect-out.log \
+2> log/modbat/modbat.test.PreCond/-s=1-n=5--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1000 \
+--no-redirect-out \
+--abort-probability=0.1 \
+--stop-on-failure \
+modbat.test.WeightedTest \
+> log/modbat/modbat.test.WeightedTest/-s=1-n=1000--no-redirect-out--abort-probability=0.1--stop-on-failure.log \
+2> log/modbat/modbat.test.WeightedTest/-s=1-n=1000--no-redirect-out--abort-probability=0.1--stop-on-failure.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=5 \
+--no-redirect-out \
+--log-level=debug \
+--stop-on-failure \
+modbat.test.WeightedTest2 \
+> log/modbat/modbat.test.WeightedTest2/-s=1-n=5--no-redirect-out--log-level=debug--stop-on-failure.log \
+2> log/modbat/modbat.test.WeightedTest2/-s=1-n=5--no-redirect-out--log-level=debug--stop-on-failure.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1000 \
+--no-redirect-out \
+--abort-probability=0.1 \
+--stop-on-failure \
+modbat.test.WeightedTestWFrac \
+> log/modbat/modbat.test.WeightedTestWFrac/-s=1-n=1000--no-redirect-out--abort-probability=0.1--stop-on-failure.log \
+2> log/modbat/modbat.test.WeightedTestWFrac/-s=1-n=1000--no-redirect-out--abort-probability=0.1--stop-on-failure.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+--mode=dot \
+modbat.test.NullaryCons \
+> log/modbat/modbat.test.NullaryCons/--mode=dot.log \
+2> log/modbat/modbat.test.NullaryCons/--mode=dot.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+--mode=dot \
+modbat.test.NullaryCons \
+--print-stack-trace \
+> log/modbat/modbat.test.NullaryCons/--mode=dot--print-stack-trace.log \
+2> log/modbat/modbat.test.NullaryCons/--mode=dot--print-stack-trace.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=5 \
+--no-redirect-out \
+modbat.test.GenLabel \
+> log/modbat/modbat.test.GenLabel/-s=1-n=5--no-redirect-out.log \
+2> log/modbat/modbat.test.GenLabel/-s=1-n=5--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=5 \
+--auto-labels \
+--no-redirect-out \
+modbat.test.GenLabel \
+> log/modbat/modbat.test.GenLabel/-s=1-n=5--auto-labels--no-redirect-out.log \
+2> log/modbat/modbat.test.GenLabel/-s=1-n=5--auto-labels--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=5 \
+--auto-labels \
+--no-redirect-out \
+modbat.test.GenLabel2 \
+> log/modbat/modbat.test.GenLabel2/-s=1-n=5--auto-labels--no-redirect-out.log \
+2> log/modbat/modbat.test.GenLabel2/-s=1-n=5--auto-labels--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=5 \
+--auto-labels \
+--no-redirect-out \
+modbat.test.GenLabel3 \
+> log/modbat/modbat.test.GenLabel3/-s=1-n=5--auto-labels--no-redirect-out.log \
+2> log/modbat/modbat.test.GenLabel3/-s=1-n=5--auto-labels--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+--mode=dot \
+--auto-labels \
+modbat.test.GenLabel3 \
+> log/modbat/modbat.test.GenLabel3/--mode=dot--auto-labels.log \
+2> log/modbat/modbat.test.GenLabel3/--mode=dot--auto-labels.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+modbat.test.SubClassModel \
+> log/modbat/modbat.test.SubClassModel/-s=1-n=1--no-redirect-out.log \
+2> log/modbat/modbat.test.SubClassModel/-s=1-n=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=2 \
+--no-redirect-out \
+--log-level=fine \
+modbat.test.ObserverHarness \
+> log/modbat/modbat.test.ObserverHarness/-s=1-n=2--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.test.ObserverHarness/-s=1-n=2--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=2 \
+--no-redirect-out \
+--log-level=fine \
+modbat.test.ObserverHarness2 \
+> log/modbat/modbat.test.ObserverHarness2/-s=1-n=2--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.test.ObserverHarness2/-s=1-n=2--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=2 \
+--no-redirect-out \
+--log-level=fine \
+modbat.test.ObserverHarness3 \
+> log/modbat/modbat.test.ObserverHarness3/-s=1-n=2--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.test.ObserverHarness3/-s=1-n=2--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+--no-redirect-out \
+modbat.test.TestObserver \
+> log/modbat/modbat.test.TestObserver/-s=1--no-redirect-out.log \
+2> log/modbat/modbat.test.TestObserver/-s=1--no-redirect-out.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=2 \
+--no-redirect-out \
+--log-level=fine \
+modbat.test.ObserverHarness4 \
+> log/modbat/modbat.test.ObserverHarness4/-s=1-n=2--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.test.ObserverHarness4/-s=1-n=2--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=2 \
+--no-redirect-out \
+--log-level=fine \
+modbat.test.ObserverHarness5 \
+> log/modbat/modbat.test.ObserverHarness5/-s=1-n=2--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.test.ObserverHarness5/-s=1-n=2--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=2 \
+--no-redirect-out \
+--log-level=fine \
+modbat.test.ObserverHarness6 \
+> log/modbat/modbat.test.ObserverHarness6/-s=1-n=2--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.test.ObserverHarness6/-s=1-n=2--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=2 \
+--no-redirect-out \
+--log-level=fine \
+modbat.test.ObserverHarness7 \
+> log/modbat/modbat.test.ObserverHarness7/-s=1-n=2--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.test.ObserverHarness7/-s=1-n=2--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=2 \
+--no-redirect-out \
+--log-level=fine \
+modbat.test.TickTockTest \
+> log/modbat/modbat.test.TickTockTest/-s=1-n=2--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.test.TickTockTest/-s=1-n=2--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=2 \
+--no-redirect-out \
+--show-choices \
+modbat.test.TickTockTest \
+> log/modbat/modbat.test.TickTockTest/-s=1-n=2--no-redirect-out--show-choices.log \
+2> log/modbat/modbat.test.TickTockTest/-s=1-n=2--no-redirect-out--show-choices.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=4 \
+--no-redirect-out \
+--show-choices \
+modbat.test.AnyFuncTest \
+> log/modbat/modbat.test.AnyFuncTest/-s=1-n=4--no-redirect-out--show-choices.log \
+2> log/modbat/modbat.test.AnyFuncTest/-s=1-n=4--no-redirect-out--show-choices.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+--mode=dot \
+--show-choices \
+modbat.test.AnyFuncTest \
+> log/modbat/modbat.test.AnyFuncTest/--mode=dot--show-choices.log \
+2> log/modbat/modbat.test.AnyFuncTest/--mode=dot--show-choices.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=5 \
+--no-redirect-out \
+--show-choices \
+modbat.test.Choices \
+> log/modbat/modbat.test.Choices/-s=1-n=5--no-redirect-out--show-choices.log \
+2> log/modbat/modbat.test.Choices/-s=1-n=5--no-redirect-out--show-choices.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+--mode=dot \
+--show-choices \
+modbat.test.Choices \
+> log/modbat/modbat.test.Choices/--mode=dot--show-choices.log \
+2> log/modbat/modbat.test.Choices/--mode=dot--show-choices.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=2 \
+--precond-as-failure \
+--no-redirect-out \
+--log-level=fine \
+modbat.test.SUTReq \
+> log/modbat/modbat.test.SUTReq/-s=1-n=2--precond-as-failure--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.test.SUTReq/-s=1-n=2--precond-as-failure--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.test.SUTReq \
+> log/modbat/modbat.test.SUTReq/-s=1-n=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.test.SUTReq/-s=1-n=1--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-test.jar \
+scala \
+build/modbat.jar \
+-s=1 \
+-n=1 \
+--no-redirect-out \
+--log-level=fine \
+modbat.test.ConcurrentModel \
+> log/modbat/modbat.test.ConcurrentModel/-s=1-n=1--no-redirect-out--log-level=fine.log \
+2> log/modbat/modbat.test.ConcurrentModel/-s=1-n=1--no-redirect-out--log-level=fine.err
+
+CLASSPATH=build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+--mode=dot \
+--auto-labels \
+modbat.examples.CounterPosNeg \
+> log/modbat/modbat.examples.CounterPosNeg/--mode=dot--auto-labels.log \
+2> log/modbat/modbat.examples.CounterPosNeg/--mode=dot--auto-labels.err
+
+CLASSPATH=build/modbat-test.jar:build/modbat-examples.jar \
+scala \
+build/modbat.jar \
+--mode=dot \
+--auto-labels \
+modbat.test.CounterPosNeg1 \
+> log/modbat/modbat.test.CounterPosNeg1/--mode=dot--auto-labels.log \
+2> log/modbat/modbat.test.CounterPosNeg1/--mode=dot--auto-labels.err
+# count=255 ok=0 failed=0 skipped=0
