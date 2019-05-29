@@ -33,11 +33,13 @@ object ModbatTestHarness {
       val theEnvironmentField = processEnvironmentClass.getDeclaredField("theEnvironment")
       theEnvironmentField.setAccessible(true)
       val env = theEnvironmentField.get(null).asInstanceOf[java.util.Map[String, String]]
+      env.clear()
       env.putAll(newEnv)
       val theCaseInsensitiveEnvironmentField = processEnvironmentClass.getDeclaredField("theCaseInsensitiveEnvironment");
       theCaseInsensitiveEnvironmentField.setAccessible(true)
       val cienv = new HashMap[String, String]()
       theCaseInsensitiveEnvironmentField.get(null)
+      cienv.clear()
       cienv.putAll(newEnv)
     } catch {
       case e: NoSuchFieldException => {
