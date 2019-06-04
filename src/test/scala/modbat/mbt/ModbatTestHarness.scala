@@ -8,6 +8,8 @@ import java.util.Collections
 import java.util.HashMap
 import java.io.FileWriter
 
+import modbat.util.CloneableRandom
+
 object ModbatTestHarness {
 
   def using[A <: {def close(): Unit}, B](resource: A)(f: A => B): B =
@@ -21,14 +23,17 @@ object ModbatTestHarness {
     val out: ByteArrayOutputStream = new ByteArrayOutputStream()
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
     var ret = 0
+    val origConfig = Main.config.clone.asInstanceOf[modbat.mbt.Configuration]
 
     Console.withErr(err) {
       Console.withOut(out) {
         try {
-          Main.run(args)
+          Main.run((args.toList :+ "-s").toArray) // TODO: remove "-s"
           ret=0
         } catch {
           case e: Exception => ret=1
+        } finally {
+          Main.config = origConfig
         }
       }
     }
@@ -106,3 +111,4 @@ object ModbatTestHarness {
   }
 
 }
+

@@ -107,9 +107,9 @@ class NioSocket extends FlatSpec with Matchers {
 
 
 
-  "NioSocket14" should "pass" in {
+  "NioSocket14" should "fail" in {
     val result = ModbatTestHarness.testMain(Array("--mode=dot","--auto-labels","--dot-dir=dir_does_not_exit","modbat.examples.NioSocket1"), ModbatTestHarness.setExamplesJar)
-    result._1 should be(0)
+    result._1 should be(1)
     result._3 shouldBe empty
   }
 

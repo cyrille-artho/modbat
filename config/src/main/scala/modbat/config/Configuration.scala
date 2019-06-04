@@ -1,3 +1,7 @@
 package modbat.config
 
-trait Configuration
+
+trait Configuration extends Cloneable {
+    override def clone = super.clone
+}
+    
