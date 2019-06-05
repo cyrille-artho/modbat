@@ -9,10 +9,8 @@ class ConfigTest extends FlatSpec with Matchers {
     result._3 shouldBe empty
   }
 
-
-
   "ConfigTest2" should "pass" in {
-    val result = ModbatTestHarness.testMain(Array("-cp","modbat.config.ConfigTest","-s"), ModbatTestHarness.setFooJar)
+    val result = modbat.config.ConfigTest.main(Array("-cp","modbat.config.ConfigTest","-s"))
     result._1 should be(0)
     result._3 shouldBe empty
   }
