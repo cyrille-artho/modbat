@@ -1,14 +1,27 @@
-class TraitImpl extends Configuration {
+package modbat.config
+
+import modbat.log.Log
+
+class TraitImpl extends modbat.config.Configuration {
   var data = 0
+  var text = "HelloTest"
+  var logLevel = Log.Info
 }
 
 object TraitImpl {
   def main(args: Array[String]) {
-    val ti = new TraitImpl()
-    Console.out.println(ti.data)
-    val clone = ti.clone.asInstanceOf[TraitImpl]
+
+    val copy = new TraitImpl()
+  
+    val clone = copy.clone.asInstanceOf[TraitImpl]
+
     clone.data = 1
-    Console.out.println(clone.data)
-    Console.out.println(ti.data)
+    clone.text = "ByeTest"
+    clone.logLevel = Log.Fine
+
+    assert(copy.data == clone.data)
+    assert(copy.text == clone.text)
+    assert(copy.logLevel == clone.logLevel)
+
   }
 }
