@@ -7,6 +7,7 @@ import java.io.PrintStream
 import java.util.Collections
 import java.util.HashMap
 import java.io.FileWriter
+import java.io.File
 
 import modbat.util.CloneableRandom
 
@@ -47,14 +48,19 @@ object ModbatTestHarness {
         name_file = name_file + x
       }
     }
+    var directory = new File(name_output);
+    var bool = ! directory.exists()
+    if (bool){
+        directory.mkdirs();
+    }
     name_output=name_output+"/"+name_file
 
-    val name_output_err=name_output+".err.Alexandre"
-    val name_output_out=name_output+".log.Alexandre"
+    val name_output_err=name_output+".err"
+    val name_output_out=name_output+".log"
 
     val err_value = err.toString
     val eout_value = out.toString
-
+    
     writeToFile(name_output_err, err_value)
     writeToFile(name_output_out, eout_value)
 
