@@ -9,6 +9,8 @@ import java.util.HashMap
 import java.io.FileWriter
 import java.io.File
 
+import org.scalatest.TestData
+
 import modbat.util.CloneableRandom
 
 object ModbatTestHarness {
@@ -19,7 +21,7 @@ object ModbatTestHarness {
   def writeToFile(path: String, data: String): Unit = 
     using(new FileWriter(path))(_.write(data))
 
-  def testMain(args: Array[String], env: () => Unit): (Int, List[String], List[String]) = {
+  def testMain(args: Array[String], env: () => Unit, td: TestData): (Int, List[String], List[String]) = {
     env()
     val out: ByteArrayOutputStream = new ByteArrayOutputStream()
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
