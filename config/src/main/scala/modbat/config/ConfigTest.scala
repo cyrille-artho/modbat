@@ -7,6 +7,7 @@ import java.io.PrintStream
 import java.util.Collections
 import java.util.HashMap
 import java.io.FileWriter
+import java.io.File
 
 object ConfigTest {
 
@@ -36,7 +37,7 @@ object ConfigTest {
         } 
       }
     }
-    var name_output = "log/modbat/" //TODO : Refactor code : Redundancy with ModbatTestHarness
+    var name_output = "log/modbat/"
     var name_file = ""
     for ( x <- args ) {
       if (x contains "modbat"){
@@ -46,17 +47,29 @@ object ConfigTest {
         name_file = name_file + x
       }
     }
-    name_output=name_output+"/"+name_file
+    var directory = new File(name_output);
+    var bool = ! directory.exists()
+    if (bool){
+        directory.mkdirs();
+    }
+    var name_output_1=name_output+"/"+name_file
+    //var name_output_2=name_output+"/"+( td.name.split(" ") )(0)
 
-    val name_output_err=name_output+".err.Alexandre"
-    val name_output_out=name_output+".log.Alexandre"
+    var name_output_err_1=name_output_1+".err"
+    var name_output_out_1=name_output_1+".log"
 
-    val err_value = err.toString
-    val eout_value = out.toString
+    //var name_output_err_2=name_output_2+".err"
+    //var name_output_out_2=name_output_2+".log"
 
-    writeToFile(name_output_err, err_value)
-    writeToFile(name_output_out, eout_value)
-
+    var err_value = err.toString
+    var eout_value = out.toString
+    
+    writeToFile(name_output_err_1, err_value)
+    writeToFile(name_output_out_1, eout_value)
+    
+    //writeToFile(name_output_err_2, err_value)
+    //writeToFile(name_output_out_2, eout_value)
+   
     (ret, scala.io.Source.fromString(eout_value).getLines().toList, scala.io.Source.fromString(err_value).getLines().toList)
   }
 }

@@ -14,7 +14,7 @@ class InvalidMethod extends fixture.FlatSpec with fixture.TestDataFixture with M
   "InvalidMethod2" should "pass" in { td =>
     val result = ModbatTestHarness.testMain(Array("-s=1","-n=15","--log-level=fine","--no-redirect-out","modbat.test.InvalidMethod"), ModbatTestHarness.setTestJar, td)
     result._1 should be(0)
-    result._3 should not be empty
+    result._3 shouldBe empty
   }
 
 
@@ -28,3 +28,4 @@ class InvalidMethod extends fixture.FlatSpec with fixture.TestDataFixture with M
 
 
 }
+
