@@ -349,27 +349,22 @@ exec_eval() {
   status=0
   rm -f $TMP
   rm -f $ETMP
-  echo "# Checkpoint 1.1"
   if [ -s "$TEST_LOG_PATH/$log.log" -o -s "$TEST_LOG_PATH/$log.out" ]
   then
-    echo "# Checkpoint 2.1"
     checkdiff "$TEST_LOG_PATH/$log.log" "$TEST_LOG_PATH/$log.out"
     status=$?
   fi
   if [ -s "$TEST_LOG_PATH/$log.err" -o -s "$TEST_LOG_PATH/$log.eout" ]
   then
-    echo "# Checkpoint 3.1"
     checkdiff "$TEST_LOG_PATH/$log.err" "$TEST_LOG_PATH/$log.eout"
     stat2=$?
     [ "$status" -eq 0 ] && status=$stat2
   fi
   if [ "$status" -eq 0 ]
   then
-    echo "# Checkpoint 4.1"
     echo "# ok"
     inc ok
   else
-    echo "# Checkpoint 4.2"
     inc failed
   fi
   return $status
