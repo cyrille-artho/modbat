@@ -3,11 +3,17 @@ package modbat.examples;
 import randoop.CheckRep;
 import randoop.org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class ControlCounter {
 
   int count = 0;
   int trueCount = 0;
   boolean flag = true;
+
+  List<String> test = Arrays.asList("12","sdf");
 
   public void toggleSwitch() {
     flag = !flag;

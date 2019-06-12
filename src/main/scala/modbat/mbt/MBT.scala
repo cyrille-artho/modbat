@@ -358,6 +358,7 @@ object MBT {
     rtm.init(classes, objects, observers, methods)
     rtm.run
     rtm.validate
+    println("randomSearch")
   }
 }
 

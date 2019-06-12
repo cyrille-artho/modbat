@@ -22,7 +22,7 @@ class RandoopUtilsTest extends FunSuite {
     cc.toggleSwitch()
     cc.inc()
 
-    val s = RandoopUtils.createSequenceForObject(cc);
+    val s = RandoopUtils.createSequenceForObject(cc,0 );
     val newCC = getObjectFromSequence(s)
 
     newCC equals cc

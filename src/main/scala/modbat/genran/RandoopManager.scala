@@ -16,6 +16,8 @@ import randoop.types.Type
 import randoop.util.MultiMap
 
 import scala.collection.JavaConverters._
+import scala.collection.JavaConversions._
+
 
 class RandoopManager extends RandomTestManager {
 
@@ -49,21 +51,12 @@ class RandoopManager extends RandomTestManager {
 
   override def validate: Unit = {
 
-    val rTests = RandoopManager.forwardGenerator.getRegressionSequences
-    val eTests = RandoopManager.forwardGenerator.getErrorTestSequences
+    for (e <- RandoopManager.forwardGenerator.getErrorTestSequences)
+      {
+          println(e.toCodeString)
+      }
 
-    for(i <- 0 to rTests.size()){
-
-      var kdas123 = eTests.get(i).sequence.toCodeString
-
-      var mama = eTests.get(i).sequence.toString
-
-      var ontest = "as"
-
-    }
-
-    assertTrue("should have some regression tests", !rTests.isEmpty)
-    assertTrue("should have some error tests", eTests.isEmpty)
+    println("validate:end")
   }
 
   def createForwardGenerator(objects: Seq[AnyRef], observers: Seq[String], methods: Seq[String]): Unit = {
@@ -74,7 +67,7 @@ class RandoopManager extends RandomTestManager {
     components.addAll(SeedSequences.defaultSeeds) //TODO here mabe its a place for adding sequence, the moment where we add the trait
     components.addAll(operationModel.getAnnotatedTestValues)
 
-    objects.foreach(f => components.add(RandoopUtils.createSequenceForObject(f))) //TODO put try catch for unexpected behavior
+    objects.foreach(f => components.add(RandoopUtils.createSequenceForObject(f, 0))) //TODO put try catch for unexpected behavior
 
 
     val componentMgr: ComponentManager = new ComponentManager(components)
@@ -104,26 +97,6 @@ class RandoopManager extends RandomTestManager {
     val checkGenerator: TestCheckGenerator = GenTests.createTestCheckGenerator(IS_PUBLIC, contracts, observerMap)
     testGenerator.setTestCheckGenerator(checkGenerator)
 
-
     RandoopManager.forwardGenerator = testGenerator
-
-
-    /*
-    testGenerator.createAndClassifySequences()
-
-
-    val rTests = testGenerator.getRegressionSequences
-    val eTests = testGenerator.getErrorTestSequences
-
-    for(i <- 0 to rTests.size()){
-
-      var kdas123 = eTests.get(i).sequence.toCodeString
-
-      var mama = eTests.get(i).sequence.toString
-
-      var ontest = "as"
-
-    }
-    */
   }
 }

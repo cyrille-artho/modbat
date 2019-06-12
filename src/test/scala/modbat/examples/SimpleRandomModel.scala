@@ -15,6 +15,14 @@ object SimpleRandomModel {
   }
 }
 
+
+
+  /*
+  Tool.GetObject();
+
+  Tool.Validate();
+   */
+
 class SimpleRandomModel extends Model {
 
   var counter: ControlCounter = _

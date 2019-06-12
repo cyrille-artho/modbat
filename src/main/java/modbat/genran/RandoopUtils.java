@@ -1,5 +1,6 @@
 package modbat.genran;
 
+import modbat.mbt.MBT;
 import org.objenesis.ObjenesisStd;
 import randoop.main.GenInputsAbstract;
 import randoop.operation.TypedOperation;
@@ -11,6 +12,7 @@ import randoop.types.NonParameterizedType;
 import randoop.types.Type;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.Arrays;
 
 public class RandoopUtils {
@@ -33,13 +35,34 @@ public class RandoopUtils {
      * @return
      * @throws Exception
      */
-    public static Sequence createSequenceForObject(Object object) throws Exception {
+    public static Sequence createSequenceForObject(Object object, int nest) throws Exception {
+
+
+
+
+
 
         if (object == null) {
-            throw new IllegalArgumentException("object is null");
-        } else {
+            Sequence sBase = new Sequence();
+            sBase = sBase.extend(TypedOperation.createNullOrZeroInitializationForType(Type.forValue(Object.class)));
+            return sBase;
+            //throw new IllegalArgumentException("object is null");
+        } else if (nest >= 5)
+        {
+            Sequence sBase = new Sequence();
+            sBase = sBase.extend(TypedOperation.createNullOrZeroInitializationForType(Type.forValue(object)));
+            return sBase;
+        }else {
 
             Type type = Type.forValue(object);
+
+            if(object.getClass().equals(MBT.class))
+            {
+                Sequence sBase = new Sequence();
+                sBase = sBase.extend(TypedOperation.createNullOrZeroInitializationForType(Type.forValue(MBT.class)));
+                return sBase;
+            }
+
             if (TypedOperation.isNonreceiverType(type)) {
                 if ((type).isBoxedPrimitive()) {
                     type = ((NonParameterizedType)type).toPrimitive();
@@ -83,6 +106,12 @@ public class RandoopUtils {
 
                 for(int i = 0; i < fields.length; i++)
                 {
+
+                    if(Modifier.isFinal(fields[i].getModifiers()))
+                    {
+                        continue;
+                    }
+
                     fields[i].setAccessible(true);
                     Object o = fields[i].get(object);
 
@@ -104,7 +133,7 @@ public class RandoopUtils {
                     sBase = sBase.extend(TsetAccessible, sBase.getVariable(indexTgetfield), sBase.getVariable(indexTtrue));//8
                     index++;
 
-                    Sequence sInner = createSequenceForObject(o);
+                    Sequence sInner = createSequenceForObject(o, nest+1);
 
                     sBase = Sequence.concatenate(Arrays.asList(sBase,sInner));
                     index = sBase.statements.size();

@@ -37,3 +37,22 @@ class RecordedTransition (val model:		MBT,
   override def toString = trans.toString
   // TODO: Support exceptionType
 }
+
+
+/*
+
+   modbat 1000
+
+   -> unique 100
+
+   get from those 100 randoop sequence
+
+   each model, init record transisiotns.
+
+
+
+
+
+
+
+ */
