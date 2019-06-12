@@ -11,6 +11,6 @@
 [INFO] 10 tests executed, 10 ok, 0 failed.
 [INFO] 4 states covered (80 % out of 5),
 [INFO] 11 transitions covered (52 % out of 21).
-[INFO] Precondition 1 always passed at transition modbat/examples/JavaNioSocket3.scala:109 connect
-[INFO] Precondition 1 always failed at transition modbat/examples/JavaNioSocket3.scala:113 finishConnect
+[INFO] Precondition 1 always passed at transition modbat/examples/JavaNioSocket3.scala connect
+[INFO] Precondition 1 always failed at transition modbat/examples/JavaNioSocket3.scala finishConnect
 [INFO] Random seed for next test would be: a410ce32fc39dfb

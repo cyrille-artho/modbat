@@ -23,5 +23,5 @@ tock
 [INFO] modbat.test.TickTockTest: 3 transitions covered (100 % out of 3).
 [INFO] modbat.test.TickTockObserver: 2 states covered (100 % out of 2),
 [INFO] modbat.test.TickTockObserver: 2 transitions covered (100 % out of 2).
-[INFO] Precondition 1 always passed at transition modbat/test/TickTockObserver.scala:13: modbat.test.TickTockObserver-1 i
+[INFO] Precondition 1 always passed at transition modbat/test/TickTockObserver.scala modbat.test.TickTockObserver-1 i
 [INFO] Random seed for next test would be: 41530f4040856586
