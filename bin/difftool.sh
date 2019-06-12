@@ -296,8 +296,8 @@ exec_eval() {
   fi
   TMP=`mktemp modbat-test.XXXXXX`
   ETMP=`mktemp modbat-test.XXXXXX`
-  cp -a $TEST_LOG_PATH/$log.log $TMP
-  cp -a $TEST_LOG_PATH/$log.err $ETMP
+  mv $TEST_LOG_PATH/$log.log $TMP
+  mv $TEST_LOG_PATH/$log.err $ETMP
   tr -d '\r' < $TMP \
 	| sed -e 's/\[[0-9][0-9]*[mK]//g' \
 	-e 's/.*//' \
