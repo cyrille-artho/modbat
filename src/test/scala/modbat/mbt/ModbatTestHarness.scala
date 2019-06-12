@@ -29,7 +29,7 @@ object ModbatTestHarness {
     Console.withErr(err) {
       Console.withOut(out) {
         try {
-          Main.run((args.toList :+ "-s").toArray) // TODO: remove "-s"
+          Main.run(args)
           ret=0
         } catch {
           case e: Exception => ret=1
