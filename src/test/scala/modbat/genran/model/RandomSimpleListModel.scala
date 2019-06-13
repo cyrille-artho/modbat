@@ -4,23 +4,11 @@ import java.util
 
 import modbat.containers.Containers
 import modbat.dsl._
-import modbat.mbt.MBT
 
-import scala.collection.mutable.ListBuffer
-
-object RandomSimpleListModel {
-
-  var objects: ListBuffer[util.ArrayList[Integer]] = new ListBuffer[util.ArrayList[Integer]]()
-
-  @Shutdown def shutdown() {
-
-    MBT.randomSearch(Seq("java.util.ArrayList"), objects.distinct, Seq(), Seq())
-  }
-}
-
+@RandomSearch(Array("java.util.ArrayList"))
 class RandomSimpleListModel extends Model {
 
-  var w : util.ArrayList[Integer] = _
+  @Save var w : util.ArrayList[Integer] = _
   var n = 0
 
   def add {
@@ -46,7 +34,6 @@ class RandomSimpleListModel extends Model {
 
   "init" -> "main" := {
     w = new util.ArrayList[Integer]()
-    RandomSimpleListModel.objects += w
   }
   "main" -> "main" := add weight 10
   "main" -> "main" := remove

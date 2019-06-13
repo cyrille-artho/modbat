@@ -97,8 +97,6 @@ object Modbat {
       }
     }
 
-    println("runRandomSearch")
-
   }
 
 

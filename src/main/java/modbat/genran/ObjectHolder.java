@@ -12,6 +12,9 @@ public class ObjectHolder
 
     public synchronized static void add(Object newObject)
     {
+        if(newObject == null)
+            return;
+
         Set<Object> objectList = objectsMap.computeIfAbsent(newObject.getClass(), k -> new HashSet<>());
 
         objectList.add(newObject);

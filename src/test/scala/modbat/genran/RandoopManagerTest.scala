@@ -7,7 +7,7 @@ class RandoopManagerTest extends FunSuite {
 
   test("testSimpleRandomModel") {
 
-    Main.main(Array("--classpath=build/modbat-test.jar", "modbat.genran.model.SimpleRandomModel"))
+    Main.main(Array("--classpath=build/modbat-test.jar", "modbat.genran.model.SimpleRandomModel", "--no-redirect-out"))
 
   }
 

@@ -3,7 +3,7 @@ package modbat.genran.model
 import modbat.dsl._
 import modbat.examples.ControlCounter
 
-@RandomSearch(Array("modbat.examples.ControlCounter","modbat.examples.ControlCounter.isValid()", "modbat.examples.ControlCounter.isValid()"))
+@RandomSearch(Array("modbat.examples.ControlCounter"))
 class SimpleRandomModel extends Model {
 
   @Save var counter: ControlCounter = _

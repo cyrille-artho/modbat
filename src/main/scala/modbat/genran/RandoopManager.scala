@@ -32,9 +32,9 @@ class RandoopManager extends RandomTestManager {
 
     GenInputsAbstract.deterministic = true
     GenInputsAbstract.minimize_error_test = false
-    GenInputsAbstract.time_limit = 60
-    GenInputsAbstract.generated_limit = 100
-    GenInputsAbstract.output_limit = 50
+    GenInputsAbstract.time_limit = 600
+    GenInputsAbstract.generated_limit = 1000
+    GenInputsAbstract.output_limit = 500
     GenInputsAbstract.silently_ignore_bad_class_names = false
     GenInputsAbstract.testclass = classes.toList.asJava
     GenInputsAbstract.require_classname_in_test = null
@@ -54,7 +54,7 @@ class RandoopManager extends RandomTestManager {
       {
           println(e.toCodeString)
       }
-    println("validate:getErrorTestSequences:end")
+  //  println("validate:getErrorTestSequences:end")
 
     for (e <- RandoopManager.forwardGenerator.getAllSequences)
     {

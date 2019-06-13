@@ -343,7 +343,7 @@ object MBT {
   def randomSearch(classes: Seq[String], objects: Seq[AnyRef], observers: Seq[String], methods: Seq[String]) = {
 
     val rtm : RandomTestManager = new RandoopManager
-
+    println("testrandomSearch1")
     rtm.init(classes, objects, observers, methods)
     rtm.run
     rtm.validate
