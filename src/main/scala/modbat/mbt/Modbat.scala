@@ -86,14 +86,15 @@ object Modbat {
   def runRandomSearch() {
 
     for (f <- MBT.modelClass.getAnnotations) {
-      if(f.isInstanceOf[RandomSearch])
-        {
-         val value = f.asInstanceOf[RandomSearch].value().toList
+      f match {
+        case search: RandomSearch =>
 
-          //TODO add validation for the value?!
+          val value = search.value().toList
 
-          MBT.randomSearch(Seq(value.get(0)), Seq(""), Seq(value.get(1)), Seq(value.get(2)))
-        }
+          MBT.randomSearch(Seq(value.get(0)), Seq(), Seq(), Seq())
+
+        case _ =>
+      }
     }
 
     println("runRandomSearch")

@@ -54,7 +54,7 @@ class RandoopManager extends RandomTestManager {
       {
           println(e.toCodeString)
       }
-
+    println("validate:getErrorTestSequences:end")
 
     for (e <- RandoopManager.forwardGenerator.getAllSequences)
     {

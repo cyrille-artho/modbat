@@ -4,9 +4,9 @@ import randoop.CheckRep;
 
 public class ControlCounter {
 
-  public int count = 0;
-  public int trueCount = 0;
-  public boolean flag = true;
+  private int count = 0;
+  private int trueCount = 0;
+  private boolean flag = true;
 
   public void toggleSwitch() {
     flag = !flag;

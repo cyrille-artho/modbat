@@ -2,23 +2,6 @@ package modbat.genran.model
 
 import modbat.dsl._
 import modbat.examples.ControlCounter
-import modbat.mbt.MBT
-
-import scala.collection.mutable.ListBuffer
-
-object SimpleRandomModel {
-
-  var list: ListBuffer[ControlCounter] = new ListBuffer[ControlCounter]()
-
-  @Shutdown def shutdown() {
-
-    val testSut: Iterable[ControlCounter] = list.groupBy( r => (r.count, r.trueCount, r.flag)).map(_._2.head)
-
-    MBT.randomSearch(Seq("modbat.examples.ControlCounter"), testSut.toSeq, Seq("modbat.examples.ControlCounter.isValid()"), Seq("modbat.examples.ControlCounter.isValid()"))
-  }
-}
-
-
 
 @RandomSearch(Array("modbat.examples.ControlCounter","modbat.examples.ControlCounter.isValid()", "modbat.examples.ControlCounter.isValid()"))
 class SimpleRandomModel extends Model {
@@ -27,19 +10,21 @@ class SimpleRandomModel extends Model {
 
   // transitions
   "reset" -> "zero" := {
-    counter = new ControlCounter
-    SimpleRandomModel.list += counter
+    counter = new ControlCounter()
   }
   "zero" -> "zero" := {
-    counter.toggleSwitch()
+    counter.toggleSwitch
   }
   "zero" -> "one" := {
-    counter.inc()
+    counter.inc
   }
   "one" -> "two" := {
-    counter.inc()
+    counter.inc
   }
   "zero" -> "two" := {
-    counter.inc2()
+    counter.inc2
+  }
+  "two" -> "end" := {
+    assert (counter.value == 2)
   }
 }

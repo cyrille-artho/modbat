@@ -38,12 +38,12 @@ public class ObjectHolder
         return objectSet.stream().skip(sr.nextInt(objectSet.size())).findAny().get(); //TODO add conditions
     }
 
-    public static Class<?> getClassName() {
+    public static Class getClassName() {
 
         Set<Class> classSet = objectsMap.keySet();
 
         if(classSet.size() == 1)
-            return classSet.iterator().next().getClass();
+            return classSet.iterator().next();
 
         throw new IllegalArgumentException("More then 1 object");
     }
