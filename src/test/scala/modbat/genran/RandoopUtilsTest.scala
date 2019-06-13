@@ -18,8 +18,8 @@ class RandoopUtilsTest extends FunSuite {
     cc.inc()
 
     ObjectHolder.add(cc)
-    val s = RandoopUtils.createSequenceForObject(cc)
-    val newCC = getObjectFromSequence(s)
+    val s = RandoopUtils.createSequencesForObject()
+    val newCC = getObjectFromSequence(s.get(0))
 
     newCC equals cc
 

@@ -72,10 +72,7 @@ class RandoopManager extends RandomTestManager {
     components.addAll(SeedSequences.defaultSeeds) //TODO here mabe its a place for adding sequence, the moment where we add the trait
     components.addAll(operationModel.getAnnotatedTestValues)
 
-
- //   ObjectHolder.set(objects);
-
-    components.add(RandoopUtils.createSequenceForObject(objects.get(0)))
+    components.addAll(RandoopUtils.createSequencesForObject())
 
     val componentMgr: ComponentManager = new ComponentManager(components)
     operationModel.addClassLiterals(componentMgr, GenInputsAbstract.literals_file, GenInputsAbstract.literals_level)

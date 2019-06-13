@@ -4,21 +4,28 @@ import randoop.operation.TypedOperation;
 import randoop.sequence.Sequence;
 import randoop.types.Type;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RandoopUtils {
 
 
-    public static Sequence createSequenceForObject(Object object) throws Exception {
+    public static List<Sequence> createSequencesForObject() throws Exception {
+
+        List<Sequence> sequenceList = new ArrayList<Sequence>();
 
         TypedOperation pop = TypedOperation.forMethod(ObjectHolder.class.getMethod("pop"));
 
         Sequence sBase = new Sequence();
         sBase = sBase.extend(pop);
 
-        TypedOperation cast = TypedOperation.createCast(Type.forClass(Object.class),Type.forClass(object.getClass()));
+        TypedOperation cast = TypedOperation.createCast(Type.forClass(Object.class),Type.forClass(ObjectHolder.getClassName()));
         sBase = sBase.extend(cast, sBase.getVariable(0));
 
+        sequenceList.add(sBase);
 
-        return sBase;
+
+        return sequenceList;
     }
 
     /**

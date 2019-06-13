@@ -19,11 +19,7 @@ import scala.collection.mutable.LinkedHashMap
 import scala.collection.mutable.ListBuffer
 import scala.util.matching.Regex
 import modbat.cov.StateCoverage
-import modbat.dsl.Action
-import modbat.dsl.Init
-import modbat.dsl.Shutdown
-import modbat.dsl.State
-import modbat.dsl.Transition
+import modbat.dsl.{Action, Init, RandomSearch, Shutdown, State, Transition}
 import modbat.log.Log
 import modbat.trace.Backtrack
 import modbat.trace.ErrOrdering
@@ -89,8 +85,18 @@ object Modbat {
 
   def runRandomSearch() {
 
-    println(runRandomSearch)
-    //MBT.randomSearch(Seq(""), Seq(""), Seq(""), Seq(""))
+    for (f <- MBT.modelClass.getAnnotations) {
+      if(f.isInstanceOf[RandomSearch])
+        {
+         val value = f.asInstanceOf[RandomSearch].value().toList
+
+          //TODO add validation for the value?!
+
+          MBT.randomSearch(Seq(value.get(0)), Seq(""), Seq(value.get(1)), Seq(value.get(2)))
+        }
+    }
+
+    println("runRandomSearch")
 
   }
 

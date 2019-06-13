@@ -20,7 +20,7 @@ object SimpleRandomModel {
 
 
 
-@RandomSearch(Array("param1", "param2"))
+@RandomSearch(Array("modbat.examples.ControlCounter","modbat.examples.ControlCounter.isValid()", "modbat.examples.ControlCounter.isValid()"))
 class SimpleRandomModel extends Model {
 
   @Save var counter: ControlCounter = _
