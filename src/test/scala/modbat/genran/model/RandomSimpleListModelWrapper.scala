@@ -1,26 +1,28 @@
 package modbat.genran.model
 
-import java.util
-
 import modbat.containers.Containers
 import modbat.dsl._
+import modbat.genran.Wrapper.ArrayListWrapper
 import modbat.mbt.MBT
 
 import scala.collection.mutable.ListBuffer
 
-object RandomSimpleListModel {
 
-  var objects: ListBuffer[util.ArrayList[Integer]] = new ListBuffer[util.ArrayList[Integer]]()
+object RandomSimpleListModelWrapper {
+
+  var objects: ListBuffer[ArrayListWrapper] = new ListBuffer[ArrayListWrapper]()
 
   @Shutdown def shutdown() {
 
-    MBT.randomSearch(Seq("java.util.ArrayList"), objects.distinct, Seq(), Seq())
+    val gropedObjects: Iterable[ArrayListWrapper] = objects.groupBy( r => r.SUT).map(_._2.head)
+
+    MBT.randomSearch(Seq("modbat.genran.Wrapper.ArrayListWrapper"), gropedObjects.toSeq, Seq(), Seq()) //TODO add limit to the size of object? e.g 50?
   }
 }
 
-class RandomSimpleListModel extends Model {
+class RandomSimpleListModelWrapperRandomSimpleListModelWrapper extends Model {
 
-  var w : util.ArrayList[Integer] = _
+  var w : ArrayListWrapper = _
   var n = 0
 
   def add {
@@ -45,8 +47,8 @@ class RandomSimpleListModel extends Model {
   }
 
   "init" -> "main" := {
-    w = new util.ArrayList[Integer]()
-    RandomSimpleListModel.objects += w
+    w = new ArrayListWrapper()
+    RandomSimpleListModelWrapper.objects += w
   }
   "main" -> "main" := add weight 10
   "main" -> "main" := remove

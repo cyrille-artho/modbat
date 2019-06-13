@@ -35,6 +35,11 @@ class RandoopManagerTest extends FunSuite {
 
   }
 
+  test("runRandomSimpleListModelWrapper") {
+
+    Main.main(Array("--classpath=build/modbat-test.jar", "modbat.genran.model.RandomSimpleListModelWrapper", "--no-redirect-out", "-s=7", "-n=30", "--abort-probability=0.02"))
+
+  }
 
 
 }
