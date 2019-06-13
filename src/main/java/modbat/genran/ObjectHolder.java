@@ -1,18 +1,20 @@
 package modbat.genran;
 
-import java.util.List;
-import java.util.SplittableRandom;
+import java.util.*;
 
 
 //TODO change List to map and store every type of object
-class ObjectHolder
+public class ObjectHolder
 {
-    private static List<Object> objectList;
+    private static HashMap<Class, Set<Object>> objectsMap = new HashMap<>();
+
     private static final SplittableRandom sr = new SplittableRandom(); // TODO use modbat way
 
-    public static void set(List<Object> newObject)
+    public synchronized static void add(Object newObject)
     {
-        objectList = newObject;
+        Set<Object> objectList = objectsMap.computeIfAbsent(newObject.getClass(), k -> new HashSet<>());
+
+        objectList.add(newObject);
     }
 
     /**
@@ -21,6 +23,18 @@ class ObjectHolder
      */
     public synchronized static Object pop()
     {
-        return objectList.get(sr.nextInt(objectList.size())); //TODO add conditions
+        Set<Class> classSet = objectsMap.keySet();
+
+        if(classSet.size() == 1)
+            return pop(classSet.iterator().next());
+
+        throw new IllegalArgumentException("More then 1 object");
+    }
+
+    public synchronized static Object pop(Class c) //TODO add param as String
+    {
+        Set<Object> objectSet = objectsMap.get(c);
+
+        return objectSet.stream().skip(sr.nextInt(objectSet.size())).findAny().get(); //TODO add conditions
     }
 }

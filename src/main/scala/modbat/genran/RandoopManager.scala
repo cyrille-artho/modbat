@@ -73,7 +73,7 @@ class RandoopManager extends RandomTestManager {
     components.addAll(operationModel.getAnnotatedTestValues)
 
 
-    ObjectHolder.set(objects);
+ //   ObjectHolder.set(objects);
 
     components.add(RandoopUtils.createSequenceForObject(objects.get(0)))
 

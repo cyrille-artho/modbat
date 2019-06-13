@@ -23,18 +23,7 @@ import scala.util.matching.Regex
 import modbat.RequirementFailedException
 import modbat.cov.StateCoverage
 import modbat.cov.TransitionCoverage
-import modbat.dsl.Action
-import modbat.dsl.After
-import modbat.dsl.Before
-import modbat.dsl.Model
-import modbat.dsl.NextStateOnException
-import modbat.dsl.Observer
-import modbat.dsl.State
-import modbat.dsl.States
-import modbat.dsl.Throws
-import modbat.dsl.Trace
-import modbat.dsl.Weight
-import modbat.dsl.Transition
+import modbat.dsl.{Action, After, Before, Model, NextStateOnException, Observer, Save, State, States, Throws, Trace, Transition, Weight}
 import modbat.log.Log
 import modbat.trace.Backtrack
 import modbat.trace.ExceptionOccurred
@@ -46,7 +35,7 @@ import modbat.trace.TransitionResult
 import modbat.util.CloneableRandom
 import modbat.util.Random
 import com.miguno.akka.testing.VirtualTime
-import modbat.genran.{RandomTestManager, RandoopManager}
+import modbat.genran.{RandomTestManager, RandoopManager, SaveFields}
 
 //import com.miguno.akka.testing.VirtualTime
 /** Contains core functionality for loading and running model.
@@ -377,6 +366,8 @@ class MBT (val model: Model, val trans: List[Transition]) {
   var isObserver = false
   var joining: MBT = null
   val tracedFields = new TracedFields(getTracedFields, model)
+  val saveFields = new SaveFields(getSaveFields, model)
+
   @volatile var staying = false
 
   /* isChild is true when coverage information of initial instance is
@@ -391,6 +382,48 @@ class MBT (val model: Model, val trans: List[Transition]) {
   def getCurrentState = currentState.name
 
   def getModel() = model
+
+  def getSaveFields = { //TODO refactor duplicated code
+    var cls: Class[_] = model.getClass
+    val fields = getSaveFieldsInClass(cls)
+    cls = cls.getSuperclass
+    while (!cls.getName.equals("java.lang.Object")) {
+      fields ++= getSaveFieldsInClass(cls)
+      cls = cls.getSuperclass
+    }
+    fields.toList
+  }
+
+  def getSaveFieldsInCons(c: Constructor[_]) = {
+    var i = 0
+    val paramAnns = c.getParameterAnnotations()
+    while (i < paramAnns.length) {
+      val p = paramAnns(i)
+      for (ann <- p) {
+        if (ann.isInstanceOf[Save]) {
+          Log.debug("Trace param. " + i)
+        }
+      }
+      i += 1
+    }
+  }
+
+  def getSaveFieldsInClass(cls: Class[_]) = {
+    val fields = new ListBuffer[Field]
+    for (c <- cls.getConstructors) {
+      /*fields ++= */getTracedFieldsInCons(c)
+      // TODO: Java 8 does not seem to report field names correctly
+      // wait for fix or use bytecode library
+    }
+    for (f <- cls.getDeclaredFields()) {
+      if (f.getAnnotation(classOf[Save]) != null) {
+        Log.debug("Trace field " + cls + "." + f.getName)
+        fields += f
+      }
+    }
+    fields
+  }
+
 
   def getTracedFields = {
     var cls: Class[_] = model.getClass

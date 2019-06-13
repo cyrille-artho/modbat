@@ -10,6 +10,7 @@ import java.lang.reflect.Modifier
 import java.lang.RuntimeException
 import java.net.URL
 import java.util.BitSet
+
 import scala.collection.JavaConversions._
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.HashMap
@@ -17,7 +18,6 @@ import scala.collection.mutable.HashSet
 import scala.collection.mutable.LinkedHashMap
 import scala.collection.mutable.ListBuffer
 import scala.util.matching.Regex
-
 import modbat.cov.StateCoverage
 import modbat.dsl.Action
 import modbat.dsl.Init
@@ -36,8 +36,9 @@ import modbat.trace.TransitionResult
 import modbat.util.CloneableRandom
 import modbat.util.SourceInfo
 import modbat.util.FieldUtil
-
 import com.miguno.akka.testing.VirtualTime
+import modbat.genran.ObjectHolder
+
 
 class NoTaskException(message :String = null, cause :Throwable = null) extends RuntimeException(message, cause)
 
@@ -84,6 +85,15 @@ object Modbat {
       MBT.invokeAnnotatedStaticMethods(classOf[Init], null)
     }
   }
+
+
+  def runRandomSearch() {
+
+    println(runRandomSearch)
+    //MBT.randomSearch(Seq(""), Seq(""), Seq(""), Seq(""))
+
+  }
+
 
   def shutdown {
     if (Main.config.shutdown) {
@@ -179,7 +189,7 @@ object Modbat {
     }
     preconditionCoverage
     randomSeed = (masterRNG.z << 32 | masterRNG.w)
-    Log.info("Random seed for next test would be: " + randomSeed.toHexString)
+    Log.info("Save seed for next test would be: " + randomSeed.toHexString)
     if (Main.config.dotifyCoverage) {
       for ((modelName, modelInst) <- firstInstance) {
 	new Dotify(modelInst, modelName + ".dot").dotify(true)
@@ -229,6 +239,7 @@ object Modbat {
     }
 
     runTests(n)
+    runRandomSearch()
 
     coverage
     appState = AppShutdown
@@ -245,11 +256,25 @@ object Modbat {
     rng.z << 32 | rng.w
   }
 
+  def saveFields(model: MBT) = {
+
+    for (f <- model.saveFields.fields) {
+      val value = FieldUtil.getValue(f, model.model)
+      Log.fine("Save field " + f.getName + " has value " + value)
+
+      ObjectHolder.add(value)
+
+    }
+  }
+
   def wrapRun = {
     Console.withErr(err) {
       Console.withOut(out) {
 	 val model = MBT.launch(null)
 	 val result = exploreModel(model)
+
+   saveFields(model)
+
 	 MBT.cleanup()
 	 result
       }

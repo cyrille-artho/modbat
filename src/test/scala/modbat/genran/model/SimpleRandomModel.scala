@@ -20,9 +20,10 @@ object SimpleRandomModel {
 
 
 
+@RandomSearch(Array("param1", "param2"))
 class SimpleRandomModel extends Model {
 
-  var counter: ControlCounter = _
+  @Save var counter: ControlCounter = _
 
   // transitions
   "reset" -> "zero" := {
