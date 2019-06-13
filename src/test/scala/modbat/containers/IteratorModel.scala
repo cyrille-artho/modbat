@@ -22,7 +22,7 @@ class IteratorModel(val dataModel: ListModel,
 
   @States(Array("main", "modifiable")) def hasNext {
     if (valid) {
-     desi assert ((dataModel.n-1 > pos) == it.hasNext)
+      assert ((dataModel.n-1 > pos) == it.hasNext)
     } else {
       it.hasNext // crash testing
     }

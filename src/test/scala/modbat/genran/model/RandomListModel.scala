@@ -1,8 +1,8 @@
-package modbat.containers.genran
+package modbat.genran.model
 
 import java.util.{ArrayList, LinkedList, List}
 
-import modbat.containers.{Containers, IteratorModel, ListIteratorModel}
+import modbat.containers.Containers
 import modbat.dsl._
 
 abstract class RandomListModel extends Model {

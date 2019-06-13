@@ -1,4 +1,4 @@
-package modbat.containers.genran
+package modbat.genran.model
 
 import modbat.containers.{Containers, ListModel}
 

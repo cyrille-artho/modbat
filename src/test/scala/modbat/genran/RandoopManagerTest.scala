@@ -5,25 +5,25 @@ import org.scalatest.FunSuite
 
 class RandoopManagerTest extends FunSuite {
 
-  test("testRun") {
+  test("testSimpleRandomModel") {
 
-    Main.main(Array("--classpath=build/modbat-test.jar", "modbat.examples.SimpleRandomModel", "--no-redirect-out"))
+    Main.main(Array("--classpath=build/modbat-test.jar", "modbat.genran.model.SimpleRandomModel", "--no-redirect-out"))
 
   }
 
-  test("runArrayList") {
+  test("runArrayListModel") {
 
     Main.main(Array("--classpath=build/modbat-test.jar", "modbat.containers.ArrayListModel", "--no-redirect-out", "-s=7", "-n=1000", "--abort-probability=0.02" ))
 
   }
 
-  test("runLinkedList") {
+  test("runLinkedListModel") {
 
     Main.main(Array("--classpath=build/modbat-test.jar", "modbat.containers.LinkedListModel", "--no-redirect-out", "-s=7", "-n=1000", "--abort-probability=0.02"))
 
   }
 
-  test("runSimpleLIst") {
+  test("runSimpleListModel") {
 
     Main.main(Array("--classpath=build/modbat-test.jar", "modbat.containers.SimpleListModel", "--no-redirect-out", "-s=7", "-n=1000", "--abort-probability=0.02"))
 
@@ -31,7 +31,7 @@ class RandoopManagerTest extends FunSuite {
 
   test("runRandomSimpleListModel") {
 
-    Main.main(Array("--classpath=build/modbat-test.jar", "modbat.containers.genran.RandomSimpleListModel", "--no-redirect-out", "-s=7", "-n=30", "--abort-probability=0.02"))
+    Main.main(Array("--classpath=build/modbat-test.jar", "modbat.genran.model.RandomSimpleListModel", "--no-redirect-out", "-s=7", "-n=30", "--abort-probability=0.02"))
 
   }
 

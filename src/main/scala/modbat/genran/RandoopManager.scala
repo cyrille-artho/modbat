@@ -3,11 +3,10 @@ package modbat.genran
 import java.util
 import java.util.function.Predicate
 
-import org.junit.Assert.assertTrue
 import randoop.generation.{ForwardGenerator, _}
 import randoop.main.GenInputsAbstract.require_classname_in_test
 import randoop.main._
-import randoop.operation.{OperationParseException, TypedOperation}
+import randoop.operation.TypedOperation
 import randoop.reflection.VisibilityPredicate.IS_PUBLIC
 import randoop.reflection._
 import randoop.sequence.{ExecutableSequence, Sequence}
@@ -15,8 +14,8 @@ import randoop.test.{ContractSet, TestCheckGenerator}
 import randoop.types.Type
 import randoop.util.MultiMap
 
-import scala.collection.JavaConverters._
 import scala.collection.JavaConversions._
+import scala.collection.JavaConverters._
 
 
 class RandoopManager extends RandomTestManager {
@@ -56,6 +55,12 @@ class RandoopManager extends RandomTestManager {
           println(e.toCodeString)
       }
 
+
+    for (e <- RandoopManager.forwardGenerator.getAllSequences)
+    {
+      println(e.toCodeString)
+    }
+
     println("validate:end")
   }
 
@@ -67,8 +72,10 @@ class RandoopManager extends RandomTestManager {
     components.addAll(SeedSequences.defaultSeeds) //TODO here mabe its a place for adding sequence, the moment where we add the trait
     components.addAll(operationModel.getAnnotatedTestValues)
 
-    objects.foreach(f => components.add(RandoopUtils.createSequenceForObject(f, 0))) //TODO put try catch for unexpected behavior
 
+    ObjectHolder.set(objects);
+
+    components.add(RandoopUtils.createSequenceForObject(objects.get(0)))
 
     val componentMgr: ComponentManager = new ComponentManager(components)
     operationModel.addClassLiterals(componentMgr, GenInputsAbstract.literals_file, GenInputsAbstract.literals_level)

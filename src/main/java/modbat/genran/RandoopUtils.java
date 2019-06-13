@@ -17,9 +17,22 @@ import java.util.Arrays;
 
 public class RandoopUtils {
 
+
+    public static Sequence createSequenceForObject(Object object) throws Exception {
+
+        TypedOperation pop = TypedOperation.forMethod(ObjectHolder.class.getMethod("pop"));
+
+        Sequence sBase = new Sequence();
+        sBase = sBase.extend(pop);
+
+        TypedOperation cast = TypedOperation.createCast(Type.forClass(Object.class),Type.forClass(object.getClass()));
+        sBase = sBase.extend(cast, sBase.getVariable(0));
+
+
+        return sBase;
+    }
+
     /**
-     *       TODO add proper javadoc
-     *
      *       Randoop Sequence logic of:
      *
      *       val objenesis = new ObjenesisStd
@@ -35,32 +48,21 @@ public class RandoopUtils {
      * @return
      * @throws Exception
      */
+    @Deprecated
     public static Sequence createSequenceForObject(Object object, int nest) throws Exception {
 
-
-
-
-
-
         if (object == null) {
-            Sequence sBase = new Sequence();
-            sBase = sBase.extend(TypedOperation.createNullOrZeroInitializationForType(Type.forValue(Object.class)));
-            return sBase;
-            //throw new IllegalArgumentException("object is null");
+            return new Sequence().extend(TypedOperation.createNullOrZeroInitializationForType(Type.forValue(Object.class)));
         } else if (nest >= 5)
         {
-            Sequence sBase = new Sequence();
-            sBase = sBase.extend(TypedOperation.createNullOrZeroInitializationForType(Type.forValue(object)));
-            return sBase;
+            return new Sequence().extend(TypedOperation.createNullOrZeroInitializationForType(Type.forValue(object)));
         }else {
 
             Type type = Type.forValue(object);
 
             if(object.getClass().equals(MBT.class))
             {
-                Sequence sBase = new Sequence();
-                sBase = sBase.extend(TypedOperation.createNullOrZeroInitializationForType(Type.forValue(MBT.class)));
-                return sBase;
+                return new Sequence().extend(TypedOperation.createNullOrZeroInitializationForType(Type.forValue(MBT.class)));
             }
 
             if (TypedOperation.isNonreceiverType(type)) {
@@ -148,7 +150,6 @@ public class RandoopUtils {
 
                 return sBase;
             }
-
         }
     }
 

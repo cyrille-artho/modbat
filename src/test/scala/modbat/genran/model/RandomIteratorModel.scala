@@ -1,4 +1,4 @@
-package modbat.containers.genran
+package modbat.genran.model
 
 //import experiment.util.Iterator
 import java.util.Iterator
