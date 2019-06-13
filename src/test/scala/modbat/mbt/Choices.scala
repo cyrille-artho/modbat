@@ -12,7 +12,7 @@ class Choices extends fixture.FlatSpec with fixture.TestDataFixture with Matcher
 
 
   "Choices2" should "pass" in { td =>
-    val result = ModbatTestHarness.testMain(Array("--mode=dot","--show-choices","modbat.test.Choices"), ModbatTestHarness.setTestJar, td)
+    val result = ModbatTestHarness.testMain(Array("--mode=dot","--show-choices","modbat.test.Choices"), ModbatTestHarness.setTestJar, td, Some("modbat.test.Choices.dot","choices.dot"))
     result._1 should be(0)
     result._3 shouldBe empty
   }

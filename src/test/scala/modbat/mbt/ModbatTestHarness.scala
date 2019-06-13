@@ -7,7 +7,7 @@ import java.io.PrintStream
 import java.util.Collections
 import java.util.HashMap
 import java.io.FileWriter
-import java.io.File
+import java.io.{File,FileInputStream}
 
 import modbat.util.CloneableRandom
 
@@ -19,7 +19,14 @@ object ModbatTestHarness {
   def writeToFile(path: String, data: String): Unit = 
     using(new FileWriter(path))(_.write(data))
 
-  def testMain(args: Array[String], env: () => Unit, td: org.scalatest.TestData): (Int, List[String], List[String]) = {
+  def savemv(from : String, to : String) {
+    val src = new File(from)
+    val dest = new File(to)
+    new FileOutputStream(dest) getChannel() transferFrom(
+    new FileInputStream(src) getChannel, 0, Long.MaxValue )
+  }
+
+  def testMain(args: Array[String], env: () => Unit, td: org.scalatest.TestData, optionsavemv : Option [(String, String)] = None): (Int, List[String], List[String]) = {
     env()
     val out: ByteArrayOutputStream = new ByteArrayOutputStream()
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
@@ -29,7 +36,7 @@ object ModbatTestHarness {
     Console.withErr(err) {
       Console.withOut(out) {
         try {
-          Main.run(args)
+            Main.run(args) 
           ret=0
         } catch {
           case e: Exception => ret=1
@@ -71,6 +78,13 @@ object ModbatTestHarness {
     writeToFile(name_output_err_2, err_value)
     writeToFile(name_output_out_2, eout_value)
     
+    optionsavemv match {
+      case None => {}
+      case Some((from,to)) => {
+        savemv(from, to)
+      }
+    }
+
     (ret, scala.io.Source.fromString(eout_value).getLines().toList, scala.io.Source.fromString(err_value).getLines().toList)
   }
 
