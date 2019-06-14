@@ -108,7 +108,8 @@ object ModbatTestHarness {
     if (new java.io.File(validated_out).exists){
       val validated_out_lines = Source.fromFile(name_output_1+".eout").getLines
 
-      val out_lines = out.getLines.toList 
+      //val out_lines = out.getLines.toList 
+      val out_lines = Source.fromFile(name_output_1+".out").getLines //TODO : find another way to get this list.
 
       val regex_out = List("""\[[0-9][0-9]*[mK]""".r, """.*//""".r, """ in .*[0-9]* milliseconds//""".r, """RELEASE-\([0-9.]*\)""".r,  """ v[0-9a-f]* rev [0-9a-f]*/""".r, """ v[0-9][0-9]*\\.[0-9][^ ]* rev [0-9a-f]*/ """.r, """^Time: [0-9.]*//""".r, """\\(at .*\\):[0-9]*""".r, """canceled 0, /""".r, """AIST confidential""".r)
       val string_replace_out = List("", "", "", "$1", "", " vx.yz/", " vx.yz/", "$1", "", "")
@@ -117,10 +118,10 @@ object ModbatTestHarness {
 
       val it = Iterator(validated_out_lines)
       for(out_line <- out_lines){
-        sentence_out_after_filtering=replaceRegexInSentence(out_line, regex_out, string_replace_out)
-        assert(it.hasNext(), "output is too long, longer than validated output")
-        assert(sentence_out_after_filtering == replaceRegexInSentence(it.next(), regex_eout, string_replace_eout))
-        assert(!it.hasNext(), "output is too short, shorter than validated output")  
+        val sentence_out_after_filtering=replaceRegexInSentence(out_line, regex_out, string_replace_out)
+        assert(it.hasNext, "output is too long, longer than validated output")
+        assert(sentence_out_after_filtering == replaceRegexInSentence(it.next().toString, regex_eout, string_replace_eout))
+        assert(!it.hasNext, "output is too short, shorter than validated output")  
       }
     }
     
