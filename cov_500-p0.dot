@@ -1,0 +1,28 @@
+digraph model {
+  orientation = landscape;
+  graph [ rankdir = "TB", ranksep="0.4", nodesep="0.2" ];
+  node [ fontname = "Helvetica", fontsize="12.0", margin="0.07" ];
+  edge [ fontname = "Helvetica", fontsize="12.0", margin="0.05" ];
+  "" [ shape = "point", height="0.1" ];
+  "" -> reset
+  reset	-> open [ label = " open \[ 100,0 % \]" penwidth = "3.0" ];
+  open	-> open [ label = " toggleBlocking \[ 23,5 % \]" penwidth = "3.0" ];
+  open	-> connected [ label = " connect " ];
+  open	-> maybeconnected [ label = " connect \[ 5,5 % \]" penwidth = "3.0" ];
+  maybeconnected	-> maybeconnected [ label = " toggleBlocking \[ 25,8 % \]" penwidth = "3.0" ];
+  maybeconnected	-> connected [ label = " finishConnect " ];
+  maybeconnected	-> maybeconnected [ label = " sleep \[ 12,9 % \]" penwidth = "3.0" ];
+  maybeconnected	-> connected [ label = " (sleep) " style = "dashed" ];
+  open	-> err [ label = " NoConnectionPendingExc. \[ 28,2 % \]" color = "red" penwidth = "3.0" ];
+  maybeconnected	-> err [ label = " ConnectionPendingExc. \[ 22,6 % \]" color = "red" penwidth = "3.0" ];
+  connected	-> err [ label = " AlreadyConnectedExc. " color = "red" ];
+  open	-> err [ label = " NotYetConnectedExc. \[ 20,6 % \]" color = "red" penwidth = "3.0" ];
+  maybeconnected	-> err [ label = " NotYetConnectedExc. \[ 16,1 % \]" color = "red" penwidth = "3.0" ];
+  connected	-> connected [ label = " finishConnect " ];
+  connected	-> connected [ label = " readFrom " ];
+  open	-> closed [ label = " close \[ 22,3 % \]" penwidth = "3.0" ];
+  connected	-> closed [ label = " close " ];
+  maybeconnected	-> closed [ label = " close \[ 22,6 % \]" penwidth = "3.0" ];
+  closed	-> closed [ label = " close \[ 54,8 % \]" penwidth = "3.0" ];
+  closed	-> err [ label = " ClosedChannelExc. \[ 45,2 % \]" color = "red" penwidth = "3.0" ];
+}
