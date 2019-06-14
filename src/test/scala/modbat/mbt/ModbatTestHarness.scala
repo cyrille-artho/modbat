@@ -93,35 +93,36 @@ object ModbatTestHarness {
 
     val name_output_err_2=name_output_2+".err"
     val name_output_out_2=name_output_2+".log"
-
-    val validated_out=name_output_1+".out" // TODO: (only) if it exists, open and compare out vs file contents
-    
-    val validated_out_lines = Source.fromFile(name_output_1+".eout").getLines
-
+      
     val err_value = err.toString
     val eout_value = out.toString
-    
+  
     writeToFile(name_output_err_1, err_value)
     writeToFile(name_output_out_1, eout_value)
     
     writeToFile(name_output_err_2, err_value)
     writeToFile(name_output_out_2, eout_value)
 
-    val out_lines = out.getLines.toList
+    val validated_out=name_output_1+".out" 
+    
+    if (new java.io.File(validated_out).exists){
+      val validated_out_lines = Source.fromFile(name_output_1+".eout").getLines
 
-    val regex_out = List("""\[[0-9][0-9]*[mK]""".r, """.*//""".r, """ in .*[0-9]* milliseconds//""".r, """RELEASE-\([0-9.]*\)""".r,  """ v[0-9a-f]* rev [0-9a-f]*/""".r, """ v[0-9][0-9]*\\.[0-9][^ ]* rev [0-9a-f]*/ """.r, """^Time: [0-9.]*//""".r, """\\(at .*\\):[0-9]*""".r, """canceled 0, /""".r, """AIST confidential""".r)
-    val string_replace_out = List("", "", "", "$1", "", " vx.yz/", " vx.yz/", "$1", "", "")
-    val regex_eout = List("""RELEASE-3.2/3.3/""".r, """ v[0-9a-f]* rev [0-9a-f]*/""".r, """ v[^ ]* rev [0-9a-f]*/""".r, """\(at .*\):[0-9]*/""".r, """\(Exception in thread "Thread-\)[0-9][0-9]*/""".r, """CommonRunner.*.run.*(ObjectRunner.scala""".r, """MainGenericRunner.*.run.*(MainGenericRunner.scala""".r)
-    val string_replace_eout = List("", " vx.yz/", " vx.yz/", "$1", "$1", "", "")
+      val out_lines = out.getLines.toList 
 
-    val it = Iterator(validated_out_lines)
-    for(out_line <- out_lines){
-      sentence_out_after_filtering=replaceRegexInSentence(out_line, regex_out, string_replace_out)
-      assert(it.hasNext(), "output is too long, longer than validated output")
-      assert(sentence_out_after_filtering == replaceRegexInSentence(it.next(), regex_eout, string_replace_eout))
-      assert(!it.hasNext(), "output is too short, shorter than validated output")  
+      val regex_out = List("""\[[0-9][0-9]*[mK]""".r, """.*//""".r, """ in .*[0-9]* milliseconds//""".r, """RELEASE-\([0-9.]*\)""".r,  """ v[0-9a-f]* rev [0-9a-f]*/""".r, """ v[0-9][0-9]*\\.[0-9][^ ]* rev [0-9a-f]*/ """.r, """^Time: [0-9.]*//""".r, """\\(at .*\\):[0-9]*""".r, """canceled 0, /""".r, """AIST confidential""".r)
+      val string_replace_out = List("", "", "", "$1", "", " vx.yz/", " vx.yz/", "$1", "", "")
+      val regex_eout = List("""RELEASE-3.2/3.3/""".r, """ v[0-9a-f]* rev [0-9a-f]*/""".r, """ v[^ ]* rev [0-9a-f]*/""".r, """\(at .*\):[0-9]*/""".r, """\(Exception in thread "Thread-\)[0-9][0-9]*/""".r, """CommonRunner.*.run.*(ObjectRunner.scala""".r, """MainGenericRunner.*.run.*(MainGenericRunner.scala""".r)
+      val string_replace_eout = List("", " vx.yz/", " vx.yz/", "$1", "$1", "", "")
+
+      val it = Iterator(validated_out_lines)
+      for(out_line <- out_lines){
+        sentence_out_after_filtering=replaceRegexInSentence(out_line, regex_out, string_replace_out)
+        assert(it.hasNext(), "output is too long, longer than validated output")
+        assert(sentence_out_after_filtering == replaceRegexInSentence(it.next(), regex_eout, string_replace_eout))
+        assert(!it.hasNext(), "output is too short, shorter than validated output")  
+      }
     }
-
     
     optionsavemv match {
       case None => {}
