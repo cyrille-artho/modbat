@@ -48,6 +48,7 @@ object ModbatTestHarness {
         case None => println("Error.")
       }
     }
+    new_sentence
   }
 
   def testMain(args: Array[String], env: () => Unit, td: org.scalatest.TestData, optionsavemv : Option [(String, String)] = None): (Int, List[String], List[String]) = {
