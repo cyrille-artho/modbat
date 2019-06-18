@@ -8,10 +8,14 @@ import java.util.Collections
 import java.util.HashMap
 import java.io.FileWriter
 import java.io.{File,FileInputStream}
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+import java.util.regex.Matcher;
 
 import scala.util.matching.Regex
 import scala.io.Source
 
+import modbat.log.Log
 import modbat.util.CloneableRandom
 
 object ModbatTestHarness {
@@ -29,23 +33,97 @@ object ModbatTestHarness {
     new FileInputStream(src) getChannel, 0, Long.MaxValue )
   }
 
-  def replaceRegexInSentence(sentence : String, regex_list : List[Regex], replace_sentences : List[String]) : String = {
+  def compare_iterators(it1:Iterator[String], it2:Iterator[String]) : Boolean = {
+    (it1 hasNext, it2 hasNext) match{
+      case (true, true) => {
+        (it1.next == it2.next) && compare_iterators(it1, it2)
+      }
+      case (false, false) => {
+        true
+      }
+      case (false, true) => {
+        false
+      }
+      case (true, false) => {
+        false
+      }
+    }
+  }
+
+  def filtering_and_regex(name_output : String, typeoutput : String, typeByte : ByteArrayOutputStream){
+    var regex_list = List("")
+    var replace_sentences = List("")
+    if (typeoutput == "out"){
+      regex_list = List("""\[[0-9][0-9]*[mK]""", """.*""", """ in .*[0-9]* milliseconds""", """RELEASE-([0-9.]*)""",  """ v[0-9a-f]* rev [0-9a-f]*""", """ v[0-9][0-9]*\\.[0-9][^ ]* rev [0-9a-f]*""", """^Time: [0-9.]*""", """(at .*?):?[0-9]*:?""", """canceled 0, """)
+      replace_sentences=List("", "", "", "$1", "", " vx.yz", " vx.yz", "$1", "")
+    }
+    else{
+      regex_list = List("""RELEASE-3.2""", """ v[0-9a-f]* rev [0-9a-f]*""", """ v[^ ]* rev [0-9a-f]*""", """(at .*?):[0-9]*:?""", """(Exception in thread "Thread-)[0-9][0-9]*""", """CommonRunner.*un.*\(ObjectRunner.scala""", """MainGenericRunner.*un.*\(MainGenericRunner.scala""")
+      replace_sentences = List("3.3", " vx.yz", " vx.yz", "$1", "$1", "", "")
+    }
+    val validated_out=name_output
+    val list_pattern = definePatternList(regex_list)
+    if (new java.io.File(validated_out).exists){
+      val validated_out_lines = Source.fromFile(name_output).getLines
+      val out_lines = Source.fromBytes(typeByte.toByteArray()).getLines
+      assert(compare_iterators(validated_out_lines, (
+            out_lines.map (l => replaceRegexInSentence(l, list_pattern, replace_sentences)))))
+    }
+  }
+
+  def definePatternList(regex_list : List[String]):List[Pattern]= {
+    var index=0
+    val length = regex_list.length 
+    var regex : Pattern = null;
+    var list_pattern : List[Pattern] = List.fill(length)(regex)
+    for(index <- 0 to (length-1)){
+      regex_list.lift(index) match{
+        case Some(regexString) => 
+        {
+          try {
+            regex = Pattern.compile(regexString);
+            Console.println("Pattern created: "+regex.pattern());
+            list_pattern.updated (index,regex)
+          } catch {
+            case ex: PatternSyntaxException => {
+              Log.error("This string could not compile: "+ex.getPattern());
+              Log.error(ex.getMessage());
+              throw (ex)
+            }
+          }
+        }
+        case None => println("Error in definePatternList list index out of range...")
+      }
+    }
+    Console.println("Pattern all created");
+    list_pattern
+  }
+
+  def replaceRegexInSentence(sentence : String, list_pattern : List[Pattern], replace_sentences : List[String]) : String = {
     var old_sentence = sentence
     var new_sentence=""
     var index=0
-    for(index <- 0 to (regex_list.length-1)){
-      regex_list.lift(index) match{
-        case Some(regex) => 
-        (
-          replace_sentences.lift(index) match{
-            case Some(replace_sentence) => 
-            (
-              new_sentence = regex.replaceAllIn(old_sentence, replace_sentence)
-            )
-            case None => println("Error.")
+    for(index <- 0 to (list_pattern.length-1)){
+      replace_sentences.lift(index) match{
+        case Some(replace_sentence) =>  
+        {
+          var index2=0
+          for(index2 <- 0 to (list_pattern.length-1)){
+            Console.println("Sentence to change: "+old_sentence);
+            var m : Matcher = list_pattern(index2).matcher(old_sentence);
+            if (m.find( )) {
+              Console.println("Found value: " + m.group(0) );
+              Console.println("Found value: " + m.group(1) );
+              Console.println("Found value: " + m.group(2) );
+            }else {
+              Console.println("NO MATCH");
+            }
+            new_sentence = m.replaceAll(replace_sentence)
+            Console.println("Sentence changed: "+new_sentence);
+            Console.println("")
           }
-        )
-        case None => println("Error.")
+        }
+        case None => println("Error in replaceRegexInSetence list index out of range...")
       }
     }
     new_sentence
@@ -103,27 +181,8 @@ object ModbatTestHarness {
     writeToFile(name_output_err_2, err_value)
     writeToFile(name_output_out_2, eout_value)
 
-    val validated_out=name_output_1+".out" 
-    
-    if (new java.io.File(validated_out).exists){
-      val validated_out_lines = Source.fromFile(name_output_1+".eout").getLines
-
-      //val out_lines = out.getLines.toList 
-      val out_lines = Source.fromFile(name_output_1+".out").getLines //TODO : find another way to get this list.
-
-      val regex_out = List("""\[[0-9][0-9]*[mK]""".r, """.*//""".r, """ in .*[0-9]* milliseconds//""".r, """RELEASE-\([0-9.]*\)""".r,  """ v[0-9a-f]* rev [0-9a-f]*/""".r, """ v[0-9][0-9]*\\.[0-9][^ ]* rev [0-9a-f]*/ """.r, """^Time: [0-9.]*//""".r, """\\(at .*\\):[0-9]*""".r, """canceled 0, /""".r, """AIST confidential""".r)
-      val string_replace_out = List("", "", "", "$1", "", " vx.yz/", " vx.yz/", "$1", "", "")
-      val regex_eout = List("""RELEASE-3.2/3.3/""".r, """ v[0-9a-f]* rev [0-9a-f]*/""".r, """ v[^ ]* rev [0-9a-f]*/""".r, """\(at .*\):[0-9]*/""".r, """\(Exception in thread "Thread-\)[0-9][0-9]*/""".r, """CommonRunner.*.run.*(ObjectRunner.scala""".r, """MainGenericRunner.*.run.*(MainGenericRunner.scala""".r)
-      val string_replace_eout = List("", " vx.yz/", " vx.yz/", "$1", "$1", "", "")
-
-      val it = Iterator(validated_out_lines)
-      for(out_line <- out_lines){
-        val sentence_out_after_filtering=replaceRegexInSentence(out_line, regex_out, string_replace_out)
-        assert(it.hasNext, "output is too long, longer than validated output")
-        assert(sentence_out_after_filtering == replaceRegexInSentence(it.next().toString, regex_eout, string_replace_eout))
-        assert(!it.hasNext, "output is too short, shorter than validated output")  
-      }
-    }
+    filtering_and_regex (name_output_1+".out", "out", out)
+    /* filtering_and_regex (name_output_1+".eout", "err", err) */
     
     optionsavemv match {
       case None => {}
