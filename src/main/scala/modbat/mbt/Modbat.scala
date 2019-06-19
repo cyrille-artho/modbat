@@ -692,11 +692,6 @@ object Modbat {
 	        m.joining = null
 	      }
 	    }
-	    if (otherThreadFailed) {
-              // store path information -Rui
-              storePathInfo(result, successor, backtracked, true)
-              return (ExceptionOccurred(MBT.externalException.toString), null)
-	    }
 	    if (sameAgain) {
 	      successors = allSuccessors(model)
 	    } else {
