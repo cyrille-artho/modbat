@@ -1,0 +1,15 @@
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.examples.SimpleModel.assert(SimpleModel.scala)
+[ERROR] 	at modbat.examples.SimpleModel$$anonfun$6.apply$mcV$sp(SimpleModel.scala)
+[ERROR] 	at modbat.examples.SimpleModel$$anonfun$6.apply(SimpleModel.scala)
+[ERROR] 	at modbat.examples.SimpleModel$$anonfun$6.apply(SimpleModel.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/examples/SimpleModel.scala:10: new SimpleCounter
+[WARNING] modbat/examples/SimpleModel.scala:13: toggleSwitch
+[WARNING] modbat/examples/SimpleModel.scala:16: inc
+[WARNING] modbat/examples/SimpleModel.scala:19: inc
+[WARNING] modbat/examples/SimpleModel.scala:25: assert

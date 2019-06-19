@@ -1,0 +1,14 @@
+[WARNING] Ignoring method public void modbat.test.InvalidMethod.invariantCheck(int), which has @State annotation but more than zero arguments.
+[WARNING] Ignoring non-existent state x from @State annotation for invariantCheck
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala:156)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala:31)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala:42)
+[ERROR] 	at modbat.test.InvalidMethod.assert(InvalidMethod.scala:5)
+[ERROR] 	at modbat.test.InvalidMethod$$anonfun$invariantCheck$1.apply$mcV$sp(InvalidMethod.scala:11)
+[ERROR] 	at modbat.test.InvalidMethod$$anonfun$invariantCheck$1.apply(InvalidMethod.scala:11)
+[ERROR] 	at modbat.test.InvalidMethod$$anonfun$invariantCheck$1.apply(InvalidMethod.scala:11)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/InvalidMethod.scala:15: skip
+[WARNING] modbat/test/InvalidMethod.scala:11: invariantCheck; choices = (0.49744096)

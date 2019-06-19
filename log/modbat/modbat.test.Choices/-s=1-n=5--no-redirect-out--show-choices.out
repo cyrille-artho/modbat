@@ -1,0 +1,12 @@
+       1 3ba471c1785a0175
+       2 402b73cd0066eaea
+       3 41530f4040856586
+       4  89a82931be29e65
+       5 49a846e52b813972, one test failed.
+[INFO] 5 tests executed, 4 ok, 1 failed.
+[INFO] One type of test failure:
+[INFO] 1) java.lang.AssertionError: assertion failed at assert
+[INFO]    89a82931be29e65
+[INFO] 2 states covered (100 % out of 2),
+[INFO] 2 transitions covered (100 % out of 2).
+[INFO] Random seed for next test would be: 27fe2d950fc74b21

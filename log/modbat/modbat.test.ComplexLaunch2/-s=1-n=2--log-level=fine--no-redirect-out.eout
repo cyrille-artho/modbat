@@ -1,0 +1,48 @@
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.ComplexLaunch2.assert(ComplexLaunch2.scala)
+[ERROR] 	at modbat.test.ComplexLaunch2$$anonfun$2.apply$mcV$sp(ComplexLaunch2.scala)
+[ERROR] 	at modbat.test.ComplexLaunch2$$anonfun$2.apply(ComplexLaunch2.scala)
+[ERROR] 	at modbat.test.ComplexLaunch2$$anonfun$2.apply(ComplexLaunch2.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/ComplexLaunch2.scala:17: modbat.test.ComplexLaunch2-1: skip
+[WARNING] modbat/test/ComplexLaunch2.scala:22: modbat.test.ComplexLaunch2-1: launch
+[WARNING] modbat/test/ComplexLaunch2.scala:22: modbat.test.ComplexLaunch2-1: launch
+[WARNING] modbat/test/ComplexLaunch2.scala:22: modbat.test.ComplexLaunch2-1: launch
+[WARNING] modbat/test/ComplexLaunch2.scala:27: modbat.test.ComplexLaunch2-1: assert
+[WARNING] modbat/test/ComplexLaunch2.scala:17: modbat.test.ComplexLaunch2-2: skip
+[WARNING] modbat/test/ComplexLaunch2.scala:27: modbat.test.ComplexLaunch2-2: assert
+[WARNING] modbat/test/ComplexLaunch2.scala:17: modbat.test.ComplexLaunch2-3: skip
+[WARNING] modbat/test/ComplexLaunch2.scala:27: modbat.test.ComplexLaunch2-3: assert
+[WARNING] modbat/test/ComplexLaunch2.scala:17: modbat.test.ComplexLaunch2-4: skip
+[WARNING] modbat/test/ComplexLaunch2.scala:22: modbat.test.ComplexLaunch2-4: launch
+[WARNING] modbat/test/ComplexLaunch2.scala:18: modbat.test.ComplexLaunch2-4: launch
+[WARNING] modbat/test/ComplexLaunch2.scala:18: modbat.test.ComplexLaunch2-4: launch
+[WARNING] modbat/test/Child2.scala:9: modbat.test.Child2-2: skip
+[WARNING] modbat/test/Child2.scala:9: modbat.test.Child2-1: skip
+[WARNING] modbat/test/Child2.scala:14: modbat.test.Child2-2: assert
+[WARNING] modbat/test/Child2.scala:14: modbat.test.Child2-1: assert
+[WARNING] modbat/test/ComplexLaunch2.scala:17: modbat.test.ComplexLaunch2-5: skip
+[WARNING] modbat/test/ComplexLaunch2.scala:27: modbat.test.ComplexLaunch2-4: assert
+[WARNING] modbat/test/ComplexLaunch2.scala:18: modbat.test.ComplexLaunch2-5: launch
+[WARNING] modbat/test/ComplexLaunch2.scala:22: modbat.test.ComplexLaunch2-5: launch
+[WARNING] modbat/test/ComplexLaunch2.scala:17: modbat.test.ComplexLaunch2-6: skip
+[WARNING] modbat/test/ComplexLaunch2.scala:22: modbat.test.ComplexLaunch2-6: launch
+[WARNING] modbat/test/ComplexLaunch2.scala:17: modbat.test.ComplexLaunch2-7: skip
+[WARNING] modbat/test/ComplexLaunch2.scala:22: modbat.test.ComplexLaunch2-5: launch
+[WARNING] modbat/test/ComplexLaunch2.scala:27: modbat.test.ComplexLaunch2-7: assert
+[WARNING] modbat/test/ComplexLaunch2.scala:22: modbat.test.ComplexLaunch2-5: launch
+[WARNING] modbat/test/ComplexLaunch2.scala:18: modbat.test.ComplexLaunch2-6: launch
+[WARNING] modbat/test/Child2.scala:9: modbat.test.Child2-4: skip
+[WARNING] modbat/test/ComplexLaunch2.scala:22: modbat.test.ComplexLaunch2-5: launch
+[WARNING] modbat/test/ComplexLaunch2.scala:22: modbat.test.ComplexLaunch2-5: launch
+[WARNING] modbat/test/Child2.scala:11: modbat.test.Child2-4: id
+[WARNING] modbat/test/ComplexLaunch2.scala:17: modbat.test.ComplexLaunch2-10: skip
+[WARNING] modbat/test/ComplexLaunch2.scala:18: modbat.test.ComplexLaunch2-6: launch
+[WARNING] modbat/test/ComplexLaunch2.scala:22: modbat.test.ComplexLaunch2-5: launch
+[WARNING] modbat/test/ComplexLaunch2.scala:18: modbat.test.ComplexLaunch2-10: launch
+[WARNING] modbat/test/Child2.scala:9: modbat.test.Child2-3: skip
+[WARNING] modbat/test/ComplexLaunch2.scala:27: modbat.test.ComplexLaunch2-6: assert

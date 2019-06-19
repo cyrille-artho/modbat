@@ -1,0 +1,29 @@
+       1 3ba471c1785a0175
+       2 402b73cd0066eaea
+       3 41530f4040856586, one test failed.
+       4  89a82931be29e65, one test failed.
+       5 49a846e52b813972, 2 tests failed.
+       6 27fe2d950fc74b21, 3 tests failed.
+       7 19b6aa1b14a29017, 3 tests failed.
+       8 5ff50ec9279365d2, 4 tests failed.
+       9  85780661bf76533, 4 tests failed.
+      10 486e122d1bcbade7, 5 tests failed.
+      11  a410ce32fc39dfb, 6 tests failed.
+      12  745035c2b643033, 7 tests failed.
+      13  1e528010d3d2d54, 8 tests failed.
+      14 1690fa4e0c732f7d, 9 tests failed.
+      15 8d32a08e0d0b1183, 9 tests failed.
+      16 5a92477004cf57fb, 10 tests failed.
+      17 284ca782182a253f, 11 tests failed.
+      18 5e7dfc9e0a3af5da, 12 tests failed.
+      19 8e80db4b43867a5a, 12 tests failed.
+      20 7bb4b043219b1ba6, 12 tests failed.
+[INFO] 20 tests executed, 8 ok, 12 failed.
+[INFO] 2 types of test failures:
+[INFO] 1) java.lang.AssertionError: assertion failed: i = 1 at check
+[INFO]    402b73cd0066eaea 89a82931be29e65 49a846e52b813972 19b6aa1b14a29017 486e122d1bcbade7 a410ce32fc39dfb 8d32a08e0d0b1183 284ca782182a253f
+[INFO] 2) java.lang.AssertionError: assertion failed: i = 2 at check
+[INFO]    85780661bf76533 745035c2b643033 1e528010d3d2d54 5a92477004cf57fb
+[INFO] 4 states covered (100 % out of 4),
+[INFO] 7 transitions covered (100 % out of 7).
+[INFO] Random seed for next test would be: 636e772f0798297b
