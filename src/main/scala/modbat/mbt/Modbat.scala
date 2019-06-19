@@ -616,7 +616,7 @@ object Modbat {
        * Otherwise, if total weight > 0, choose one transition by weight and execute it. */
       val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone
 
-      if (MBT.rng.nextFloat(false) < Main.config.abortProbability) {
+      if (MBT.rng.nextFloat(false) < Main.config.abortProbability) { // TODO (Rui): Refactor debug code into helper function
         Log.debug("Aborting...")
 
         /* // debug code:
@@ -637,6 +637,7 @@ object Modbat {
 
       //invokeTransition
       var successor: (MBT, Transition) = null
+      // TODO (Cyrille or Kotaro): Refactor invocation transition queue into helper function
       if(!MBT.transitionQueue.isEmpty) Log.debug("Current InvokeTransitionQueue = (" + MBT.transitionQueue.mkString + ")")
 
       while (!MBT.transitionQueue.isEmpty && successor == null) {
@@ -665,7 +666,7 @@ object Modbat {
         }
         updateExecHistory(model, localStoredRNGState, result, updates)
         result match {
-          case (Ok(sameAgain: Boolean), _) => {
+          case (Ok(sameAgain: Boolean), _) => { // TODO: Refactor into smaller parts
             backtracked = false
             failed = false
 
