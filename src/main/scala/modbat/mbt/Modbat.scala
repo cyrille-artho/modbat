@@ -604,6 +604,22 @@ object Modbat {
     }
   }
 
+  def invocationSuccessor: (MBT, Transition) = {
+    if (!MBT.transitionQueue.isEmpty) Log.debug("Current InvokeTransitionQueue = (" + MBT.transitionQueue.mkString + ")")
+
+    while (!MBT.transitionQueue.isEmpty) {
+      val (model, label) = MBT.transitionQueue.dequeue
+      val trs = model.transitions.filter(_.action.label == label)
+        .filter(_.origin == model.currentState)
+      if(trs.size != 1) {
+        Log.warn(s"${label} matches ${trs.size} transitions")
+      } else {
+        return (model, trs.head)
+      }
+    }
+    null
+  }
+
   def exploreSuccessors: (TransitionResult, RecordedTransition) = {
     var successors = allSuccessors(null)
     var allSucc = successors.clone
@@ -637,19 +653,7 @@ object Modbat {
 
       //invokeTransition
       var successor: (MBT, Transition) = null
-      // TODO (Cyrille or Kotaro): Refactor invocation transition queue into helper function
-      if(!MBT.transitionQueue.isEmpty) Log.debug("Current InvokeTransitionQueue = (" + MBT.transitionQueue.mkString + ")")
-
-      while (!MBT.transitionQueue.isEmpty && successor == null) {
-        val (model, label) = MBT.transitionQueue.dequeue
-        val trs = model.transitions.filter(_.action.label == label)
-          .filter(_.origin == model.currentState)
-        if(trs.size != 1) {
-          Log.warn(s"${label} matches ${trs.size} transitions")
-        } else {
-          successor = (model, trs.head)
-        }
-      }
+      successor = invocationSuccessor
       if (successor == null && totalW > 0) {
         successor = weightedChoice(successors, totalW)
       }
