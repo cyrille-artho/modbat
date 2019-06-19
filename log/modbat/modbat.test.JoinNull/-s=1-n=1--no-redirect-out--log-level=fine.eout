@@ -1,5 +1,0 @@
-[ERROR] modbat.test.JoinNull-1 calls join(null) but parameter must be non-null.
-[WARNING] java.lang.NullPointerException occurred, aborting.
-[ERROR] java.lang.NullPointerException
-[WARNING] Error found, model trace:
-[WARNING] modbat/test/JoinNull.scala:7: join
