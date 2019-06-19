@@ -662,12 +662,12 @@ object Modbat {
         assert (!trans.isSynthetic)
         // TODO: Path coverage
         val result = model.executeTransition(trans)
-        var updates: List[(Field, Any)] = Nil
+        var updates: List[(Field, Any)] = Nil // TODO: refactor into helper [Cyrille]
         updates  = model.tracedFields.updates
         for (u <- updates) {
 	  Log.fine("Trace field " + u._1 + " now has value " + u._2)
         }
-        updateExecHistory(model, localStoredRNGState, result, updates)
+        updateExecHistory(model, localStoredRNGState, result, updates) // end refactoring from above
         result match {
           case (Ok(sameAgain: Boolean), _) => { // TODO: Refactor into smaller parts
             backtracked = false
@@ -685,7 +685,7 @@ object Modbat {
 
  	    val succ = new ArrayBuffer[(MBT, Transition)]()
 	    addSuccessors(model, succ, true)
-	    if (succ.size == 0) {
+	    if (succ.size == 0) { // TODO: refactor into helper [Cyrille]
 	      Log.debug("Model " + model.name + " has terminated.")
 	      // Unblock all models that are joining this one.
 	      for (m <- MBT.launchedModels filter (_.joining == model)) {
@@ -730,23 +730,23 @@ object Modbat {
     // insert all path information of the current test in trie - Rui
     insertPathInfoInTrie()
 
-    if (successors.isEmpty && backtracked) {
+    if (successors.isEmpty && backtracked) { // TODO: refactor into helper [Cyrille]
       for (succ <- allSucc) {
         Log.warn(
           "All preconditions false at transition " +
             ppTrans(new RecordedTransition(succ._1, succ._2)))
       }
       Log.warn("Maybe the preconditions are too strict?")
-    }
+    } // end refactoring from above
     Log.debug("No more successors.")
-    if ((MBT.launchedModels filter (_.joining != null)).size != 0) {
+    if ((MBT.launchedModels filter (_.joining != null)).size != 0) { // TODO: refactor into helper [Cyrille]
       Log.warn(
         "Deadlock: Some models stuck waiting for another model to finish.")
       for (m <- MBT.launchedModels filter (_.joining != null)) {
         val trans = (executedTransitions filter (_.model eq m)).last
         Log.warn(m.name + ": " + ppTrans(trans))
       }
-    }
+    } // end refactoring from above
     Transition.pendingTransitions.clear
     // in case a newly constructed model was never launched
     return (Ok(), null)
