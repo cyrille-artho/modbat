@@ -33,21 +33,9 @@ object ModbatTestHarness {
     new FileInputStream(src) getChannel, 0, Long.MaxValue )
   }
 
-  def compare_iterators(it1:Iterator[String], it2:Iterator[String]) : Boolean = {
-    (it1 hasNext, it2 hasNext) match{
-      case (true, true) => {
-        (it1.next == it2.next) && compare_iterators(it1, it2)
-      }
-      case (false, false) => {
-        true
-      }
-      case (false, true) => {
-        false
-      }
-      case (true, false) => {
-        false
-      }
-    }
+  def compare_iterators(it1:Iterator[String], it2:Iterator[String]) = {
+    it1.zip(it2).forall(x => x._1 == x._2) && 
+    (it1.length == it2.length)
   }
 
   def filtering_and_regex(name_output : String, typeoutput : String, typeByte : ByteArrayOutputStream){
@@ -62,71 +50,28 @@ object ModbatTestHarness {
       replace_sentences = List("3.3", " vx.yz", " vx.yz", "$1", "$1", "", "")
     }
     val validated_out=name_output
-    val list_pattern = definePatternList(regex_list)
     if (new java.io.File(validated_out).exists){
       val validated_out_lines = Source.fromFile(name_output).getLines
       val out_lines = Source.fromBytes(typeByte.toByteArray()).getLines
-      assert(compare_iterators(validated_out_lines, (
-            out_lines.map (l => replaceRegexInSentence(l, list_pattern, replace_sentences)))))
+      val filewhichcanbecompared = (out_lines.map (l => replaceRegexInSentence(l, regex_list, replace_sentences)))
+      Console.println("")
+      Console.println(compare_iterators(validated_out_lines, filewhichcanbecompared))
     }
   }
 
-  def definePatternList(regex_list : List[String]):List[Pattern]= {
-    var index=0
-    val length = regex_list.length 
-    var regex : Pattern = null;
-    var list_pattern : List[Pattern] = List.fill(length)(regex)
-    for(index <- 0 to (length-1)){
-      regex_list.lift(index) match{
-        case Some(regexString) => 
-        {
-          try {
-            regex = Pattern.compile(regexString);
-            Console.println("Pattern created: "+regex.pattern());
-            list_pattern.updated (index,regex)
-          } catch {
-            case ex: PatternSyntaxException => {
-              Log.error("This string could not compile: "+ex.getPattern());
-              Log.error(ex.getMessage());
-              throw (ex)
-            }
-          }
-        }
-        case None => println("Error in definePatternList list index out of range...")
-      }
+  def replaceRegexInSentence(sentence : String, list_pattern : List[String], replace_sentences : List[String]) : String = {  
+    if (list_pattern.length !=0){
+      val pattern = list_pattern(0)
+      val replace_sentence = replace_sentences(0)
+      replaceRegexInSentence(
+        sentence.replaceAll(pattern, replace_sentence), 
+        list_pattern.drop(1), 
+        replace_sentences.drop(1)
+      )
     }
-    Console.println("Pattern all created");
-    list_pattern
-  }
-
-  def replaceRegexInSentence(sentence : String, list_pattern : List[Pattern], replace_sentences : List[String]) : String = {
-    var old_sentence = sentence
-    var new_sentence=""
-    var index=0
-    for(index <- 0 to (list_pattern.length-1)){
-      replace_sentences.lift(index) match{
-        case Some(replace_sentence) =>  
-        {
-          var index2=0
-          for(index2 <- 0 to (list_pattern.length-1)){
-            Console.println("Sentence to change: "+old_sentence);
-            var m : Matcher = list_pattern(index2).matcher(old_sentence);
-            if (m.find( )) {
-              Console.println("Found value: " + m.group(0) );
-              Console.println("Found value: " + m.group(1) );
-              Console.println("Found value: " + m.group(2) );
-            }else {
-              Console.println("NO MATCH");
-            }
-            new_sentence = m.replaceAll(replace_sentence)
-            Console.println("Sentence changed: "+new_sentence);
-            Console.println("")
-          }
-        }
-        case None => println("Error in replaceRegexInSetence list index out of range...")
-      }
+    else{
+      sentence
     }
-    new_sentence
   }
 
   def testMain(args: Array[String], env: () => Unit, td: org.scalatest.TestData, optionsavemv : Option [(String, String)] = None): (Int, List[String], List[String]) = {
