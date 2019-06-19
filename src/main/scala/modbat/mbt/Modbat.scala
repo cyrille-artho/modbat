@@ -625,7 +625,6 @@ object Modbat {
     var allSucc = successors.clone
     var totalW = totalWeight(successors)
     var backtracked = false // boolean var for backtracked case -Rui
-    var failed = false // boolean var for failed case - Rui
     while (!successors.isEmpty && (totalW > 0 || !MBT.transitionQueue.isEmpty)) {
       /* Pop invokeTransition queue until a feasible transition is popped.
        * If there is, execute it.
@@ -672,7 +671,6 @@ object Modbat {
         result match {
           case (Ok(sameAgain: Boolean), _) => { // TODO: Refactor into smaller parts
             backtracked = false
-            failed = false
 
             // debug code:
             /* if (result._2.nextState != null) {
@@ -695,9 +693,8 @@ object Modbat {
 	      }
 	    }
 	    if (otherThreadFailed) {
-              failed = true
               // store path information -Rui
-              storePathInfo(result, successor, backtracked, failed)
+              storePathInfo(result, successor, backtracked, true)
               return (ExceptionOccurred(MBT.externalException.toString), null)
 	    }
 	    if (sameAgain) {
@@ -710,23 +707,19 @@ object Modbat {
 	      return (observerResult, result._2)
 	    }
 	    if (otherThreadFailed) {
-	      failed = true
               // store path information -Rui
-              storePathInfo(result, successor, backtracked, failed)
+              storePathInfo(result, successor, backtracked, true)
               return (ExceptionOccurred(MBT.externalException.toString), null)
 	    }
-	    backtracked = false
 	    allSucc = successors.clone
 	  }
           case (Backtrack, _) => {
 	    backtracked = true
-            failed = false
 	    successors = successors filterNot (_ == successor)
 	  }
           case (t: TransitionResult, _) => {
-            failed = true
             // store path information -Rui
-            storePathInfo(result, successor, backtracked, failed)
+            storePathInfo(result, successor, backtracked, true)
 
 	    assert(TransitionResult.isErr(t))
 	    printTrace(executedTransitions.toList)
@@ -734,7 +727,7 @@ object Modbat {
 	  }
         }
         // store path information -Rui
-        storePathInfo(result, successor, backtracked, failed)
+        storePathInfo(result, successor, backtracked, false)
         totalW = totalWeight(successors)
       }
     }
