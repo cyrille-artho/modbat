@@ -11,6 +11,7 @@ import java.io.{File,FileInputStream}
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 import java.util.regex.Matcher;
+import java.io.PrintWriter
 
 import scala.util.matching.Regex
 import scala.io.Source
@@ -33,17 +34,28 @@ object ModbatTestHarness {
     new FileInputStream(src) getChannel, 0, Long.MaxValue )
   }
 
-  def compare_iterators(it1:Iterator[String], it2:Iterator[String]) = {
-    it1.zip(it2).forall(x => x._1 == x._2) && 
-    (it1.length == it2.length)
+  def compare_iterators(it1:Iterator[String], it2:Iterator[String]) : Boolean = {
+  (it1 hasNext, it2 hasNext) match{
+    case (true, true) => {
+      var it1next=it1.next
+      var it2next=it2.next
+      Console.println("")
+      Console.println("it1 = "+it1next)
+      Console.println("it2 = "+it2next)
+      (it1next == it2next) && compare_iterators(it1, it2)
+    }
+    case (false, false) => true
+    case (false, true) => false
+    case (true, false) => false
   }
+}
 
-  def filtering_and_regex(name_output : String, typeoutput : String, typeByte : ByteArrayOutputStream){
+  def filtering_and_regex(name_output : String, typeoutput : String, typeByte : ByteArrayOutputStream, name_file: String){
     var regex_list = List("")
     var replace_sentences = List("")
     if (typeoutput == "out"){
-      regex_list = List("""\[[0-9][0-9]*[mK]""", """.*""", """ in .*[0-9]* milliseconds""", """RELEASE-([0-9.]*)""",  """ v[0-9a-f]* rev [0-9a-f]*""", """ v[0-9][0-9]*\\.[0-9][^ ]* rev [0-9a-f]*""", """^Time: [0-9.]*""", """(at .*?):?[0-9]*:?""", """canceled 0, """)
-      replace_sentences=List("", "", "", "$1", "", " vx.yz", " vx.yz", "$1", "")
+      regex_list = List("""\[[0-9][0-9]*[mK]""", """.*""", """ in .*[0-9]* milliseconds""", """RELEASE-([0-9.]*)""",  """ v[0-9a-f]* rev [0-9a-f]*""", """ v[0-9][0-9]*\\.[0-9][^ ]* rev [0-9a-f]*""", """^Time: [0-9.]*""", """(at .*):[0-9]*:""", """canceled 0, """, """(\[INFO\] .* java.lang.AssertionError.*):""")
+      replace_sentences=List("", "", "", "$1", "", " vx.yz", " vx.yz", "$1", "", "$1")
     }
     else{
       regex_list = List("""RELEASE-3.2""", """ v[0-9a-f]* rev [0-9a-f]*""", """ v[^ ]* rev [0-9a-f]*""", """(at .*?):[0-9]*:?""", """(Exception in thread "Thread-)[0-9][0-9]*""", """CommonRunner.*un.*\(ObjectRunner.scala""", """MainGenericRunner.*un.*\(MainGenericRunner.scala""")
@@ -55,7 +67,7 @@ object ModbatTestHarness {
       val out_lines = Source.fromBytes(typeByte.toByteArray()).getLines
       val filewhichcanbecompared = (out_lines.map (l => replaceRegexInSentence(l, regex_list, replace_sentences)))
       Console.println("")
-      Console.println(compare_iterators(validated_out_lines, filewhichcanbecompared))
+      assert(compare_iterators(validated_out_lines, filewhichcanbecompared))
     }
   }
 
@@ -108,8 +120,11 @@ object ModbatTestHarness {
     if (bool){
         directory.mkdirs();
     }
+
+    val simple_name = ( td.name.split(" ") )(0)
     val name_output_1=name_output+"/"+name_file
-    val name_output_2=name_output+"/"+( td.name.split(" ") )(0)
+    val name_output_2=name_output+"/"+simple_name
+    
 
     val name_output_err_1=name_output_1+".err"
     val name_output_out_1=name_output_1+".log"
@@ -126,8 +141,8 @@ object ModbatTestHarness {
     writeToFile(name_output_err_2, err_value)
     writeToFile(name_output_out_2, eout_value)
 
-    filtering_and_regex (name_output_1+".out", "out", out)
-    /* filtering_and_regex (name_output_1+".eout", "err", err) */
+    filtering_and_regex (name_output_1+".out", "out", out, simple_name)
+    /* filtering_and_regex (name_output_1+".eout", "err", err, simple_name) */
     
     optionsavemv match {
       case None => {}
