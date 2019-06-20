@@ -541,12 +541,22 @@ object Modbat {
     }
     w
   }
+  
+  def makeChoice(choices: List[(MBT, Transition)], totalW: Double) = {
+    Main.config.search match {
+      case "random" => weightedChoice(choices, totalW)
+      case "heur" => heuristicChoice(choices, totalW)
+    }
+  }
+
+  def heuristicChoice(choices: List[(MBT, Transition)], totalW: Double) = {
+    Log.error("Not implemented yet!")
+    System.exit(1)
+    choices(0)
+  }
 
   def weightedChoice(choices: List[(MBT, Transition)],
                      totalW: Double): (MBT, Transition) = {
-    if (totalW == 0) {
-      return null
-    }
     val n = (totalW * MBT.rng.nextFloat(false))
     var w = 0.0
     for (c <- choices) {
