@@ -554,19 +554,6 @@ object Modbat {
   def makeChoice(choices: List[(MBT, Transition)], totalW: Double) = {
     Main.config.search match {
       case "random" => weightedChoice(choices, totalW)
-      case "heur" => heuristicChoice(choices, totalW)
-    }
-  }
-
-  def heuristicChoice(choices: List[(MBT, Transition)], totalW: Double) = {
-    Log.error("Not implemented yet!")
-    System.exit(1)
-    choices(0)
-  }
-
-  def makeChoice(choices: List[(MBT, Transition)], totalW: Double) = {
-    Main.config.search match {
-      case "random" => weightedChoice(choices, totalW)
       case "heur"   => heuristicChoice(choices, totalW)
     }
   }
@@ -661,19 +648,6 @@ object Modbat {
     }
   }
 
-  def makeChoice(choices: List[(MBT, Transition)], totalW: Double) = {
-    Main.config.search match {
-      case "random" => weightedChoice(choices, totalW)
-      case "heur" => heuristicChoice(choices, totalW)
-    }
-  }
-
-  def heuristicChoice(choices: List[(MBT, Transition)], totalW: Double) = {
-    Log.error("Not implemented yet!")
-    System.exit(1)
-    choices(0)
-  }
-  
   def weightedChoice(choices: List[(MBT, Transition)],
                      totalW: Double): (MBT, Transition) = {
     val n = (totalW * MBT.rng.nextFloat(false))
@@ -845,10 +819,29 @@ object Modbat {
        * If there is, execute it.
        * Otherwise, if total weight > 0, choose one transition by weight and execute it. */
       var successor: (MBT, Transition) = null
+<<<<<<< HEAD
       //successor = invocationSuccessor.getOrElse(weightedChoice(successors, totalW))
       // TODO: try bandit by calling makeChoice
       successor = invocationSuccessor.getOrElse(makeChoice(successors, totalW))
       if (successor != null) {
+=======
+      if(!MBT.transitionQueue.isEmpty) Log.debug("Current InvokeTransitionQueue = (" + MBT.transitionQueue.mkString + ")")
+
+      while (!MBT.transitionQueue.isEmpty && successor == null) {
+        val (model, label) = MBT.transitionQueue.dequeue
+        val trs = model.transitions.filter(_.action.label == label)
+          .filter(_.origin == model.currentState)
+        if(trs.size != 1) {
+          Log.warn(s"${label} matches ${trs.size} transitions")
+        } else {
+          successor = (model, trs.head)
+        }
+      }
+      if (successor == null && totalW > 0) {
+        successor = makeChoice(successors, totalW)
+      }
+      if(successor != null) {
+>>>>>>> Refactored choice into separate function, added option to choose search.
         val model = successor._1
         val trans = successor._2
         assert(!trans.isSynthetic)
