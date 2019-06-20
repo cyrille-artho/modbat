@@ -630,6 +630,13 @@ object Modbat {
     updateExecHistory(model, rng, result, updates)
   }
 
+  def unblockJoiningModels(model: MBT) {
+    // Unblock all models that are joining this one.
+    for (m <- MBT.launchedModels filter (_.joining == model)) {
+      m.joining = null
+    }
+  }
+
   def warnAboutPreconditions(allSucc: Array[(MBT, Transition)],
                          backtracked: Boolean) {
     for (succ <- allSucc) {
@@ -709,12 +716,9 @@ object Modbat {
 
  	    val succ = new ArrayBuffer[(MBT, Transition)]()
 	    addSuccessors(model, succ, true)
-	    if (succ.size == 0) { // TODO: refactor into helper [Cyrille]
+	    if (succ.size == 0) {
 	      Log.debug("Model " + model.name + " has terminated.")
-	      // Unblock all models that are joining this one.
-	      for (m <- MBT.launchedModels filter (_.joining == model)) {
-	        m.joining = null
-	      }
+              unblockJoiningModels(model)
 	    }
 	    if (sameAgain) {
 	      successors = allSuccessors(model)
