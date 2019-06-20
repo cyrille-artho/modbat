@@ -555,6 +555,7 @@ object Modbat {
     choices(0)
   }
 
+
   def weightedChoice(choices: List[(MBT, Transition)],
                      totalW: Double): (MBT, Transition) = {
     val n = (totalW * MBT.rng.nextFloat(false))
