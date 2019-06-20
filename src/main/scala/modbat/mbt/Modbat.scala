@@ -630,6 +630,15 @@ object Modbat {
     updateExecHistory(model, rng, result, updates)
   }
 
+  def warnAboutPreconditions(allSucc: Array[(MBT, Transition)],
+                         backtracked: Boolean) {
+    for (succ <- allSucc) {
+      Log.warn("All preconditions false at transition " +
+               ppTrans(new RecordedTransition(succ._1, succ._2)))
+    }
+    Log.warn("Maybe the preconditions are too strict?")
+  }
+
   def checkIfPendingModels {
     if ((MBT.launchedModels filter (_.joining != null)).size != 0) {
       Log.warn("Deadlock: Some models stuck waiting for another model to finish.")
@@ -744,15 +753,9 @@ object Modbat {
 
     // insert all path information of the current test in trie - Rui
     insertPathInfoInTrie()
-
-    if (successors.isEmpty && backtracked) { // TODO: refactor into helper [Cyrille]
-      for (succ <- allSucc) {
-        Log.warn(
-          "All preconditions false at transition " +
-            ppTrans(new RecordedTransition(succ._1, succ._2)))
-      }
-      Log.warn("Maybe the preconditions are too strict?")
-    } // end refactoring from above
+    if (successors.isEmpty && backtracked) {
+      warnAboutPreconditions(allSucc, backtracked)
+    }
     Log.debug("No more successors.")
     checkIfPendingModels
     Transition.pendingTransitions.clear
