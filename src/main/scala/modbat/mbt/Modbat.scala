@@ -651,7 +651,6 @@ object Modbat {
 
   def weightedChoice(choices: List[(MBT, Transition)],
                      totalW: Double): (MBT, Transition) = {
-
     val n = (totalW * MBT.rng.nextFloat(false))
     var w = 0.0
     for (c <- choices) {
