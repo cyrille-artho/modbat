@@ -620,6 +620,14 @@ object Modbat {
     null
   }
 
+  def checkForFieldUpdates (model: MBT, result: (TransitionResult, RecordedTransition), rng: CloneableRandom) {
+    val updates: List[(Field, Any)] = model.tracedFields.updates
+    for (u <- updates) {
+      Log.fine("Trace field " + u._1 + " now has value " + u._2)
+    }
+    updateExecHistory(model, rng, result, updates)
+  }
+
   def exploreSuccessors: (TransitionResult, RecordedTransition) = {
     var successors = allSuccessors(null)
     var allSucc = successors.clone
@@ -662,12 +670,7 @@ object Modbat {
         assert (!trans.isSynthetic)
         // TODO: Path coverage
         val result = model.executeTransition(trans)
-        var updates: List[(Field, Any)] = Nil // TODO: refactor into helper [Cyrille]
-        updates  = model.tracedFields.updates
-        for (u <- updates) {
-	  Log.fine("Trace field " + u._1 + " now has value " + u._2)
-        }
-        updateExecHistory(model, localStoredRNGState, result, updates) // end refactoring from above
+        checkForFieldUpdates(model, result, localStoredRNGState)
         result match {
           case (Ok(sameAgain: Boolean), _) => { // TODO: Refactor into smaller parts
             backtracked = false
