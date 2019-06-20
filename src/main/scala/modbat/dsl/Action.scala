@@ -5,6 +5,7 @@ import scala.collection.mutable.ListBuffer
 import scala.util.matching.Regex
 import modbat.log.Log
 import modbat.mbt.MBT
+import modbat.mbt.Main
 
 class Action(val transfunc: () => Any, val method: Method = null) {
   val expectedExc = ListBuffer[Regex]()
@@ -72,7 +73,7 @@ class Action(val transfunc: () => Any, val method: Method = null) {
   }
 
   def or_else(action: => Any) = {
-    if (MBT.rng.nextFloat(true) < MBT.maybeProbability) {
+    if (MBT.rng.nextFloat(true) < Main.config.maybeProbability) {
       MBT.or_else = true
       transfunc() // Call function that or_else is chained on,
       // but do not use RNG as "maybe" branch should always be taken.
