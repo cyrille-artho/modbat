@@ -646,7 +646,7 @@ object Modbat {
     }
   }
 
-  def warnAboutPreconditions(allSucc: Array[(MBT, Transition)],
+  def warnAboutPreconditions(allSucc: List[(MBT, Transition)],
                              backtracked: Boolean) {
     for (succ <- allSucc) {
       Log.warn(
