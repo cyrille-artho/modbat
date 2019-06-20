@@ -537,6 +537,10 @@ object Modbat {
     w
   }
 
+  def makeChoice(choices: Array[(MBT, Transition)], totalW: Double) = {
+    weightedChoice(choices, totalW)
+  }
+
   def weightedChoice(choices: Array[(MBT, Transition)], totalW: Double) = {
     val n = (totalW * MBT.rng.nextFloat(false))
     var w = choices(0)._2.action.weight
@@ -650,7 +654,7 @@ object Modbat {
         }
       }
       if (successor == null && totalW > 0) {
-        successor = weightedChoice(successors, totalW)
+        successor = makeChoice(successors, totalW)
       }
       if(successor != null) {
         val model = successor._1
