@@ -657,7 +657,6 @@ object Modbat {
       val banditUCBChoiceIndex = banditUCBChoiceCandidate._2
       Log.info(
         "*** bandit UCB chosen candidate's index:" + banditUCBChoiceIndex)
-
       return choices(banditUCBChoiceIndex)
     }
   }
