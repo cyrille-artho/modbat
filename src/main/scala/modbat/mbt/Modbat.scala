@@ -28,7 +28,8 @@ import modbat.util.FieldUtil
 
 import com.miguno.akka.testing.VirtualTime
 
-class NoTaskException(message :String = null, cause :Throwable = null) extends RuntimeException(message, cause)
+class NoTaskException(message: String = null, cause: Throwable = null)
+    extends RuntimeException(message, cause)
 
 /** Contains code to explore model */
 object Modbat {
@@ -152,138 +153,142 @@ object Modbat {
     }
   }
 
-  def coverage {
-    // Display path coverage
-    // It means to display execution paths in graphs
-    // if the configuration of path coverage is true -Rui
-    if (Main.config.dotifyPathCoverage) {
-      if (Main.config.logLevel == Log.Debug) trie.display(trie.root)
-      val numOfPaths = trie.numOfPaths(trie.root)
-      Log.info(numOfPaths + " main paths executed.")
-      val shortestPath = trie.shortestPath(trie.root)
-      Log.info("the shortest path has " + shortestPath + " transitions.")
-      val longestPath = trie.longestPath(trie.root)
-      Log.info("the longest path has " + longestPath + " transitions.")
-      // pathLengthResults is a map that records the all length of paths (keys),
-      // and the number of the same length (values), based on the number of transitions
-      val pathLengthResults = trie.pathLengthRecorder(trie.root)
-      Log.info("path length results: " + pathLengthResults)
-      // the average length of all paths, based on the number of transitions
-      val averageLength = pathLengthResults.foldLeft(0.0) {
-        case (a, (k, v)) => a + k * v
-      } / numOfPaths
-      Log.info("the average length of paths is: " + averageLength)
-      // the standard deviation for the length of paths, based on the number of transitions
-      val stdDev = math.sqrt(pathLengthResults.foldLeft(0.0) {
-        case (a, (k, v)) => a + math.pow(k - averageLength, 2) * v
-      } / numOfPaths)
-      Log.info("the standard deviation for the length of paths is: " + stdDev)
-      // information for the path based graph
-      val (numNodePG,
-           numChoiceNodePG,
-           numBacktrackedEdgePG,
-           numFailedEdgePG,
-           numNonChoiceEdgePG,
-           numChoiceEdgePG,
-           numCycleSelfTranPG) =
-        new PathInPointGraph(trie.root, "Point", "root").dotify()
+  private def pathCoverageDisplay {
 
-      Log.info(
-        "the total number of nodes in path-based graph:" + (numNodePG + numChoiceNodePG))
-      Log.info(
-        "the total number of choice nodes in path-based graph: " + numChoiceNodePG)
+    if (Main.config.logLevel == Log.Debug) trie.display(trie.root)
+    val numOfPaths = trie.numOfPaths(trie.root)
+    Log.info(numOfPaths + " main paths executed.")
+    val shortestPath = trie.shortestPath(trie.root)
+    Log.info("the shortest path has " + shortestPath + " transitions.")
+    val longestPath = trie.longestPath(trie.root)
+    Log.info("the longest path has " + longestPath + " transitions.")
+    // pathLengthResults is a map that records the all length of paths (keys),
+    // and the number of the same length (values), based on the number of transitions
+    val pathLengthResults = trie.pathLengthRecorder(trie.root)
+    Log.info("path length results: " + pathLengthResults)
+    // the average length of all paths, based on the number of transitions
+    val averageLength = pathLengthResults.foldLeft(0.0) {
+      case (a, (k, v)) => a + k * v
+    } / numOfPaths
+    Log.info("the average length of paths is: " + averageLength)
+    // the standard deviation for the length of paths, based on the number of transitions
+    val stdDev = math.sqrt(pathLengthResults.foldLeft(0.0) {
+      case (a, (k, v)) => a + math.pow(k - averageLength, 2) * v
+    } / numOfPaths)
+    Log.info("the standard deviation for the length of paths is: " + stdDev)
+    // information for the path based graph
+    val (numNodePG,
+         numChoiceNodePG,
+         numBacktrackedEdgePG,
+         numFailedEdgePG,
+         numNonChoiceEdgePG,
+         numChoiceEdgePG,
+         numCycleSelfTranPG) =
+      new PathInPointGraph(trie.root, "Point", "root").dotify()
 
-      Log.info(
-        "the total number of edges in path-based graph: " + (numNonChoiceEdgePG + numChoiceEdgePG))
+    Log.info(
+      "the total number of nodes in path-based graph:" + (numNodePG + numChoiceNodePG))
+    Log.info(
+      "the total number of choice nodes in path-based graph: " + numChoiceNodePG)
 
-      Log.info(
-        "the total number of non choice related edges in path-based graph: " + numNonChoiceEdgePG)
+    Log.info(
+      "the total number of edges in path-based graph: " + (numNonChoiceEdgePG + numChoiceEdgePG))
 
-      Log.info(
-        "the total number of backtracked edges in path-based graph: " + numBacktrackedEdgePG)
-      Log.info(
-        "the total number of failed edges in path-based graph: " + numFailedEdgePG)
+    Log.info(
+      "the total number of non choice related edges in path-based graph: " + numNonChoiceEdgePG)
 
-      Log.info(
-        "the total number of choice related edges in path-based graph: " + numChoiceEdgePG)
-      Log.info(
-        "the total number of cycles in path-based graph: " + numCycleSelfTranPG)
+    Log.info(
+      "the total number of backtracked edges in path-based graph: " + numBacktrackedEdgePG)
+    Log.info(
+      "the total number of failed edges in path-based graph: " + numFailedEdgePG)
 
-      Log.info(
-        "---------------------- table data of PG -----------------------\n" +
-          "Nodes" + " & " + "Edges" + " & " + "failEdges" + " & " + "Cycles" + " & " +
-          "LIP" + " & " + "LP" + " & " + "SP" + " & " + "AVE" + " & " + "SD" + "\n" +
-          (numNodePG + numChoiceNodePG) + "  & " + (numNonChoiceEdgePG + numChoiceEdgePG) +
-          "   & " + numFailedEdgePG + "         & " + numCycleSelfTranPG + "    & " +
-          numOfPaths + "   & " + longestPath + " & " + shortestPath + "  & " + averageLength + " & " + stdDev + "\n" +
-          "--------------------------------------------------------------"
-      )
-      // information for the state based graph
-      val (numJumpedEdge,
-           numChoiceNodeSG,
-           numBacktrackedEdgeSG,
-           numFailedEdgeSG,
-           numNonChoiceEdgeSG,
-           numChoiceEdgeSG,
-           numCycleSelfTranSG) =
-        new PathInStateGraph(trie.root, "State", "root").dotify()
+    Log.info(
+      "the total number of choice related edges in path-based graph: " + numChoiceEdgePG)
+    Log.info(
+      "the total number of cycles in path-based graph: " + numCycleSelfTranPG)
 
-      Log.info(
-        "the total number of choice nodes in state-based graph: " + numChoiceNodeSG)
+    Log.info(
+      "---------------------- table data of PG -----------------------\n" +
+        "Nodes" + " & " + "Edges" + " & " + "failEdges" + " & " + "Cycles" + " & " +
+        "LIP" + " & " + "LP" + " & " + "SP" + " & " + "AVE" + " & " + "SD" + "\n" +
+        (numNodePG + numChoiceNodePG) + "  & " + (numNonChoiceEdgePG + numChoiceEdgePG) +
+        "   & " + numFailedEdgePG + "         & " + numCycleSelfTranPG + "    & " +
+        numOfPaths + "   & " + longestPath + " & " + shortestPath + "  & " + averageLength + " & " + stdDev + "\n" +
+        "--------------------------------------------------------------"
+    )
+    // information for the state based graph
+    val (numJumpedEdge,
+         numChoiceNodeSG,
+         numBacktrackedEdgeSG,
+         numFailedEdgeSG,
+         numNonChoiceEdgeSG,
+         numChoiceEdgeSG,
+         numCycleSelfTranSG) =
+      new PathInStateGraph(trie.root, "State", "root").dotify()
 
-      Log.info(
-        "the total number of edges in state-based graph: " + (numNonChoiceEdgeSG + numChoiceEdgeSG + numJumpedEdge))
+    Log.info(
+      "the total number of choice nodes in state-based graph: " + numChoiceNodeSG)
 
-      Log.info(
-        "the total number of non choice related edges in state-based graph: " + numNonChoiceEdgeSG)
+    Log.info(
+      "the total number of edges in state-based graph: " + (numNonChoiceEdgeSG + numChoiceEdgeSG + numJumpedEdge))
 
-      Log.info(
-        "the total number of backtracked edges in state-based graph: " + numBacktrackedEdgeSG)
-      Log.info(
-        "the total number of failed edges in state-based graph: " + numFailedEdgeSG)
+    Log.info(
+      "the total number of non choice related edges in state-based graph: " + numNonChoiceEdgeSG)
 
-      Log.info(
-        "the total number of choice related edges in state-based graph: " + numChoiceEdgeSG)
+    Log.info(
+      "the total number of backtracked edges in state-based graph: " + numBacktrackedEdgeSG)
+    Log.info(
+      "the total number of failed edges in state-based graph: " + numFailedEdgeSG)
 
-      Log.info(
-        "the total number of Jumped dotted edges in state-based graph: " + numJumpedEdge)
+    Log.info(
+      "the total number of choice related edges in state-based graph: " + numChoiceEdgeSG)
 
-      Log.info(
-        "the total number of cycles in state-based graph: " + numCycleSelfTranSG)
+    Log.info(
+      "the total number of Jumped dotted edges in state-based graph: " + numJumpedEdge)
 
-      Log.info(
-        "---------------------- table data of SG -----------------------\n" +
-          "Edges" + " & " + "failEdges" + " & " + "Cycles" + "\n" +
-          (numNonChoiceEdgeSG + numChoiceEdgeSG + numJumpedEdge) +
-          "    & " + numFailedEdgeSG + "         & " + numCycleSelfTranSG + "\n" +
-          "--------------------------------------------------------------"
-      )
+    Log.info(
+      "the total number of cycles in state-based graph: " + numCycleSelfTranSG)
 
-      // bfsearch a recorded transition in the trie by using a string format,
-      // key-level-parentNodeTranID as the input from terminal, where
-      // key is the concatenation of the target transition's ID and quality(action outcome);
-      // level is the level of the target transition recorded in the trie initialized from 0 level
-      // parentNodeTranID is the target transition's parent transition's ID
-      var input: String = ""
-      import scala.io.StdIn.readLine
-      while (input != "q") {
-        input = readLine()
-        if (input != "q") {
-          val goal = input.split("-")
-          val foundNode =
-            trie.bfSearchT(trie.root, goal(0), goal(1).toInt, goal(2).toInt)
-          if (foundNode.isLeaf)
-            Log.debug(
-              "the found transition is recorded in a leaf of the trie, so there is no children to print in graphs.")
-          else {
-            trie.display(foundNode)
-            new PathInStateGraph(foundNode, "State", input).dotify()
-            new PathInPointGraph(foundNode, "Point", input).dotify()
-          }
+    Log.info(
+      "---------------------- table data of SG -----------------------\n" +
+        "Edges" + " & " + "failEdges" + " & " + "Cycles" + "\n" +
+        (numNonChoiceEdgeSG + numChoiceEdgeSG + numJumpedEdge) +
+        "    & " + numFailedEdgeSG + "         & " + numCycleSelfTranSG + "\n" +
+        "--------------------------------------------------------------"
+    )
+  }
 
+  private def pathCoverageBFSearch {
+    // bfsearch a recorded transition in the trie by using a string format,
+    // key-level-parentNodeTranID as the input from terminal, where
+    // key is the concatenation of the target transition's ID and quality(action outcome);
+    // level is the level of the target transition recorded in the trie initialized from 0 level
+    // parentNodeTranID is the target transition's parent transition's ID
+    var input: String = ""
+    import scala.io.StdIn.readLine
+    while (input != "q") {
+      input = readLine()
+      if (input != "q") {
+        val goal = input.split("-")
+        val foundNode =
+          trie.bfSearchT(trie.root, goal(0), goal(1).toInt, goal(2).toInt)
+        if (foundNode.isLeaf)
+          Log.debug(
+            "the found transition is recorded in a leaf of the trie, so there is no children to print in graphs.")
+        else {
+          trie.display(foundNode)
+          new PathInStateGraph(foundNode, "State", input).dotify()
+          new PathInPointGraph(foundNode, "Point", input).dotify()
         }
       }
+    }
+  }
 
+  def coverage {
+
+    if (Main.config.dotifyPathCoverage) {
+      pathCoverageDisplay // Display path coverage/execution paths in state and path graphs -Rui
+      pathCoverageBFSearch // User search function to find a transition in trie as a starting point to display in graphs
     }
 
     Log.info(
@@ -505,20 +510,20 @@ object Modbat {
         // TODO: allow selection to be overridden by invokeTransition
         val (staying, notStaying) = MBT.launchedModels partition (_.staying)
         for (m <- notStaying filterNot (_ isObserver)
-          filter (_.joining == null)) {
+               filter (_.joining == null)) {
           addSuccessors(m, result)
         }
         if (result.isEmpty && !staying.isEmpty) {
           MBT.time.scheduler.timeUntilNextTask match {
             case Some(s) => MBT.time.advance(s)
-            case None => throw new NoTaskException()
+            case None    => throw new NoTaskException()
           }
           return allSuccessors(givenModel)
         }
       }
     } else {
       if (givenModel.joining == null) {
-	/* No need to check the queue of "staying" tasks here because as
+        /* No need to check the queue of "staying" tasks here because as
 	   of now, the model of which the next transition is used is only
 	   enforced in the case of an exception that overrides the default
 	   successor state, by using "catches".
@@ -637,13 +642,16 @@ object Modbat {
 
       //invokeTransition
       var successor: (MBT, Transition) = null
-      if(!MBT.transitionQueue.isEmpty) Log.debug("Current InvokeTransitionQueue = (" + MBT.transitionQueue.mkString + ")")
+      if (!MBT.transitionQueue.isEmpty)
+        Log.debug(
+          "Current InvokeTransitionQueue = (" + MBT.transitionQueue.mkString + ")")
 
       while (!MBT.transitionQueue.isEmpty && successor == null) {
         val (model, label) = MBT.transitionQueue.dequeue
-        val trs = model.transitions.filter(_.action.label == label)
+        val trs = model.transitions
+          .filter(_.action.label == label)
           .filter(_.origin == model.currentState)
-        if(trs.size != 1) {
+        if (trs.size != 1) {
           Log.warn(s"${label} matches ${trs.size} transitions")
         } else {
           successor = (model, trs.head)
@@ -652,16 +660,16 @@ object Modbat {
       if (successor == null && totalW > 0) {
         successor = weightedChoice(successors, totalW)
       }
-      if(successor != null) {
+      if (successor != null) {
         val model = successor._1
         val trans = successor._2
-        assert (!trans.isSynthetic)
+        assert(!trans.isSynthetic)
         // TODO: Path coverage
         val result = model.executeTransition(trans)
         var updates: List[(Field, Any)] = Nil
-        updates  = model.tracedFields.updates
+        updates = model.tracedFields.updates
         for (u <- updates) {
-	  Log.fine("Trace field " + u._1 + " now has value " + u._2)
+          Log.fine("Trace field " + u._1 + " now has value " + u._2)
         }
         updateExecHistory(model, localStoredRNGState, result, updates)
         result match {
@@ -680,53 +688,53 @@ object Modbat {
             Log.debug("---print debug--- ok case, Current state of transition when nextState is null: " + result._2.transition.dest
               .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // print debug*/
 
- 	    val succ = new ArrayBuffer[(MBT, Transition)]()
-	    addSuccessors(model, succ, true)
-	    if (succ.size == 0) {
-	      Log.debug("Model " + model.name + " has terminated.")
-	      // Unblock all models that are joining this one.
-	      for (m <- MBT.launchedModels filter (_.joining == model)) {
-	        m.joining = null
-	      }
-	    }
-	    if (otherThreadFailed) {
+            val succ = new ArrayBuffer[(MBT, Transition)]()
+            addSuccessors(model, succ, true)
+            if (succ.size == 0) {
+              Log.debug("Model " + model.name + " has terminated.")
+              // Unblock all models that are joining this one.
+              for (m <- MBT.launchedModels filter (_.joining == model)) {
+                m.joining = null
+              }
+            }
+            if (otherThreadFailed) {
               failed = true
               // store path information -Rui
               storePathInfo(result, successor, backtracked, failed)
               return (ExceptionOccurred(MBT.externalException.toString), null)
-	    }
-	    if (sameAgain) {
-	      successors = allSuccessors(model)
-	    } else {
-	      successors = allSuccessors(null)
-	    }
-	    val observerResult = updateObservers
-	    if (TransitionResult.isErr(observerResult)) {
-	      return (observerResult, result._2)
-	    }
-	    if (otherThreadFailed) {
-	      failed = true
+            }
+            if (sameAgain) {
+              successors = allSuccessors(model)
+            } else {
+              successors = allSuccessors(null)
+            }
+            val observerResult = updateObservers
+            if (TransitionResult.isErr(observerResult)) {
+              return (observerResult, result._2)
+            }
+            if (otherThreadFailed) {
+              failed = true
               // store path information -Rui
               storePathInfo(result, successor, backtracked, failed)
               return (ExceptionOccurred(MBT.externalException.toString), null)
-	    }
-	    backtracked = false
-	    allSucc = successors.clone
-	  }
+            }
+            backtracked = false
+            allSucc = successors.clone
+          }
           case (Backtrack, _) => {
-	    backtracked = true
+            backtracked = true
             failed = false
-	    successors = successors filterNot (_ == successor)
-	  }
+            successors = successors filterNot (_ == successor)
+          }
           case (t: TransitionResult, _) => {
             failed = true
             // store path information -Rui
             storePathInfo(result, successor, backtracked, failed)
 
-	    assert(TransitionResult.isErr(t))
-	    printTrace(executedTransitions.toList)
-	    return result
-	  }
+            assert(TransitionResult.isErr(t))
+            printTrace(executedTransitions.toList)
+            return result
+          }
         }
         // store path information -Rui
         storePathInfo(result, successor, backtracked, failed)
