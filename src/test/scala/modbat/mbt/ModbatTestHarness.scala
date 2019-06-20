@@ -65,6 +65,12 @@ object ModbatTestHarness {
     if (new java.io.File(validated_out).exists){
       val validated_out_lines = Source.fromFile(name_output).getLines
       val out_lines = Source.fromBytes(typeByte.toByteArray()).getLines
+
+      // list of regex to remove
+      val regex1 = """\[FINE\].*""".r
+      
+      out_lines.filterNot(x => x match { case regex1() => true case _ => false})
+
       val filewhichcanbecompared = (out_lines.map (l => replaceRegexInSentence(l, regex_list, replace_sentences)))
       Console.println("")
       assert(compare_iterators(validated_out_lines, filewhichcanbecompared))
