@@ -9,7 +9,6 @@ import java.lang.RuntimeException
 import java.net.URL
 import java.util.BitSet
 
-import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.HashMap
 import scala.collection.mutable.HashSet
 import scala.collection.mutable.LinkedHashMap
@@ -471,7 +470,7 @@ object Modbat {
   }
 
   def addSuccessors(m: MBT,
-                    result: ArrayBuffer[(MBT, Transition)],
+                    result: ListBuffer[(MBT, Transition)],
                     quiet: Boolean = false) {
     for (s <- m.successors(quiet)) {
       if (!quiet) {
@@ -498,8 +497,8 @@ object Modbat {
     }
   }
 
-  def allSuccessors(givenModel: MBT): Array[(MBT, Transition)] = {
-    val result = new ArrayBuffer[(MBT, Transition)]()
+  def allSuccessors(givenModel: MBT): List[(MBT, Transition)] = {
+    val result = new ListBuffer[(MBT, Transition)]()
     if (givenModel == null) {
       MBT.stayLock.synchronized {
         // TODO: allow selection to be overridden by invokeTransition
@@ -526,10 +525,10 @@ object Modbat {
         addSuccessors(givenModel, result)
       }
     }
-    result.toArray
+    result.toList
   }
 
-  def totalWeight(trans: Array[(MBT, Transition)]) = {
+  def totalWeight(trans: List[(MBT, Transition)]) = {
     var w = 0.0
     for (t <- trans) {
       w = w + t._2.action.weight
@@ -537,15 +536,17 @@ object Modbat {
     w
   }
 
-  def weightedChoice(choices: Array[(MBT, Transition)], totalW: Double) = {
+  def weightedChoice(choices: List[(MBT, Transition)], totalW: Double): 
+                    (MBT, Transition) = {
     val n = (totalW * MBT.rng.nextFloat(false))
-    var w = choices(0)._2.action.weight
-    var i = 0
-    while (w < n) {
-      i = i + 1
-      w = w + choices(i)._2.action.weight
+    var w = 0.0
+    for (c <- choices) {
+      w = w + c._2.action.weight
+      if (w >= n) {
+        return c
+      }
     }
-    choices(i)
+    choices.last
   }
 
   def updateExecHistory(model: MBT,
@@ -637,7 +638,7 @@ object Modbat {
     }
   }
 
-  def warnAboutPreconditions(allSucc: Array[(MBT, Transition)],
+  def warnAboutPreconditions(allSucc: List[(MBT, Transition)],
                          backtracked: Boolean) {
     for (succ <- allSucc) {
       Log.warn("All preconditions false at transition " +
@@ -658,7 +659,7 @@ object Modbat {
 
   def exploreSuccessors: (TransitionResult, RecordedTransition) = {
     var successors = allSuccessors(null)
-    var allSucc = successors.clone
+    var allSucc = successors
     var totalW = totalWeight(successors)
     var backtracked = false // boolean var for backtracked case -Rui
     while (!successors.isEmpty && (totalW > 0 || !MBT.transitionQueue.isEmpty)) {
@@ -714,7 +715,7 @@ object Modbat {
             Log.debug("---print debug--- ok case, Current state of transition when nextState is null: " + result._2.transition.dest
               .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // print debug*/
 
- 	    val succ = new ArrayBuffer[(MBT, Transition)]()
+            val succ = new ListBuffer[(MBT, Transition)]()
 	    addSuccessors(model, succ, true)
 	    if (succ.size == 0) {
 	      Log.debug("Model " + model.name + " has terminated.")
@@ -734,7 +735,7 @@ object Modbat {
               storePathInfo(result, successor, backtracked, true)
               return (ExceptionOccurred(MBT.externalException.toString), null)
 	    }
-	    allSucc = successors.clone
+	    allSucc = successors
 	  }
           case (Backtrack, _) => {
 	    backtracked = true
