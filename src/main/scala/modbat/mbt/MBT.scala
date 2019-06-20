@@ -52,20 +52,15 @@ object MBT {
   val invokedStaticMethods = new HashSet[Method]()
   val transitionQueue = new Queue[(MBT, String)]()
   var rng: Random = null
-  var enableStackTrace = true
-  var maybeProbability = 1.0
-  var rethrowExceptions = false
+  var rethrowExceptions = false // for offline testing (to be done)
   var classLoaderURLs: Array[URL] = null
   var isOffline = true
-  var precondAsFailure = false
   var or_else = false // true if or_else predicate has just been evaluated
   // used to skip subsequent "maybe", which is called just afterwards
   // (as sequential maybe... or_else is interpreted as nested operators)
   var checkDuplicates = false
   // true if model is first loaded in model exploration mode (but not
   // offline mode) to give a warning about duplicate labels
-  var runBefore = true // copy of config.before
-  var runAfter = true // copy of config.after
   var testHasFailed = false
   var externalException: Throwable = null // for failures in other threads
   val modbatThread = Thread.currentThread
@@ -161,18 +156,6 @@ object MBT {
     classLoaderURLs = urls.toArray
   }
 
-  def setPrecondAsFailure(setting: Boolean) {
-    precondAsFailure = setting
-  }
-
-  def setMaybeProbability(p: Double) {
-    maybeProbability = p
-  }
-
-  def setRethrowExceptions(setting: Boolean) {
-    rethrowExceptions = setting
-  }
-
   def setRNG(r: Random) {
     rng = r
   }
@@ -216,7 +199,7 @@ object MBT {
   }
 
   def prepare(instance: Model) {
-    if (runBefore) {
+    if (Main.config.setup) {
       // Avoid invoking companion object methods on launched instances
       // Solution: Avoid calling static methods more than once.
       invokeAnnotatedStaticMethods(classOf[Before], instance)
@@ -227,7 +210,7 @@ object MBT {
   def cleanup() {
     // clear buffer of static methods for itself
     invokedStaticMethods.clear()
-    if (runAfter) {
+    if (Main.config.cleanup) {
       val instances = launchedModelInst.reverse
       instances.foreach(inst => invokeAnnotatedMethods(classOf[After], inst))
       instances.foreach(inst =>
@@ -279,7 +262,7 @@ object MBT {
 	Log.error("Exception in default (nullary) constructor of main model.")
 	Log.error("In dot mode, a constructor that ignores any data")
 	Log.error("is sufficient to visualize the ESFM graph.")
-	if (!enableStackTrace) {
+	if (!Main.config.printStackTrace) {
 	  Log.error("Use --print-stack-trace to see the stack trace.")
 	} else {
 	  val cause = e.getCause
@@ -338,7 +321,7 @@ object MBT {
       action.transfunc()
     } else {
       // compute choice for "maybe" -Rui
-      val choice: Boolean = MBT.rng.nextFloat(true) < MBT.maybeProbability
+      val choice: Boolean = MBT.rng.nextFloat(true) < Main.config.maybeProbability
       // record choice for "maybe" -Rui
       val maybeChoice = MaybeChoice(choice)
       MBT.rng.recordChoice(maybeChoice)
@@ -349,7 +332,7 @@ object MBT {
   }
   // all maybeBool things need to be deleted -Rui
   def maybeBool(pred: () => Boolean) = {
-    if (MBT.rng.nextFloat(true) < MBT.maybeProbability) {
+    if (MBT.rng.nextFloat(true) < Main.config.maybeProbability) {
       pred()
     } else {
       false
@@ -702,7 +685,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
   }
 
   def printStackTraceIfEnabled(e: Throwable) {
-    if (MBT.enableStackTrace) {
+    if (Main.config.printStackTrace) {
       Log.error(e.toString)
       MBT.printStackTrace(e.getStackTrace)
     }
@@ -763,7 +746,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
       trans: Transition): (TransitionResult, RecordedTransition) = {
     for (nextSt <- trans.nextStatePredicates) {
       if (!(nextSt.nonDet) ||
-          (MBT.rng.nextFloat(true) < MBT.maybeProbability)) {
+          (MBT.rng.nextFloat(true) < Main.config.maybeProbability)) {
         val envCallResult = nextSt.action() // result of "nextIf" condition
         Log.debug("Call to nextIf returns " + envCallResult + ".")
         // remember outcome of RNG if next state predicate should be checked
@@ -861,7 +844,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
         }
         case illarg: IllegalArgumentException => {
           val msg = illarg.getMessage
-          if (!MBT.precondAsFailure && (msg != null) &&
+          if (!Main.config.precondAsFailure && (msg != null) &&
               (msg.startsWith("requirement failed"))) {
             handleReqFailure(illarg, successor)
           } else { // treat precond. failure like normal exception
