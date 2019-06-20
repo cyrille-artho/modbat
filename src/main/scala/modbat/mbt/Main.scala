@@ -64,14 +64,9 @@ object Main {
   def setup(modelClassName: String) {
     /* configure components */
     Log.setLevel(config.logLevel)
-    MBT.enableStackTrace = config.printStackTrace
-    MBT.maybeProbability = config.maybeProbability
     MBT.configClassLoader(config.classpath)
     MBT.loadModelClass(modelClassName)
     MBT.setRNG(config.randomSeed)
     MBT.isOffline = false
-    MBT.runBefore = config.setup
-    MBT.runAfter = config.cleanup
-    MBT.precondAsFailure = config.precondAsFailure
   }
 }
