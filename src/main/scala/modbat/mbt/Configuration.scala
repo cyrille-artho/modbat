@@ -92,6 +92,10 @@ class Configuration extends modbat.config.Configuration {
   @Choice(Array("dot", "exec"))
   var mode = "exec"
 
+  @Doc("search mode (for usage mode=exec)")
+  @Choice(Array("random", "heur"))
+  var search = "random"
+
   @Doc("limit times same state is visited; 0 = no limit")
   @Range(min = 0)
   var loopLimit = 0
