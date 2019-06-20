@@ -620,12 +620,24 @@ object Modbat {
     null
   }
 
-  def checkForFieldUpdates (model: MBT, result: (TransitionResult, RecordedTransition), rng: CloneableRandom) {
+  def checkForFieldUpdates (model: MBT,
+                            result: (TransitionResult, RecordedTransition),
+                            rng: CloneableRandom) {
     val updates: List[(Field, Any)] = model.tracedFields.updates
     for (u <- updates) {
       Log.fine("Trace field " + u._1 + " now has value " + u._2)
     }
     updateExecHistory(model, rng, result, updates)
+  }
+
+  def checkIfPendingModels {
+    if ((MBT.launchedModels filter (_.joining != null)).size != 0) {
+      Log.warn("Deadlock: Some models stuck waiting for another model to finish.")
+      for (m <- MBT.launchedModels filter (_.joining != null)) {
+        val trans = (executedTransitions filter (_.model eq m)).last
+        Log.warn(m.name + ": " + ppTrans(trans))
+      }
+    }
   }
 
   def exploreSuccessors: (TransitionResult, RecordedTransition) = {
@@ -742,18 +754,12 @@ object Modbat {
       Log.warn("Maybe the preconditions are too strict?")
     } // end refactoring from above
     Log.debug("No more successors.")
-    if ((MBT.launchedModels filter (_.joining != null)).size != 0) { // TODO: refactor into helper [Cyrille]
-      Log.warn(
-        "Deadlock: Some models stuck waiting for another model to finish.")
-      for (m <- MBT.launchedModels filter (_.joining != null)) {
-        val trans = (executedTransitions filter (_.model eq m)).last
-        Log.warn(m.name + ": " + ppTrans(trans))
-      }
-    } // end refactoring from above
+    checkIfPendingModels
     Transition.pendingTransitions.clear
     // in case a newly constructed model was never launched
     return (Ok(), null)
   }
+
   // Store path information
   private def storePathInfo(result: (TransitionResult, RecordedTransition),
                             successor: (MBT, Transition),
