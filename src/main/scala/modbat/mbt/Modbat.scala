@@ -541,7 +541,7 @@ object Modbat {
     w
   }
 
-  def makeChoice(choices: Array[(MBT, Transition)], totalW: Double) = {
+  def makeChoice(choices: List[(MBT, Transition)], totalW: Double) = {
     Main.config.search match {
       case "random" => weightedChoice(choices, totalW)
       case "heur" => heuristicChoice(choices, totalW)
