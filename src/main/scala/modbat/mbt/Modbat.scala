@@ -670,31 +670,17 @@ object Modbat {
     }
   }
 
-  def printPathInfo {
-    /* // debug code:
-    Log.debug("path info recorder size:" + pathInfoRecorder.size)
-    for (p <- pathInfoRecorder) {
-      Log.debug("************ pathInfo ************")
-      Log.debug("model name:" + p.modelName)
-      Log.debug("model ID:" + p.modelID)
-      Log.debug("transition name:" + p.transition.toString())
-      Log.debug("transition ID:" + p.transition.idx)
-      Log.debug("transition quality:" + p.transitionQuality)
-      Log.debug("transition nextif:" + p.nextStateNextIf)
-    }*/
-  }
-
   def exploreSuccessors: (TransitionResult, RecordedTransition) = {
     executeSuccessorTrans match {
-      case ((Aborted, _), _) => {
+      case ((Finished, _), _) => {
         Log.debug("Aborting...")
-        printPathInfo
-        if (Main.config.dotifyPathCoverage) trie.insert(pathInfoRecorder)
+        insertPathInfoInTrie
         (Ok(), null)
       }
       case (result: (TransitionResult, RecordedTransition),
             isObserver: Boolean) => {
         // TODO: move storePathInfo here except for observer
+        //storePathInfo(result, successor, backtracked, failed)
         result
       }
     }
@@ -709,7 +695,7 @@ object Modbat {
     while (!successors.isEmpty && (totalW > 0 || !MBT.transitionQueue.isEmpty)) {
       val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone
       if (MBT.rng.nextFloat(false) < Main.config.abortProbability) {
-        return ((Aborted, null), false)
+        return ((Finished, null), false)
       }
       /* Pop invokeTransition queue until a feasible transition is popped.
        * If there is, execute it.
@@ -764,7 +750,6 @@ object Modbat {
         totalW = totalWeight(successors)
       }
     }
-    insertPathInfoInTrie()
     if (successors.isEmpty && backtracked) {
       warnAboutPreconditions(allSucc, backtracked)
     }
@@ -772,7 +757,7 @@ object Modbat {
     checkIfPendingModels
     Transition.pendingTransitions.clear
     // in case a newly constructed model was never launched
-    ((Ok(), null), false)
+    ((Finished, null), false)
   }
 
   // Store path information
@@ -844,7 +829,7 @@ object Modbat {
     }
   }
 
-  private def insertPathInfoInTrie(): Unit = {
+  private def insertPathInfoInTrie: Unit = {
     // output all executed transitions of the current test - Rui
     for (p <- pathInfoRecorder)
       Log.debug(

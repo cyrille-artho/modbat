@@ -13,7 +13,7 @@ sealed abstract class TransitionResult
 
 case class Ok(sameInstanceAgain: Boolean = false) extends TransitionResult
 case object Backtrack extends TransitionResult
-case object Aborted extends TransitionResult
+case object Finished extends TransitionResult
 
 case class ExceptionOccurred(exception: String) extends TransitionResult
 // conversion from Exception to String necessary for case class
