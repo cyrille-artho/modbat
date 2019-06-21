@@ -667,6 +667,20 @@ object Modbat {
     }
   }
 
+  def printPathInfo {
+    /* // debug code:
+    Log.debug("path info recorder size:" + pathInfoRecorder.size)
+    for (p <- pathInfoRecorder) {
+      Log.debug("************ pathInfo ************")
+      Log.debug("model name:" + p.modelName)
+      Log.debug("model ID:" + p.modelID)
+      Log.debug("transition name:" + p.transition.toString())
+      Log.debug("transition ID:" + p.transition.idx)
+      Log.debug("transition quality:" + p.transitionQuality)
+      Log.debug("transition nextif:" + p.nextStateNextIf)
+    }*/
+  }
+
   def exploreSuccessors: (TransitionResult, RecordedTransition) = {
     var successors = allSuccessors(null)
     var allSucc = successors
@@ -678,21 +692,9 @@ object Modbat {
        * Otherwise, if total weight > 0, choose one transition by weight and execute it. */
       val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone
 
-      if (MBT.rng.nextFloat(false) < Main.config.abortProbability) { // TODO (Rui): Refactor debug code into helper function
+      if (MBT.rng.nextFloat(false) < Main.config.abortProbability) {
         Log.debug("Aborting...")
-
-        /* // debug code:
-        Log.debug("path info recorder size:" + pathInfoRecorder.size)
-        for (p <- pathInfoRecorder) {
-          Log.debug("************ pathInfo ************")
-          Log.debug("model name:" + p.modelName)
-          Log.debug("model ID:" + p.modelID)
-          Log.debug("transition name:" + p.transition.toString())
-          Log.debug("transition ID:" + p.transition.idx)
-          Log.debug("transition quality:" + p.transitionQuality)
-          Log.debug("transition nextif:" + p.nextStateNextIf)
-        }*/
-
+        printPathInfo
         if (Main.config.dotifyPathCoverage) trie.insert(pathInfoRecorder)
         return (Ok(), null)
       }
