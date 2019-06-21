@@ -673,7 +673,6 @@ object Modbat {
   def exploreSuccessors: (TransitionResult, RecordedTransition) = {
     executeSuccessorTrans match {
       case ((Finished, _), _) => {
-        Log.debug("Aborting...")
         insertPathInfoInTrie
         (Ok(), null)
       }
@@ -695,6 +694,7 @@ object Modbat {
     while (!successors.isEmpty && (totalW > 0 || !MBT.transitionQueue.isEmpty)) {
       val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone
       if (MBT.rng.nextFloat(false) < Main.config.abortProbability) {
+        Log.debug("Aborting...")
         return ((Finished, null), false)
       }
       /* Pop invokeTransition queue until a feasible transition is popped.
