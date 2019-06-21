@@ -670,6 +670,12 @@ object Modbat {
     }
   }
 
+  class PathResult(val result: (TransitionResult, RecordedTransition),
+                   val successor: (MBT, Transition),
+                   val backtracked: Boolean,
+                   val failed: Boolean,
+                   val isObserver: Boolean)
+
   def exploreSuccessors: (TransitionResult, RecordedTransition) = {
     executeSuccessorTrans match {
       case ((Finished, _), _) => {
@@ -677,16 +683,18 @@ object Modbat {
         (Ok(), null)
       }
       case (result: (TransitionResult, RecordedTransition),
-            isObserver: Boolean) => {
-        // TODO: move storePathInfo here except for observer
-        //storePathInfo(result, successor, backtracked, failed)
+            pathResult: PathResult) => {
+        if (!pathResult.isObserver) {
+          storePathInfo(pathResult.result, pathResult.successor,
+                        pathResult.backtracked, pathResult.failed)
+        }
         result
       }
     }
   }
 
   def executeSuccessorTrans: ((TransitionResult, RecordedTransition),
-                              Boolean) = {
+                              PathResult) = {
     var successors = allSuccessors(null)
     var allSucc = successors
     var totalW = totalWeight(successors)
@@ -695,7 +703,7 @@ object Modbat {
       val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone
       if (MBT.rng.nextFloat(false) < Main.config.abortProbability) {
         Log.debug("Aborting...")
-        return ((Finished, null), false)
+        return ((Finished, null), null)
       }
       /* Pop invokeTransition queue until a feasible transition is popped.
        * If there is, execute it.
@@ -725,12 +733,14 @@ object Modbat {
             }
             val observerResult = updateObservers
             if (TransitionResult.isErr(observerResult)) {
-              return ((observerResult, result._2), true)
+              return ((observerResult, result._2),
+                      new PathResult(result, successor,
+                                     backtracked, true, true))
             }
             if (otherThreadFailed) {
-              storePathInfo(result, successor, backtracked, true)
               return ((ExceptionOccurred(MBT.externalException.toString), null),
-                      false)
+                      new PathResult(result, successor,
+                                     backtracked, true, false))
             }
             allSucc = successors
           }
@@ -739,11 +749,11 @@ object Modbat {
             successors = successors filterNot (_ == successor)
           }
           case (t: TransitionResult, _) => {
-            storePathInfo(result, successor, backtracked, true)
-
             assert(TransitionResult.isErr(t))
             printTrace(executedTransitions.toList)
-            return (result, false)
+            return (result,
+                    new PathResult(result, successor,
+                                   backtracked, true, false))
           }
         }
         storePathInfo(result, successor, backtracked, false)
@@ -757,7 +767,7 @@ object Modbat {
     checkIfPendingModels
     Transition.pendingTransitions.clear
     // in case a newly constructed model was never launched
-    ((Finished, null), false)
+    ((Finished, null), null)
   }
 
   // Store path information
