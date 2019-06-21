@@ -543,6 +543,9 @@ object Modbat {
 
   def weightedChoice(choices: List[(MBT, Transition)],
                      totalW: Double): (MBT, Transition) = {
+    if (totalW == 0) {
+      return null
+    }
     val n = (totalW * MBT.rng.nextFloat(false))
     var w = 0.0
     for (c <- choices) {
@@ -610,7 +613,7 @@ object Modbat {
     }
   }
 
-  def invocationSuccessor: (MBT, Transition) = {
+  def invocationSuccessor: Option[(MBT, Transition)] = {
     if (!MBT.transitionQueue.isEmpty)
       Log.debug(
         "Current InvokeTransitionQueue = (" + MBT.transitionQueue.mkString + ")")
@@ -623,10 +626,10 @@ object Modbat {
       if (trs.size != 1) {
         Log.warn(s"${label} matches ${trs.size} transitions")
       } else {
-        return (model, trs.head)
+        return Some(model, trs.head)
       }
     }
-    null
+    None
   }
 
   def checkForFieldUpdates(model: MBT,
@@ -701,10 +704,8 @@ object Modbat {
 
       //invokeTransition
       var successor: (MBT, Transition) = null
-      successor = invocationSuccessor
-      if (successor == null && totalW > 0) {
-        successor = weightedChoice(successors, totalW)
-      }
+      successor =
+        invocationSuccessor.getOrElse(weightedChoice(successors, totalW))
       if (successor != null) {
         val model = successor._1
         val trans = successor._2
