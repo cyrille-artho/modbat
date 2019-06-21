@@ -690,6 +690,7 @@ object Modbat {
     var totalW = totalWeight(successors)
     var backtracked = false // boolean var for backtracked case -Rui
     while (!successors.isEmpty && (totalW > 0 || !MBT.transitionQueue.isEmpty)) {
+      val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone
       if (MBT.rng.nextFloat(false) < Main.config.abortProbability) {
         Log.debug("Aborting...")
         printPathInfo
@@ -700,7 +701,6 @@ object Modbat {
        * If there is, execute it.
        * Otherwise, if total weight > 0, choose one transition by weight and execute it. */
       var successor: (MBT, Transition) = null
-      val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone
       successor =
         invocationSuccessor.getOrElse(weightedChoice(successors, totalW))
       if (successor != null) {
