@@ -685,6 +685,22 @@ object Modbat {
   }
 
   def exploreSuccessors: (TransitionResult, RecordedTransition) = {
+    executeSuccessorTrans match {
+      case (Aborted, _) => {
+        Log.debug("Aborting...")
+        printPathInfo
+        if (Main.config.dotifyPathCoverage) trie.insert(pathInfoRecorder)
+        (Ok(), null)
+      }
+      case default => {
+        // TODO: move storePathInfo here except for observer
+        default
+      }
+    }
+  }
+
+  def executeSuccessorTrans: (TransitionResult,
+                              RecordedTransition) = {
     var successors = allSuccessors(null)
     var allSucc = successors
     var totalW = totalWeight(successors)
@@ -692,10 +708,7 @@ object Modbat {
     while (!successors.isEmpty && (totalW > 0 || !MBT.transitionQueue.isEmpty)) {
       val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone
       if (MBT.rng.nextFloat(false) < Main.config.abortProbability) {
-        Log.debug("Aborting...")
-        printPathInfo
-        if (Main.config.dotifyPathCoverage) trie.insert(pathInfoRecorder)
-        return (Ok(), null)
+        return (Aborted, null)
       }
       /* Pop invokeTransition queue until a feasible transition is popped.
        * If there is, execute it.
@@ -757,7 +770,7 @@ object Modbat {
     checkIfPendingModels
     Transition.pendingTransitions.clear
     // in case a newly constructed model was never launched
-    return (Ok(), null)
+    (Ok(), null)
   }
 
   // Store path information
