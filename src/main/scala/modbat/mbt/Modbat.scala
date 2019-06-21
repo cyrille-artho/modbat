@@ -690,44 +690,28 @@ object Modbat {
     var totalW = totalWeight(successors)
     var backtracked = false // boolean var for backtracked case -Rui
     while (!successors.isEmpty && (totalW > 0 || !MBT.transitionQueue.isEmpty)) {
-      /* Pop invokeTransition queue until a feasible transition is popped.
-       * If there is, execute it.
-       * Otherwise, if total weight > 0, choose one transition by weight and execute it. */
-      val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone
-
       if (MBT.rng.nextFloat(false) < Main.config.abortProbability) {
         Log.debug("Aborting...")
         printPathInfo
         if (Main.config.dotifyPathCoverage) trie.insert(pathInfoRecorder)
         return (Ok(), null)
       }
-
-      //invokeTransition
+      /* Pop invokeTransition queue until a feasible transition is popped.
+       * If there is, execute it.
+       * Otherwise, if total weight > 0, choose one transition by weight and execute it. */
       var successor: (MBT, Transition) = null
+      val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone
       successor =
         invocationSuccessor.getOrElse(weightedChoice(successors, totalW))
       if (successor != null) {
         val model = successor._1
         val trans = successor._2
         assert(!trans.isSynthetic)
-        // TODO: Path coverage
         val result = model.executeTransition(trans)
         checkForFieldUpdates(model, result, localStoredRNGState)
         result match {
-          case (Ok(sameAgain: Boolean), _) => { // TODO: Refactor into smaller parts
+          case (Ok(sameAgain: Boolean), _) => {
             backtracked = false
-
-            // debug code:
-            /* if (result._2.nextState != null) {
-              Log.debug(
-                "---print debug--- ok case, nextSate of transition: " + result._2.nextState.dest
-                  .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // print debug
-              Log.debug("---print debug--- ok case, Current state of transition when nextState!=null: " + result._2.transition.dest
-                .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // print debug
-            } else
-            Log.debug("---print debug--- ok case, Current state of transition when nextState is null: " + result._2.transition.dest
-              .toString() + ", for transition:" + result._2.transition.origin + " => " + result._2.transition.dest) // print debug*/
-
             val succ = new ListBuffer[(MBT, Transition)]()
             addSuccessors(model, succ, true)
             if (succ.size == 0) {
@@ -744,7 +728,6 @@ object Modbat {
               return (observerResult, result._2)
             }
             if (otherThreadFailed) {
-              // store path information -Rui
               storePathInfo(result, successor, backtracked, true)
               return (ExceptionOccurred(MBT.externalException.toString), null)
             }
@@ -755,7 +738,6 @@ object Modbat {
             successors = successors filterNot (_ == successor)
           }
           case (t: TransitionResult, _) => {
-            // store path information -Rui
             storePathInfo(result, successor, backtracked, true)
 
             assert(TransitionResult.isErr(t))
@@ -763,13 +745,10 @@ object Modbat {
             return result
           }
         }
-        // store path information -Rui
         storePathInfo(result, successor, backtracked, false)
         totalW = totalWeight(successors)
       }
     }
-
-    // insert all path information of the current test in trie - Rui
     insertPathInfoInTrie()
     if (successors.isEmpty && backtracked) {
       warnAboutPreconditions(allSucc, backtracked)
