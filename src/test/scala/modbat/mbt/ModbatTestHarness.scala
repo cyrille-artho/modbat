@@ -35,20 +35,41 @@ object ModbatTestHarness {
   }
 
   def compare_iterators(it1:Iterator[String], it2:Iterator[String]) : Boolean = {
-  (it1 hasNext, it2 hasNext) match{
-    case (true, true) => {
-      var it1next=it1.next
-      var it2next=it2.next
-      Console.println("")
-      Console.println("it1 = "+it1next)
-      Console.println("it2 = "+it2next)
-      (it1next == it2next) && compare_iterators(it1, it2)
+    var current_iterator="There is no element in the Iterator."
+    var current_iterator2="There is no element in the Iterator."
+    var current_comparison = true
+    while (current_comparison && (it1.hasNext || it2.hasNext)){
+      ((it1.hasNext, it2.hasNext) match{
+        case (true, true) => {
+          current_iterator = it1.next
+          current_iterator2 = it2.next
+          if (current_iterator != current_iterator2){
+            current_comparison=false
+            current_iterator="iterators different : \n validated_out_lines = " + current_iterator + "\n out = " + current_iterator2
+          }
+        }
+        case (false, false) => {
+          current_comparison=false
+        }
+        case (false, true) => {
+          current_comparison=false
+          current_iterator="iterator 1 : end of file"
+          current_iterator2 = it2.next
+        }
+        case (true, false) => {
+          current_comparison=false
+          current_iterator=it1.next
+          current_iterator2="iterator 2 : end of file"
+        }
+      })
     }
-    case (false, false) => true
-    case (false, true) => false
-    case (true, false) => false
+    if (current_comparison==false){
+      Console.println(current_iterator)
+      Console.println(current_iterator2)
+      current_comparison
+    }
+    current_comparison
   }
-}
 
   def filtering_and_regex(name_output : String, typeoutput : String, typeByte : ByteArrayOutputStream, name_file: String){
     var regex_list = List("")
@@ -67,12 +88,11 @@ object ModbatTestHarness {
       val out_lines = Source.fromBytes(typeByte.toByteArray()).getLines
 
       // list of regex to remove
-      val regex1 = """\[FINE\].*""".r
+      //val regex1 = """\[FINE\].*""".r
       
-      out_lines.filterNot(x => x match { case regex1() => true case _ => false})
+      // val it2 = out_lines.filterNot(x => x match { case regex1() => true case _ => false})
 
-      val filewhichcanbecompared = (out_lines.map (l => replaceRegexInSentence(l, regex_list, replace_sentences)))
-      Console.println("")
+      val filewhichcanbecompared = (/*it2*/out_lines.map (l => replaceRegexInSentence(l, regex_list, replace_sentences)))
       assert(compare_iterators(validated_out_lines, filewhichcanbecompared))
     }
   }
@@ -105,7 +125,10 @@ object ModbatTestHarness {
             Main.run(args) 
           ret=0
         } catch {
-          case e: Exception => ret=1
+          case e: Exception => {
+            Modbat.ShutdownHandler.run
+            ret=1
+          }
         } finally {
           Main.config = origConfig
         }
