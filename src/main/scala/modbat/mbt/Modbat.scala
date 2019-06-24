@@ -288,7 +288,7 @@ object Modbat {
     if (Main.config.dotifyPathCoverage) {
       pathCoverageDisplay // Display path coverage/execution paths in state and path graphs -Rui
       if (Main.config.bfsearchFun)
-	pathCoverageBFSearch // User search function to find a transition in trie as a starting point to display in graphs
+        pathCoverageBFSearch // User search function to find a transition in trie as a starting point to display in graphs
     }
 
     Log.info(
