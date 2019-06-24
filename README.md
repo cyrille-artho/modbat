@@ -557,7 +557,7 @@ This feature can be enabled by using
 
         scala modbat.jar --dotify-path-coverage <model>
 
-The output files is `<modelname-root-StateGraph>.dot` as a state-based graph and
+The output files are `<modelname-root-StateGraph>.dot` as a state-based graph and
 `<modelname-root-PointGraph>.dot` as a path-based graph.
 The destination directory can be changed using --dotDir=...;
 default is the current directory.
