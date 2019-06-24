@@ -554,6 +554,7 @@ the model and the SUT are executed by the generated test cases, and to understan
 execution traces and locate weaknesses in the coverage of the model.
 
 This feature can be enabled by using
+
         scala modbat.jar --dotify-path-coverage <model>
 
 The output files is `<modelname-root-StateGraph>.dot` as a state-based graph and
