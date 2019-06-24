@@ -40,6 +40,9 @@ class Configuration extends modbat.config.Configuration {
 
   @Doc("show detailed label in path coverage graphs")
   var pathLabelDetail: Boolean = false
+  
+  @Doc("use user-defined search function fir path coverage graphs")
+  var bfsearchFun: Boolean = false
 
   @Doc("output directory for dot files")
   var dotDir: String = "."
