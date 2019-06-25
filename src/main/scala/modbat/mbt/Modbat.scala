@@ -265,9 +265,9 @@ object Modbat {
     // parentNodeTranID is the target transition's parent transition's ID
     var input: String = ""
     import scala.io.StdIn.readLine
-    while (input != "q") {
+    while (input != "quit") {
       input = readLine()
-      if (input != "q") {
+      if (input != "quit") {
         val goal = input.split("-")
         val foundNode =
           trie.bfSearchT(trie.root, goal(0), goal(1).toInt, goal(2).toInt)
@@ -287,7 +287,8 @@ object Modbat {
 
     if (Main.config.dotifyPathCoverage) {
       pathCoverageDisplay // Display path coverage/execution paths in state and path graphs -Rui
-      pathCoverageBFSearch // User search function to find a transition in trie as a starting point to display in graphs
+      if (Main.config.bfsearchFun)
+        pathCoverageBFSearch // User search function to find a transition in trie as a starting point to display in graphs
     }
 
     Log.info(
