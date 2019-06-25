@@ -213,47 +213,33 @@ run 0 $APP --mode=dot --auto-labels \
 savemv modbat.examples.JavaNioServerSocket.dot nioserv-auto.dot
 checkfile nioserv-auto.dot
 ## path coverage 20 test cases
-#run 0 $APP -n=20 -s=1 --no-redirect-out --dotify-path-coverage \
-#	modbat.examples.NioSocket1
-#savemv modbat.examples.NioSocket1-StateGraph.dot nio-path-state-20.dot
-#checkfile nio-path-state-20.dot
-#savemv modbat.examples.NioSocket1-PointGraph.dot nio-path-point-20.dot
-#checkfile nio-path-point-20.dot
-## path coverage 50 test cases
-#run 0 $APP -n=50 -s=1 --no-redirect-out --dotify-path-coverage \
-#	modbat.examples.NioSocket1
-#savemv modbat.examples.NioSocket1-StateGraph.dot nio-path-state-50.dot
-#checkfile nio-path-state-50.dot
-#savemv modbat.examples.NioSocket1-PointGraph.dot nio-path-point-50.dot
-#checkfile nio-path-point-50.dot
+run 0 $APP -n=20 -s=1 --no-redirect-out --dotify-path-coverage \
+	modbat.examples.NioSocket1
+savemv modbat.examples.NioSocket1-root-StateGraph.dot nio-path-state-20.dot
+checkfile nio-path-state-20.dot
+savemv modbat.examples.NioSocket1-root-PointGraph.dot nio-path-point-20.dot
+checkfile nio-path-point-20.dot
 ## path coverage 100 test cases
-#run 0 $APP -n=100 -s=1 --no-redirect-out --dotify-path-coverage \
-#	modbat.examples.NioSocket1
-#savemv modbat.examples.NioSocket1-StateGraph.dot nio-path-state-100.dot
-#checkfile nio-path-state-100.dot
-#savemv modbat.examples.NioSocket1-PointGraph.dot nio-path-point-100.dot
-#checkfile nio-path-point-100.dot
-## path coverage 200 test cases
-#run 0 $APP -n=200 -s=1 --no-redirect-out --dotify-path-coverage \
-#	modbat.examples.NioSocket1
-#savemv modbat.examples.NioSocket1-StateGraph.dot nio-path-state-200.dot
-#checkfile nio-path-state-200.dot
-#savemv modbat.examples.NioSocket1-PointGraph.dot nio-path-point-200.dot
-#checkfile nio-path-point-200.dot
+run 0 $APP -n=100 -s=1 --no-redirect-out --dotify-path-coverage \
+	modbat.examples.NioSocket1
+savemv modbat.examples.NioSocket1-root-StateGraph.dot nio-path-state-100.dot
+checkfile nio-path-state-100.dot
+savemv modbat.examples.NioSocket1-root-PointGraph.dot nio-path-point-100.dot
+checkfile nio-path-point-100.dot
 ## path coverage 500 test cases
-#run 0 $APP -n=500 -s=1 --no-redirect-out --dotify-path-coverage \
-#	modbat.examples.NioSocket1
-#savemv modbat.examples.NioSocket1-StateGraph.dot nio-path-state-500.dot
-#checkfile nio-path-state-500.dot
-#savemv modbat.examples.NioSocket1-PointGraph.dot nio-path-point-500.dot
-#checkfile nio-path-point-500.dot
-## path coverage 1000 test cases
-#run 0 $APP -n=1000 -s=1 --no-redirect-out --dotify-path-coverage \
-#	modbat.examples.NioSocket1
-#savemv modbat.examples.NioSocket1-StateGraph.dot nio-path-state-1000.dot
-#checkfile nio-path-state-1000.dot
-#savemv modbat.examples.NioSocket1-PointGraph.dot nio-path-point-1000.dot
-#checkfile nio-path-point-1000.dot
+run 0 $APP -n=500 -s=1 --no-redirect-out --dotify-path-coverage \
+	modbat.examples.NioSocket1
+savemv modbat.examples.NioSocket1-root-StateGraph.dot nio-path-state-500.dot
+checkfile nio-path-state-500.dot
+savemv modbat.examples.NioSocket1-root-PointGraph.dot nio-path-point-500.dot
+checkfile nio-path-point-500.dot
+# path coverage 1000 test cases
+run 0 $APP -n=1000 -s=1 --no-redirect-out --dotify-path-coverage \
+	modbat.examples.NioSocket1
+savemv modbat.examples.NioSocket1-root-StateGraph.dot nio-path-state-1000.dot
+checkfile nio-path-state-1000.dot
+savemv modbat.examples.NioSocket1-root-PointGraph.dot nio-path-point-1000.dot
+checkfile nio-path-point-1000.dot
 
 run 0 $APP --mode=dot --log-level=debug \
 	--auto-labels \
