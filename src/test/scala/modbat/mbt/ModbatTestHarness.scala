@@ -20,37 +20,42 @@ import modbat.log.Log
 import modbat.util.CloneableRandom
 
 object ModbatTestHarness {
+
+  //  This function get the name and his path of the file. 
+  //  For example, log/modbat/modbat.test.TickTockTest/TickTockTest1.
+  //  This function creates a directory if it does not exist.
   def getNamesofFile(args: Array[String], td: org.scalatest.TestData): (String, String, String) = {
-    // Be careful, this function create folder if doesn't exist
-    var name_output = "log/modbat/"
+    var name_folder = "log/modbat/"
     var arguments_name = ""
     for ( x <- args ) {
-      if (x contains "modbat"){
-        name_output = name_output + x
+      if (x contains "modbat."){
+        name_folder = name_folder + x
       }
       else{
         arguments_name = arguments_name + x
       }
     }
-    var directory = new File(name_output);
+    var directory = new File(name_folder);
     var bool = ! directory.exists()
     if (bool){
         directory.mkdirs();
     }
-    (name_output, arguments_name, ( td.name.split(" ") )(0))
+    (name_folder, arguments_name, ( td.name.split(" ") )(0))
   }
 
-  def addToFiles(writer_1: java.io.PrintWriter,writer_2: java.io.PrintWriter,data:String){
-    writer_1.write(data+"\n")
-    writer_2.write(data+"\n")  
+  //these functions add 1 line in 2 existing files. 
+  def addToFiles(writer1: java.io.PrintWriter,writer2: java.io.PrintWriter,data:String){
+    writer1.println(data)
+    writer2.println(data)  
   }
   
-  def write(output_1: String, output_2: String, iterator_data: Iterator[String]): Unit = {
-    val (writer_1, writer_2) = (new PrintWriter(new File(output_1)), new PrintWriter(new File(output_2)))
+  //this function overwrite the files file1 and file2 (or create it does not exist)
+  def write(file1: String, file2: String, iterator_data: Iterator[String]): Unit = {
+    val (writer1, writer2) = (new PrintWriter(new File(file1)), new PrintWriter(new File(file2)))
     while (iterator_data.hasNext) 
-      addToFiles(writer_1, writer_2, iterator_data.next())
-    writer_1.close()
-    writer_2.close()
+      addToFiles(writer1, writer2, iterator_data.next())
+    writer1.close()
+    writer2.close()
   }
 
   def savemv(from : String, to : String) {
@@ -60,72 +65,94 @@ object ModbatTestHarness {
     new FileInputStream(src) getChannel, 0, Long.MaxValue )
   }
 
-  def compare_iterators(it1:Iterator[String], it2:Iterator[String]) : Boolean = {
-    var current_iterator, current_iterator2="There is no element in the Iterator."
+  //this function compare 2 iterators => output boolean. 
+  //If output is false, print the last match.
+  def compareIterators(it1:Iterator[String], it2:Iterator[String]) : Boolean = {
+    var past_iterator="End of file."
+    var current_iterator=""
     var current_comparison = true
     while (current_comparison && (it1.hasNext || it2.hasNext)){
       ((it1.hasNext, it2.hasNext) match{
         case (true, true) => {
-          current_iterator = it1.next
-          current_iterator2 = it2.next
-          if (current_iterator != current_iterator2){
-            current_comparison=false
-            current_iterator="iterators different : \n validated_out_lines = \n" + current_iterator + "\n out_filtered = \n" + current_iterator2
-          }
-        }
-        case (false, false) => {
-          current_comparison=false
-        }
-        case (false, true) => {
-          current_comparison=false
-          current_iterator="iterator 1 : end of file"
-          current_iterator2 = it2.next
-        }
-        case (true, false) => {
-          current_comparison=false
           current_iterator=it1.next
-          current_iterator2="iterator 2 : end of file"
+          if (current_iterator != it2.next){
+            current_comparison=false
+            Console.println(current_iterator="Iterators are different.\nLast match :\n"+past_iterator)
+          }
+          else
+            past_iterator=current_iterator
+        }
+        case _ => {
+          current_comparison=false
+          Console.println("End of file.")
         }
       })
-    }
-    if (current_comparison==false){
-      Console.println(current_iterator)
-      Console.println(current_iterator2)
-      current_comparison
     }
     current_comparison
   }
 
-  def filtering_writing_comparing_each_file(name_output_1 : String, name_output_2 : String, typeByte : ByteArrayOutputStream){
+  def filtering(nameOutput : String, typeByte : ByteArrayOutputStream):(Iterator[String])={
     var regex_map = Map[String, String]()
-    var replace_sentences = List("")
-    if (name_output_1.split("\\.").last == "out"){
-      regex_map = Map("""\[[0-9][0-9]*[mK]"""->"",""".*"""->"",""" in .*[0-9]* milliseconds"""->"","""RELEASE-([0-9.]*)"""->"$1",""" v[0-9a-f]* rev [0-9a-f]*"""->"",""" v[0-9][0-9]*\\.[0-9][^ ]* rev [0-9a-f]*"""->" vx.yz","""^Time: [0-9.]*"""->" vx.yz","""(at .*):[0-9]*:"""->"$1","""canceled 0, """->"","""(\[INFO\] .* java.lang.AssertionError.*):"""->"$1")
+
+    if (nameOutput.split("\\.").last == "log"){
+      regex_map = Map(
+        """\[[0-9][0-9]*[mK]""" -> "",
+        """.*""" -> "",
+        """ in .*[0-9]* milliseconds""" -> "",
+        """RELEASE-([0-9.]*)""" -> "$1",
+        """ v[0-9a-f]* rev [0-9a-f]*""" -> "",
+        """ v[0-9][0-9]*\\.[0-9][^ ]* rev [0-9a-f]*""" -> " vx.yz",
+        """^Time: [0-9.]*""" -> " vx.yz",
+        """(at .*):[0-9]*:""" -> "$1",
+        """canceled 0, """ -> "",
+        """(\[INFO\] .* java.lang.AssertionError.*):"""->"$1"
+      )
     }
-    else if (name_output_1.split("\\.").last == "eout"){
-      regex_map = Map ("""RELEASE-3.2"""->"3.3", """ v[0-9a-f]* rev [0-9a-f]*"""->" vx.yz", """ v[^ ]* rev [0-9a-f]*"""->" vx.yz", """(at .*?):[0-9]*:?"""->"$1", """(Exception in thread "Thread-)[0-9][0-9]*"""->"$1", """CommonRunner.*un.*\(ObjectRunner.scala"""->"", """MainGenericRunner.*un.*\(MainGenericRunner.scala"""->"")
+
+    else if (nameOutput.split("\\.").last == "err"){
+      regex_map = Map (
+        """RELEASE-3.2""" -> "3.3",
+        """ v[0-9a-f]* rev [0-9a-f]*""" -> " vx.yz",
+        """ v[^ ]* rev [0-9a-f]*""" -> " vx.yz",
+        """(at .*?):[0-9]*:?""" -> "$1", 
+        """(Exception in thread "Thread-)[0-9][0-9]*""" -> "$1",
+        """CommonRunner.*un.*\(ObjectRunner.scala""" -> "",
+        """MainGenericRunner.*un.*\(MainGenericRunner.scala""" -> ""
+      )
     }
+
     else Console.println("Error : ModbatTestHarness - Unexpected end of file name") 
-    val validated_out=name_output_1
-    if (new java.io.File(validated_out).exists){
-      val validated_out_lines = Source.fromFile(name_output_1).getLines
-      val out_lines = Source.fromBytes(typeByte.toByteArray()).getLines
-      val (filewhichcanbecompared,filewhichcanbecompared_copy) = out_lines.map (l => replaceRegexInSentence(l, regex_map)).duplicate
-      write(name_output_1,name_output_2, filewhichcanbecompared)
-      assert(compare_iterators(validated_out_lines, filewhichcanbecompared_copy))
-    }
+    
+    val outLines = Source.fromBytes(typeByte.toByteArray()).getLines
+    outLines.map (l => replaceRegexInSentence(l, regex_map))
   }
 
-  def filtering_writing_comparing(name_output: String, arguments_name: String, simple_name:String, out : ByteArrayOutputStream, err : ByteArrayOutputStream){
-    filtering_writing_comparing_each_file (name_output+arguments_name+".out", name_output+simple_name+".out", out)
-    filtering_writing_comparing_each_file (name_output+arguments_name+".eout", name_output+simple_name+".eout", err)
+  def filtering2Files(name_output: String, out : ByteArrayOutputStream, err : ByteArrayOutputStream):((Iterator[String], Iterator[String]), (Iterator[String], Iterator[String]))={
+    (filtering (name_output+".log", out).duplicate,
+    filtering (name_output+".err", err).duplicate)
+  }
+
+  def writing2Files(name_folder: String, arguments_name: String, simple_name:String, filtredLog : Iterator[String], filtredErr : Iterator[String]){
+    write(name_folder+arguments_name+".log",name_folder+simple_name+"log", filtredLog) 
+    write(name_folder+arguments_name+".err",name_folder+simple_name+"err", filtredErr) 
   }
 
   def replaceRegexInSentence(sentence : String, regex_map : Map[String,String]) : String = {  
     var sentence_filtred = sentence
     regex_map foreach (x => 
       sentence_filtred = sentence_filtred.replaceAll(x._1, x._2))
-    sentence_filtred
+    sentence_filtred.replace("\u001b[2K\u000d","")
+  }
+
+  def comparingFiles(output : String, filtredLog : Iterator[String], filtredErr : Iterator[String]){
+    if (new java.io.File(output+".out").exists){
+      val validated_out_lines = Source.fromFile(output+".out").getLines
+      assert(compareIterators(validated_out_lines, filtredLog))
+    } 
+    else if (new java.io.File(output+".eout").exists){
+      val validated_eout_lines = Source.fromFile(output+".eout").getLines
+      assert(compareIterators(validated_eout_lines, filtredErr))
+    } 
   }
 
   def testMain(args: Array[String], env: () => Unit, td: org.scalatest.TestData, optionsavemv : Option [(String, String)] = None): (Int, List[String], List[String]) = {
@@ -151,10 +178,14 @@ object ModbatTestHarness {
       }
     }
 
-    val (name_output, arguments_name, simple_name) = getNamesofFile(args, td)
+    val (name_folder, arguments_name, simple_name) = getNamesofFile(args, td)
     
-    filtering_writing_comparing (name_output+"/", arguments_name, simple_name, out, err)
+    val ((filtredLog, filtredLogCopy), (filtredErr, filtredErrCopy)) = filtering2Files (name_folder+"/"+arguments_name, out, err)
     
+    writing2Files (name_folder+"/", arguments_name, simple_name, filtredLog, filtredErr)
+
+    comparingFiles (name_folder+"/"+arguments_name,filtredLogCopy,filtredErrCopy)
+     
     optionsavemv match {
       case None => {}
       case Some((from,to)) => {
