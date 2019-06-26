@@ -124,6 +124,7 @@ object ModbatTestHarness {
     else Console.println("Error : ModbatTestHarness - Unexpected end of file name") 
     
     val outLines = Source.fromBytes(typeByte.toByteArray()).getLines
+
     outLines.map (l => replaceRegexInSentence(l, regex_map))
   }
 
@@ -133,15 +134,15 @@ object ModbatTestHarness {
   }
 
   def writing2Files(name_folder: String, arguments_name: String, simple_name:String, filtredLog : Iterator[String], filtredErr : Iterator[String]){
-    write(name_folder+arguments_name+".log",name_folder+simple_name+"log", filtredLog) 
-    write(name_folder+arguments_name+".err",name_folder+simple_name+"err", filtredErr) 
+    write(name_folder+arguments_name+".log",name_folder+simple_name+".log", filtredLog) 
+    write(name_folder+arguments_name+".err",name_folder+simple_name+".err", filtredErr) 
   }
 
   def replaceRegexInSentence(sentence : String, regex_map : Map[String,String]) : String = {  
     var sentence_filtred = sentence
     regex_map foreach (x => 
       sentence_filtred = sentence_filtred.replaceAll(x._1, x._2))
-    sentence_filtred.replace("\u001b[2K\u000d","")
+    sentence_filtred.replace("\u001b[2K\u000d","") //does it work ? Not sure...
   }
 
   def comparingFiles(output : String, filtredLog : Iterator[String], filtredErr : Iterator[String]){
