@@ -74,8 +74,8 @@ object ModbatTestHarness {
     while (current_comparison && (it1.hasNext || it2.hasNext)){
       ((it1.hasNext, it2.hasNext) match{
         case (true, true) => {
-          current_iterator=it1.next
-          if (current_iterator != it2.next){
+          current_iterator=it1.next()
+          if (current_iterator != it2.next()){
             current_comparison=false
             Console.println(current_iterator="Iterators are different.\nLast match :\n"+past_iterator)
           }
@@ -91,8 +91,20 @@ object ModbatTestHarness {
     current_comparison
   }
 
+  def deleteMatchesSentenceInIterator(it:Iterator[String], sentences_to_delete:Iterator[String]): Iterator[String]={
+    var iterator_filtred = it
+    var current_sentence_to_delete = ""
+    while (sentences_to_delete.hasNext){
+      current_sentence_to_delete = sentences_to_delete.next()
+      iterator_filtred = iterator_filtred.dropWhile(l => l.contains(current_sentence_to_delete))
+    }
+      
+    iterator_filtred
+  }
+
   def filtering(nameOutput : String, typeByte : ByteArrayOutputStream):(Iterator[String])={
     var regex_map = Map[String, String]()
+    var iterator_deleting_sentence = Iterator[String]()
 
     if (nameOutput.split("\\.").last == "log"){
       regex_map = Map(
@@ -115,15 +127,14 @@ object ModbatTestHarness {
         """ v[0-9a-f]* rev [0-9a-f]*""" -> " vx.yz",
         """ v[^ ]* rev [0-9a-f]*""" -> " vx.yz",
         """(at .*?):[0-9]*:?""" -> "$1", 
-        """(Exception in thread "Thread-)[0-9][0-9]*""" -> "$1",
-        """CommonRunner.*un.*\(ObjectRunner.scala""" -> "",
-        """MainGenericRunner.*un.*\(MainGenericRunner.scala""" -> ""
+        """(Exception in thread "Thread-)[0-9][0-9]*""" -> "$1"
       )
+      iterator_deleting_sentence = Iterator("""CommonRunner.*un.*\(ObjectRunner.scala""", """MainGenericRunner.*un.*\(MainGenericRunner.scala""")
     }
 
     else Console.println("Error : ModbatTestHarness - Unexpected end of file name") 
     
-    val outLines = Source.fromBytes(typeByte.toByteArray()).getLines
+    val outLines = deleteMatchesSentenceInIterator ((Source.fromBytes(typeByte.toByteArray()).getLines),iterator_deleting_sentence)
 
     outLines.map (l => replaceRegexInSentence(l, regex_map))
   }
