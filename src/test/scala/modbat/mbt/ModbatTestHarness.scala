@@ -77,7 +77,7 @@ object ModbatTestHarness {
           current_iterator=it1.next()
           if (current_iterator != it2.next()){
             current_comparison=false
-            Console.println(current_iterator="Iterators are different.\nLast match :\n"+past_iterator)
+            Console.println("Iterators are different.\nLast match :\n"+past_iterator)
           }
           else
             past_iterator=current_iterator

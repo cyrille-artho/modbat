@@ -6,23 +6,23 @@ digraph model {
   "" [ shape = "point", height="0.1" ];
   "" -> reset
   reset	-> open [ label = " open \[ 100,0 % \]" penwidth = "3.0" ];
-  open	-> open [ label = " toggleBlocking \[ 12,5 % \]" penwidth = "3.0" ];
-  open	-> connected [ label = " connect " ];
-  open	-> maybeconnected [ label = " connect " ];
+  open	-> open [ label = " toggleBlocking \[ 20,0 % \]" penwidth = "3.0" ];
+  open	-> connected [ label = " connect \[ 16,8 % \]" penwidth = "3.0" ];
+  open	-> maybeconnected [ label = " connect \[ 2,4 % \]" penwidth = "3.0" ];
   maybeconnected	-> maybeconnected [ label = " toggleBlocking " ];
   maybeconnected	-> connected [ label = " finishConnect " ];
   maybeconnected	-> maybeconnected [ label = " sleep " ];
-  maybeconnected	-> connected [ label = " (sleep) " style = "dashed" ];
-  open	-> err [ label = " NoConnectionPendingExc. \[ 75,0 % \]" color = "red" penwidth = "3.0" ];
+  maybeconnected	-> connected [ label = " (sleep) \[ 33,3 % \]" style = "dashed" penwidth = "3.0" ];
+  open	-> err [ label = " NoConnectionPendingExc. \[ 25,6 % \]" color = "red" penwidth = "3.0" ];
   maybeconnected	-> err [ label = " ConnectionPendingExc. " color = "red" ];
-  connected	-> err [ label = " AlreadyConnectedExc. " color = "red" ];
-  open	-> err [ label = " NotYetConnectedExc. " color = "red" ];
-  maybeconnected	-> err [ label = " NotYetConnectedExc. " color = "red" ];
-  connected	-> connected [ label = " finishConnect " ];
-  connected	-> connected [ label = " readFrom " ];
-  open	-> closed [ label = " close \[ 12,5 % \]" penwidth = "3.0" ];
-  connected	-> closed [ label = " close " ];
-  maybeconnected	-> closed [ label = " close " ];
-  closed	-> closed [ label = " close \[ 87,5 % \]" penwidth = "3.0" ];
-  closed	-> err [ label = " ClosedChannelExc. \[ 12,5 % \]" color = "red" penwidth = "3.0" ];
+  connected	-> err [ label = " AlreadyConnectedExc. \[ 30,6 % \]" color = "red" penwidth = "3.0" ];
+  open	-> err [ label = " NotYetConnectedExc. \[ 11,2 % \]" color = "red" penwidth = "3.0" ];
+  maybeconnected	-> err [ label = " NotYetConnectedExc. \[ 33,3 % \]" color = "red" penwidth = "3.0" ];
+  connected	-> connected [ label = " finishConnect \[ 27,8 % \]" penwidth = "3.0" ];
+  connected	-> connected [ label = " readFrom \[ 11,1 % \]" penwidth = "3.0" ];
+  open	-> closed [ label = " close \[ 24,0 % \]" penwidth = "3.0" ];
+  connected	-> closed [ label = " close \[ 30,6 % \]" penwidth = "3.0" ];
+  maybeconnected	-> closed [ label = " close \[ 33,3 % \]" penwidth = "3.0" ];
+  closed	-> closed [ label = " close \[ 52,3 % \]" penwidth = "3.0" ];
+  closed	-> err [ label = " ClosedChannelExc. \[ 47,7 % \]" color = "red" penwidth = "3.0" ];
 }

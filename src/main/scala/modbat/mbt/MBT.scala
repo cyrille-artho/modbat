@@ -79,10 +79,19 @@ object MBT {
   // do not issue same warning twice for static model problem
   var currentTransition: Transition = null
   val stayLock = new AnyRef()
-  val time = new VirtualTime
+  var time = new VirtualTime
 
   def init {
     warningIssuedOn.clear
+    //modelClass = null
+    //invokedStaticMethods.clear
+    externalException = null
+    //rng = null
+    rethrowExceptions=false
+    //classLoaderURLs = null
+    checkDuplicates=false
+    warningIssuedOn.clear
+    time = new VirtualTime
   }
 
   // TODO: If necessary, add another argument (tag) to distinguish between
@@ -138,9 +147,9 @@ object MBT {
 		   m: Method, instance: Object) {
     if ((m.getModifiers() & Modifier.STATIC) != 0) {
       if (!invokedStaticMethods.contains(m)) {
-	invokedStaticMethods += m
-	Log.debug(annotationType.getSimpleName() + ": static " + m.getName())
-	m.invoke(instance)
+        invokedStaticMethods += m
+        Log.debug(annotationType.getSimpleName() + ": static " + m.getName())
+        m.invoke(instance)
       }
     }
   }
@@ -207,13 +216,13 @@ object MBT {
     /* load model class */
     try {
       val classloader =
-	new URLClassLoader(classLoaderURLs,
+	    new URLClassLoader(classLoaderURLs,
 			   Thread.currentThread().getContextClassLoader())
       modelClass = classloader.loadClass(className)
     } catch {
       case e: ClassNotFoundException => {
-	Log.error("Class \"" + className + "\" not found.")
-	  throw e
+	      Log.error("Class \"" + className + "\" not found.")
+	      throw e
       }
     }
   }
@@ -245,13 +254,13 @@ object MBT {
       c.getConstructor()
     } catch {
       case e: NoSuchMethodException => {
-	Log.error("No suitable constructor found.")
-	Log.error("A public nullary constructor is needed " +
-		  "to instantiate the primary model.")
-	Log.error("Consider adding a constructor variant:")
-	Log.error("  def this() = this(...)")
-	throw (e)
-	null
+        Log.error("No suitable constructor found.")
+        Log.error("A public nullary constructor is needed " +
+            "to instantiate the primary model.")
+        Log.error("Consider adding a constructor variant:")
+        Log.error("  def this() = this(...)")
+        throw (e)
+        null
       }
     }
   }
@@ -259,38 +268,38 @@ object MBT {
   def mkModel(modelInstance: Model) = {
     try {
       if (modelInstance != null) {
-	modelInstance
+	      modelInstance
       } else {
-	assert(Transition.pendingTransitions.isEmpty)
-	val cons = findConstructor(modelClass.asInstanceOf[Class[Model]])
-	cons.newInstance().asInstanceOf[Model]
+        assert(Transition.pendingTransitions.isEmpty)
+        val cons = findConstructor(modelClass.asInstanceOf[Class[Model]])
+        cons.newInstance().asInstanceOf[Model]
       }
     } catch {
       case c: ClassCastException => {
-	Log.error("Model class does not extend Model.")
-	Log.error("Check if the right class was specified.")
-	throw (c)
-	null
+        Log.error("Model class does not extend Model.")
+        Log.error("Check if the right class was specified.")
+        throw (c)
+        null
       }
       case e: InstantiationException => {
-	Log.error("Cannot instantiate model class.")
-	Log.error("The class must not be abstract or an interface.")
-	throw (e)
-	null
+        Log.error("Cannot instantiate model class.")
+        Log.error("The class must not be abstract or an interface.")
+        throw (e)
+        null
       }
       case e: InvocationTargetException => {
-	Log.error("Exception in default (nullary) constructor of main model.")
-	Log.error("In dot mode, a constructor that ignores any data")
-	Log.error("is sufficient to visualize the ESFM graph.")
-	if (!enableStackTrace) {
-	  Log.error("Use --print-stack-trace to see the stack trace.")
-	} else {
-	  val cause = e.getCause
-	  Log.error(cause.toString)
-	  printStackTrace(cause.getStackTrace)
-	}
-	throw (e)
-	null
+        Log.error("Exception in default (nullary) constructor of main model.")
+        Log.error("In dot mode, a constructor that ignores any data")
+        Log.error("is sufficient to visualize the ESFM graph.")
+        if (!enableStackTrace) {
+          Log.error("Use --print-stack-trace to see the stack trace.")
+        } else {
+          val cause = e.getCause
+          Log.error(cause.toString)
+          printStackTrace(cause.getStackTrace)
+        }
+        throw (e)
+        null
       }
     }
   }
@@ -318,8 +327,8 @@ object MBT {
     for (el <- trace) {
       val clsName = el.getClassName
       if (clsName.startsWith("modbat.mbt.") &&
-	  !clsName.startsWith("modbat.mbt.Predef")) {
-	return
+	    !clsName.startsWith("modbat.mbt.Predef")) {
+	      return
       }
       Log.error("\tat " + el.toString)
     }
