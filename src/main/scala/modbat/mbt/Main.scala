@@ -48,9 +48,10 @@ object Main {
       }
     }
 
-    setup(modelClassName) // TODO: refactor into case code below once needed
-
     Modbat.init
+
+    setup(modelClassName)
+
     /* execute */
     config.mode match {
       case "dot" =>
