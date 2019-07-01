@@ -1,53 +1,63 @@
 package modbat.genran;
 
+import com.sun.tools.javac.util.Pair;
+import modbat.trace.RecordedTransition;
+import scala.collection.mutable.ListBuffer;
+
 import java.util.*;
 
+/**
+ * Class responsible for storing objects in memory. Bridge between modbat and randoop object shearing.
+ */
+public class ObjectHolder {
 
-//TODO change List to map and store every type of object
-public class ObjectHolder
-{
-    private static HashMap<Class, Set<Object>> objectsMap = new HashMap<>();
+    private static final HashMap<Class, List<Pair<Object, ListBuffer<RecordedTransition>>>> objectsMap = new HashMap<>();
 
-    private static final SplittableRandom sr = new SplittableRandom(); // TODO use modbat way
-
-    public synchronized static void add(Object newObject)
-    {
-        if(newObject == null)
+    /**
+     * Functions responsible for adding a new object to memory
+     *
+     * @param newObject any object you want to store in memory
+     */
+    public synchronized static void add(Object newObject, ListBuffer<RecordedTransition> transisions) {
+        if (newObject == null)
             return;
 
-        Set<Object> objectList = objectsMap.computeIfAbsent(newObject.getClass(), k -> new HashSet<>());
-
-        objectList.add(newObject);
+        List<Pair<Object, ListBuffer<RecordedTransition>>> objectList = objectsMap.computeIfAbsent(newObject.getClass(), k -> new ArrayList<>());
+        objectList.add(new Pair<>(newObject, transisions));
     }
 
     /**
-     * Function need to be public for randoop to use it
+     * Pick a random object from memory
+     *
+     * @param className name of the class of the object you want to return from memory
+     * @return a random object from a memory of a given type
+     * @throws ClassNotFoundException
+     */
+    public synchronized static Object pick(String className, int id) throws ClassNotFoundException {
+
+        List<Pair<Object, ListBuffer<RecordedTransition>>> objectSet = objectsMap.get(Class.forName(className)); //TODO add exceptions
+
+        return objectSet.get(id).fst;
+    }
+
+    /**
+     * @return a set of all different types Classes in memory
+     */
+    static Set<Class> getObjectsMapKeys() {
+        return objectsMap.keySet();
+    }
+
+    /**
+     *
+     * @param c
      * @return
      */
-    public synchronized static Object pop()
-    {
-        Set<Class> classSet = objectsMap.keySet();
-
-        if(classSet.size() == 1)
-            return pop(classSet.iterator().next());
-
-        throw new IllegalArgumentException("More then 1 object");
+    static int getSizeOfKeySupSet(Class c) {
+        return objectsMap.get(c).size();
     }
 
-    public synchronized static Object pop(Class c) //TODO add param as String
-    {
-        Set<Object> objectSet = objectsMap.get(c);
-
-        return objectSet.stream().skip(sr.nextInt(objectSet.size())).findAny().get(); //TODO add conditions
-    }
-
-    public static Class getClassName() {
-
-        Set<Class> classSet = objectsMap.keySet();
-
-        if(classSet.size() == 1)
-            return classSet.iterator().next();
-
-        throw new IllegalArgumentException("More then 1 object");
+    static ListBuffer<RecordedTransition> getRecordedTransitions(String className, int id) {
+        return objectsMap.get(className).get(id).snd;
     }
 }
+

@@ -8,7 +8,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 
-/** Mark that a field is to be traced at run-time (monitored against
-    changes). */
+/** Mark that a field is to be saved in memory for random testing*/
 public @interface Save {
 }

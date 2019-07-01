@@ -9,6 +9,7 @@ import java.lang.reflect.Field
 import java.lang.reflect.Modifier
 import java.lang.RuntimeException
 import java.net.URL
+import java.util
 import java.util.BitSet
 
 import scala.collection.JavaConversions._
@@ -33,7 +34,8 @@ import modbat.util.CloneableRandom
 import modbat.util.SourceInfo
 import modbat.util.FieldUtil
 import com.miguno.akka.testing.VirtualTime
-import modbat.genran.ObjectHolder
+import modbat.genran.{ObjectHolder, RandoopUtils}
+import randoop.sequence.ExecutableSequence
 
 
 class NoTaskException(message :String = null, cause :Throwable = null) extends RuntimeException(message, cause)
@@ -89,14 +91,20 @@ object Modbat {
       f match {
         case search: RandomSearch =>
 
-          val value = search.value().toList
+          val failedSequences : util.List[ExecutableSequence] = MBT.randomSearch(search.value().toSeq)
 
-          MBT.randomSearch(Seq(value.get(0)), Seq(), Seq(), Seq())
+          for(e <- failedSequences)
+            {
+
+             val test = RandoopUtils.getId(e.toCodeString)
+
+              println(test)
+
+            }
 
         case _ =>
       }
     }
-
   }
 
 
@@ -267,8 +275,7 @@ object Modbat {
       val value = FieldUtil.getValue(f, model.model)
       Log.fine("Save field " + f.getName + " has value " + value)
 
-      ObjectHolder.add(value)
-
+      ObjectHolder.add(value, executedTransitions)
     }
   }
 

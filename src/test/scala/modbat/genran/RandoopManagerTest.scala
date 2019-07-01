@@ -3,6 +3,9 @@ package modbat.genran
 import modbat.mbt.Main
 import org.scalatest.FunSuite
 
+/**
+  * Tmp class for debugging
+  */
 class RandoopManagerTest extends FunSuite {
 
   test("testSimpleRandomModel") {

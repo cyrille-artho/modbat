@@ -14,21 +14,18 @@ import randoop.test.{ContractSet, TestCheckGenerator}
 import randoop.types.Type
 import randoop.util.MultiMap
 
-import scala.collection.JavaConversions._
 import scala.collection.JavaConverters._
 
-
-class RandoopManager extends RandomTestManager {
+class RandoopManager  {
 
   object RandoopManager{
-
      var forwardGenerator : ForwardGenerator = _
   }
 
-  override def init(classes: Seq[String], objects: Seq[AnyRef], observers: Seq[String], methods: Seq[String]): Unit = {
+  def init(classes: Seq[String]): Unit = {
 
     val optionsCache = new OptionsCache
-    optionsCache.saveState() //TODO is it necessary?
+    optionsCache.saveState()
 
     GenInputsAbstract.deterministic = true
     GenInputsAbstract.minimize_error_test = false
@@ -40,45 +37,29 @@ class RandoopManager extends RandomTestManager {
     GenInputsAbstract.require_classname_in_test = null
     GenInputsAbstract.require_covered_classes = null
 
-    createForwardGenerator(objects, observers, methods)
+    createForwardGenerator()
   }
 
-  override def run: Unit = {
+  def run(): Unit = RandoopManager.forwardGenerator.createAndClassifySequences()
 
-    RandoopManager.forwardGenerator.createAndClassifySequences()
-  }
+  def getErrorSequences: util.List[ExecutableSequence] = RandoopManager.forwardGenerator.getErrorTestSequences
 
-  override def validate: Unit = {
+  /**
+    *   Black box potentially move to java
+    */
+  def createForwardGenerator(): Unit = {
 
-    for (e <- RandoopManager.forwardGenerator.getErrorTestSequences)
-      {
-          println(e.toCodeString)
-      }
-  //  println("validate:getErrorTestSequences:end")
-
-    for (e <- RandoopManager.forwardGenerator.getAllSequences)
-    {
-      println(e.toCodeString)
-    }
-
-    println("validate:end")
-  }
-
-  def createForwardGenerator(objects: Seq[AnyRef], observers: Seq[String], methods: Seq[String]): Unit = {
-
-    val operationModel: OperationModel = OperationModel.createModel(IS_PUBLIC, new DefaultReflectionPredicate, GenInputsAbstract.omitmethods, GenInputsAbstract.getClassnamesFromArgs, new util.LinkedHashSet[String], methods.toSet[String].asJava, new ThrowClassNameError, GenInputsAbstract.literals_file)
+    val operationModel: OperationModel = OperationModel.createModel(IS_PUBLIC, new DefaultReflectionPredicate, GenInputsAbstract.omitmethods, GenInputsAbstract.getClassnamesFromArgs, new util.LinkedHashSet[String], new util.HashSet[String](), new ThrowClassNameError, GenInputsAbstract.literals_file)
 
     val components: util.Set[Sequence] = new util.LinkedHashSet[Sequence]
-    components.addAll(SeedSequences.defaultSeeds) //TODO here mabe its a place for adding sequence, the moment where we add the trait
+    components.addAll(SeedSequences.defaultSeeds)
     components.addAll(operationModel.getAnnotatedTestValues)
-
-    components.addAll(RandoopUtils.createSequencesForObject())
+    components.addAll(RandoopUtils.createSequencesForObjectHolder())
 
     val componentMgr: ComponentManager = new ComponentManager(components)
     operationModel.addClassLiterals(componentMgr, GenInputsAbstract.literals_file, GenInputsAbstract.literals_level)
 
-
-    val observerMap: MultiMap[Type, TypedOperation] = operationModel.getObservers(observers.toSet[String].asJava)
+    val observerMap: MultiMap[Type, TypedOperation] = operationModel.getObservers(new util.HashSet[String])
 
     val observersL: util.Set[TypedOperation] = new util.LinkedHashSet[TypedOperation]
 

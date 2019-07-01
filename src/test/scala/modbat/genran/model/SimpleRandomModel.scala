@@ -24,7 +24,7 @@ class SimpleRandomModel extends Model {
   "zero" -> "two" := {
     counter.inc2
   }
-  "two" -> "end" := {
-    assert (counter.value == 2)
-  }
+//  "two" -> "end" := {
+//    assert (counter.value == 2)
+//  }
 }

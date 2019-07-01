@@ -9,6 +9,7 @@ import java.lang.reflect.Method
 import java.lang.reflect.Modifier
 import java.net.URL
 import java.net.URLClassLoader
+import java.util
 
 import scala.collection.Iterator
 import scala.collection.JavaConversions._
@@ -35,7 +36,8 @@ import modbat.trace.TransitionResult
 import modbat.util.CloneableRandom
 import modbat.util.Random
 import com.miguno.akka.testing.VirtualTime
-import modbat.genran.{RandomTestManager, RandoopManager, SaveFields}
+import modbat.genran.{RandoopManager, SaveFields}
+import randoop.sequence.ExecutableSequence
 
 //import com.miguno.akka.testing.VirtualTime
 /** Contains core functionality for loading and running model.
@@ -340,14 +342,14 @@ object MBT {
     }
   }
 
-  def randomSearch(classes: Seq[String], objects: Seq[AnyRef], observers: Seq[String], methods: Seq[String]) = {
+  def randomSearch(classes: Seq[String]): util.List[ExecutableSequence] = {
 
-    val rtm : RandomTestManager = new RandoopManager
-    println("testrandomSearch1")
-    rtm.init(classes, objects, observers, methods)
+    val rtm = new RandoopManager
+
+    rtm.init(classes)
     rtm.run
-    rtm.validate
-    println("randomSearch")
+
+    rtm.getErrorSequences
   }
 }
 

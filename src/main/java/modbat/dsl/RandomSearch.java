@@ -8,8 +8,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 
-/** Mark that a field is to be traced at run-time (monitored against
-    changes). */
+/** Mark that a test Model is to be run with random testing*/
 public @interface RandomSearch {
     String[] value();
 }
