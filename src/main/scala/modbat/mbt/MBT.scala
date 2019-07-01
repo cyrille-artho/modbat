@@ -83,12 +83,12 @@ object MBT {
 
   def init {
     warningIssuedOn.clear
-    //modelClass = null
-    //invokedStaticMethods.clear
+//    modelClass = null
+    invokedStaticMethods.clear
     externalException = null
-    //rng = null
+//    rng = null
     rethrowExceptions=false
-    //classLoaderURLs = null
+ //   classLoaderURLs = null
     checkDuplicates=false
     warningIssuedOn.clear
     time = new VirtualTime

@@ -48,9 +48,9 @@ object Main {
       }
     }
 
-    Modbat.init
-
     setup(modelClassName)
+
+    Modbat.init
 
     /* execute */
     config.mode match {

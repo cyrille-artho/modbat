@@ -153,7 +153,7 @@ object ModbatTestHarness {
     var sentence_filtred = sentence
     regex_map foreach (x => 
       sentence_filtred = sentence_filtred.replaceAll(x._1, x._2))
-    sentence_filtred.replace("\u001b[2K\u000d","") //does it work ? Not sure...
+    sentence_filtred.replace("\u001b","") //does it work ? Not sure...
   }
 
   def comparingFiles(output : String, filtredLog : Iterator[String], filtredErr : Iterator[String]){
@@ -181,6 +181,7 @@ object ModbatTestHarness {
           ret=0
         } catch {
           case e: Exception => {
+            e.printStackTrace
             Modbat.ShutdownHandler.run
             ret=1
           }
