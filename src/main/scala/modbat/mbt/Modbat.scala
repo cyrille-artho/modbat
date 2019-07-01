@@ -1,41 +1,20 @@
 package modbat.mbt
 
-import java.io.File
-import java.io.FileOutputStream
-import java.io.OutputStream
-import java.io.PrintStream
-import java.lang.annotation.Annotation
+
+import java.io.{File, FileOutputStream, PrintStream}
 import java.lang.reflect.Field
-import java.lang.reflect.Modifier
-import java.lang.RuntimeException
-import java.net.URL
 import java.util
 import java.util.BitSet
 
-import scala.collection.JavaConversions._
-import scala.collection.mutable.ArrayBuffer
-import scala.collection.mutable.HashMap
-import scala.collection.mutable.HashSet
-import scala.collection.mutable.LinkedHashMap
-import scala.collection.mutable.ListBuffer
-import scala.util.matching.Regex
-import modbat.cov.StateCoverage
 import modbat.dsl.{Action, Init, RandomSearch, Shutdown, State, Transition}
-import modbat.log.Log
-import modbat.trace.Backtrack
-import modbat.trace.ErrOrdering
-import modbat.trace.ExceptionOccurred
-import modbat.trace.ExpectedExceptionMissing
-import modbat.trace.Ok
-import modbat.trace.RecordedState
-import modbat.trace.RecordedTransition
-import modbat.trace.TransitionResult
-import modbat.util.CloneableRandom
-import modbat.util.SourceInfo
-import modbat.util.FieldUtil
-import com.miguno.akka.testing.VirtualTime
 import modbat.genran.{ObjectHolder, RandoopUtils}
+import modbat.log.Log
+import modbat.trace.{Backtrack, ErrOrdering, ExceptionOccurred, ExpectedExceptionMissing, Ok, RecordedState, RecordedTransition, TransitionResult}
+import modbat.util.{CloneableRandom, FieldUtil, SourceInfo}
 import randoop.sequence.ExecutableSequence
+
+import scala.collection.JavaConversions._
+import scala.collection.mutable._
 
 
 class NoTaskException(message :String = null, cause :Throwable = null) extends RuntimeException(message, cause)
@@ -91,16 +70,34 @@ object Modbat {
       f match {
         case search: RandomSearch =>
 
-          val failedSequences : util.List[ExecutableSequence] = MBT.randomSearch(search.value().toSeq)
+          val failedSequences: util.List[ExecutableSequence] = MBT.randomSearch(search.value().toSeq)
 
-          for(e <- failedSequences)
-            {
+          for (e <- failedSequences) {
 
-             val test = RandoopUtils.getId(e.toCodeString)
+            val pair = RandoopUtils.getId(e.toCodeString)
 
-              println(test)
+            if (pair.isPresent) {
+
+              val recordedTransition2 = ObjectHolder.getRecordedTransitions(pair.get().fst, pair.get().snd);
+
+              for (t <- recordedTransition2) {
+
+                println(t.toString)
+              }
+
+              println("")
+              println("random search")
+              println("")
+
+              println( e.toCodeString)
+
+              println("======================================================")
 
             }
+            else {
+
+            }
+          }
 
         case _ =>
       }
@@ -275,7 +272,7 @@ object Modbat {
       val value = FieldUtil.getValue(f, model.model)
       Log.fine("Save field " + f.getName + " has value " + value)
 
-      ObjectHolder.add(value, executedTransitions)
+      ObjectHolder.add(value, executedTransitions.clone())
     }
   }
 

@@ -1,5 +1,6 @@
 package modbat.genran;
 
+import com.sun.tools.javac.util.Pair;
 import randoop.operation.TypedOperation;
 import randoop.sequence.Sequence;
 import randoop.types.JavaTypes;
@@ -49,14 +50,14 @@ public class RandoopUtils {
     }
 
 
-    public static String getId(String text) {
+    public static Optional<Pair<String,Integer>> getId(String text) {
         Pattern pattern = Pattern.compile("modbat\\.genran\\.ObjectHolder\\.pick\\(\"(.*?)\", ([0-9]*)\\);");
         Matcher matcher = pattern.matcher(text);
 
         if (matcher.find()) {
-            return matcher.group(1) + matcher.group(2);
+            return Optional.of(new Pair<>(matcher.group(1), Integer.valueOf(matcher.group(2))));
         }
 
-        return "";
+        return Optional.empty();
     }
 }

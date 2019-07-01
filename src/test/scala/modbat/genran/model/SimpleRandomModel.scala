@@ -6,11 +6,11 @@ import modbat.examples.ControlCounter
 @RandomSearch(Array("modbat.examples.ControlCounter"))
 class SimpleRandomModel extends Model {
 
-  @Save var counter: ControlCounter = _
+  @Save var counter: ControlCounter = new ControlCounter()
 
   // transitions
   "reset" -> "zero" := {
-    counter = new ControlCounter()
+    //counter = new ControlCounter()
   }
   "zero" -> "zero" := {
     counter.toggleSwitch

@@ -56,8 +56,8 @@ public class ObjectHolder {
         return objectsMap.get(c).size();
     }
 
-    static ListBuffer<RecordedTransition> getRecordedTransitions(String className, int id) {
-        return objectsMap.get(className).get(id).snd;
+    static public ListBuffer<RecordedTransition> getRecordedTransitions(String className, int id) throws ClassNotFoundException {
+        return objectsMap.get(Class.forName(className)).get(id).snd;
     }
 }
 
