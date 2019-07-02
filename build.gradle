@@ -90,6 +90,7 @@ task testsJar(type: Jar) {
 }
 
 tasks.withType(Test)  {
+  forkEvery = 1
   maxParallelForks = 1
 }
 

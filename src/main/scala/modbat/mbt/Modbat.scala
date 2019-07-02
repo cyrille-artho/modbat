@@ -77,8 +77,11 @@ object Modbat {
     executedTransitions.clear
     timesVisited.clear
     testFailures.clear
-    masterRNG = MBT.rng.asInstanceOf[CloneableRandom].clone
     MBT.init
+  }
+
+  def setup {
+    masterRNG = MBT.rng.asInstanceOf[CloneableRandom].clone
     // call init if needed
     if (Main.config.init) {
       MBT.invokeAnnotatedStaticMethods(classOf[Init], null)

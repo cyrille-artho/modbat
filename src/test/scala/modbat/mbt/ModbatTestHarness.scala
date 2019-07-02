@@ -182,7 +182,7 @@ object ModbatTestHarness {
         } catch {
           case e: Exception => {
             e.printStackTrace
-            Modbat.ShutdownHandler.run
+            Modbat.coverage
             ret=1
           }
         } finally {

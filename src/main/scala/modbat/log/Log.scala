@@ -9,7 +9,7 @@ object Log {
   val Error = 5
   val None = 10
 
-  private var level = Info
+  /*private*/ var level = Info
   // errLevel can currently not be set - this can be added later
   // if a use case for changing it exists
   private var errLevel = Warning

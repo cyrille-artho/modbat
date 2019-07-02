@@ -3,6 +3,7 @@ package modbat.mbt
 import modbat.config.ConfigMgr
 import modbat.config.Version
 import modbat.log.Log
+import modbat.util.CloneableRandom
 
 object Main {
   var config = new Configuration()
@@ -12,7 +13,9 @@ object Main {
     try {
         run(args) // TODO: do not call exit once exceptions are used
     } catch {
-      case e: Exception => System.exit(1)
+      case e: Exception => {
+        System.exit(1)
+      }
     }
     System.exit(0)
   }
@@ -48,9 +51,9 @@ object Main {
       }
     }
 
-    setup(modelClassName)
-
     Modbat.init
+
+    setup(modelClassName)
 
     /* execute */
     config.mode match {
@@ -73,5 +76,6 @@ object Main {
     MBT.runBefore = config.setup
     MBT.runAfter = config.cleanup
     MBT.precondAsFailure = config.precondAsFailure
+    Modbat.setup
   }
 }
