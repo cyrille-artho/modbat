@@ -38,6 +38,10 @@ class Configuration extends modbat.config.Configuration {
   @Doc("show path coverage in dot file format")
   var dotifyPathCoverage: Boolean = false
 
+  @Doc("path coverage graph mode: abstracted or full  graph")
+  @Choice(Array("abstracted", "full"))
+  var pathCoverageGraphMode = "abstracted"
+
   @Doc("show detailed label in path coverage graphs")
   var pathLabelDetail: Boolean = false
 

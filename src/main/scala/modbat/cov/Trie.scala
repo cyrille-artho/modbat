@@ -142,6 +142,7 @@ class Trie {
       else
         currentNode.transExecutedRecords += (currentNode.transExecutedCounter -> 1)
       // Reset the counter for the next case
+      currentNode.currentNodeCounterRecorder += currentNode.transExecutedCounter
       currentNode.transExecutedCounter = 0
     }
   }
@@ -297,6 +298,8 @@ case class TrieNode() {
   var transExecutedRecords: Map[Int, Int] = Map[Int, Int]()
   // This counter counts the number of times for this current transition to occur during the current test case
   var transExecutedCounter: Int = 0
+  val currentNodeCounterRecorder
+    : ListBuffer[Int] = new ListBuffer[Int] // to record transExecutedCounter for current node before reset transExecutedCounter
 
   var currentTransition
     : Transition = null // currentTransition stores the transition in this trie node

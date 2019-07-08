@@ -1,6 +1,6 @@
 package modbat.mbt
 
-import modbat.cov.{Trie, TrieNode}
+import modbat.cov.TrieNode
 import modbat.log.Log
 import math.log10
 import scala.collection.mutable.ListBuffer
@@ -8,7 +8,6 @@ import util.control.Breaks._
 
 /** PathInStateGraph extends PathVisualizer for showing path coverage in "State" tree graph.
   *
-  * @param trie The trie that has path information stored
   * @param typeName The type of the graph is state graph
   * @param graphInitNode The name of the initial node in the graph (only used for the generated file name)
   */
@@ -35,7 +34,7 @@ class PathInStateGraph(root: TrieNode,
     out.println("digraph model {")
     out.println("  orientation = portrait;")
     out.println(
-      "  graph [ rankdir = \"TB\", ranksep=\"0.1\", nodesep=\"0.1\" ];")
+      "  graph [ rankdir = \"TB\", ranksep=\"0.08\", nodesep=\"0.18\" ];")
     out.println(
       "  node [ fontname = \"Helvetica\", fontsize=\"11.0\", shape=\"" + "ellipse" +
         "\", margin=\"0.01\"," + " height=\"0.1\"," + " width=\"0.5\" ];")
@@ -45,24 +44,11 @@ class PathInStateGraph(root: TrieNode,
     val nodeRecorder
       : ListBuffer[StateNodeInfo] = new ListBuffer[StateNodeInfo] // nodeRecorder is used for record node information for "State" output graph
 
-    //display
+    // display SG/FSG
     display(root, 0, nodeRecorder)
 
     out.println("}")
-// debug code:
-//    Log.info(
-//      "the total number of choice nodes in state-based graph: " + choiceNodeCounter)
-//    Log.info(
-//      "the total number of backtracked edges in state-based graph: " + backtrackedEdgeCounter)
-//    Log.info(
-//      "the total number of failed edges in state-based graph: " + failedEdgeCounter)
-//    Log.info(
-//      "the total number of non choice edges in state-based graph: " + nonChoiceEdgeCounter)
-//    Log.info(
-//      "the total number of choice edges in state-based graph: " + choiceEdgeCounter)
-//    Log.info(
-//      "the total number of cycles in path-based graph: " + cycleSelfTranCounter)
-
+    // return counters
     (jumpedEdgeCounter,
      choiceNodeCounter,
      backtrackedEdgeCounter,
@@ -83,57 +69,49 @@ class PathInStateGraph(root: TrieNode,
         root.children.getOrElse(t, sys.error(s"unexpected key: $t"))
 
       var sameTransition = false
-      if (nodeRecorder != null) {
-        breakable { // break this loop if found the same transition
-          for (n <- nodeRecorder) {
-            // debug code:
-            /*            Log.debug(
-              "--- print debug --- has transition:" + n.node.transitionInfo.transOrigin +
-                " =>" + n.node.transitionInfo.transDest +
-                ", " + n.node.transitionInfo.transitionID + ", " +
-                n.node.transitionInfo.transitionQuality + ", " + n.node.transitionInfo.nextStateNextIf.nextState)*/
+      // use abstractions to merge transitions' counters and choices's counters
+      if (Main.config.pathCoverageGraphMode.equals("abstracted"))
+        if (nodeRecorder != null) {
+          breakable { // break this loop if found the same transition
+            for (n <- nodeRecorder) {
+              // the transition already in the nodeRecorder, and the transition quality is also the same
+              if (n.node.transitionInfo.transitionID == node.transitionInfo.transitionID &&
+                  n.node.transitionInfo.transitionQuality == node.transitionInfo.transitionQuality &&
+                  n.node.transitionInfo.nextStateNextIf.nextState.toString == node.transitionInfo.nextStateNextIf.nextState.toString) {
+                // set sameTransition flag to true
+                sameTransition = true
 
-            // the transition already in the nodeRecorder, and the transition quality is also the same
-            if (n.node.transitionInfo.transitionID == node.transitionInfo.transitionID &&
-                n.node.transitionInfo.transitionQuality == node.transitionInfo.transitionQuality &&
-                n.node.transitionInfo.nextStateNextIf.nextState.toString == node.transitionInfo.nextStateNextIf.nextState.toString) { // fixed nextif problem -Rui
-              sameTransition = true
-              // debug code:
-              /*              Log.debug(
-                "--- print debug --- same transition:" + node.transitionInfo.transOrigin +
-                  " =>" + node.transitionInfo.transDest +
-                  ", " + node.transitionInfo.transitionID + ", " +
-                  node.transitionInfo.transitionQuality + ", " + node.transitionInfo.nextStateNextIf.nextState)*/
+                // merge the value of the transition counter
+                n.transCounter = n.transCounter.concat(
+                  ";" + node.transitionInfo.transCounter.toString)
 
-              // merge the value of the transition counter
-              n.transCounter = n.transCounter.concat(
-                ";" + node.transitionInfo.transCounter.toString)
+                // get executed transitions' number records with a string format: trc:tpc, trc:tpc, ...
+                val transExecutedRecords: String =
+                  node.transExecutedRecords.toList
+                    .map { case (int1, int2) => s"$int1:$int2" }
+                    .mkString(",")
 
-              // get executed transitions' number records
-              val transExecutedRecords: String =
-                node.transExecutedRecords.toList
-                  .map { case (int1, int2) => s"$int1:$int2" }
-                  .mkString(",")
-              // merge the executed transitions's number records:
-              n.transExecutedRecords =
-                n.transExecutedRecords.concat(";" + transExecutedRecords)
+                // merge the executed transitions's number records:
+                n.transExecutedRecords =
+                  n.transExecutedRecords.concat(";" + transExecutedRecords)
 
-              // merge the counter in map of choices
-              for (key <- node.transitionInfo.transitionChoicesMap.keySet) {
-                if (n.node.transitionInfo.transitionChoicesMap.contains(key)) {
-                  val mergedChoiceCoutner = n.node.transitionInfo
-                    .transitionChoicesMap(key) + node.transitionInfo
-                    .transitionChoicesMap(key)
-                  n.node.transitionInfo.transitionChoicesMap(key) =
-                    mergedChoiceCoutner
-                } else {
-                  n.node.transitionInfo.transitionChoicesMap += (key -> node.transitionInfo
-                    .transitionChoicesMap(key))
+                // merge the counter in map of choices
+                for (key <- node.transitionInfo.transitionChoicesMap.keySet) {
+                  if (n.node.transitionInfo.transitionChoicesMap.contains(key)) {
+                    val mergedChoiceCoutner = n.node.transitionInfo
+                      .transitionChoicesMap(key) + node.transitionInfo
+                      .transitionChoicesMap(key)
+                    n.node.transitionInfo.transitionChoicesMap(key) =
+                      mergedChoiceCoutner
+                  } else {
+                    n.node.transitionInfo.transitionChoicesMap += (key -> node.transitionInfo
+                      .transitionChoicesMap(key))
+                  }
                 }
-              }
 
-              break
-            } /*else {
+                break
+              }
+              /*else {
               // debug code:
               Log.debug(
                 "--- print debug --- NOT same transition:" + node.transitionInfo.transOrigin +
@@ -143,12 +121,12 @@ class PathInStateGraph(root: TrieNode,
 
               //sameTransition = false
             }*/
+            }
           }
         }
-      }
 
       if (!sameTransition) {
-        // get executed transitions' number records
+        // get executed transitions' number records with a string format: trc:tpc, trc:tpc, ...
         val transExecutedRecords: String = node.transExecutedRecords.toList
           .map { case (int1, int2) => s"$int1:$int2" }
           .mkString(",")
@@ -161,7 +139,6 @@ class PathInStateGraph(root: TrieNode,
       }
 
       display(node, level + 1, nodeRecorder)
-      // I think there's no need to repeat the same prefix node in the graph - Rui
     }
 
     // output "State" graph
@@ -183,30 +160,36 @@ class PathInStateGraph(root: TrieNode,
     // source level node on the top
     out.println("{rank = source; " + graphNoneNode + "}")
 
-    var jumpedNodeOriginNextIf: String = ""
-
     for (n <- nodeRecorder) {
 
-      val transOrigin: String = n.node.transitionInfo.transOrigin.toString
-      val transDest: String = n.node.transitionInfo.transDest.toString
       val backtracked
         : Boolean = n.node.transitionInfo.transitionQuality == TransitionQuality.backtrack
       val failed
         : Boolean = n.node.transitionInfo.transitionQuality == TransitionQuality.fail
 
-      val nextStateOfBacktrack: String =
+      // S_origin
+      val transOrigin: String = n.node.transitionInfo.transOrigin.toString
+      // S_dest
+      val transDest: String =
         if (backtracked)
           n.node.transitionInfo.nextStateNextIf.nextState.toString
-        else ""
+        else n.node.transitionInfo.transDest.toString
 
-      // debug code:
-      //Log.debug("before drew the transition:" + transOrigin + " => " + transDest + ", its nextif:" + n.node.transitionInfo.nextStateNextIf)
+      def updateCounters = {
+        // update counters
+        if (backtracked)
+          backtrackedEdgeCounter += 1 // update backtracked edges counter
+        else if (failed)
+          failedEdgeCounter += 1 // update failed edges counter
+        else if (transOrigin == transDest) cycleSelfTranCounter += 1 //update cycle counter
+        nonChoiceEdgeCounter += 1 // update back normal edges counter
+      }
 
-      // choiceTree can record choices
+      // choiceTree is a trie to store choices
       val choiceTree: ChoiceTree = new ChoiceTree()
 
       if (n.node.transitionInfo.transitionChoicesMap != null && n.node.transitionInfo.transitionChoicesMap.nonEmpty) {
-        // transition with choices
+        // transition with choices situation
         for ((choiceList, counter) <- n.node.transitionInfo.transitionChoicesMap) {
           // insert choices and choice counter into choiceTree
           choiceTree.insert(choiceList, counter)
@@ -217,49 +200,48 @@ class PathInStateGraph(root: TrieNode,
         if (Main.config.logLevel == Log.Debug)
           choiceTree.displayChoices(choiceTree.root, 0)
       } else {
-        // transitions without choices
-        // edge style
+        // transitions without choices situation
+
+        // edge style for edges only connecting state nodes
         val edgeStyle: String =
-          if (backtracked) {
-            backtrackedEdgeCounter += 1 // update backtracked edges counter
-            "style=dotted, color=blue,"
-          } else if (failed) {
-            failedEdgeCounter += 1 // update failed edges counter
-            "color=red,"
-          } else {
-            if (transOrigin == transDest) cycleSelfTranCounter += 1 //update cycle counter
-            ""
-          }
-        nonChoiceEdgeCounter += 1 // update back normal edges counter
-        out.println(
-          transOrigin + "->" + (if (backtracked) nextStateOfBacktrack
-                                else
-                                  transDest) + createEdgeLabel(n,
-                                                               edgeStyle,
-                                                               n.transCounter)
-        )
+          if (backtracked) "style=dotted, color=blue,"
+          else if (failed) "color=red,"
+          else ""
+        // edge label
+        val edgeLabel: String = createEdgeLabel(n, edgeStyle, n.transCounter)
+
+        Main.config.pathCoverageGraphMode match {
+          case "full" =>
+            // output all the edges according to trc and tpc counters
+            for (trc_tpc <- n.transExecutedRecords.split(",")) {
+              for (i <- 0 until trc_tpc.split(":")(1).toInt) {
+                for (j <- 0 until trc_tpc.split(":")(0).toInt) {
+                  // update counters
+                  updateCounters
+                  // draw
+                  drawOneEdge(transOrigin, transDest, edgeLabel)
+                }
+              }
+            }
+          case "abstracted" =>
+            // update counters
+            updateCounters
+            // draw
+            drawOneEdge(transOrigin, transDest, edgeLabel)
+        }
       }
-      // debug code:
-      //Log.debug(" after drew the transition:" + n.node.transitionInfo.transOrigin + " => " + n.node.transitionInfo.transDest + ", its nextif:" + n.node.transitionInfo.nextStateNextIf)
 
       // jumped edge when nextIf is true
       if (n.node.transitionInfo.nextStateNextIf != null && n.node.transitionInfo.nextStateNextIf.nextIf) {
-        jumpedNodeOriginNextIf =
-          if (backtracked) nextStateOfBacktrack else transDest
+        val jumpedNodeOriginNextIf = transDest
         val jumpedNodeDestNextIf =
-          n.node.transitionInfo.nextStateNextIf.nextState
+          n.node.transitionInfo.nextStateNextIf.nextState.toString
 
-        /*        // debug code:
-        Log.debug(
-          "--- print debug --- transition that needs to jump:" + n.node.transitionInfo.transDest +
-            " => " + n.node.transitionInfo.transDest + ", nextif:" + n.node.transitionInfo.nextStateNextIf)
-        Log.debug(
-          "--- print debug --- jumpedNodeOriginNextIf:" + jumpedNodeOriginNextIf)
-        Log.debug(
-          "--- print debug --- jumpedNodeDestNextIf:" + jumpedNodeDestNextIf)*/
-        jumpedEdgeCounter += 1
-        out.println(
-          jumpedNodeOriginNextIf + "->" + jumpedNodeDestNextIf + "[style=dotted];")
+        jumpedEdgeCounter += 1 // update counters for jumped edges
+        // draw
+        drawOneEdge(jumpedNodeOriginNextIf,
+                    jumpedNodeDestNextIf,
+                    "[style=dotted];")
       }
     }
   }
@@ -270,59 +252,60 @@ class PathInStateGraph(root: TrieNode,
                                    currentNodeID: String,
                                    choiceOfMaybe: Boolean = false): Unit = {
 
-    val transOrigin: String = nodeInfo.node.transitionInfo.transOrigin.toString
-    val transDest: String = nodeInfo.node.transitionInfo.transDest.toString
-    val transID: String = nodeInfo.node.transitionInfo.transitionID.toString
     val backtracked
       : Boolean = nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.backtrack
     val failed
       : Boolean = nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.fail
-    val nextStateOfBacktrack: String =
+
+    // S_origin
+    val transOrigin: String = nodeInfo.node.transitionInfo.transOrigin.toString
+    // S_dest
+    val transDest: String =
       if (backtracked)
         nodeInfo.node.transitionInfo.nextStateNextIf.nextState.toString
-      else ""
+      else nodeInfo.node.transitionInfo.transDest.toString
+    // transition ID
+    val transID: String = nodeInfo.node.transitionInfo.transitionID.toString
+
+    def updateCounters = {
+      // update counters
+      if (root.isLeaf && backtracked)
+        backtrackedEdgeCounter += 1 // update backtracked edge counter
+      else if (root.isLeaf && ((failed && choiceOfMaybe) || failed))
+        failedEdgeCounter += 1 // update failed edge counter
+
+      if (!root.isLeaf) choiceNodeCounter = choiceNodeCounter + 1 // update the choice node counter
+      if (!root.isLeaf && level == 0 && !backtracked && !failed && transOrigin == transDest)
+        cycleSelfTranCounter += 1 //update cycle counter
+
+      choiceEdgeCounter += 1 // update choice edge counter
+    }
 
     val edgeStyle: String =
-      if (root.isLeaf && backtracked) {
-        backtrackedEdgeCounter += 1 // update backtracked edge counter
-        "style=dotted, color=blue,"
-      } else if (root.isLeaf && ((failed && choiceOfMaybe) || failed)) {
-        failedEdgeCounter += 1 // update failed edge counter
+      if (root.isLeaf && backtracked) "style=dotted, color=blue,"
+      else if (root.isLeaf && ((failed && choiceOfMaybe) || failed))
         "color=red,"
-      } else {
-        ""
-      }
+      else ""
 
     if (root.isLeaf) {
-      choiceEdgeCounter += 1 // update choice edge counter
-      out.println(
-        currentNodeID + "->" + (if (backtracked) nextStateOfBacktrack
-                                else transDest) + createEdgeLabel(
-          nodeInfo,
-          edgeStyle,
-          root.choiceCounter.toString))
+      // update counters
+      updateCounters
+      val lastStepEdgelabel: String =
+        createEdgeLabel(nodeInfo, edgeStyle, root.choiceCounter.toString)
+      // draw
+      drawOneEdge(currentNodeID, transDest, lastStepEdgelabel)
     }
 
     for (choiceKey <- root.children.keySet) {
-      choiceNodeCounter = choiceNodeCounter + 1 // update the choice node counter
-      if (!backtracked && !failed && transOrigin == transDest && level == 0)
-        cycleSelfTranCounter += 1 //update cycle counter
-
+      // get choice node
       val choiceNode = root.children(choiceKey)
-      /*      var choiceNodeStyle: String =
-        if (nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.backtrack)
-          " , shape=diamond, color=red, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"
-        else
-          " , shape=diamond, width=0.1, height=0.1, xlabel=\"Choice-Counter:" + choiceNode.choiceCounter + "\"];"*/
-      var choiceNodeStyle
+
+      // choice node style
+      val choiceNodeStyle
         : String = " , shape=diamond, width=0.2, height=0.3, fontsize=11, xlabel=\"" + (if (Main.config.pathLabelDetail)
                                                                                           choiceNode.choiceCounter
                                                                                         else
                                                                                           "") + "\"];"
-
-      val destNodeValue = choiceNode.recordedChoice.toString
-      val destNodeID = "\"" + transID + "-" + level.toString + "-" + destNodeValue + "-" + nodeInfo.node.transitionInfo.transitionQuality + "-" + choiceNodeCounter + "\""
-
       var choiceOfMaybe: Boolean = false
       // check special case for failure when the recorded choice "maybe" is true
       choiceNode.recordedChoice match {
@@ -334,31 +317,62 @@ class PathInStateGraph(root: TrieNode,
         case _ =>
       }
 
-      out.println(
-        destNodeID + " [label=\"" + destNodeValue + "\"" + choiceNodeStyle)
+      val stepEdgeLabel: String =
+        createEdgeLabel(nodeInfo, edgeStyle, choiceNode.choiceCounter.toString)
 
-      if (level == 0) {
-        choiceEdgeCounter += 1 // update choice edge counter
-        out.println(
-          transOrigin + "->" + destNodeID + createEdgeLabel(
-            nodeInfo,
-            edgeStyle,
-            choiceNode.choiceCounter.toString))
-      } else {
-        choiceEdgeCounter += 1 // update choice edge counter
-        out.println(
-          currentNodeID + "->" + destNodeID + createEdgeLabel(
-            nodeInfo,
-            edgeStyle,
-            choiceNode.choiceCounter.toString))
+      Main.config.pathCoverageGraphMode match {
+        case "full" =>
+          for (cc <- 0 until choiceNode.choiceCounter) {
+            // update counters
+            updateCounters
+            val destNodeValue = choiceNode.recordedChoice.toString
+            val destNodeID = "\"" + transID + "-" + level.toString + "-" + destNodeValue + "-" + nodeInfo.node.transitionInfo.transitionQuality + "-" + choiceNodeCounter + "-" + cc + "\""
+            // draw choice node
+            out.println(
+              destNodeID + " [label=\"" + destNodeValue + "\"" + choiceNodeStyle)
+
+            if (level == 0) {
+              // draw
+              drawOneEdge(transOrigin, destNodeID, stepEdgeLabel)
+            } else {
+              // draw
+              drawOneEdge(currentNodeID, destNodeID, stepEdgeLabel)
+            }
+
+            drawTransWithChoices(nodeInfo,
+                                 choiceNode,
+                                 level + 1,
+                                 destNodeID,
+                                 choiceOfMaybe)
+
+          }
+        case "abstracted" =>
+          // update counters
+          updateCounters
+          val destNodeValue = choiceNode.recordedChoice.toString
+          val destNodeID = "\"" + transID + "-" + level.toString + "-" + destNodeValue + "-" + nodeInfo.node.transitionInfo.transitionQuality + "-" + choiceNodeCounter + "\""
+          // draw choice node
+          out.println(
+            destNodeID + " [label=\"" + destNodeValue + "\"" + choiceNodeStyle)
+
+          if (level == 0) {
+            // draw
+            drawOneEdge(transOrigin, destNodeID, stepEdgeLabel)
+          } else {
+            // draw
+            drawOneEdge(currentNodeID, destNodeID, stepEdgeLabel)
+          }
+          drawTransWithChoices(nodeInfo,
+                               choiceNode,
+                               level + 1,
+                               destNodeID,
+                               choiceOfMaybe)
       }
-
-      drawTransWithChoices(nodeInfo,
-                           choiceNode,
-                           level + 1,
-                           destNodeID,
-                           choiceOfMaybe)
     }
+  }
+
+  private def drawOneEdge(origin: String, dest: String, label: String) {
+    out.print(origin + "->" + dest + label)
   }
 
   private def createEdgeLabel(nodeInfo: StateNodeInfo,
@@ -407,11 +421,13 @@ class PathInStateGraph(root: TrieNode,
       else ""
 
     // calculate penwidth
-    val edgeWidth = "penwidth=\"" + log10(
-      count
-        .split(";")
-        .map(_.toDouble)
-        .sum * 100.0d / Main.config.nRuns.toDouble + 1.0d).toString + "\","
+    var edgeWidth = ""
+    if (Main.config.pathCoverageGraphMode.equals("abstracted"))
+      edgeWidth = "penwidth=\"" + log10(
+        count
+          .split(";")
+          .map(_.toDouble)
+          .sum * 100.0d / Main.config.nRuns.toDouble + 1.0d).toString + "\","
 
     val label: String =
       "[" + edgeStyle +
