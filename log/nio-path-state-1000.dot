@@ -1,35 +1,9 @@
 digraph model {
   orientation = portrait;
-  graph [ rankdir = "TB", ranksep="0.1", nodesep="0.1" ];
+  graph [ rankdir = "TB", ranksep="0.08", nodesep="0.18" ];
   node [ fontname = "Helvetica", fontsize="11.0", shape="ellipse", margin="0.01", height="0.1", width="0.5" ];
   edge [ fontname = "Helvetica", arrowsize=".3", arrowhead="normal", fontsize="6.0", margin="0.05" ];
 None [shape=none, style=invis, width=0.1, height=0.1];
 None->reset;
 {rank = source; None}
-reset->open[penwidth="2.0043213737826426",label = " "];
-open->err[penwidth="1.437750562820388",label = " "];
-open->open[penwidth="1.2695129442179163",label = " "];
-open->closed[penwidth="1.3463529744506386",label = " "];
-closed->err[penwidth="1.5622928644564746",label = " "];
-closed->closed[penwidth="1.3031960574204888",label = " "];
-open->maybeconnected[penwidth="0.785329835010767",label = " "];
-maybeconnected->maybeconnected[penwidth="0.2787536009528289",label = " "];
-maybeconnected->maybeconnected[style=dotted, color=blue,penwidth="0.07918124604762482",label = " "];
-maybeconnected->err[penwidth="0.36172783601759284",label = " "];
-maybeconnected->err[penwidth="0.2304489213782739",label = " "];
-maybeconnected->maybeconnected[style=dotted, color=blue,penwidth="0.3424226808222063",label = " "];
-maybeconnected->connected[penwidth="0.04139268515822508",label = " "];
-connected->closed[penwidth="1.1398790864012365",label = " "];
-maybeconnected->maybeconnected[penwidth="0.414973347970818",label = " "];
-maybeconnected->connected[style=dotted];
-connected->err[penwidth="1.1931245983544616",label = " "];
-maybeconnected->maybeconnected[penwidth="0.17609125905568124",label = " "];
-connected->connected[penwidth="1.0086001717619175",label = " "];
-connected->connected[penwidth="0.9912260756924949",label = " "];
-maybeconnected->closed[penwidth="0.3979400086720376",label = " "];
-open->open[style=dotted, color=blue,penwidth="1.2405492482825997",label = " "];
-open->connected[penwidth="1.4345689040341987",label = " "];
-open->open[style=dotted, color=blue,penwidth="0.5314789170422551",label = " "];
-open->err[penwidth="1.3443922736851108",label = " "];
-connected->connected[color=red,penwidth="0.146128035678238",label = " "];
-}
+reset->open[penwidth="2.0043213737826426",label = " "];open->err[penwidth="1.437750562820388",label = " "];open->open[penwidth="1.2695129442179163",label = " "];open->closed[penwidth="1.3463529744506386",label = " "];closed->err[penwidth="1.5622928644564746",label = " "];closed->closed[penwidth="1.3031960574204888",label = " "];open->maybeconnected[penwidth="0.785329835010767",label = " "];maybeconnected->maybeconnected[penwidth="0.2787536009528289",label = " "];maybeconnected->maybeconnected[style=dotted, color=blue,penwidth="0.07918124604762482",label = " "];maybeconnected->err[penwidth="0.36172783601759284",label = " "];maybeconnected->err[penwidth="0.2304489213782739",label = " "];maybeconnected->maybeconnected[style=dotted, color=blue,penwidth="0.3424226808222063",label = " "];maybeconnected->connected[penwidth="0.04139268515822508",label = " "];connected->closed[penwidth="1.1398790864012365",label = " "];maybeconnected->maybeconnected[penwidth="0.414973347970818",label = " "];maybeconnected->connected[style=dotted];connected->err[penwidth="1.1931245983544616",label = " "];maybeconnected->maybeconnected[penwidth="0.17609125905568124",label = " "];connected->connected[penwidth="1.0086001717619175",label = " "];connected->connected[penwidth="0.9912260756924949",label = " "];maybeconnected->closed[penwidth="0.3979400086720376",label = " "];open->open[style=dotted, color=blue,penwidth="1.2405492482825997",label = " "];open->connected[penwidth="1.4345689040341987",label = " "];open->open[style=dotted, color=blue,penwidth="0.5314789170422551",label = " "];open->err[penwidth="1.3443922736851108",label = " "];connected->connected[color=red,penwidth="0.146128035678238",label = " "];}
