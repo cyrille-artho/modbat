@@ -542,7 +542,7 @@ Example:
 The tool supports a technique to measure and visualize execution paths of
 test cases in the context of MBT (requiring graphviz). It provides visual
 feedback of the tests, their coverage and diversity by two types visualizations
-for path coverage, so-called state-based graphs and path-based graphs.
+for path coverage, so-called state-based graphs (SGs) and path-based graphs (PGs).
 
 The state-based graphs provide a better sense of the behavior of a system,
 as it is a refinement of the extended finite state machine.
@@ -557,8 +557,11 @@ This feature can be enabled by using
 
         scala modbat.jar --dotify-path-coverage <model>
 
-The output files are `<modelname-root-StateGraph>.dot` as a state-based graph and
-`<modelname-root-PointGraph>.dot` as a path-based graph.
+The output files are dot files, including `<modelname-root-StateGraph>.dot` as 
+a state-based graph (SG) and `<modelname-root-PointGraph>.dot` as a path-based graph (PG).
+The user of the tool need to choose the output abstracted graphs (SG/PG) by using
+`--path-coverage-graph-mode=abstracted`, or full graphs (FSG/FPG)(graphs without abstractions used) 
+by using `--path-coverage-graph-mode=full`.
 The destination directory can be changed using --dotDir=...;
 default is the current directory.
 
@@ -568,6 +571,7 @@ Example:
                                    -n=1 -s=2455cfedeadbeef \
                                    --no-redirect-out \
                                    --dotify-path-coverage \
+                                   --path-coverage-graph-mode=abstracted \
                                    modbat.examples.SimpleModel
 
 ## How to compile your own model
