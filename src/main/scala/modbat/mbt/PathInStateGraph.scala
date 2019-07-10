@@ -11,16 +11,16 @@ import util.control.Breaks._
   * @param typeName The type of the graph is state graph
   * @param graphInitNode The name of the initial node in the graph (only used for the generated file name)
   */
-class PathInStateGraph(root: TrieNode,
+class PathInStateGraph(val root: TrieNode,
                        val typeName: String,
                        val graphInitNode: String)
     extends PathVisualizer {
   require(typeName == "State", "the input of path visualizer must be Ellipse")
 
-  // case class StateNodeInfo is used for record the node information used for "State" output graph
-  case class StateNodeInfo(node: TrieNode,
-                           var transCounter: String,
-                           var transExecutedRecords: String)
+  // class StateNodeInfo is used for record the node information used for "State" output graph
+  class StateNodeInfo(val node: TrieNode,
+                      var transCounter: String,
+                      var transExecutedRecords: String)
 
   private var choiceNodeCounter: Int = 0
   private var backtrackedEdgeCounter: Int = 0
@@ -132,9 +132,9 @@ class PathInStateGraph(root: TrieNode,
           .mkString(",")
 
         val newNodeInfo =
-          StateNodeInfo(node,
-                        node.transitionInfo.transCounter.toString,
-                        transExecutedRecords)
+          new StateNodeInfo(node,
+                            node.transitionInfo.transCounter.toString,
+                            transExecutedRecords)
         nodeRecorder += newNodeInfo
       }
 

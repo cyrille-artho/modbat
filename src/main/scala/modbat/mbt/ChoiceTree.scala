@@ -6,7 +6,7 @@ import modbat.trace.RecordedChoice
 import scala.collection.mutable.HashMap
 
 class ChoiceTree {
-  case class ChoiceNode() {
+  class ChoiceNode() {
     // children store the transitions in string and the next nodes
     var children: HashMap[Any, ChoiceNode] = HashMap.empty[Any, ChoiceNode]
     var isLeaf: Boolean = false
@@ -14,7 +14,7 @@ class ChoiceTree {
     var recordedChoice: Any = _
   }
 
-  val root: ChoiceNode = ChoiceNode()
+  val root: ChoiceNode = new ChoiceNode()
 
   def insert(choiceList: List[RecordedChoice], counter: Int): Unit = {
     var currentNode: ChoiceNode = root
@@ -26,7 +26,7 @@ class ChoiceTree {
 
       if (!hasNode) { // add new child
         // new node
-        val node = ChoiceNode()
+        val node = new ChoiceNode()
         node.choiceCounter = counter
         node.recordedChoice = choice.recordedChoice
         currentNode.children.put(node.recordedChoice, node)

@@ -10,7 +10,7 @@ import scala.collection.mutable.{HashMap, ListBuffer, Map}
 
 /** Trie stores sequences of transitions (execution paths) for the path coverage. */
 class Trie {
-  val root: TrieNode = TrieNode()
+  val root: TrieNode = new TrieNode()
 
   /** Insert stores each executed path into the trie, and
     * each trie node stores a transition
@@ -55,7 +55,7 @@ class Trie {
           choicesMap += (p.transition.recordedChoices -> 1)
 
         // Creat a new node
-        childNode = TrieNode()
+        childNode = new TrieNode()
 
         // Store executed transition from path information and its choices into the new child node
         storePathInforIntoChildNode(childNode, p, choicesMap)
@@ -118,8 +118,8 @@ class Trie {
     childNode.transExecutedCounter += 1
     // Store current transition, model and transition information into child node
     childNode.currentTransition = p.transition
-    childNode.modelInfo = ModelInfo(p.modelName, p.modelID)
-    childNode.transitionInfo = TransitionInfo(
+    childNode.modelInfo = new ModelInfo(p.modelName, p.modelID)
+    childNode.transitionInfo = new TransitionInfo(
       p.transition.origin,
       p.transition.dest,
       p.transition.idx,
@@ -197,7 +197,7 @@ class Trie {
         } else return null //resultNode
       } else return v
     } else {
-      val root2 = TrieNode()
+      val root2 = new TrieNode()
       for (i <- root.children) {
         for (j <- i._2.children) {
           root2.children.put(j._1, j._2)
@@ -282,7 +282,7 @@ class Trie {
 /** TrieNode stores each current transition
   * and next node in the trie.
   */
-case class TrieNode() {
+class TrieNode() {
 
   // children store the transitions in string and the next nodes
   var children: HashMap[String, TrieNode] = HashMap.empty[String, TrieNode]
@@ -315,7 +315,7 @@ case class TrieNode() {
   * @param modelName The model's name
   * @param modelID The model's ID
   */
-case class ModelInfo(modelName: String, modelID: Int) {
+class ModelInfo(val modelName: String, val modelID: Int) {
   override def toString: String =
     s" model name: $modelName, model ID: $modelID."
 }
@@ -332,14 +332,14 @@ case class ModelInfo(modelName: String, modelID: Int) {
   * @param nextStateNextIf The information for the next state and the boolean result of nextif
   * @param transitionChoicesMap The choices of each transition for each tests stored, and a counter to counter same choices
   */
-case class TransitionInfo(
-    transOrigin: State,
-    transDest: State,
-    transitionID: Int,
-    var transCounter: Int,
-    transitionQuality: Quality,
-    nextStateNextIf: Transition#NextStateNextIf,
-    transitionChoicesMap: Map[List[RecordedChoice], Int]) {
+class TransitionInfo(val transOrigin: State,
+                     val transDest: State,
+                     val transitionID: Int,
+                     var transCounter: Int,
+                     val transitionQuality: Quality,
+                     val nextStateNextIf: Transition#NextStateNextIf,
+                     val transitionChoicesMap: Map[List[RecordedChoice], Int]) {
+
   override def toString: String =
     s" trans: $transOrigin=>$transDest, " +
       s"trans Origin: $transOrigin, trans Dest: $transDest, transitionID: $transitionID, " +
