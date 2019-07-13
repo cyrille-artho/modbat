@@ -15,7 +15,3 @@ git-hash
 modbat.iml
 *.log
 *.err
-
-#Other
-out/
-*/out/

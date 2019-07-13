@@ -5,7 +5,7 @@ import scala.collection.mutable.ArrayBuffer
 
 import modbat.dsl.Action
 
-/* Class to replace scala.util.Save with. This class can be cloned
+/* Class to replace scala.util.Random with. This class can be cloned
    keeping its exact current state. */
 /* TODO: Currently, only some data types are supported; other API methods
    are not needed at the moment but would have to be implemented for full

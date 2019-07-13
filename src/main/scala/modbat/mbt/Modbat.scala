@@ -192,7 +192,7 @@ object Modbat {
     }
     preconditionCoverage
     randomSeed = (masterRNG.z << 32 | masterRNG.w)
-    Log.info("Save seed for next test would be: " + randomSeed.toHexString)
+    Log.info("Random seed for next test would be: " + randomSeed.toHexString)
     if (Main.config.dotifyCoverage) {
       for ((modelName, modelInst) <- firstInstance) {
 	new Dotify(modelInst, modelName + ".dot").dotify(true)
