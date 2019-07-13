@@ -46,7 +46,7 @@ class RandoopManager  {
 
   def run(): Unit = RandoopManager.forwardGenerator.createAndClassifySequences()
 
-  def getErrorSequences: util.List[ExecutableSequence] = RandoopManager.forwardGenerator.getErrorTestSequences
+  def getForwardGenerator: ForwardGenerator = RandoopManager.forwardGenerator
 
   def createForwardGenerator(): Unit = {
 

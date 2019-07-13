@@ -11,6 +11,7 @@ import modbat.genran.{GenranUtils, ObjectHolder}
 import modbat.log.Log
 import modbat.trace.{Backtrack, ErrOrdering, ExceptionOccurred, ExpectedExceptionMissing, Ok, RecordedState, RecordedTransition, TransitionResult}
 import modbat.util.{CloneableRandom, FieldUtil, SourceInfo}
+import randoop.generation.ForwardGenerator
 import randoop.sequence.ExecutableSequence
 
 import scala.collection.JavaConversions._
@@ -69,22 +70,31 @@ object Modbat {
 
     for (a <- MBT.modelClass.getAnnotations) {
       a match {
-        case rs: RandomSearch => MBT.randomSearch(rs.value().toSeq).foreach(f => reportRandomSearchErrors(f))
+        case rs: RandomSearch => reportRandomSearchErrors(MBT.randomSearch(rs.value().toSeq))
         case _ =>
       }
     }
   }
 
-  def reportRandomSearchErrors(e: ExecutableSequence) = {
+  def reportRandomSearchErrors(f: ForwardGenerator) = {
 
-    val recordedTransitions = GenranUtils.getRecordedTransitions(e.toCodeString)
+    f.getErrorTestSequences.foreach { e =>
 
-    if (recordedTransitions != null) {
-      val transitions = new mutable.StringBuilder()
-      recordedTransitions.foreach{t => transitions.append(t.toString); transitions.append("\n")}
+      val recordedTransitions = GenranUtils.getRecordedTransitions(e.toCodeString)
 
-      Log.warn(String.format(GenranUtils.ERROR_MSG, transitions.toString(), e.toCodeString))
+      if (recordedTransitions != null) {
+        val transitions = new mutable.StringBuilder()
+        recordedTransitions.foreach { t => transitions.append(t.toString); transitions.append("\n") }
+
+        Log.warn(String.format(GenranUtils.ERROR_MSG, transitions.toString(), e.toCodeString))
+      }
     }
+
+    val testCount = f.getAllSequences.size()
+    val errorTestCount = f.getErrorTestSequences.size()
+
+    Log.info("[Random Testing] " + testCount + " tests executed, " + (testCount - errorTestCount) + " ok, " +
+      errorTestCount + " failed.")
   }
 
 

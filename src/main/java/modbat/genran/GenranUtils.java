@@ -15,9 +15,10 @@ import java.util.regex.Pattern;
 public class GenranUtils {
 
     public static final String ERROR_MSG = "Error found during random search:\n" +
-            "Modbat transitions:\n" +
+            "[Modbat] transitions:\n" +
             "%s\n" +
-            "Randoop stack trace:\n" +
+            "--== switching to random testing ==--\n" +
+            "[Randoop] stack trace:\n" +
             "%s\n";
 
     /**
