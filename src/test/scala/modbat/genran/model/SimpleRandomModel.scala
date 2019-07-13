@@ -10,7 +10,7 @@ class SimpleRandomModel extends Model {
 
   // transitions
   "reset" -> "zero" := {
-    //counter = new ControlCounter()
+    counter.inc
   }
   "zero" -> "zero" := {
     counter.toggleSwitch
