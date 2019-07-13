@@ -23,6 +23,7 @@ public class GenranUtils {
 
     /**
      * Function that creates a randoop sequence for each type of Objects in @ObjectHolder memory
+     *
      * @return a list of sequences for each type of objects
      * @throws Exception
      */
@@ -34,16 +35,15 @@ public class GenranUtils {
 
         Set<Class> objectsMapKeys = ObjectHolder.getObjectsMapKeys();
 
-        for(Class c : objectsMapKeys)
-        {
+        for (Class c : objectsMapKeys) {
             Sequence sBase = new Sequence();
 
             TypedOperation className = TypedOperation.createPrimitiveInitialization(JavaTypes.STRING_TYPE, c.getName());
             sBase = sBase.extend(className);
 
-            for(int i = 0; i < ObjectHolder.getSizeOfKeySupSet(c); i++) {
+            for (int i = 0; i < ObjectHolder.getSizeOfKeySupSet(c); i++) {
 
-                TypedOperation randomSeed =  TypedOperation.createPrimitiveInitialization(JavaTypes.INT_TYPE, i);
+                TypedOperation randomSeed = TypedOperation.createPrimitiveInitialization(JavaTypes.INT_TYPE, i);
                 Sequence sSub = sBase.extend(randomSeed);
 
                 sSub = sSub.extend(pop, sSub.getVariable(0), sSub.getVariable(1));

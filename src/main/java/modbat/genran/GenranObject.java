@@ -3,7 +3,6 @@ package modbat.genran;
 import modbat.trace.RecordedTransition;
 import scala.collection.immutable.List;
 
-
 public class GenranObject {
 
     private Object object;
@@ -13,7 +12,6 @@ public class GenranObject {
         this.object = object;
         this.transitions = transitions;
     }
-
 
     public Object getObject() {
         return object;

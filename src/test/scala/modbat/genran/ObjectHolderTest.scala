@@ -13,7 +13,7 @@ class ObjectHolderTest extends FunSuite {
 
   test("givenControlCounter_whenCreateSequencesForObject_expectEqualObject") {
 
-    val testVal =  new ControlCounter
+    val testVal = new ControlCounter
     testVal.inc2()
     testVal.toggleSwitch()
     testVal.inc()
@@ -21,8 +21,7 @@ class ObjectHolderTest extends FunSuite {
     assertCreateSequencesObject(testVal)
   }
 
-  def assertCreateSequencesObject(o : Object): Unit =
-  {
+  def assertCreateSequencesObject(o: Object): Unit = {
     ObjectHolder.add(o, List.empty[RecordedTransition])
     val s = GenranUtils.createSequencesForObjectHolder()
     val newCC = getObjectFromSequence(s.get(0))
@@ -30,7 +29,7 @@ class ObjectHolderTest extends FunSuite {
     newCC equals o
   }
 
-  def getObjectFromSequence(seq : Sequence): AnyRef = {
+  def getObjectFromSequence(seq: Sequence): AnyRef = {
 
     val es = new ExecutableSequence(seq)
     es.execute(new DummyVisitor, new DummyCheckGenerator)

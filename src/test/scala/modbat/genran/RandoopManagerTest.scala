@@ -16,7 +16,7 @@ class RandoopManagerTest extends FunSuite {
 
   test("runArrayListModel") {
 
-    Main.main(Array("--classpath=build/modbat-test.jar", "modbat.containers.ArrayListModel", "--no-redirect-out", "-s=7", "-n=1000", "--abort-probability=0.02" ))
+    Main.main(Array("--classpath=build/modbat-test.jar", "modbat.containers.ArrayListModel", "--no-redirect-out", "-s=7", "-n=1000", "--abort-probability=0.02"))
 
   }
 

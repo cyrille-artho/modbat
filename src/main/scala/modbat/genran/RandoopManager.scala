@@ -17,13 +17,13 @@ import randoop.util.MultiMap
 import scala.collection.JavaConverters._
 
 /**
-  *   Black box logic of running randoop
-  *   TODO potentially move to java
+  * Black box logic of running randoop
+  * TODO potentially move to java
   */
-class RandoopManager  {
+class RandoopManager {
 
-  object RandoopManager{
-     var forwardGenerator : ForwardGenerator = _
+  object RandoopManager {
+    var forwardGenerator: ForwardGenerator = _
   }
 
   def init(classes: Seq[String]): Unit = {
@@ -72,7 +72,7 @@ class RandoopManager  {
     val testGenerator: ForwardGenerator = new ForwardGenerator(operationModel.getOperations, observersL, new GenInputsAbstract.Limits, componentMgr, new RandoopListenerManager, operationModel.getClassTypes)
     val genTests: GenTests = new GenTests
 
-    val objectConstructor: TypedOperation =  TypedOperation.forConstructor(classOf[java.lang.Object].getConstructor())
+    val objectConstructor: TypedOperation = TypedOperation.forConstructor(classOf[java.lang.Object].getConstructor())
 
     val newObj: Sequence = new Sequence().extend(objectConstructor)
     val excludeSet: util.Set[Sequence] = new util.LinkedHashSet[Sequence]
