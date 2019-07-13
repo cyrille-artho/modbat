@@ -3,7 +3,7 @@ package modbat.genran.model
 import modbat.dsl._
 import modbat.examples.ControlCounter
 
-@RandomSearch(Array("modbat.examples.ControlCounter"))
+@RandomSearch(Array("--testclass=modbat.examples.ControlCounter", "--stop-on-error-test=true", "--time-limit=50", "--generated-limit=500"))
 class SimpleRandomModel extends Model {
 
   @Save var counter: ControlCounter = new ControlCounter()
@@ -24,7 +24,4 @@ class SimpleRandomModel extends Model {
   "zero" -> "two" := {
     counter.inc2
   }
-  //  "two" -> "end" := {
-  //    assert (counter.value == 2)
-  //  }
 }
