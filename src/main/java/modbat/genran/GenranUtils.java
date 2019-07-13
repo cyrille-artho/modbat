@@ -122,7 +122,6 @@ public class GenranUtils {
                             GenInputsAbstract.omitmethods,
                             classnames,
                             coveredClassnames,
-                            new HashSet<>(),
                             classNameErrorHandler,
                             GenInputsAbstract.literals_file,
                             null);
@@ -140,7 +139,7 @@ public class GenranUtils {
         // Maps each class type to the observer methods in it.
         MultiMap<Type, TypedOperation> observerMap;
         try {
-            observerMap = operationModel.getObservers(new HashSet<>());
+            observerMap = operationModel.readOperations(GenInputsAbstract.observers, false);
         } catch (OperationParseException e) {
             System.out.printf("Parse error while reading observers: %s%n", e);
             System.exit(1);
