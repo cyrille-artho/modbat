@@ -7,7 +7,7 @@ import randoop.{DummyVisitor, NormalExecution}
 import randoop.sequence.{ExecutableSequence, Sequence}
 import randoop.test.DummyCheckGenerator
 
-import scala.collection.mutable.ListBuffer
+import scala.collection.immutable.List
 
 class ObjectHolderTest extends FunSuite {
 
@@ -23,8 +23,8 @@ class ObjectHolderTest extends FunSuite {
 
   def assertCreateSequencesObject(o : Object): Unit =
   {
-    ObjectHolder.add(o, new ListBuffer[RecordedTransition] )
-    val s = RandoopUtils.createSequencesForObjectHolder()
+    ObjectHolder.add(o, List.empty[RecordedTransition])
+    val s = GenranUtils.createSequencesForObjectHolder()
     val newCC = getObjectFromSequence(s.get(0))
 
     newCC equals o

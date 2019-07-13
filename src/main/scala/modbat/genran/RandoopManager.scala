@@ -16,6 +16,10 @@ import randoop.util.MultiMap
 
 import scala.collection.JavaConverters._
 
+/**
+  *   Black box logic of running randoop
+  *   TODO potentially move to java
+  */
 class RandoopManager  {
 
   object RandoopManager{
@@ -44,9 +48,6 @@ class RandoopManager  {
 
   def getErrorSequences: util.List[ExecutableSequence] = RandoopManager.forwardGenerator.getErrorTestSequences
 
-  /**
-    *   Black box potentially move to java
-    */
   def createForwardGenerator(): Unit = {
 
     val operationModel: OperationModel = OperationModel.createModel(IS_PUBLIC, new DefaultReflectionPredicate, GenInputsAbstract.omitmethods, GenInputsAbstract.getClassnamesFromArgs, new util.LinkedHashSet[String], new util.HashSet[String](), new ThrowClassNameError, GenInputsAbstract.literals_file)
@@ -54,7 +55,7 @@ class RandoopManager  {
     val components: util.Set[Sequence] = new util.LinkedHashSet[Sequence]
     components.addAll(SeedSequences.defaultSeeds)
     components.addAll(operationModel.getAnnotatedTestValues)
-    components.addAll(RandoopUtils.createSequencesForObjectHolder())
+    components.addAll(GenranUtils.createSequencesForObjectHolder())
 
     val componentMgr: ComponentManager = new ComponentManager(components)
     operationModel.addClassLiterals(componentMgr, GenInputsAbstract.literals_file, GenInputsAbstract.literals_level)

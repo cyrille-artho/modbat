@@ -1,29 +1,31 @@
 package modbat.genran;
 
-import com.sun.tools.javac.util.Pair;
 import modbat.trace.RecordedTransition;
-import scala.collection.mutable.ListBuffer;
 
-import java.util.*;
+import java.security.InvalidParameterException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Class responsible for storing objects in memory. Bridge between modbat and randoop object shearing.
  */
 public class ObjectHolder {
 
-    private static final HashMap<Class, List<Pair<Object, ListBuffer<RecordedTransition>>>> objectsMap = new HashMap<>();
+    private static final HashMap<Class, List<GenranObject>> objectsMap = new HashMap<>();
 
     /**
      * Functions responsible for adding a new object to memory
      *
      * @param newObject any object you want to store in memory
      */
-    public synchronized static void add(Object newObject, ListBuffer<RecordedTransition> transisions) {
+    public synchronized static void add(Object newObject, scala.collection.immutable.List<RecordedTransition> transisions) {
         if (newObject == null)
             return;
 
-        List<Pair<Object, ListBuffer<RecordedTransition>>> objectList = objectsMap.computeIfAbsent(newObject.getClass(), k -> new ArrayList<>());
-        objectList.add(new Pair<>(newObject, transisions));
+        List<GenranObject> objectList = objectsMap.computeIfAbsent(newObject.getClass(), k -> new ArrayList<>());
+        objectList.add(new GenranObject(newObject, transisions));
     }
 
     /**
@@ -35,29 +37,36 @@ public class ObjectHolder {
      */
     public synchronized static Object pick(String className, int id) throws ClassNotFoundException {
 
-        List<Pair<Object, ListBuffer<RecordedTransition>>> objectSet = objectsMap.get(Class.forName(className)); //TODO add exceptions
+        List<GenranObject> objectSet = objectsMap.get(Class.forName(className));
 
-        return objectSet.get(id).fst;
+        validate(id, objectSet);
+
+        return objectSet.get(id).getObject();
     }
 
-    /**
-     * @return a set of all different types Classes in memory
-     */
+
+    static scala.collection.immutable.List<RecordedTransition> getRecordedTransitions(String className, int id) throws ClassNotFoundException {
+
+        List<GenranObject> objectSet = objectsMap.get(Class.forName(className));
+
+        validate(id, objectSet);
+
+        return objectSet.get(id).getTransitions();
+    }
+
+    private static void validate(int id, List<GenranObject> objectSet) {
+        if (objectSet == null || id > objectSet.size() || id < 0) {
+            throw new InvalidParameterException(String.format("Invalid parameter; className: %s id: %s", objectSet, id));
+        }
+    }
+
     static Set<Class> getObjectsMapKeys() {
         return objectsMap.keySet();
     }
 
-    /**
-     *
-     * @param c
-     * @return
-     */
+
     static int getSizeOfKeySupSet(Class c) {
         return objectsMap.get(c).size();
-    }
-
-    static public ListBuffer<RecordedTransition> getRecordedTransitions(String className, int id) throws ClassNotFoundException {
-        return objectsMap.get(Class.forName(className)).get(id).snd;
     }
 }
 

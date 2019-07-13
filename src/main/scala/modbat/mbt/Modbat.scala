@@ -7,13 +7,14 @@ import java.util
 import java.util.BitSet
 
 import modbat.dsl.{Action, Init, RandomSearch, Shutdown, State, Transition}
-import modbat.genran.{ObjectHolder, RandoopUtils}
+import modbat.genran.{GenranUtils, ObjectHolder}
 import modbat.log.Log
 import modbat.trace.{Backtrack, ErrOrdering, ExceptionOccurred, ExpectedExceptionMissing, Ok, RecordedState, RecordedTransition, TransitionResult}
 import modbat.util.{CloneableRandom, FieldUtil, SourceInfo}
 import randoop.sequence.ExecutableSequence
 
 import scala.collection.JavaConversions._
+import scala.collection.mutable
 import scala.collection.mutable._
 
 
@@ -66,41 +67,23 @@ object Modbat {
 
   def runRandomSearch() {
 
-    for (f <- MBT.modelClass.getAnnotations) {
-      f match {
-        case search: RandomSearch =>
-
-          val failedSequences: util.List[ExecutableSequence] = MBT.randomSearch(search.value().toSeq)
-
-          for (e <- failedSequences) {
-
-            val pair = RandoopUtils.getId(e.toCodeString)
-
-            if (pair.isPresent) {
-
-              val recordedTransition2 = ObjectHolder.getRecordedTransitions(pair.get().fst, pair.get().snd);
-
-              for (t <- recordedTransition2) {
-
-                println(t.toString)
-              }
-
-              println("")
-              println("random search")
-              println("")
-
-              println( e.toCodeString)
-
-              println("======================================================")
-
-            }
-            else {
-
-            }
-          }
-
+    for (a <- MBT.modelClass.getAnnotations) {
+      a match {
+        case rs: RandomSearch => MBT.randomSearch(rs.value().toSeq).foreach(f => reportRandomSearchErrors(f))
         case _ =>
       }
+    }
+  }
+
+  def reportRandomSearchErrors(e: ExecutableSequence) = {
+
+    val recordedTransitions = GenranUtils.getRecordedTransitions(e.toCodeString)
+
+    if (recordedTransitions != null) {
+      val transitions = new mutable.StringBuilder()
+      recordedTransitions.foreach{t => transitions.append(t.toString); transitions.append("\n")}
+
+      Log.warn(String.format(GenranUtils.ERROR_MSG, transitions.toString(), e.toCodeString))
     }
   }
 
@@ -272,7 +255,7 @@ object Modbat {
       val value = FieldUtil.getValue(f, model.model)
       Log.fine("Save field " + f.getName + " has value " + value)
 
-      ObjectHolder.add(value, executedTransitions.clone())
+      ObjectHolder.add(value, executedTransitions.clone.toList)
     }
   }
 
