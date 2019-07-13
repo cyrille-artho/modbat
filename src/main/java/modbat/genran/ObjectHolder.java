@@ -15,6 +15,9 @@ public class ObjectHolder {
 
     private static final HashMap<Class, List<GenranObject>> objectsMap = new HashMap<>();
 
+    private ObjectHolder() {
+    }
+
     /**
      * Functions responsible for adding a new object to memory
      *

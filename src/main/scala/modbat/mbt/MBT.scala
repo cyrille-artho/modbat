@@ -36,7 +36,7 @@ import modbat.trace.TransitionResult
 import modbat.util.CloneableRandom
 import modbat.util.Random
 import com.miguno.akka.testing.VirtualTime
-import modbat.genran.{RandoopManager, SaveFields}
+import modbat.genran.SaveFields
 import randoop.generation.ForwardGenerator
 import randoop.sequence.ExecutableSequence
 
@@ -341,16 +341,6 @@ object MBT {
     } else {
       false
     }
-  }
-
-  def randomSearch(classes: Seq[String]): ForwardGenerator = {
-
-    val rtm = new RandoopManager
-
-    rtm.init(classes)
-    rtm.run
-
-    rtm.getForwardGenerator
   }
 }
 

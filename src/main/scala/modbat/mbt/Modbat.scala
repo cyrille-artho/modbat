@@ -70,7 +70,7 @@ object Modbat {
 
     for (a <- MBT.modelClass.getAnnotations) {
       a match {
-        case rs: RandomSearch => reportRandomSearchErrors(MBT.randomSearch(rs.value().toSeq))
+        case rs: RandomSearch => reportRandomSearchErrors(GenranUtils.randomSearch(rs.value().toSeq))
         case _ =>
       }
     }
@@ -377,7 +377,7 @@ object Modbat {
 	  (timesVisited.getOrElseUpdate(RecordedState(m, s.dest), 0)
 	   >= limit)) {
 	if (!quiet) {
-	  Log.fine("Detected beginning of loop " + limit + 
+	  Log.fine("Detected beginning of loop " + limit +
 		   " (model " + m.name + ", state " + s.dest +
 		   "), filtering transition " + s + ".")
 	}
