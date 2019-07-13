@@ -1,0 +1,66 @@
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2.assert(RSeedTestSuccess2.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2$$anonfun$1.apply$mcV$sp(RSeedTestSuccess2.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2$$anonfun$1.apply(RSeedTestSuccess2.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2$$anonfun$1.apply(RSeedTestSuccess2.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/RSeedTestSuccess2.scala:21: assert
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2.assert(RSeedTestSuccess2.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2$$anonfun$1.apply$mcV$sp(RSeedTestSuccess2.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2$$anonfun$1.apply(RSeedTestSuccess2.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2$$anonfun$1.apply(RSeedTestSuccess2.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/RSeedTestSuccess2.scala:21: assert
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2.assert(RSeedTestSuccess2.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2$$anonfun$1.apply$mcV$sp(RSeedTestSuccess2.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2$$anonfun$1.apply(RSeedTestSuccess2.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2$$anonfun$1.apply(RSeedTestSuccess2.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/RSeedTestSuccess2.scala:21: assert
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2.assert(RSeedTestSuccess2.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2$$anonfun$1.apply$mcV$sp(RSeedTestSuccess2.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2$$anonfun$1.apply(RSeedTestSuccess2.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2$$anonfun$1.apply(RSeedTestSuccess2.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/RSeedTestSuccess2.scala:21: assert
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2.assert(RSeedTestSuccess2.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2$$anonfun$1.apply$mcV$sp(RSeedTestSuccess2.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2$$anonfun$1.apply(RSeedTestSuccess2.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2$$anonfun$1.apply(RSeedTestSuccess2.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/RSeedTestSuccess2.scala:21: assert
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2.assert(RSeedTestSuccess2.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2$$anonfun$1.apply$mcV$sp(RSeedTestSuccess2.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2$$anonfun$1.apply(RSeedTestSuccess2.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess2$$anonfun$1.apply(RSeedTestSuccess2.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/RSeedTestSuccess2.scala:21: assert

@@ -1,0 +1,60 @@
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.SimpleLaunch.assert(SimpleLaunch.scala)
+[ERROR] 	at modbat.test.SimpleLaunch$$anonfun$2.apply$mcV$sp(SimpleLaunch.scala)
+[ERROR] 	at modbat.test.SimpleLaunch$$anonfun$2.apply(SimpleLaunch.scala)
+[ERROR] 	at modbat.test.SimpleLaunch$$anonfun$2.apply(SimpleLaunch.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/SimpleLaunch.scala:9: modbat.test.SimpleLaunch-1: skip
+[WARNING] modbat/test/SimpleLaunch.scala:11: modbat.test.SimpleLaunch-1: launch
+[WARNING] modbat/test/SimpleLaunch.scala:16: modbat.test.SimpleLaunch-1: assert
+[WARNING] modbat/test/SimpleLaunch.scala:9: modbat.test.SimpleLaunch-2: skip
+[WARNING] modbat/test/SimpleLaunch.scala:11: modbat.test.SimpleLaunch-2: launch
+[WARNING] modbat/test/SimpleLaunch.scala:11: modbat.test.SimpleLaunch-2: launch
+[WARNING] modbat/test/SimpleLaunch.scala:9: modbat.test.SimpleLaunch-3: skip
+[WARNING] modbat/test/SimpleLaunch.scala:11: modbat.test.SimpleLaunch-2: launch
+[WARNING] modbat/test/SimpleLaunch.scala:16: modbat.test.SimpleLaunch-3: assert
+[WARNING] modbat/test/SimpleLaunch.scala:9: modbat.test.SimpleLaunch-4: skip
+[WARNING] modbat/test/SimpleLaunch.scala:16: modbat.test.SimpleLaunch-4: assert
+[WARNING] modbat/test/SimpleLaunch.scala:11: modbat.test.SimpleLaunch-2: launch
+[WARNING] modbat/test/SimpleLaunch.scala:11: modbat.test.SimpleLaunch-2: launch
+[WARNING] modbat/test/SimpleLaunch.scala:9: modbat.test.SimpleLaunch-7: skip
+[WARNING] modbat/test/SimpleLaunch.scala:9: modbat.test.SimpleLaunch-6: skip
+[WARNING] modbat/test/SimpleLaunch.scala:16: modbat.test.SimpleLaunch-7: assert
+[WARNING] modbat/test/SimpleLaunch.scala:16: modbat.test.SimpleLaunch-6: assert
+[WARNING] modbat/test/SimpleLaunch.scala:9: modbat.test.SimpleLaunch-5: skip
+[WARNING] modbat/test/SimpleLaunch.scala:16: modbat.test.SimpleLaunch-2: assert
+[WARNING] modbat/test/SimpleLaunch.scala:11: modbat.test.SimpleLaunch-5: launch
+[WARNING] modbat/test/SimpleLaunch.scala:16: modbat.test.SimpleLaunch-5: assert
+[WARNING] modbat/test/SimpleLaunch.scala:9: modbat.test.SimpleLaunch-8: skip
+[WARNING] modbat/test/SimpleLaunch.scala:16: modbat.test.SimpleLaunch-8: assert
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.SimpleLaunch.assert(SimpleLaunch.scala)
+[ERROR] 	at modbat.test.SimpleLaunch$$anonfun$2.apply$mcV$sp(SimpleLaunch.scala)
+[ERROR] 	at modbat.test.SimpleLaunch$$anonfun$2.apply(SimpleLaunch.scala)
+[ERROR] 	at modbat.test.SimpleLaunch$$anonfun$2.apply(SimpleLaunch.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/SimpleLaunch.scala:9: modbat.test.SimpleLaunch-1: skip
+[WARNING] modbat/test/SimpleLaunch.scala:11: modbat.test.SimpleLaunch-1: launch
+[WARNING] modbat/test/SimpleLaunch.scala:11: modbat.test.SimpleLaunch-1: launch
+[WARNING] modbat/test/SimpleLaunch.scala:16: modbat.test.SimpleLaunch-1: assert
+[WARNING] modbat/test/SimpleLaunch.scala:9: modbat.test.SimpleLaunch-2: skip
+[WARNING] modbat/test/SimpleLaunch.scala:16: modbat.test.SimpleLaunch-2: assert
+[WARNING] modbat/test/SimpleLaunch.scala:9: modbat.test.SimpleLaunch-3: skip
+[WARNING] modbat/test/SimpleLaunch.scala:11: modbat.test.SimpleLaunch-3: launch
+[WARNING] modbat/test/SimpleLaunch.scala:9: modbat.test.SimpleLaunch-4: skip
+[WARNING] modbat/test/SimpleLaunch.scala:11: modbat.test.SimpleLaunch-4: launch
+[WARNING] modbat/test/SimpleLaunch.scala:11: modbat.test.SimpleLaunch-3: launch
+[WARNING] modbat/test/SimpleLaunch.scala:16: modbat.test.SimpleLaunch-4: assert
+[WARNING] modbat/test/SimpleLaunch.scala:9: modbat.test.SimpleLaunch-6: skip
+[WARNING] modbat/test/SimpleLaunch.scala:11: modbat.test.SimpleLaunch-6: launch
+[WARNING] modbat/test/SimpleLaunch.scala:9: modbat.test.SimpleLaunch-7: skip
+[WARNING] modbat/test/SimpleLaunch.scala:11: modbat.test.SimpleLaunch-6: launch
+[WARNING] modbat/test/SimpleLaunch.scala:16: modbat.test.SimpleLaunch-7: assert

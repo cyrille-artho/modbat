@@ -1,0 +1,52 @@
+[WARNING] Duplicate transition label "dec".
+[WARNING] Duplicate transition label "dec".
+[WARNING] Duplicate transition label "dec".
+[WARNING] Duplicate transition label "dec".
+[WARNING] Duplicate transition label "dec".
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/CounterPosNeg1.scala:19: zero => pos1
+[WARNING] modbat/test/CounterPosNeg1.scala:25: dec
+[WARNING] modbat/test/CounterPosNeg1.scala:41: dec
+[WARNING] modbat/test/CounterPosNeg1.scala:43: dec
+[WARNING] modbat/test/CounterPosNeg1.scala:53: dec
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/CounterPosNeg1.scala:41: dec
+[WARNING] modbat/test/CounterPosNeg1.scala:43: dec
+[WARNING] modbat/test/CounterPosNeg1.scala:51: neg => any
+[WARNING] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[WARNING] modbat/test/CounterPosNeg1.scala:36: dec
+[WARNING] modbat/test/CounterPosNeg1.scala:36: dec
+[WARNING] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[WARNING] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[WARNING] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[WARNING] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[WARNING] modbat/test/CounterPosNeg1.scala:36: dec
+[WARNING] modbat/test/CounterPosNeg1.scala:36: dec
+[WARNING] modbat/test/CounterPosNeg1.scala:36: dec
+[WARNING] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[WARNING] modbat/test/CounterPosNeg1.scala:36: dec
+[WARNING] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[WARNING] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[WARNING] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[WARNING] modbat/test/CounterPosNeg1.scala:36: dec
+[WARNING] modbat/test/CounterPosNeg1.scala:36: dec
+[WARNING] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[WARNING] modbat/test/CounterPosNeg1.scala:36: dec
+[WARNING] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[WARNING] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[WARNING] modbat/test/CounterPosNeg1.scala:36: dec
+[WARNING] modbat/test/CounterPosNeg1.scala:36: dec
+[WARNING] modbat/test/CounterPosNeg1.scala:36: dec
+[WARNING] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[WARNING] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[WARNING] modbat/test/CounterPosNeg1.scala:34: any => any (1)
+[WARNING] modbat/test/CounterPosNeg1.scala:36: dec
+[WARNING] modbat/test/CounterPosNeg1.scala:36: dec
+[WARNING] modbat/test/CounterPosNeg1.scala:36: dec
+[WARNING] modbat/test/CounterPosNeg1.scala:36: dec
+[WARNING] modbat/test/CounterPosNeg1.scala:36: dec
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.

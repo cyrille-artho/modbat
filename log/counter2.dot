@@ -1,0 +1,14 @@
+digraph model {
+  orientation = landscape;
+  graph [ rankdir = "TB", ranksep="0.4", nodesep="0.2" ];
+  node [ fontname = "Helvetica", fontsize="12.0", margin="0.07" ];
+  edge [ fontname = "Helvetica", fontsize="12.0", margin="0.05" ];
+  "" [ shape = "point", height="0.1" ];
+  "" -> reset
+  reset	-> zero [ label = " new Counter " ];
+  zero	-> zero [ label = " toggle " ];
+  zero	-> one [ label = " inc1 " ];
+  one	-> two [ label = " inc1 " ];
+  zero	-> two [ label = " inc2 " ];
+  two	-> end [ label = " assert " ];
+}

@@ -1,0 +1,30 @@
+[WARNING] java.lang.AssertionError: assertion failed: Cannot mkdir "0/1/4" occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed: Cannot mkdir "0/1/4"
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.SimpleFileModel.assert(SimpleFileModel.scala)
+[ERROR] 	at modbat.test.SimpleFileModel$$anonfun$6.apply(SimpleFileModel.scala)
+Cannot create file "0/1/2/5"
+[WARNING] java.io.IOException: Not a directory occurred, aborting.
+[ERROR] java.io.IOException: Not a directory
+[ERROR] 	at java.io.UnixFileSystem.createFileExclusively(Native Method)
+[ERROR] 	at java.io.File.createNewFile(File.java)
+[ERROR] 	at modbat.test.SimpleFileModel$$anonfun$4.apply$mcV$sp(SimpleFileModel.scala)
+[ERROR] 	at modbat.test.SimpleFileModel$$anonfun$4.apply(SimpleFileModel.scala)
+[ERROR] 	at modbat.test.SimpleFileModel$$anonfun$4.apply(SimpleFileModel.scala)
+[WARNING] java.lang.AssertionError: assertion failed: Cannot mkdir "1/2" occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed: Cannot mkdir "1/2"
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.SimpleFileModel.assert(SimpleFileModel.scala)
+[ERROR] 	at modbat.test.SimpleFileModel$$anonfun$6.apply(SimpleFileModel.scala)
+Cannot create file "3/6"
+[WARNING] java.io.IOException: Not a directory occurred, aborting.
+[ERROR] java.io.IOException: Not a directory
+[ERROR] 	at java.io.UnixFileSystem.createFileExclusively(Native Method)
+[ERROR] 	at java.io.File.createNewFile(File.java)
+[ERROR] 	at modbat.test.SimpleFileModel$$anonfun$4.apply$mcV$sp(SimpleFileModel.scala)
+[ERROR] 	at modbat.test.SimpleFileModel$$anonfun$4.apply(SimpleFileModel.scala)
+[ERROR] 	at modbat.test.SimpleFileModel$$anonfun$4.apply(SimpleFileModel.scala)

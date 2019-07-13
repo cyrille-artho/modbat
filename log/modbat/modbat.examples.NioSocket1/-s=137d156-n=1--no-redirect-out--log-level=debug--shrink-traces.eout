@@ -1,0 +1,12 @@
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[WARNING] Error found, model trace:
+[WARNING] modbat/examples/NioSocket1.scala:77: reset => open
+[WARNING] modbat/examples/NioSocket1.scala:82: open => connected
+[WARNING] modbat/examples/NioSocket1.scala:117: connected => connected (1)
+[WARNING] modbat/examples/NioSocket1.scala:120: connected => connected (2)
+[WARNING] modbat/examples/NioSocket1.scala:117: connected => connected (1)
+[WARNING] modbat/examples/NioSocket1.scala:120: connected => connected (2)
+[WARNING] modbat/examples/NioSocket1.scala:117: connected => connected (1)
+[WARNING] modbat/examples/NioSocket1.scala:117: connected => connected (1)
+[WARNING] modbat/examples/NioSocket1.scala:120: connected => connected (2)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.

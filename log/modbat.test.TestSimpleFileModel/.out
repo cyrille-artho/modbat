@@ -1,0 +1,21 @@
+4 dirs/files created.
+Deleting "0/3"
+Deleting "0/2"
+Deleting "0/1"
+rmdir "0"
+5 dirs/files created.
+rmdir "4"
+Deleting "0/1/3"
+Deleting "0/1/2"
+rmdir "0/1"
+rmdir "0"
+2 dirs/files created.
+Deleting "1"
+rmdir "0"
+6 dirs/files created.
+Deleting "1/5"
+rmdir "0/4"
+Deleting "3"
+rmdir "2"
+rmdir "1"
+rmdir "0"

@@ -1,0 +1,54 @@
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess.assert(RSeedTestSuccess.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess$$anonfun$1.apply$mcV$sp(RSeedTestSuccess.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess$$anonfun$1.apply(RSeedTestSuccess.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess$$anonfun$1.apply(RSeedTestSuccess.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess.assert(RSeedTestSuccess.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess$$anonfun$1.apply$mcV$sp(RSeedTestSuccess.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess$$anonfun$1.apply(RSeedTestSuccess.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess$$anonfun$1.apply(RSeedTestSuccess.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess.assert(RSeedTestSuccess.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess$$anonfun$1.apply$mcV$sp(RSeedTestSuccess.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess$$anonfun$1.apply(RSeedTestSuccess.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess$$anonfun$1.apply(RSeedTestSuccess.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess.assert(RSeedTestSuccess.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess$$anonfun$1.apply$mcV$sp(RSeedTestSuccess.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess$$anonfun$1.apply(RSeedTestSuccess.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess$$anonfun$1.apply(RSeedTestSuccess.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess.assert(RSeedTestSuccess.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess$$anonfun$1.apply$mcV$sp(RSeedTestSuccess.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess$$anonfun$1.apply(RSeedTestSuccess.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess$$anonfun$1.apply(RSeedTestSuccess.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess.assert(RSeedTestSuccess.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess$$anonfun$1.apply$mcV$sp(RSeedTestSuccess.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess$$anonfun$1.apply(RSeedTestSuccess.scala)
+[ERROR] 	at modbat.test.RSeedTestSuccess$$anonfun$1.apply(RSeedTestSuccess.scala)

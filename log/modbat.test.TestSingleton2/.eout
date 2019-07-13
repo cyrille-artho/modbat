@@ -1,0 +1,18 @@
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.Singleton2.assert(Singleton2.scala)
+[ERROR] 	at modbat.test.Singleton2$$anonfun$1.apply$mcV$sp(Singleton2.scala)
+[ERROR] 	at modbat.test.Singleton2$$anonfun$1.apply(Singleton2.scala)
+[ERROR] 	at modbat.test.Singleton2$$anonfun$1.apply(Singleton2.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.Singleton2.assert(Singleton2.scala)
+[ERROR] 	at modbat.test.Singleton2$$anonfun$1.apply$mcV$sp(Singleton2.scala)
+[ERROR] 	at modbat.test.Singleton2$$anonfun$1.apply(Singleton2.scala)
+[ERROR] 	at modbat.test.Singleton2$$anonfun$1.apply(Singleton2.scala)

@@ -1,0 +1,13 @@
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.MaybeElseTest.assert(MaybeElseTest.scala)
+[ERROR] 	at modbat.test.MaybeElseTest$$anonfun$2$$anonfun$apply$mcV$sp$1.apply$mcV$sp(MaybeElseTest.scala)
+[ERROR] 	at modbat.test.MaybeElseTest$$anonfun$2$$anonfun$apply$mcV$sp$1.apply(MaybeElseTest.scala)
+[ERROR] 	at modbat.test.MaybeElseTest$$anonfun$2$$anonfun$apply$mcV$sp$1.apply(MaybeElseTest.scala)
+[ERROR] 	at modbat.dsl.Action.or_else(Action.scala)
+[ERROR] 	at modbat.test.MaybeElseTest$$anonfun$2.apply$mcV$sp(MaybeElseTest.scala)
+[ERROR] 	at modbat.test.MaybeElseTest$$anonfun$2.apply(MaybeElseTest.scala)
+[ERROR] 	at modbat.test.MaybeElseTest$$anonfun$2.apply(MaybeElseTest.scala)

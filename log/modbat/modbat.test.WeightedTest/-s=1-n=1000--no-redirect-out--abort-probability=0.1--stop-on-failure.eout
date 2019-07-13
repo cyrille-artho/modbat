@@ -1,0 +1,20 @@
+[WARNING] java.lang.AssertionError: assertion failed: n = 10 occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed: n = 10
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.WeightedTest.assert(WeightedTest.scala)
+[ERROR] 	at modbat.test.WeightedTest$$anonfun$1.apply$mcV$sp(WeightedTest.scala)
+[ERROR] 	at modbat.test.WeightedTest$$anonfun$1.apply(WeightedTest.scala)
+[ERROR] 	at modbat.test.WeightedTest$$anonfun$1.apply(WeightedTest.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/WeightedTest.scala:8: assert
+[WARNING] modbat/test/WeightedTest.scala:8: assert
+[WARNING] modbat/test/WeightedTest.scala:8: assert
+[WARNING] modbat/test/WeightedTest.scala:8: assert
+[WARNING] modbat/test/WeightedTest.scala:8: assert
+[WARNING] modbat/test/WeightedTest.scala:8: assert
+[WARNING] modbat/test/WeightedTest.scala:8: assert
+[WARNING] modbat/test/WeightedTest.scala:8: assert
+[WARNING] modbat/test/WeightedTest.scala:8: assert
+[WARNING] modbat/test/WeightedTest.scala:10: assert

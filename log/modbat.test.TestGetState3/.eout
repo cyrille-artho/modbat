@@ -1,0 +1,90 @@
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GetState3.assert(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply$mcV$sp(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply(GetState3.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GetState3.assert(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply$mcV$sp(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply(GetState3.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GetState3.assert(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply$mcV$sp(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply(GetState3.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GetState3.assert(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply$mcV$sp(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply(GetState3.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GetState3.assert(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply$mcV$sp(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply(GetState3.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GetState3.assert(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply$mcV$sp(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply(GetState3.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GetState3.assert(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply$mcV$sp(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply(GetState3.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GetState3.assert(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply$mcV$sp(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply(GetState3.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GetState3.assert(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply$mcV$sp(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply(GetState3.scala)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GetState3.assert(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply$mcV$sp(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply(GetState3.scala)
+[ERROR] 	at modbat.test.GetState3$$anonfun$5.apply(GetState3.scala)

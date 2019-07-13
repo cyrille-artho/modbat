@@ -1,0 +1,14 @@
+       1 782de49f112cb820
+[FINE] Launching new model instance modbat.test.ChooseTest-1...
+[FINE] modbat.test.ChooseTest-1: Executing transition ok => err...
+[FINE] choose(0, 10) = 0
+[FINE] choose(0, 10) = 0
+[INFO] Writing off-line test into file ./modbat/test/TestChooseTest.scala
+[INFO] 1 tests executed, 0 ok, 1 failed.
+[INFO] One type of test failure:
+[INFO] 1) java.lang.AssertionError: assertion failed at assert
+[INFO]    782de49f112cb820
+[INFO] 1 states covered (33 % out of 3),
+[INFO] 0 transitions covered (0 % out of 3).
+[INFO] Precondition 1 always passed at transition modbat/test/ChooseTest.scala:13 assert
+[INFO] Random seed for next test would be: 80f7ad6432925b2c

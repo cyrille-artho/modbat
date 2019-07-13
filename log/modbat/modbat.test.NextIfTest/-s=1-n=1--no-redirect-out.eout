@@ -1,0 +1,12 @@
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.NextIfTest.assert(NextIfTest.scala)
+[ERROR] 	at modbat.test.NextIfTest$$anonfun$3.apply$mcV$sp(NextIfTest.scala)
+[ERROR] 	at modbat.test.NextIfTest$$anonfun$3.apply(NextIfTest.scala)
+[ERROR] 	at modbat.test.NextIfTest$$anonfun$3.apply(NextIfTest.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/NextIfTest.scala:7: ok --> err
+[WARNING] modbat/test/NextIfTest.scala:9: assert

@@ -1,0 +1,169 @@
+[DEBUG] Adding build/modbat-test.jar to classpath.
+       1 3ba471c1785a0175
+[DEBUG] modbat.test.WeightedTest2-1: Registered state transition from init to init
+[DEBUG] modbat.test.WeightedTest2-1: Registered state transition from init to init
+[FINE] Launching new model instance modbat.test.WeightedTest2-1...
+[DEBUG] --- Exploring model ---
+[DEBUG] modbat.test.WeightedTest2-1: Current state: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 1 times.
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 1 times.
+[FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
+[DEBUG] modbat.test.WeightedTest2-1: Current state: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 2 times.
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 2 times.
+[FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
+[DEBUG] modbat.test.WeightedTest2-1: Current state: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 3 times.
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 3 times.
+[FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
+[DEBUG] modbat.test.WeightedTest2-1: Current state: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 4 times.
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 4 times.
+[FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
+[FINE] Precondition violated, backtracking to init.
+[DEBUG] No more successors.
+[DEBUG] --- Resetting to initial state ---
+       2 402b73cd0066eaea
+[DEBUG] Identical model found: modbat.test.WeightedTest2-1
+[DEBUG] modbat.test.WeightedTest2-1: Registered state transition from init to init
+[DEBUG] modbat.test.WeightedTest2-1: Registered state transition from init to init
+[FINE] Launching new model instance modbat.test.WeightedTest2-1...
+[DEBUG] --- Exploring model ---
+[DEBUG] modbat.test.WeightedTest2-1: Current state: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 1 times.
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 1 times.
+[FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
+[DEBUG] modbat.test.WeightedTest2-1: Current state: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 2 times.
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 2 times.
+[FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
+[DEBUG] modbat.test.WeightedTest2-1: Current state: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 3 times.
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 3 times.
+[FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
+[DEBUG] modbat.test.WeightedTest2-1: Current state: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 4 times.
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 4 times.
+[FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
+[FINE] Precondition violated, backtracking to init.
+[DEBUG] No more successors.
+[DEBUG] --- Resetting to initial state ---
+       3 41530f4040856586
+[DEBUG] Identical model found: modbat.test.WeightedTest2-1
+[DEBUG] modbat.test.WeightedTest2-1: Registered state transition from init to init
+[DEBUG] modbat.test.WeightedTest2-1: Registered state transition from init to init
+[FINE] Launching new model instance modbat.test.WeightedTest2-1...
+[DEBUG] --- Exploring model ---
+[DEBUG] modbat.test.WeightedTest2-1: Current state: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 1 times.
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 1 times.
+[FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
+[DEBUG] modbat.test.WeightedTest2-1: Current state: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 2 times.
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 2 times.
+[FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
+[DEBUG] modbat.test.WeightedTest2-1: Current state: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 3 times.
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 3 times.
+[FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
+[DEBUG] modbat.test.WeightedTest2-1: Current state: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 4 times.
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 4 times.
+[FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
+[FINE] Precondition violated, backtracking to init.
+[DEBUG] No more successors.
+[DEBUG] --- Resetting to initial state ---
+       4  89a82931be29e65
+[DEBUG] Identical model found: modbat.test.WeightedTest2-1
+[DEBUG] modbat.test.WeightedTest2-1: Registered state transition from init to init
+[DEBUG] modbat.test.WeightedTest2-1: Registered state transition from init to init
+[FINE] Launching new model instance modbat.test.WeightedTest2-1...
+[DEBUG] --- Exploring model ---
+[DEBUG] modbat.test.WeightedTest2-1: Current state: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 1 times.
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 1 times.
+[FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
+[DEBUG] modbat.test.WeightedTest2-1: Current state: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 2 times.
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 2 times.
+[FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
+[DEBUG] modbat.test.WeightedTest2-1: Current state: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 3 times.
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 3 times.
+[FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
+[DEBUG] modbat.test.WeightedTest2-1: Current state: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 4 times.
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 4 times.
+[FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
+[FINE] Precondition violated, backtracking to init.
+[DEBUG] No more successors.
+[DEBUG] --- Resetting to initial state ---
+       5 49a846e52b813972
+[DEBUG] Identical model found: modbat.test.WeightedTest2-1
+[DEBUG] modbat.test.WeightedTest2-1: Registered state transition from init to init
+[DEBUG] modbat.test.WeightedTest2-1: Registered state transition from init to init
+[FINE] Launching new model instance modbat.test.WeightedTest2-1...
+[DEBUG] --- Exploring model ---
+[DEBUG] modbat.test.WeightedTest2-1: Current state: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 1 times.
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 1 times.
+[FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
+[DEBUG] modbat.test.WeightedTest2-1: Current state: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 2 times.
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 2 times.
+[FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
+[DEBUG] modbat.test.WeightedTest2-1: Current state: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 3 times.
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 3 times.
+[FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
+[DEBUG] modbat.test.WeightedTest2-1: Current state: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] modbat.test.WeightedTest2-1: Possible successor: init
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 4 times.
+[DEBUG] State init in model modbat.test.WeightedTest2-1 was visited 4 times.
+[FINE] modbat.test.WeightedTest2-1: Executing transition init => init (1)...
+[FINE] Precondition violated, backtracking to init.
+[DEBUG] No more successors.
+[DEBUG] --- Resetting to initial state ---
+[INFO] 5 tests executed, 5 ok, 0 failed.
+[INFO] 1 states covered (100 % out of 1),
+[INFO] 1 transitions covered (50 % out of 2).
+[INFO] Random seed for next test would be: 27fe2d950fc74b21

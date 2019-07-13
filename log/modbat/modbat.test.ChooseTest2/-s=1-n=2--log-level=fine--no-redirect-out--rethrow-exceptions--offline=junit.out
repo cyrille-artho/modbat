@@ -1,0 +1,40 @@
+       1 3ba471c1785a0175
+[FINE] Launching new model instance modbat.test.ChooseTest2-1...
+[FINE] modbat.test.ChooseTest2-1: Executing transition ok => ok...
+Using 1
+[FINE] modbat.test.ChooseTest2-1: Executing transition ok => ok...
+[FINE] choose(0, 1) = 0
+Using 1
+[FINE] modbat.test.ChooseTest2-1: Executing transition ok => ok...
+[FINE] choose(0, 2) = 1
+Using 2
+[FINE] modbat.test.ChooseTest2-1: Executing transition ok => ok...
+[FINE] choose(0, 3) = 1
+Using 2
+[FINE] modbat.test.ChooseTest2-1: Executing transition ok => ok...
+[FINE] choose(0, 4) = 3
+Using 4
+[INFO] Writing off-line test into file ./modbat/test/TestChooseTest2.java
+       2 402b73cd0066eaea, one test failed.
+[FINE] Launching new model instance modbat.test.ChooseTest2-1...
+[FINE] modbat.test.ChooseTest2-1: Executing transition ok => ok...
+Using 1
+[FINE] modbat.test.ChooseTest2-1: Executing transition ok => ok...
+[FINE] choose(0, 1) = 0
+Using 1
+[FINE] modbat.test.ChooseTest2-1: Executing transition ok => ok...
+[FINE] choose(0, 2) = 1
+Using 2
+[FINE] modbat.test.ChooseTest2-1: Executing transition ok => ok...
+[FINE] choose(0, 3) = 1
+Using 2
+[FINE] modbat.test.ChooseTest2-1: Executing transition ok => ok...
+[FINE] choose(0, 4) = 3
+Using 4
+[INFO] 2 tests executed, 0 ok, 2 failed.
+[INFO] One type of test failure:
+[INFO] 1) java.lang.AssertionError: assertion failed at use
+[INFO]    3ba471c1785a0175 402b73cd0066eaea
+[INFO] 1 states covered (100 % out of 1),
+[INFO] 1 transitions covered (100 % out of 1).
+[INFO] Random seed for next test would be: 41530f4040856586

@@ -1,0 +1,8 @@
+[WARNING] java.lang.IllegalArgumentException: not from failed require occurred, aborting.
+[ERROR] java.lang.IllegalArgumentException: not from failed require
+[ERROR] 	at modbat.test.IllArgTest.illArg(IllArgTest.scala)
+[ERROR] 	at modbat.test.IllArgTest$$anonfun$1.apply$mcV$sp(IllArgTest.scala)
+[ERROR] 	at modbat.test.IllArgTest$$anonfun$1.apply(IllArgTest.scala)
+[ERROR] 	at modbat.test.IllArgTest$$anonfun$1.apply(IllArgTest.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/IllArgTest.scala:13: illArg

@@ -1,0 +1,42 @@
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2.assert(MaybeNextIfTest2.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2$$anonfun$5.apply$mcV$sp(MaybeNextIfTest2.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2$$anonfun$5.apply(MaybeNextIfTest2.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2$$anonfun$5.apply(MaybeNextIfTest2.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/MaybeNextIfTest2.scala:8: println; choices = (0.23796444, 0.89374465)
+[WARNING] modbat/test/MaybeNextIfTest2.scala:8: println; choices = (0.42469475, 0.2216002)
+[WARNING] modbat/test/MaybeNextIfTest2.scala:17: assert
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2.assert(MaybeNextIfTest2.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2$$anonfun$5.apply$mcV$sp(MaybeNextIfTest2.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2$$anonfun$5.apply(MaybeNextIfTest2.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2$$anonfun$5.apply(MaybeNextIfTest2.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/MaybeNextIfTest2.scala:8: println; choices = (0.89374465, 0.4793791)
+[WARNING] modbat/test/MaybeNextIfTest2.scala:8: println; choices = (0.2216002, 0.3591516)
+[WARNING] modbat/test/MaybeNextIfTest2.scala:8: println; choices = (0.41595998, 0.052770555)
+[WARNING] modbat/test/MaybeNextIfTest2.scala:17: assert
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2.assert(MaybeNextIfTest2.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2$$anonfun$5.apply$mcV$sp(MaybeNextIfTest2.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2$$anonfun$5.apply(MaybeNextIfTest2.scala)
+[ERROR] 	at modbat.test.MaybeNextIfTest2$$anonfun$5.apply(MaybeNextIfTest2.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/MaybeNextIfTest2.scala:8: println; choices = (0.4793791, 0.49016)
+[WARNING] modbat/test/MaybeNextIfTest2.scala:8: println; choices = (0.3591516, 0.47383475)
+[WARNING] modbat/test/MaybeNextIfTest2.scala:8: println; choices = (0.052770555, 0.35623378)
+[WARNING] modbat/test/MaybeNextIfTest2.scala:8: println; choices = (0.053496104, 0.24076776)
+[WARNING] modbat/test/MaybeNextIfTest2.scala:17: assert
