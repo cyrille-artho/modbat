@@ -3,6 +3,9 @@ package modbat.genran;
 import modbat.trace.RecordedTransition;
 import scala.collection.immutable.List;
 
+/**
+
+ */
 public class GenranObject {
 
     private Object object;

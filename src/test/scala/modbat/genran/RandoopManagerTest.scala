@@ -1,64 +1,43 @@
 package modbat.genran
 
-import modbat.mbt.Main
-import org.scalatest.FunSuite
+import modbat.mbt.{Main, ModbatTestHarness}
+import org.scalatest._
 
 /**
   * Tmp class for debugging
   */
-class RandoopManagerTest extends FunSuite {
+class RandoopManagerTest extends FlatSpec with Matchers {
 
-  test("testSimpleRandomModel") {
-
-    Main.main(Array("--classpath=build/modbat-test.jar", "modbat.genran.model.SimpleRandomModel"))
-
+  "SimpleRandomModel" should "pass" in {
+    val result = ModbatTestHarness.testMain(Array("-s=7", "-n=100", "--no-redirect-out", "--classpath=build/modbat-test.jar", "-s",  "modbat.genran.model.SimpleRandomModel"), ModbatTestHarness.setTestJar)
+    result._1 should be(0)
+    result._2.filter(_.contains("[INFO] [Random Testing]")) should not be empty
+    result._3.filter(_.contains("java.lang.Object obj2 = modbat.genran.ObjectHolder.pick")) should not be empty
   }
 
-  test("testSimpleModel") {
-
-    Main.main(Array("--classpath=build/modbat-test.jar", "modbat.containers.SimpleListModel", "-s=7", "-n=500", "--abort-probability=0.02"))
-
+  "RandomTCPProtocolModel" should "pass" in {
+    val result = ModbatTestHarness.testMain(Array("-s=7", "-n=100", "--no-redirect-out", "--classpath=build/modbat-test.jar", "-s",  "modbat.genran.RandomTCPProtocolModel"), ModbatTestHarness.setTestJar)
+    result._1 should be(0)
+    result._2.filter(_.contains("[INFO] [Random Testing]")) should not be empty
+    result._3.filter(_.contains("java.lang.Object obj2 = modbat.genran.ObjectHolder.pick")) should not be empty
   }
 
-  test("runArrayListModel") {
-
-    Main.main(Array("--classpath=build/modbat-test.jar", "modbat.containers.ArrayListModel", "--no-redirect-out", "-s=7", "-n=1000", "--abort-probability=0.02"))
-
+  "SimpleTCPProtocol" should "pass" in {
+    val result = ModbatTestHarness.testMain(Array("-s=7", "-n=100", "--no-redirect-out", "--classpath=build/modbat-test.jar", "-s",  "modbat.genran.SimpleTCPProtocol"), ModbatTestHarness.setTestJar)
+    result._1 should be(0)
+    result._2.filter(_.contains("assertion failed at active => connectionError")) should not be empty
+    result._3.filter(_.contains("modbat.genran.RandomTCPProtocolModel.assert")) should not be empty
   }
 
-  test("runLinkedListModel") {
-
-    Main.main(Array("--classpath=build/modbat-test.jar", "modbat.containers.LinkedListModel", "--no-redirect-out", "-s=7", "-n=1000", "--abort-probability=0.02"))
-
-  }
-
-  test("runSimpleListModel") {
-
-    Main.main(Array("--classpath=build/modbat-test.jar", "modbat.containers.SimpleListModel", "--no-redirect-out", "-s=7", "-n=1000", "--abort-probability=0.02"))
-
-  }
-
-  test("runRandomSimpleListModel") {
-
-    Main.main(Array("--classpath=build/modbat-test.jar", "modbat.genran.model.RandomSimpleListModel", "--no-redirect-out", "-s=7", "-n=30", "--abort-probability=0.02"))
-
-  }
-
-  test("runRandomSimpleListModelWrapper") {
-
-    Main.main(Array("--classpath=build/modbat-test.jar", "modbat.genran.model.RandomSimpleListModelWrapper", "--no-redirect-out", "-s=7", "-n=30", "--abort-probability=0.02"))
-
-  }
-
-  test("runSimpleTCPProtocol") {
-
-    Main.main(Array("--classpath=build/modbat-test.jar", "modbat.genran.SimpleTCPProtocol", "--no-redirect-out", "-s=7", "-n=1000", "--abort-probability=0.02"))
-
-  }
-
-  test("runRandomTCPProtocolModel") {
-
-    Main.main(Array("--classpath=build/modbat-test.jar", "modbat.genran.RandomTCPProtocolModel", "--no-redirect-out", "-s=7", "-n=1000", "--abort-probability=0.02"))
-
+  "Test123" should "display output" in {
+    
+//
+//    Main.main(Array("--classpath=build/modbat-test.jar", "modbat.genran.model.RandomSimpleListModel", "--no-redirect-out", "-s=7", "-n=30", "--abort-probability=0.02"))
+//
+//    Main.main(Array("--classpath=build/modbat-test.jar", "modbat.genran.model.RandomSimpleListModelWrapper", "--no-redirect-out", "-s=7", "-n=30", "--abort-probability=0.02"))
+//
+//    Main.main(Array("--classpath=build/modbat-test.jar", "modbat.genran.SimpleTCPProtocol", "--no-redirect-out", "-s=7", "-n=1000", "--abort-probability=0.02"))
+//
+//    Main.main(Array("--classpath=build/modbat-test.jar", "modbat.genran.RandomTCPProtocolModel", "--no-redirect-out", "-s=7", "-n=1000", "--abort-probability=0.02"))
   }
 }

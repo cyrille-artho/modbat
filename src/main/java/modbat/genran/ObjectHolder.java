@@ -19,9 +19,7 @@ public class ObjectHolder {
     }
 
     /**
-     * Functions responsible for adding a new object to memory
-     *
-     * @param newObject any object you want to store in memory
+     * Function responsible for adding new object to memory
      */
     public synchronized static void add(Object newObject, scala.collection.immutable.List<RecordedTransition> transisions) {
         if (newObject == null)
@@ -32,11 +30,7 @@ public class ObjectHolder {
     }
 
     /**
-     * Pick a random object from memory
-     *
-     * @param className name of the class of the object you want to return from memory
-     * @return a random object from a memory of a given type
-     * @throws ClassNotFoundException
+     * Pick object from memory with className and id key
      */
     public synchronized static Object pick(String className, int id) throws ClassNotFoundException {
 

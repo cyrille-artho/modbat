@@ -78,5 +78,4 @@ class RandomTCPProtocolModel extends Model {
   "synack"      -> "ack"            := ackBob
   "ack"         -> "active"         := activeBob
   "ack"         -> "active"         := activeAlice
- // "active"      -> "active"         := connectionError
 }

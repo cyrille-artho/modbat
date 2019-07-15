@@ -2,14 +2,14 @@ package modbat.genran
 
 import modbat.examples.ControlCounter
 import modbat.trace.RecordedTransition
-import org.scalatest.FunSuite
-import randoop.{DummyVisitor, NormalExecution}
+import org.scalatest.{FunSuite, Matchers}
 import randoop.sequence.{ExecutableSequence, Sequence}
 import randoop.test.DummyCheckGenerator
+import randoop.{DummyVisitor, NormalExecution}
 
 import scala.collection.immutable.List
 
-class ObjectHolderTest extends FunSuite {
+class ObjectHolderTest extends FunSuite with Matchers{
 
   test("givenControlCounter_whenCreateSequencesForObject_expectEqualObject") {
 

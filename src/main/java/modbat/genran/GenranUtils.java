@@ -85,6 +85,9 @@ public class GenranUtils {
     }
 
 
+    /**
+     * Finds in a given string the class name and id of object that was used in randoop sequence
+     */
     public static scala.collection.immutable.List<RecordedTransition> getRecordedTransitions(String text) throws ClassNotFoundException {
 
         Pattern pattern = Pattern.compile("modbat\\.genran\\.ObjectHolder\\.pick\\(\"(.*?)\", ([0-9]*)\\);");
@@ -99,8 +102,6 @@ public class GenranUtils {
 
     /**
      * Bridge to randoop functionality from randoop.main.GenTests.handle(String[] args)
-     * - blackbox
-     * - TODO needs refactor
      * @param args
      * @return
      * @throws Exception
