@@ -1,18 +1,13 @@
 package modbat.genran.model
 
-import modbat.containers.{Containers, ListModel}
-
-class RandomLinkedListModel extends ListModel {
+/**
+  * Code from https://bitbucket.org/quentin-gros/containers/src/master/
+  */
+class RandomLinkedListModel extends RandomListModel {
   override val testData = new java.util.LinkedList[Integer]() 
   // override val testData = new experiment.util.LinkedList[Integer]() //for the faulty version (TU library)
 
-  def chooseIdx(n: Int) = {
-    if (n == 0) {
-      n
-    } else {
-      choose (0, n)
-    }
-  }
+  def chooseIdx(n: Int) = if (n == 0) n else choose (0, n)
 
   def addFirst {
     require(n < Containers.limit)

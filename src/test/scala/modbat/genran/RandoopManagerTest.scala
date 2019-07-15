@@ -4,7 +4,8 @@ import modbat.mbt.{Main, ModbatTestHarness}
 import org.scalatest._
 
 /**
-  * Tmp class for debugging
+  * TMP class for debugging / testing
+  *
   */
 class RandoopManagerTest extends FlatSpec with Matchers {
 
@@ -30,7 +31,7 @@ class RandoopManagerTest extends FlatSpec with Matchers {
   }
 
   "Test123" should "display output" in {
-    
+
 //
 //    Main.main(Array("--classpath=build/modbat-test.jar", "modbat.genran.model.RandomSimpleListModel", "--no-redirect-out", "-s=7", "-n=30", "--abort-probability=0.02"))
 //

@@ -1,13 +1,14 @@
 package modbat.genran.model
 
-//import experiment.util.Iterator
-import java.util.Iterator
+import java.util
 
-import modbat.containers.ListModel
 import modbat.dsl._
 
-class RandomIteratorModel(val dataModel: ListModel,
-                          val it: Iterator[Integer]) extends Model {
+/**
+  * Code from https://bitbucket.org/quentin-gros/containers/src/master/
+  */
+class RandomIteratorModel(val dataModel: RandomListModel,
+                          val it: util.Iterator[Integer]) extends Model {
   /*
   class IteratorModel(val dataModel: ListModel,
       val it: Iterator)  extends Model { // for the faulty version (TU library)
@@ -20,11 +21,7 @@ class RandomIteratorModel(val dataModel: ListModel,
   // work around inconsistent behavior after remove(-1) on parent data
 
   @States(Array("main", "modifiable")) def hasNext {
-    if (valid) {
-      assert((dataModel.n - 1 > pos) == it.hasNext)
-    } else {
-      it.hasNext // crash testing
-    }
+    if (valid) assert((dataModel.n - 1 > pos) == it.hasNext) else it.hasNext // crash testing
   }
 
   def next {
@@ -64,7 +61,7 @@ class RandomIteratorModel(val dataModel: ListModel,
     version = dataModel.version
   }
 
-  def valid = (version == dataModel.version)
+  def valid = version == dataModel.version
 
   @States(Array("main", "modifiable"))
   @Throws(Array("ConcurrentModification"))

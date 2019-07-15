@@ -1,9 +1,11 @@
 package modbat.genran.model
 
-import modbat.containers.Containers
 import modbat.dsl._
 import modbat.genran.Wrapper.ArrayListWrapper
 
+/**
+  * Code from https://bitbucket.org/quentin-gros/containers/src/master/
+  */
 @RandomSearch(Array("--testclass=modbat.genran.Wrapper.ArrayListWrapper", "--stop-on-error-test=true", "--time-limit=50", "--generated-limit=500"))
 class RandomSimpleListModelWrapper extends Model {
 

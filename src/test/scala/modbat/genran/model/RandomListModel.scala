@@ -1,13 +1,15 @@
 package modbat.genran.model
 
-import java.util.{ArrayList, LinkedList, List}
+import java.util
 
-import modbat.containers.Containers
 import modbat.dsl._
 
+/**
+  * Code from https://bitbucket.org/quentin-gros/containers/src/master/
+  */
 abstract class RandomListModel extends Model {
   //val testData:experiment.util.List // for the faulty version (TU library)
-  val testData: List[Integer] //Tested data
+  val testData: util.List[Integer] //Tested data
   
   var version = 0
 
@@ -64,11 +66,9 @@ abstract class RandomListModel extends Model {
     val element = choose(0, 10)
     val ret = testData.contains(element)
     var ret2 = false
-    if (n > 0) {
-      for (i <- 0 to n-1) {
-       if (data(i)==element)
-         ret2 = true
-      }
+    if (n > 0) for (i <- 0 to n-1) {
+     if (data(i)==element)
+       ret2 = true
     }
     assert(ret == ret2)
   }
@@ -100,11 +100,9 @@ abstract class RandomListModel extends Model {
 
   def removeAt(index: Int) {
     var ret: Object = null
-    if (testData.isInstanceOf[LinkedList[Integer]]) {
-      ret = testData.asInstanceOf[LinkedList[Integer]].remove(index)
-    } else {
-      assert(testData.isInstanceOf[ArrayList[Integer]])
-      ret = testData.asInstanceOf[ArrayList[Integer]].remove(index)
+    if (testData.isInstanceOf[util.LinkedList[Integer]]) ret = testData.asInstanceOf[util.LinkedList[Integer]].remove(index) else {
+      assert(testData.isInstanceOf[util.ArrayList[Integer]])
+      ret = testData.asInstanceOf[util.ArrayList[Integer]].remove(index)
     }
     assert(ret == data(index), "Expected " + data(index) + " at index " + index + ", got " + ret)
     n -= 1
@@ -118,18 +116,16 @@ abstract class RandomListModel extends Model {
 
   def removeObj {
     var found = false
-    val obj: AnyRef = (choose (0, 10)).asInstanceOf[AnyRef]
-    if (n > 0) {      
-      for (i <- 0 to n-1) {
-        if (data(i)==obj&&found==false) {
-          n -= 1
-          for (index <- i to n-1) {
-            data(index) = data(index+1)
-          } 
-          data(n) = null
-          found = true
-          invalidateIt
+    val obj: AnyRef = choose (0, 10).asInstanceOf[AnyRef]
+    if (n > 0) for (i <- 0 to n-1) {
+      if (data(i)==obj&&found==false) {
+        n -= 1
+        for (index <- i to n-1) {
+          data(index) = data(index+1)
         }
+        data(n) = null
+        found = true
+        invalidateIt
       }
     }
     val foundlib = testData.remove(obj.asInstanceOf[Object]) 
@@ -170,7 +166,7 @@ abstract class RandomListModel extends Model {
   "main" -> "main" := clear
   "main" -> "main" := contains
   "main" -> "main" := set
-  "main" -> "main" := outOfBounds throws("IndexOutOfBoundsException")
+  "main" -> "main" := outOfBounds throws "IndexOutOfBoundsException"
   "main" -> "main" := iterator
   "main" -> "main" := listIterator
   "main" -> "main" := removeObj

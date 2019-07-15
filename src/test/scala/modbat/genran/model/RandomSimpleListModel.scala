@@ -2,9 +2,11 @@ package modbat.genran.model
 
 import java.util.ArrayList
 
-import modbat.containers.Containers
 import modbat.dsl._
 
+/**
+  * Code from https://bitbucket.org/quentin-gros/containers/src/master/
+  */
 @RandomSearch(Array("--testclass=java.util.ArrayList", "--stop-on-error-test=true", "--time-limit=50", "--generated-limit=500"))
 class RandomSimpleListModel extends Model {
 

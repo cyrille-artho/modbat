@@ -1,13 +1,16 @@
 package modbat.genran.model
 
 //import experiment.util.ListIterator
+import java.util
 import java.util.ListIterator
 
-import modbat.containers.{Containers, IteratorModel, ListModel}
 import modbat.dsl._
 
-class RandomListIteratorModel(val ldataModel: ListModel,
-                              val itl: ListIterator[Integer], val idx: Integer) extends IteratorModel(ldataModel, itl) {
+/**
+  * Code from https://bitbucket.org/quentin-gros/containers/src/master/
+  */
+class RandomListIteratorModel(val ldataModel: RandomListModel,
+                              val itl: util.ListIterator[Integer], val idx: Integer) extends RandomIteratorModel(ldataModel, itl) {
   /*
   class ListIteratorModel(val ldataModel: ListModel,
           val itl: ListIterator, val idx: Integer)  extends IteratorModel(ldataModel, itl) { //for the faulty version (TU library)
@@ -18,27 +21,15 @@ class RandomListIteratorModel(val ldataModel: ListModel,
   def this() = this(null, null, 0) // for visualizing the model
 
   @States(Array("main", "modifiable")) def hasPrevious {
-    if (valid) {
-      assert((pos >= 0) == itl.hasPrevious)
-    } else {
-      itl.hasPrevious // crash testing
-    }
+    if (valid) assert((pos >= 0) == itl.hasPrevious) else itl.hasPrevious // crash testing
   }
 
   @States(Array("main", "modifiable")) def nextIndex {
-    if (valid) {
-      assert(pos + 1 == itl.nextIndex)
-    } else {
-      itl.nextIndex // crash testing
-    }
+    if (valid) assert(pos + 1 == itl.nextIndex) else itl.nextIndex // crash testing
   }
 
   @States(Array("main", "modifiable")) def previousIndex {
-    if (valid) {
-      assert(pos == itl.previousIndex)
-    } else {
-      itl.previousIndex // crash testing
-    }
+    if (valid) assert(pos == itl.previousIndex) else itl.previousIndex // crash testing
   }
 
   @States(Array("main", "modifiable"))
@@ -86,10 +77,8 @@ class RandomListIteratorModel(val ldataModel: ListModel,
     require(dataModel.n < Containers.limit)
     val element = new Integer(choose(0, 10))
     itl.add(element)
-    if (pos != dataModel.n - 1) {
-      for (i <- dataModel.n - 1 to pos + 1 by -1) {
-        dataModel.data(i + 1) = dataModel.data(i)
-      }
+    if (pos != dataModel.n - 1) for (i <- dataModel.n - 1 to pos + 1 by -1) {
+      dataModel.data(i + 1) = dataModel.data(i)
     }
     dataModel.data(pos + 1) = element
     dataModel.n += 1
