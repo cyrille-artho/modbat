@@ -6,6 +6,7 @@ import modbat.RequirementFailedException
 import modbat.trace.{BoolChoice, FuncChoice, NumChoice}
 
 import scala.language.implicitConversions
+import sourcecode._
 
 object Model {
   // TODO: if not run in Modbat main thread, also handle assertion failure
@@ -69,7 +70,9 @@ abstract trait Model {
   // TODO: Currenty unused; remove?
   def maybeBool(pred: () => Boolean) = MBT.maybeBool(pred)
 
-  implicit def transfuncToAction(action: => Any): Action = {
+  implicit def transfuncToAction(action: => Any)
+    (implicit line: sourcecode.Line, file: sourcecode.File): Action = {
+    Console.err.println(s"+++ ${file.value}:${line.value} +++")
     new Action(() => action)
   }
 

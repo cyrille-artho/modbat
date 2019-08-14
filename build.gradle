@@ -48,6 +48,7 @@ allprojects {
 
 dependencies {
     compile 'org.ow2.asm:asm:4.0'
+    compile group: 'com.lihaoyi', name: 'sourcecode_2.11', version: '0.1.7'
     compile project(':config')
     compile project(':akka-mock-scheduler')
     testCompile 'org.hamcrest:hamcrest-core:1.3'
