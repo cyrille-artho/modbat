@@ -14,8 +14,8 @@ plugins {
 }
 
 dependencies {
-    compile 'com.typesafe.akka:akka-actor_2.11:2.5.19'
-    testCompile 'org.scalatest:scalatest_2.11:3.0.1'
+    compile 'com.typesafe.akka:akka-actor_2.12:2.5.19'
+    testCompile 'org.scalatest:scalatest_2.12:3.0.1'
     testCompile 'org.mockito:mockito-all:1.10.19'
     testRuntime 'org.pegdown:pegdown:1.4.2'
 }

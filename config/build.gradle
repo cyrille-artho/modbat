@@ -25,7 +25,7 @@ version = '1.0.2'
 mainClassName = 'modbat.config.ConfigMgr'
 
 dependencies {
-    testCompile 'org.scalatest:scalatest_2.11:3.0.1'
+    testCompile 'org.scalatest:scalatest_2.12:3.0.1'
     testRuntime 'org.pegdown:pegdown:1.4.2'
 }
 
