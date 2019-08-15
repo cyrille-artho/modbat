@@ -26,6 +26,8 @@ class Transition(var origin: State,
                  var dest: State,
                  val isSynthetic: Boolean,
                  val action: Action,
+                 val sourceFile: String,
+                 val sourceLine: Int,
                  remember: Boolean = true) {
 
   // NextStateNextIf records the result of the nextIf with the next state -Rui
@@ -49,7 +51,7 @@ class Transition(var origin: State,
       Transition.pendingTransitions += this
     }
     for (nonDetE <- action.nonDetExc) {
-      val t = new Transition(origin, nonDetE._2, true, action)
+      val t = new Transition(origin, nonDetE._2, true, action, "????", -3)
       nonDetExcConv += new NextStateOnException(nonDetE._1, t)
     }
 
@@ -58,7 +60,7 @@ class Transition(var origin: State,
     val len = action.nextStatePred.length
     for (nextSt <- action.nextStatePred) {
       val t =
-        new Transition(origin, nextSt._2, true, new Action(action.transfunc))
+        new Transition(origin, nextSt._2, true, new Action(action.transfunc), "????", -3)
       if (len > 1) {
         t.n = i
       }

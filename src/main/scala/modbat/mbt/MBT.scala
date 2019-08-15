@@ -555,7 +555,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
         if (exceptions != null) {
           action.throws(exceptions.value())
         }
-        val t = new Transition(st, st, false, action, false)
+        val t = new Transition(st, st, false, action, "?????", -2, false)
         regTrans(t, isChild, true)
       } else {
         if (!MBT.warningIssued((state, m))) {

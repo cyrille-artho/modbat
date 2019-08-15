@@ -70,9 +70,9 @@ abstract trait Model {
   // TODO: Currenty unused; remove?
   def maybeBool(pred: () => Boolean) = MBT.maybeBool(pred)
 
-  implicit def transfuncToAction(action: => Any)
-    (implicit line: sourcecode.Line, file: sourcecode.File): Action = {
-    Console.err.println(s"+++ ${file.value}:${line.value} +++")
+  implicit def transfuncToAction(action: => Any) = {
+//    (implicit line: sourcecode.Line, file: sourcecode.File): Action = {
+//    Console.err.println(s"+++ ${file.value}:${line.value} +++")
     new Action(() => action)
   }
 
