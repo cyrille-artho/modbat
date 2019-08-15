@@ -9,4 +9,4 @@
 [ERROR] 	at modbat.test.ExcTestA5$$anonfun$2.apply(ExcTestA5.scala)
 [WARNING] Error found, model trace:
 [WARNING] modbat/test/ExcTestA5.scala:7: new Exception
-[WARNING] modbat/test/ExcTestA5.scala:16: assert
+[WARNING] modbat/test/ExcTestA5.scala:14: assert

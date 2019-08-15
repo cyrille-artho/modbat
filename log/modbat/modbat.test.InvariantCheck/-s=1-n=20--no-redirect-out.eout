@@ -9,5 +9,5 @@
 [ERROR] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
 [ERROR] 	at java.lang.reflect.Method.invoke(Method.java)
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/InvariantCheck.scala:14: reset => somestate; choices = (0.6395907)
+[WARNING] modbat/test/InvariantCheck.scala:12: reset => somestate; choices = (0.6395907)
 [WARNING] modbat/test/InvariantCheck.scala:8: invariantCheck

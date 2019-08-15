@@ -39,6 +39,7 @@ import modbat.log.Log
 import modbat.trace._
 import modbat.util.CloneableRandom
 import modbat.util.Random
+import modbat.util.SourceInfo
 
 import com.miguno.akka.testing.VirtualTime
 
@@ -555,7 +556,8 @@ class MBT(val model: Model, val trans: List[Transition]) {
         if (exceptions != null) {
           action.throws(exceptions.value())
         }
-        val t = new Transition(st, st, false, action, false)
+        val lineNumber = SourceInfo.lineNumberFromMethod(m)
+        val t = new Transition(st, st, false, action, m.getDeclaringClass().getName(), lineNumber, false)
         regTrans(t, isChild, true)
       } else {
         if (!MBT.warningIssued((state, m))) {

@@ -891,32 +891,15 @@ object Modbat {
     Ok() // ignore case where no transition executes
   }
 
-  def sourceInfo(action: Action, recordedAction: StackTraceElement) = {
-    if (recordedAction != null) {
-      val fullClsName = recordedAction.getClassName
-      val idx = fullClsName.lastIndexOf('.')
-      if (idx == -1) {
-        recordedAction.getFileName + ":" + recordedAction.getLineNumber
-      } else {
-        fullClsName.substring(0, idx + 1).replace('.', File.separatorChar) +
-          recordedAction.getFileName + ":" + recordedAction.getLineNumber
-      }
-    } else {
-      assert(action.transfunc != null)
-      SourceInfo.sourceInfo(action, false)
-    }
-  }
-
   def ppTrans(nModels: Int,
               transName: String,
-              action: Action,
+              transition: Transition,
               recAction: StackTraceElement,
               modelName: String) = {
-    val sourceInfoStr = sourceInfo(action, recAction)
     if (nModels > 1) {
-      sourceInfoStr + ": " + modelName + ": " + transName
+      transition.sourceInfo + ": " + modelName + ": " + transName
     } else {
-      sourceInfoStr + ": " + transName
+      transition.sourceInfo + ": " + transName
     }
   }
 
@@ -924,7 +907,7 @@ object Modbat {
     val transStr =
       ppTrans(MBT.launchedModels.size,
               recTrans.trans.ppTrans(true),
-              recTrans.transition.action,
+              recTrans.transition,
               recTrans.recordedAction,
               recTrans.model.name)
     if (Main.config.showChoices && recTrans.randomTrace != null &&

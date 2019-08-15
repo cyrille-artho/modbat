@@ -9,4 +9,4 @@
 [ERROR] 	at modbat.test.NextIfTest5$$anonfun$4.apply(NextIfTest5.scala)
 [WARNING] Error found, model trace:
 [WARNING] modbat/test/NextIfTest5.scala:7: ok --> err1 (1)
-[WARNING] modbat/test/NextIfTest5.scala:11: assert
+[WARNING] modbat/test/NextIfTest5.scala:9: assert

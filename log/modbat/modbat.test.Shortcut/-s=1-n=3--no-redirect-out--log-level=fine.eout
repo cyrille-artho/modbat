@@ -8,9 +8,9 @@
 [ERROR] 	at modbat.test.Shortcut$$anonfun$5.apply(Shortcut.scala)
 [ERROR] 	at modbat.test.Shortcut$$anonfun$5.apply(Shortcut.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/Shortcut.scala:12: count = ...
-[WARNING] modbat/test/Shortcut.scala:21: count
-[WARNING] modbat/test/Shortcut.scala:24: assert
+[WARNING] modbat/test/Shortcut.scala:11: count = ...
+[WARNING] modbat/test/Shortcut.scala:20: count
+[WARNING] modbat/test/Shortcut.scala:23: assert
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -21,10 +21,10 @@
 [ERROR] 	at modbat.test.Shortcut$$anonfun$5.apply(Shortcut.scala)
 [ERROR] 	at modbat.test.Shortcut$$anonfun$5.apply(Shortcut.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/Shortcut.scala:12: count = ...
-[WARNING] modbat/test/Shortcut.scala:15: count
-[WARNING] modbat/test/Shortcut.scala:18: count
-[WARNING] modbat/test/Shortcut.scala:24: assert
+[WARNING] modbat/test/Shortcut.scala:11: count = ...
+[WARNING] modbat/test/Shortcut.scala:14: count
+[WARNING] modbat/test/Shortcut.scala:17: count
+[WARNING] modbat/test/Shortcut.scala:23: assert
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -35,7 +35,7 @@
 [ERROR] 	at modbat.test.Shortcut$$anonfun$5.apply(Shortcut.scala)
 [ERROR] 	at modbat.test.Shortcut$$anonfun$5.apply(Shortcut.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/Shortcut.scala:12: count = ...
-[WARNING] modbat/test/Shortcut.scala:15: count
-[WARNING] modbat/test/Shortcut.scala:18: count
-[WARNING] modbat/test/Shortcut.scala:24: assert
+[WARNING] modbat/test/Shortcut.scala:11: count = ...
+[WARNING] modbat/test/Shortcut.scala:14: count
+[WARNING] modbat/test/Shortcut.scala:17: count
+[WARNING] modbat/test/Shortcut.scala:23: assert

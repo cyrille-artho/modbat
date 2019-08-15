@@ -2,4 +2,4 @@
 [WARNING] java.lang.NullPointerException occurred, aborting.
 [ERROR] java.lang.NullPointerException
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/JoinNull.scala:7: join
+[WARNING] modbat/test/JoinNull.scala:6: join

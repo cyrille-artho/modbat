@@ -7,6 +7,12 @@ import java.lang.reflect.Method
 import java.net.URL
 import java.util.jar.JarFile
 
+import javassist.ClassClassPath
+import javassist.ClassPool
+import javassist.CtClass
+import javassist.CtMethod
+import javassist.NotFoundException
+
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.Opcodes
@@ -21,6 +27,38 @@ import modbat.dsl.Action
 import modbat.mbt.MBT
 
 object SourceInfo {
+  def sourceInfoFromFullName(fullName: String, lineNumber: Int) = {
+    val idx = fullName.lastIndexOf('.')
+    if (idx == -1) {
+      fullName + ".scala:" + lineNumber
+    } else {
+      fullName.substring(0, idx + 1).replace('.', File.separatorChar) +
+      fullName.substring(idx + 1) + ".scala:" + lineNumber
+    }
+  }
+
+  /* get javassist-specific class descriptor (CtClass) */
+  def getClassDesc(pool: ClassPool, cls: Class[_]) = {
+    try {
+      pool.get(cls.getCanonicalName())
+    } catch {
+      case nfe: NotFoundException => {
+        pool.insertClassPath(new ClassClassPath(cls))
+        pool.get(cls.getCanonicalName())
+      }
+    }
+  }
+
+  def lineNumberFromMethod(m: Method) = {
+    val pool = ClassPool.getDefault()
+    val declClass = m.getDeclaringClass()
+    val cc = getClassDesc(pool, declClass)
+    val paramTypes = m.getParameterTypes() map (c => getClassDesc(pool, c))
+    val javassistMethod = cc.getDeclaredMethod(m.getName(), paramTypes)
+    val lineNumber = javassistMethod.getMethodInfo().getLineNumber(0);
+    lineNumber
+  }
+
   val MAXLEN = 20
   val SKIP = "\0"
 

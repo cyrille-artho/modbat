@@ -1,5 +1,7 @@
 package modbat.dsl
 
+import java.io.File
+
 import scala.collection.mutable.ListBuffer
 import scala.util.matching.Regex
 import modbat.cov.TransitionCoverage
@@ -14,7 +16,6 @@ object Transition {
   def clear {
     pendingTransitions.clear
   }
-
 }
 
 /* Create a new transition. This usually happens as a side-effect
@@ -26,7 +27,11 @@ class Transition(var origin: State,
                  var dest: State,
                  val isSynthetic: Boolean,
                  val action: Action,
+                 fullName: String,
+                 sourceLine: Int,
                  remember: Boolean = true) {
+
+  val sourceInfo = SourceInfo.sourceInfoFromFullName(fullName, sourceLine)
 
   // NextStateNextIf records the result of the nextIf with the next state -Rui
   case class NextStateNextIf(val nextState: State, val nextIf: Boolean)
@@ -49,7 +54,7 @@ class Transition(var origin: State,
       Transition.pendingTransitions += this
     }
     for (nonDetE <- action.nonDetExc) {
-      val t = new Transition(origin, nonDetE._2, true, action)
+      val t = new Transition(origin, nonDetE._2, true, action, "????", -3)
       nonDetExcConv += new NextStateOnException(nonDetE._1, t)
     }
 
@@ -58,7 +63,7 @@ class Transition(var origin: State,
     val len = action.nextStatePred.length
     for (nextSt <- action.nextStatePred) {
       val t =
-        new Transition(origin, nextSt._2, true, new Action(action.transfunc))
+        new Transition(origin, nextSt._2, true, new Action(action.transfunc), "????", -3)
       if (len > 1) {
         t.n = i
       }

@@ -8,5 +8,5 @@
 [ERROR] 	at modbat.test.PrecondOffline$$anonfun$2.apply(PrecondOffline.scala)
 [ERROR] 	at modbat.test.PrecondOffline$$anonfun$2.apply(PrecondOffline.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/PrecondOffline.scala:8: require
-[WARNING] modbat/test/PrecondOffline.scala:11: assert
+[WARNING] modbat/test/PrecondOffline.scala:7: require
+[WARNING] modbat/test/PrecondOffline.scala:10: assert

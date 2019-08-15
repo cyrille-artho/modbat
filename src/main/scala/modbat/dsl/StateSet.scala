@@ -10,7 +10,7 @@ class StateSet(preStates: List[String], postState: String) {
     val a = new Action(() => action)
     for (origin <- preStates) {
       trans +=
-	new Transition(new State(origin), dest, false, a)
+	new Transition(new State(origin), dest, false, a, "???", -1)
     }
     trans.toList
   }
@@ -18,7 +18,7 @@ class StateSet(preStates: List[String], postState: String) {
   def := (action: Action): List[Transition] = {
     val trans = new ListBuffer[Transition]
     for (origin <- preStates) {
-      trans += new Transition(new State(origin), dest, false, action)
+      trans += new Transition(new State(origin), dest, false, action, "???", -1)
     }
     trans.toList
   }

@@ -8,11 +8,11 @@
 [ERROR] 	at modbat.examples.SimpleModel$$anonfun$6.apply(SimpleModel.scala)
 [ERROR] 	at modbat.examples.SimpleModel$$anonfun$6.apply(SimpleModel.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/SimpleModel.scala:10: new SimpleCounter
-[WARNING] modbat/examples/SimpleModel.scala:13: toggleSwitch
-[WARNING] modbat/examples/SimpleModel.scala:16: inc
-[WARNING] modbat/examples/SimpleModel.scala:19: inc
-[WARNING] modbat/examples/SimpleModel.scala:25: assert
+[WARNING] modbat/examples/SimpleModel.scala:9: new SimpleCounter
+[WARNING] modbat/examples/SimpleModel.scala:12: toggleSwitch
+[WARNING] modbat/examples/SimpleModel.scala:15: inc
+[WARNING] modbat/examples/SimpleModel.scala:18: inc
+[WARNING] modbat/examples/SimpleModel.scala:24: assert
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -23,11 +23,11 @@
 [ERROR] 	at modbat.examples.SimpleModel$$anonfun$6.apply(SimpleModel.scala)
 [ERROR] 	at modbat.examples.SimpleModel$$anonfun$6.apply(SimpleModel.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/SimpleModel.scala:10: new SimpleCounter
-[WARNING] modbat/examples/SimpleModel.scala:13: toggleSwitch
-[WARNING] modbat/examples/SimpleModel.scala:16: inc
-[WARNING] modbat/examples/SimpleModel.scala:19: inc
-[WARNING] modbat/examples/SimpleModel.scala:25: assert
+[WARNING] modbat/examples/SimpleModel.scala:9: new SimpleCounter
+[WARNING] modbat/examples/SimpleModel.scala:12: toggleSwitch
+[WARNING] modbat/examples/SimpleModel.scala:15: inc
+[WARNING] modbat/examples/SimpleModel.scala:18: inc
+[WARNING] modbat/examples/SimpleModel.scala:24: assert
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -38,11 +38,11 @@
 [ERROR] 	at modbat.examples.SimpleModel$$anonfun$6.apply(SimpleModel.scala)
 [ERROR] 	at modbat.examples.SimpleModel$$anonfun$6.apply(SimpleModel.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/SimpleModel.scala:10: new SimpleCounter
-[WARNING] modbat/examples/SimpleModel.scala:13: toggleSwitch
-[WARNING] modbat/examples/SimpleModel.scala:16: inc
-[WARNING] modbat/examples/SimpleModel.scala:19: inc
-[WARNING] modbat/examples/SimpleModel.scala:25: assert
+[WARNING] modbat/examples/SimpleModel.scala:9: new SimpleCounter
+[WARNING] modbat/examples/SimpleModel.scala:12: toggleSwitch
+[WARNING] modbat/examples/SimpleModel.scala:15: inc
+[WARNING] modbat/examples/SimpleModel.scala:18: inc
+[WARNING] modbat/examples/SimpleModel.scala:24: assert
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -53,8 +53,8 @@
 [ERROR] 	at modbat.examples.SimpleModel$$anonfun$6.apply(SimpleModel.scala)
 [ERROR] 	at modbat.examples.SimpleModel$$anonfun$6.apply(SimpleModel.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/SimpleModel.scala:10: new SimpleCounter
-[WARNING] modbat/examples/SimpleModel.scala:13: toggleSwitch
-[WARNING] modbat/examples/SimpleModel.scala:16: inc
-[WARNING] modbat/examples/SimpleModel.scala:19: inc
-[WARNING] modbat/examples/SimpleModel.scala:25: assert
+[WARNING] modbat/examples/SimpleModel.scala:9: new SimpleCounter
+[WARNING] modbat/examples/SimpleModel.scala:12: toggleSwitch
+[WARNING] modbat/examples/SimpleModel.scala:15: inc
+[WARNING] modbat/examples/SimpleModel.scala:18: inc
+[WARNING] modbat/examples/SimpleModel.scala:24: assert

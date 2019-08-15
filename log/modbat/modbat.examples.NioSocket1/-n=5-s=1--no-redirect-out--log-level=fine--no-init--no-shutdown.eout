@@ -9,5 +9,5 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$3.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$3.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:77: open
-[WARNING] modbat/examples/NioSocket1.scala:84: connect
+[WARNING] modbat/examples/NioSocket1.scala:76: open
+[WARNING] modbat/examples/NioSocket1.scala:82: connect

@@ -8,5 +8,5 @@
 [ERROR] 	at modbat.test.ExcTestA3$$anonfun$2.apply(ExcTestA3.scala)
 [ERROR] 	at modbat.test.ExcTestA3$$anonfun$2.apply(ExcTestA3.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/ExcTestA3.scala:8: nonDetCall
-[WARNING] modbat/test/ExcTestA3.scala:11: assert
+[WARNING] modbat/test/ExcTestA3.scala:7: nonDetCall
+[WARNING] modbat/test/ExcTestA3.scala:10: assert

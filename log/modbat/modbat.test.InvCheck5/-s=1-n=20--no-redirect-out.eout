@@ -1,22 +1,22 @@
 [WARNING] Expected exception did not occur, aborting.
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/InvCheck5.scala:17: reset => somestate; choices = (0.47383475)
-[WARNING] modbat/test/InvCheck5.scala:20: somestate => state2; choices = (0.052770555)
+[WARNING] modbat/test/InvCheck5.scala:15: reset => somestate; choices = (0.47383475)
+[WARNING] modbat/test/InvCheck5.scala:19: somestate => state2; choices = (0.052770555)
 [WARNING] modbat/test/InvCheck5.scala:11: invariantCheck
 [WARNING] Expected exception did not occur, aborting.
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/InvCheck5.scala:17: reset => somestate; choices = (0.052770555)
+[WARNING] modbat/test/InvCheck5.scala:15: reset => somestate; choices = (0.052770555)
 [WARNING] modbat/test/InvCheck5.scala:11: invariantCheck
 [WARNING] Expected exception did not occur, aborting.
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/InvCheck5.scala:17: reset => somestate; choices = (0.35623378)
-[WARNING] modbat/test/InvCheck5.scala:20: somestate => state2; choices = (0.053496104)
+[WARNING] modbat/test/InvCheck5.scala:15: reset => somestate; choices = (0.35623378)
+[WARNING] modbat/test/InvCheck5.scala:19: somestate => state2; choices = (0.053496104)
 [WARNING] modbat/test/InvCheck5.scala:11: invariantCheck
 [WARNING] Expected exception did not occur, aborting.
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/InvCheck5.scala:17: reset => somestate; choices = (0.053496104)
+[WARNING] modbat/test/InvCheck5.scala:15: reset => somestate; choices = (0.053496104)
 [WARNING] modbat/test/InvCheck5.scala:11: invariantCheck
 [WARNING] Expected exception did not occur, aborting.
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/InvCheck5.scala:17: reset => somestate; choices = (0.24076776)
+[WARNING] modbat/test/InvCheck5.scala:15: reset => somestate; choices = (0.24076776)
 [WARNING] modbat/test/InvCheck5.scala:11: invariantCheck
