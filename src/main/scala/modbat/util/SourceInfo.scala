@@ -37,6 +37,7 @@ object SourceInfo {
     }
   }
 
+  /* get javassist-specific class descriptor (CtClass) */
   def getClassDesc(pool: ClassPool, cls: Class[_]) = {
     try {
       pool.get(cls.getCanonicalName())
@@ -52,7 +53,8 @@ object SourceInfo {
     val pool = ClassPool.getDefault()
     val declClass = m.getDeclaringClass()
     val cc = getClassDesc(pool, declClass)
-    val javassistMethod = cc.getDeclaredMethod(m.getName())
+    val paramTypes = m.getParameterTypes() map (c => getClassDesc(pool, c))
+    val javassistMethod = cc.getDeclaredMethod(m.getName(), paramTypes)
     val lineNumber = javassistMethod.getMethodInfo().getLineNumber(0);
     lineNumber
   }
