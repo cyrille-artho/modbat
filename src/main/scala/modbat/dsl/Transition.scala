@@ -1,5 +1,7 @@
 package modbat.dsl
 
+import java.io.File
+
 import scala.collection.mutable.ListBuffer
 import scala.util.matching.Regex
 import modbat.cov.TransitionCoverage
@@ -15,6 +17,15 @@ object Transition {
     pendingTransitions.clear
   }
 
+  def sourceInfoFromFullName(fullName: String, lineNumber: Int) = {
+    val idx = fullName.lastIndexOf('.')
+    if (idx == -1) {
+      fullName + ".scala:" + lineNumber
+    } else {
+      fullName.substring(0, idx + 1).replace('.', File.separatorChar) +
+      fullName.substring(idx + 1) + ".scala:" + lineNumber
+    }
+  }
 }
 
 /* Create a new transition. This usually happens as a side-effect
@@ -26,9 +37,11 @@ class Transition(var origin: State,
                  var dest: State,
                  val isSynthetic: Boolean,
                  val action: Action,
-                 val sourceFile: String,
-                 val sourceLine: Int,
+                 fullName: String,
+                 sourceLine: Int,
                  remember: Boolean = true) {
+
+  val sourceInfo = Transition.sourceInfoFromFullName(fullName, sourceLine)
 
   // NextStateNextIf records the result of the nextIf with the next state -Rui
   case class NextStateNextIf(val nextState: State, val nextIf: Boolean)
