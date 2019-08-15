@@ -7,6 +7,12 @@ import java.lang.reflect.Method
 import java.net.URL
 import java.util.jar.JarFile
 
+import javassist.ClassClassPath
+import javassist.ClassPool
+import javassist.CtClass
+import javassist.CtMethod
+import javassist.NotFoundException
+
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.Opcodes
@@ -29,6 +35,26 @@ object SourceInfo {
       fullName.substring(0, idx + 1).replace('.', File.separatorChar) +
       fullName.substring(idx + 1) + ".scala:" + lineNumber
     }
+  }
+
+  def getClassDesc(pool: ClassPool, cls: Class[_]) = {
+    try {
+      pool.get(cls.getCanonicalName())
+    } catch {
+      case nfe: NotFoundException => {
+        pool.insertClassPath(new ClassClassPath(cls))
+        pool.get(cls.getCanonicalName())
+      }
+    }
+  }
+
+  def lineNumberFromMethod(m: Method) = {
+    val pool = ClassPool.getDefault()
+    val declClass = m.getDeclaringClass()
+    val cc = getClassDesc(pool, declClass)
+    val javassistMethod = cc.getDeclaredMethod(m.getName())
+    val lineNumber = javassistMethod.getMethodInfo().getLineNumber(0);
+    lineNumber
   }
 
   val MAXLEN = 20
