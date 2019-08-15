@@ -10,6 +10,12 @@ import java.lang.reflect.Modifier
 import java.net.URL
 import java.net.URLClassLoader
 
+import javassist.ClassClassPath
+import javassist.ClassPool
+import javassist.CtClass
+import javassist.CtMethod
+import javassist.NotFoundException
+
 import scala.collection.Iterator
 import scala.collection.JavaConversions._
 import scala.collection.mutable.HashMap
@@ -532,6 +538,26 @@ class MBT(val model: Model, val trans: List[Transition]) {
     }
   }
 
+  def getClassDesc(pool: ClassPool, cls: Class[_]) = {
+    try {
+      pool.get(cls.getCanonicalName())
+    } catch {
+      case nfe: NotFoundException => {
+        pool.insertClassPath(new ClassClassPath(cls))
+        pool.get(cls.getCanonicalName())
+      }
+    }
+  }
+
+  def getLineNumber(m: Method) = {
+    val pool = ClassPool.getDefault()
+    val declClass = m.getDeclaringClass()
+    val cc = getClassDesc(pool, declClass)
+    val javassistMethod = cc.getDeclaredMethod(m.getName())
+    val lineNumber = javassistMethod.getMethodInfo().getLineNumber(0);
+    lineNumber
+  }
+
   def registerTransForStates(model: Model,
                              m: Method,
                              annotation: States,
@@ -555,7 +581,8 @@ class MBT(val model: Model, val trans: List[Transition]) {
         if (exceptions != null) {
           action.throws(exceptions.value())
         }
-        val t = new Transition(st, st, false, action, "?????", -2, false)
+        val lineNumber = getLineNumber(m)
+        val t = new Transition(st, st, false, action, "?????", lineNumber, false)
         regTrans(t, isChild, true)
       } else {
         if (!MBT.warningIssued((state, m))) {

@@ -21,6 +21,16 @@ import modbat.dsl.Action
 import modbat.mbt.MBT
 
 object SourceInfo {
+  def sourceInfoFromFullName(fullName: String, lineNumber: Int) = {
+    val idx = fullName.lastIndexOf('.')
+    if (idx == -1) {
+      fullName + ".scala:" + lineNumber
+    } else {
+      fullName.substring(0, idx + 1).replace('.', File.separatorChar) +
+      fullName.substring(idx + 1) + ".scala:" + lineNumber
+    }
+  }
+
   val MAXLEN = 20
   val SKIP = "\0"
 
