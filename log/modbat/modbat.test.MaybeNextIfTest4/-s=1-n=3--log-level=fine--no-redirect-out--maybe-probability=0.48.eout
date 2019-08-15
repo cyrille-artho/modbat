@@ -8,8 +8,8 @@
 [ERROR] 	at modbat.test.MaybeNextIfTest4$$anonfun$4.apply(MaybeNextIfTest4.scala)
 [ERROR] 	at modbat.test.MaybeNextIfTest4$$anonfun$4.apply(MaybeNextIfTest4.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/MaybeNextIfTest4.scala:8: println; choices = (0.23796444)
-[WARNING] modbat/test/MaybeNextIfTest4.scala:16: assert
+[WARNING] modbat/test/MaybeNextIfTest4.scala:7: println; choices = (0.23796444)
+[WARNING] modbat/test/MaybeNextIfTest4.scala:14: assert
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -20,8 +20,8 @@
 [ERROR] 	at modbat.test.MaybeNextIfTest4$$anonfun$3.apply(MaybeNextIfTest4.scala)
 [ERROR] 	at modbat.test.MaybeNextIfTest4$$anonfun$3.apply(MaybeNextIfTest4.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/MaybeNextIfTest4.scala:8: println; choices = (0.89374465)
-[WARNING] modbat/test/MaybeNextIfTest4.scala:12: assert
+[WARNING] modbat/test/MaybeNextIfTest4.scala:7: println; choices = (0.89374465)
+[WARNING] modbat/test/MaybeNextIfTest4.scala:10: assert
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -32,5 +32,5 @@
 [ERROR] 	at modbat.test.MaybeNextIfTest4$$anonfun$4.apply(MaybeNextIfTest4.scala)
 [ERROR] 	at modbat.test.MaybeNextIfTest4$$anonfun$4.apply(MaybeNextIfTest4.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/MaybeNextIfTest4.scala:8: println; choices = (0.4793791)
-[WARNING] modbat/test/MaybeNextIfTest4.scala:16: assert
+[WARNING] modbat/test/MaybeNextIfTest4.scala:7: println; choices = (0.4793791)
+[WARNING] modbat/test/MaybeNextIfTest4.scala:14: assert

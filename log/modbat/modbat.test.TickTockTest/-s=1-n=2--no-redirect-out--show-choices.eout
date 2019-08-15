@@ -8,7 +8,7 @@
 [ERROR] 	at modbat.test.TickTockTest$$anonfun$2.apply(TickTockTest.scala)
 [ERROR] 	at modbat.test.TickTockTest$$anonfun$2.apply(TickTockTest.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/TickTockTest.scala:9: modbat.test.TickTockTest-1: launch
+[WARNING] modbat/test/TickTockTest.scala:8: modbat.test.TickTockTest-1: launch
 [WARNING] modbat/test/TickTockTest.scala:11: modbat.test.TickTockTest-1: i; choices = (4)
 [WARNING] modbat/test/TickTockObserver.scala:8: modbat.test.TickTockObserver-1: i
 [WARNING] modbat/test/TickTockObserver.scala:13: modbat.test.TickTockObserver-1: i
@@ -24,4 +24,4 @@
 [WARNING] modbat/test/TickTockTest.scala:11: modbat.test.TickTockTest-1: i; choices = (3)
 [WARNING] modbat/test/TickTockObserver.scala:8: modbat.test.TickTockObserver-1: i
 [WARNING] modbat/test/TickTockObserver.scala:13: modbat.test.TickTockObserver-1: i
-[WARNING] modbat/test/TickTockTest.scala:17: modbat.test.TickTockTest-1: assert
+[WARNING] modbat/test/TickTockTest.scala:16: modbat.test.TickTockTest-1: assert

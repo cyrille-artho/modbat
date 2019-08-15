@@ -8,9 +8,9 @@
 [ERROR] 	at modbat.test.Choices$$anonfun$1.apply(Choices.scala)
 [ERROR] 	at modbat.test.Choices$$anonfun$1.apply(Choices.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/Choices.scala:10: ok => ok; choices = (n = ...: line 12)
-[WARNING] modbat/test/Choices.scala:10: ok => ok; choices = (n = ...: line 12)
-[WARNING] modbat/test/Choices.scala:10: ok => ok; choices = (n = ...: line 12)
-[WARNING] modbat/test/Choices.scala:10: ok => ok; choices = (n = ...: line 11)
-[WARNING] modbat/test/Choices.scala:10: ok => ok; choices = (n = ...: line 12)
-[WARNING] modbat/test/Choices.scala:17: assert
+[WARNING] modbat/test/Choices.scala:9: ok => ok; choices = (n = ...: line 12)
+[WARNING] modbat/test/Choices.scala:9: ok => ok; choices = (n = ...: line 12)
+[WARNING] modbat/test/Choices.scala:9: ok => ok; choices = (n = ...: line 12)
+[WARNING] modbat/test/Choices.scala:9: ok => ok; choices = (n = ...: line 11)
+[WARNING] modbat/test/Choices.scala:9: ok => ok; choices = (n = ...: line 12)
+[WARNING] modbat/test/Choices.scala:16: assert

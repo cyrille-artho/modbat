@@ -1,10 +1,10 @@
-[WARNING] All preconditions false at transition modbat/test/PrecondFalse.scala:7 require
+[WARNING] All preconditions false at transition modbat/test/PrecondFalse.scala:6 require
 [WARNING] Maybe the preconditions are too strict?
-[WARNING] All preconditions false at transition modbat/test/PrecondFalse.scala:7 require
+[WARNING] All preconditions false at transition modbat/test/PrecondFalse.scala:6 require
 [WARNING] Maybe the preconditions are too strict?
-[WARNING] All preconditions false at transition modbat/test/PrecondFalse.scala:7 require
+[WARNING] All preconditions false at transition modbat/test/PrecondFalse.scala:6 require
 [WARNING] Maybe the preconditions are too strict?
-[WARNING] All preconditions false at transition modbat/test/PrecondFalse.scala:7 require
+[WARNING] All preconditions false at transition modbat/test/PrecondFalse.scala:6 require
 [WARNING] Maybe the preconditions are too strict?
-[WARNING] All preconditions false at transition modbat/test/PrecondFalse.scala:7 require
+[WARNING] All preconditions false at transition modbat/test/PrecondFalse.scala:6 require
 [WARNING] Maybe the preconditions are too strict?

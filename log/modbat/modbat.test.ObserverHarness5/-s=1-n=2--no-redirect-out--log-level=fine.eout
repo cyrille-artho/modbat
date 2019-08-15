@@ -8,13 +8,13 @@
 [ERROR] 	at modbat.test.TestObserver5$$anonfun$3.apply(TestObserver5.scala)
 [ERROR] 	at modbat.test.TestObserver5$$anonfun$3.apply(TestObserver5.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/ObserverHarness5.scala:8: modbat.test.ObserverHarness5-1: launch
-[WARNING] modbat/test/ObserverHarness5.scala:11: modbat.test.ObserverHarness5-1: i
+[WARNING] modbat/test/ObserverHarness5.scala:7: modbat.test.ObserverHarness5-1: launch
+[WARNING] modbat/test/ObserverHarness5.scala:10: modbat.test.ObserverHarness5-1: i
 [WARNING] modbat/test/TestObserver5.scala:9: modbat.test.TestObserver5-1: println
-[WARNING] modbat/test/ObserverHarness5.scala:11: modbat.test.ObserverHarness5-1: i
+[WARNING] modbat/test/ObserverHarness5.scala:10: modbat.test.ObserverHarness5-1: i
 [WARNING] modbat/test/TestObserver5.scala:14: modbat.test.TestObserver5-1: println
-[WARNING] modbat/test/TestObserver5.scala:19: modbat.test.TestObserver5-1: assert
-[WARNING] modbat/test/ObserverHarness5.scala:11: modbat.test.ObserverHarness5-1: i
-[WARNING] modbat/test/TestObserver5.scala:19: modbat.test.TestObserver5-1: assert
-[WARNING] modbat/test/ObserverHarness5.scala:11: modbat.test.ObserverHarness5-1: i
-[WARNING] modbat/test/TestObserver5.scala:19: modbat.test.TestObserver5-1: assert
+[WARNING] modbat/test/TestObserver5.scala:18: modbat.test.TestObserver5-1: assert
+[WARNING] modbat/test/ObserverHarness5.scala:10: modbat.test.ObserverHarness5-1: i
+[WARNING] modbat/test/TestObserver5.scala:18: modbat.test.TestObserver5-1: assert
+[WARNING] modbat/test/ObserverHarness5.scala:10: modbat.test.ObserverHarness5-1: i
+[WARNING] modbat/test/TestObserver5.scala:18: modbat.test.TestObserver5-1: assert

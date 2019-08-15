@@ -9,7 +9,7 @@
 [ERROR] 	at modbat.test.Redundancy$$anonfun$5.apply(Redundancy.scala)
 [WARNING] Error found, model trace:
 [WARNING] modbat/test/Redundancy.scala:10: switch = ...
-[WARNING] modbat/test/Redundancy.scala:24: assert
+[WARNING] modbat/test/Redundancy.scala:23: assert
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -22,13 +22,13 @@
 [WARNING] Error found, model trace:
 [WARNING] modbat/test/Redundancy.scala:10: switch = ...
 [WARNING] modbat/test/Redundancy.scala:17: skip
-[WARNING] modbat/test/Redundancy.scala:15: switch
+[WARNING] modbat/test/Redundancy.scala:14: switch
 [WARNING] modbat/test/Redundancy.scala:17: skip
 [WARNING] modbat/test/Redundancy.scala:17: skip
 [WARNING] modbat/test/Redundancy.scala:17: skip
 [WARNING] modbat/test/Redundancy.scala:17: skip
-[WARNING] modbat/test/Redundancy.scala:15: switch
-[WARNING] modbat/test/Redundancy.scala:24: assert
+[WARNING] modbat/test/Redundancy.scala:14: switch
+[WARNING] modbat/test/Redundancy.scala:23: assert
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -40,30 +40,13 @@
 [ERROR] 	at modbat.test.Redundancy$$anonfun$5.apply(Redundancy.scala)
 [WARNING] Error found, model trace:
 [WARNING] modbat/test/Redundancy.scala:10: switch = ...
-[WARNING] modbat/test/Redundancy.scala:15: switch
+[WARNING] modbat/test/Redundancy.scala:14: switch
 [WARNING] modbat/test/Redundancy.scala:17: skip
 [WARNING] modbat/test/Redundancy.scala:17: skip
 [WARNING] modbat/test/Redundancy.scala:17: skip
 [WARNING] modbat/test/Redundancy.scala:17: skip
-[WARNING] modbat/test/Redundancy.scala:15: switch
-[WARNING] modbat/test/Redundancy.scala:24: assert
-[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
-[ERROR] java.lang.AssertionError: assertion failed
-[ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
-[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
-[ERROR] 	at modbat.test.Redundancy.assert(Redundancy.scala)
-[ERROR] 	at modbat.test.Redundancy$$anonfun$5.apply$mcV$sp(Redundancy.scala)
-[ERROR] 	at modbat.test.Redundancy$$anonfun$5.apply(Redundancy.scala)
-[ERROR] 	at modbat.test.Redundancy$$anonfun$5.apply(Redundancy.scala)
-[WARNING] Error found, model trace:
-[WARNING] modbat/test/Redundancy.scala:10: switch = ...
-[WARNING] modbat/test/Redundancy.scala:17: skip
-[WARNING] modbat/test/Redundancy.scala:17: skip
-[WARNING] modbat/test/Redundancy.scala:17: skip
-[WARNING] modbat/test/Redundancy.scala:17: skip
-[WARNING] modbat/test/Redundancy.scala:15: switch
-[WARNING] modbat/test/Redundancy.scala:24: assert
+[WARNING] modbat/test/Redundancy.scala:14: switch
+[WARNING] modbat/test/Redundancy.scala:23: assert
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -78,5 +61,22 @@
 [WARNING] modbat/test/Redundancy.scala:17: skip
 [WARNING] modbat/test/Redundancy.scala:17: skip
 [WARNING] modbat/test/Redundancy.scala:17: skip
-[WARNING] modbat/test/Redundancy.scala:15: switch
-[WARNING] modbat/test/Redundancy.scala:24: assert
+[WARNING] modbat/test/Redundancy.scala:17: skip
+[WARNING] modbat/test/Redundancy.scala:14: switch
+[WARNING] modbat/test/Redundancy.scala:23: assert
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.Redundancy.assert(Redundancy.scala)
+[ERROR] 	at modbat.test.Redundancy$$anonfun$5.apply$mcV$sp(Redundancy.scala)
+[ERROR] 	at modbat.test.Redundancy$$anonfun$5.apply(Redundancy.scala)
+[ERROR] 	at modbat.test.Redundancy$$anonfun$5.apply(Redundancy.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/Redundancy.scala:10: switch = ...
+[WARNING] modbat/test/Redundancy.scala:17: skip
+[WARNING] modbat/test/Redundancy.scala:17: skip
+[WARNING] modbat/test/Redundancy.scala:17: skip
+[WARNING] modbat/test/Redundancy.scala:14: switch
+[WARNING] modbat/test/Redundancy.scala:23: assert

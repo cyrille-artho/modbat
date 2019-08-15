@@ -8,10 +8,10 @@
 [ERROR] 	at modbat.test.LoopTestWithLaunch$$anonfun$1.apply(LoopTestWithLaunch.scala)
 [ERROR] 	at modbat.test.LoopTestWithLaunch$$anonfun$1.apply(LoopTestWithLaunch.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/LoopTestWithLaunch.scala:16: modbat.test.LoopTestWithLaunch-1: launch
-[WARNING] modbat/test/LoopTestWithLaunch.scala:16: modbat.test.LoopTestWithLaunch-2: launch
+[WARNING] modbat/test/LoopTestWithLaunch.scala:15: modbat.test.LoopTestWithLaunch-1: launch
+[WARNING] modbat/test/LoopTestWithLaunch.scala:15: modbat.test.LoopTestWithLaunch-2: launch
 [WARNING] modbat/test/LoopTestWithLaunch.scala:10: modbat.test.LoopTestWithLaunch-2: assert
-[WARNING] modbat/test/LoopTestWithLaunch.scala:16: modbat.test.LoopTestWithLaunch-1: launch
+[WARNING] modbat/test/LoopTestWithLaunch.scala:15: modbat.test.LoopTestWithLaunch-1: launch
 [WARNING] modbat/test/LoopTestWithLaunch.scala:10: modbat.test.LoopTestWithLaunch-3: assert
 [WARNING] modbat/test/LoopTestWithLaunch.scala:10: modbat.test.LoopTestWithLaunch-3: assert
-[WARNING] modbat/test/LoopTestWithLaunch.scala:13: modbat.test.LoopTestWithLaunch-3: assert
+[WARNING] modbat/test/LoopTestWithLaunch.scala:10: modbat.test.LoopTestWithLaunch-3: assert

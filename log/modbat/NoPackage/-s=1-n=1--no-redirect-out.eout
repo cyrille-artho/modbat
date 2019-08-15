@@ -8,4 +8,4 @@
 [ERROR] 	at NoPackage$$anonfun$1.apply(NoPackage.scala)
 [ERROR] 	at NoPackage$$anonfun$1.apply(NoPackage.scala)
 [WARNING] Error found, model trace:
-[WARNING] NoPackage.scala:6: assert
+[WARNING] NoPackage.scala:5: assert

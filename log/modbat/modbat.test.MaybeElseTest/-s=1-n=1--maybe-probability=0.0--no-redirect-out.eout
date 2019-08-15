@@ -12,4 +12,4 @@
 [ERROR] 	at modbat.test.MaybeElseTest$$anonfun$2.apply(MaybeElseTest.scala)
 [ERROR] 	at modbat.test.MaybeElseTest$$anonfun$2.apply(MaybeElseTest.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/MaybeElseTest.scala:13: println; choices = (0.23796444)
+[WARNING] modbat/test/MaybeElseTest.scala:8: println; choices = (0.23796444)

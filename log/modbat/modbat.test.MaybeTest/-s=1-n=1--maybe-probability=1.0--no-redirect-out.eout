@@ -8,4 +8,4 @@
 [ERROR] 	at modbat.test.MaybeTest$$anonfun$2$$anonfun$apply$1.apply(MaybeTest.scala)
 [ERROR] 	at modbat.test.MaybeTest$$anonfun$2$$anonfun$apply$1.apply(MaybeTest.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/MaybeTest.scala:10: assert; choices = (0.23796444)
+[WARNING] modbat/test/MaybeTest.scala:8: assert; choices = (0.23796444)

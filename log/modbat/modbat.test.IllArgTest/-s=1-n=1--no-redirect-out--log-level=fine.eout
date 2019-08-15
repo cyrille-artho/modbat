@@ -5,4 +5,4 @@
 [ERROR] 	at modbat.test.IllArgTest$$anonfun$1.apply(IllArgTest.scala)
 [ERROR] 	at modbat.test.IllArgTest$$anonfun$1.apply(IllArgTest.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/IllArgTest.scala:13: illArg
+[WARNING] modbat/test/IllArgTest.scala:11: illArg

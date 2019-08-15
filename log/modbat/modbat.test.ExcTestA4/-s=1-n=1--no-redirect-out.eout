@@ -9,4 +9,4 @@
 [ERROR] 	at modbat.test.ExcTestA4$$anonfun$2.apply(ExcTestA4.scala)
 [WARNING] Error found, model trace:
 [WARNING] modbat/test/ExcTestA4.scala:7: new IOException
-[WARNING] modbat/test/ExcTestA4.scala:12: assert
+[WARNING] modbat/test/ExcTestA4.scala:11: assert

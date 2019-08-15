@@ -8,11 +8,11 @@
 [ERROR] 	at modbat.examples.CounterModel$$anonfun$6.apply(CounterModel.scala)
 [ERROR] 	at modbat.examples.CounterModel$$anonfun$6.apply(CounterModel.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/CounterModel.scala:10: new Counter
-[WARNING] modbat/examples/CounterModel.scala:13: toggleSwitch
-[WARNING] modbat/examples/CounterModel.scala:16: inc
-[WARNING] modbat/examples/CounterModel.scala:19: inc
-[WARNING] modbat/examples/CounterModel.scala:25: assert
+[WARNING] modbat/examples/CounterModel.scala:9: new Counter
+[WARNING] modbat/examples/CounterModel.scala:12: toggleSwitch
+[WARNING] modbat/examples/CounterModel.scala:15: inc
+[WARNING] modbat/examples/CounterModel.scala:18: inc
+[WARNING] modbat/examples/CounterModel.scala:24: assert
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -23,11 +23,11 @@
 [ERROR] 	at modbat.examples.CounterModel$$anonfun$6.apply(CounterModel.scala)
 [ERROR] 	at modbat.examples.CounterModel$$anonfun$6.apply(CounterModel.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/CounterModel.scala:10: new Counter
-[WARNING] modbat/examples/CounterModel.scala:13: toggleSwitch
-[WARNING] modbat/examples/CounterModel.scala:16: inc
-[WARNING] modbat/examples/CounterModel.scala:19: inc
-[WARNING] modbat/examples/CounterModel.scala:25: assert
+[WARNING] modbat/examples/CounterModel.scala:9: new Counter
+[WARNING] modbat/examples/CounterModel.scala:12: toggleSwitch
+[WARNING] modbat/examples/CounterModel.scala:15: inc
+[WARNING] modbat/examples/CounterModel.scala:18: inc
+[WARNING] modbat/examples/CounterModel.scala:24: assert
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -38,11 +38,11 @@
 [ERROR] 	at modbat.examples.CounterModel$$anonfun$6.apply(CounterModel.scala)
 [ERROR] 	at modbat.examples.CounterModel$$anonfun$6.apply(CounterModel.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/CounterModel.scala:10: new Counter
-[WARNING] modbat/examples/CounterModel.scala:13: toggleSwitch
-[WARNING] modbat/examples/CounterModel.scala:16: inc
-[WARNING] modbat/examples/CounterModel.scala:19: inc
-[WARNING] modbat/examples/CounterModel.scala:25: assert
+[WARNING] modbat/examples/CounterModel.scala:9: new Counter
+[WARNING] modbat/examples/CounterModel.scala:12: toggleSwitch
+[WARNING] modbat/examples/CounterModel.scala:15: inc
+[WARNING] modbat/examples/CounterModel.scala:18: inc
+[WARNING] modbat/examples/CounterModel.scala:24: assert
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -53,8 +53,8 @@
 [ERROR] 	at modbat.examples.CounterModel$$anonfun$6.apply(CounterModel.scala)
 [ERROR] 	at modbat.examples.CounterModel$$anonfun$6.apply(CounterModel.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/CounterModel.scala:10: new Counter
-[WARNING] modbat/examples/CounterModel.scala:13: toggleSwitch
-[WARNING] modbat/examples/CounterModel.scala:16: inc
-[WARNING] modbat/examples/CounterModel.scala:19: inc
-[WARNING] modbat/examples/CounterModel.scala:25: assert
+[WARNING] modbat/examples/CounterModel.scala:9: new Counter
+[WARNING] modbat/examples/CounterModel.scala:12: toggleSwitch
+[WARNING] modbat/examples/CounterModel.scala:15: inc
+[WARNING] modbat/examples/CounterModel.scala:18: inc
+[WARNING] modbat/examples/CounterModel.scala:24: assert
