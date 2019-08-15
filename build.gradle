@@ -65,9 +65,9 @@ jar {
                    'Specification-Version': gitDetails.lastTag,
                    'Implementation-Title': 'Modbat'
     }
-    from "LICENSE", "README", "CHANGELOG", "asm-LICENSE"
+    from "LICENSE", "README", "CHANGELOG", "asm-LICENSE", "sourcecode-LICENSE"
     from configurations.runtimeClasspath.
-                                         findAll { it.name.endsWith('jar') && (it.name.contains('asm') || it.name.contains('config') || it.name.contains('akka')) }.
+                                         findAll { it.name.endsWith('jar') && ((it.name.contains('asm') || it.name.contains('sourcecode') || it.name.contains('config') || it.name.contains('akka'))) }.
                                          collect { zipTree(it) }
 }
 
