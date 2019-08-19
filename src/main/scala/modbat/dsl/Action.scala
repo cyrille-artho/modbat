@@ -11,7 +11,8 @@ class Action(val transfunc: () => Any, val method: Method = null) {
   val expectedExc = ListBuffer[Regex]()
   val nonDetExc = ListBuffer[(Regex, State, (String, Int))]()
   // nonDetExc: (exc. name, target state, (fullName, line))
-  val nextStatePred = ListBuffer[(() => Boolean, State, Boolean)]()
+  val nextStatePred = ListBuffer[(() => Boolean, State, Boolean, (String, Int))]()
+  // nextStatePred: (pred. fn, target state, maybe, (fullName, line))
   var label: String = ""
   var weight = 1.0
   var immediate = false // if true, do not switch between model
@@ -46,16 +47,20 @@ class Action(val transfunc: () => Any, val method: Method = null) {
     this
   }
 
-  def maybeNextIf(conditions: (() => Boolean, String)*): Action = {
+  def maybeNextIf(conditions: (() => Boolean, String)*)
+    (implicit line: sourcecode.Line, fullName: sourcecode.FullName): Action = {
     for (cond <- conditions) {
-      nextStatePred += ((cond._1, new State(cond._2), true))
+      nextStatePred += ((cond._1, new State(cond._2), true,
+                         ((fullName.value, line.value))))
     }
     this
   }
 
-  def nextIf(conditions: (() => Boolean, String)*): Action = {
+  def nextIf(conditions: (() => Boolean, String)*)
+    (implicit line: sourcecode.Line, fullName: sourcecode.FullName): Action = {
     for (cond <- conditions) {
-      nextStatePred += ((cond._1, new State(cond._2), false))
+      nextStatePred += ((cond._1, new State(cond._2), false,
+                         ((fullName.value, line.value))))
     }
     this
   }

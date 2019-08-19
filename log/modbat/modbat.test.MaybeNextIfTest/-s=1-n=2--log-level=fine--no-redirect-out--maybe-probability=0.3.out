@@ -3,7 +3,7 @@
 [FINE] modbat.test.MaybeNextIfTest-1: Executing transition ok => ok...
 ok
 Result of call is true.
-[FINE] Next state predicate holds, go to state err.
+[FINE] Next state predicate at modbat/test/MaybeNextIfTest.scala holds, go to state err.
 [FINE] modbat.test.MaybeNextIfTest-1: Executing transition err => err...
        2 402b73cd0066eaea, one test failed.
 [FINE] Launching new model instance modbat.test.MaybeNextIfTest-1...
@@ -16,7 +16,7 @@ ok
 [FINE] modbat.test.MaybeNextIfTest-1: Executing transition ok => ok...
 ok
 Result of call is true.
-[FINE] Next state predicate holds, go to state err.
+[FINE] Next state predicate at modbat/test/MaybeNextIfTest.scala holds, go to state err.
 [FINE] modbat.test.MaybeNextIfTest-1: Executing transition err => err...
 [INFO] 2 tests executed, 0 ok, 2 failed.
 [INFO] One type of test failure:

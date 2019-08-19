@@ -761,6 +761,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
             Log.fine(
               "Next state predicate" +
                 transNumToString(transition.n) +
+                " at " + nextSt.target.sourceInfo +
                 " holds, go to state " +
                 transition.dest + ".")
             expectedOverrideTrans = -1

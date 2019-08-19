@@ -6,7 +6,7 @@ Result of call is true.
 [FINE] modbat.test.MaybeNextIfTest2-1: Executing transition ok => ok...
 ok
 Result of call is true.
-[FINE] Next state predicate #2 holds, go to state err2.
+[FINE] Next state predicate #2 at modbat/test/MaybeNextIfTest2.scala holds, go to state err2.
 [FINE] modbat.test.MaybeNextIfTest2-1: Executing transition err2 => err2...
 err2
        2 402b73cd0066eaea, one test failed.
@@ -19,7 +19,7 @@ Result of call is true.
 [FINE] modbat.test.MaybeNextIfTest2-1: Executing transition ok => ok...
 ok
 Result of call is true.
-[FINE] Next state predicate #2 holds, go to state err2.
+[FINE] Next state predicate #2 at modbat/test/MaybeNextIfTest2.scala holds, go to state err2.
 [FINE] modbat.test.MaybeNextIfTest2-1: Executing transition err2 => err2...
 err2
        3 41530f4040856586, 2 tests failed.
@@ -35,7 +35,7 @@ Result of call is true.
 ok
 Result of call is true.
 Result of call is true.
-[FINE] Next state predicate #2 holds, go to state err2.
+[FINE] Next state predicate #2 at modbat/test/MaybeNextIfTest2.scala holds, go to state err2.
 [FINE] modbat.test.MaybeNextIfTest2-1: Executing transition err2 => err2...
 err2
 [INFO] 3 tests executed, 0 ok, 3 failed.

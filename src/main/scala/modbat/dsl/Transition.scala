@@ -63,7 +63,7 @@ class Transition(var origin: State,
     val len = action.nextStatePred.length
     for (nextSt <- action.nextStatePred) {
       val t =
-        new Transition(origin, nextSt._2, true, new Action(action.transfunc), "????", -3)
+        new Transition(origin, nextSt._2, true, new Action(action.transfunc), nextSt._4._1, nextSt._4._2)
       if (len > 1) {
         t.n = i
       }
