@@ -1,0 +1,12 @@
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.StateSetToTrans.assert(StateSetToTrans.scala)
+[ERROR] 	at modbat.test.StateSetToTrans$$anonfun$4.apply$mcV$sp(StateSetToTrans.scala)
+[ERROR] 	at modbat.test.StateSetToTrans$$anonfun$4.apply(StateSetToTrans.scala)
+[ERROR] 	at modbat.test.StateSetToTrans$$anonfun$4.apply(StateSetToTrans.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/StateSetToTrans.scala:8: skip
+[WARNING] modbat/test/StateSetToTrans.scala:10: assert
