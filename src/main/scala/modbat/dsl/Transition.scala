@@ -54,7 +54,7 @@ class Transition(var origin: State,
       Transition.pendingTransitions += this
     }
     for (nonDetE <- action.nonDetExc) {
-      val t = new Transition(origin, nonDetE._2, true, action, "????", -3)
+      val t = new Transition(origin, nonDetE._2, true, action, nonDetE._3._1, nonDetE._3._2)
       nonDetExcConv += new NextStateOnException(nonDetE._1, t)
     }
 

@@ -9,7 +9,8 @@ import modbat.mbt.Main
 
 class Action(val transfunc: () => Any, val method: Method = null) {
   val expectedExc = ListBuffer[Regex]()
-  val nonDetExc = ListBuffer[(Regex, State)]()
+  val nonDetExc = ListBuffer[(Regex, State, (String, Int))]()
+  // nonDetExc: (exc. name, target state, (fullName, line))
   val nextStatePred = ListBuffer[(() => Boolean, State, Boolean)]()
   var label: String = ""
   var weight = 1.0
@@ -35,9 +36,11 @@ class Action(val transfunc: () => Any, val method: Method = null) {
     this
   }
 
-  def catches(excToState: (String, String)*): Action = {
+  def catches(excToState: (String, String)*)
+    (implicit line: sourcecode.Line, fullName: sourcecode.FullName): Action = {
     for (excMapping <- excToState) {
-      nonDetExc += ((new Regex(excMapping._1), new State(excMapping._2)))
+      nonDetExc += ((new Regex(excMapping._1), new State(excMapping._2),
+                     ((fullName.value, line.value))))
     }
     immediate = true
     this

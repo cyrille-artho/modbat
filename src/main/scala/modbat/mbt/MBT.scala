@@ -721,6 +721,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
                                        e.getClass.getName))
       }
       Log.fine(e + " leads to exception state " + excTrans.dest + ".")
+      Log.debug("Exceptional transition is at " + excTrans.sourceInfo)
       if (successor.action.immediate) {
         Log.fine("Next transition on this model must be taken immediately.")
       }

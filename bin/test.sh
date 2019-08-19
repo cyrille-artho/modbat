@@ -524,6 +524,7 @@ run 0 $APP -s=9999 -n=1 --no-redirect-out --abort-probability=0.2 \
 	modbat.test.ExcTest
 
 run 0 $APP -s=1 -n=1 --no-redirect-out modbat.test.ExcTest2
+run 0 $APP -s=1 -n=1 --no-redirect-out --log-level=debug modbat.test.ExcTest2
 
 run 0 $APP -s=1 -n=1 --no-redirect-out modbat.test.ExcTest3
 
