@@ -1,8 +1,0 @@
-       1 49a846e52b813972
-[INFO] 1 tests executed, 0 ok, 1 failed.
-[INFO] One type of test failure:
-[INFO] 1) java.lang.AssertionError: assertion failed at assert
-[INFO]    49a846e52b813972
-[INFO] 4 states covered (80 % out of 5),
-[INFO] 4 transitions covered (66 % out of 6).
-[INFO] Random seed for next test would be: 27fe2d950fc74b21

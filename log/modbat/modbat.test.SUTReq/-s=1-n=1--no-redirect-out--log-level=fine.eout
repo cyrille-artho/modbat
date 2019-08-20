@@ -1,3 +1,0 @@
-[WARNING] All preconditions false at transition modbat/test/SUTReq.scala require
-[WARNING] All preconditions false at transition modbat/test/SUTReq.scala fail
-[WARNING] Maybe the preconditions are too strict?
