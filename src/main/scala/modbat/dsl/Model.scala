@@ -71,8 +71,6 @@ abstract trait Model {
   def maybeBool(pred: () => Boolean) = MBT.maybeBool(pred)
 
   implicit def transfuncToAction(action: => Any) = {
-//    (implicit line: sourcecode.Line, file: sourcecode.File): Action = {
-//    Console.err.println(s"+++ ${file.value}:${line.value} +++")
     new Action(() => action)
   }
 
