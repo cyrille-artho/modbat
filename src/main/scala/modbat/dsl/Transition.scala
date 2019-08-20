@@ -110,9 +110,6 @@ class Transition(var origin: State,
     }
   }
 
-  def launchesAndChoices: List[SourceInfo.InternalAction] = {
-    SourceInfo.launchAndChoiceInfo(action)
-  }
   // get the next state with the result of the nextIf -Rui
   def getNextStateNextIf(nextState: State, nextIf: Boolean): NextStateNextIf =
     NextStateNextIf(nextState, nextIf)
