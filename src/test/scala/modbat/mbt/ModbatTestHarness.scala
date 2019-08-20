@@ -42,20 +42,13 @@ object ModbatTestHarness {
     }
     (name_folder, arguments_name, ( td.name.split(" ") )(0))
   }
-
-  //these functions add 1 line in 2 existing files. 
-  def addToFiles(writer1: java.io.PrintWriter,writer2: java.io.PrintWriter,data:String){
-    writer1.println(data)
-    writer2.println(data)  
-  }
   
-  //this function overwrite the files file1 and file2 (or create it does not exist)
-  def write(file1: String, file2: String, iterator_data: Iterator[String]): Unit = {
-    val (writer1, writer2) = (new PrintWriter(new File(file1)), new PrintWriter(new File(file2)))
+  //this function overwrite file (or creates it if it does not exist)
+  def write(file: String, iterator_data: Iterator[String]): Unit = {
+    val writer = new PrintWriter(new File(file))
     while (iterator_data.hasNext) 
-      addToFiles(writer1, writer2, iterator_data.next())
-    writer1.close()
-    writer2.close()
+      writer.println(iterator_data.next())
+    writer.close()
   }
 
   def savemv(from : String, to : String) {
@@ -139,14 +132,14 @@ object ModbatTestHarness {
     outLines.map (l => replaceRegexInSentence(l, regex_map))
   }
 
-  def filtering2Files(name_output: String, out : ByteArrayOutputStream, err : ByteArrayOutputStream):((Iterator[String], Iterator[String]), (Iterator[String], Iterator[String]))={
+  def filterAndDuplicate(name_output: String, out : ByteArrayOutputStream, err : ByteArrayOutputStream):((Iterator[String], Iterator[String]), (Iterator[String], Iterator[String]))={
     (filtering (name_output+".log", out).duplicate,
     filtering (name_output+".err", err).duplicate)
   }
 
-  def writing2Files(name_folder: String, arguments_name: String, simple_name:String, filteredLog : Iterator[String], filteredErr : Iterator[String]){
-    write(name_folder+arguments_name+".log",name_folder+simple_name+".log", filteredLog) 
-    write(name_folder+arguments_name+".err",name_folder+simple_name+".err", filteredErr) 
+  def writeToFiles(name_folder: String, simple_name:String, filteredLog : Iterator[String], filteredErr : Iterator[String]){
+    write(name_folder+simple_name+".log", filteredLog)
+    write(name_folder+simple_name+".err", filteredErr)
   }
 
   def replaceRegexInSentence(sentence : String, regex_map : Map[String,String]) : String = {  
@@ -193,9 +186,9 @@ object ModbatTestHarness {
 
     val (name_folder, arguments_name, simple_name) = getNamesofFile(args, td)
     
-    val ((filteredLog, filteredLogCopy), (filteredErr, filteredErrCopy)) = filtering2Files (name_folder+"/"+arguments_name, out, err)
+    val ((filteredLog, filteredLogCopy), (filteredErr, filteredErrCopy)) = filterAndDuplicate (name_folder+"/"+arguments_name, out, err)
     
-    writing2Files (name_folder+"/", arguments_name, simple_name, filteredLog, filteredErr)
+    writeToFiles (name_folder+"/", simple_name, filteredLog, filteredErr)
 
     compareOutputWithTemplate (name_folder+"/"+simple_name, filteredLogCopy, filteredErrCopy)
      
