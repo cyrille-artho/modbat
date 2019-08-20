@@ -1,0 +1,28 @@
+[DEBUG] Adding build/modbat-test.jar to classpath.
+       1 3ba471c1785a0175
+[DEBUG] modbat.test.ExcTest2-1: Registered state transition from ok to ok
+[DEBUG] modbat.test.ExcTest2-1: Registered state transition from err to err
+[DEBUG] modbat.test.ExcTest2-1: Registered state transition from ok to err
+[FINE] Launching new model instance modbat.test.ExcTest2-1...
+[DEBUG] --- Exploring model ---
+[DEBUG] modbat.test.ExcTest2-1: Current state: ok
+[DEBUG] modbat.test.ExcTest2-1: Possible successor: ok
+[DEBUG] State ok in model modbat.test.ExcTest2-1 was visited 1 times.
+[FINE] modbat.test.ExcTest2-1: Executing transition ok => ok...
+Online mode: throwing exception.
+[DEBUG] Expected: IOException
+[FINE] java.io.IOException: Test leads to exception state err.
+[DEBUG] Exceptional transition is at modbat/test/ExcTest2.scala
+[FINE] Next transition on this model must be taken immediately.
+[DEBUG] modbat.test.ExcTest2-1: Current state: err
+[DEBUG] modbat.test.ExcTest2-1: Possible successor: err
+[DEBUG] State err in model modbat.test.ExcTest2-1 was visited 1 times.
+[FINE] modbat.test.ExcTest2-1: Executing transition err => err...
+[DEBUG] --- Resetting to initial state ---
+[INFO] 1 tests executed, 0 ok, 1 failed.
+[INFO] One type of test failure:
+[INFO] 1) java.lang.AssertionError: assertion failed at assert
+[INFO]    3ba471c1785a0175
+[INFO] 2 states covered (100 % out of 2),
+[INFO] 1 transitions covered (33 % out of 3).
+[INFO] Random seed for next test would be: 402b73cd0066eaea

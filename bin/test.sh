@@ -212,6 +212,34 @@ run 0 $APP --mode=dot --auto-labels \
 	modbat.examples.JavaNioServerSocket
 savemv modbat.examples.JavaNioServerSocket.dot nioserv-auto.dot
 checkfile nioserv-auto.dot
+## path coverage 20 test cases
+run 0 $APP -n=20 -s=1 --no-redirect-out --dotify-path-coverage --path-coverage-graph-mode=abstracted \
+	modbat.examples.NioSocket1
+savemv modbat.examples.NioSocket1-root-StateGraph.dot nio-path-state-20.dot
+checkfile nio-path-state-20.dot
+savemv modbat.examples.NioSocket1-root-PointGraph.dot nio-path-point-20.dot
+checkfile nio-path-point-20.dot
+## path coverage 100 test cases
+run 0 $APP -n=100 -s=1 --no-redirect-out --dotify-path-coverage --path-coverage-graph-mode=abstracted \
+	modbat.examples.NioSocket1
+savemv modbat.examples.NioSocket1-root-StateGraph.dot nio-path-state-100.dot
+checkfile nio-path-state-100.dot
+savemv modbat.examples.NioSocket1-root-PointGraph.dot nio-path-point-100.dot
+checkfile nio-path-point-100.dot
+## path coverage 500 test cases
+run 0 $APP -n=500 -s=1 --no-redirect-out --dotify-path-coverage --path-coverage-graph-mode=abstracted \
+	modbat.examples.NioSocket1
+savemv modbat.examples.NioSocket1-root-StateGraph.dot nio-path-state-500.dot
+checkfile nio-path-state-500.dot
+savemv modbat.examples.NioSocket1-root-PointGraph.dot nio-path-point-500.dot
+checkfile nio-path-point-500.dot
+# path coverage 1000 test cases
+run 0 $APP -n=1000 -s=1 --no-redirect-out --dotify-path-coverage --path-coverage-graph-mode=abstracted \
+	modbat.examples.NioSocket1
+savemv modbat.examples.NioSocket1-root-StateGraph.dot nio-path-state-1000.dot
+checkfile nio-path-state-1000.dot
+savemv modbat.examples.NioSocket1-root-PointGraph.dot nio-path-point-1000.dot
+checkfile nio-path-point-1000.dot
 
 run 0 $APP --mode=dot --log-level=debug \
 	--auto-labels \
@@ -304,6 +332,9 @@ savemv modbat.examples.CounterModel2.dot counter2.dot
 checkfile counter2.dot
 
 export CLASSPATH=build/modbat-test.jar
+run 0 $APP -s=1 -n=1 --no-redirect-out modbat.test.StateSetToTrans
+run 0 $APP -s=1 -n=1 --no-redirect-out modbat.test.StateSetToTrans2
+
 run 0 $APP -s=1 -n=10 --no-redirect-out --log-level=fine \
 	modbat.test.Redundancy
 run 0 $APP -s=2e78dcb10b272e5 -n=1 --no-redirect-out \
@@ -445,7 +476,7 @@ run 0 $APP -s=1 -n=2 --remove-log-on-success modbat.test.Hello
 #savemv 402b73cd0066eaea.log nohello.out
 #checkfile nohello.out log/modbat.test.Hello
 # currently can't check absence of files
-# currently fails:
+# currently does not work:
 #savemv log/3ba471c1785a0175.log log/hello.out
 #checkfile hello.out log/modbat.test.Hello
 #savemv log/3ba471c1785a0175.err log/hello.eout
@@ -493,6 +524,7 @@ run 0 $APP -s=9999 -n=1 --no-redirect-out --abort-probability=0.2 \
 	modbat.test.ExcTest
 
 run 0 $APP -s=1 -n=1 --no-redirect-out modbat.test.ExcTest2
+run 0 $APP -s=1 -n=1 --no-redirect-out --log-level=debug modbat.test.ExcTest2
 
 run 0 $APP -s=1 -n=1 --no-redirect-out modbat.test.ExcTest3
 

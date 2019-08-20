@@ -1,3 +1,3 @@
-[WARNING] All preconditions false at transition modbat/test/SUTReq.scala:8 require
+[WARNING] All preconditions false at transition modbat/test/SUTReq.scala:7 require
 [WARNING] All preconditions false at transition modbat/test/SUTReq.scala:10 fail
 [WARNING] Maybe the preconditions are too strict?

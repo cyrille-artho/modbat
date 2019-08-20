@@ -3,7 +3,10 @@ package modbat.dsl
 import modbat.mbt.MBT
 import modbat.cov.TransitionCoverage
 import modbat.RequirementFailedException
+import modbat.trace.{BoolChoice, FuncChoice, NumChoice}
+
 import scala.language.implicitConversions
+import sourcecode._
 
 object Model {
   // TODO: if not run in Modbat main thread, also handle assertion failure
@@ -17,17 +20,18 @@ object Model {
       // expected to throw an assertion failure would otherwise mistakenly
       // mark a test as failed
       if (Thread.currentThread != MBT.modbatThread) {
-	MBT.synchronized {
-	  val e = new AssertionError("Assertion failed in Thread " +
-				     Thread.currentThread.getName)
-	  MBT.externalException = e
-	  MBT.testHasFailed = true
-	}
+        MBT.synchronized {
+          val e = new AssertionError(
+            "Assertion failed in Thread " +
+              Thread.currentThread.getName)
+          MBT.externalException = e
+          MBT.testHasFailed = true
+        }
       }
       if (message == null) {
-	scala.Predef.assert(false)
+        scala.Predef.assert(false)
       } else {
-	scala.Predef.assert(false, message)
+        scala.Predef.assert(false, message)
       }
     }
   }
@@ -61,32 +65,44 @@ abstract trait Model {
     new StateSet(names._1, names._2)
   }
 
-  def maybe (action: Action) = MBT.maybe (action)
+  def maybe(action: Action) = MBT.maybe(action)
 
   // TODO: Currenty unused; remove?
-  def maybeBool (pred: () => Boolean) = MBT.maybeBool (pred)
+  def maybeBool(pred: () => Boolean) = MBT.maybeBool(pred)
 
-  implicit def transfuncToAction (action: => Any) : Action = {
+  implicit def transfuncToAction(action: => Any) = {
     new Action(() => action)
   }
 
-  def skip { }
+  def skip {}
 
   def launch(modelInstance: Model) = MBT.launch(modelInstance)
 
   def join(modelInstance: Model) = efsm.join(modelInstance)
 
-  def choose(min: Int, max: Int) = MBT.choose(min, max)
+  def choose(min: Int, max: Int) = {
+    val choice = MBT.choose(min, max)
+    val numChoice = NumChoice(choice) // create a number choice -Rui
+    MBT.rng.recordChoice(numChoice) // record number choice -Rui
 
-  def choose() = (MBT.choose(0, 2) == 0)
+    choice
+  }
+
+  def choose() = {
+    val choice = (MBT.choose(0, 2) == 0)
+    val boolChoice = BoolChoice(choice) // create a boolean choice -Rui
+    MBT.rng.recordChoice(boolChoice) // record boolean choice -Rui
+
+    choice
+  }
 
   def require(requirement: Boolean, message: Any): Unit = {
     TransitionCoverage.precond(requirement)
     if (!requirement) {
       if (message == null) {
-	throw new RequirementFailedException("requirement failed")
+        throw new RequirementFailedException("requirement failed")
       } else {
-	throw new RequirementFailedException("requirement failed: " + message)
+        throw new RequirementFailedException("requirement failed: " + message)
       }
     }
   }
@@ -96,6 +112,9 @@ abstract trait Model {
   type AnyFunc = () => Any
   def choose(actions: AnyFunc*): Any = {
     val choice = MBT.rng.nextFunc(actions.toArray)
+    val funcChoice = FuncChoice(choice) // create a func choice -Rui
+    MBT.rng.recordChoice(funcChoice) // record func choice - Rui
+
     choice()
   }
 

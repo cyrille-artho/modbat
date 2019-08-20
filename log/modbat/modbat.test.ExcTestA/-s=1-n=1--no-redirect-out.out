@@ -1,8 +1,0 @@
-       1 3ba471c1785a0175
-[INFO] 1 tests executed, 0 ok, 1 failed.
-[INFO] One type of test failure:
-[INFO] 1) Expected exception did not occur at mcZ
-[INFO]    3ba471c1785a0175
-[INFO] 1 states covered (50 % out of 2),
-[INFO] 0 transitions covered (0 % out of 2).
-[INFO] Random seed for next test would be: 402b73cd0066eaea

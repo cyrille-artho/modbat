@@ -19,8 +19,10 @@ object Main {
 
   def run(args: Array[String]){
     var modelClassName: String = null
-    val c = new ConfigMgr("scala modbat.jar", "CLASSNAME",
-			  config, new Version ("modbat.mbt"))
+    val c = new ConfigMgr("scala modbat.jar",
+                          "CLASSNAME",
+                          config,
+                          new Version("modbat.mbt"))
     /* delegate parsing args to config library */
     try {
       val remainder = c.parseArgs(args)
@@ -54,7 +56,7 @@ object Main {
     /* execute */
     config.mode match {
       case "dot" =>
-	new Dotify(MBT.launch(null), modelClassName + ".dot").dotify()
+        new Dotify(MBT.launch(null), modelClassName + ".dot").dotify()
       case _ => Modbat.explore(config.nRuns)
     }
   }
@@ -62,15 +64,9 @@ object Main {
   def setup(modelClassName: String) {
     /* configure components */
     Log.setLevel(config.logLevel)
-    MBT.enableStackTrace = config.printStackTrace
-    MBT.maybeProbability = config.maybeProbability
-
     MBT.configClassLoader(config.classpath)
     MBT.loadModelClass(modelClassName)
     MBT.setRNG(config.randomSeed)
     MBT.isOffline = false
-    MBT.runBefore = config.setup
-    MBT.runAfter = config.cleanup
-    MBT.precondAsFailure = config.precondAsFailure
   }
 }

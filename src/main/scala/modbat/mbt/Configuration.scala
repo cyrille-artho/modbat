@@ -35,6 +35,19 @@ class Configuration extends modbat.config.Configuration {
   @Doc("show coverage in dot file format")
   var dotifyCoverage: Boolean = false
 
+  @Doc("show path coverage in dot file format")
+  var dotifyPathCoverage: Boolean = false
+
+  @Doc("path coverage graph mode: abstracted or full graph")
+  @Choice(Array("abstracted", "full"))
+  var pathCoverageGraphMode = "abstracted"
+
+  @Doc("show detailed label in path coverage graphs")
+  var pathLabelDetail: Boolean = false
+
+  @Doc("use user-defined search function of path coverage graphs")
+  var bfsearchFun: Boolean = false
+
   @Doc("output directory for dot files")
   var dotDir: String = "."
 
@@ -48,7 +61,9 @@ class Configuration extends modbat.config.Configuration {
   var printStackTrace: Boolean = true
 
   @Doc("show choices inside transitions")
-  @Footnote(Array("Error trace shows internal choices; dot output shows choices and launches.","Note: Nested choices and coverage of choices currently not supported."))
+  @Footnote(Array(
+    "Error trace shows internal choices; dot output shows choices and launches.",
+    "Note: Nested choices and coverage of choices currently not supported."))
   var showChoices = true
 
   @Doc("overrides environment variable CLASSPATH if set")
@@ -56,14 +71,12 @@ class Configuration extends modbat.config.Configuration {
 
   @Doc("output path for traces")
   var logPath: String = "."
-
-
   @Doc("level at which messages are logged")
-  @Choice(value = Array("none", "error", "warning", "info",
-		        "fine", "debug", "all"),
-	  definedIn = "modbat.log.Log")
+  @Choice(value =
+            Array("none", "error", "warning", "info", "fine", "debug", "all"),
+          definedIn = "modbat.log.Log")
   var logLevel = Log.Info
-    // for messages from modbat
+  // for messages from modbat
 
   @Doc("random seed for initial test")
   @Test(longval = 0xe9232493f22057dL) @Hex @Shorthand('s')
@@ -93,6 +106,6 @@ class Configuration extends modbat.config.Configuration {
   @Doc("use auto-generated labels if no label given")
   var autoLabels = true
 
-/*  @Doc("apply delta debugging to traces (WORK IN PROGRESS)")
+  /*  @Doc("apply delta debugging to traces (WORK IN PROGRESS)")
   var shrinkTraces: Boolean = false */
 }

@@ -3,8 +3,8 @@
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala:156)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala:28)
-[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala:39)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala:32)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala:43)
 [ERROR] 	at modbat.test.InvalidMethod.assert(InvalidMethod.scala:5)
 [ERROR] 	at modbat.test.InvalidMethod$$anonfun$invariantCheck$1.apply$mcV$sp(InvalidMethod.scala:11)
 [ERROR] 	at modbat.test.InvalidMethod$$anonfun$invariantCheck$1.apply(InvalidMethod.scala:11)

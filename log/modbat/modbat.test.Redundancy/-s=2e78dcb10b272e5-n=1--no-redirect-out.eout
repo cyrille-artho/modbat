@@ -11,4 +11,4 @@
 [WARNING] modbat/test/Redundancy.scala:10: switch = ...
 [WARNING] modbat/test/Redundancy.scala:17: skip
 [WARNING] modbat/test/Redundancy.scala:17: skip
-[WARNING] modbat/test/Redundancy.scala:24: assert
+[WARNING] modbat/test/Redundancy.scala:23: assert

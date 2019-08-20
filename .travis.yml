@@ -16,3 +16,5 @@ script:
   - ./gradlew buildDependents
   - ./gradlew test
   - bash bin/test.sh
+
+dist: trusty

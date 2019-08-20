@@ -8,4 +8,4 @@
 [ERROR] 	at modbat.test.CrashSoon$$anonfun$1.apply(CrashSoon.scala)
 [ERROR] 	at modbat.test.CrashSoon$$anonfun$1.apply(CrashSoon.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/CrashSoon.scala:13: assert
+[WARNING] modbat/test/CrashSoon.scala:11: assert

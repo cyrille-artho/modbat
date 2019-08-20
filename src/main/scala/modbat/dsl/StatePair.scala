@@ -1,12 +1,15 @@
 package modbat.dsl
 
-class StatePair(val origin: State, val dest: State) {
+import sourcecode._
 
-  def := (action: => Any): Transition = {
-    new Transition(origin, dest, false, new Action(() => action))
+class StatePair(val origin: State, val dest: State) {
+  def := (action: => Any)
+    (implicit line: sourcecode.Line, fullName: sourcecode.FullName): Transition = {
+    new Transition(origin, dest, false, new Action(() => action), fullName.value, line.value)
   }
 
-  def := (action: Action): Transition = {
-    new Transition(origin, dest, false, action)
+  def := (action: Action)
+    (implicit line: sourcecode.Line, fullName: sourcecode.FullName): Transition = {
+    new Transition(origin, dest, false, action, fullName.value, line.value)
   }
 }

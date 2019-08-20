@@ -1,0 +1,8 @@
+       1 3ba471c1785a0175
+[INFO] 1 tests executed, 0 ok, 1 failed.
+[INFO] One type of test failure:
+[INFO] 1) java.lang.AssertionError: assertion failed at assert
+[INFO]    3ba471c1785a0175
+[INFO] 2 states covered (50 % out of 4),
+[INFO] 1 transitions covered (16 % out of 6).
+[INFO] Random seed for next test would be: 402b73cd0066eaea

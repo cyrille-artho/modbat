@@ -8,4 +8,4 @@
 [ERROR] 	at modbat.test.ChooseInBefore$$anonfun$1.apply(ChooseInBefore.scala)
 [ERROR] 	at modbat.test.ChooseInBefore$$anonfun$1.apply(ChooseInBefore.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/ChooseInBefore.scala:14: assert; choices = (2)
+[WARNING] modbat/test/ChooseInBefore.scala:13: assert; choices = (2)

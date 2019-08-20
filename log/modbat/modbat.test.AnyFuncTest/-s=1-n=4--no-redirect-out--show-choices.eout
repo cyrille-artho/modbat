@@ -8,9 +8,9 @@
 [ERROR] 	at modbat.test.AnyFuncTest$$anonfun$1.apply(AnyFuncTest.scala)
 [ERROR] 	at modbat.test.AnyFuncTest$$anonfun$1.apply(AnyFuncTest.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/AnyFuncTest.scala:13: setTo3; choices = (setTo2: line 15)
-[WARNING] modbat/test/AnyFuncTest.scala:13: setTo3; choices = (setTo2: line 15)
-[WARNING] modbat/test/AnyFuncTest.scala:13: setTo3; choices = (setTo2: line 15)
-[WARNING] modbat/test/AnyFuncTest.scala:13: setTo3; choices = (setTo1: line 14)
-[WARNING] modbat/test/AnyFuncTest.scala:13: setTo3; choices = (setTo2: line 15)
-[WARNING] modbat/test/AnyFuncTest.scala:20: assert
+[WARNING] modbat/test/AnyFuncTest.scala:12: setTo3; choices = (setTo2: line 15)
+[WARNING] modbat/test/AnyFuncTest.scala:12: setTo3; choices = (setTo2: line 15)
+[WARNING] modbat/test/AnyFuncTest.scala:12: setTo3; choices = (setTo2: line 15)
+[WARNING] modbat/test/AnyFuncTest.scala:12: setTo3; choices = (setTo1: line 14)
+[WARNING] modbat/test/AnyFuncTest.scala:12: setTo3; choices = (setTo2: line 15)
+[WARNING] modbat/test/AnyFuncTest.scala:19: assert

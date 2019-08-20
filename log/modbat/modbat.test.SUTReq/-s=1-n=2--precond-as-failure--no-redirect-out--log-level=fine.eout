@@ -6,7 +6,7 @@
 [ERROR] 	at modbat.test.SUTReq$$anonfun$2.apply(SUTReq.scala)
 [ERROR] 	at modbat.test.SUTReq$$anonfun$2.apply(SUTReq.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/SUTReq.scala:12: fail
+[WARNING] modbat/test/SUTReq.scala:10: fail
 [WARNING] java.lang.IllegalArgumentException: requirement failed occurred, aborting.
 [ERROR] java.lang.IllegalArgumentException: requirement failed
 [ERROR] 	at scala.Predef$.require(Predef.scala)
@@ -15,4 +15,4 @@
 [ERROR] 	at modbat.test.SUTReq$$anonfun$2.apply(SUTReq.scala)
 [ERROR] 	at modbat.test.SUTReq$$anonfun$2.apply(SUTReq.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/test/SUTReq.scala:12: fail
+[WARNING] modbat/test/SUTReq.scala:10: fail
