@@ -24,15 +24,11 @@ object ModbatTestHarness {
   //  This function get the name and his path of the file. 
   //  For example, log/modbat/modbat.test.TickTockTest/TickTockTest1.
   //  This function creates a directory if it does not exist.
-  def getNamesofFile(args: Array[String], td: org.scalatest.TestData): (String, String, String) = {
+  def getNamesofFile(args: Array[String], td: org.scalatest.TestData): (String, String) = {
     var name_folder = "log/modbat/"
-    var arguments_name = ""
     for ( x <- args ) {
       if (x contains "modbat."){
         name_folder = name_folder + x
-      }
-      else{
-        arguments_name = arguments_name + x
       }
     }
     var directory = new File(name_folder);
@@ -40,7 +36,7 @@ object ModbatTestHarness {
     if (bool){
         directory.mkdirs();
     }
-    (name_folder, arguments_name, ( td.name.split(" ") )(0))
+    (name_folder, ( td.name.split(" ") )(0))
   }
   
   //this function overwrite file (or creates it if it does not exist)
@@ -184,9 +180,9 @@ object ModbatTestHarness {
       }
     }
 
-    val (name_folder, arguments_name, simple_name) = getNamesofFile(args, td)
+    val (name_folder, simple_name) = getNamesofFile(args, td)
     
-    val ((filteredLog, filteredLogCopy), (filteredErr, filteredErrCopy)) = filterAndDuplicate (name_folder+"/"+arguments_name, out, err)
+    val ((filteredLog, filteredLogCopy), (filteredErr, filteredErrCopy)) = filterAndDuplicate (name_folder+"/"+simple_name, out, err)
     
     writeToFiles (name_folder+"/", simple_name, filteredLog, filteredErr)
 
