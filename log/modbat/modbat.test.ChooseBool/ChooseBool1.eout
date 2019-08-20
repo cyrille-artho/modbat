@@ -1,0 +1,33 @@
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.ChooseBool.assert(ChooseBool.scala)
+[ERROR] 	at modbat.test.ChooseBool$$anonfun$1.apply$mcV$sp(ChooseBool.scala)
+[ERROR] 	at modbat.test.ChooseBool$$anonfun$1.apply(ChooseBool.scala)
+[ERROR] 	at modbat.test.ChooseBool$$anonfun$1.apply(ChooseBool.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/ChooseBool.scala:7: assert; choices = (1)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.ChooseBool.assert(ChooseBool.scala)
+[ERROR] 	at modbat.test.ChooseBool$$anonfun$1.apply$mcV$sp(ChooseBool.scala)
+[ERROR] 	at modbat.test.ChooseBool$$anonfun$1.apply(ChooseBool.scala)
+[ERROR] 	at modbat.test.ChooseBool$$anonfun$1.apply(ChooseBool.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/ChooseBool.scala:7: assert; choices = (1)
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.ChooseBool.assert(ChooseBool.scala)
+[ERROR] 	at modbat.test.ChooseBool$$anonfun$1.apply$mcV$sp(ChooseBool.scala)
+[ERROR] 	at modbat.test.ChooseBool$$anonfun$1.apply(ChooseBool.scala)
+[ERROR] 	at modbat.test.ChooseBool$$anonfun$1.apply(ChooseBool.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/ChooseBool.scala:7: assert; choices = (1)

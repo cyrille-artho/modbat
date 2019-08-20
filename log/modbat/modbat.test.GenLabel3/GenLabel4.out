@@ -1,0 +1,12 @@
+       1 3ba471c1785a0175
+       2 402b73cd0066eaea, one test failed.
+       3 41530f4040856586, 2 tests failed.
+       4  89a82931be29e65, 3 tests failed.
+       5 49a846e52b813972, 4 tests failed.
+[INFO] 5 tests executed, 0 ok, 5 failed.
+[INFO] One type of test failure:
+[INFO] 1) java.lang.AssertionError: assertion failed at dec
+[INFO]    3ba471c1785a0175 402b73cd0066eaea 41530f4040856586 89a82931be29e65 49a846e52b813972
+[INFO] 1 states covered (100 % out of 1),
+[INFO] 2 transitions covered (66 % out of 3).
+[INFO] Random seed for next test would be: 27fe2d950fc74b21

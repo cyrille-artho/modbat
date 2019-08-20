@@ -156,7 +156,7 @@ object ModbatTestHarness {
     sentence_filtered.replace("\u001b","") //does it work ? Not sure...
   }
 
-  def comparingFiles(output : String, filteredLog : Iterator[String], filteredErr : Iterator[String]){
+  def compareOutputWithTemplate(output : String, filteredLog : Iterator[String], filteredErr : Iterator[String]){
     if (new java.io.File(output+".out").exists){
       val validated_out_lines = Source.fromFile(output+".out").getLines
       assert(compareIterators(validated_out_lines, filteredLog))
@@ -197,7 +197,7 @@ object ModbatTestHarness {
     
     writing2Files (name_folder+"/", arguments_name, simple_name, filteredLog, filteredErr)
 
-    comparingFiles (name_folder+"/"+arguments_name,filteredLogCopy,filteredErrCopy)
+    compareOutputWithTemplate (name_folder+"/"+simple_name, filteredLogCopy, filteredErrCopy)
      
     optionsavemv match {
       case None => {}

@@ -1,0 +1,2 @@
+[WARNING] All preconditions false at transition modbat/test/RequireMaybeTest.scala assert
+[WARNING] Maybe the preconditions are too strict?

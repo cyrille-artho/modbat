@@ -1,0 +1,27 @@
+       1 3ba471c1785a0175
+       2 402b73cd0066eaea
+       3 41530f4040856586
+       4  89a82931be29e65
+       5 49a846e52b813972
+       6 27fe2d950fc74b21
+       7 19b6aa1b14a29017
+       8 5ff50ec9279365d2
+       9  85780661bf76533, one test failed.
+      10 486e122d1bcbade7, one test failed.
+      11  a410ce32fc39dfb, one test failed.
+      12  745035c2b643033, 2 tests failed.
+      13  1e528010d3d2d54, 3 tests failed.
+      14 1690fa4e0c732f7d, 3 tests failed.
+      15 8d32a08e0d0b1183, 3 tests failed.
+      16 5a92477004cf57fb, 4 tests failed.
+      17 284ca782182a253f, 5 tests failed.
+      18 5e7dfc9e0a3af5da, 5 tests failed.
+      19 8e80db4b43867a5a, 5 tests failed.
+      20 7bb4b043219b1ba6, 5 tests failed.
+[INFO] 20 tests executed, 15 ok, 5 failed.
+[INFO] One type of test failure:
+[INFO] 1) Expected exception did not occur at invariantCheck
+[INFO]    5ff50ec9279365d2 a410ce32fc39dfb 745035c2b643033 8d32a08e0d0b1183 5a92477004cf57fb
+[INFO] 4 states covered (100 % out of 4),
+[INFO] 6 transitions covered (85 % out of 7).
+[INFO] Random seed for next test would be: 636e772f0798297b
