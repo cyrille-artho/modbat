@@ -60,7 +60,7 @@ object SourceInfo {
   }
 
   val MAXLEN = 20
-  val SKIP = "\0"
+  val SKIP = "\u0000"
 
   val cachedActionInfoFromClass = new HashMap[Class[_], String]
   val cachedActionInfoFromMethod = new HashMap[Method, String]
