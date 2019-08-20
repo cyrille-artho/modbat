@@ -92,14 +92,14 @@ object ModbatTestHarness {
   }
 
   def deleteMatchesSentenceInIterator(it:Iterator[String], sentences_to_delete:Iterator[String]): Iterator[String]={
-    var iterator_filtred = it
+    var iterator_filtered = it
     var current_sentence_to_delete = ""
     while (sentences_to_delete.hasNext){
       current_sentence_to_delete = sentences_to_delete.next()
-      iterator_filtred = iterator_filtred.dropWhile(l => l.contains(current_sentence_to_delete))
+      iterator_filtered = iterator_filtered.dropWhile(l => l.contains(current_sentence_to_delete))
     }
       
-    iterator_filtred
+    iterator_filtered
   }
 
   def filtering(nameOutput : String, typeByte : ByteArrayOutputStream):(Iterator[String])={
@@ -144,26 +144,26 @@ object ModbatTestHarness {
     filtering (name_output+".err", err).duplicate)
   }
 
-  def writing2Files(name_folder: String, arguments_name: String, simple_name:String, filtredLog : Iterator[String], filtredErr : Iterator[String]){
-    write(name_folder+arguments_name+".log",name_folder+simple_name+".log", filtredLog) 
-    write(name_folder+arguments_name+".err",name_folder+simple_name+".err", filtredErr) 
+  def writing2Files(name_folder: String, arguments_name: String, simple_name:String, filteredLog : Iterator[String], filteredErr : Iterator[String]){
+    write(name_folder+arguments_name+".log",name_folder+simple_name+".log", filteredLog) 
+    write(name_folder+arguments_name+".err",name_folder+simple_name+".err", filteredErr) 
   }
 
   def replaceRegexInSentence(sentence : String, regex_map : Map[String,String]) : String = {  
-    var sentence_filtred = sentence
+    var sentence_filtered = sentence
     regex_map foreach (x => 
-      sentence_filtred = sentence_filtred.replaceAll(x._1, x._2))
-    sentence_filtred.replace("\u001b","") //does it work ? Not sure...
+      sentence_filtered = sentence_filtered.replaceAll(x._1, x._2))
+    sentence_filtered.replace("\u001b","") //does it work ? Not sure...
   }
 
-  def comparingFiles(output : String, filtredLog : Iterator[String], filtredErr : Iterator[String]){
+  def comparingFiles(output : String, filteredLog : Iterator[String], filteredErr : Iterator[String]){
     if (new java.io.File(output+".out").exists){
       val validated_out_lines = Source.fromFile(output+".out").getLines
-      assert(compareIterators(validated_out_lines, filtredLog))
+      assert(compareIterators(validated_out_lines, filteredLog))
     } 
     else if (new java.io.File(output+".eout").exists){
       val validated_eout_lines = Source.fromFile(output+".eout").getLines
-      assert(compareIterators(validated_eout_lines, filtredErr))
+      assert(compareIterators(validated_eout_lines, filteredErr))
     } 
   }
 
@@ -193,11 +193,11 @@ object ModbatTestHarness {
 
     val (name_folder, arguments_name, simple_name) = getNamesofFile(args, td)
     
-    val ((filtredLog, filtredLogCopy), (filtredErr, filtredErrCopy)) = filtering2Files (name_folder+"/"+arguments_name, out, err)
+    val ((filteredLog, filteredLogCopy), (filteredErr, filteredErrCopy)) = filtering2Files (name_folder+"/"+arguments_name, out, err)
     
-    writing2Files (name_folder+"/", arguments_name, simple_name, filtredLog, filtredErr)
+    writing2Files (name_folder+"/", arguments_name, simple_name, filteredLog, filteredErr)
 
-    comparingFiles (name_folder+"/"+arguments_name,filtredLogCopy,filtredErrCopy)
+    comparingFiles (name_folder+"/"+arguments_name,filteredLogCopy,filteredErrCopy)
      
     optionsavemv match {
       case None => {}
