@@ -112,12 +112,11 @@ object ModbatTestHarness {
         """.*""" -> "",
         """ in .*[0-9]* milliseconds""" -> "",
         """RELEASE-([0-9.]*)""" -> "$1",
-        """ v[0-9a-f]* rev [0-9a-f]*""" -> "",
+        """ v[0-9a-f]* rev [0-9a-f]*""" -> " vx.yz",
         """ v[0-9][0-9]*\\.[0-9][^ ]* rev [0-9a-f]*""" -> " vx.yz",
-        """^Time: [0-9.]*""" -> " vx.yz",
-        """(at .*):[0-9]*:""" -> "$1",
-        """canceled 0, """ -> "",
-        """(\[INFO\] .* java.lang.AssertionError.*):"""->"$1"
+        """^Time: [0-9.]*""" -> "",
+        """(at .*?):[0-9]*""" -> "$1",
+        """canceled 0, """ -> ""
       )
     }
 
@@ -126,8 +125,8 @@ object ModbatTestHarness {
         """RELEASE-3.2""" -> "3.3",
         """ v[0-9a-f]* rev [0-9a-f]*""" -> " vx.yz",
         """ v[^ ]* rev [0-9a-f]*""" -> " vx.yz",
-        """(at .*?):[0-9]*:?""" -> "$1", 
-        """(Exception in thread "Thread-)[0-9][0-9]*""" -> "$1"
+        """(at .*?):[0-9]*""" -> "$1", 
+        """(Exception in thread "Thread-)[0-9][0-9]*""" -> "$1X"
       )
       iterator_deleting_sentence = Iterator("""CommonRunner.*un.*\(ObjectRunner.scala""", """MainGenericRunner.*un.*\(MainGenericRunner.scala""")
     }

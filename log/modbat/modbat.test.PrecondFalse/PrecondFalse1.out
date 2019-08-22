@@ -6,5 +6,5 @@
 [INFO] 5 tests executed, 5 ok, 0 failed.
 [INFO] 1 states covered (50 % out of 2),
 [INFO] 0 transitions covered (0 % out of 2).
-[INFO] Precondition 1 always failed at transition modbat/test/PrecondFalse.scala require
+[INFO] Precondition 1 always failed at transition modbat/test/PrecondFalse.scala: require
 [INFO] Random seed for next test would be: 27fe2d950fc74b21
