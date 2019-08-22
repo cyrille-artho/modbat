@@ -54,6 +54,14 @@ object ModbatTestHarness {
     new FileInputStream(src) getChannel, 0, Long.MaxValue )
   }
 
+  def diffStr (templateFile: String) = {
+    if (templateFile.endsWith(".eout")) {
+      "diff " + templateFile.replace(".eout", ".err") + " " + templateFile
+    } else {
+      "diff " + templateFile.replace(".out", ".log") + " " + templateFile
+    }
+  }
+
   //this function compare 2 iterators => output boolean. 
   //If output is false, print the last match.
   def compareIterators(templateFile: String, it2:Iterator[String]) : Boolean = {
@@ -67,6 +75,7 @@ object ModbatTestHarness {
           current_iterator=it1.next()
           if (current_iterator != it2.next()){
             current_comparison=false
+            Console.println(diffStr(templateFile))
             Console.println("Iterators are different.\nLast match :\n"+past_iterator)
           }
           else
@@ -74,6 +83,7 @@ object ModbatTestHarness {
         }
         case _ => {
           current_comparison=false
+          Console.println(diffStr(templateFile))
           Console.println("End of file.")
         }
       })
