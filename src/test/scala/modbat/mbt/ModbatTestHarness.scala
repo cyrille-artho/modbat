@@ -56,7 +56,8 @@ object ModbatTestHarness {
 
   //this function compare 2 iterators => output boolean. 
   //If output is false, print the last match.
-  def compareIterators(it1:Iterator[String], it2:Iterator[String]) : Boolean = {
+  def compareIterators(templateFile: String, it2:Iterator[String]) : Boolean = {
+    val it1 = Source.fromFile(templateFile).getLines
     var past_iterator="End of file."
     var current_iterator=""
     var current_comparison = true
@@ -147,12 +148,10 @@ object ModbatTestHarness {
 
   def compareOutputWithTemplate(output : String, filteredLog : Iterator[String], filteredErr : Iterator[String]){
     if (new java.io.File(output+".out").exists){
-      val validated_out_lines = Source.fromFile(output+".out").getLines
-      assert(compareIterators(validated_out_lines, filteredLog))
+      assert(compareIterators(output + ".out", filteredLog))
     } 
     else if (new java.io.File(output+".eout").exists){
-      val validated_eout_lines = Source.fromFile(output+".eout").getLines
-      assert(compareIterators(validated_eout_lines, filteredErr))
+      assert(compareIterators(output + ".eout", filteredErr))
     } 
   }
 
