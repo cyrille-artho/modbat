@@ -174,7 +174,7 @@ object ModbatTestHarness {
     Console.withErr(err) {
       Console.withOut(out) {
         try {
-            Main.run(args) 
+          Main.run(args)
           ret=0
         } catch {
           case e: Exception => {
