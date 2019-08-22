@@ -1,4 +1,6 @@
-       1 3ba471c1785a0175       2 402b73cd0066eaea, one test failed.[INFO] 2 tests executed, 1 ok, 1 failed.
+       1 3ba471c1785a0175
+       2 402b73cd0066eaea, one test failed.
+[INFO] 2 tests executed, 1 ok, 1 failed.
 [INFO] One type of test failure:
 [INFO] 1) java.lang.AssertionError: assertion failed at assert
 [INFO]    3ba471c1785a0175
