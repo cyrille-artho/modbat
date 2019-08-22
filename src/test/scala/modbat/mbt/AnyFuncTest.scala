@@ -20,7 +20,7 @@ class AnyFuncTest extends fixture.FlatSpec with fixture.TestDataFixture with Mat
 
 
   "AnyFuncTest3" should "pass" in { td =>
-    val result = ModbatTestHarness.testMain(Array("--mode=dot","--show-choices","modbat.test.AnyFuncTest"), ModbatTestHarness.setTestJar, td, Some("modbat.test.AnyFuncTest.dot","anyfunc.dot"))
+    val result = ModbatTestHarness.testMain(Array("--mode=dot","--show-choices","modbat.test.AnyFuncTest"), ModbatTestHarness.setTestJar, td, false, Some("modbat.test.AnyFuncTest.dot","anyfunc.dot"))
     result._1 should be(0)
     result._3 shouldBe empty
   }

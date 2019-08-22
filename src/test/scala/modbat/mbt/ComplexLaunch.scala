@@ -20,7 +20,7 @@ class ComplexLaunch extends fixture.FlatSpec with fixture.TestDataFixture with M
 
 
   "ComplexLaunch3" should "pass" in { td =>
-    val result = ModbatTestHarness.testMain(Array("--mode=dot","--show-choices","modbat.test.ComplexLaunch"), ModbatTestHarness.setTestJar, td, Some("modbat.test.ComplexLaunch.dot","claunch.dot"))
+    val result = ModbatTestHarness.testMain(Array("--mode=dot","--show-choices","modbat.test.ComplexLaunch"), ModbatTestHarness.setTestJar, td, false, Some("modbat.test.ComplexLaunch.dot","claunch.dot"))
     result._1 should be(0)
     result._3 shouldBe empty
   }

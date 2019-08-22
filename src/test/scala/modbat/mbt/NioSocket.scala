@@ -92,7 +92,7 @@ class NioSocket extends fixture.FlatSpec with fixture.TestDataFixture with Match
 
 
   "NioSocket12" should "pass" in { td =>
-    val result = ModbatTestHarness.testMain(Array("--mode=dot","--auto-labels","modbat.examples.NioSocket1"), ModbatTestHarness.setExamplesJar, td, Some("modbat.examples.NioSocket1.dot", "niosocket1.dot"))
+    val result = ModbatTestHarness.testMain(Array("--mode=dot","--auto-labels","modbat.examples.NioSocket1"), ModbatTestHarness.setExamplesJar, td, false, Some("modbat.examples.NioSocket1.dot", "niosocket1.dot"))
     result._1 should be(0)
     result._3 shouldBe empty
   }
@@ -100,7 +100,7 @@ class NioSocket extends fixture.FlatSpec with fixture.TestDataFixture with Match
 
 // special case 
   "NioSocket13" should "pass" in { td =>
-    val result = ModbatTestHarness.testMain(Array("--mode=dot","--auto-labels","--dot-dir=dot_test","modbat.examples.NioSocket1"), ModbatTestHarness.setExamplesJar, td, Some("dot_test/modbat.examples.NioSocket1.dot", "niosocket1.dot"))
+    val result = ModbatTestHarness.testMain(Array("--mode=dot","--auto-labels","--dot-dir=dot_test","modbat.examples.NioSocket1"), ModbatTestHarness.setExamplesJar, td, false, Some("dot_test/modbat.examples.NioSocket1.dot", "niosocket1.dot"))
     result._1 should be(0)
     result._3 shouldBe empty
   }
@@ -116,7 +116,7 @@ class NioSocket extends fixture.FlatSpec with fixture.TestDataFixture with Match
 
 
   "NioSocket15" should "pass" in { td =>
-    val result = ModbatTestHarness.testMain(Array("-n=10","-s=1","--dotify-coverage","--auto-labels","modbat.examples.NioSocket1"), ModbatTestHarness.setExamplesJar, td, Some("modbat.examples.NioSocket1.dot", "cov_10.dot"))
+    val result = ModbatTestHarness.testMain(Array("-n=10","-s=1","--dotify-coverage","--auto-labels","modbat.examples.NioSocket1"), ModbatTestHarness.setExamplesJar, td, false, Some("modbat.examples.NioSocket1.dot", "cov_10.dot"))
     result._1 should be(0)
     result._3 shouldBe empty
   }
@@ -124,7 +124,7 @@ class NioSocket extends fixture.FlatSpec with fixture.TestDataFixture with Match
 
 
   "NioSocket16" should "pass" in { td =>
-    val result = ModbatTestHarness.testMain(Array("-n=100","-s=1","--dotify-coverage","--auto-labels","modbat.examples.NioSocket1"), ModbatTestHarness.setExamplesJar, td, Some("modbat.examples.NioSocket1.dot", "cov_100.dot"))
+    val result = ModbatTestHarness.testMain(Array("-n=100","-s=1","--dotify-coverage","--auto-labels","modbat.examples.NioSocket1"), ModbatTestHarness.setExamplesJar, td, false, Some("modbat.examples.NioSocket1.dot", "cov_100.dot"))
     result._1 should be(0)
     result._3 shouldBe empty
   }
@@ -132,7 +132,7 @@ class NioSocket extends fixture.FlatSpec with fixture.TestDataFixture with Match
 
 
   "NioSocket17" should "pass" in { td =>
-    val result = ModbatTestHarness.testMain(Array("-n=500","-s=1","--dotify-coverage","--auto-labels","modbat.examples.NioSocket1"), ModbatTestHarness.setExamplesJar, td, Some("modbat.examples.NioSocket1.dot", "cov_500.dot"))
+    val result = ModbatTestHarness.testMain(Array("-n=500","-s=1","--dotify-coverage","--auto-labels","modbat.examples.NioSocket1"), ModbatTestHarness.setExamplesJar, td, false, Some("modbat.examples.NioSocket1.dot", "cov_500.dot"))
     result._1 should be(0)
     result._3 shouldBe empty
   }
@@ -140,7 +140,7 @@ class NioSocket extends fixture.FlatSpec with fixture.TestDataFixture with Match
 
 
   "NioSocket18" should "pass" in { td =>
-    val result = ModbatTestHarness.testMain(Array("-n=500","-s=1","--maybe-probability=0","--dotify-coverage","--auto-labels","modbat.examples.NioSocket1"), ModbatTestHarness.setExamplesJar, td, Some("modbat.examples.NioSocket1.dot", "cov_500-p0.dot"))
+    val result = ModbatTestHarness.testMain(Array("-n=500","-s=1","--maybe-probability=0","--dotify-coverage","--auto-labels","modbat.examples.NioSocket1"), ModbatTestHarness.setExamplesJar, td, false, Some("modbat.examples.NioSocket1.dot", "cov_500-p0.dot"))
     result._1 should be(0)
     result._3 shouldBe empty
   }

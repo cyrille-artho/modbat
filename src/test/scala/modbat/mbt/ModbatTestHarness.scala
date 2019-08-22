@@ -164,7 +164,11 @@ object ModbatTestHarness {
     } 
   }
 
-  def testMain(args: Array[String], env: () => Unit, td: org.scalatest.TestData, optionsavemv : Option [(String, String)] = None): (Int, List[String], List[String]) = {
+  def testMain(args: Array[String], env: () => Unit,
+               td: org.scalatest.TestData,
+               shouldFail: Boolean = false,
+               optionsavemv: Option [(String, String)] = None):
+               (Int, List[String], List[String]) = {
     env()
     val origOut = System.out
     val origErr = System.err
@@ -180,16 +184,21 @@ object ModbatTestHarness {
         try {
           Main.run(args)
           ret=0
+          System.setOut(origOut)
+          System.setErr(origErr)
         } catch {
           case e: Exception => {
-            e.printStackTrace
             Modbat.coverage
+            System.setOut(origOut)
+            System.setErr(origErr)
+            // reset stderr/out before printing stack trace
+            if (!shouldFail) {
+              e.printStackTrace
+            }
             ret=1
           }
         } finally {
           Main.config = origConfig
-          System.setOut(origOut)
-          System.setErr(origErr)
         }
       }
     }

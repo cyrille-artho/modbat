@@ -2,7 +2,7 @@
 [INFO] 1 tests executed, 1 ok, 0 failed.
 [INFO] 5 states covered (83 % out of 6),
 [INFO] 8 transitions covered (44 % out of 18).
-[INFO] Precondition 1 always passed at transition modbat/examples/JavaNioServerSocket3.scala accept
-[INFO] Precondition 1 always failed at transition modbat/examples/JavaNioServerSocket3.scala startClient
-[INFO] Precondition 1 always passed at transition modbat/examples/JavaNioServerSocket3.scala readFrom
+[INFO] Precondition 1 always passed at transition modbat/examples/JavaNioServerSocket3.scala: accept
+[INFO] Precondition 1 always failed at transition modbat/examples/JavaNioServerSocket3.scala: startClient
+[INFO] Precondition 1 always passed at transition modbat/examples/JavaNioServerSocket3.scala: readFrom
 [INFO] Random seed for next test would be: 5fb3e24522e71278
