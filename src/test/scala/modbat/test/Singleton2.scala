@@ -4,26 +4,26 @@ import modbat.dsl._
 
 object Singleton2 {
   @Init def init() {
-    println("init")
+    System.out.println("init")
   }
 
   @Shutdown def shutdown() {
-    println("shutdown")
+    System.out.println("shutdown")
   }
 }
 
 class Singleton2 extends Model {
   @Before def start() {
-    println("start")
+    System.out.println("start")
   }
 
   @After def end() {
-    println("end")
+    System.out.println("end")
   }
 
   // transitions
   "reset" -> "end" := {
-    println("action")
+    System.out.println("action")
     assert(false)
   }
 }

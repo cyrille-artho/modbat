@@ -6,5 +6,5 @@ Result of call is true.
 [INFO]    3ba471c1785a0175
 [INFO] 2 states covered (100 % out of 2),
 [INFO] 1 transitions covered (50 % out of 2).
-[INFO] Precondition 1 always passed at transition modbat/test/PrecondOffline.scala require
+[INFO] Precondition 1 always passed at transition modbat/test/PrecondOffline.scala: require
 [INFO] Random seed for next test would be: 402b73cd0066eaea

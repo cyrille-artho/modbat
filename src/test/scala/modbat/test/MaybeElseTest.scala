@@ -6,12 +6,12 @@ class MaybeElseTest extends Model {
   // transitions
   "ok" -> "ok" := skip
   "ok" -> "err" := {
-    Console.out.println("before")
+    System.out.println("before")
     maybe {
       assert (true)
     } or_else {
       assert (false)
     }
-    Console.out.println("after")
+    System.out.println("after")
   }
 }

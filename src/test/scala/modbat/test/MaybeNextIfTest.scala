@@ -5,7 +5,7 @@ import modbat.dsl._
 class MaybeNextIfTest extends Model {
   // transitions
   "ok" -> "ok" := {
-    Console.out.println("ok")
+    System.out.println("ok")
   } maybeNextIf {() => MockEnv.nonDetCall} -> "err"
   "err" -> "err" := {
     assert (false)

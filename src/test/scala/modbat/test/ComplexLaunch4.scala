@@ -3,11 +3,11 @@ package modbat.test
 import modbat.dsl._
 
 object ComplexLaunch4 {
-  @Init def init { println("init") }
-  @Shutdown def shutdown { println("shutdown") }
+  @Init def init { System.out.println("init") }
+  @Shutdown def shutdown { System.out.println("shutdown") }
 
-  @Before def companion_before { println("companion-before") }
-  @After def companion_after { println("companion-after") }
+  @Before def companion_before { System.out.println("companion-before") }
+  @After def companion_after { System.out.println("companion-after") }
 }
 
 class ComplexLaunch4 (var id: Int) extends Model {

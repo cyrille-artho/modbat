@@ -4,11 +4,11 @@ import modbat.dsl._
 
 class SingletonTest extends Model {
   @Before def start() {
-    println("start")
+    System.out.println("start")
   }
 
   @After def end() {
-    println("end")
+    System.out.println("end")
   }
 
   // transitions

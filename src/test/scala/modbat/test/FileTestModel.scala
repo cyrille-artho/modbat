@@ -10,11 +10,11 @@ class FileTestModel extends Model {
 
   // transitions
   "uninit" -> "open" := {
-    require(!isOpen); println("*** open *** "); isOpen = true
+    require(!isOpen); System.out.println("*** open *** "); isOpen = true
   }
   "uninit" -> "open" := {
     require(!isOpen)
-    println("*** open2 *** ")
+    System.out.println("*** open2 *** ")
     maybe (throw new FileNotFoundException)
     maybe (throw new IOException)
   } throws ("FileNotFoundException")
@@ -24,10 +24,10 @@ class FileTestModel extends Model {
   } catches ("IOException" -> "err", "EOFException" -> "err2")
   "open" -> "open" := {
     require(isOpen)
-    println("*** r/w ***")
+    System.out.println("*** r/w ***")
     maybe { throw new IOException }
   }
   "open" -> "open" := skip
-  "open" -> "closed" := { require(isOpen); println("*** close *** ") }
-  "err" -> "err2" := { println("*** cleanup -> err2 *** ") }
+  "open" -> "closed" := { require(isOpen); System.out.println("*** close *** ") }
+  "err" -> "err2" := { System.out.println("*** cleanup -> err2 *** ") }
 }

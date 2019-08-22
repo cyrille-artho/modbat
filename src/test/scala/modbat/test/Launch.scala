@@ -7,15 +7,15 @@ class Launch extends Model {
   "parent-init" -> "parent-main" := {
     child = new LaunchChild()
     launch(child)
-    println("launched child")
+    System.out.println("launched child")
   } label "launch-child"
   "parent-main" -> "parent-end" := {
-    println("parent second transition")
+    System.out.println("parent second transition")
   } label "parent-finish"
 }
 
 class LaunchChild() extends Model {
   "child-init" -> "child-end" := {
-    println("child transition")
+    System.out.println("child transition")
   } label "child-trans"
 }

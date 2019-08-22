@@ -7,12 +7,12 @@ class TickTockObserver(val target: TickTockTest) extends Observer {
   // transitions
   "tick" -> "tock" := {
     require(target.i > i)
-    Console.out.println("tick")
+    System.out.println("tick")
     i = i + 1
   }
   "tock" -> "tick" := {
     require(target.i > i)
-    Console.out.println("tock")
+    System.out.println("tock")
     i = i + 2
   }
 }

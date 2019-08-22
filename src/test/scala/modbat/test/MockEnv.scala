@@ -9,7 +9,7 @@ import modbat.mbt.MBT
 object MockEnv {
   def nonDetCall() = {
     val result = !MBT.isOffline
-    Console.out.println("Result of call is " + result + ".")
+    System.out.println("Result of call is " + result + ".")
     result
   }
 }

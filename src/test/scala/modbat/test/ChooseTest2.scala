@@ -6,7 +6,7 @@ class ChooseTest2 extends Model {
   var n = 0
 
   def use(i: Int) {
-    Console.out.println("Using " + i)
+    System.out.println("Using " + i)
     assert (i > 0)
     assert (i < 4)
     n += 1

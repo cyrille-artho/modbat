@@ -166,11 +166,15 @@ object ModbatTestHarness {
 
   def testMain(args: Array[String], env: () => Unit, td: org.scalatest.TestData, optionsavemv : Option [(String, String)] = None): (Int, List[String], List[String]) = {
     env()
+    val origOut = System.out
+    val origErr = System.err
     val out: ByteArrayOutputStream = new ByteArrayOutputStream()
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
     var ret = 0
     val origConfig = Main.config.clone.asInstanceOf[modbat.mbt.Configuration]
 
+    System.setOut(new PrintStream(out))
+    System.setErr(new PrintStream(err))
     Console.withErr(err) {
       Console.withOut(out) {
         try {
@@ -184,6 +188,8 @@ object ModbatTestHarness {
           }
         } finally {
           Main.config = origConfig
+          System.setOut(origOut)
+          System.setErr(origErr)
         }
       }
     }

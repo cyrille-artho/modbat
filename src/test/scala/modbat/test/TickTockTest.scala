@@ -10,7 +10,7 @@ class TickTockTest extends Model {
   }
   "counting" -> "counting" := {
     val j = choose(1, 5)
-    Console.out.println(j)
+    System.out.println(j)
     i = i + j
   }
   "counting" -> "end" := {

@@ -9,7 +9,7 @@ class LoopTestWithLaunch (var i: Int) extends Model {
   // transitions
   "ok" -> "ok" := {
     i = i + 1
-    Console.out.println(i)
+    System.out.println(i)
     assert (i < 3)
   }
   "ok" -> "ok" := {

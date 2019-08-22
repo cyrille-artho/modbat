@@ -8,9 +8,9 @@ class RSeedTestSuccess2 extends Model {
 
   @After def finish {
     if (testFailed) {
-      Console.out.println("This number is odd: " + rSeed)
+      System.out.println("This number is odd: " + rSeed)
     } else {
-      Console.out.println("This number is even: " + rSeed)
+      System.out.println("This number is even: " + rSeed)
     }
   }
 

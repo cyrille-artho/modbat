@@ -9,9 +9,9 @@ import modbat.mbt.MBT
 object MockExcEnv {
   def nonDetCall() {
     if (MBT.isOffline) {
-      Console.out.println("Offline mode: throwing exception.")
+      System.out.println("Offline mode: throwing exception.")
       throw new java.io.IOException("Test")
     }
-    Console.out.println("Online mode: not throwing exception.")
+    System.out.println("Online mode: not throwing exception.")
   }
 }

@@ -11,13 +11,13 @@ object FileModel {
   }
 
   @After def cleanup {
-//    Console.out.println(files.size + " dirs/files created.")
+//    System.out.println(files.size + " dirs/files created.")
     for (f <- files) {
       if (f.isDirectory()) {
-//	Console.out.println("rmdir \"" + f + "\"")
+//	System.out.println("rmdir \"" + f + "\"")
   } else {
     assert (f.isFile(), { "\"" + f + "\" is neither file nor dir." })
-//	Console.out.println("Deleting \"" + f + "\"")
+//	System.out.println("Deleting \"" + f + "\"")
   }
       assert(f.delete(), { "Cannot delete \"" + f + "\"" })
     }
@@ -57,7 +57,7 @@ class FileModel (var parent: File) extends Model {
       assert(file.createNewFile())
     } catch {
       case t: Throwable => {
-        Console.err.println("Cannot create file \"" + file.toString + "\"")
+        System.err.println("Cannot create file \"" + file.toString + "\"")
         throw t
   }
         }

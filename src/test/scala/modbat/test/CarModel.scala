@@ -45,6 +45,6 @@ class CarModel extends Model {
   "init" -> "init" := togglePower
   "init" -> "show" := {
     require(cmdSeq.size >= SEQ_MIN_LEN)
-    println("Test: " + cmdSeq.mkString("\t"))
+    System.out.println("Test: " + cmdSeq.mkString("\t"))
   }
 }

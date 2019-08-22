@@ -14,11 +14,11 @@ class ConcurrentObserver(val target: ObserverHarness7) extends Observer {
   // transitions
   "zero" -> "one" := {
     require(target.i > 0)
-    Console.out.println("one")
+    System.out.println("one")
   }
   "one" -> "many" := {
     require(target.i > 1)
-    Console.out.println("many")
+    System.out.println("many")
   }
   "many" -> "many" := {
     val t = new BGThread(target.i)

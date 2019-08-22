@@ -5,10 +5,10 @@ import modbat.dsl._
 class RequireMaybeTest2 extends Model {
   def maybeTest() {
     maybe {
-      Console.err.println("Hit maybe!")
+      System.err.println("Hit maybe!")
       assert (false, { "Hit maybe" })
     } or_else {
-      Console.err.println("Hit else!")
+      System.err.println("Hit else!")
       assert (false, { "Hit else" } )
     }
   }

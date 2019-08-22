@@ -9,7 +9,7 @@ class SimpleLingelingModel extends Model {
 
   // transitions
   "reset" -> "init" := {
-     println ("init")
+     System.out.println ("init")
   }
   "init" -> "cnf" := {
      added_clauses = 0
@@ -21,23 +21,23 @@ class SimpleLingelingModel extends Model {
   "cnf" -> "generated" := { require(added_clauses == num_clauses) }
   "clause" -> "binary" := {
     var lit = 1 // chooseLit
-    println ("add " + lit);
+    System.out.println ("add " + lit);
   }
   "binary" -> "ternary" := {
     var lit = 2 // chooseLit
-    println ("add " + lit)
+    System.out.println ("add " + lit)
   }
   "ternary" -> "cnf" := {
     var lit = 3 // chooseLit
-    println ("add " + lit)
-    println ("add 0")
+    System.out.println ("add " + lit)
+    System.out.println ("add 0")
     added_clauses += 1
   }
-  "generated" -> "sat" := { println ("sat"); }
+  "generated" -> "sat" := { System.out.println ("sat"); }
   "generated" -> "init" := skip
   "generated" -> "simp" := {
     var simplificationLevel : Int = 1 //choose between 0 and 3
-    println ("simp " + simplificationLevel)
+    System.out.println ("simp " + simplificationLevel)
   }
   "generated" -> "end" := skip
 }
