@@ -56,7 +56,6 @@ class Modbat(val config: Configuration) {
   }
   import AppState._
   val mbt = new MBT
-  val sourceInfo = new SourceInfo(mbt.classLoaderURLs)
   var out: PrintStream = Modbat.origOut
   var err: PrintStream = Modbat.origErr
   var logFile: String = _
@@ -610,7 +609,7 @@ class Modbat(val config: Configuration) {
       }
     } else {
       assert (action.transfunc != null)
-      sourceInfo.sourceInfo(action, false)
+      mbt.sourceInfo.sourceInfo(action, false)
     }
   }
 
