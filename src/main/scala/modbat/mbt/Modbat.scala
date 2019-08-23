@@ -42,15 +42,21 @@ import com.miguno.akka.testing.VirtualTime
 class NoTaskException(message :String = null, cause :Throwable = null) extends RuntimeException(message, cause)
 
 /** Contains code to explore model */
+
+/** Keep only system-wide settings that never change between executions here,
+    to allow for running multiple instances in parallel for testing. */
 object Modbat {
+  val origOut = Console.out
+  val origErr = Console.err
+}
+
+class Modbat(val config: Configuration) {
   object AppState extends Enumeration {
     val AppExplore, AppShutdown = Value
   }
   import AppState._
-  val origOut = Console.out
-  val origErr = Console.err
-  var out: PrintStream = origOut
-  var err: PrintStream = origErr
+  var out: PrintStream = Modbat.origOut
+  var err: PrintStream = Modbat.origErr
   var logFile: String = _
   var errFile: String = _
   var failed = 0
@@ -66,30 +72,18 @@ object Modbat {
     new HashMap[(TransitionResult, String), ListBuffer[Long]]()
 //  val time = new VirtualTime
   var isUnitTest = true
-
-
-  def init {
-    // reset all static variables
-    failed = 0
-    count = 0
-    firstInstance.clear
-    appState = AppExplore
-    executedTransitions.clear
-    timesVisited.clear
-    testFailures.clear
-    MBT.init
-  }
+  MBT.init(this)
 
   def setup {
     masterRNG = MBT.rng.asInstanceOf[CloneableRandom].clone
     // call init if needed
-    if (Main.config.init) {
+    if (config.init) {
       MBT.invokeAnnotatedStaticMethods(classOf[Init], null)
     }
   }
 
   def shutdown {
-    if (Main.config.shutdown) {
+    if (config.shutdown) {
       MBT.invokeAnnotatedStaticMethods(classOf[Shutdown], null)
     }
   }
@@ -183,9 +177,9 @@ object Modbat {
     preconditionCoverage
     randomSeed = (masterRNG.z << 32 | masterRNG.w)
     Log.info("Random seed for next test would be: " + randomSeed.toHexString)
-    if (Main.config.dotifyCoverage) {
+    if (config.dotifyCoverage) {
       for ((modelName, modelInst) <- firstInstance) {
-	      new Dotify(modelInst, modelName + ".dot").dotify(true)
+	      new Dotify(config, modelInst, modelName + ".dot").dotify(true)
       }
     }
   }
@@ -201,17 +195,17 @@ object Modbat {
   }
 
   def restoreChannels {
-    restoreChannel(out, origOut, logFile)
-    restoreChannel(err, origErr, errFile, true)
+    restoreChannel(out, Modbat.origOut, logFile)
+    restoreChannel(err, Modbat.origErr, errFile, true)
   }
 
   def restoreChannel(ch: PrintStream, orig: PrintStream,
   filename: String, isErr: Boolean = false) {
-    if (Main.config.redirectOut) {
+    if (config.redirectOut) {
       ch.close()
       val file = new File(filename)
-      if ((Main.config.deleteEmptyLog && (file.length == 0)) ||
-      (Main.config.removeLogOnSuccess && !MBT.testHasFailed)) {
+      if ((config.deleteEmptyLog && (file.length == 0)) ||
+      (config.removeLogOnSuccess && !MBT.testHasFailed)) {
         if (!file.delete()) {
           Log.warn("Cannot delete file " + filename)
         }
@@ -226,7 +220,6 @@ object Modbat {
   }
 
   def explore(n: Int) {
-    init
     if (!isUnitTest) {
       Runtime.getRuntime().addShutdownHook(ShutdownHandler)
     }
@@ -277,9 +270,9 @@ object Modbat {
         case _ => Console.printf("%8d %16s, %d tests failed.",
 				i, seed, failed)
       }
-      logFile = Main.config.logPath + "/" + seed + ".log"
-      errFile = Main.config.logPath + "/" + seed + ".err"
-      if (Main.config.redirectOut) {
+      logFile = config.logPath + "/" + seed + ".log"
+      errFile = config.logPath + "/" + seed + ".err"
+      if (config.redirectOut) {
         out = new PrintStream(new FileOutputStream(logFile))
         System.setOut(out)
 
@@ -298,7 +291,7 @@ object Modbat {
 	      assert (result == Ok())
       }
       masterRNG.nextInt(false) // get one iteration in RNG
-      if (TransitionResult.isErr(result) && Main.config.stopOnFailure) {
+      if (TransitionResult.isErr(result) && config.stopOnFailure) {
 	      return
       }
     }
@@ -308,7 +301,7 @@ object Modbat {
     if (t == null) {
       "(transition outside model such as callback)"
     } else {
-      t.transition.ppTrans(true)
+      t.transition.ppTrans(config.autoLabels, true)
     }
   }
 
@@ -346,7 +339,7 @@ object Modbat {
 		    timesVisited.getOrElseUpdate(RecordedState(m, s.dest), 0)
 		    + " times.")
       }
-      val limit = Main.config.loopLimit
+      val limit = config.loopLimit
       if ((limit != 0) &&
         (timesVisited.getOrElseUpdate(RecordedState(m, s.dest), 0)
         >= limit)) {
@@ -466,7 +459,7 @@ object Modbat {
        * Otherwise, if total weight > 0, choose one transition by weight and execute it. */
       val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone
 
-      if (MBT.rng.nextFloat(false) < Main.config.abortProbability) {
+      if (MBT.rng.nextFloat(false) < config.abortProbability) {
         Log.debug("Aborting...")
         return (Ok(), null)
       }
@@ -591,7 +584,7 @@ object Modbat {
       assert (!trans.isSynthetic)
       val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone
       val result = observer.executeTransition(trans)
-      Modbat.updateExecHistory(observer, localStoredRNGState, result, Nil)
+      updateExecHistory(observer, localStoredRNGState, result, Nil)
       if (TransitionResult.isErr(result._1)) {
 	      printTrace(executedTransitions.toList)
       }
@@ -631,10 +624,11 @@ object Modbat {
 
   def ppTrans(recTrans: RecordedTransition): String = {
     val transStr =
-      ppTrans (MBT.launchedModels.size, recTrans.trans.ppTrans(true),
+      ppTrans (MBT.launchedModels.size,
+               recTrans.trans.ppTrans(config.autoLabels, true),
 	       recTrans.transition.action,
 	       recTrans.recordedAction, recTrans.model.name)
-    if (Main.config.showChoices && recTrans.randomTrace != null &&
+    if (config.showChoices && recTrans.randomTrace != null &&
 	  recTrans.randomTrace.length != 0) {
       val choices = recTrans.debugTrace.mkString(", ")
       transStr + "; choices = (" + choices + ")"

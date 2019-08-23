@@ -13,12 +13,12 @@ import modbat.util.SourceInfo.InternalAction
 import modbat.util.SourceInfo.Choice
 import modbat.util.SourceInfo.Launch
 
-class Dotify(val model: MBT, outFile: String = "") {
+class Dotify(val config: Configuration, val model: MBT, outFile: String = "") {
   var out: PrintStream = null
 
   def init {
     assert (outFile != "")
-    val fullOutFile = Main.config.dotDir + File.separatorChar + outFile
+    val fullOutFile = config.dotDir + File.separatorChar + outFile
     try {
       out = new PrintStream(new FileOutputStream(fullOutFile), false, "UTF-8")
     } catch {
@@ -77,7 +77,7 @@ class Dotify(val model: MBT, outFile: String = "") {
     var prevAction: InternalAction = null
     var prevChild = ""
     val cov = covP(tr.coverage.count, totalCov)
-    if (modbat.mbt.Main.config.showChoices) {
+    if (config.showChoices) {
       var n = 0
       internalActions.foreach {
 	a => {
@@ -146,10 +146,10 @@ class Dotify(val model: MBT, outFile: String = "") {
   }
 
   def ppTrans(tr: Transition) = {
-    if (!Main.config.autoLabels && (tr.action.label.isEmpty)) {
+    if (!config.autoLabels && (tr.action.label.isEmpty)) {
       ""
     } else if (tr.action.transfunc != null) {
-      tr.ppTrans()
+      tr.ppTrans(config.autoLabels)
     } else {
       ""
     }

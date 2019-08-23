@@ -67,8 +67,8 @@ class Transition (var origin:		State,
     }
   }
 
-  def ppTrans(showSkip: Boolean = false): String = {
-    if (Main.config.autoLabels && action.label.isEmpty) {
+  def ppTrans(autoLabel: Boolean, showSkip: Boolean = false): String = {
+    if (autoLabel && action.label.isEmpty) {
       assert(action.transfunc != null)
       val actionInfo = SourceInfo.actionInfo(action, false)
       if (actionInfo.equals(SourceInfo.SKIP)) {

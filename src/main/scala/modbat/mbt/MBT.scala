@@ -48,10 +48,10 @@ import modbat.util.Random
 
 import com.miguno.akka.testing.VirtualTime
 
-//import com.miguno.akka.testing.VirtualTime
 /** Contains core functionality for loading and running model.
   * Model exploration code is in Modbat. */
 object MBT {
+  var modbat: Modbat = _
   var modelClass: Class[_ <: Any] = null // main model class
   val launchedModels = new ArrayBuffer[MBT]()
   val launchedModelInst = new ArrayBuffer[Model]()
@@ -81,7 +81,8 @@ object MBT {
   val stayLock = new AnyRef()
   var time = new VirtualTime
 
-  def init {
+  def init(modbatInstance: Modbat) {
+    modbat = modbatInstance
     warningIssuedOn.clear
 //    modelClass = null
     invokedStaticMethods.clear
@@ -443,14 +444,14 @@ class MBT (val model: Model, val trans: List[Transition]) {
   }
 
   def addAndLaunch(firstLaunch: Boolean) = {
-    if (Modbat.firstInstance.contains(className)) {
+    if (MBT.modbat.firstInstance.contains(className)) {
       val master =
 	initChildInstance(className, trans.toArray)
       regSynthTrans(true)
       registerStateSelfTrans(model, true)
       TransitionCoverage.reuseCoverageInfo(this, master, className)
     } else {
-      Modbat.firstInstance.put(className, this)
+      MBT.modbat.firstInstance.put(className, this)
       init (false)
       regSynthTrans(false)
       registerStateSelfTrans(model, false)
@@ -489,7 +490,7 @@ class MBT (val model: Model, val trans: List[Transition]) {
   }
 
   def initChildInstance(className: String, trans: Array[Any]) = {
-    val master = Modbat.firstInstance(className)
+    val master = MBT.modbat.firstInstance(className)
     Log.debug("Identical model found: " + master.name)
     states = master.states
     initialState = master.initialState

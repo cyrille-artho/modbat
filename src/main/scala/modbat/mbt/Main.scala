@@ -6,12 +6,12 @@ import modbat.log.Log
 import modbat.util.CloneableRandom
 
 object Main {
-  var config = new Configuration()
-
   def main(args: Array[String]) {
-    Modbat.isUnitTest = false
+    val config = new Configuration()
+    val modbat = new Modbat(config)
+    modbat.isUnitTest = false
     try {
-        run(args, config)
+        run(modbat, args, config)
     } catch {
       case e: Exception => {
         System.exit(1)
@@ -20,7 +20,7 @@ object Main {
     System.exit(0)
   }
 
-  def run(args: Array[String], config: Configuration){
+  def run(modbat: Modbat, args: Array[String], config: Configuration) {
     var modelClassName: String = null
     val c = new ConfigMgr("scala modbat.jar", "CLASSNAME",
 			  config, new Version ("modbat.mbt"))
@@ -51,19 +51,19 @@ object Main {
       }
     }
 
-    Modbat.init
+//    modbat.init
 
-    setup(modelClassName)
+    setup(modbat, config, modelClassName)
 
     /* execute */
     config.mode match {
       case "dot" =>
-	new Dotify(MBT.launch(null), modelClassName + ".dot").dotify()
-      case _ => Modbat.explore(config.nRuns)
+	new Dotify(config, MBT.launch(null), modelClassName + ".dot").dotify()
+      case _ => modbat.explore(config.nRuns)
     }
   }
 
-  def setup(modelClassName: String) {
+  def setup(modbat: Modbat, config: Configuration, modelClassName: String) {
     /* configure components */
     Log.setLevel(config.logLevel)
     MBT.enableStackTrace = config.printStackTrace
@@ -76,6 +76,6 @@ object Main {
     MBT.runBefore = config.setup
     MBT.runAfter = config.cleanup
     MBT.precondAsFailure = config.precondAsFailure
-    Modbat.setup
+    modbat.setup
   }
 }

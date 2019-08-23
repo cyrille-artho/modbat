@@ -176,16 +176,18 @@ object ModbatTestHarness {
     var ret = 0
     System.setOut(new PrintStream(out))
     System.setErr(new PrintStream(err))
+    val config = new Configuration()
+    val modbat = new Modbat(config)
     Console.withErr(err) {
       Console.withOut(out) {
         try {
-          Main.run(args, new Configuration())
+          Main.run(modbat, args, config)
           ret=0
           System.setOut(origOut)
           System.setErr(origErr)
         } catch {
           case e: Exception => {
-            Modbat.coverage
+            modbat.coverage
             System.setOut(origOut)
             System.setErr(origErr)
             // reset stderr/out before printing stack trace
