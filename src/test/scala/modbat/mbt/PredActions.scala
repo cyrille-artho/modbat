@@ -8,7 +8,4 @@ class PredActions extends fixture.FlatSpec with fixture.TestDataFixture with Mat
     result._1 should be(0)
     result._3 shouldBe empty
   }
-
-
-
 }

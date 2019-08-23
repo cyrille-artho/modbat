@@ -6,33 +6,24 @@ class ExcTestA extends fixture.FlatSpec with fixture.TestDataFixture with Matche
   "ExcTestA1" should "pass" in { td =>
     val result = ModbatTestHarness.testMain(Array("-s=1","-n=1","--no-redirect-out","modbat.test.ExcTestA3"), ModbatTestHarness.setTestJar, td)
     result._1 should be(0)
-    result._3 shouldBe empty
+    result._3 should not be empty
   }
-
-
 
   "ExcTestA2" should "pass" in { td =>
     val result = ModbatTestHarness.testMain(Array("-s=1","-n=1","--no-redirect-out","modbat.test.ExcTestA4"), ModbatTestHarness.setTestJar, td)
     result._1 should be(0)
-    result._3 shouldBe empty
+    result._3 should not be empty
   }
-
-
 
   "ExcTestA3" should "pass" in { td =>
     val result = ModbatTestHarness.testMain(Array("-s=1","-n=1","--no-redirect-out","modbat.test.ExcTestA5"), ModbatTestHarness.setTestJar, td)
     result._1 should be(0)
-    result._3 shouldBe empty
+    result._3 should not be empty
   }
-
-
 
   "ExcTestA4" should "pass" in { td =>
     val result = ModbatTestHarness.testMain(Array("-s=1","-n=1","--no-redirect-out","modbat.test.ExcTestA5","--log-level=fine"), ModbatTestHarness.setTestJar, td)
     result._1 should be(0)
-    result._3 shouldBe empty
+    result._3 should not be empty
   }
-
-
-
 }

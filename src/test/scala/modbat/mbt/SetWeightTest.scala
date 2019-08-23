@@ -27,7 +27,7 @@ class SetWeightTest extends fixture.FlatSpec with fixture.TestDataFixture with M
     result._2.filter(_.contains("1 tests executed, 1 ok, 0 failed.")) should not be empty
     result._2.filter(_.contains("3 states covered (100 % out of 3),")) should not be empty
     result._2.filter(_.contains("3 transitions covered (100 % out of 3).")) should not be empty
-    result._3 shouldBe empty
+    result._3 should not be empty
   }
 }
 

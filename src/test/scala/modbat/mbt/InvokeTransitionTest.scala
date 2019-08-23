@@ -27,7 +27,7 @@ class InvokeTransitionTest extends fixture.FlatSpec with fixture.TestDataFixture
     result._2.filter(_.contains("1 tests executed, 1 ok, 0 failed.")) should not be empty
     result._2.filter(_.contains("2 states covered (66 % out of 3),")) should not be empty
     result._2.filter(_.contains("2 transitions covered (66 % out of 3).")) should not be empty
-    result._3 shouldBe empty
+    result._3 should not be empty
   }
 
   "InvokeTransition4" should "end with n==3" in { td =>

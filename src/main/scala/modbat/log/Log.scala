@@ -23,9 +23,9 @@ object Log {
   def log(msg: String, level: Int) {
     if (isLogging(level)) {
       if (errLevel <= level) {
-	Console.err.println(msg)
+	System.err.println(msg)
       } else {
-	Console.out.println(msg)
+	System.out.println(msg)
       }
     }
   }

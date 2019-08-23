@@ -21,5 +21,4 @@ class TimeTest extends fixture.FlatSpec with fixture.TestDataFixture with Matche
     result._2.filter(_.contains("3 transitions covered (100 % out of 3).")) should not be empty
     result._3 shouldBe empty
   }
-
 }

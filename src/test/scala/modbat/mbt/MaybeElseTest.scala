@@ -6,10 +6,8 @@ class MaybeElseTest extends fixture.FlatSpec with fixture.TestDataFixture with M
   "MaybeElseTest1" should "pass" in { td =>
     val result = ModbatTestHarness.testMain(Array("-s=1","-n=1","modbat.test.MaybeElseTest","--maybe-probability=0.0","--no-redirect-out"), ModbatTestHarness.setTestJar, td)
     result._1 should be(0)
-    result._3 shouldBe empty
+    result._3 should not be empty
   }
-
-
 
   "MaybeElseTest2" should "pass" in { td =>
     val result = ModbatTestHarness.testMain(Array("-s=1","-n=1","modbat.test.MaybeElseTest","--maybe-probability=1.0","--no-redirect-out"), ModbatTestHarness.setTestJar, td)
@@ -17,22 +15,15 @@ class MaybeElseTest extends fixture.FlatSpec with fixture.TestDataFixture with M
     result._3 shouldBe empty
   }
 
-
-
   "MaybeElseTest3" should "pass" in { td =>
     val result = ModbatTestHarness.testMain(Array("-s=1","-n=1","modbat.test.MaybeElseTest2","--maybe-probability=0.0","--no-redirect-out"), ModbatTestHarness.setTestJar, td)
     result._1 should be(0)
     result._3 shouldBe empty
   }
 
-
-
   "MaybeElseTest4" should "pass" in { td =>
     val result = ModbatTestHarness.testMain(Array("-s=1","-n=1","modbat.test.MaybeElseTest2","--maybe-probability=1.0","--no-redirect-out"), ModbatTestHarness.setTestJar, td)
     result._1 should be(0)
-    result._3 shouldBe empty
+    result._3 should not be empty
   }
-
-
-
 }

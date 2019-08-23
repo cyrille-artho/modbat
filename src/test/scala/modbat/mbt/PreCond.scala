@@ -8,7 +8,4 @@ class PreCond extends fixture.FlatSpec with fixture.TestDataFixture with Matcher
     result._1 should be(0)
     result._3 shouldBe empty
   }
-
-
-
 }

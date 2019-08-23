@@ -8,7 +8,4 @@ class Child extends fixture.FlatSpec with fixture.TestDataFixture with Matchers 
     result._1 should be(1)
     result._3 should not be empty
   }
-
-
-
 }

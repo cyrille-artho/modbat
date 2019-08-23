@@ -8,7 +8,4 @@ class CounterPosNeg extends fixture.FlatSpec with fixture.TestDataFixture with M
     result._1 should be(0)
     result._3 shouldBe empty
   }
-
-
-
 }
