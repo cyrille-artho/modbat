@@ -58,24 +58,25 @@ object Main {
     /* execute */
     config.mode match {
       case "dot" =>
-	new Dotify(config, MBT.launch(null), modelClassName + ".dot").dotify()
+	new Dotify(config, modbat.mbt.launch(null), modelClassName + ".dot").dotify()
       case _ => modbat.explore(config.nRuns)
     }
   }
 
   def setup(modbat: Modbat, config: Configuration, modelClassName: String) {
     /* configure components */
-    Log.setLevel(config.logLevel)
-    MBT.enableStackTrace = config.printStackTrace
-    MBT.maybeProbability = config.maybeProbability
-
-    MBT.configClassLoader(config.classpath)
-    MBT.loadModelClass(modelClassName)
-    MBT.setRNG(config.randomSeed)
     MBT.isOffline = false
-    MBT.runBefore = config.setup
-    MBT.runAfter = config.cleanup
-    MBT.precondAsFailure = config.precondAsFailure
+    Log.setLevel(config.logLevel)
+    // TODO: Refactor config again so mbt refers to config via modbat instance
+    modbat.mbt.enableStackTrace = config.printStackTrace
+    modbat.mbt.maybeProbability = config.maybeProbability
+
+    modbat.mbt.configClassLoader(config.classpath)
+    modbat.mbt.loadModelClass(modelClassName)
+    modbat.mbt.setRNG(config.randomSeed)
+    modbat.mbt.runBefore = config.setup
+    modbat.mbt.runAfter = config.cleanup
+    modbat.mbt.precondAsFailure = config.precondAsFailure
     modbat.setup
   }
 }

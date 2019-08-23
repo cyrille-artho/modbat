@@ -76,11 +76,8 @@ class CloneableRandom(rngTrace: Array[Int], dbgTrace: Array[String])
     result
   }
 
-  override def nextFunc(actions: Array[() => Any]) = {
-    val result = super.nextFunc(actions)
-    val action = new Action(result)
-    resultsAsString += SourceInfo.actionInfo(action, true)
-    result
+  override def record(str: String) {
+    resultsAsString += str
   }
 
   override def choose(min: Int, max: Int): Int = {

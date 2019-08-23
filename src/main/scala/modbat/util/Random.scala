@@ -9,7 +9,7 @@ trait Random {
   // this will differ from the current state if next... was used after the
   // seed was set
 
-  def nextFunc(actions: Array[() => Any]) = actions(nextInt(actions.size))
+  def record(str: String) { }
 
   def nextBoolean(): Boolean = {
     return ((nextInt(true) % 2) == 0)

@@ -1,12 +1,12 @@
 package modbat.dsl
 
-class StatePair(val origin: State, val dest: State) {
+class StatePair(val model: Model, val origin: State, val dest: State) {
 
   def := (action: => Any): Transition = {
-    new Transition(origin, dest, false, new Action(() => action))
+    new Transition(model, origin, dest, false, new Action(model, () => action))
   }
 
   def := (action: Action): Transition = {
-    new Transition(origin, dest, false, action)
+    new Transition(model, origin, dest, false, action)
   }
 }

@@ -13,7 +13,7 @@ import modbat.util.SourceInfo.InternalAction
 import modbat.util.SourceInfo.Choice
 import modbat.util.SourceInfo.Launch
 
-class Dotify(val config: Configuration, val model: MBT, outFile: String = "") {
+class Dotify(val config: Configuration, val model: ModelInstance, outFile: String = "") {
   var out: PrintStream = null
 
   def init {

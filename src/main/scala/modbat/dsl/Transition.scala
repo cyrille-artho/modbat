@@ -21,7 +21,8 @@ object Transition {
  * and processed later. At the end of model initialization, transitions
  * from annotated methods are added; those are not kept in the
  * buffer as not to interfere with the next model instance. */
-class Transition (var origin:		State,
+class Transition (val model:            Model,
+                  var origin:           State,
 		  var dest:		State,
 		  val isSynthetic:	Boolean,
 		  val action:		Action,
@@ -41,7 +42,7 @@ class Transition (var origin:		State,
       Transition.pendingTransitions += this
     }
     for (nonDetE <- action.nonDetExc) {
-      val t = new Transition(origin, nonDetE._2, true, action)
+      val t = new Transition(model, origin, nonDetE._2, true, action)
       nonDetExcConv += new NextStateOnException(nonDetE._1, t)
     }
 
@@ -49,8 +50,8 @@ class Transition (var origin:		State,
     // several "nextIf" defintions for one transition (very rare)
     val len = action.nextStatePred.length
     for (nextSt <- action.nextStatePred) {
-      val t = new Transition(origin, nextSt._2, true,
-			     new Action(action.transfunc))
+      val t = new Transition(model, origin, nextSt._2, true,
+			     new Action(model, action.transfunc))
       if (len > 1) {
         t.n = i
       }
@@ -70,7 +71,7 @@ class Transition (var origin:		State,
   def ppTrans(autoLabel: Boolean, showSkip: Boolean = false): String = {
     if (autoLabel && action.label.isEmpty) {
       assert(action.transfunc != null)
-      val actionInfo = SourceInfo.actionInfo(action, false)
+      val actionInfo = model.mbt.sourceInfo.actionInfo(action, false)
       if (actionInfo.equals(SourceInfo.SKIP)) {
 	if (showSkip) {
 	  return "[skip]"
@@ -98,6 +99,6 @@ class Transition (var origin:		State,
   }
 
   def launchesAndChoices: List[SourceInfo.InternalAction] = {
-    SourceInfo.launchAndChoiceInfo(action)
+    model.mbt.sourceInfo.launchAndChoiceInfo(action)
   }
 }

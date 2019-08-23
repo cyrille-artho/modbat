@@ -18,11 +18,21 @@ import scala.language.existentials
 
 import modbat.log.Log
 import modbat.dsl.Action
-import modbat.mbt.MBT
 
 object SourceInfo {
-  val MAXLEN = 20
+  abstract class InternalAction
+
+  class Launch(val launchedModel: String) extends InternalAction
+
+  class Choice(val choices: List[String]) extends InternalAction
+
   val SKIP = "\u0000"
+  val MAXLEN = 20
+}
+
+class SourceInfo(val classLoaderURLs: Array[URL]) {
+  import SourceInfo.{InternalAction,Choice,Launch}
+  import SourceInfo.{SKIP,MAXLEN}
 
   val cachedActionInfoFromClass = new HashMap[Class[_], String]
   val cachedActionInfoFromMethod = new HashMap[Method, String]
@@ -47,12 +57,6 @@ object SourceInfo {
     var methodInfo: String = _
   }
 
-  abstract class InternalAction
-
-  class Launch(val launchedModel: String) extends InternalAction
-
-  class Choice(val choices: List[String]) extends InternalAction
-
   class LaunchesAndChoices {
     val closure = new ClInfoRecord
     val actions = new ListBuffer[InternalAction]
@@ -68,7 +72,7 @@ object SourceInfo {
 
   def analyzeClosure(visitor: ClassVisitor, closureName: String) {
     val cr = new ClassReader(findInURLs(closureName + ".class",
-			     MBT.classLoaderURLs))
+			     classLoaderURLs))
     try {
       cr.accept(visitor, 0)
     } catch {
@@ -208,8 +212,7 @@ object SourceInfo {
       if (r.methodInfo == null) {
 	r.methodInfo = ""
 	if (!analyzed && r.closure.name != null) {
-	  SourceInfo.analyzeClosure(new ActionInfoClsVisitor(r),
-				    r.closure.name)
+	  analyzeClosure(new ActionInfoClsVisitor(r), r.closure.name)
 	  Log.debug("Function \"" + r.methodInfo +
 		    "\" called inside closure (such as \"maybe\").")
 	}
@@ -249,7 +252,7 @@ object SourceInfo {
 	ch => {
 	  val ar = new ActionRecord
 	  ar.closure.name = ch
-	  SourceInfo.analyzeClosure(new ActionInfoClsVisitor(ar), ch)
+	  analyzeClosure(new ActionInfoClsVisitor(ar), ch)
 	  val clAction = ar.methodInfo
 	  val cls = Class.forName(ch.replace(File.separatorChar, '.'))
 	  if (clAction.endsWith("= ...")) {
@@ -303,7 +306,7 @@ object SourceInfo {
 	}
 	case "launch" => {
 	  if (owner.startsWith("modbat/mbt/Predef") &&
-	      desc.equals("(Lmodbat/mbt/Model;)Lmodbat/mbt/MBT;")) {
+	      desc.equals("(Lmodbat/mbt/Model;)Lmodbat/mbt/ModelInstance;")) {
 	    if (launchedModel != null) {
 	      // should be non-null but this is not the case if
 	      // the code to launch the model was never executed
@@ -342,7 +345,7 @@ object SourceInfo {
 
   def findPath(cls: Class[_ <: Any]): InputStream = {
     val filename = cls.getName.replace('.', '/') + ".class"
-    return findInURLs(filename, MBT.classLoaderURLs)
+    return findInURLs(filename, classLoaderURLs)
   }
 
   def findInURLs(filename: String, urls: Array[URL]): InputStream = {

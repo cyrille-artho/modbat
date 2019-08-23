@@ -55,13 +55,15 @@ class Modbat(val config: Configuration) {
     val AppExplore, AppShutdown = Value
   }
   import AppState._
+  val mbt = new MBT
+  val sourceInfo = new SourceInfo(mbt.classLoaderURLs)
   var out: PrintStream = Modbat.origOut
   var err: PrintStream = Modbat.origErr
   var logFile: String = _
   var errFile: String = _
   var failed = 0
   var count = 0
-  val firstInstance = new LinkedHashMap[String, MBT]()
+  val firstInstance = new LinkedHashMap[String, ModelInstance]()
   var appState = AppExplore // track app state in shutdown handler
   // shutdown handler is registered at time when model exploration starts
   private var executedTransitions = new ListBuffer[RecordedTransition]
@@ -72,19 +74,19 @@ class Modbat(val config: Configuration) {
     new HashMap[(TransitionResult, String), ListBuffer[Long]]()
 //  val time = new VirtualTime
   var isUnitTest = true
-  MBT.init(this)
+  mbt.init(this)
 
   def setup {
-    masterRNG = MBT.rng.asInstanceOf[CloneableRandom].clone
+    masterRNG = mbt.rng.asInstanceOf[CloneableRandom].clone
     // call init if needed
     if (config.init) {
-      MBT.invokeAnnotatedStaticMethods(classOf[Init], null)
+      mbt.invokeAnnotatedStaticMethods(classOf[Init], null)
     }
   }
 
   def shutdown {
     if (config.shutdown) {
-      MBT.invokeAnnotatedStaticMethods(classOf[Shutdown], null)
+      mbt.invokeAnnotatedStaticMethods(classOf[Shutdown], null)
     }
   }
 
@@ -125,7 +127,7 @@ class Modbat(val config: Configuration) {
     }
   }
 
-  def warnPrecond(modelInst: MBT, t: Transition, idx: Int) {
+  def warnPrecond(modelInst: ModelInstance, t: Transition, idx: Int) {
     Log.info("Precondition " + (idx + 1) + " always " +
 	     passFailed(t.coverage.precond.precondPassed.get(idx)) +
 	     " at transition " +
@@ -205,7 +207,7 @@ class Modbat(val config: Configuration) {
       ch.close()
       val file = new File(filename)
       if ((config.deleteEmptyLog && (file.length == 0)) ||
-      (config.removeLogOnSuccess && !MBT.testHasFailed)) {
+      (config.removeLogOnSuccess && !mbt.testHasFailed)) {
         if (!file.delete()) {
           Log.warn("Cannot delete file " + filename)
         }
@@ -233,7 +235,7 @@ class Modbat(val config: Configuration) {
   }
 
   def getRandomSeed = {
-    val rng = MBT.rng.asInstanceOf[CloneableRandom]
+    val rng = mbt.rng.asInstanceOf[CloneableRandom]
     assert (rng.w <= 0xffffffffL)
     assert (rng.z <= 0xffffffffL)
     rng.z << 32 | rng.w
@@ -242,23 +244,23 @@ class Modbat(val config: Configuration) {
   def wrapRun = {
     Console.withErr(err) {
       Console.withOut(out) {
-	 val model = MBT.launch(null)
+	 val model = mbt.launch(null)
 	 val result = exploreModel(model)
-	 MBT.cleanup()
+	 mbt.cleanup()
 	 result
       }
     }
   }
 
   def runTest = {
-    MBT.clearLaunchedModels
-    MBT.testHasFailed = false
+    mbt.clearLaunchedModels
+    mbt.testHasFailed = false
     wrapRun
   }
 
   def runTests(n: Int) {
    for (i <- 1 to n) {
-      MBT.rng = masterRNG.clone
+      mbt.rng = masterRNG.clone
       // advance RNG by one step for each path
       // so each path stays the same even if the length of other paths
       // changes due to small changes in the model or in this tool
@@ -281,7 +283,7 @@ class Modbat(val config: Configuration) {
       } else {
 	      Console.println
       }
-      MBT.checkDuplicates = (i == 1)
+      mbt.checkDuplicates = (i == 1)
       val result = runTest
       count = i
       restoreChannels
@@ -305,7 +307,7 @@ class Modbat(val config: Configuration) {
     }
   }
 
-  def exploreModel(model: MBT) = {
+  def exploreModel(model: ModelInstance) = {
     Log.debug("--- Exploring model ---")
     timesVisited.clear
     executedTransitions.clear
@@ -319,7 +321,7 @@ class Modbat(val config: Configuration) {
     val retVal = result._1
     val recordedTrans = result._2
     assert (retVal == Ok() || TransitionResult.isErr(retVal))
-    MBT.testHasFailed = TransitionResult.isErr(retVal)
+    mbt.testHasFailed = TransitionResult.isErr(retVal)
     if (TransitionResult.isErr(retVal)) {
       val entry = (retVal, showTrans(recordedTrans))
       val rseeds = testFailures.getOrElseUpdate(entry, new ListBuffer[Long]())
@@ -330,7 +332,7 @@ class Modbat(val config: Configuration) {
     retVal
   }
 
-  def addSuccessors(m: MBT, result: ArrayBuffer[(MBT, Transition)],
+  def addSuccessors(m: ModelInstance, result: ArrayBuffer[(ModelInstance, Transition)],
 	quiet: Boolean = false) {
     for (s <- m.successors(quiet)) {
       if (!quiet) {
@@ -355,19 +357,19 @@ class Modbat(val config: Configuration) {
     }
   }
 
-  def allSuccessors(givenModel: MBT): Array[(MBT, Transition)] = {
-    val result = new ArrayBuffer[(MBT, Transition)]()
+  def allSuccessors(givenModel: ModelInstance): Array[(ModelInstance, Transition)] = {
+    val result = new ArrayBuffer[(ModelInstance, Transition)]()
     if (givenModel == null) {
-      MBT.stayLock.synchronized {
+      mbt.stayLock.synchronized {
         // TODO: allow selection to be overridden by invokeTransition
-        val (staying, notStaying) = MBT.launchedModels partition (_.staying)
+        val (staying, notStaying) = mbt.launchedModels partition (_.staying)
         for (m <- notStaying filterNot (_ isObserver)
           filter (_.joining == null)) {
           addSuccessors(m, result)
         }
         if (result.isEmpty && !staying.isEmpty) {
-          MBT.time.scheduler.timeUntilNextTask match {
-            case Some(s) => MBT.time.advance(s)
+          mbt.time.scheduler.timeUntilNextTask match {
+            case Some(s) => mbt.time.advance(s)
             case None => throw new NoTaskException()
           }
           return allSuccessors(givenModel)
@@ -386,7 +388,7 @@ class Modbat(val config: Configuration) {
     result.toArray
   }
 
-  def totalWeight(trans: Array[(MBT, Transition)]) = {
+  def totalWeight(trans: Array[(ModelInstance, Transition)]) = {
     var w = 0.0
     for (t <- trans) {
       w = w + t._2.action.weight
@@ -394,8 +396,8 @@ class Modbat(val config: Configuration) {
     w
   }
 
-  def weightedChoice(choices: Array[(MBT, Transition)], totalW: Double) = {
-    val n = (totalW * MBT.rng.nextFloat(false))
+  def weightedChoice(choices: Array[(ModelInstance, Transition)], totalW: Double) = {
+    val n = (totalW * mbt.rng.nextFloat(false))
     var w = choices(0)._2.action.weight
     var i = 0
     while (w < n) {
@@ -405,7 +407,7 @@ class Modbat(val config: Configuration) {
     choices(i)
   }
 
-  def updateExecHistory(model: MBT,
+  def updateExecHistory(model: ModelInstance,
   localStoredRNGState: CloneableRandom,
   result: (TransitionResult, RecordedTransition),
   updates: List[(Field, Any)]) {
@@ -413,10 +415,10 @@ class Modbat(val config: Configuration) {
       case (Ok(_), successorTrans: RecordedTransition) =>
         successorTrans.updates = updates
         successorTrans.randomTrace =
-          MBT.rng.asInstanceOf[CloneableRandom].trace
+          mbt.rng.asInstanceOf[CloneableRandom].trace
         successorTrans.debugTrace =
-          MBT.rng.asInstanceOf[CloneableRandom].debugTrace
-        MBT.rng.asInstanceOf[CloneableRandom].clear
+          mbt.rng.asInstanceOf[CloneableRandom].debugTrace
+        mbt.rng.asInstanceOf[CloneableRandom].clear
         executedTransitions += successorTrans
         val timesSeen =
           timesVisited.getOrElseUpdate(RecordedState(model,
@@ -424,22 +426,22 @@ class Modbat(val config: Configuration) {
         timesVisited += ((RecordedState(model, successorTrans.dest),
               timesSeen + 1))
       case (Backtrack, _) =>
-        MBT.rng = localStoredRNGState // backtrack RNG state
+        mbt.rng = localStoredRNGState // backtrack RNG state
         // retry with other successor states in next loop iteration
       case (r: TransitionResult, failedTrans: RecordedTransition) =>
         assert(TransitionResult.isErr(r))
         failedTrans.randomTrace =
-          MBT.rng.asInstanceOf[CloneableRandom].trace
+          mbt.rng.asInstanceOf[CloneableRandom].trace
         failedTrans.debugTrace =
-          MBT.rng.asInstanceOf[CloneableRandom].debugTrace
-        MBT.rng.asInstanceOf[CloneableRandom].clear
+          mbt.rng.asInstanceOf[CloneableRandom].debugTrace
+        mbt.rng.asInstanceOf[CloneableRandom].clear
         executedTransitions += failedTrans
     }
   }
 
   def otherThreadFailed = {
-    MBT.synchronized {
-      if (MBT.testHasFailed) {
+    mbt.synchronized {
+      if (mbt.testHasFailed) {
         printTrace(executedTransitions.toList)
         true
       } else {
@@ -453,23 +455,23 @@ class Modbat(val config: Configuration) {
     var allSucc = successors.clone
     var totalW = totalWeight(successors)
     var backtracked = false
-    while (!successors.isEmpty && (totalW > 0 || !MBT.transitionQueue.isEmpty)) {
+    while (!successors.isEmpty && (totalW > 0 || !mbt.transitionQueue.isEmpty)) {
       /* Pop invokeTransition queue until a feasible transition is popped.
        * If there is, execute it.
        * Otherwise, if total weight > 0, choose one transition by weight and execute it. */
-      val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone
+      val localStoredRNGState = mbt.rng.asInstanceOf[CloneableRandom].clone
 
-      if (MBT.rng.nextFloat(false) < config.abortProbability) {
+      if (mbt.rng.nextFloat(false) < config.abortProbability) {
         Log.debug("Aborting...")
         return (Ok(), null)
       }
 
       //invokeTransition
-      var successor: (MBT, Transition) = null
-      if(!MBT.transitionQueue.isEmpty) Log.debug("Current InvokeTransitionQueue = (" + MBT.transitionQueue.mkString + ")")
+      var successor: (ModelInstance, Transition) = null
+      if(!mbt.transitionQueue.isEmpty) Log.debug("Current InvokeTransitionQueue = (" + mbt.transitionQueue.mkString + ")")
 
-      while (!MBT.transitionQueue.isEmpty && successor == null) {
-        val (model, label) = MBT.transitionQueue.dequeue
+      while (!mbt.transitionQueue.isEmpty && successor == null) {
+        val (model, label) = mbt.transitionQueue.dequeue
         val trs = model.transitions.filter(_.action.label == label)
           .filter(_.origin == model.currentState)
         if(trs.size != 1) {
@@ -495,17 +497,17 @@ class Modbat(val config: Configuration) {
         updateExecHistory(model, localStoredRNGState, result, updates)
         result match {
           case (Ok(sameAgain: Boolean), _) => {
-            val succ = new ArrayBuffer[(MBT, Transition)]()
+            val succ = new ArrayBuffer[(ModelInstance, Transition)]()
             addSuccessors(model, succ, true)
             if (succ.size == 0) {
               Log.debug("Model " + model.name + " has terminated.")
               // Unblock all models that are joining this one.
-              for (m <- MBT.launchedModels filter (_.joining == model)) {
+              for (m <- mbt.launchedModels filter (_.joining == model)) {
                 m.joining = null
               }
             }
             if (otherThreadFailed) {
-              return (ExceptionOccurred(MBT.externalException.toString), null)
+              return (ExceptionOccurred(mbt.externalException.toString), null)
             }
             if (sameAgain) {
               successors = allSuccessors(model)
@@ -517,7 +519,7 @@ class Modbat(val config: Configuration) {
               return (observerResult, result._2)
             }
             if (otherThreadFailed) {
-              return (ExceptionOccurred(MBT.externalException.toString), null)
+              return (ExceptionOccurred(mbt.externalException.toString), null)
             }
             backtracked = false
             allSucc = successors.clone
@@ -543,9 +545,9 @@ class Modbat(val config: Configuration) {
       Log.warn("Maybe the preconditions are too strict?")
     }
     Log.debug("No more successors.")
-    if ((MBT.launchedModels filter (_.joining != null)).size != 0) {
+    if ((mbt.launchedModels filter (_.joining != null)).size != 0) {
       Log.warn("Deadlock: Some models stuck waiting for another model to finish.")
-      for (m <- MBT.launchedModels filter (_.joining != null)) {
+      for (m <- mbt.launchedModels filter (_.joining != null)) {
         val trans = (executedTransitions filter (_.model eq m)).last
         Log.warn(m.name + ": " + ppTrans(trans))
       }
@@ -556,7 +558,7 @@ class Modbat(val config: Configuration) {
   }
 
   def updateObservers: TransitionResult = {
-    for (observer <- MBT.launchedModels filter (_ isObserver)) {
+    for (observer <- mbt.launchedModels filter (_ isObserver)) {
       assert(observer.isObserver)
       val observerResult = updateObserver(observer)
       if (TransitionResult.isErr(observerResult)) {
@@ -566,10 +568,10 @@ class Modbat(val config: Configuration) {
     Ok()
   }
 
-  /* Observer update. This is not an instance method in MBT because
+  /* Observer update. This is not an instance method in ModelInstance because
      it is only used in online mode (observer transitions are also
      recorded and normally replayed in offline mode). */
-  def updateObserver(observer: MBT): TransitionResult = {
+  def updateObserver(observer: ModelInstance): TransitionResult = {
     val observedStates = new HashSet[State]()
     var result: TransitionResult = Ok()
     while (!observedStates.contains(observer.currentState)) {
@@ -579,10 +581,10 @@ class Modbat(val config: Configuration) {
     result
   }
 
-  def executeObserverStep(observer: MBT): TransitionResult = {
+  def executeObserverStep(observer: ModelInstance): TransitionResult = {
     for (trans <- observer.successors(false)) {
       assert (!trans.isSynthetic)
-      val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone
+      val localStoredRNGState = mbt.rng.asInstanceOf[CloneableRandom].clone
       val result = observer.executeTransition(trans)
       updateExecHistory(observer, localStoredRNGState, result, Nil)
       if (TransitionResult.isErr(result._1)) {
@@ -596,7 +598,7 @@ class Modbat(val config: Configuration) {
   }
 
 
-  def sourceInfo(action: Action, recordedAction: StackTraceElement) = {
+  def sourceInfo(action: Action, recordedAction: StackTraceElement): String = {
     if (recordedAction != null) {
       val fullClsName = recordedAction.getClassName
       val idx = fullClsName.lastIndexOf('.')
@@ -608,7 +610,7 @@ class Modbat(val config: Configuration) {
       }
     } else {
       assert (action.transfunc != null)
-      SourceInfo.sourceInfo(action, false)
+      sourceInfo.sourceInfo(action, false)
     }
   }
 
@@ -624,7 +626,7 @@ class Modbat(val config: Configuration) {
 
   def ppTrans(recTrans: RecordedTransition): String = {
     val transStr =
-      ppTrans (MBT.launchedModels.size,
+      ppTrans (mbt.launchedModels.size,
                recTrans.trans.ppTrans(config.autoLabels, true),
 	       recTrans.transition.action,
 	       recTrans.recordedAction, recTrans.model.name)

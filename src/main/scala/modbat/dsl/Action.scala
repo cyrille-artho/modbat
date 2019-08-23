@@ -4,9 +4,9 @@ import java.lang.reflect.Method
 import scala.collection.mutable.ListBuffer
 import scala.util.matching.Regex
 import modbat.log.Log
-import modbat.mbt.MBT
 
-class Action(val transfunc: () => Any, val method: Method = null) {
+class Action(model: Model, val transfunc: () => Any, val method: Method = null) {
+  val mbt = model.mbt
   val expectedExc = ListBuffer[Regex]()
   val nonDetExc = ListBuffer[(Regex, State)]()
   val nextStatePred = ListBuffer[(() => Boolean, State, Boolean)]()
@@ -72,8 +72,8 @@ class Action(val transfunc: () => Any, val method: Method = null) {
   }
 
   def or_else(action: => Any) = {
-    if (MBT.rng.nextFloat(true) < MBT.maybeProbability) {
-      MBT.or_else = true
+    if (mbt.rng.nextFloat(true) < mbt.maybeProbability) {
+      mbt.or_else = true
       transfunc() // Call function that or_else is chained on,
       // but do not use RNG as "maybe" branch should always be taken.
     } else {
