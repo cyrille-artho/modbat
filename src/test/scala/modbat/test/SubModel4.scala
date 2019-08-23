@@ -6,6 +6,6 @@ object SubModel4 {
   @Init def init { System.err.println("Init") }
 }
 
-class SubModel4 extends SubModel3 {
+class SubModel4 extends SubModel2 {
   @States(Array("init")) def foo { System.out.println("...") }
 }

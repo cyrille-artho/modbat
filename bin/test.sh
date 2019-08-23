@@ -456,7 +456,8 @@ run 0 $APP -s=1 -n=1 --no-redirect-out --log-level=debug \
 
 run 0 $APP -s=1 -n=10 --no-redirect-out modbat.test.SubModel2
 
-run 0 $APP -s=1 -n=10 --no-redirect-out modbat.test.SubModel3
+#run 0 $APP -s=1 -n=10 --no-redirect-out modbat.test.SubModel3
+# meant to test SubModel4/5? SubModel3 is identical to SubModel2
 
 run 0 $APP -s=1 -n=100 modbat.test.MaybeTest --maybe-probability=0.01 \
 	--no-redirect-out

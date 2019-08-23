@@ -20,6 +20,7 @@ import modbat.log.Log
 import modbat.util.CloneableRandom
 
 object ModbatTestHarness {
+  val origConfig = Main.config.clone.asInstanceOf[modbat.mbt.Configuration]
 
   //  This function get the name and his path of the file. 
   //  For example, log/modbat/modbat.test.TickTockTest/TickTockTest1.
@@ -175,8 +176,6 @@ object ModbatTestHarness {
     val out: ByteArrayOutputStream = new ByteArrayOutputStream()
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
     var ret = 0
-    val origConfig = Main.config.clone.asInstanceOf[modbat.mbt.Configuration]
-
     System.setOut(new PrintStream(out))
     System.setErr(new PrintStream(err))
     Console.withErr(err) {
