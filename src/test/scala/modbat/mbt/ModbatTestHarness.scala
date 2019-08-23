@@ -20,8 +20,6 @@ import modbat.log.Log
 import modbat.util.CloneableRandom
 
 object ModbatTestHarness {
-  val origConfig = Main.config.clone.asInstanceOf[modbat.mbt.Configuration]
-
   //  This function get the name and his path of the file. 
   //  For example, log/modbat/modbat.test.TickTockTest/TickTockTest1.
   //  This function creates a directory if it does not exist.
@@ -181,7 +179,7 @@ object ModbatTestHarness {
     Console.withErr(err) {
       Console.withOut(out) {
         try {
-          Main.run(args)
+          Main.run(args, new Configuration())
           ret=0
           System.setOut(origOut)
           System.setErr(origErr)
@@ -196,8 +194,6 @@ object ModbatTestHarness {
             }
             ret=1
           }
-        } finally {
-          Main.config = origConfig
         }
       }
     }

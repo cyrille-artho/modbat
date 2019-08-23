@@ -11,7 +11,7 @@ object Main {
   def main(args: Array[String]) {
     Modbat.isUnitTest = false
     try {
-        run(args) // TODO: do not call exit once exceptions are used
+        run(args, config)
     } catch {
       case e: Exception => {
         System.exit(1)
@@ -20,7 +20,7 @@ object Main {
     System.exit(0)
   }
 
-  def run(args: Array[String]){
+  def run(args: Array[String], config: Configuration){
     var modelClassName: String = null
     val c = new ConfigMgr("scala modbat.jar", "CLASSNAME",
 			  config, new Version ("modbat.mbt"))
