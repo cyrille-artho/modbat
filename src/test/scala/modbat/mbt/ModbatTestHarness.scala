@@ -187,7 +187,7 @@ object ModbatTestHarness {
           System.setErr(origErr)
         } catch {
           case e: Exception => {
-            modbat.coverage
+            modbat.ShutdownHandler.run
             System.setOut(origOut)
             System.setErr(origErr)
             // reset stderr/out before printing stack trace

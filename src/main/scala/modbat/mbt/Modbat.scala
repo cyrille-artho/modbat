@@ -46,8 +46,8 @@ class NoTaskException(message :String = null, cause :Throwable = null) extends R
 /** Keep only system-wide settings that never change between executions here,
     to allow for running multiple instances in parallel for testing. */
 object Modbat {
-  val origOut = Console.out
-  val origErr = Console.err
+  val origOut = System.out
+  val origErr = System.err
 }
 
 class Modbat(val config: Configuration) {
@@ -196,8 +196,10 @@ class Modbat(val config: Configuration) {
   }
 
   def restoreChannels {
-    restoreChannel(out, Modbat.origOut, logFile)
-    restoreChannel(err, Modbat.origErr, errFile, true)
+    if (config.redirectOut) {
+      restoreChannel(out, Modbat.origOut, logFile)
+      restoreChannel(err, Modbat.origErr, errFile, true)
+    }
   }
 
   def restoreChannel(ch: PrintStream, orig: PrintStream,
