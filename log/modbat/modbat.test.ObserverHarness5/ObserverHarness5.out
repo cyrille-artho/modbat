@@ -35,5 +35,5 @@ many
 [INFO] modbat.test.ObserverHarness5: 3 transitions covered (100 % out of 3).
 [INFO] modbat.test.TestObserver5: 3 states covered (100 % out of 3),
 [INFO] modbat.test.TestObserver5: 3 transitions covered (100 % out of 3).
-[INFO] Precondition 2 always passed at transition modbat/test/TestObserver5.scala modbat.test.TestObserver5-1 println
+[INFO] Precondition 2 always passed at transition modbat/test/TestObserver5.scala: modbat.test.TestObserver5-1: println
 [INFO] Random seed for next test would be: 41530f4040856586
