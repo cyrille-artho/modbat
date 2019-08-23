@@ -197,8 +197,12 @@ class Modbat(val config: Configuration) {
 
   def restoreChannels {
     if (config.redirectOut) {
-      restoreChannel(out, Modbat.origOut, logFile)
-      restoreChannel(err, Modbat.origErr, errFile, true)
+      if (logFile != null) {
+        restoreChannel(out, Modbat.origOut, logFile)
+      }
+      if (logFile != null) {
+        restoreChannel(err, Modbat.origErr, errFile, true)
+      }
     }
   }
 
