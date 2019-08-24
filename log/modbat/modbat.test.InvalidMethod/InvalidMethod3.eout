@@ -1,2 +1,3 @@
-[WARNING] Ignoring method public void modbat.test.InvalidMethod.invariantCheck(int), which has @State annotation but more than zero arguments.
-[WARNING] Ignoring non-existent state x from @State annotation for invariantCheck
+[WARNING] Ignoring non-existent state x from @States annotation for invariantCheck.
+[WARNING] Ignoring method public void modbat.test.InvalidMethod.invariantCheck(int),
+[WARNING] which has an @States annotation but takes more than zero parameters.

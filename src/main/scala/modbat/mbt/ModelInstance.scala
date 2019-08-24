@@ -193,8 +193,8 @@ class ModelInstance (val mbt: MBT, val model: Model, val trans: List[Transition]
     val params = m.getParameterTypes
     if (params.length != 0) {
       if (!mbt.warningIssued(m)) {
-	Log.warn("Ignoring method " + m +
-		 ", which has @State annotation but more than zero arguments.")
+        Log.warn("Ignoring method " + m + ",")
+        Log.warn("which has an @States annotation but takes more than zero parameters.")
       }
     } else {
       registerTransForStates(model, m, annotation, isChild)
@@ -236,7 +236,7 @@ class ModelInstance (val mbt: MBT, val model: Model, val trans: List[Transition]
       } else {
 	if (!mbt.warningIssued((state, m))) {
 	  Log.warn("Ignoring non-existent state " + state +
-		   " from @State annotation for " + m.getName)
+		   " from @States annotation for " + m.getName + ".")
 	}
       }
     }
