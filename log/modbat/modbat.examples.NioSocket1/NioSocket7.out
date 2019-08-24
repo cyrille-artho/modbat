@@ -338,5 +338,5 @@
 [INFO] 50 tests executed, 50 ok, 0 failed.
 [INFO] 6 states covered (100 % out of 6),
 [INFO] 13 transitions covered (65 % out of 20).
-[INFO] Precondition 1 always passed at transition modbat/examples/NioSocket1.scala connect
+[INFO] Precondition 1 always passed at transition modbat/examples/NioSocket1.scala: connect
 [INFO] Random seed for next test would be: 8b388ceb07e23410
