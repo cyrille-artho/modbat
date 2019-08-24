@@ -41,23 +41,17 @@ import com.miguno.akka.testing.VirtualTime
 
 class NoTaskException(message :String = null, cause :Throwable = null) extends RuntimeException(message, cause)
 
-/** Contains code to explore model */
-
-/** Keep only system-wide settings that never change between executions here,
-    to allow for running multiple instances in parallel for testing. */
-object Modbat {
-  val origOut = System.out
-  val origErr = System.err
-}
-
+/** Contains code to manage and explore model */
 class Modbat(val config: Configuration) {
   object AppState extends Enumeration {
     val AppExplore, AppShutdown = Value
   }
   import AppState._
   val mbt = new MBT
-  var out: PrintStream = Modbat.origOut
-  var err: PrintStream = Modbat.origErr
+  val origOut = System.out
+  val origErr = System.err
+  var out: PrintStream = origOut
+  var err: PrintStream = origErr
   var logFile: String = _
   var errFile: String = _
   var failed = 0
@@ -198,10 +192,10 @@ class Modbat(val config: Configuration) {
   def restoreChannels {
     if (config.redirectOut) {
       if (logFile != null) {
-        restoreChannel(out, Modbat.origOut, logFile)
+        restoreChannel(out, origOut, logFile)
       }
       if (logFile != null) {
-        restoreChannel(err, Modbat.origErr, errFile, true)
+        restoreChannel(err, origErr, errFile, true)
       }
     }
   }
