@@ -54,7 +54,7 @@ class NioSocket extends fixture.FlatSpec with fixture.TestDataFixture with Match
   "NioSocket9" should "pass" in { td =>
     val result = ModbatTestHarness.testMain(Array("-n=200","-s=1","--no-redirect-out","--log-level=fine","modbat.examples.NioSocket1"), ModbatTestHarness.setExamplesJar, td)
     result._1 should be(0)
-    result._3 shouldBe empty
+    result._3 should not be empty
   }
 
   "NioSocket10" should "pass" in { td =>
@@ -123,6 +123,6 @@ class NioSocket extends fixture.FlatSpec with fixture.TestDataFixture with Match
   "NioSocket20" should "pass" in { td =>
     val result = ModbatTestHarness.testMain(Array("-n=1000","-s=1","--no-redirect-out","--stop-on-failure","modbat.examples.NioSocket1"), ModbatTestHarness.setExamplesJar, td)
     result._1 should be(0)
-    result._3 shouldBe empty
+    result._3 should not be empty
   }
 }
