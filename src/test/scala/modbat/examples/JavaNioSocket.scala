@@ -13,8 +13,9 @@ import java.nio.channels.SocketChannel
 
 object JavaNioSocket {
   var port: Int = 0
+  var testServer: TestServer =_
 
-  object TestServer extends Thread {
+  class TestServer extends Thread {
     val ch = ServerSocketChannel.open()
     ch.socket().bind(new InetSocketAddress("localhost", 0))
     JavaNioSocket.port = ch.socket().getLocalPort()
@@ -39,16 +40,17 @@ object JavaNioSocket {
           }
         }
       }
-      TestServer.ch.close()
+      ch.close()
     }
   }
 
   @Init def startServer() {
-    TestServer.start()
+    testServer = new TestServer()
+    testServer.start()
   }
 
   @Shutdown def shutdown() {
-    TestServer.interrupt()
+    testServer.interrupt()
   }
 }
 
