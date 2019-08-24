@@ -28,7 +28,7 @@ many
 [FINE] modbat.test.ConcurrentObserver-1: Executing transition many => many...
 [INFO] 2 tests executed, 1 ok, 1 failed.
 [INFO] One type of test failure:
-[INFO] 1) java.lang.AssertionError: Assertion failed in Thread Thread-24 at (transition outside model such as callback)
+[INFO] 1) java.lang.AssertionError: Assertion failed in Thread Thread-X at (transition outside model such as callback)
 [INFO]    402b73cd0066eaea
 [INFO] modbat.test.ObserverHarness7: 3 states covered (100 % out of 3),
 [INFO] modbat.test.ObserverHarness7: 3 transitions covered (100 % out of 3).

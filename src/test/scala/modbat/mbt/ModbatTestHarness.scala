@@ -115,7 +115,8 @@ object ModbatTestHarness {
         """ v[0-9][0-9]*\\.[0-9][^ ]* rev [0-9a-f]*""" -> " vx.yz",
         """^Time: [0-9.]*""" -> "",
         """(at .*?):[0-9]*""" -> "$1",
-        """canceled 0, """ -> ""
+        """canceled 0, """ -> "",
+        """(in Thread Thread-)[0-9]*""" -> "$1X"
       )
     }
 
