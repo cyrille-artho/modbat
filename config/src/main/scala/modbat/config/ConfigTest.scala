@@ -17,6 +17,13 @@ object ConfigTest {
   def writeToFile(path: String, data: String): Unit = 
     using(new FileWriter(path))(_.write(data))
 
+  def main(args: Array[String]) {
+    val c = new ConfigMgr("ConfigTest", "[FILE]", new TestConfiguration(),
+      new Version ("modbat.config"), true)
+    c.setSplashScreen(List("This is a test", "for the splash screen"))
+    c.parseArgs(args)
+  }
+
   def testMain(args: Array[String]): (Int, List[String], List[String]) = {
     val out: ByteArrayOutputStream = new ByteArrayOutputStream()
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
@@ -25,11 +32,7 @@ object ConfigTest {
     Console.withErr(err) {
       Console.withOut(out) {
         try {  
-          var c: ConfigMgr = null
-          c = new ConfigMgr("ConfigTest", "[FILE]", new TestConfiguration(),
-            new Version ("modbat.config"), true)
-          c.setSplashScreen(List("This is a test", "for the splash screen"))
-          c.parseArgs(args)
+          main(args)
           ret=0
         } catch {
           case e: Exception => ret=1

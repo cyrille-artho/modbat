@@ -14,4 +14,5 @@ before_install:
 script:
   - scala -version
   - ./gradlew test
+  - ./gradlew jar
   - bash bin/test.sh

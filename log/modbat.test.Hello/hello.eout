@@ -1,8 +1,9 @@
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala:156)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala:28)
-[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala:39)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala:27)
+[ERROR] 	at modbat.test.Hello.assert(Hello.scala:5)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala:10)
 [ERROR] 	at modbat.test.Hello.assert(Hello.scala:5)
 [ERROR] 	at modbat.test.Hello$$anonfun$3.apply$mcV$sp(Hello.scala:11)
 [ERROR] 	at modbat.test.Hello$$anonfun$3.apply(Hello.scala:11)
