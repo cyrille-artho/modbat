@@ -28,7 +28,7 @@ class GenLabel extends fixture.FlatSpec with fixture.TestDataFixture with Matche
   }
 
   "GenLabel5" should "pass" in { td =>
-    val result = ModbatTestHarness.testMain(Array("--mode=dot","--auto-labels","modbat.test.GenLabel3"), ModbatTestHarness.setTestJar, td, false, Some("modbat.test.GenLabel3.dot","genlabel3.dot"))
+    val result = ModbatTestHarness.testMain(Array("--mode=dot","--auto-labels","modbat.test.GenLabel3"), ModbatTestHarness.setTestJar, td, Some("modbat.test.GenLabel3.dot","genlabel3.dot"))
     result._1 should be(0)
     result._3 shouldBe empty
   }

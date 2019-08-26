@@ -188,10 +188,10 @@ object ModbatTestHarness {
 
   def testMain(args: Array[String], env: () => Unit,
                td: org.scalatest.TestData,
-               shouldFail: Boolean = false,
                optionsavemv: Option [(String, String)] = None):
                (Int, List[String], List[String]) = {
     env()
+    val shouldFail = td.text.startsWith("should fail")
     val origOut = System.out
     val origErr = System.err
     val out: ByteArrayOutputStream = new ByteArrayOutputStream()

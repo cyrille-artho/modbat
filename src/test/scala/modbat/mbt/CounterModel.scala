@@ -10,7 +10,7 @@ class CounterModel extends fixture.FlatSpec with fixture.TestDataFixture with Ma
   }
 
   "CounterModel2" should "pass" in { td =>
-    val result = ModbatTestHarness.testMain(Array("--mode=dot","--auto-labels","modbat.examples.CounterModel"), ModbatTestHarness.setExamplesJar, td, false, Some("modbat.examples.CounterModel.dot","counter.dot"))
+    val result = ModbatTestHarness.testMain(Array("--mode=dot","--auto-labels","modbat.examples.CounterModel"), ModbatTestHarness.setExamplesJar, td, Some("modbat.examples.CounterModel.dot","counter.dot"))
     result._1 should be(0)
     result._3 shouldBe empty
   }
@@ -22,7 +22,7 @@ class CounterModel extends fixture.FlatSpec with fixture.TestDataFixture with Ma
   }
 
   "CounterModel4" should "pass" in { td =>
-    val result = ModbatTestHarness.testMain(Array("--mode=dot","--auto-labels","modbat.examples.CounterModel2"), ModbatTestHarness.setExamplesJar, td, false, Some("modbat.examples.CounterModel2.dot","counter2.dot"))
+    val result = ModbatTestHarness.testMain(Array("--mode=dot","--auto-labels","modbat.examples.CounterModel2"), ModbatTestHarness.setExamplesJar, td, Some("modbat.examples.CounterModel2.dot","counter2.dot"))
     result._1 should be(0)
     result._3 shouldBe empty
   }
