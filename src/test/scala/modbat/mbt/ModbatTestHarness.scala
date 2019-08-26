@@ -189,7 +189,7 @@ object ModbatTestHarness {
   def testMain(args: Array[String], env: () => Unit,
                td: org.scalatest.TestData,
                optionsavemv: Option [(String, String)] = None):
-               (Int, List[String], List[String]) = {
+               (List[String], List[String]) = {
     env()
     val shouldFail = td.text.startsWith("should fail")
     val origOut = System.out
@@ -246,7 +246,7 @@ object ModbatTestHarness {
     }
 
     assert (shouldFail == (ret != 0))
-    (ret, scala.io.Source.fromString(out.toString).getLines().toList, scala.io.Source.fromString(err.toString).getLines().toList)
+    (scala.io.Source.fromString(out.toString).getLines().toList, scala.io.Source.fromString(err.toString).getLines().toList)
   }
 
   def setEnv(newEnv: java.util.Map[String, String]) {
