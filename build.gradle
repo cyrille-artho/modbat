@@ -95,6 +95,7 @@ tasks.withType(Test)  {
 }
 
 test {
+  testLogging.showStandardStreams = true
   dependsOn examplesJar
   dependsOn testsJar
 }
