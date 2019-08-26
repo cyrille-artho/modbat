@@ -46,6 +46,27 @@ object ModbatTestHarness {
     writer.close()
   }
 
+  def savemvPre(optionsavemv: Option[(String, String)]) = {
+    optionsavemv match {
+      case Some((from,to)) => {
+        val srcDir = new File(from).getParentFile
+        if (srcDir != null) {
+          val srcDirExists = srcDir.exists
+          if (!srcDirExists) {
+            srcDir.deleteOnExit()
+            if (!srcDir.mkdir()) {
+              Console.err.println("Cannot create dir: " + srcDir);
+            }
+          }
+          !srcDirExists
+        } else {
+          false
+        }
+      }
+      case None => false
+    }
+  }
+
   def savemv(from : String, to : String) {
     val src = new File(from)
     val dest = new File(to)
@@ -179,6 +200,7 @@ object ModbatTestHarness {
     System.setErr(new PrintStream(err))
     val config = new Configuration()
     val modbat = new Modbat(config)
+    val rmDirAfterTest = savemvPre(optionsavemv)
     Console.withErr(err) {
       Console.withOut(out) {
         try {
@@ -213,6 +235,12 @@ object ModbatTestHarness {
       case None => {}
       case Some((from,to)) => {
         savemv(from, to)
+        val toLines = Source.fromFile(to).getLines
+        compareIterators("log/" + to, toLines)
+        new File(to).delete()
+        if (rmDirAfterTest) {
+          new File(from).getParentFile().delete()
+        }
       }
     }
 
