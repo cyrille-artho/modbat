@@ -1,8 +1,0 @@
-[WARNING] No exception occurred in online testing but java.io.IOException occurred now.
-[WARNING] Ignoring different exception occurrence in offline test.
-[WARNING] The remaining test execution may produce different results.
-[ERROR] java.io.IOException: Test
-[ERROR] 	at modbat.test.MockExcEnv$.nonDetCall(MockExcEnv.scala)
-[ERROR] 	at modbat.test.ExcTestA2$$anonfun$1.apply$mcV$sp(ExcTestA2.scala)
-[ERROR] 	at modbat.test.ExcTestA2$$anonfun$1.apply(ExcTestA2.scala)
-[ERROR] 	at modbat.test.ExcTestA2$$anonfun$1.apply(ExcTestA2.scala)
