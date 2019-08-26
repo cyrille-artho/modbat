@@ -55,7 +55,7 @@ object ModbatTestHarness {
           if (!srcDirExists) {
             srcDir.deleteOnExit()
             if (!srcDir.mkdir()) {
-              Console.err.println("Cannot create dir: " + srcDir);
+              Console.err.println("Cannot create dir: " + srcDir + ".")
             }
           }
           !srcDirExists
@@ -70,8 +70,9 @@ object ModbatTestHarness {
   def savemv(from : String, to : String) {
     val src = new File(from)
     val dest = new File(to)
-    new FileOutputStream(dest) getChannel() transferFrom(
-    new FileInputStream(src) getChannel, 0, Long.MaxValue )
+    if (!src.renameTo(dest)) {
+      Console.err.println("Cannot rename " + from + " to " + to + ".")
+    }
   }
 
   def diffStr (templateFile: String) = {
