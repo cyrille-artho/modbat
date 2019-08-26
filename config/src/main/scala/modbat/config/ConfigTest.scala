@@ -17,11 +17,10 @@ object ConfigTest {
   def writeToFile(path: String, data: String): Unit = 
     using(new FileWriter(path))(_.write(data))
 
-  def main(args: Array[String]): (Int, List[String], List[String]) = {
+  def testMain(args: Array[String]): (Int, List[String], List[String]) = {
     val out: ByteArrayOutputStream = new ByteArrayOutputStream()
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
     var ret = 0
-
 
     Console.withErr(err) {
       Console.withOut(out) {
