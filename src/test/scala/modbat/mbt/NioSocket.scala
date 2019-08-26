@@ -75,13 +75,11 @@ class NioSocket extends fixture.FlatSpec with fixture.TestDataFixture with Match
     result._3 shouldBe empty
   }
 
-// special case 
+// special case : create dir before test runs
   "NioSocket13" should "pass" in { td =>
-    // TODO: rm -f dot_test; mkdir dot_test
     val result = ModbatTestHarness.testMain(Array("--mode=dot","--auto-labels","--dot-dir=dot_test","modbat.examples.NioSocket1"), ModbatTestHarness.setExamplesJar, td, false, Some("dot_test/modbat.examples.NioSocket1.dot", "niosocket1.dot"))
     result._1 should be(0)
     result._3 shouldBe empty
-    // TODO: check if Scala implementation of "savemv modbat.examples.NioSocket1.dot cov_100.dot; checkfile cov_100.dot" works
   }
 
   "NioSocket14" should "fail" in { td =>
