@@ -74,6 +74,7 @@ jar {
 apply plugin: "com.github.maiflai.scalatest"
 
 task examplesJar(type: Jar) {
+    dependsOn compileTestScala
     archiveName = "modbat-examples.jar"
     destinationDir = file("$buildDir")
 
@@ -82,6 +83,7 @@ task examplesJar(type: Jar) {
 }
 
 task testsJar(type: Jar) {
+    dependsOn compileTestScala
     archiveName = "modbat-test.jar"
     destinationDir = file("$buildDir")
 
