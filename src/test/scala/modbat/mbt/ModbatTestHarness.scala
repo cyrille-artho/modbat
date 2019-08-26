@@ -245,6 +245,7 @@ object ModbatTestHarness {
       }
     }
 
+    assert (shouldFail == (ret != 0))
     (ret, scala.io.Source.fromString(out.toString).getLines().toList, scala.io.Source.fromString(err.toString).getLines().toList)
   }
 
