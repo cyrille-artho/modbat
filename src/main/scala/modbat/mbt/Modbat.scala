@@ -29,6 +29,8 @@ import modbat.trace._
 import modbat.util.CloneableRandom
 import modbat.util.SourceInfo
 import modbat.util.FieldUtil
+import scala.math._
+import scala.util.Random
 
 import scala.math._
 import scala.util.Random
@@ -550,7 +552,7 @@ object Modbat {
     }
     w
   }
-  
+
   def makeChoice(choices: List[(MBT, Transition)], totalW: Double) = {
     Main.config.search match {
       case "random" => weightedChoice(choices, totalW)
@@ -650,6 +652,7 @@ object Modbat {
 
   def weightedChoice(choices: List[(MBT, Transition)],
                      totalW: Double): (MBT, Transition) = {
+
     val n = (totalW * MBT.rng.nextFloat(false))
     var w = 0.0
     for (c <- choices) {
