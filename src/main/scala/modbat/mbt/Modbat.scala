@@ -818,7 +818,7 @@ object Modbat {
        * Otherwise, if total weight > 0, choose one transition by weight and execute it. */
       var successor: (MBT, Transition) = null
       //successor = invocationSuccessor.getOrElse(weightedChoice(successors, totalW))
-      // TODO: try bandit
+      // TODO: try bandit by calling makeChoice
       successor = invocationSuccessor.getOrElse(makeChoice(successors, totalW))
       if (successor != null) {
         val model = successor._1
