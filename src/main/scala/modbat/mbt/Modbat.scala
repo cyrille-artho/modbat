@@ -24,6 +24,8 @@ import modbat.trace._
 import modbat.util.CloneableRandom
 import modbat.util.SourceInfo
 import modbat.util.FieldUtil
+import scala.math._
+import scala.util.Random
 
 import com.miguno.akka.testing.VirtualTime
 
@@ -46,7 +48,7 @@ object Modbat {
   var logFile: String = _
   var errFile: String = _
   var failed = 0
-  var count = 0
+  var count = 0 // count the number of executed test cases.
   val firstInstance = new LinkedHashMap[String, MBT]()
   var appState = AppExplore // track app state in shutdown handler
   // shutdown handler is registered at time when model exploration starts
@@ -541,22 +543,115 @@ object Modbat {
     }
     w
   }
-  
+
   def makeChoice(choices: List[(MBT, Transition)], totalW: Double) = {
     Main.config.search match {
       case "random" => weightedChoice(choices, totalW)
-      case "heur" => heuristicChoice(choices, totalW)
+      case "heur"   => heuristicChoice(choices, totalW)
     }
   }
 
-  def heuristicChoice(choices: List[(MBT, Transition)], totalW: Double) = {
-    Log.error("Not implemented yet!")
-    System.exit(1)
-    choices(0)
+  def heuristicChoice(choices: List[(MBT, Transition)],
+                      totalW: Double): (MBT, Transition) = {
+    // TODO: debug - Rui
+//        Log.info("*** in heuristicChoice *** the value of totalW:" + totalW)
+//        Log.info(
+//          "*** in heuristicChoice *** the value of MBT:" + choices.map(
+//            _._1.toString))
+//        Log.info(
+//          "*** in heuristicChoice *** the choices list has current states:" + choices
+//            .map(_._1.currentState.name.toString))
+//
+//        Log.info(
+//          "*** in heuristicChoice *** the choices list has current state counters:" + choices
+//            .map(_._1.currentState.coverage.count.toString)
+//            .mkString(", "))
+//        Log.info(
+//          "*** in heuristicChoice *** the choices list has current states with counters:" +
+//            choices
+//              .map(_._1.currentState.name.toString)
+//              .zip(choices.map(_._1.currentState.coverage.count.toString)))
+//        Log.info(
+//          "*** in heuristicChoice *** the choices list has transitions:" + choices
+//            .map(_._2.toString())
+//            .mkString(", "))
+//        Log.info(
+//          "*** in heuristicChoice *** the choices list has transition precond counters:" + choices
+//            .map(_._2.coverage.precond.count.toString)
+//            .mkString(", "))
+//        Log.info(
+//          "*** in heuristicChoice *** the choices list has transition countPrecondFailed counters:" + choices
+//            .map(_._2.coverage.precond.countPrecondFailed.toString)
+//            .mkString(", "))
+//        Log.info(
+//          "*** in heuristicChoice *** the choices list has transition precond failed:" + choices
+//            .map(_._2.coverage.precond.precondFailed.toString)
+//            .mkString(", "))
+//        Log.info(
+//          "*** in heuristicChoice *** the choices list has transition precond passed:" + choices
+//            .map(_._2.coverage.precond.precondPassed.toString)
+//            .mkString(", "))
+//        Log.info(
+//          "*** in heuristicChoice *** the choices list has transition counters:" + choices
+//            .map(_._2.coverage.count.toString())
+//            .mkString(", "))
+//        Log.info(
+//          "*** in heuristicChoice *** the choices list has transitions with counters:" + choices
+//            .map(_._2.toString())
+//            .zip(choices.map(_._2.coverage.count.toString)))
+
+    val choice = lessPlayedTransitionChoice(choices, totalW)
+    choice
+    //System.exit(1)
+    //choices(0)
   }
-  
+
+  private def lessPlayedTransitionChoice(choices: List[(MBT, Transition)],
+                                         totalW: Double): (MBT, Transition) = {
+
+    val currentStateCount = choices.head._1.currentState.coverage.count
+    val transCountLst = choices.map(_._2.coverage.count)
+    val precondFailedCountLst =
+      choices.map(_._2.coverage.precond.countPrecondFailed)
+
+    // nState is the total number of times that current state has been visited
+    val nState = currentStateCount + precondFailedCountLst.sum
+    Log.info(
+      "$$$$$$ the total number of times that current state has been visited:" + nState)
+
+    // nTranslst is the list to store all value of the counters for executed transitions
+    val nTransLst = (transCountLst, precondFailedCountLst).zipped.map(_ + _)
+    Log.info(
+      "$$$$$$ the list to store all values of the counters for executed transitions:" + nTransLst)
+
+    if (nTransLst.contains(0)) {
+      // random choice when there are still unplayed transitions
+      Log.info("$$$$$$ random choice when there are still unplayed transitions")
+      return weightedChoice(choices, totalW)
+    } else {
+      // TODO: compute the less played transition based on the UCB formula of bandit problem
+      val tradeOff = 2
+      val banditUCBPlayedValueLst =
+        nTransLst.map(n => sqrt(tradeOff * log(nState) / n))
+      Log.info("$$$$$$ banditUCBPlayedValueLst:" + banditUCBPlayedValueLst)
+
+      val lessPlayedChoiceCandidates =
+        banditUCBPlayedValueLst.zipWithIndex.filter(x =>
+          x._1 == banditUCBPlayedValueLst.max)
+      Log.info(
+        "$$$$$$ less played choice candidates:" + lessPlayedChoiceCandidates)
+
+      val lessPlayedChoiceIndex =
+        Random.shuffle(lessPlayedChoiceCandidates).head._2
+
+      Log.info("$$$$$$ less played choice index:" + lessPlayedChoiceIndex)
+      return choices(lessPlayedChoiceIndex)
+    }
+  }
+
   def weightedChoice(choices: List[(MBT, Transition)],
                      totalW: Double): (MBT, Transition) = {
+
     val n = (totalW * MBT.rng.nextFloat(false))
     var w = 0.0
     for (c <- choices) {
@@ -696,16 +791,18 @@ object Modbat {
       case (result: (TransitionResult, RecordedTransition),
             pathResult: PathResult) => {
         if (!pathResult.isObserver) {
-          storePathInfo(pathResult.result, pathResult.successor,
-                        pathResult.backtracked, pathResult.failed)
+          storePathInfo(pathResult.result,
+                        pathResult.successor,
+                        pathResult.backtracked,
+                        pathResult.failed)
         }
         result
       }
     }
   }
 
-  def executeSuccessorTrans: ((TransitionResult, RecordedTransition),
-                              PathResult) = {
+  def executeSuccessorTrans
+    : ((TransitionResult, RecordedTransition), PathResult) = {
     var successors = allSuccessors(null)
     var allSucc = successors
     var totalW = totalWeight(successors)
@@ -720,8 +817,9 @@ object Modbat {
        * If there is, execute it.
        * Otherwise, if total weight > 0, choose one transition by weight and execute it. */
       var successor: (MBT, Transition) = null
-      successor =
-        invocationSuccessor.getOrElse(weightedChoice(successors, totalW))
+      //successor = invocationSuccessor.getOrElse(weightedChoice(successors, totalW))
+      // TODO: try bandit
+      successor = invocationSuccessor.getOrElse(makeChoice(successors, totalW))
       if (successor != null) {
         val model = successor._1
         val trans = successor._2
@@ -745,13 +843,19 @@ object Modbat {
             val observerResult = updateObservers
             if (TransitionResult.isErr(observerResult)) {
               return ((observerResult, result._2),
-                      new PathResult(result, successor,
-                                     backtracked, true, true))
+                      new PathResult(result,
+                                     successor,
+                                     backtracked,
+                                     true,
+                                     true))
             }
             if (otherThreadFailed) {
               return ((ExceptionOccurred(MBT.externalException.toString), null),
-                      new PathResult(result, successor,
-                                     backtracked, true, false))
+                      new PathResult(result,
+                                     successor,
+                                     backtracked,
+                                     true,
+                                     false))
             }
             allSucc = successors
           }
@@ -763,8 +867,7 @@ object Modbat {
             assert(TransitionResult.isErr(t))
             printTrace(executedTransitions.toList)
             return (result,
-                    new PathResult(result, successor,
-                                   backtracked, true, false))
+                    new PathResult(result, successor, backtracked, true, false))
           }
         }
         storePathInfo(result, successor, backtracked, false)

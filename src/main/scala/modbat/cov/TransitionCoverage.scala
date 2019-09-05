@@ -106,6 +106,8 @@ object TransitionCoverage {
       pCov.precondPassed.set(c)
     } else {
       pCov.precondFailed.set(c)
+      // todo: update procondFailed counter -rui
+      pCov.updatePrecondFailedCounter
     }
     pCov.count = c + 1
   }
