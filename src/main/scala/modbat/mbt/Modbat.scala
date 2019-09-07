@@ -29,8 +29,6 @@ import modbat.trace._
 import modbat.util.CloneableRandom
 import modbat.util.SourceInfo
 import modbat.util.FieldUtil
-import scala.math._
-import scala.util.Random
 
 import scala.math._
 import scala.util.Random
