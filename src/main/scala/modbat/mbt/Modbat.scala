@@ -795,7 +795,6 @@ object Modbat {
             backtracked = false
             // todo: update the reward for the OK transition - Rui
             if (trans.origin == trans.dest) {
-              Log.debug("self transition")
               trans.averageReward
                 .updateRewards(TransitionRewardTypes.SelfTransReward)
             } else {
