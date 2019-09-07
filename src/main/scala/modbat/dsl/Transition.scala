@@ -2,7 +2,7 @@ package modbat.dsl
 
 import scala.collection.mutable.ListBuffer
 import scala.util.matching.Regex
-import modbat.cov.TransitionCoverage
+import modbat.cov.{TransitionCoverage, TransitionReward}
 import modbat.mbt.{MBT, Main}
 import modbat.trace.RecordedChoice
 import modbat.util.SourceInfo
@@ -34,6 +34,9 @@ class Transition(var origin: State,
   val nonDetExcConv = ListBuffer[NextStateOnException]()
   val nextStatePredConv = ListBuffer[NextStatePredicate]()
   var coverage: TransitionCoverage = _
+  // averageReward of the transition - Rui
+  //var averageReward: TransitionReward = new TransitionReward()
+  var averageReward: TransitionReward = _ //new TransitionReward()
 
   var idx: Int = 0 // add a transition ID, initialized as 0 -RUI
   var n: Int = 0

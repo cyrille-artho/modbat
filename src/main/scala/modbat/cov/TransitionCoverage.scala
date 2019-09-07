@@ -60,6 +60,7 @@ object TransitionCoverage {
     newTrans.origin = master.origin
     newTrans.dest = master.dest
     newTrans.coverage = master.coverage
+    newTrans.averageReward = master.averageReward // averageReward of the transition - Rui
     newTrans.n = master.n
     assert(
       newTrans.isSynthetic == master.isSynthetic, {

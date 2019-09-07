@@ -21,8 +21,7 @@ import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.matching.Regex
 import modbat.RequirementFailedException
-import modbat.cov.StateCoverage
-import modbat.cov.TransitionCoverage
+import modbat.cov.{StateCoverage, TransitionCoverage, TransitionReward}
 import modbat.dsl.Action
 import modbat.dsl.After
 import modbat.dsl.Before
@@ -39,7 +38,6 @@ import modbat.log.Log
 import modbat.trace._
 import modbat.util.CloneableRandom
 import modbat.util.Random
-
 import com.miguno.akka.testing.VirtualTime
 
 //import com.miguno.akka.testing.VirtualTime
@@ -630,6 +628,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
     }
 
     tr.coverage = new TransitionCoverage()
+    tr.averageReward = new TransitionReward() // averageReward of the transition - Rui
     if (tr.isSynthetic) {
       return
     }

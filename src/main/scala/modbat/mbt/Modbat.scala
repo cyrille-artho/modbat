@@ -13,7 +13,12 @@ import scala.collection.mutable.HashMap
 import scala.collection.mutable.HashSet
 import scala.collection.mutable.LinkedHashMap
 import scala.collection.mutable.ListBuffer
-import modbat.cov.{StateCoverage, TransitionCoverage, Trie}
+import modbat.cov.{
+  StateCoverage,
+  TransitionCoverage,
+  TransitionRewardTypes,
+  Trie
+}
 import modbat.dsl.Action
 import modbat.dsl.Init
 import modbat.dsl.Shutdown
@@ -24,9 +29,9 @@ import modbat.trace._
 import modbat.util.CloneableRandom
 import modbat.util.SourceInfo
 import modbat.util.FieldUtil
+
 import scala.math._
 import scala.util.Random
-
 import com.miguno.akka.testing.VirtualTime
 
 class NoTaskException(message: String = null, cause: Throwable = null)
@@ -63,8 +68,6 @@ object Modbat {
 
   // The trie to record sequences of executed transitions (execution paths) -Rui
   var trie = new Trie()
-
-  // Listbuffer to store a tuple: <ModelName, ModelIndex, transition> = [String, Int, Transition] -Rui
   private var pathInfoRecorder = new ListBuffer[PathInfo]
 
   def init {
@@ -553,99 +556,60 @@ object Modbat {
 
   def heuristicChoice(choices: List[(MBT, Transition)],
                       totalW: Double): (MBT, Transition) = {
-    // TODO: debug - Rui
-//        Log.info("*** in heuristicChoice *** the value of totalW:" + totalW)
-//        Log.info(
-//          "*** in heuristicChoice *** the value of MBT:" + choices.map(
-//            _._1.toString))
-//        Log.info(
-//          "*** in heuristicChoice *** the choices list has current states:" + choices
-//            .map(_._1.currentState.name.toString))
-//
-//        Log.info(
-//          "*** in heuristicChoice *** the choices list has current state counters:" + choices
-//            .map(_._1.currentState.coverage.count.toString)
-//            .mkString(", "))
-//        Log.info(
-//          "*** in heuristicChoice *** the choices list has current states with counters:" +
-//            choices
-//              .map(_._1.currentState.name.toString)
-//              .zip(choices.map(_._1.currentState.coverage.count.toString)))
-//        Log.info(
-//          "*** in heuristicChoice *** the choices list has transitions:" + choices
-//            .map(_._2.toString())
-//            .mkString(", "))
-//        Log.info(
-//          "*** in heuristicChoice *** the choices list has transition precond counters:" + choices
-//            .map(_._2.coverage.precond.count.toString)
-//            .mkString(", "))
-//        Log.info(
-//          "*** in heuristicChoice *** the choices list has transition countPrecondFailed counters:" + choices
-//            .map(_._2.coverage.precond.countPrecondFailed.toString)
-//            .mkString(", "))
-//        Log.info(
-//          "*** in heuristicChoice *** the choices list has transition precond failed:" + choices
-//            .map(_._2.coverage.precond.precondFailed.toString)
-//            .mkString(", "))
-//        Log.info(
-//          "*** in heuristicChoice *** the choices list has transition precond passed:" + choices
-//            .map(_._2.coverage.precond.precondPassed.toString)
-//            .mkString(", "))
-//        Log.info(
-//          "*** in heuristicChoice *** the choices list has transition counters:" + choices
-//            .map(_._2.coverage.count.toString())
-//            .mkString(", "))
-//        Log.info(
-//          "*** in heuristicChoice *** the choices list has transitions with counters:" + choices
-//            .map(_._2.toString())
-//            .zip(choices.map(_._2.coverage.count.toString)))
-
-    val choice = lessPlayedTransitionChoice(choices, totalW)
+    // compute choice based on bandit UCB  - Rui
+    val choice = banditUCBChoice(choices, totalW)
     choice
     //System.exit(1)
     //choices(0)
   }
 
-  private def lessPlayedTransitionChoice(choices: List[(MBT, Transition)],
-                                         totalW: Double): (MBT, Transition) = {
+  private def banditUCBChoice(choices: List[(MBT, Transition)],
+                              totalW: Double): (MBT, Transition) = {
 
     val currentStateCount = choices.head._1.currentState.coverage.count
     val transCountLst = choices.map(_._2.coverage.count)
     val precondFailedCountLst =
       choices.map(_._2.coverage.precond.countPrecondFailed)
 
+    val rewardLst = choices.map(_._2.averageReward.rewardsLst)
+    Log.debug("--- list of reward lists for transitions:" + rewardLst)
+    val averageRewardLst = choices.map(_._2.averageReward.averageReward)
+    Log.debug("--- list of average rewards for transitions:" + averageRewardLst)
+
     // nState is the total number of times that current state has been visited
     val nState = currentStateCount + precondFailedCountLst.sum
-    Log.info(
-      "$$$$$$ the total number of times that current state has been visited:" + nState)
+    Log.debug(
+      "--- the total number of times that current state has been visited:" + nState)
 
     // nTranslst is the list to store all value of the counters for executed transitions
     val nTransLst = (transCountLst, precondFailedCountLst).zipped.map(_ + _)
-    Log.info(
-      "$$$$$$ the list to store all values of the counters for executed transitions:" + nTransLst)
+    Log.debug(
+      "--- the list to store all values of the counters for executed transitions:" + nTransLst)
 
     if (nTransLst.contains(0)) {
-      // random choice when there are still unplayed transitions
-      Log.info("$$$$$$ random choice when there are still unplayed transitions")
-      return weightedChoice(choices, totalW)
+      // choose an unplayed transition when there are still unplayed transitions
+      Log.debug(
+        "--- choose an unplayed transition when there are still unplayed transitions")
+      return choices(nTransLst.indexOf(0)) //weightedChoice(choices, totalW)
     } else {
-      // TODO: compute the less played transition based on the UCB formula of bandit problem
+      // compute choice based on the UCB formula of bandit problem
       val tradeOff = 2
-      val banditUCBPlayedValueLst =
+      val banditUCBPlayedTransLst =
         nTransLst.map(n => sqrt(tradeOff * log(nState) / n))
-      Log.info("$$$$$$ banditUCBPlayedValueLst:" + banditUCBPlayedValueLst)
+      Log.debug("--- banditUCBPlayedValueLst:" + banditUCBPlayedTransLst)
 
-      val lessPlayedChoiceCandidates =
-        banditUCBPlayedValueLst.zipWithIndex.filter(x =>
-          x._1 == banditUCBPlayedValueLst.max)
-      Log.info(
-        "$$$$$$ less played choice candidates:" + lessPlayedChoiceCandidates)
+      val banditUCB =
+        (averageRewardLst, banditUCBPlayedTransLst).zipped.map(_ + _)
+      Log.debug("--- banditUCB" + banditUCB)
 
-      val lessPlayedChoiceIndex =
-        Random.shuffle(lessPlayedChoiceCandidates).head._2
+      val banditUCBChoiceCondidates =
+        banditUCB.zipWithIndex.filter(x => x._1 == banditUCB.max)
+      Log.debug("--- bandit UCB choice candidates:" + banditUCBChoiceCondidates)
+      val banditUCBChoiceIndex =
+        Random.shuffle(banditUCBChoiceCondidates).head._2
+      Log.debug("--- bandit UCB choice index:" + banditUCBChoiceIndex)
 
-      Log.info("$$$$$$ less played choice index:" + lessPlayedChoiceIndex)
-      return choices(lessPlayedChoiceIndex)
+      return choices(banditUCBChoiceIndex)
     }
   }
 
@@ -829,6 +793,16 @@ object Modbat {
         result match {
           case (Ok(sameAgain: Boolean), _) => {
             backtracked = false
+            // todo: update the reward for the OK transition - Rui
+            if (trans.origin == trans.dest) {
+              Log.debug("self transition")
+              trans.averageReward
+                .updateRewards(TransitionRewardTypes.SelfTransReward)
+            } else {
+              trans.averageReward
+                .updateRewards(TransitionRewardTypes.GoodTransReward)
+            }
+
             val succ = new ListBuffer[(MBT, Transition)]()
             addSuccessors(model, succ, true)
             if (succ.size == 0) {
@@ -861,9 +835,15 @@ object Modbat {
           }
           case (Backtrack, _) => {
             backtracked = true
+            // todo: update the reward for the backtracked transition - Rui
+            trans.averageReward
+              .updateRewards(TransitionRewardTypes.BacktrackTransReward)
             successors = successors filterNot (_ == successor)
           }
           case (t: TransitionResult, _) => {
+            // todo: update the reward for the failed transition - Rui
+            trans.averageReward
+              .updateRewards(TransitionRewardTypes.FailTransReward)
             assert(TransitionResult.isErr(t))
             printTrace(executedTransitions.toList)
             return (result,
