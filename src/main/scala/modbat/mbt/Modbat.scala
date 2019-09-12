@@ -604,6 +604,21 @@ object Modbat {
       choices.map(_._2.coverage.expectedReward.expectedReward)
     Log.debug("*** List of expected reward:" + expectedRewardList)
 
+    Log.debug(
+      "### list of failed assertion counts:" + choices.map(
+        _._2.coverage.assertCount.countAssertFailed))
+    Log.debug(
+      "### list of passed assertion counts:" + choices.map(
+        _._2.coverage.assertCount.countAssertPassed))
+
+    Log.debug(
+      "*** list of passed precondition counts:" + choices.map(
+        _._2.coverage.precond.countPrecondPassed))
+    Log.debug("*** list of failed precondition counts:" + precondFailedCountLst)
+    Log.debug(
+      "*** list of precond counters:" + choices.map(
+        _._2.coverage.precond.count))
+
     val rewardLst = choices.map(_._2.averageReward.rewardsLst)
     Log.debug("*** List of reward lists for transitions:" + rewardLst)
 
