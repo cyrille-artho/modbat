@@ -105,6 +105,8 @@ object TransitionCoverage {
     val c = pCov.count
     if (outcome) {
       pCov.precondPassed.set(c)
+      // todo: update procondPassed counter -rui
+      pCov.updatePrecondPassededCounter
     } else {
       pCov.precondFailed.set(c)
       // todo: update procondFailed counter -rui
@@ -112,11 +114,24 @@ object TransitionCoverage {
     }
     pCov.count = c + 1
   }
+
+  // todo: count assert -Rui
+  def assertCount(assertion: Boolean) {
+    val t = MBT.currentTransition
+    val aCount = t.coverage.assertCount
+    if (!assertion)
+      aCount.updateAssertFailedCounter
+    else
+      aCount.updateAssertPassedCounter
+  }
+
 }
 
 class TransitionCoverage {
   var count = 0
   val precond = new PreconditionCoverage
+  // todo: assert count -Rui
+  val assertCount = new AssertionCount
 
   def cover {
     count += 1

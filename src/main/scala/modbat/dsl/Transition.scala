@@ -35,8 +35,7 @@ class Transition(var origin: State,
   val nextStatePredConv = ListBuffer[NextStatePredicate]()
   var coverage: TransitionCoverage = _
   // averageReward of the transition - Rui
-  //var averageReward: TransitionReward = new TransitionReward()
-  var averageReward: TransitionReward = _ //new TransitionReward()
+  var averageReward: TransitionReward = _
 
   var idx: Int = 0 // add a transition ID, initialized as 0 -RUI
   var n: Int = 0
