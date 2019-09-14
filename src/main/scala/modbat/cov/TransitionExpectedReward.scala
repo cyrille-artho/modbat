@@ -40,34 +40,34 @@ class TransitionExpectedReward {
   }
 
   def calculatePrecondExpectedReward: Double = {
-    Log.debug("*$# countPrecondPassed:" + countPrecondPassed)
-    Log.debug("*$# countPrecondFailed:" + countPrecondFailed)
+    //Log.debug("*$# countPrecondPassed:" + countPrecondPassed)
+    //Log.debug("*$# countPrecondFailed:" + countPrecondFailed)
     totalCountPrecond = countPrecondPassed + countPrecondFailed
-    Log.debug("*$# totalCountPrecond:" + totalCountPrecond)
+    //Log.debug("*$# totalCountPrecond:" + totalCountPrecond)
 
     val precondExpectedReward: Double =
       if (totalCountPrecond != 0)
         (countPrecondPassed.toDouble / totalCountPrecond.toDouble) * rewardPrecondPass + (countPrecondFailed.toDouble / totalCountPrecond.toDouble) * rewardPrecondFail
       else 0d
-    Log.debug("*$# precondition expected reward:" + precondExpectedReward)
+    //Log.debug("*$# precondition expected reward:" + precondExpectedReward)
     precondExpectedReward
   }
 
   def calculateAssertExpectedReward: Double = {
-    Log.debug("*$# countAssertPassed:" + countAssertPassed)
-    Log.debug("*$# countAssertFailed:" + countAssertFailed)
+    //Log.debug("*$# countAssertPassed:" + countAssertPassed)
+    //Log.debug("*$# countAssertFailed:" + countAssertFailed)
     totalCountAssert = countAssertPassed + countAssertFailed
-    Log.debug("*$# totalCountAssert:" + totalCountAssert)
+    //Log.debug("*$# totalCountAssert:" + totalCountAssert)
     val assertExpectedReward: Double =
       if (totalCountAssert != 0)
         (countAssertPassed.toDouble / totalCountAssert.toDouble) * rewardAssertPass + (countAssertFailed.toDouble / totalCountAssert.toDouble) * rewardAssertFail
       else 0d
-    Log.debug("*$# assertion expected reward:" + assertExpectedReward)
+    //Log.debug("*$# assertion expected reward:" + assertExpectedReward)
     assertExpectedReward
   }
 
   def calculateExpectedReward: Unit = {
     expectedReward = calculatePrecondExpectedReward + calculateAssertExpectedReward
-    Log.debug("*$# expected reward:" + expectedReward)
+    //Log.debug("*$# expected reward:" + expectedReward)
   }
 }
