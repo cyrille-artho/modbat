@@ -102,15 +102,16 @@ object TransitionCoverage {
   def precond(outcome: Boolean) {
     val t = MBT.currentTransition
     val pCov = t.coverage.precond
+    val pCount = t.coverage.expectedReward
     val c = pCov.count
     if (outcome) {
       pCov.precondPassed.set(c)
       // todo: update procondPassed counter -rui
-      pCov.updatePrecondPassededCounter
+      pCount.updatePrecondPassededCounter
     } else {
       pCov.precondFailed.set(c)
       // todo: update procondFailed counter -rui
-      pCov.updatePrecondFailedCounter
+      pCount.updatePrecondFailedCounter
     }
     pCov.count = c + 1
   }
@@ -118,7 +119,7 @@ object TransitionCoverage {
   // todo: count assert -Rui
   def assertCount(assertion: Boolean) {
     val t = MBT.currentTransition
-    val aCount = t.coverage.assertCount
+    val aCount = t.coverage.expectedReward
     if (!assertion)
       aCount.updateAssertFailedCounter
     else
@@ -130,8 +131,8 @@ object TransitionCoverage {
 class TransitionCoverage {
   var count = 0
   val precond = new PreconditionCoverage
-  // todo: assert count -Rui
-  val assertCount = new AssertionCount
+  // todo: expected reward of transition -Rui
+  val expectedReward = new TransitionExpectedReward
 
   def cover {
     count += 1

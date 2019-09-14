@@ -568,23 +568,40 @@ object Modbat {
 
     val currentStateCount = choices.head._1.currentState.coverage.count
     val transCountLst = choices.map(_._2.coverage.count)
+//    val precondFailedCountLst = choices.map(_._2.coverage.precond.countPrecondFailed)
     val precondFailedCountLst =
-      choices.map(_._2.coverage.precond.countPrecondFailed)
+      choices.map(_._2.coverage.expectedReward.countPrecondFailed)
+
+//    Log.debug(
+//      "### list of failed assertion counts:" + choices.map(
+//        _._2.coverage.assertCount.countAssertFailed))
+//    Log.debug(
+//      "### list of passed assertion counts:" + choices.map(
+//        _._2.coverage.assertCount.countAssertPassed))
+//
+//    Log.debug(
+//      "*** list of passed precondition counts:" + choices.map(
+//        _._2.coverage.precond.countPrecondPassed))
 
     Log.debug(
       "### list of failed assertion counts:" + choices.map(
-        _._2.coverage.assertCount.countAssertFailed))
+        _._2.coverage.expectedReward.countAssertFailed))
     Log.debug(
       "### list of passed assertion counts:" + choices.map(
-        _._2.coverage.assertCount.countAssertPassed))
+        _._2.coverage.expectedReward.countAssertPassed))
 
     Log.debug(
       "*** list of passed precondition counts:" + choices.map(
-        _._2.coverage.precond.countPrecondPassed))
+        _._2.coverage.expectedReward.countPrecondPassed))
+
     Log.debug("*** list of failed precondition counts:" + precondFailedCountLst)
     Log.debug(
       "*** list of precond counters:" + choices.map(
         _._2.coverage.precond.count))
+
+    val expectedRewardList =
+      choices.map(_._2.coverage.expectedReward.expectedReward)
+    Log.debug("$$$ list of expected reward:" + expectedRewardList)
 
     val rewardLst = choices.map(_._2.averageReward.rewardsLst)
     Log.debug("--- list of reward lists for transitions:" + rewardLst)
@@ -596,7 +613,7 @@ object Modbat {
     Log.debug(
       "--- the total number of times that current state has been visited:" + nState)
 
-    // nTranslst is the list to store all value of the counters for executed transitions
+    // nTranslst is the list to store all value of the counters for selected transitions
     val nTransLst = (transCountLst, precondFailedCountLst).zipped.map(_ + _)
     Log.debug(
       "--- the list to store all values of the counters for executed transitions:" + nTransLst)
@@ -613,8 +630,10 @@ object Modbat {
         nTransLst.map(n => sqrt(tradeOff * log(nState) / n))
       Log.debug("--- banditUCBPlayedValueLst:" + banditUCBPlayedTransLst)
 
+      // banditUCB is the sum of the average reward, less played transition value, and expected reward
       val banditUCB =
-        (averageRewardLst, banditUCBPlayedTransLst).zipped.map(_ + _)
+        ((averageRewardLst, banditUCBPlayedTransLst).zipped.map(_ + _),
+         expectedRewardList).zipped.map(_ + _)
       Log.debug("--- banditUCB" + banditUCB)
 
       val banditUCBChoiceCondidates =
@@ -811,10 +830,10 @@ object Modbat {
             // todo: update the reward for the OK transition - Rui
             if (trans.origin == trans.dest) {
               trans.averageReward
-                .updateRewards(TransitionRewardTypes.SelfTransReward)
+                .updateAverageReward(TransitionRewardTypes.SelfTransReward)
             } else {
               trans.averageReward
-                .updateRewards(TransitionRewardTypes.GoodTransReward)
+                .updateAverageReward(TransitionRewardTypes.GoodTransReward)
             }
 
             val succ = new ListBuffer[(MBT, Transition)]()
@@ -851,13 +870,13 @@ object Modbat {
             backtracked = true
             // todo: update the reward for the backtracked transition - Rui
             trans.averageReward
-              .updateRewards(TransitionRewardTypes.BacktrackTransReward)
+              .updateAverageReward(TransitionRewardTypes.BacktrackTransReward)
             successors = successors filterNot (_ == successor)
           }
           case (t: TransitionResult, _) => {
             // todo: update the reward for the failed transition - Rui
             trans.averageReward
-              .updateRewards(TransitionRewardTypes.FailTransReward)
+              .updateAverageReward(TransitionRewardTypes.FailTransReward)
             assert(TransitionResult.isErr(t))
             printTrace(executedTransitions.toList)
             return (result,

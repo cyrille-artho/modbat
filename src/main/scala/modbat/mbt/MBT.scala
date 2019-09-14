@@ -21,7 +21,7 @@ import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.matching.Regex
 import modbat.RequirementFailedException
-import modbat.cov.{StateCoverage, TransitionCoverage, TransitionReward}
+import modbat.cov.{StateCoverage, TransitionAverageReward, TransitionCoverage}
 import modbat.dsl.Action
 import modbat.dsl.After
 import modbat.dsl.Before
@@ -628,7 +628,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
     }
 
     tr.coverage = new TransitionCoverage()
-    tr.averageReward = new TransitionReward() // averageReward of the transition - Rui
+    tr.averageReward = new TransitionAverageReward() // averageReward of the transition - Rui
     if (tr.isSynthetic) {
       return
     }
