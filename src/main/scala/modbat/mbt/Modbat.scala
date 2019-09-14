@@ -581,6 +581,7 @@ object Modbat {
 
     val currentStateCount = choices.head._1.currentState.coverage.count
     val transCountLst = choices.map(_._2.coverage.count)
+//    val precondFailedCountLst = choices.map(_._2.coverage.precond.countPrecondFailed)
     val precondFailedCountLst =
       choices.map(_._2.coverage.expectedReward.countPrecondFail)
 
@@ -603,21 +604,25 @@ object Modbat {
     val expectedRewardList =
       choices.map(_._2.coverage.expectedReward.expectedReward)
     Log.debug("*** List of expected reward:" + expectedRewardList)
-
     Log.debug(
       "### list of failed assertion counts:" + choices.map(
-        _._2.coverage.assertCount.countAssertFailed))
+        _._2.coverage.expectedReward.countAssertFailed))
     Log.debug(
       "### list of passed assertion counts:" + choices.map(
-        _._2.coverage.assertCount.countAssertPassed))
+        _._2.coverage.expectedReward.countAssertPassed))
 
     Log.debug(
       "*** list of passed precondition counts:" + choices.map(
-        _._2.coverage.precond.countPrecondPassed))
+        _._2.coverage.expectedReward.countPrecondPassed))
+
     Log.debug("*** list of failed precondition counts:" + precondFailedCountLst)
     Log.debug(
       "*** list of precond counters:" + choices.map(
         _._2.coverage.precond.count))
+
+    val expectedRewardList =
+      choices.map(_._2.coverage.expectedReward.expectedReward)
+    Log.debug("$$$ list of expected reward:" + expectedRewardList)
 
     val rewardLst = choices.map(_._2.averageReward.rewardsLst)
     Log.debug("*** List of reward lists for transitions:" + rewardLst)
