@@ -570,7 +570,7 @@ object Modbat {
     val transCountLst = choices.map(_._2.coverage.count)
 //    val precondFailedCountLst = choices.map(_._2.coverage.precond.countPrecondFailed)
     val precondFailedCountLst =
-      choices.map(_._2.coverage.expectedReward.countPrecondFailed)
+      choices.map(_._2.coverage.expectedReward.countPrecondFail)
 
 //    Log.debug(
 //      "### list of failed assertion counts:" + choices.map(
@@ -585,14 +585,14 @@ object Modbat {
 
     Log.debug(
       "### list of failed assertion counts:" + choices.map(
-        _._2.coverage.expectedReward.countAssertFailed))
+        _._2.coverage.expectedReward.countAssertFail))
     Log.debug(
       "### list of passed assertion counts:" + choices.map(
-        _._2.coverage.expectedReward.countAssertPassed))
+        _._2.coverage.expectedReward.countAssertPass))
 
     Log.debug(
       "*** list of passed precondition counts:" + choices.map(
-        _._2.coverage.expectedReward.countPrecondPassed))
+        _._2.coverage.expectedReward.countPrecondPass))
 
     Log.debug("*** list of failed precondition counts:" + precondFailedCountLst)
     Log.debug(
