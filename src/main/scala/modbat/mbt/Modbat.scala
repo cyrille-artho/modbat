@@ -606,14 +606,14 @@ object Modbat {
     Log.debug("*** List of expected reward:" + expectedRewardList)
     Log.debug(
       "### list of failed assertion counts:" + choices.map(
-        _._2.coverage.expectedReward.countAssertFailed))
+        _._2.coverage.expectedReward.countAssertFail))
     Log.debug(
       "### list of passed assertion counts:" + choices.map(
-        _._2.coverage.expectedReward.countAssertPassed))
+        _._2.coverage.expectedReward.countAssertPass))
 
     Log.debug(
       "*** list of passed precondition counts:" + choices.map(
-        _._2.coverage.expectedReward.countPrecondPassed))
+        _._2.coverage.expectedReward.countPrecondPass))
 
     Log.debug("*** list of failed precondition counts:" + precondFailedCountLst)
     Log.debug(
