@@ -1,10 +1,12 @@
 package modbat.cov
+
+import modbat.mbt.Main
 import modbat.log.Log
 class TransitionExpectedReward {
-  val precondPassReward = 0.7d
-  val precondFailReward = 0.3d
-  val assertPassReward = 0.4d
-  val assertFailReward = 0.6d
+//  val precondPassReward = 0.7d
+//  val precondFailReward = 0.3d
+//  val assertPassReward = 0.4d
+//  val assertFailReward = 0.6d
 
   // todo: count passed times for assertion - Rui
   var countAssertPass = 0
@@ -47,8 +49,8 @@ class TransitionExpectedReward {
 
     val precondExpectedReward: Double =
       if (totalCountPrecond != 0)
-        (countPrecondPass.toDouble / totalCountPrecond.toDouble) * precondPassReward +
-          (countPrecondFail.toDouble / totalCountPrecond.toDouble) * precondFailReward
+        (countPrecondPass.toDouble / totalCountPrecond.toDouble) * Main.config.precondPassReward /*precondPassReward*/ +
+          (countPrecondFail.toDouble / totalCountPrecond.toDouble) * Main.config.precondFailReward /*precondFailReward*/
       else 0d
     //Log.debug("*$# precondition expected reward:" + precondExpectedReward)
     precondExpectedReward
@@ -61,8 +63,8 @@ class TransitionExpectedReward {
     //Log.debug("*$# totalCountAssert:" + totalCountAssert)
     val assertExpectedReward: Double =
       if (totalCountAssert != 0)
-        (countAssertPass.toDouble / totalCountAssert.toDouble) * assertPassReward +
-          (countAssertFail.toDouble / totalCountAssert.toDouble) * assertFailReward
+        (countAssertPass.toDouble / totalCountAssert.toDouble) * Main.config.assertPassReward /*assertPassReward*/ +
+          (countAssertFail.toDouble / totalCountAssert.toDouble) * Main.config.assertFailReward /*assertFailReward*/
       else 0d
     //Log.debug("*$# assertion expected reward:" + assertExpectedReward)
     assertExpectedReward

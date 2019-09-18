@@ -625,9 +625,9 @@ object Modbat {
       return choices(nTransLst.indexOf(0)) //weightedChoice(choices, totalW)
     } else {
       // compute choice based on the UCB formula of bandit problem
-      val tradeOff = 2
+      //val tradeOff = 2
       val banditUCBPlayedTransLst =
-        nTransLst.map(n => sqrt(tradeOff * log(nState) / n))
+        nTransLst.map(n => sqrt(Main.config.banditTradeoff * log(nState) / n))
       Log.debug("--- banditUCBPlayedValueLst:" + banditUCBPlayedTransLst)
 
       // banditUCB is the sum of the average reward, less played transition value, and expected reward
