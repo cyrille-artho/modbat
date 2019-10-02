@@ -38,7 +38,7 @@ class PathInPointGraph(val root: TrieNode,
     out.println("digraph model {")
     out.println("  orientation = portrait;")
     out.println(
-      "  graph [ rankdir = \"TB\", ranksep=\"0.5\", nodesep=\"0.1\", size=\"8!\" ];") //ranksep="0.1", nodesep="0.05" for small graphs; ranksep="0.5", nodesep="0.1" for big graphs
+      "  graph [ rankdir = \"TB\", ranksep=\"0.1\", nodesep=\"0.05\", size=\"8!\" ];") //ranksep="0.1", nodesep="0.05" for small graphs; ranksep="0.5", nodesep="0.1" for big graphs
     out.println(
       "  node [ fontname = \"Helvetica\", fontsize=\"6.0\", shape=\"" + "point" +
         "\", margin=\"0.01\"," + " height=\"0.1\"," + " width=\"0.5\" ];")
