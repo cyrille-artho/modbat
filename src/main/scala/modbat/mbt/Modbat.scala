@@ -579,6 +579,17 @@ object Modbat {
     Log.debug("Passed assertion reward:" + Main.config.assertPassReward)
     Log.debug("Failed assertion reward:" + Main.config.assertFailReward)
 
+    Log.debug("tradeoff:" + Main.config.banditTradeoff)
+    Log.debug("backtrack transition reward:" + Main.config.backtrackTReward)
+    Log.debug("self transition reward:" + Main.config.selfTReward)
+    Log.debug("good transition reward:" + Main.config.goodTReward)
+    Log.debug("fail transition reward:" + Main.config.failTReward)
+
+    Log.debug("passed precondition reward:" + Main.config.precondPassReward)
+    Log.debug("failed precondition reward:" + Main.config.precondFailReward)
+    Log.debug("passed assertion reward:" + Main.config.assertPassReward)
+    Log.debug("failed assertion reward:" + Main.config.assertFailReward)
+
     val currentStateCount = choices.head._1.currentState.coverage.count
     val transCountLst = choices.map(_._2.coverage.count)
 //    val precondFailedCountLst = choices.map(_._2.coverage.precond.countPrecondFailed)
@@ -622,7 +633,8 @@ object Modbat {
 
     val expectedRewardList =
       choices.map(_._2.coverage.expectedReward.expectedReward)
-    Log.debug("$$$ list of expected reward:" + expectedRewardList)
+    //    todo: the debug code:
+    //Log.debug("$$$ list of expected reward:" + expectedRewardList)
 
     val rewardLst = choices.map(_._2.averageReward.rewardsLst)
     Log.debug("*** List of reward lists for transitions:" + rewardLst)
