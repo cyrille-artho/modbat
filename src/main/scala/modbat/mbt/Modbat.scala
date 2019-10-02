@@ -566,6 +566,17 @@ object Modbat {
   private def banditUCBChoice(choices: List[(MBT, Transition)],
                               totalW: Double): (MBT, Transition) = {
 
+    Log.debug("tradeoff:" + Main.config.banditTradeoff)
+    Log.debug("backtrack transition reward:" + Main.config.backtrackTReward)
+    Log.debug("self transition reward:" + Main.config.selfTReward)
+    Log.debug("good transition reward:" + Main.config.goodTReward)
+    Log.debug("fail transition reward:" + Main.config.failTReward)
+
+    Log.debug("passed precondition reward:" + Main.config.precondPassReward)
+    Log.debug("failed precondition reward:" + Main.config.precondFailReward)
+    Log.debug("passed assertion reward:" + Main.config.assertPassReward)
+    Log.debug("failed assertion reward:" + Main.config.assertFailReward)
+
     val currentStateCount = choices.head._1.currentState.coverage.count
     val transCountLst = choices.map(_._2.coverage.count)
 //    val precondFailedCountLst = choices.map(_._2.coverage.precond.countPrecondFailed)
@@ -583,52 +594,57 @@ object Modbat {
 //      "*** list of passed precondition counts:" + choices.map(
 //        _._2.coverage.precond.countPrecondPassed))
 
-    Log.debug(
-      "### list of failed assertion counts:" + choices.map(
-        _._2.coverage.expectedReward.countAssertFail))
-    Log.debug(
-      "### list of passed assertion counts:" + choices.map(
-        _._2.coverage.expectedReward.countAssertPass))
-
-    Log.debug(
-      "*** list of passed precondition counts:" + choices.map(
-        _._2.coverage.expectedReward.countPrecondPass))
-
-    Log.debug("*** list of failed precondition counts:" + precondFailedCountLst)
-    Log.debug(
-      "*** list of precond counters:" + choices.map(
-        _._2.coverage.precond.count))
+//    todo: the debug code:
+//    Log.debug(
+//      "### list of failed assertion counts:" + choices.map(
+//        _._2.coverage.expectedReward.countAssertFail))
+//    Log.debug(
+//      "### list of passed assertion counts:" + choices.map(
+//        _._2.coverage.expectedReward.countAssertPass))
+//
+//    Log.debug(
+//      "*** list of passed precondition counts:" + choices.map(
+//        _._2.coverage.expectedReward.countPrecondPass))
+//
+//    Log.debug("*** list of failed precondition counts:" + precondFailedCountLst)
+//    Log.debug(
+//      "*** list of precond counters:" + choices.map(
+//        _._2.coverage.precond.count))
 
     val expectedRewardList =
       choices.map(_._2.coverage.expectedReward.expectedReward)
-    Log.debug("$$$ list of expected reward:" + expectedRewardList)
+    //    todo: the debug code:
+    //Log.debug("$$$ list of expected reward:" + expectedRewardList)
 
     val rewardLst = choices.map(_._2.averageReward.rewardsLst)
-    Log.debug("--- list of reward lists for transitions:" + rewardLst)
+    //    todo: the debug code:
+    // Log.debug("--- list of reward lists for transitions:" + rewardLst)
     val averageRewardLst = choices.map(_._2.averageReward.averageReward)
-    Log.debug("--- list of average rewards for transitions:" + averageRewardLst)
+    //    todo: the debug code:
+    //Log.debug("--- list of average rewards for transitions:" + averageRewardLst)
 
     // nState is the total number of times that current state has been visited
     val nState = currentStateCount + precondFailedCountLst.sum
-    Log.debug(
-      "--- the total number of times that current state has been visited:" + nState)
+    //    todo: the debug code:
+    //Log.debug("--- the total number of times that current state has been visited:" + nState)
 
     // nTranslst is the list to store all value of the counters for selected transitions
     val nTransLst = (transCountLst, precondFailedCountLst).zipped.map(_ + _)
-    Log.debug(
-      "--- the list to store all values of the counters for executed transitions:" + nTransLst)
+    //    todo: the debug code:
+    //Log.debug("--- the list to store all values of the counters for executed transitions:" + nTransLst)
 
     if (nTransLst.contains(0)) {
       // choose an unplayed transition when there are still unplayed transitions
-      Log.debug(
-        "--- choose an unplayed transition when there are still unplayed transitions")
+      //    todo: the debug code:
+      //Log.debug("--- choose an unplayed transition when there are still unplayed transitions")
       return choices(nTransLst.indexOf(0)) //weightedChoice(choices, totalW)
     } else {
       // compute choice based on the UCB formula of bandit problem
       //val tradeOff = 2
       val banditUCBPlayedTransLst =
         nTransLst.map(n => sqrt(Main.config.banditTradeoff * log(nState) / n))
-      Log.debug("--- banditUCBPlayedValueLst:" + banditUCBPlayedTransLst)
+      //    todo: the debug code:
+      //Log.debug("--- banditUCBPlayedValueLst:" + banditUCBPlayedTransLst)
 
       // banditUCB is the sum of the average reward, less played transition value, and expected reward
       val banditUCB =
@@ -807,7 +823,11 @@ object Modbat {
     var backtracked = false // boolean var for backtracked case -Rui
     while (!successors.isEmpty && (totalW > 0 || !MBT.transitionQueue.isEmpty)) {
       val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone
-      if (MBT.rng.nextFloat(false) < Main.config.abortProbability) {
+      val abortProbability = MBT.rng.nextFloat(false)
+      if (/*MBT.rng.nextFloat(false)*/ abortProbability < Main.config.abortProbability) {
+        Log.debug(
+          "configure for abort probability:" + Main.config.abortProbability)
+        Log.debug("abort probability:" + abortProbability)
         Log.debug("Aborting...")
         return ((Finished, null), null)
       }

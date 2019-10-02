@@ -5,24 +5,21 @@ import scala.collection.mutable.ListBuffer
 import modbat.mbt.Main
 
 class TransitionAverageReward {
-//  val backtrackedTransReward = 0.8d
-//  val selfTransReward = 0.4d
-//  val goodTransReward = 0.6d
-//  val failTransReward = 0.8d
 
   val rewardsLst: ListBuffer[Double] = new ListBuffer[Double]
   var averageReward = 0.0d
 
   def updateAverageReward(rewardType: RewardType): Unit = {
+
     rewardType match {
       case TransitionRewardTypes.BacktrackTransReward =>
-        rewardsLst += Main.config.backtrackTReward //backtrackedTransReward
+        rewardsLst += Main.config.backtrackTReward
       case TransitionRewardTypes.SelfTransReward =>
-        rewardsLst += Main.config.selfTReward //selfTransReward
+        rewardsLst += Main.config.selfTReward
       case TransitionRewardTypes.GoodTransReward =>
-        rewardsLst += Main.config.goodTReward //goodTransReward
+        rewardsLst += Main.config.goodTReward
       case TransitionRewardTypes.FailTransReward =>
-        rewardsLst += Main.config.failTReward //failTransReward
+        rewardsLst += Main.config.failTReward
     }
     averageReward = rewardsLst.sum / rewardsLst.length
   }
