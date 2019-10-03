@@ -14,6 +14,7 @@ object Model {
   // main loop
   // requires synchronization on a global lock
   def assert(assertion: Boolean, message: Any): Unit = {
+    TransitionCoverage.assertCount(assertion) // update assertion counters -Rui
     if (!assertion) {
       // if in different thread, set testHasFailed
       // do not set this flag in Modbat thread as functions that are
