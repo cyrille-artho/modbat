@@ -574,6 +574,46 @@ Example:
                                    --path-coverage-graph-mode=abstracted \
                                    modbat.examples.SimpleModel
 
+## Test case generation with heuristic search
+The tool has a technique that allows to use heuristic search mode to generate test cases based on 
+multi objective multi-armed bandit algorithm with multiple rewards.
+Currently, the multi-armed bandit algorithm used in the tool is the standard UCB1.
+The reward parameters can be provided by users, including:
+1. bandit tradeoff;
+2. rewards for self-transitions, good transitions, backtracked transitions, and failed transitions;
+3. rewards for passed/failed presonditions and passed/failed assertions.
+
+Users can choose to provide values of these parameters or to use the default setting of them.
+
+Example for using the default setting:
+
+    modbat/build$ scala modbat.jar --classpath=modbat-examples.jar \
+                                   -n=10 -s=1 \
+                                   --no-redirect-out \
+                                   --dotify-path-coverage \
+                                   --path-coverage-graph-mode=abstracted \
+                                   --search=heur \
+                                   modbat.examples.SimpleModel
+
+Example for providing parameters:
+    
+    modbat/build$ scala modbat.jar --classpath=modbat-examples.jar \
+                                   -n=10 -s=1 \
+                                   --no-redirect-out \
+                                   --dotify-path-coverage \
+                                   --path-coverage-graph-mode=abstracted \
+                                   --search=heur \
+                                   --bandit-tradeoff=5 \
+                                   --backtrack-t-reward=0.8 \
+                                   --self-t-reward=0.5 \
+                                   --good-t-reward=0.6 \
+                                   --fail-t-reward=0.7 \
+                                   --precond-pass-reward=0.5 \
+                                   --precond-fail-reward=0.7 \
+                                   --assert-pass-reward=0.5 \
+                                   --assert-fail-reward=0.7 \
+                                   modbat.examples.SimpleModel
+
 ## How to compile your own model
 
 It is recommended that you copy ModelTemplate.scala to create your own
