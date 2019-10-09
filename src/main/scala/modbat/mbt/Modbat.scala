@@ -633,12 +633,13 @@ object Modbat {
 
       val banditUCBChoiceCandidates =
         banditUCB.zipWithIndex.filter(x => x._1 == banditUCB.max)
-      Log.debug("*** bandit UCB choice candidates:" + banditUCBChoiceCandidates)
-      //val banditUCBChoiceIndex = Random.shuffle(banditUCBChoiceCandidates).head._2
+      Log.info("*** bandit UCB candidates:" + banditUCBChoiceCandidates)
+
       val banditUCBChoiceCandidate = banditUCBChoiceCandidates(
         MBT.rng.nextInt(banditUCBChoiceCandidates.length))
       val banditUCBChoiceIndex = banditUCBChoiceCandidate._2
-      Log.debug("*** bandit UCB choice index:" + banditUCBChoiceIndex)
+      Log.info(
+        "*** bandit UCB chosen candidate's index:" + banditUCBChoiceIndex)
 
       return choices(banditUCBChoiceIndex)
     }
