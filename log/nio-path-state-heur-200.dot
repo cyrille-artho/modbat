@@ -1,0 +1,9 @@
+digraph model {
+  orientation = portrait;
+  graph [ rankdir = "TB", ranksep="0.08", nodesep="0.18", size="8!" ];
+  node [ fontname = "Helvetica", fontsize="11.0", shape="ellipse", margin="0.01", height="0.1", width="0.5" ];
+  edge [ fontname = "Helvetica", arrowsize=".3", arrowhead="normal", fontsize="6.0", margin="0.05" ];
+None [shape=none, style=invis, width=0.1, height=0.1];
+None->reset;
+{rank = source; None}
+reset->open[penwidth="2.0043213737826426",label = " "];open->err[penwidth="0.8450980400142568",label = " "];open->closed[penwidth="0.8450980400142568",label = " "];closed->closed[penwidth="0.9777236052888477",label = " "];closed->err[penwidth="1.2671717284030137",label = " "];open->open[penwidth="0.6989700043360189",label = " "];open->maybeconnected[penwidth="0.6989700043360189",label = " "];maybeconnected->maybeconnected[penwidth="0.6020599913279624",label = " "];maybeconnected->connected[style=dotted];connected->connected[penwidth="1.863322860120456",label = " "];connected->connected[penwidth="0.9030899869919435",label = " "];connected->connected[color=red,penwidth="1.7745169657285496",label = " "];open->open[style=dotted, color=blue,penwidth="0.17609125905568124",label = " "];maybeconnected->maybeconnected[penwidth="0.17609125905568124",label = " "];maybeconnected->connected[penwidth="0.17609125905568124",label = " "];connected->err[penwidth="1.0791812460476249",label = " "];open->open[style=dotted, color=blue,penwidth="1.9731278535996986",label = " "];maybeconnected->err[penwidth="0.17609125905568124",label = " "];maybeconnected->err[penwidth="0.17609125905568124",label = " "];open->err[penwidth="0.8450980400142568",label = " "];open->connected[penwidth="1.8976270912904414",label = " "];connected->closed[penwidth="1.0969100130080565",label = " "];}

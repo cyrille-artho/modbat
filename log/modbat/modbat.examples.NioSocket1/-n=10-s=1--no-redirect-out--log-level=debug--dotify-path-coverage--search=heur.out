@@ -1,0 +1,1638 @@
+[DEBUG] Adding build/modbat-examples.jar to classpath.
+[DEBUG] Init: static startServer
+       1 3ba471c1785a0175
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from reset to open
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to open
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from closed to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from closed to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to connected
+[FINE] Launching new model instance modbat.examples.NioSocket1-1...
+[DEBUG] --- Exploring model ---
+[DEBUG] modbat.examples.NioSocket1-1: Current state: reset
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: open
+[DEBUG] State open in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0)
+[DEBUG] *** List of passed assertion counts:List(0)
+[DEBUG] *** List of passed precondition counts:List(0)
+[DEBUG] *** List of failed precondition counts:List(0)
+[DEBUG] *** List of precond counters:List(0)
+[DEBUG] *** List of expected reward:List(0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer())
+[DEBUG] *** List of average rewards for transitions:List(0.0)
+[DEBUG] *** The total number of times for current state to be visited:1
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(0)
+[FINE] modbat.examples.NioSocket1-1: Executing transition reset => open...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: open
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: open
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] State open in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State maybeconnected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(), ListBuffer(), ListBuffer(), ListBuffer(), ListBuffer(), ListBuffer())
+[DEBUG] *** List of average rewards for transitions:List(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+[DEBUG] *** The total number of times for current state to be visited:1
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(0, 0, 0, 0, 0, 0)
+[FINE] modbat.examples.NioSocket1-1: Executing transition open => open...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: open
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: open
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] State open in model modbat.examples.NioSocket1-1 was visited 2 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State maybeconnected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.4), ListBuffer(), ListBuffer(), ListBuffer(), ListBuffer(), ListBuffer())
+[DEBUG] *** List of average rewards for transitions:List(0.4, 0.0, 0.0, 0.0, 0.0, 0.0)
+[DEBUG] *** The total number of times for current state to be visited:2
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 0, 0, 0, 0, 0)
+[FINE] modbat.examples.NioSocket1-1: Executing transition open => connected...
+[FINE] Precondition violated, backtracking to open.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 0, 0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 0, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 0, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 0, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.0, 0.0, 0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.4), ListBuffer(), ListBuffer(), ListBuffer(), ListBuffer())
+[DEBUG] *** List of average rewards for transitions:List(0.4, 0.0, 0.0, 0.0, 0.0)
+[DEBUG] *** The total number of times for current state to be visited:2
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 0, 0, 0, 0)
+[FINE] modbat.examples.NioSocket1-1: Executing transition open => maybeconnected...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] State maybeconnected in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State maybeconnected in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(), ListBuffer(), ListBuffer(), ListBuffer(), ListBuffer(), ListBuffer())
+[DEBUG] *** List of average rewards for transitions:List(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+[DEBUG] *** The total number of times for current state to be visited:1
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(0, 0, 0, 0, 0, 0)
+[FINE] modbat.examples.NioSocket1-1: Executing transition maybeconnected => maybeconnected (1)...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] State maybeconnected in model modbat.examples.NioSocket1-1 was visited 2 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State maybeconnected in model modbat.examples.NioSocket1-1 was visited 2 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.4), ListBuffer(), ListBuffer(), ListBuffer(), ListBuffer(), ListBuffer())
+[DEBUG] *** List of average rewards for transitions:List(0.4, 0.0, 0.0, 0.0, 0.0, 0.0)
+[DEBUG] *** The total number of times for current state to be visited:2
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 0, 0, 0, 0, 0)
+[FINE] modbat.examples.NioSocket1-1: Executing transition maybeconnected => connected...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.0, 0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(), ListBuffer(), ListBuffer(), ListBuffer())
+[DEBUG] *** List of average rewards for transitions:List(0.0, 0.0, 0.0, 0.0)
+[DEBUG] *** The total number of times for current state to be visited:1
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(0, 0, 0, 0)
+[FINE] modbat.examples.NioSocket1-1: Executing transition connected => err...
+[DEBUG] Expected: AlreadyConnectedException
+[FINE] java.nio.channels.AlreadyConnectedException generated as expected.
+[DEBUG] Model modbat.examples.NioSocket1-1 has terminated.
+[DEBUG] modbat.examples.NioSocket1-1: Current state: err
+[DEBUG] No more successors.
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: reset => open, transition quality: OK, transID:0, nextif:NextStateNextIf(open,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: open => open, transition quality: OK, transID:1, nextif:NextStateNextIf(open,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: open => connected, transition quality: backtrack, transID:2, nextif:NextStateNextIf(open,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: open => maybeconnected, transition quality: OK, transID:3, nextif:NextStateNextIf(maybeconnected,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: maybeconnected => maybeconnected (1), transition quality: OK, transID:4, nextif:NextStateNextIf(maybeconnected,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: maybeconnected => connected, transition quality: OK, transID:5, nextif:NextStateNextIf(connected,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: connected => err, transition quality: OK, transID:9, nextif:NextStateNextIf(err,false)
+[DEBUG] --- Resetting to initial state ---
+[DEBUG] After: cleanup
+       2 402b73cd0066eaea
+[DEBUG] Identical model found: modbat.examples.NioSocket1-1
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from reset to open
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to open
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from closed to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from closed to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to connected
+[FINE] Launching new model instance modbat.examples.NioSocket1-1...
+[DEBUG] --- Exploring model ---
+[DEBUG] modbat.examples.NioSocket1-1: Current state: reset
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: open
+[DEBUG] State open in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0)
+[DEBUG] *** List of passed assertion counts:List(0)
+[DEBUG] *** List of passed precondition counts:List(0)
+[DEBUG] *** List of failed precondition counts:List(0)
+[DEBUG] *** List of precond counters:List(0)
+[DEBUG] *** List of expected reward:List(0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.6)
+[DEBUG] *** The total number of times for current state to be visited:2
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1)
+[DEBUG] *** banditUCBSelectedTransLst:List(1.1774100225154747)
+[DEBUG] *** banditUCB:List(1.7774100225154745)
+[DEBUG] *** bandit UCB choice candidates:List((1.7774100225154745,0))
+[DEBUG] *** bandit UCB choice index:0
+[FINE] modbat.examples.NioSocket1-1: Executing transition reset => open...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: open
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: open
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] State open in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State maybeconnected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 0, 1, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 1, 0, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 1, 1, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.7, 0.7, 0.0, 0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.4), ListBuffer(0.8), ListBuffer(0.6), ListBuffer(), ListBuffer(), ListBuffer())
+[DEBUG] *** List of average rewards for transitions:List(0.4, 0.8, 0.6, 0.0, 0.0, 0.0)
+[DEBUG] *** The total number of times for current state to be visited:4
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 1, 1, 0, 0, 0)
+[FINE] modbat.examples.NioSocket1-1: Executing transition open => err (1)...
+[DEBUG] Expected: NoConnectionPendingException
+[FINE] java.nio.channels.NoConnectionPendingException generated as expected.
+[DEBUG] Model modbat.examples.NioSocket1-1 has terminated.
+[DEBUG] modbat.examples.NioSocket1-1: Current state: err
+[DEBUG] No more successors.
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: reset => open, transition quality: OK, transID:0, nextif:NextStateNextIf(open,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: open => err (1), transition quality: OK, transID:7, nextif:NextStateNextIf(err,false)
+[DEBUG] --- Resetting to initial state ---
+[DEBUG] After: cleanup
+       3 41530f4040856586
+[DEBUG] Identical model found: modbat.examples.NioSocket1-1
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from reset to open
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to open
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from closed to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from closed to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to connected
+[FINE] Launching new model instance modbat.examples.NioSocket1-1...
+[DEBUG] --- Exploring model ---
+[DEBUG] modbat.examples.NioSocket1-1: Current state: reset
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: open
+[DEBUG] State open in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0)
+[DEBUG] *** List of passed assertion counts:List(0)
+[DEBUG] *** List of passed precondition counts:List(0)
+[DEBUG] *** List of failed precondition counts:List(0)
+[DEBUG] *** List of precond counters:List(0)
+[DEBUG] *** List of expected reward:List(0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.6, 0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.6)
+[DEBUG] *** The total number of times for current state to be visited:3
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(2)
+[DEBUG] *** banditUCBSelectedTransLst:List(1.048147073968205)
+[DEBUG] *** banditUCB:List(1.6481470739682051)
+[DEBUG] *** bandit UCB choice candidates:List((1.6481470739682051,0))
+[DEBUG] *** bandit UCB choice index:0
+[FINE] modbat.examples.NioSocket1-1: Executing transition reset => open...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: open
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: open
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] State open in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State maybeconnected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 0, 1, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 1, 0, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 1, 1, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.7, 0.7, 0.0, 0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.4), ListBuffer(0.8), ListBuffer(0.6), ListBuffer(0.6), ListBuffer(), ListBuffer())
+[DEBUG] *** List of average rewards for transitions:List(0.4, 0.8, 0.6, 0.6, 0.0, 0.0)
+[DEBUG] *** The total number of times for current state to be visited:5
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 1, 1, 1, 0, 0)
+[FINE] modbat.examples.NioSocket1-1: Executing transition open => err (2)...
+[DEBUG] Expected: NotYetConnectedException
+[FINE] java.nio.channels.NotYetConnectedException generated as expected.
+[DEBUG] Model modbat.examples.NioSocket1-1 has terminated.
+[DEBUG] modbat.examples.NioSocket1-1: Current state: err
+[DEBUG] No more successors.
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: reset => open, transition quality: OK, transID:0, nextif:NextStateNextIf(open,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: open => err (2), transition quality: OK, transID:10, nextif:NextStateNextIf(err,false)
+[DEBUG] --- Resetting to initial state ---
+[DEBUG] After: cleanup
+       4  89a82931be29e65
+[DEBUG] Identical model found: modbat.examples.NioSocket1-1
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from reset to open
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to open
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from closed to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from closed to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to connected
+[FINE] Launching new model instance modbat.examples.NioSocket1-1...
+[DEBUG] --- Exploring model ---
+[DEBUG] modbat.examples.NioSocket1-1: Current state: reset
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: open
+[DEBUG] State open in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0)
+[DEBUG] *** List of passed assertion counts:List(0)
+[DEBUG] *** List of passed precondition counts:List(0)
+[DEBUG] *** List of failed precondition counts:List(0)
+[DEBUG] *** List of precond counters:List(0)
+[DEBUG] *** List of expected reward:List(0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.6, 0.6, 0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.6)
+[DEBUG] *** The total number of times for current state to be visited:4
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(3)
+[DEBUG] *** banditUCBSelectedTransLst:List(0.9613512577339219)
+[DEBUG] *** banditUCB:List(1.561351257733922)
+[DEBUG] *** bandit UCB choice candidates:List((1.561351257733922,0))
+[DEBUG] *** bandit UCB choice index:0
+[FINE] modbat.examples.NioSocket1-1: Executing transition reset => open...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: open
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: open
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] State open in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State maybeconnected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 0, 1, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 1, 0, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 1, 1, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.7, 0.7, 0.0, 0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.4), ListBuffer(0.8), ListBuffer(0.6), ListBuffer(0.6), ListBuffer(0.6), ListBuffer())
+[DEBUG] *** List of average rewards for transitions:List(0.4, 0.8, 0.6, 0.6, 0.6, 0.0)
+[DEBUG] *** The total number of times for current state to be visited:6
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 1, 1, 1, 1, 0)
+[FINE] modbat.examples.NioSocket1-1: Executing transition open => closed...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: closed
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 0)
+[DEBUG] *** List of precond counters:List(0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(), ListBuffer())
+[DEBUG] *** List of average rewards for transitions:List(0.0, 0.0)
+[DEBUG] *** The total number of times for current state to be visited:1
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(0, 0)
+[FINE] modbat.examples.NioSocket1-1: Executing transition closed => closed...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: closed
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 2 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 0)
+[DEBUG] *** List of precond counters:List(0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.4), ListBuffer())
+[DEBUG] *** List of average rewards for transitions:List(0.4, 0.0)
+[DEBUG] *** The total number of times for current state to be visited:2
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 0)
+[FINE] modbat.examples.NioSocket1-1: Executing transition closed => err...
+[DEBUG] Expected: ClosedChannelException
+[FINE] java.nio.channels.ClosedChannelException generated as expected.
+[DEBUG] Model modbat.examples.NioSocket1-1 has terminated.
+[DEBUG] modbat.examples.NioSocket1-1: Current state: err
+[DEBUG] No more successors.
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: reset => open, transition quality: OK, transID:0, nextif:NextStateNextIf(open,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: open => closed, transition quality: OK, transID:14, nextif:NextStateNextIf(closed,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: closed => closed, transition quality: OK, transID:17, nextif:NextStateNextIf(closed,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: closed => err, transition quality: OK, transID:18, nextif:NextStateNextIf(err,false)
+[DEBUG] --- Resetting to initial state ---
+[DEBUG] After: cleanup
+       5 49a846e52b813972
+[DEBUG] Identical model found: modbat.examples.NioSocket1-1
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from reset to open
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to open
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from closed to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from closed to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to connected
+[FINE] Launching new model instance modbat.examples.NioSocket1-1...
+[DEBUG] --- Exploring model ---
+[DEBUG] modbat.examples.NioSocket1-1: Current state: reset
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: open
+[DEBUG] State open in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0)
+[DEBUG] *** List of passed assertion counts:List(0)
+[DEBUG] *** List of passed precondition counts:List(0)
+[DEBUG] *** List of failed precondition counts:List(0)
+[DEBUG] *** List of precond counters:List(0)
+[DEBUG] *** List of expected reward:List(0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.6, 0.6, 0.6, 0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.6)
+[DEBUG] *** The total number of times for current state to be visited:5
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(4)
+[DEBUG] *** banditUCBSelectedTransLst:List(0.8970612889970507)
+[DEBUG] *** banditUCB:List(1.4970612889970507)
+[DEBUG] *** bandit UCB choice candidates:List((1.4970612889970507,0))
+[DEBUG] *** bandit UCB choice index:0
+[FINE] modbat.examples.NioSocket1-1: Executing transition reset => open...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: open
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: open
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] State open in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State maybeconnected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 0, 1, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 1, 0, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 1, 1, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.7, 0.7, 0.0, 0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.4), ListBuffer(0.8), ListBuffer(0.6), ListBuffer(0.6), ListBuffer(0.6), ListBuffer(0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.4, 0.8, 0.6, 0.6, 0.6, 0.6)
+[DEBUG] *** The total number of times for current state to be visited:7
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 1, 1, 1, 1, 1)
+[DEBUG] *** banditUCBSelectedTransLst:List(1.9727697022487511, 1.9727697022487511, 1.9727697022487511, 1.9727697022487511, 1.9727697022487511, 1.9727697022487511)
+[DEBUG] *** banditUCB:List(2.372769702248751, 3.472769702248751, 3.272769702248751, 2.5727697022487512, 2.5727697022487512, 2.5727697022487512)
+[DEBUG] *** bandit UCB choice candidates:List((3.472769702248751,1))
+[DEBUG] *** bandit UCB choice index:1
+[FINE] modbat.examples.NioSocket1-1: Executing transition open => connected...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.0, 0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.6), ListBuffer(), ListBuffer(), ListBuffer())
+[DEBUG] *** List of average rewards for transitions:List(0.6, 0.0, 0.0, 0.0)
+[DEBUG] *** The total number of times for current state to be visited:2
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 0, 0, 0)
+[FINE] modbat.examples.NioSocket1-1: Executing transition connected => connected (1)...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 2 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 2 times.
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.0, 0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.6), ListBuffer(0.4), ListBuffer(), ListBuffer())
+[DEBUG] *** List of average rewards for transitions:List(0.6, 0.4, 0.0, 0.0)
+[DEBUG] *** The total number of times for current state to be visited:3
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 1, 0, 0)
+[FINE] modbat.examples.NioSocket1-1: Executing transition connected => connected (2)...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 3 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 3 times.
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 1, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.0, 0.7, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.6), ListBuffer(0.4), ListBuffer(0.4), ListBuffer())
+[DEBUG] *** List of average rewards for transitions:List(0.6, 0.4, 0.4, 0.0)
+[DEBUG] *** The total number of times for current state to be visited:4
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 1, 1, 0)
+[FINE] modbat.examples.NioSocket1-1: Executing transition connected => closed...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: closed
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 0)
+[DEBUG] *** List of precond counters:List(0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.4), ListBuffer(0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.4, 0.6)
+[DEBUG] *** The total number of times for current state to be visited:3
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 1)
+[DEBUG] *** banditUCBSelectedTransLst:List(1.4823038073675112, 1.4823038073675112)
+[DEBUG] *** banditUCB:List(1.8823038073675114, 2.082303807367511)
+[DEBUG] *** bandit UCB choice candidates:List((2.082303807367511,1))
+[DEBUG] *** bandit UCB choice index:1
+[FINE] modbat.examples.NioSocket1-1: Executing transition closed => err...
+[DEBUG] Expected: ClosedChannelException
+[FINE] java.nio.channels.ClosedChannelException generated as expected.
+[DEBUG] Model modbat.examples.NioSocket1-1 has terminated.
+[DEBUG] modbat.examples.NioSocket1-1: Current state: err
+[DEBUG] No more successors.
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: reset => open, transition quality: OK, transID:0, nextif:NextStateNextIf(open,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: open => connected, transition quality: OK, transID:2, nextif:NextStateNextIf(connected,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: connected => connected (1), transition quality: OK, transID:12, nextif:NextStateNextIf(connected,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: connected => connected (2), transition quality: OK, transID:13, nextif:NextStateNextIf(connected,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: connected => closed, transition quality: OK, transID:15, nextif:NextStateNextIf(closed,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: closed => err, transition quality: OK, transID:18, nextif:NextStateNextIf(err,false)
+[DEBUG] --- Resetting to initial state ---
+[DEBUG] After: cleanup
+       6 27fe2d950fc74b21
+[DEBUG] Identical model found: modbat.examples.NioSocket1-1
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from reset to open
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to open
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from closed to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from closed to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to connected
+[FINE] Launching new model instance modbat.examples.NioSocket1-1...
+[DEBUG] --- Exploring model ---
+[DEBUG] modbat.examples.NioSocket1-1: Current state: reset
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: open
+[DEBUG] State open in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0)
+[DEBUG] *** List of passed assertion counts:List(0)
+[DEBUG] *** List of passed precondition counts:List(0)
+[DEBUG] *** List of failed precondition counts:List(0)
+[DEBUG] *** List of precond counters:List(0)
+[DEBUG] *** List of expected reward:List(0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.6, 0.6, 0.6, 0.6, 0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.6)
+[DEBUG] *** The total number of times for current state to be visited:6
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(5)
+[DEBUG] *** banditUCBSelectedTransLst:List(0.8465835975798386)
+[DEBUG] *** banditUCB:List(1.4465835975798385)
+[DEBUG] *** bandit UCB choice candidates:List((1.4465835975798385,0))
+[DEBUG] *** bandit UCB choice index:0
+[FINE] modbat.examples.NioSocket1-1: Executing transition reset => open...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: open
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: open
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] State open in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State maybeconnected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 1, 1, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 1, 0, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 1, 1, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.7, 0.7, 0.0, 0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.4), ListBuffer(0.8, 0.6), ListBuffer(0.6), ListBuffer(0.6), ListBuffer(0.6), ListBuffer(0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.4, 0.7, 0.6, 0.6, 0.6, 0.6)
+[DEBUG] *** The total number of times for current state to be visited:8
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 2, 1, 1, 1, 1)
+[DEBUG] *** banditUCBSelectedTransLst:List(2.039333980337618, 1.442026886600883, 2.039333980337618, 2.039333980337618, 2.039333980337618, 2.039333980337618)
+[DEBUG] *** banditUCB:List(2.4393339803376177, 2.842026886600883, 3.339333980337618, 2.639333980337618, 2.639333980337618, 2.639333980337618)
+[DEBUG] *** bandit UCB choice candidates:List((3.339333980337618,2))
+[DEBUG] *** bandit UCB choice index:2
+[FINE] modbat.examples.NioSocket1-1: Executing transition open => maybeconnected...
+[FINE] Precondition violated, backtracking to open.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 0, 0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 1, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 1, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 1, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.7, 0.0, 0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.4), ListBuffer(0.8, 0.6), ListBuffer(0.6), ListBuffer(0.6), ListBuffer(0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.4, 0.7, 0.6, 0.6, 0.6)
+[DEBUG] *** The total number of times for current state to be visited:8
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 2, 1, 1, 1)
+[DEBUG] *** banditUCBSelectedTransLst:List(2.039333980337618, 1.442026886600883, 2.039333980337618, 2.039333980337618, 2.039333980337618)
+[DEBUG] *** banditUCB:List(2.4393339803376177, 2.842026886600883, 2.639333980337618, 2.639333980337618, 2.639333980337618)
+[DEBUG] *** bandit UCB choice candidates:List((2.842026886600883,1))
+[DEBUG] *** bandit UCB choice index:1
+[FINE] modbat.examples.NioSocket1-1: Executing transition open => connected...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 1, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.0, 0.7, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.6), ListBuffer(0.4), ListBuffer(0.4), ListBuffer(0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.6, 0.4, 0.4, 0.6)
+[DEBUG] *** The total number of times for current state to be visited:5
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 1, 1, 1)
+[DEBUG] *** banditUCBSelectedTransLst:List(1.7941225779941015, 1.7941225779941015, 1.7941225779941015, 1.7941225779941015)
+[DEBUG] *** banditUCB:List(2.3941225779941013, 2.1941225779941016, 2.8941225779941018, 2.3941225779941013)
+[DEBUG] *** bandit UCB choice candidates:List((2.8941225779941018,2))
+[DEBUG] *** bandit UCB choice index:2
+[FINE] modbat.examples.NioSocket1-1: Executing transition connected => connected (2)...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 2 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 2 times.
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 2, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.0, 0.7, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.6), ListBuffer(0.4), ListBuffer(0.4, 0.4), ListBuffer(0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.6, 0.4, 0.4, 0.6)
+[DEBUG] *** The total number of times for current state to be visited:6
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 1, 2, 1)
+[DEBUG] *** banditUCBSelectedTransLst:List(1.8930184728248454, 1.8930184728248454, 1.3385661990458504, 1.8930184728248454)
+[DEBUG] *** banditUCB:List(2.4930184728248452, 2.2930184728248455, 2.4385661990458507, 2.4930184728248452)
+[DEBUG] *** bandit UCB choice candidates:List((2.4930184728248452,0), (2.4930184728248452,3))
+[DEBUG] *** bandit UCB choice index:3
+[FINE] modbat.examples.NioSocket1-1: Executing transition connected => closed...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: closed
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 0)
+[DEBUG] *** List of precond counters:List(0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.4), ListBuffer(0.6, 0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.4, 0.6)
+[DEBUG] *** The total number of times for current state to be visited:4
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 2)
+[DEBUG] *** banditUCBSelectedTransLst:List(1.6651092223153954, 1.1774100225154747)
+[DEBUG] *** banditUCB:List(2.0651092223153955, 1.7774100225154745)
+[DEBUG] *** bandit UCB choice candidates:List((2.0651092223153955,0))
+[DEBUG] *** bandit UCB choice index:0
+[FINE] modbat.examples.NioSocket1-1: Executing transition closed => closed...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: closed
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 2 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 0)
+[DEBUG] *** List of precond counters:List(0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.4, 0.4), ListBuffer(0.6, 0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.4, 0.6)
+[DEBUG] *** The total number of times for current state to be visited:5
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(2, 2)
+[DEBUG] *** banditUCBSelectedTransLst:List(1.2686362411795196, 1.2686362411795196)
+[DEBUG] *** banditUCB:List(1.6686362411795197, 1.8686362411795194)
+[DEBUG] *** bandit UCB choice candidates:List((1.8686362411795194,1))
+[DEBUG] *** bandit UCB choice index:1
+[FINE] modbat.examples.NioSocket1-1: Executing transition closed => err...
+[DEBUG] Expected: ClosedChannelException
+[FINE] java.nio.channels.ClosedChannelException generated as expected.
+[DEBUG] Model modbat.examples.NioSocket1-1 has terminated.
+[DEBUG] modbat.examples.NioSocket1-1: Current state: err
+[DEBUG] No more successors.
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: reset => open, transition quality: OK, transID:0, nextif:NextStateNextIf(open,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: open => maybeconnected, transition quality: backtrack, transID:3, nextif:NextStateNextIf(open,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: open => connected, transition quality: OK, transID:2, nextif:NextStateNextIf(connected,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: connected => connected (2), transition quality: OK, transID:13, nextif:NextStateNextIf(connected,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: connected => closed, transition quality: OK, transID:15, nextif:NextStateNextIf(closed,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: closed => closed, transition quality: OK, transID:17, nextif:NextStateNextIf(closed,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: closed => err, transition quality: OK, transID:18, nextif:NextStateNextIf(err,false)
+[DEBUG] --- Resetting to initial state ---
+[DEBUG] After: cleanup
+       7 19b6aa1b14a29017
+[DEBUG] Identical model found: modbat.examples.NioSocket1-1
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from reset to open
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to open
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from closed to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from closed to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to connected
+[FINE] Launching new model instance modbat.examples.NioSocket1-1...
+[DEBUG] --- Exploring model ---
+[DEBUG] modbat.examples.NioSocket1-1: Current state: reset
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: open
+[DEBUG] State open in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0)
+[DEBUG] *** List of passed assertion counts:List(0)
+[DEBUG] *** List of passed precondition counts:List(0)
+[DEBUG] *** List of failed precondition counts:List(0)
+[DEBUG] *** List of precond counters:List(0)
+[DEBUG] *** List of expected reward:List(0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.6, 0.6, 0.6, 0.6, 0.6, 0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.6)
+[DEBUG] *** The total number of times for current state to be visited:7
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(6)
+[DEBUG] *** banditUCBSelectedTransLst:List(0.8053798584219568)
+[DEBUG] *** banditUCB:List(1.4053798584219568)
+[DEBUG] *** bandit UCB choice candidates:List((1.4053798584219568,0))
+[DEBUG] *** bandit UCB choice index:0
+[FINE] modbat.examples.NioSocket1-1: Executing transition reset => open...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: open
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: open
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] State open in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State maybeconnected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 2, 1, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 1, 1, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 1, 1, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.7, 0.7, 0.0, 0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.4), ListBuffer(0.8, 0.6, 0.6), ListBuffer(0.6, 0.8), ListBuffer(0.6), ListBuffer(0.6), ListBuffer(0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.4, 0.6666666666666666, 0.7, 0.6, 0.6, 0.6)
+[DEBUG] *** The total number of times for current state to be visited:10
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 3, 2, 1, 1, 1)
+[DEBUG] *** banditUCBSelectedTransLst:List(2.145966026289347, 1.2389740629499462, 1.5174271293851465, 2.145966026289347, 2.145966026289347, 2.145966026289347)
+[DEBUG] *** banditUCB:List(2.545966026289347, 2.6056407296166126, 2.917427129385146, 2.7459660262893473, 2.7459660262893473, 2.7459660262893473)
+[DEBUG] *** bandit UCB choice candidates:List((2.917427129385146,2))
+[DEBUG] *** bandit UCB choice index:2
+[FINE] modbat.examples.NioSocket1-1: Executing transition open => maybeconnected...
+[FINE] Precondition violated, backtracking to open.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 0, 0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 2, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 1, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 1, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.7, 0.0, 0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.4), ListBuffer(0.8, 0.6, 0.6), ListBuffer(0.6), ListBuffer(0.6), ListBuffer(0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.4, 0.6666666666666666, 0.6, 0.6, 0.6)
+[DEBUG] *** The total number of times for current state to be visited:9
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 3, 1, 1, 1)
+[DEBUG] *** banditUCBSelectedTransLst:List(2.09629414793641, 1.2102959906117234, 2.09629414793641, 2.09629414793641, 2.09629414793641)
+[DEBUG] *** banditUCB:List(2.49629414793641, 2.57696265727839, 2.69629414793641, 2.69629414793641, 2.69629414793641)
+[DEBUG] *** bandit UCB choice candidates:List((2.69629414793641,2), (2.69629414793641,3), (2.69629414793641,4))
+[DEBUG] *** bandit UCB choice index:3
+[FINE] modbat.examples.NioSocket1-1: Executing transition open => err (2)...
+[DEBUG] Expected: NotYetConnectedException
+[FINE] java.nio.channels.NotYetConnectedException generated as expected.
+[DEBUG] Model modbat.examples.NioSocket1-1 has terminated.
+[DEBUG] modbat.examples.NioSocket1-1: Current state: err
+[DEBUG] No more successors.
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: reset => open, transition quality: OK, transID:0, nextif:NextStateNextIf(open,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: open => maybeconnected, transition quality: backtrack, transID:3, nextif:NextStateNextIf(open,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: open => err (2), transition quality: OK, transID:10, nextif:NextStateNextIf(err,false)
+[DEBUG] --- Resetting to initial state ---
+[DEBUG] After: cleanup
+       8 5ff50ec9279365d2
+[DEBUG] Identical model found: modbat.examples.NioSocket1-1
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from reset to open
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to open
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from closed to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from closed to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to connected
+[FINE] Launching new model instance modbat.examples.NioSocket1-1...
+[DEBUG] --- Exploring model ---
+[DEBUG] modbat.examples.NioSocket1-1: Current state: reset
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: open
+[DEBUG] State open in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0)
+[DEBUG] *** List of passed assertion counts:List(0)
+[DEBUG] *** List of passed precondition counts:List(0)
+[DEBUG] *** List of failed precondition counts:List(0)
+[DEBUG] *** List of precond counters:List(0)
+[DEBUG] *** List of expected reward:List(0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.6)
+[DEBUG] *** The total number of times for current state to be visited:8
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(7)
+[DEBUG] *** banditUCBSelectedTransLst:List(0.7707957931681174)
+[DEBUG] *** banditUCB:List(1.3707957931681174)
+[DEBUG] *** bandit UCB choice candidates:List((1.3707957931681174,0))
+[DEBUG] *** bandit UCB choice index:0
+[FINE] modbat.examples.NioSocket1-1: Executing transition reset => open...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: open
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: open
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] State open in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State maybeconnected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 2, 1, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 1, 2, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 1, 1, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.7, 0.7, 0.0, 0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.4), ListBuffer(0.8, 0.6, 0.6), ListBuffer(0.6, 0.8, 0.8), ListBuffer(0.6), ListBuffer(0.6, 0.6), ListBuffer(0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.4, 0.6666666666666666, 0.7333333333333334, 0.6, 0.6, 0.6)
+[DEBUG] *** The total number of times for current state to be visited:12
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 3, 3, 1, 2, 1)
+[DEBUG] *** banditUCBSelectedTransLst:List(2.2293078072747154, 1.2870914626365915, 1.2870914626365915, 2.2293078072747154, 1.5763586678760644, 2.2293078072747154)
+[DEBUG] *** banditUCB:List(2.6293078072747154, 2.6537581293032577, 2.720424795969925, 2.8293078072747155, 2.1763586678760642, 2.8293078072747155)
+[DEBUG] *** bandit UCB choice candidates:List((2.8293078072747155,3), (2.8293078072747155,5))
+[DEBUG] *** bandit UCB choice index:5
+[FINE] modbat.examples.NioSocket1-1: Executing transition open => closed...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: closed
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 0)
+[DEBUG] *** List of precond counters:List(0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.4, 0.4), ListBuffer(0.6, 0.6, 0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.4, 0.6)
+[DEBUG] *** The total number of times for current state to be visited:6
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(2, 3)
+[DEBUG] *** banditUCBSelectedTransLst:List(1.3385661990458504, 1.0929347248663588)
+[DEBUG] *** banditUCB:List(1.7385661990458505, 1.6929347248663587)
+[DEBUG] *** bandit UCB choice candidates:List((1.7385661990458505,0))
+[DEBUG] *** bandit UCB choice index:0
+[FINE] modbat.examples.NioSocket1-1: Executing transition closed => closed...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: closed
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 2 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 0)
+[DEBUG] *** List of precond counters:List(0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.4, 0.4, 0.4), ListBuffer(0.6, 0.6, 0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.4000000000000001, 0.6)
+[DEBUG] *** The total number of times for current state to be visited:7
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(3, 3)
+[DEBUG] *** banditUCBSelectedTransLst:List(1.1389791186424545, 1.1389791186424545)
+[DEBUG] *** banditUCB:List(1.5389791186424546, 1.7389791186424546)
+[DEBUG] *** bandit UCB choice candidates:List((1.7389791186424546,1))
+[DEBUG] *** bandit UCB choice index:1
+[FINE] modbat.examples.NioSocket1-1: Executing transition closed => err...
+[DEBUG] Expected: ClosedChannelException
+[FINE] java.nio.channels.ClosedChannelException generated as expected.
+[DEBUG] Model modbat.examples.NioSocket1-1 has terminated.
+[DEBUG] modbat.examples.NioSocket1-1: Current state: err
+[DEBUG] No more successors.
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: reset => open, transition quality: OK, transID:0, nextif:NextStateNextIf(open,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: open => closed, transition quality: OK, transID:14, nextif:NextStateNextIf(closed,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: closed => closed, transition quality: OK, transID:17, nextif:NextStateNextIf(closed,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: closed => err, transition quality: OK, transID:18, nextif:NextStateNextIf(err,false)
+[DEBUG] --- Resetting to initial state ---
+[DEBUG] After: cleanup
+       9  85780661bf76533
+[DEBUG] Identical model found: modbat.examples.NioSocket1-1
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from reset to open
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to open
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from closed to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from closed to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to connected
+[FINE] Launching new model instance modbat.examples.NioSocket1-1...
+[DEBUG] --- Exploring model ---
+[DEBUG] modbat.examples.NioSocket1-1: Current state: reset
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: open
+[DEBUG] State open in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0)
+[DEBUG] *** List of passed assertion counts:List(0)
+[DEBUG] *** List of passed precondition counts:List(0)
+[DEBUG] *** List of failed precondition counts:List(0)
+[DEBUG] *** List of precond counters:List(0)
+[DEBUG] *** List of expected reward:List(0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.6)
+[DEBUG] *** The total number of times for current state to be visited:9
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(8)
+[DEBUG] *** banditUCBSelectedTransLst:List(0.7411519036837556)
+[DEBUG] *** banditUCB:List(1.3411519036837556)
+[DEBUG] *** bandit UCB choice candidates:List((1.3411519036837556,0))
+[DEBUG] *** bandit UCB choice index:0
+[FINE] modbat.examples.NioSocket1-1: Executing transition reset => open...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: open
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: open
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] State open in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State maybeconnected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 2, 1, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 1, 2, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 1, 1, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.7, 0.7, 0.0, 0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.4), ListBuffer(0.8, 0.6, 0.6), ListBuffer(0.6, 0.8, 0.8), ListBuffer(0.6), ListBuffer(0.6, 0.6), ListBuffer(0.6, 0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.4, 0.6666666666666666, 0.7333333333333334, 0.6, 0.6, 0.6)
+[DEBUG] *** The total number of times for current state to be visited:13
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 3, 3, 1, 2, 2)
+[DEBUG] *** banditUCBSelectedTransLst:List(2.2649279712439143, 1.307656773892787, 1.307656773892787, 2.2649279712439143, 1.6015459273656616, 1.6015459273656616)
+[DEBUG] *** banditUCB:List(2.6649279712439142, 2.674323440559453, 2.7409901072261205, 2.8649279712439144, 2.2015459273656615, 2.2015459273656615)
+[DEBUG] *** bandit UCB choice candidates:List((2.8649279712439144,3))
+[DEBUG] *** bandit UCB choice index:3
+[FINE] modbat.examples.NioSocket1-1: Executing transition open => err (1)...
+[DEBUG] Expected: NoConnectionPendingException
+[FINE] java.nio.channels.NoConnectionPendingException generated as expected.
+[DEBUG] Model modbat.examples.NioSocket1-1 has terminated.
+[DEBUG] modbat.examples.NioSocket1-1: Current state: err
+[DEBUG] No more successors.
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: reset => open, transition quality: OK, transID:0, nextif:NextStateNextIf(open,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: open => err (1), transition quality: OK, transID:7, nextif:NextStateNextIf(err,false)
+[DEBUG] --- Resetting to initial state ---
+[DEBUG] After: cleanup
+      10 486e122d1bcbade7
+[DEBUG] Identical model found: modbat.examples.NioSocket1-1
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from reset to open
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to open
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to connected
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from open to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from connected to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from closed to closed
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from closed to err
+[DEBUG] modbat.examples.NioSocket1-1: Registered state transition from maybeconnected to connected
+[FINE] Launching new model instance modbat.examples.NioSocket1-1...
+[DEBUG] --- Exploring model ---
+[DEBUG] modbat.examples.NioSocket1-1: Current state: reset
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: open
+[DEBUG] State open in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0)
+[DEBUG] *** List of passed assertion counts:List(0)
+[DEBUG] *** List of passed precondition counts:List(0)
+[DEBUG] *** List of failed precondition counts:List(0)
+[DEBUG] *** List of precond counters:List(0)
+[DEBUG] *** List of expected reward:List(0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.6)
+[DEBUG] *** The total number of times for current state to be visited:10
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(9)
+[DEBUG] *** banditUCBSelectedTransLst:List(0.7153220087631158)
+[DEBUG] *** banditUCB:List(1.3153220087631157)
+[DEBUG] *** bandit UCB choice candidates:List((1.3153220087631157,0))
+[DEBUG] *** bandit UCB choice index:0
+[FINE] modbat.examples.NioSocket1-1: Executing transition reset => open...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: open
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: open
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: maybeconnected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] State open in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State maybeconnected in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 0, 0, 0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 2, 1, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 1, 2, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 1, 1, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.7, 0.7, 0.0, 0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.4), ListBuffer(0.8, 0.6, 0.6), ListBuffer(0.6, 0.8, 0.8), ListBuffer(0.6, 0.6), ListBuffer(0.6, 0.6), ListBuffer(0.6, 0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.4, 0.6666666666666666, 0.7333333333333334, 0.6, 0.6, 0.6)
+[DEBUG] *** The total number of times for current state to be visited:14
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 3, 3, 2, 2, 2)
+[DEBUG] *** banditUCBSelectedTransLst:List(2.2974147773596556, 1.3264130401488214, 1.3264130401488214, 1.624517568269195, 1.624517568269195, 1.624517568269195)
+[DEBUG] *** banditUCB:List(2.6974147773596555, 2.693079706815488, 2.7597463734821552, 2.224517568269195, 2.224517568269195, 2.224517568269195)
+[DEBUG] *** bandit UCB choice candidates:List((2.7597463734821552,2))
+[DEBUG] *** bandit UCB choice index:2
+[FINE] modbat.examples.NioSocket1-1: Executing transition open => maybeconnected...
+[FINE] Precondition violated, backtracking to open.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 0, 0, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 2, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 1, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 1, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.7, 0.0, 0.0, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.4), ListBuffer(0.8, 0.6, 0.6), ListBuffer(0.6, 0.6), ListBuffer(0.6, 0.6), ListBuffer(0.6, 0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.4, 0.6666666666666666, 0.6, 0.6, 0.6)
+[DEBUG] *** The total number of times for current state to be visited:12
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 3, 2, 2, 2)
+[DEBUG] *** banditUCBSelectedTransLst:List(2.2293078072747154, 1.2870914626365915, 1.5763586678760644, 1.5763586678760644, 1.5763586678760644)
+[DEBUG] *** banditUCB:List(2.6293078072747154, 2.6537581293032577, 2.1763586678760642, 2.1763586678760642, 2.1763586678760642)
+[DEBUG] *** bandit UCB choice candidates:List((2.6537581293032577,1))
+[DEBUG] *** bandit UCB choice index:1
+[FINE] modbat.examples.NioSocket1-1: Executing transition open => connected...
+[DEBUG] modbat.examples.NioSocket1-1: Current state: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: err
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: connected
+[DEBUG] modbat.examples.NioSocket1-1: Possible successor: closed
+[DEBUG] State err in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State connected in model modbat.examples.NioSocket1-1 was visited 1 times.
+[DEBUG] State closed in model modbat.examples.NioSocket1-1 was visited 0 times.
+[DEBUG] Tradeoff:2
+[DEBUG] Backtracked transition reward:0.8
+[DEBUG] Self-transition reward:0.4
+[DEBUG] Good transition reward:0.6
+[DEBUG] Failed transition reward:0.5
+[DEBUG] Passed precondition reward:0.7
+[DEBUG] Failed precondition reward:0.7
+[DEBUG] Passed assertion reward:0.7
+[DEBUG] Failed assertion reward:0.7
+[DEBUG] *** List of failed assertion counts:List(0, 0, 0, 0)
+[DEBUG] *** List of passed assertion counts:List(0, 0, 2, 0)
+[DEBUG] *** List of passed precondition counts:List(0, 0, 0, 0)
+[DEBUG] *** List of failed precondition counts:List(0, 0, 0, 0)
+[DEBUG] *** List of precond counters:List(0, 0, 0, 0)
+[DEBUG] *** List of expected reward:List(0.0, 0.0, 0.7, 0.0)
+[DEBUG] *** List of reward lists for transitions:List(ListBuffer(0.6), ListBuffer(0.4), ListBuffer(0.4, 0.4), ListBuffer(0.6, 0.6))
+[DEBUG] *** List of average rewards for transitions:List(0.6, 0.4, 0.4, 0.6)
+[DEBUG] *** The total number of times for current state to be visited:7
+[DEBUG] *** The list to store all values of counters for already selected transitions:List(1, 1, 2, 2)
+[DEBUG] *** banditUCBSelectedTransLst:List(1.9727697022487511, 1.9727697022487511, 1.3949588341794583, 1.3949588341794583)
+[DEBUG] *** banditUCB:List(2.5727697022487512, 2.372769702248751, 2.4949588341794584, 1.9949588341794584)
+[DEBUG] *** bandit UCB choice candidates:List((2.5727697022487512,0))
+[DEBUG] *** bandit UCB choice index:0
+[FINE] modbat.examples.NioSocket1-1: Executing transition connected => err...
+[DEBUG] Expected: AlreadyConnectedException
+[FINE] java.nio.channels.AlreadyConnectedException generated as expected.
+[DEBUG] Model modbat.examples.NioSocket1-1 has terminated.
+[DEBUG] modbat.examples.NioSocket1-1: Current state: err
+[DEBUG] No more successors.
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: reset => open, transition quality: OK, transID:0, nextif:NextStateNextIf(open,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: open => maybeconnected, transition quality: backtrack, transID:3, nextif:NextStateNextIf(open,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: open => connected, transition quality: OK, transID:2, nextif:NextStateNextIf(connected,false)
+[DEBUG] Recorded information for path coverage: model Name: modbat.examples.NioSocket1, model ID: 0, transition: connected => err, transition quality: OK, transID:9, nextif:NextStateNextIf(err,false)
+[DEBUG] --- Resetting to initial state ---
+[DEBUG] After: cleanup
+[DEBUG] [ model name: modbat.examples.NioSocket1, model ID: 0. trans: reset=>open, trans Origin: reset, trans Dest: open, transitionID: 0, trans counter: 10, transition quality: OK, nextIf: NextStateNextIf(open,false), trans choices map: Map(), counters of execution:Map(1 -> 10), current depth:1]
+[DEBUG] -[ model name: modbat.examples.NioSocket1, model ID: 0. trans: open=>err, trans Origin: open, trans Dest: err, transitionID: 7, trans counter: 2, transition quality: OK, nextIf: NextStateNextIf(err,false), trans choices map: Map(), counters of execution:Map(1 -> 2), current depth:2, leaf:end]
+[DEBUG] -[ model name: modbat.examples.NioSocket1, model ID: 0. trans: open=>closed, trans Origin: open, trans Dest: closed, transitionID: 14, trans counter: 2, transition quality: OK, nextIf: NextStateNextIf(closed,false), trans choices map: Map(), counters of execution:Map(1 -> 2), current depth:2]
+[DEBUG] --[ model name: modbat.examples.NioSocket1, model ID: 0. trans: closed=>closed, trans Origin: closed, trans Dest: closed, transitionID: 17, trans counter: 2, transition quality: OK, nextIf: NextStateNextIf(closed,false), trans choices map: Map(), counters of execution:Map(1 -> 2), current depth:3]
+[DEBUG] ---[ model name: modbat.examples.NioSocket1, model ID: 0. trans: closed=>err, trans Origin: closed, trans Dest: err, transitionID: 18, trans counter: 2, transition quality: OK, nextIf: NextStateNextIf(err,false), trans choices map: Map(), counters of execution:Map(1 -> 2), current depth:4, leaf:end]
+[DEBUG] -[ model name: modbat.examples.NioSocket1, model ID: 0. trans: open=>open, trans Origin: open, trans Dest: open, transitionID: 1, trans counter: 1, transition quality: OK, nextIf: NextStateNextIf(open,false), trans choices map: Map(), counters of execution:Map(1 -> 1), current depth:2]
+[DEBUG] --[ model name: modbat.examples.NioSocket1, model ID: 0. trans: open=>connected, trans Origin: open, trans Dest: connected, transitionID: 2, trans counter: 1, transition quality: backtrack, nextIf: NextStateNextIf(open,false), trans choices map: Map(), counters of execution:Map(1 -> 1), current depth:3]
+[DEBUG] ---[ model name: modbat.examples.NioSocket1, model ID: 0. trans: open=>maybeconnected, trans Origin: open, trans Dest: maybeconnected, transitionID: 3, trans counter: 1, transition quality: OK, nextIf: NextStateNextIf(maybeconnected,false), trans choices map: Map(), counters of execution:Map(1 -> 1), current depth:4]
+[DEBUG] ----[ model name: modbat.examples.NioSocket1, model ID: 0. trans: maybeconnected=>maybeconnected, trans Origin: maybeconnected, trans Dest: maybeconnected, transitionID: 4, trans counter: 1, transition quality: OK, nextIf: NextStateNextIf(maybeconnected,false), trans choices map: Map(), counters of execution:Map(1 -> 1), current depth:5]
+[DEBUG] -----[ model name: modbat.examples.NioSocket1, model ID: 0. trans: maybeconnected=>connected, trans Origin: maybeconnected, trans Dest: connected, transitionID: 5, trans counter: 1, transition quality: OK, nextIf: NextStateNextIf(connected,false), trans choices map: Map(), counters of execution:Map(1 -> 1), current depth:6]
+[DEBUG] ------[ model name: modbat.examples.NioSocket1, model ID: 0. trans: connected=>err, trans Origin: connected, trans Dest: err, transitionID: 9, trans counter: 1, transition quality: OK, nextIf: NextStateNextIf(err,false), trans choices map: Map(), counters of execution:Map(1 -> 1), current depth:7, leaf:end]
+[DEBUG] -[ model name: modbat.examples.NioSocket1, model ID: 0. trans: open=>maybeconnected, trans Origin: open, trans Dest: maybeconnected, transitionID: 3, trans counter: 3, transition quality: backtrack, nextIf: NextStateNextIf(open,false), trans choices map: Map(), counters of execution:Map(1 -> 3), current depth:2]
+[DEBUG] --[ model name: modbat.examples.NioSocket1, model ID: 0. trans: open=>err, trans Origin: open, trans Dest: err, transitionID: 10, trans counter: 1, transition quality: OK, nextIf: NextStateNextIf(err,false), trans choices map: Map(), counters of execution:Map(1 -> 1), current depth:3, leaf:end]
+[DEBUG] --[ model name: modbat.examples.NioSocket1, model ID: 0. trans: open=>connected, trans Origin: open, trans Dest: connected, transitionID: 2, trans counter: 2, transition quality: OK, nextIf: NextStateNextIf(connected,false), trans choices map: Map(), counters of execution:Map(1 -> 2), current depth:3]
+[DEBUG] ---[ model name: modbat.examples.NioSocket1, model ID: 0. trans: connected=>err, trans Origin: connected, trans Dest: err, transitionID: 9, trans counter: 1, transition quality: OK, nextIf: NextStateNextIf(err,false), trans choices map: Map(), counters of execution:Map(1 -> 1), current depth:4, leaf:end]
+[DEBUG] ---[ model name: modbat.examples.NioSocket1, model ID: 0. trans: connected=>connected, trans Origin: connected, trans Dest: connected, transitionID: 13, trans counter: 1, transition quality: OK, nextIf: NextStateNextIf(connected,false), trans choices map: Map(), counters of execution:Map(1 -> 1), current depth:4]
+[DEBUG] ----[ model name: modbat.examples.NioSocket1, model ID: 0. trans: connected=>closed, trans Origin: connected, trans Dest: closed, transitionID: 15, trans counter: 1, transition quality: OK, nextIf: NextStateNextIf(closed,false), trans choices map: Map(), counters of execution:Map(1 -> 1), current depth:5]
+[DEBUG] -----[ model name: modbat.examples.NioSocket1, model ID: 0. trans: closed=>closed, trans Origin: closed, trans Dest: closed, transitionID: 17, trans counter: 1, transition quality: OK, nextIf: NextStateNextIf(closed,false), trans choices map: Map(), counters of execution:Map(1 -> 1), current depth:6]
+[DEBUG] ------[ model name: modbat.examples.NioSocket1, model ID: 0. trans: closed=>err, trans Origin: closed, trans Dest: err, transitionID: 18, trans counter: 1, transition quality: OK, nextIf: NextStateNextIf(err,false), trans choices map: Map(), counters of execution:Map(1 -> 1), current depth:7, leaf:end]
+[DEBUG] -[ model name: modbat.examples.NioSocket1, model ID: 0. trans: open=>err, trans Origin: open, trans Dest: err, transitionID: 10, trans counter: 1, transition quality: OK, nextIf: NextStateNextIf(err,false), trans choices map: Map(), counters of execution:Map(1 -> 1), current depth:2, leaf:end]
+[DEBUG] -[ model name: modbat.examples.NioSocket1, model ID: 0. trans: open=>connected, trans Origin: open, trans Dest: connected, transitionID: 2, trans counter: 1, transition quality: OK, nextIf: NextStateNextIf(connected,false), trans choices map: Map(), counters of execution:Map(1 -> 1), current depth:2]
+[DEBUG] --[ model name: modbat.examples.NioSocket1, model ID: 0. trans: connected=>connected, trans Origin: connected, trans Dest: connected, transitionID: 12, trans counter: 1, transition quality: OK, nextIf: NextStateNextIf(connected,false), trans choices map: Map(), counters of execution:Map(1 -> 1), current depth:3]
+[DEBUG] ---[ model name: modbat.examples.NioSocket1, model ID: 0. trans: connected=>connected, trans Origin: connected, trans Dest: connected, transitionID: 13, trans counter: 1, transition quality: OK, nextIf: NextStateNextIf(connected,false), trans choices map: Map(), counters of execution:Map(1 -> 1), current depth:4]
+[DEBUG] ----[ model name: modbat.examples.NioSocket1, model ID: 0. trans: connected=>closed, trans Origin: connected, trans Dest: closed, transitionID: 15, trans counter: 1, transition quality: OK, nextIf: NextStateNextIf(closed,false), trans choices map: Map(), counters of execution:Map(1 -> 1), current depth:5]
+[DEBUG] -----[ model name: modbat.examples.NioSocket1, model ID: 0. trans: closed=>err, trans Origin: closed, trans Dest: err, transitionID: 18, trans counter: 1, transition quality: OK, nextIf: NextStateNextIf(err,false), trans choices map: Map(), counters of execution:Map(1 -> 1), current depth:6, leaf:end]
+[INFO] 8 main paths executed.
+[INFO] the shortest path has 2 transitions.
+[INFO] the longest path has 7 transitions.
+[INFO] path length results: Map(2 -> 2, 4 -> 2, 7 -> 2, 3 -> 1, 6 -> 1)
+[INFO] the average length of paths is: 4.375
+[INFO] the standard deviation for the length of paths is: 1.9324531042175384
+[INFO] the total number of nodes in path-based graph:25
+[INFO] the total number of choice nodes in path-based graph: 0
+[INFO] the total number of edges in path-based graph: 35
+[INFO] the total number of non choice related edges in path-based graph: 35
+[INFO] the total number of backtracked edges in path-based graph: 4
+[INFO] the total number of failed edges in path-based graph: 0
+[INFO] the total number of choice related edges in path-based graph: 0
+[INFO] the total number of cycles in path-based graph: 7
+[INFO] ---------------------- table data of PG -----------------------
+Nodes & Edges & failEdges & Cycles & LIP & LP & SP & AVE & SD
+25  & 35   & 0         & 7    & 8   & 7 & 2  & 4.375 & 1.9324531042175384
+--------------------------------------------------------------
+[INFO] the total number of choice nodes in state-based graph: 0
+[INFO] the total number of edges in state-based graph: 17
+[INFO] the total number of non choice related edges in state-based graph: 17
+[INFO] the total number of backtracked edges in state-based graph: 2
+[INFO] the total number of failed edges in state-based graph: 0
+[INFO] the total number of choice related edges in state-based graph: 0
+[INFO] the total number of Jumped dotted edges in state-based graph: 0
+[INFO] the total number of cycles in state-based graph: 5
+[INFO] ---------------------- table data of SG -----------------------
+Edges & failEdges & Cycles
+17    & 0         & 5
+--------------------------------------------------------------
+[INFO] 10 tests executed, 10 ok, 0 failed.
+[INFO] 6 states covered (100 % out of 6),
+[INFO] 15 transitions covered (75 % out of 20).
+[INFO] Precondition 1 always passed at transition modbat/examples/NioSocket1.scala:93 finishConnect
+[INFO] Random seed for next test would be: a410ce32fc39dfb
+[DEBUG] Shutdown: static shutdown
