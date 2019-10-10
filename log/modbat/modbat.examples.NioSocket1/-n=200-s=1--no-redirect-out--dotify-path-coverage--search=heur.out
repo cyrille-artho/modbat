@@ -2367,8 +2367,8 @@
 [INFO] the total number of choice related edges in path-based graph: 0
 [INFO] the total number of cycles in path-based graph: 33
 [INFO] ---------------------- table data of PG -----------------------
-Nodes & Edges & failEdges & Cycles & LIP & LP & SP & AVE & SD
-72  & 129   & 6         & 33    & 25   & 8 & 2  & 5.16 & 1.5666524822052912
+Name & Test Cases & Nodes & Choice Nodes & Edges & failEdges & Cycles & LIP & LP & SP & AVE & SD
+modbat.examples.NioSocket1 & 200 & 72  & 0  & 129   & 6         & 33    & 25 & 8 & 2  & 5.16 & 1.5666524822052912
 --------------------------------------------------------------
 [INFO] the total number of choice nodes in state-based graph: 0
 [INFO] the total number of edges in state-based graph: 22
@@ -2379,8 +2379,8 @@ Nodes & Edges & failEdges & Cycles & LIP & LP & SP & AVE & SD
 [INFO] the total number of Jumped dotted edges in state-based graph: 1
 [INFO] the total number of cycles in state-based graph: 6
 [INFO] ---------------------- table data of SG -----------------------
-Edges & failEdges & Cycles
-22    & 1         & 6
+Name & Test Cases & Choice Nodes & Edges & failEdges & Cycles
+modbat.examples.NioSocket1 & 200 & 0 & 22 & 1 & 6
 --------------------------------------------------------------
 [INFO] 200 tests executed, 83 ok, 117 failed.
 [INFO] One type of test failure:
