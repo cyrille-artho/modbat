@@ -213,11 +213,13 @@ object Modbat {
 
     Log.info(
       "---------------------- table data of PG -----------------------\n" +
-        "Nodes" + " & " + "Edges" + " & " + "failEdges" + " & " + "Cycles" + " & " +
+        "Name" + " & " + "Test Cases" + " & " +
+        "Nodes" + " & " + "Choice Nodes" + " & " + "Edges" + " & " + "failEdges" + " & " + "Cycles" + " & " +
         "LIP" + " & " + "LP" + " & " + "SP" + " & " + "AVE" + " & " + "SD" + "\n" +
-        (numNodePG + numChoiceNodePG) + "  & " + (numNonChoiceEdgePG + numChoiceEdgePG) +
+        MBT.modelClass.getName + " & " + count + " & " +
+        (numNodePG + numChoiceNodePG) + "  & " + numChoiceNodePG + "  & " + (numNonChoiceEdgePG + numChoiceEdgePG) +
         "   & " + numFailedEdgePG + "         & " + numCycleSelfTranPG + "    & " +
-        numOfPaths + "   & " + longestPath + " & " + shortestPath + "  & " + averageLength + " & " + stdDev + "\n" +
+        numOfPaths + " & " + longestPath + " & " + shortestPath + "  & " + averageLength + " & " + stdDev + "\n" +
         "--------------------------------------------------------------"
     )
     // information for the state based graph
@@ -255,9 +257,11 @@ object Modbat {
 
     Log.info(
       "---------------------- table data of SG -----------------------\n" +
-        "Edges" + " & " + "failEdges" + " & " + "Cycles" + "\n" +
-        (numNonChoiceEdgeSG + numChoiceEdgeSG + numJumpedEdge) +
-        "    & " + numFailedEdgeSG + "         & " + numCycleSelfTranSG + "\n" +
+        "Name" + " & " + "Test Cases" + " & " +
+        "Choice Nodes" + " & " + "Edges" + " & " + "failEdges" + " & " + "Cycles" + "\n" +
+        MBT.modelClass.getName + " & " + count + " & " +
+        numChoiceNodeSG + " & " + (numNonChoiceEdgeSG + numChoiceEdgeSG + numJumpedEdge) +
+        " & " + numFailedEdgeSG + " & " + numCycleSelfTranSG + "\n" +
         "--------------------------------------------------------------"
     )
   }
