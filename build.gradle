@@ -66,9 +66,10 @@ jar {
                    'Specification-Version': gitDetails.lastTag,
                    'Implementation-Title': 'Modbat'
     }
-    from "LICENSE", "README", "CHANGELOG", "asm-LICENSE", "sourcecode-LICENSE"
+    from "LICENSE", "README", "CHANGELOG", "asm-LICENSE", "sourcecode-LICENSE", "akka-mock-LICENSE", "javassist-LICENSE"
+    from "config/build/classes/java/main", "config/build/classes/scala/main"
     from configurations.runtimeClasspath.
-                                         findAll { it.name.endsWith('jar') && ((it.name.contains('asm') || it.name.contains('javassist') || it.name.contains('sourcecode') || it.name.contains('config') || it.name.contains('akka-mock'))) }.
+                                         findAll { it.name.endsWith('jar') && (it.name.contains('asm') || it.name.contains('javassist') || it.name.contains('sourcecode') ||  it.name.contains('akka-mock')) }.
                                          collect { zipTree(it) }
 }
 
