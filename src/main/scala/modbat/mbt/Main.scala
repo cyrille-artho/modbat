@@ -5,7 +5,7 @@ import modbat.config.Version
 import modbat.log.Log
 
 object Main {
-  var config = new Configuration()
+  val config = new Configuration()
 
   def main(args: Array[String]) {
     Modbat.isUnitTest = false
