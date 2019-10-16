@@ -112,3 +112,5 @@ Version	Description
 
 3.4	- The tool now supports the visualization of execution paths and 
 	  test case generation based on heuristic search.
+	- Added new annotation "stay", API functions "setWeight" and
+	  "invokeTransition".
