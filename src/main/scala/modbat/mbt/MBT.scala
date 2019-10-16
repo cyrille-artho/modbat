@@ -21,8 +21,7 @@ import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.matching.Regex
 import modbat.RequirementFailedException
-import modbat.cov.StateCoverage
-import modbat.cov.TransitionCoverage
+import modbat.cov.{StateCoverage, TransitionAverageReward, TransitionCoverage}
 import modbat.dsl.Action
 import modbat.dsl.After
 import modbat.dsl.Before
@@ -194,7 +193,7 @@ object MBT {
     } catch {
       case e: ClassNotFoundException => {
         Log.error("Class \"" + className + "\" not found.")
-	throw e
+        throw e
       }
     }
   }
@@ -226,13 +225,14 @@ object MBT {
       c.getConstructor()
     } catch {
       case e: NoSuchMethodException => {
-	Log.error("No suitable constructor found.")
-	Log.error("A public nullary constructor is needed " +
-		  "to instantiate the primary model.")
-	Log.error("Consider adding a constructor variant:")
-	Log.error("  def this() = this(...)")
-	throw (e)
-	null
+        Log.error("No suitable constructor found.")
+        Log.error(
+          "A public nullary constructor is needed " +
+            "to instantiate the primary model.")
+        Log.error("Consider adding a constructor variant:")
+        Log.error("  def this() = this(...)")
+        throw (e)
+        null
       }
     }
   }
@@ -248,30 +248,30 @@ object MBT {
       }
     } catch {
       case c: ClassCastException => {
-	Log.error("Model class does not extend Model.")
-	Log.error("Check if the right class was specified.")
-	throw (c)
-	null
+        Log.error("Model class does not extend Model.")
+        Log.error("Check if the right class was specified.")
+        throw (c)
+        null
       }
       case e: InstantiationException => {
-	Log.error("Cannot instantiate model class.")
-	Log.error("The class must not be abstract or an interface.")
-	throw (e)
-	null
+        Log.error("Cannot instantiate model class.")
+        Log.error("The class must not be abstract or an interface.")
+        throw (e)
+        null
       }
       case e: InvocationTargetException => {
-	Log.error("Exception in default (nullary) constructor of main model.")
-	Log.error("In dot mode, a constructor that ignores any data")
-	Log.error("is sufficient to visualize the ESFM graph.")
-	if (!Main.config.printStackTrace) {
-	  Log.error("Use --print-stack-trace to see the stack trace.")
-	} else {
-	  val cause = e.getCause
-	  Log.error(cause.toString)
-	  printStackTrace(cause.getStackTrace)
-	}
-	throw (e)
-	null
+        Log.error("Exception in default (nullary) constructor of main model.")
+        Log.error("In dot mode, a constructor that ignores any data")
+        Log.error("is sufficient to visualize the ESFM graph.")
+        if (!Main.config.printStackTrace) {
+          Log.error("Use --print-stack-trace to see the stack trace.")
+        } else {
+          val cause = e.getCause
+          Log.error(cause.toString)
+          printStackTrace(cause.getStackTrace)
+        }
+        throw (e)
+        null
       }
     }
   }
@@ -282,7 +282,7 @@ object MBT {
   // if modelInstance == null: initial model
   def launch(modelInstance: Model): MBT = {
     val model = mkModel(modelInstance)
-    
+
     if (Transition.pendingTransitions.isEmpty) {
       Log.error("Model " + model.getClass.getName + " has no transitions.")
       Log.error("Make sure at least one transition exists of type")
@@ -322,7 +322,8 @@ object MBT {
       action.transfunc()
     } else {
       // compute choice for "maybe" -Rui
-      val choice: Boolean = MBT.rng.nextFloat(true) < Main.config.maybeProbability
+      val choice
+        : Boolean = MBT.rng.nextFloat(true) < Main.config.maybeProbability
       // record choice for "maybe" -Rui
       val maybeChoice = MaybeChoice(choice)
       MBT.rng.recordChoice(maybeChoice)
@@ -630,6 +631,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
     }
 
     tr.coverage = new TransitionCoverage()
+    tr.averageReward = new TransitionAverageReward() // averageReward of the transition - Rui
     if (tr.isSynthetic) {
       return
     }
@@ -820,15 +822,16 @@ class MBT(val model: Model, val trans: List[Transition]) {
     }
     if (successor.action.transfunc ne null) {
       try {
-	MBT.currentTransition = successor
-	TransitionCoverage.prep(successor)
-	successor.action.transfunc()
+        MBT.currentTransition = successor
+        TransitionCoverage.prep(successor)
+        successor.action.transfunc()
         successor.action.stayTime match {
           case Some((t1, t2)) => {
             MBT.stayLock.synchronized {
               staying = true
             }
-            val stayTime = (if (t1 == t2) t1 else rng.choose(t1, t2)).asInstanceOf[Long]
+            val stayTime =
+              (if (t1 == t2) t1 else rng.choose(t1, t2)).asInstanceOf[Long]
 //            new Timer(stayTime).start()
             val wakeUp = new WakeUp()
             MBT.time.scheduler.scheduleOnce(stayTime.millis)(wakeUp.run)
@@ -836,12 +839,12 @@ class MBT(val model: Model, val trans: List[Transition]) {
           }
           case _ => ()
         }
-	if (!successor.expectedExceptions.isEmpty) {
-	  Log.warn("Expected exception did not occur, aborting.")
-	  (ExpectedExceptionMissing, new RecordedTransition(this, successor))
-	} else {
-	  checkNextStPred(successor)
-	}
+        if (!successor.expectedExceptions.isEmpty) {
+          Log.warn("Expected exception did not occur, aborting.")
+          (ExpectedExceptionMissing, new RecordedTransition(this, successor))
+        } else {
+          checkNextStPred(successor)
+        }
       } catch {
         case reqFailed: RequirementFailedException => {
           handleReqFailure(reqFailed, successor)
@@ -891,7 +894,8 @@ class MBT(val model: Model, val trans: List[Transition]) {
 
   def setWeight(label: String, weight: Double): Unit = {
     assert(weight >= 0)
-    transitions.filter(_.action.label == label)
+    transitions
+      .filter(_.action.label == label)
       .foreach(_.action.weight(weight))
   }
 
