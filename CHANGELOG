@@ -114,3 +114,4 @@ Version	Description
 	  test case generation based on heuristic search.
 	- Added new annotation "stay", API functions "setWeight" and
 	  "invokeTransition".
+	- Added support for virtual time (requires akka).

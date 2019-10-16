@@ -68,7 +68,7 @@ jar {
     }
     from "LICENSE", "README", "CHANGELOG", "asm-LICENSE", "sourcecode-LICENSE"
     from configurations.runtimeClasspath.
-                                         findAll { it.name.endsWith('jar') && ((it.name.contains('asm') || it.name.contains('javassist') || it.name.contains('sourcecode') || it.name.contains('config') || it.name.contains('akka'))) }.
+                                         findAll { it.name.endsWith('jar') && ((it.name.contains('asm') || it.name.contains('javassist') || it.name.contains('sourcecode') || it.name.contains('config') || it.name.contains('akka-mock'))) }.
                                          collect { zipTree(it) }
 }
 
