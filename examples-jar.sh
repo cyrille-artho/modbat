@@ -10,5 +10,7 @@ cp -r src/test/scala/modbat/examples/ modbat-examples/modbat/
 cp -r src/test/java/modbat/examples/ modbat-examples/modbat/
 cp -r build/classes/scala/test/modbat/examples modbat-examples/modbat/
 cp -r build/classes/java/test/modbat/examples modbat-examples/modbat/
-jar cf build/modbat-examples.jar modbat-examples
-
+rm -f build/modbat-examples.jar
+cd modbat-examples
+jar cf ../build/modbat-examples.jar {LICENSE,modbat/}
+cd ..
