@@ -86,8 +86,13 @@ task cpExamplesSrc(type: Copy) {
 }
 
 task cpExamplesLicense(type: Copy) {
-    from file("LICENSE")
+    from "LICENSE"
     into "$buildDir/examplesJar"
+}
+
+task cpModelTemplate(type: Copy) {
+    from "src/test/scala/modbat/ModelTemplate.scala"
+    into "$buildDir/examplesJar/modbat"
 }
 
 task jarExamples(type: Jar) {
@@ -126,6 +131,7 @@ tasks.withType(Test)  {
 task examplesJar {
   dependsOn mkExamplesDir
   dependsOn cpExamplesLicense
+  dependsOn cpModelTemplate
   dependsOn cpExamplesSrc
   dependsOn jarExamples
 }
