@@ -80,6 +80,11 @@ file using
 The examples are contained in modbat/examples, while the template
 is in modbat/ModelTemplate.scala.
 
+## Tutorial
+
+A tutorial is now available in `modbat-tutorial.jar` as a self-contained archive.
+Also see `src/test/scala/modbat/tutorial/` in the source tree.
+
 ## Semantics of basic models
 
 See the following publication:
