@@ -124,6 +124,11 @@ task cpTutorialLicense(type: Copy) {
     into "$buildDir/tutorialJar"
 }
 
+task cpTutorialModbatJar(type: Copy) {
+    from "$buildDir/modbat.jar"
+    into "$buildDir/tutorialJar/modbat/tutorial"
+}
+
 task jarTutorial(type: Jar) {
     archiveName = "modbat-tutorial.jar"
     destinationDir = file("$buildDir")
@@ -132,6 +137,7 @@ task jarTutorial(type: Jar) {
     from "$buildDir/tutorialJar" include "**/*.scala"
     from "$buildDir/tutorialJar" include "**/*.java"
     from "$buildDir/tutorialJar" include "LICENSE"
+    from "$buildDir/tutorialJar" include "modbat.jar"
     exclude "modbat/mbt"
     exclude "modbat/test"
     exclude "modbat/examples"
@@ -160,9 +166,11 @@ task examplesJar {
 }
 
 task tutorialJar {
+  dependsOn jar
   dependsOn mkTutorialDir
   dependsOn cpTutorialLicense
   dependsOn cpTutorialSrc
+  dependsOn cpTutorialModbatJar
   dependsOn jarTutorial
 }
 
