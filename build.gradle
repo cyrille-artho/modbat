@@ -143,6 +143,8 @@ task testsJar(type: Jar) {
 
     from "$buildDir/classes/scala/test" findAll { it.name.endsWith('class') }.collect { zipTree(it) }
     from "$buildDir/classes/java/test" findAll { it.name.endsWith('class') }.collect { zipTree(it) }
+    exclude "modbat/examples"
+    exclude "modbat/tutorial"
 }
 
 tasks.withType(Test)  {
