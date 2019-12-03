@@ -80,16 +80,23 @@ task examplesJar(type: Jar) {
     archiveName = "modbat-examples.jar"
     destinationDir = file("$buildDir")
 
-    from "$buildDir/classes/scala/test" findAll { it.name.endsWith('class') && it.path.contains('examples') }.collect { zipTree(it) }
-    from "$buildDir/classes/java/test" findAll { it.name.endsWith('class') && it.path.contains('examples')}.collect { zipTree(it) }
+    from "$buildDir/classes/scala/test" include "modbat/examples/**"
+    from "$buildDir/classes/java/test" include "modbat/examples/**"
+}
+
+task tutorialJar(type: Jar) {
+    archiveName = "modbat-tutorial.jar"
+    destinationDir = file("$buildDir")
+
+    from "$buildDir/classes/scala/test" include "modbat/tutorial/**"
 }
 
 task testsJar(type: Jar) {
     archiveName = "modbat-test.jar"
     destinationDir = file("$buildDir")
 
-    from "$buildDir/classes/scala/test" findAll { it.name.endsWith('class')}.collect { zipTree(it) }
-    from "$buildDir/classes/java/test" findAll { it.name.endsWith('class')}.collect { zipTree(it) }
+    from "$buildDir/classes/scala/test" findAll { it.name.endsWith('class') }.collect { zipTree(it) }
+    from "$buildDir/classes/java/test" findAll { it.name.endsWith('class') }.collect { zipTree(it) }
 }
 
 tasks.withType(Test)  {
@@ -98,6 +105,7 @@ tasks.withType(Test)  {
 
 test {
   dependsOn examplesJar
+  dependsOn tutorialJar
   dependsOn testsJar
 }
 
