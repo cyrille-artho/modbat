@@ -11,7 +11,7 @@ The tool is included in the repository.
 ## Overview of examples ##
 
 1. modbat/tutorial/simple: A simple model of a LinkedList.
-2. modbat/tutorial/complex: A more complex model that includes the usage of iterators.
+2. modbat/tutorial/iterator: A more complex model that includes the usage of iterators.
 3. modbat/tutorial/listit: A model showing list iterators with multiple states, and a few other Modbat features.
 
 ## How to compile and run ##
@@ -19,10 +19,10 @@ The tool is included in the repository.
 All scripts are in `modbat/tutorial`.
 
 * Working directory: `cd modbat/tutorial`
-* Compilation: `./compile.sh`
-* Simple example: `./runSimpleList.sh`
-* Complex example: `./runLinkedList.sh`
-* Iterator example: `./runListIt.sh`
+* Compilation: `sh compile.sh`
+* Simple example: `sh runSimpleList.sh`
+* Complex example: `sh runLinkedList.sh`
+* Iterator example: `sh runListIt.sh`
 
 All examples initially show failing test cases.
 In this case, the Java collection classes are correct, so each model has a flaw.
@@ -40,7 +40,7 @@ class SimpleListModel extends Model {
 
   def add {
     val element = new Integer(choose(0, N))
-    val ret = collection.add(element)   
+    val ret = collection.add(element)
     n += 1
     assert(ret)
   }
@@ -71,7 +71,7 @@ class SimpleListModel extends Model {
 
 ### Test using the simple model ###
 
-	./runSimpleList.sh 
+	sh runSimpleList.sh
 	[INFO] 5 tests executed, 0 ok, 5 failed.
 	[INFO] 2 types of test failures:
 	[INFO] 1) java.lang.AssertionError: assertion failed:
@@ -131,7 +131,7 @@ Sequence leading to failure: add(1), check size, remove(4), check size.
 
 ```scala
 abstract class CollectionModel extends Model {
-  val collection: Collection[Integer] // the "system under test" 
+  val collection: Collection[Integer] // the "system under test"
   def iterator {
     val it = collection.iterator()
     val modelIt = new IteratorModel(this, it)
@@ -160,28 +160,28 @@ class IteratorModel(val dataModel: CollectionModel,
       assert ((pos < actualSize) == it.hasNext)
     } else {
       it.hasNext
-    } 
+    }
   }
 
   def next {
     require (valid)
     require (pos < actualSize)
-    it.next 
-    pos += 1 
+    it.next
+    pos += 1
   }
 
   def failingNext { // throws NoSuchElementException
     require (valid)
     require (pos >= actualSize)
     it.next
-  } 
+  }
 
   def concNext { // throws ConcurrentModificationException
     require(!valid)
     it.next
   }
 
-  "main" -> "main" := hasNext 
+  "main" -> "main" := hasNext
   "main" -> "main" := next
   "main" -> "main" := failingNext throws "NoSuchElementException"
   "main" -> "main" := concNext throws "ConcurrentModificationException"
@@ -206,7 +206,7 @@ class IteratorModel(val dataModel: CollectionModel,
 * Can you see a pattern and find the flaw in the model?
 * Hint: You need to consider both the base model (CollectionModel) and the iterator model.
 
-## A complex model: ListIterator with modifications
+## A more complex model: ListIterator with modifications
 
 The Java list iterator supports all concept that its universal cousin, iterator supports, and then some:
 
@@ -231,8 +231,8 @@ The part that is relevant for this exercise is implemented in `listit/ListIterat
 The model can be executed by running
 
 ```
-./compile.sh
-./runListIt.sh
+sh compile.sh
+sh runListIt.sh
 ```
 
 The output should be as follows:
@@ -247,7 +247,7 @@ The output should be as follows:
 After that, some statistics follow; coverage is not 100 % because five tests are not sufficient for that. To look at the error trace, run
 
 ```
-./showTrace.sh 33902dc134f03093.err
+sh showTrace.sh 33902dc134f03093.err
 ```
 
 You can see that the error is caused by a test that creates an iterator and then uses "previous" on it. Because the underlying list is empty, the iterator (correctly) fails with a `NoSuchElementException`. However, the model does not expect an exception and mis-diagnoses this case.
