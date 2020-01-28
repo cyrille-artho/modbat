@@ -562,10 +562,10 @@ This feature can be enabled by using
 
         scala modbat.jar --dotify-path-coverage <model>
 
-The output files are dot files, including `<modelname-root-StateGraph>.dot` as 
+The output files are dot files, including `<modelname-root-StateGraph>.dot` as
 a state-based graph (SG) and `<modelname-root-PointGraph>.dot` as a path-based graph (PG).
 The user of the tool need to choose the output abstracted graphs (SG/PG) by using
-`--path-coverage-graph-mode=abstracted`, or full graphs (FSG/FPG)(graphs without abstractions used) 
+`--path-coverage-graph-mode=abstracted`, or full graphs (FSG/FPG)(graphs without abstractions used)
 by using `--path-coverage-graph-mode=full`.
 The destination directory can be changed using --dotDir=...;
 default is the current directory.
@@ -580,7 +580,7 @@ Example:
                                    modbat.examples.SimpleModel
 
 ## Test case generation with heuristic search
-The tool has a technique that allows to use heuristic search mode to generate test cases based on 
+The tool has a technique that allows to use heuristic search mode to generate test cases based on
 multi objective multi-armed bandit algorithm with multiple rewards.
 Currently, the multi-armed bandit algorithm used in the tool is the standard UCB1.
 The reward parameters can be provided by users, including:
@@ -601,7 +601,7 @@ Example for using the default setting:
                                    modbat.examples.SimpleModel
 
 Example for providing parameters:
-    
+
     modbat/build$ scala modbat.jar --classpath=modbat-examples.jar \
                                    -n=10 -s=1 \
                                    --no-redirect-out \
@@ -678,3 +678,6 @@ issues. Please check the following:
   import modbat.dsl._
   ```
   This statement is necessary for internal type conversions.
+
+* If your model is a loop, it is crucial to set the parameter --loop-limit
+  to a suitable amount. Otherwise, the system loop endlessly.
