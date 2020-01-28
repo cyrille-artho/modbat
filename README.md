@@ -680,4 +680,4 @@ issues. Please check the following:
   This statement is necessary for internal type conversions.
 
 * If your model is a loop, it is crucial to set the parameter --loop-limit
-  to a suitable amount. Otherwise, the system loop endlessly.
+  to a suitable limit. Otherwise, the system loop endlessly.
