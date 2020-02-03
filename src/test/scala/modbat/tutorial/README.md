@@ -14,6 +14,17 @@ The tool is included in the repository.
 2. modbat/tutorial/iterator: A more complex model that includes the usage of iterators.
 3. modbat/tutorial/listit: A model showing list iterators with multiple states, and a few other Modbat features.
 
+## Getting started
+
+This tutorial works by cloning the git repository and then trying the different steps locally:
+
+```bash
+git clone https://github.com/cyrille-artho/modbat.git
+cd modbat
+./gradlew assemble
+cd src/test/scala/modbat/tutorial
+```
+
 ## How to compile and run ##
 
 All scripts are in `modbat/tutorial`.
