@@ -9,10 +9,6 @@ import modbat.dsl.State
 import modbat.dsl.Transition
 import modbat.log.Log
 
-import modbat.util.SourceInfo.InternalAction
-import modbat.util.SourceInfo.Choice
-import modbat.util.SourceInfo.Launch
-
 class Dotify(val model: MBT, outFile: String = "") {
   var out: PrintStream = null
 
@@ -40,26 +36,6 @@ class Dotify(val model: MBT, outFile: String = "") {
 
   def toLabel(origLabel: State) = origLabel.toString.replace('/', '_')
 
-  def printAction(a: InternalAction, prev: String, newLabel: String,
-		  cov: Double, child: String = "") = {
-    if (a == null) {
-      printEdge(prev, newLabel, "", "", "", cov)
-    } else {
-      a match {
-	case c: Choice => {
-	  c.choices.foreach {
-	    ch => printEdge(prev, newLabel, ch, "dashed", "red", cov)
-	  }
-	}
-	case l: Launch => {
-	  printEdge(prev, child, "", "", "blue", cov)
-	  printEdge(prev, newLabel, "", "", "", cov)
-	}
-      }
-    }
-    newLabel
-  }
-
   def covP(count: Int, total: Int) = {
     if (total == 0) {
       0.0
@@ -72,49 +48,10 @@ class Dotify(val model: MBT, outFile: String = "") {
 		color: String = "") {
     val outgoing = model.transitions.filter(_.origin == tr.origin)
     val totalCov = outgoing.map(_.coverage.count).sum
-    val internalActions = tr.launchesAndChoices
     var prev = toLabel(tr.origin)
-    var prevAction: InternalAction = null
     var prevChild = ""
     val cov = covP(tr.coverage.count, totalCov)
-    if (modbat.mbt.Main.config.showChoices) {
-      var n = 0
-      internalActions.foreach {
-	a => {
-	  var newLabel: String = null
-	  a match {
-	    case c: Choice => {
-	      val newLabel = "__choice__" + n
-	      out.println("  " + newLabel +
-			  " [ label = \"?\", shape=\"box\" " +
-			  "width=\"0.2\" height=\"0.2\" ]")
-	      prev = printAction(prevAction, prev, newLabel, cov)
-	      prevChild = ""
-	    }
-	    case l: Launch =>
-	      val newLabel = "__launch__" + n
-	      out.println("  " + newLabel +
-			  " [ label = \"!\", shape=\"box\" " +
-			  "width=\"0.2\" height=\"0.2\" ]")
-	      prevChild = "__child__" + n
-	      out.println("  " + prevChild +
-			  " [ label = \"" + l.launchedModel +
-			  "\", shape=\"component\" ]")
-	      out.println("  { rank=\"same\"; " +
-			  newLabel + " " + prevChild + " }")
-	      prev =
-		printAction(prevAction, prev, newLabel, cov, prevChild)
-	  }
-	  prevAction = a
-	  n = n + 1
-	}
-      }
-    }
-    if (prevAction == null) {
-      printEdge(prev, toLabel(tr.dest), pad(label), style, color, cov)
-    } else {
-      printAction(prevAction, prev, toLabel(tr.dest), cov, prevChild)
-    }
+    printEdge(prev, toLabel(tr.dest), pad(label), style, color, cov)
   }
 
   def covStr(covP: Double) = {

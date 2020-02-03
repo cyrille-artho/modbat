@@ -60,6 +60,7 @@ object TransitionCoverage {
     newTrans.origin = master.origin
     newTrans.dest = master.dest
     newTrans.coverage = master.coverage
+    newTrans.averageReward = master.averageReward // averageReward of the transition - Rui
     newTrans.n = master.n
     assert(
       newTrans.isSynthetic == master.isSynthetic, {
@@ -101,19 +102,37 @@ object TransitionCoverage {
   def precond(outcome: Boolean) {
     val t = MBT.currentTransition
     val pCov = t.coverage.precond
+    val pCount = t.coverage.expectedReward
     val c = pCov.count
     if (outcome) {
       pCov.precondPassed.set(c)
+      // todo: update procondPassed counter -rui
+      pCount.updatePrecondPassededCounter
     } else {
       pCov.precondFailed.set(c)
+      // todo: update procondFailed counter -rui
+      pCount.updatePrecondFailedCounter
     }
     pCov.count = c + 1
   }
+
+  // todo: count assert -Rui
+  def assertCount(assertion: Boolean) {
+    val t = MBT.currentTransition
+    val aCount = t.coverage.expectedReward
+    if (!assertion)
+      aCount.updateAssertFailedCounter
+    else
+      aCount.updateAssertPassedCounter
+  }
+
 }
 
 class TransitionCoverage {
   var count = 0
   val precond = new PreconditionCoverage
+  // todo: expected reward of transition -Rui
+  val expectedReward = new TransitionExpectedReward
 
   def cover {
     count += 1

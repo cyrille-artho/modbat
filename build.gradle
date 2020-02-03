@@ -26,7 +26,7 @@ allprojects {
     apply plugin: 'scala'
 
     dependencies {
-        compile 'org.scala-lang:scala-library:2.12.9'
+        compile 'org.scala-lang:scala-library:2.12.10'
     }
 
     repositories {
@@ -66,37 +66,121 @@ jar {
                    'Specification-Version': gitDetails.lastTag,
                    'Implementation-Title': 'Modbat'
     }
-    from "LICENSE", "README", "CHANGELOG", "asm-LICENSE", "sourcecode-LICENSE"
+    from "LICENSE", "README", "CHANGELOG", "asm-LICENSE", "sourcecode-LICENSE", "akka-mock-LICENSE", "javassist-LICENSE"
+    from "config/build/classes/java/main", "config/build/classes/scala/main"
     from configurations.runtimeClasspath.
-                                         findAll { it.name.endsWith('jar') && ((it.name.contains('asm') || it.name.contains('javassist') || it.name.contains('sourcecode') || it.name.contains('config') || it.name.contains('akka'))) }.
+                                         findAll { it.name.endsWith('jar') && ((it.name.contains('asm') || it.name.contains('javassist') || it.name.contains('sourcecode') ||  it.name.contains('akka-mock'))) }.
                                          collect { zipTree(it) }
 }
 
-
 apply plugin: "com.github.maiflai.scalatest"
 
-task examplesJar(type: Jar) {
+task mkExamplesDir {
+    mkdir "$buildDir/examplesJar"
+}
+
+task cpExamplesSrc(type: Copy) {
+    from "src/test/scala/modbat/examples"
+    from "src/test/java/modbat/examples"
+    into "$buildDir/examplesJar/modbat/examples"
+}
+
+task cpExamplesLicense(type: Copy) {
+    from "LICENSE"
+    into "$buildDir/examplesJar"
+}
+
+task cpModelTemplate(type: Copy) {
+    from "src/test/scala/modbat/ModelTemplate.scala"
+    into "$buildDir/examplesJar/modbat"
+}
+
+task jarExamples(type: Jar) {
     archiveName = "modbat-examples.jar"
     destinationDir = file("$buildDir")
 
-    from "$buildDir/classes/scala/test" findAll { it.name.endsWith('class') && it.path.contains('examples') }.collect { zipTree(it) }
-    from "$buildDir/classes/java/test" findAll { it.name.endsWith('class') && it.path.contains('examples')}.collect { zipTree(it) }
+    from "$buildDir/classes/scala/test" include "modbat/examples/**"
+    from "$buildDir/classes/java/test" include "modbat/examples/**"
+    from "$buildDir/examplesJar" include "**/*.scala"
+    from "$buildDir/examplesJar" include "**/*.java"
+    from "$buildDir/examplesJar" include "LICENSE"
+    exclude "modbat/mbt"
+    exclude "modbat/test"
+    exclude "modbat/tutorial"
+}
+
+task mkTutorialDir {
+    mkdir "$buildDir/tutorialJar"
+}
+
+task cpTutorialSrc(type: Copy) {
+    from "src/test/scala/modbat/tutorial"
+    from "src/test/java/modbat/tutorial"
+    into "$buildDir/tutorialJar/modbat/tutorial"
+}
+
+task cpTutorialLicense(type: Copy) {
+    from "LICENSE"
+    into "$buildDir/tutorialJar"
+}
+
+task cpTutorialModbatJar(type: Copy) {
+    from "$buildDir/modbat.jar"
+    into "$buildDir/tutorialJar/modbat/tutorial"
+}
+
+task jarTutorial(type: Jar) {
+    archiveName = "modbat-tutorial.jar"
+    destinationDir = file("$buildDir")
+
+    from "$buildDir/classes/scala/test" include "modbat/tutorial/**"
+    from "$buildDir/tutorialJar" include "**/*.scala"
+    from "$buildDir/tutorialJar" include "**/*.java"
+    from "$buildDir/tutorialJar" include "LICENSE"
+    from "$buildDir/tutorialJar" include "modbat.jar"
+    exclude "modbat/mbt"
+    exclude "modbat/test"
+    exclude "modbat/examples"
 }
 
 task testsJar(type: Jar) {
     archiveName = "modbat-test.jar"
     destinationDir = file("$buildDir")
 
-    from "$buildDir/classes/scala/test" findAll { it.name.endsWith('class')}.collect { zipTree(it) }
-    from "$buildDir/classes/java/test" findAll { it.name.endsWith('class')}.collect { zipTree(it) }
+    from "$buildDir/classes/scala/test" findAll { it.name.endsWith('class') }.collect { zipTree(it) }
+    from "$buildDir/classes/java/test" findAll { it.name.endsWith('class') }.collect { zipTree(it) }
+    exclude "modbat/examples"
+    exclude "modbat/tutorial"
 }
 
 tasks.withType(Test)  {
   maxParallelForks = 1
 }
 
+task examplesJar {
+  dependsOn mkExamplesDir
+  dependsOn cpExamplesLicense
+  dependsOn cpModelTemplate
+  dependsOn cpExamplesSrc
+  dependsOn jarExamples
+}
+
+task tutorialJar {
+  dependsOn jar
+  dependsOn mkTutorialDir
+  dependsOn cpTutorialLicense
+  dependsOn cpTutorialSrc
+  dependsOn cpTutorialModbatJar
+  dependsOn jarTutorial
+}
+
 test {
   dependsOn examplesJar
+  dependsOn tutorialJar
   dependsOn testsJar
 }
 
+assemble {
+  dependsOn examplesJar
+  dependsOn tutorialJar
+}

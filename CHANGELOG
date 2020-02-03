@@ -109,3 +109,9 @@ Version	Description
 	  accordingly.
 	- A system test suite with the test script bin/test.sh has been
 	  added.
+
+3.4	- The tool now supports the visualization of execution paths and 
+	  test case generation based on heuristic search.
+	- Added new annotation "stay", API functions "setWeight" and
+	  "invokeTransition".
+	- Added support for virtual time (requires akka).

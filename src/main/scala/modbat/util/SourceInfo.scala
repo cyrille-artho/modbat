@@ -60,16 +60,12 @@ object SourceInfo {
   }
 
   val MAXLEN = 20
-  val SKIP = "\0"
+  val SKIP = "\u0000"
 
   val cachedActionInfoFromClass = new HashMap[Class[_], String]
   val cachedActionInfoFromMethod = new HashMap[Method, String]
   val cachedSourceInfoFromClass = new HashMap[Class[_], String]
   val cachedSourceInfoFromMethod = new HashMap[Method, String]
-  val cachedLaunchChoiceInfoFromClass =
-    new HashMap[Class[_], List[InternalAction]]
-  val cachedLaunchChoiceInfoFromMethod =
-    new HashMap[Method, List[InternalAction]] // TODO
 
   class SourceRecord {
     var source: String = _
@@ -83,17 +79,6 @@ object SourceInfo {
   class ActionRecord {
     val closure = new ClInfoRecord
     var methodInfo: String = _
-  }
-
-  abstract class InternalAction
-
-  class Launch(val launchedModel: String) extends InternalAction
-
-  class Choice(val choices: List[String]) extends InternalAction
-
-  class LaunchesAndChoices {
-    val closure = new ClInfoRecord
-    val actions = new ListBuffer[InternalAction]
   }
 
   class LineNumberVisitor(val r: SourceRecord)
@@ -258,117 +243,6 @@ object SourceInfo {
     }
   }
 
-  class LaunchAndChoiceVisitor(val r: LaunchesAndChoices)
-    extends ClassVisitor(Opcodes.ASM4) {
-
-    override def visitMethod(access: Int, name: String, desc: String,
-			     signature: String, exceptions: Array[String]) = {
-      if (name.startsWith("apply$mc") &&
-	  name.endsWith("$sp")) {
-	new MethodLaunchChoiceVisitor(r)
-      } else if (name.equals("apply")) {
-	//new MethodLaunchChoiceVisitor(r)
-	new MethodClosureVisitor(r.closure)
-      } else {
-	null
-      }
-    }
-  }
-
-  class MethodLaunchChoiceVisitor(val r: LaunchesAndChoices)
-    extends org.objectweb.asm.MethodVisitor(Opcodes.ASM4) {
-    val choices = new ListBuffer[String]
-    var launchedModel: String = null
-
-    def closureNames(choices: List[String]) = {
-      val closures = new ListBuffer[String]
-      // TODO: If multiple closures result in the same string, add line number
-      choices.foreach {
-	ch => {
-	  val ar = new ActionRecord
-	  ar.closure.name = ch
-	  SourceInfo.analyzeClosure(new ActionInfoClsVisitor(ar), ch)
-	  val clAction = ar.methodInfo
-	  val cls = Class.forName(ch.replace(File.separatorChar, '.'))
-	  if (clAction.endsWith("= ...")) {
-	    closures +=
-	      (clAction + ": line " + computeSourceInfo(cls, null, true))
-	  } else {
-	    closures += clAction
-	  }
-	}
-      }
-      closures.toList
-    }
-
-    def simpleClassName(fullClassName: String) = {
-      val idx = fullClassName.lastIndexOf("/")
-      if (idx == -1) {
-	fullClassName // no package
-      } else {
-	fullClassName.substring(idx + 1)
-      }
-    }
-
-    override def visitMethodInsn(opcode: Int, owner: String,
-				 name: String, desc: String) {
-      name match {
-	case "<init>" => {
-          // ensure these are calls to scala.runtime.AbstractFunction0
-	  // if so, add closure to list of closures
-	  if (owner.contains("$$anonfun$") && owner.contains("$apply$")) {
-	    choices += owner
-	  } else {
-	    choices.clear
-	    launchedModel = owner
-	  }
-	}
-	case "wrapRefArray" => {
-	  if (!owner.startsWith("scala/Predef")) {
-	    choices.clear
-	  }
-	}
-	case "choose" => {
-	  // if choice is on a sequence, we assume it is a sequence of
-	  // closures (as other sequences are not supported at this time)
-	  if (owner.startsWith("modbat/dsl/Predef") &&
-	      desc.equals("(Lscala/collection/Seq;)Ljava/lang/Object;")) {
-	    val closures = closureNames(choices.toList)
-	    r.actions += new Choice(closures)
-	  } else {
-	    choices.clear
-	  }
-	}
-	case "launch" => {
-	  if (owner.startsWith("modbat/mbt/Predef") &&
-	      desc.equals("(Lmodbat/mbt/Model;)Lmodbat/mbt/MBT;")) {
-	    if (launchedModel != null) {
-	      // should be non-null but this is not the case if
-	      // the code to launch the model was never executed
-	      r.actions += new Launch(simpleClassName(launchedModel))
-	    }
-	  }
-	}
-	case "transfuncToAction" => {
-	  if (!owner.startsWith("modbat/dsl/Predef")) {
-	    choices.clear
-	  }
-	}
-	case "maybe" => {
-	  if (owner.startsWith("modbat/dsl/Predef")) {
-	    assert (choices.size == 1)
-//	    r.closure.name = choices.head // TODO: Store closure info for later
-	  }
-	  choices.clear
-	}
-	case _ => {
-	  choices.clear
-	  launchedModel = null
-	}
-      }
-    }
-  }
-
   def jarEntry (filename: String, jar: JarFile) = {
     val entry = jar.getEntry(filename)
     if (entry != null) {
@@ -466,42 +340,6 @@ object SourceInfo {
     } else {
       cachedActionInfoFromMethod.getOrElseUpdate(method,
         computeActionInfo(action, cls, method, includeLine))
-    }
-  }
-
-  // return info on launch/choose commands inside action
-  def launchAndChoiceInfo(action: Action): List[InternalAction] = {
-    if (action.transfunc == null) {
-      return Nil
-    }
-    val cls = getClass(action)
-    val method = action.method
-    if (method == null) {
-      cachedLaunchChoiceInfoFromClass.getOrElseUpdate(cls,
-	computeLaunchChoiceInfo(cls, null))
-    } else {
-      cachedLaunchChoiceInfoFromMethod.getOrElseUpdate(method,
-        computeLaunchChoiceInfo(cls, method)) // TODO
-    }
-  }
-
-  def computeLaunchChoiceInfo(cls: Class[_], method: Method) = {
-    val r = new LaunchesAndChoices
-    try {
-      val cr = new ClassReader(findPath(cls))
-      if (method == null) {
-	val cv = new LaunchAndChoiceVisitor(r)
-	cr.accept(cv, 0)
-//      } else { // TODO
-//	val cv = new ActionInfoMethodVisitor(r, method)
-//	cr.accept(cv, 0)
-      }
-      r.actions.toList
-    } catch {
-      case e: ClassNotFoundException => {
-	clsNotFoundMsg(cls)
-	Nil
-      }
     }
   }
 
