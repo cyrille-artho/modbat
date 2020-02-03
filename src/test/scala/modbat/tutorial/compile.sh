@@ -1,2 +1,2 @@
 #!/bin/sh
-scalac -classpath lib/experiment.jar:modbat.jar */*.scala
+scalac -classpath modbat.jar */*.scala
