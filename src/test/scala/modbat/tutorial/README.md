@@ -139,6 +139,11 @@ Sequence leading to failure: add(1), check size, remove(4), check size.
 * If an iterator goes beyond the last element, NoSuchElementException is thrown.
 * If the collection has been modified, ConcurrentModificationException is thrown.
 
+## Compile and run
+
+You compile the model as before with `sh compile.sh`.
+You run the model by using `sh runLinkedList.sh`, a different shell script that runs this model and generates 1000 tests.
+
 ### How to orchestrate multiple models ###
 
 ```scala
