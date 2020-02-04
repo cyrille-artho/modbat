@@ -42,6 +42,7 @@ The problems in the models can be fixed with one or a few lines of code.
 ## A simple model: Java collections ##
 
 The first model tests four operations on a Java LinkedList: add, remove, clear, and size.
+The file can be found in subdirectory `simple` (in `src/test/scala/modbat/tutorial`).
 
 ```scala
 class SimpleListModel extends Model {
