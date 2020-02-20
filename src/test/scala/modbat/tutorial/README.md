@@ -27,9 +27,9 @@ cd src/test/scala/modbat/tutorial
 
 ## How to compile and run ##
 
-All scripts are in `modbat/tutorial`.
+All scripts are in `src/test/scala/modbat/tutorial`.
 
-* Working directory: `cd modbat/tutorial`
+* Working directory: `cd src/test/scala/modbat/tutorial`
 * Compilation: `sh compile.sh`
 * Simple example: `sh runSimpleList.sh`
 * Complex example: `sh runLinkedList.sh`
