@@ -567,19 +567,8 @@ object Modbat {
 
   private def banditUCBERChoice(choices: List[(MBT, Transition)],
                                 totalW: Double): (MBT, Transition) = {
-
-    Log.debug("Tradeoff:" + Main.config.banditTradeoff)
-    Log.debug("Backtracked transition reward:" + Main.config.backtrackTReward)
-    Log.debug("Self-transition reward:" + Main.config.selfTReward)
-    Log.debug("Good transition reward:" + Main.config.goodTReward)
-    Log.debug("Failed transition reward:" + Main.config.failTReward)
-
-    Log.debug("Passed precondition reward:" + Main.config.precondPassReward)
-    Log.debug("Failed precondition reward:" + Main.config.precondFailReward)
-    Log.debug("Passed assertion reward:" + Main.config.assertPassReward)
-    Log.debug("Failed assertion reward:" + Main.config.assertFailReward)
-
-    Log.debug("Tradeoff:" + Main.config.banditTradeoff)
+	
+	Log.debug("Tradeoff:" + Main.config.banditTradeoff)
     Log.debug("Backtracked transition reward:" + Main.config.backtrackTReward)
     Log.debug("Self-transition reward:" + Main.config.selfTReward)
     Log.debug("Good transition reward:" + Main.config.goodTReward)
@@ -609,25 +598,6 @@ object Modbat {
     Log.debug("*** List of failed precondition counts:" + precondFailedCountLst)
     Log.debug(
       "*** List of precond counters:" + choices.map(
-        _._2.coverage.precond.count))
-
-    val expectedRewardList =
-      choices.map(_._2.coverage.expectedReward.expectedReward)
-    Log.debug("*** List of expected reward:" + expectedRewardList)
-    Log.debug(
-      "### list of failed assertion counts:" + choices.map(
-        _._2.coverage.expectedReward.countAssertFail))
-    Log.debug(
-      "### list of passed assertion counts:" + choices.map(
-        _._2.coverage.expectedReward.countAssertPass))
-
-    Log.debug(
-      "*** list of passed precondition counts:" + choices.map(
-        _._2.coverage.expectedReward.countPrecondPass))
-
-    Log.debug("*** list of failed precondition counts:" + precondFailedCountLst)
-    Log.debug(
-      "*** list of precond counters:" + choices.map(
         _._2.coverage.precond.count))
 
     val expectedRewardList =
@@ -674,6 +644,7 @@ object Modbat {
       val banditUCBChoiceIndex = banditUCBChoiceCandidate._2
       Log.info(
         "*** bandit UCB chosen candidate's index:" + banditUCBChoiceIndex)
+
       return choices(banditUCBChoiceIndex)
     }
   }
