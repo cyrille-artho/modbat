@@ -601,11 +601,6 @@ Example for using the default setting:
                                    modbat.examples.SimpleModel
 
 Example for providing parameters:
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> updated readme, CHANGELOG, test.sh
     modbat/build$ scala modbat.jar --classpath=modbat-examples.jar \
                                    -n=10 -s=1 \
                                    --no-redirect-out \
