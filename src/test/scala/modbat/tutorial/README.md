@@ -5,7 +5,7 @@ The tool is included in the repository.
 
 ## Requirements ##
 
-* Scala 2.11.X; tested with Java 8.
+* Scala 2.11.X; tested with Java 8 but also compatible with Java 11.
 * Modbat (provided).
 
 ## Overview of examples ##
@@ -106,7 +106,7 @@ The failure also shows the random seeds of each failing test.
 
 A test can be replayed as follows:
 
-	scala -classpath . openmodbat-3.2.jar \
+	scala -classpath . modbat.jar \
 	  -s=89a677f51847fa26 -n=1 model.simple.SimpleListModel
 
 Each failed test also produces a trace file, e. g., 89a677f51847fa26.err.
