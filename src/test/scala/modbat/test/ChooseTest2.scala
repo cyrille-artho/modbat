@@ -13,5 +13,5 @@ class ChooseTest2 extends Model {
   }
 
   // transitions
-  "ok" -> "ok" := use(1 + new Integer(choose(0, n)))
+  "ok" -> "ok" := use(1 + Integer.valueOf(choose(0, n)))
 }

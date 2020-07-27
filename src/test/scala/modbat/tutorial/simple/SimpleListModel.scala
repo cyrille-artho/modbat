@@ -9,7 +9,7 @@ class SimpleListModel extends Model {
   var n = 0 // Number of elements in the collection
 
   def add {
-    val element = new Integer(choose(0, N))
+    val element = Integer.valueOf(choose(0, N))
     val ret = collection.add(element)   
     n += 1
     assert(ret)
@@ -21,7 +21,7 @@ class SimpleListModel extends Model {
   }
 
   def remove {
-    val obj = new Integer(choose(0, N))
+    val obj = Integer.valueOf(choose(0, N))
     val res = collection.remove(obj)
     n = n - 1
   }
