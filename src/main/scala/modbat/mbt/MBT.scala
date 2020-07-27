@@ -341,17 +341,26 @@ object MBT {
     }
   }
 
-  /* check if exception matches against regex of expected exceptions */
-  def expected(exc: List[Regex], e: Throwable): Boolean = {
-    exc foreach (ex => {
-      ex findFirstIn e.getClass().getName() match {
-        case Some(e: String) => {
-          Log.debug("Expected: " + e)
-          return true
-        }
+  def matchesType(ex: Throwable, excPattern: Regex): Boolean = {
+    var e: Class[_] = ex.getClass
+    while (e != null) {
+      excPattern findFirstIn e.getName() match {
+        case Some(e: String) => return true
         case _ =>
       }
-    })
+      e = e.getSuperclass
+    }
+    false
+  }
+
+  /* check if exception matches against regex of expected exceptions */
+  def expected(exc: List[Regex], e: Throwable): Boolean = {
+    exc foreach (ex =>
+      if (matchesType(e, ex)) {
+        Log.debug("Expected: " + e)
+        return true
+      }
+    )
     return false
   }
 }
