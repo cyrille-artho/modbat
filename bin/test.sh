@@ -3,7 +3,7 @@ TEST_LOG_PATH=log
 
 . bin/testtool.sh
 
-SCALA="/usr/local/scala-2.12.2/bin/scala"
+SCALA="`which scala`"
 
 ######################## Test declarations ########################
 
