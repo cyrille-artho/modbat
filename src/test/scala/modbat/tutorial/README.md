@@ -14,11 +14,22 @@ The tool is included in the repository.
 2. modbat/tutorial/iterator: A more complex model that includes the usage of iterators.
 3. modbat/tutorial/listit: A model showing list iterators with multiple states, and a few other Modbat features.
 
+## Getting started
+
+This tutorial works by cloning the git repository and then trying the different steps locally:
+
+```bash
+git clone https://github.com/cyrille-artho/modbat.git
+cd modbat
+./gradlew assemble
+cd src/test/scala/modbat/tutorial
+```
+
 ## How to compile and run ##
 
-All scripts are in `modbat/tutorial`.
+All scripts are in `src/test/scala/modbat/tutorial`.
 
-* Working directory: `cd modbat/tutorial`
+* Working directory: `cd src/test/scala/modbat/tutorial`
 * Compilation: `sh compile.sh`
 * Simple example: `sh runSimpleList.sh`
 * Complex example: `sh runLinkedList.sh`
@@ -31,6 +42,7 @@ The problems in the models can be fixed with one or a few lines of code.
 ## A simple model: Java collections ##
 
 The first model tests four operations on a Java LinkedList: add, remove, clear, and size.
+The file can be found in subdirectory `simple` (in `src/test/scala/modbat/tutorial`).
 
 ```scala
 class SimpleListModel extends Model {
@@ -126,6 +138,11 @@ Sequence leading to failure: add(1), check size, remove(4), check size.
 * _hasNext_ queries if an iterator has more elements available.
 * If an iterator goes beyond the last element, NoSuchElementException is thrown.
 * If the collection has been modified, ConcurrentModificationException is thrown.
+
+## Compile and run
+
+You compile the model as before with `sh compile.sh`.
+You run the model by using `sh runLinkedList.sh`, a different shell script that runs this model and generates 1000 tests.
 
 ### How to orchestrate multiple models ###
 
