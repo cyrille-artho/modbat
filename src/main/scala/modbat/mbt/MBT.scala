@@ -340,6 +340,20 @@ object MBT {
       false
     }
   }
+
+  /* check if exception matches against regex of expected exceptions */
+  def expected(exc: List[Regex], e: Throwable): Boolean = {
+    exc foreach (ex => {
+      ex findFirstIn e.getClass().getName() match {
+        case Some(e: String) => {
+          Log.debug("Expected: " + e)
+          return true
+        }
+        case _ =>
+      }
+    })
+    return false
+  }
 }
 
 class MBT(val model: Model, val trans: List[Transition]) {
@@ -697,7 +711,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
 
   def handle(e: Throwable,
              successor: Transition): (TransitionResult, RecordedTransition) = {
-    if (!expected(successor.expectedExceptions, e)) {
+    if (!MBT.expected(successor.expectedExceptions, e)) {
       val excTrans = nonDetExc(successor.nonDetExceptions, e)
       if (excTrans eq null) {
         Log.warn(e + " occurred, aborting.")
@@ -871,25 +885,11 @@ class MBT(val model: Model, val trans: List[Transition]) {
   def nonDetExc(excToStateMap: List[NextStateOnException],
                 e: Throwable): Transition = {
     for (entry <- excToStateMap) {
-      if (expected(List(entry.exception), e)) {
+      if (MBT.expected(List(entry.exception), e)) {
         return entry.target
       }
     }
     return null
-  }
-
-  /* check if exception matches against regex of expected exceptions */
-  def expected(exc: List[Regex], e: Throwable): Boolean = {
-    exc foreach (ex => {
-      ex findFirstIn e.getClass().getName() match {
-        case Some(e: String) => {
-          Log.debug("Expected: " + e)
-          return true
-        }
-        case _ =>
-      }
-    })
-    return false
   }
 
   def setWeight(label: String, weight: Double): Unit = {
