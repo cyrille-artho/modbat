@@ -9,4 +9,9 @@ class MBTTest extends FlatSpec with Matchers {
     MBT.expected(List(new Regex("ClosedCh.*Exc")),
                  new ClosedChannelException()) shouldBe true
   }
+
+  "SomeWeirdException" should "not match ClosedChannelException" in {
+    MBT.expected(List(new Regex("SomeWeird.*Exc")),
+                 new ClosedChannelException()) shouldBe false
+  }
 }
