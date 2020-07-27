@@ -5,10 +5,10 @@
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.GenLabel3.assert(GenLabel3.scala)
 [ERROR] 	at modbat.test.GenLabel3.dec(GenLabel3.scala)
-[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
-[ERROR] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
-[ERROR] 	at java.lang.reflect.Method.invoke(Method.java)
+[ERROR] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[ERROR] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+[ERROR] 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+[ERROR] 	at java.base/java.lang.reflect.Method.invoke(Method.java)
 [WARNING] Error found, model trace:
 [WARNING] modbat/test/GenLabel3.scala:10: dec
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
@@ -18,10 +18,10 @@
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.GenLabel3.assert(GenLabel3.scala)
 [ERROR] 	at modbat.test.GenLabel3.dec(GenLabel3.scala)
-[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
-[ERROR] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
-[ERROR] 	at java.lang.reflect.Method.invoke(Method.java)
+[ERROR] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[ERROR] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+[ERROR] 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+[ERROR] 	at java.base/java.lang.reflect.Method.invoke(Method.java)
 [WARNING] Error found, model trace:
 [WARNING] modbat/test/GenLabel3.scala:12: skip
 [WARNING] modbat/test/GenLabel3.scala:10: dec
@@ -32,10 +32,10 @@
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.GenLabel3.assert(GenLabel3.scala)
 [ERROR] 	at modbat.test.GenLabel3.dec(GenLabel3.scala)
-[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
-[ERROR] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
-[ERROR] 	at java.lang.reflect.Method.invoke(Method.java)
+[ERROR] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[ERROR] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+[ERROR] 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+[ERROR] 	at java.base/java.lang.reflect.Method.invoke(Method.java)
 [WARNING] Error found, model trace:
 [WARNING] modbat/test/GenLabel3.scala:8: inc
 [WARNING] modbat/test/GenLabel3.scala:10: dec
@@ -46,10 +46,10 @@
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.GenLabel3.assert(GenLabel3.scala)
 [ERROR] 	at modbat.test.GenLabel3.dec(GenLabel3.scala)
-[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
-[ERROR] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
-[ERROR] 	at java.lang.reflect.Method.invoke(Method.java)
+[ERROR] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[ERROR] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+[ERROR] 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+[ERROR] 	at java.base/java.lang.reflect.Method.invoke(Method.java)
 [WARNING] Error found, model trace:
 [WARNING] modbat/test/GenLabel3.scala:10: dec
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
@@ -59,9 +59,9 @@
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.GenLabel3.assert(GenLabel3.scala)
 [ERROR] 	at modbat.test.GenLabel3.dec(GenLabel3.scala)
-[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-[ERROR] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
-[ERROR] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
-[ERROR] 	at java.lang.reflect.Method.invoke(Method.java)
+[ERROR] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[ERROR] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java)
+[ERROR] 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+[ERROR] 	at java.base/java.lang.reflect.Method.invoke(Method.java)
 [WARNING] Error found, model trace:
 [WARNING] modbat/test/GenLabel3.scala:10: dec
