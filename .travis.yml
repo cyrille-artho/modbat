@@ -1,7 +1,7 @@
 language: scala
 
 jdk:
-  - oraclejdk8
+  - oraclejdk11
 
 scala:
   - 2.11.11
@@ -16,5 +16,3 @@ script:
   - ./gradlew buildDependents
   - ./gradlew test
   - bash bin/test.sh
-
-dist: trusty
