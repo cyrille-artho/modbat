@@ -83,6 +83,7 @@ class SimpleListModel extends Model {
 
 ### Test using the simple model ###
 
+	sh compile.sh
 	sh runSimpleList.sh
 	[INFO] 5 tests executed, 0 ok, 5 failed.
 	[INFO] 2 types of test failures:
