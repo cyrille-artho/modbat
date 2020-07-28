@@ -84,6 +84,7 @@ class SimpleListModel extends Model {
 
 ### Test using the simple model ###
 
+	cd src/test/scala/modbat/tutorial
 	sh compile.sh
 	sh runSimpleList.sh
 	[INFO] 5 tests executed, 0 ok, 5 failed.
