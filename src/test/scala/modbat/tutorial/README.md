@@ -5,7 +5,8 @@ The tool is included in the repository.
 
 ## Requirements ##
 
-* Scala 2.11.X; tested with Java 8 but also compatible with Java 11.
+* Scala 2.11.X (tested with 2.11.8)
+* Java 8 (tested with 1.8.0_251).
 * Modbat (provided).
 
 ## Overview of examples ##
