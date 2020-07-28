@@ -48,7 +48,7 @@ class ListIteratorModel(val dataModel: CollectionModel,
 
   def add {
     require (valid)
-    val element = new Integer(choose(0, dataModel.N))
+    val element = Integer.valueOf(choose(0, dataModel.N))
     it.add(element)
     pos += 1
     dataModel.n += 1
@@ -67,7 +67,7 @@ class ListIteratorModel(val dataModel: CollectionModel,
 
   def set {
     require (valid)
-    val element = new Integer(choose(0, dataModel.N))
+    val element = Integer.valueOf(choose(0, dataModel.N))
     it.set(element)
   }
 

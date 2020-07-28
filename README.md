@@ -10,7 +10,7 @@ are reported as an error trace.
 
 ## Installation
 
-Requirements: Scala 2.11 or higher (tested on 2.11.1).
+Requirements: Scala 2.11 or higher (tested on 2.11.8).
 
 The distribution comes with two JAR files: modbat.jar and
 modbat-examples.jar. The first file is an executable JAR file that has to

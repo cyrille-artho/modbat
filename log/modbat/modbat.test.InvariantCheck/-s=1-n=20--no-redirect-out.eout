@@ -5,9 +5,9 @@
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.InvariantCheck.assert(InvariantCheck.scala)
 [ERROR] 	at modbat.test.InvariantCheck.invariantCheck(InvariantCheck.scala)
-[ERROR] 	at sun.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
-[ERROR] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
-[ERROR] 	at java.lang.reflect.Method.invoke(Method.java)
+[ERROR] 	at jdk.internal.reflect.GeneratedMethodAccessor1.invoke(Unknown Source)
+[ERROR] 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java)
+[ERROR] 	at java.base/java.lang.reflect.Method.invoke(Method.java)
 [WARNING] Error found, model trace:
 [WARNING] modbat/test/InvariantCheck.scala:12: reset => somestate; choices = (0.6395907)
 [WARNING] modbat/test/InvariantCheck.scala:8: invariantCheck
