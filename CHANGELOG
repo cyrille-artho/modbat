@@ -115,3 +115,6 @@ Version	Description
 	- Added new annotation "stay", API functions "setWeight" and
 	  "invokeTransition".
 	- Added support for virtual time (requires akka).
+
+3.5	The source code and scripts have been adapted for Scala 2.11.12
+	and Java 11 (OpenJDK 11.0.2).
