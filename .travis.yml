@@ -4,12 +4,12 @@ jdk:
   - oraclejdk11
 
 scala:
-  - 2.12.12
+  - 2.13.3
 
 before_install:
-  - wget https://downloads.lightbend.com/scala/2.12.12/scala-2.12.12.tgz
-  - tar xzf scala-2.12.12.tgz
-  - PATH=${PATH}:scala-2.12.12/bin
+  - wget https://downloads.lightbend.com/scala/2.13.3/scala-2.13.3.tgz
+  - tar xzf scala-2.13.3.tgz
+  - PATH=${PATH}:scala-2.13.3/bin
 
 script:
   - scala -version
