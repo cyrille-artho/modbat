@@ -110,7 +110,7 @@ The failure also shows the random seeds of each failing test.
 A test can be replayed as follows:
 
 	scala -classpath . modbat.jar \
-	  -s=89a677f51847fa26 -n=1 model.simple.SimpleListModel
+	  -s=89a677f51847fa26 -n=1 modbat.tutorial.simple.SimpleListModel
 
 Each failed test also produces a trace file, e. g., 89a677f51847fa26.err.
 
@@ -122,14 +122,14 @@ Each failed test also produces a trace file, e. g., 89a677f51847fa26.err.
 	        Predicted size: 0, actual size: 1
 	[ERROR] 	at scala.Predef$.assert(Predef.scala:170)
 	[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala:82)
-	[ERROR] 	at model.simple.SimpleListModel.assert(SimpleListModel.scala:6)
-	[ERROR] 	at model.simple.SimpleListModel.size(SimpleListModel.scala:30)
+	[ERROR] 	at modbat.tutorial.simple.SimpleListModel.assert(SimpleListModel.scala:6)
+	[ERROR] 	at modbat.tutorial.simple.SimpleListModel.size(SimpleListModel.scala:30)
 	        	...
 	[WARNING] Error found, model trace:
-	[WARNING] model/simple/SimpleListModel.scala:35: add; choices = (1)
-	[WARNING] model/simple/SimpleListModel.scala:36: size
-	[WARNING] model/simple/SimpleListModel.scala:38: remove; choices = (4)
-	[WARNING] model/simple/SimpleListModel.scala:36: size
+	[WARNING] modbat/tutorial/simple/SimpleListModel.scala:35: add; choices = (1)
+	[WARNING] modbat/tutorial/simple/SimpleListModel.scala:36: size
+	[WARNING] modbat/tutorial/simple/SimpleListModel.scala:38: remove; choices = (4)
+	[WARNING] modbat/tutorial/simple/SimpleListModel.scala:36: size
 
 Sequence leading to failure: add(1), check size, remove(4), check size.
 
