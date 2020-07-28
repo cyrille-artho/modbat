@@ -118,3 +118,5 @@ Version	Description
 
 3.5	The source code and scripts have been adapted for Scala 2.11.12
 	and Java 11 (OpenJDK 11.0.2).
+	The JAR packaging has been updated to include more libraries,
+	to make it easier to run Modbat with different Scala installations.
