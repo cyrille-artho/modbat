@@ -214,6 +214,8 @@ class IteratorModel(val dataModel: CollectionModel,
 
 ### Test case generation with the example model ###
 
+	sh compile.sh
+	sh runLinkedList.sh
 	[INFO] 1000 tests executed, 997 ok, 3 failed.
 	[INFO] 2 types of test failures:
 	[INFO] 1) java.util.ConcurrentModificationException at failingNext:
