@@ -10,7 +10,7 @@
 [DEBUG] State ok in model modbat.test.ExcTest2-1 was visited 1 times.
 [FINE] modbat.test.ExcTest2-1: Executing transition ok => ok...
 Online mode: throwing exception.
-[DEBUG] Expected: IOException
+[DEBUG] Expected: java.io.IOException: Test
 [FINE] java.io.IOException: Test leads to exception state err.
 [DEBUG] Exceptional transition is at modbat/test/ExcTest2.scala
 [FINE] Next transition on this model must be taken immediately.

@@ -1,7 +1,7 @@
 package modbat.config
 
 class Version(pkg: String) {
-  val packageHandle = Package.getPackage(pkg)
+  val packageHandle = getClass().getClassLoader().getDefinedPackage(pkg)
   assert (packageHandle != null,
 	  { "Cannot find package; available packages: " +
 	    Package.getPackages.mkString("\n") })
