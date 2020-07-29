@@ -353,7 +353,7 @@ object Modbat {
   def restoreChannel(ch: PrintStream,
                      orig: PrintStream,
                      filename: String,
-                     isErr: Boolean = false) {
+                     isErr: Boolean = false): Unit = {
     if (Main.config.redirectOut) {
       ch.close()
       val file = new File(filename)
@@ -486,7 +486,7 @@ object Modbat {
 
   def addSuccessors(m: MBT,
                     result: ListBuffer[(MBT, Transition)],
-                    quiet: Boolean = false) {
+                    quiet: Boolean = false): Unit = {
     for (s <- m.successors(quiet)) {
       if (!quiet) {
         Log.debug(
@@ -666,7 +666,7 @@ object Modbat {
   def updateExecHistory(model: MBT,
                         localStoredRNGState: CloneableRandom,
                         result: (TransitionResult, RecordedTransition),
-                        updates: List[(Field, Any)]) {
+                        updates: List[(Field, Any)]): Unit = {
     result match {
       case (Ok(_), successorTrans: RecordedTransition) =>
         successorTrans.updates = updates
@@ -740,7 +740,7 @@ object Modbat {
 
   def checkForFieldUpdates(model: MBT,
                            result: (TransitionResult, RecordedTransition),
-                           rng: CloneableRandom) {
+                           rng: CloneableRandom): Unit = {
     val updates: List[(Field, Any)] = model.tracedFields.updates
     for (u <- updates) {
       Log.fine("Trace field " + u._1 + " now has value " + u._2)
@@ -756,7 +756,7 @@ object Modbat {
   }
 
   def warnAboutPreconditions(allSucc: List[(MBT, Transition)],
-                             backtracked: Boolean) {
+                             backtracked: Boolean): Unit = {
     for (succ <- allSucc) {
       Log.warn(
         "All preconditions false at transition " +
