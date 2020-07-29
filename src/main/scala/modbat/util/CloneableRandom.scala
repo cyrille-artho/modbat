@@ -66,8 +66,8 @@ class CloneableRandom(rngTrace: Array[Int], dbgTrace: Array[String])
   }
 
   def clear = {
-    storedResults.clear
-    resultsAsString.clear
+    storedResults.clear()
+    resultsAsString.clear()
     recordedChoices.clear() // clear recorded choices -rui
   }
 
