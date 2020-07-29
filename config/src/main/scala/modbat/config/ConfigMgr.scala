@@ -48,7 +48,7 @@ object ConfigMgr {
 	             }
         	  }
         	  if (hasMore) {
-        	    println
+                    println()
         	  }
         	}
 	        case None => // nothing
@@ -167,7 +167,7 @@ class ConfigMgr (progName: String, argName: String,
 	    "show current configuration")
     println(formatStr("  -v, --version", HelpArgWidth) +
 	    "show version number and exit")
-    footnotes.clear
+    footnotes.clear()
     for (f <- fields) {
       val doc = new StringBuilder(docStr(f))
       val footnote = f.getAnnotation(classOf[Footnote])
@@ -557,7 +557,7 @@ class ConfigMgr (progName: String, argName: String,
   }
 
   def upperFirst(str: String) = {
-    Character.toUpperCase(str.charAt(0)) + str.substring(1)
+    Character.toUpperCase(str.charAt(0)).toString() + str.substring(1)
   }
 
   def getConstValue(clsName: String, element: String) = {
@@ -668,7 +668,7 @@ class ConfigMgr (progName: String, argName: String,
   }
 
   def printFieldWithBounds(field: Field, value: String,
-			   min: AnyVal, max: AnyVal) {
+			   min: AnyVal, max: AnyVal): Unit = {
     printField(field,
 	       formatStr(field.getName(), NameLength) +
 	       "\t" + field.getType() + "\t" + formatStr(value, ValueLength) +
@@ -743,7 +743,7 @@ class ConfigMgr (progName: String, argName: String,
 
   def showConfig: ArgParse = {
     val fields: Array[Field] = config.getClass().getDeclaredFields()
-    footnotes.clear
+    footnotes.clear()
     println(Console.BOLD +
 	    formatStr("Option", NameLength) + "\tType   \t" +
 	    formatStr("Value", ValueLength) + "\tRange" +
