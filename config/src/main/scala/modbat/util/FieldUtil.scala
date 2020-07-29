@@ -55,13 +55,13 @@ object FieldUtil {
     (c.isAssignableFrom(classOf[Double]) ||
      c.getName().equals("double"))
 
-  def clearPrivate(f: Field) {
+  def clearPrivate(f: Field): Unit = {
     if (Modifier.isPrivate(f.getModifiers())) {
       f.setAccessible(true)
     }
   }
 
-  def setInt(f: Field, i: Object, v: Int) {
+  def setInt(f: Field, i: Object, v: Int): Unit = {
     val fName = f.getName
     try {
       val setter = i.getClass.getDeclaredMethod(fName + "_$eq", Integer.TYPE)
@@ -71,7 +71,7 @@ object FieldUtil {
     }
   }
 
-  def setLong(f: Field, i: Object, v: Long) {
+  def setLong(f: Field, i: Object, v: Long): Unit = {
     val fName = f.getName
     try {
       val setter =
@@ -82,7 +82,7 @@ object FieldUtil {
     }
   }
 
-  def setBoolean(f: Field, i: Object, v: Boolean) {
+  def setBoolean(f: Field, i: Object, v: Boolean): Unit = {
     val fName = f.getName
     try {
       val setter =
@@ -93,7 +93,7 @@ object FieldUtil {
     }
   }
 
-  def setDouble(f: Field, i: Object, v: Double) {
+  def setDouble(f: Field, i: Object, v: Double): Unit = {
     val fName = f.getName
     try {
       val setter =
@@ -104,7 +104,7 @@ object FieldUtil {
     }
   }
 
-  def set(f: Field, i: Object, v: Object) {
+  def set(f: Field, i: Object, v: Object): Unit = {
     val fName = f.getName
     try {
       val setter = i.getClass.getDeclaredMethod(fName + "_$eq", classOf[Object])

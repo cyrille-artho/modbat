@@ -11,7 +11,7 @@ import scala.collection.mutable.HashMap
 import scala.collection.mutable.ListBuffer
 
 object ConfigTest {
-  def main(args: Array[String]) {
+  def main(args: Array[String]): Unit = {
     // parse arguments
     var c: ConfigMgr = null
     c = new ConfigMgr("ConfigTest", "[FILE]", new TestConfiguration(),
