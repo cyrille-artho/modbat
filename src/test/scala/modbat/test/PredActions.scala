@@ -5,9 +5,9 @@ import modbat.dsl._
 class PredActions extends Model {
   def odd(i: Int) = ((i % 2) != 0)
 
-  def printOne { println("one") }
-  def printTwo { println("two") }
-  def printThree { println("three") }
+  def printOne: Unit = { println("one") }
+  def printTwo: Unit = { println("two") }
+  def printThree: Unit = { println("three") }
 
   // transitions
   "same" -> "same" := {

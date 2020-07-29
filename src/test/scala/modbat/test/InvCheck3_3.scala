@@ -6,9 +6,9 @@ import modbat.dsl._
 class InvCheck3_3 extends Model {
   @Trace var i = 0
 
-  @States(Array("state1", "state2")) @Weight(1.5) def inc { i = i + 1 }
+  @States(Array("state1", "state2")) @Weight(1.5) def inc: Unit = { i = i + 1 }
 
-  @States(Array("end")) def check { assert (i == 0, { "i = " + i }) }
+  @States(Array("end")) def check: Unit = { assert (i == 0, { "i = " + i }) }
 
   // transitions
   "state1" -> "state2" := skip

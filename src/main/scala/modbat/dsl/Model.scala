@@ -75,7 +75,7 @@ abstract trait Model {
     new Action(() => action)
   }
 
-  def skip {}
+  def skip: Unit = {}
 
   def launch(modelInstance: Model) = MBT.launch(modelInstance)
 
