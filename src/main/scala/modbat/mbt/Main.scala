@@ -7,7 +7,7 @@ import modbat.log.Log
 object Main {
   val config = new Configuration()
 
-  def main(args: Array[String]) {
+  def main(args: Array[String]): Unit = {
     Modbat.isUnitTest = false
     try {
       run(args) // TODO: do not call exit once exceptions are used
@@ -17,7 +17,7 @@ object Main {
     System.exit(0)
   }
 
-  def run(args: Array[String]) {
+  def run(args: Array[String]): Unit = {
     var modelClassName: String = null
     val c = new ConfigMgr("scala modbat.jar",
                           "CLASSNAME",
@@ -62,7 +62,7 @@ object Main {
     }
   }
 
-  def setup(modelClassName: String) {
+  def setup(modelClassName: String): Unit = {
     /* configure components */
     Log.setLevel(config.logLevel)
     MBT.configClassLoader(config.classpath)

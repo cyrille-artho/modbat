@@ -7,7 +7,7 @@ class InvCheck5 extends Model {
   @States(Array("somestate", "state2"))
   @Throws(Array("AssertionError"))
   @Weight(1.0)
-  def invariantCheck {
+  def invariantCheck: Unit = {
     assert (i != 0, { "i = " + i })
   }
 

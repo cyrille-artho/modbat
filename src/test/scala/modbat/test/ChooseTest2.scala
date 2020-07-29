@@ -5,7 +5,7 @@ import modbat.dsl._
 class ChooseTest2 extends Model {
   var n = 0
 
-  def use(i: Int) {
+  def use(i: Int): Unit = {
     Console.out.println("Using " + i)
     assert (i > 0)
     assert (i < 4)

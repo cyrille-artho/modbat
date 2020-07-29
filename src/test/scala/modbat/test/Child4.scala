@@ -3,14 +3,14 @@ package modbat.test
 import modbat.dsl._
 
 object Child4 {
-  @Init def init { println("!!!child-init: should not be executed!") }
-  @Shutdown def shutdown { println("!!!child-shutdown: should not be executed!") }
+  @Init def init: Unit = { println("!!!child-init: should not be executed!") }
+  @Shutdown def shutdown: Unit = { println("!!!child-shutdown: should not be executed!") }
 
-  @Before def child_companion_before {
+  @Before def child_companion_before: Unit = {
     println("child-companion:before")
   }
 
-  @After def child_companion_after {
+  @After def child_companion_after: Unit = {
     println("child-companion:after")
   }
 }

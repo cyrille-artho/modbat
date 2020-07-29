@@ -20,7 +20,7 @@ object JavaNioSocket {
     JavaNioSocket.port = ch.socket().getLocalPort()
     ch.configureBlocking(true)
 
-    override def run() {
+    override def run(): Unit = {
       var closed = false
       var connection: SocketChannel = null
       while (!closed) {
@@ -43,11 +43,11 @@ object JavaNioSocket {
     }
   }
 
-  @Init def startServer() {
+  @Init def startServer(): Unit = {
     TestServer.start()
   }
 
-  @Shutdown def shutdown() {
+  @Shutdown def shutdown(): Unit = {
     TestServer.interrupt()
   }
 }
@@ -57,7 +57,7 @@ class JavaNioSocket extends Model {
   var connected: Boolean = false // track ret. val. of non-blocking connect
   var n = 0 // number of bytes read so far
 
-  @After def cleanup() {
+  @After def cleanup(): Unit = {
     if (connection != null) {
       connection.close()
     }
@@ -89,7 +89,7 @@ class JavaNioSocket extends Model {
     l
   }
 
-  def toggleBlocking(connection: SocketChannel) {
+  def toggleBlocking(connection: SocketChannel): Unit = {
     connection.configureBlocking(!connection.isBlocking())
   }
 

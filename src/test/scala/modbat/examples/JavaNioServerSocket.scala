@@ -16,7 +16,7 @@ class JavaNioServerSocket extends Model {
   var port: Int = 0
 
   class TestClient extends Thread {
-    override def run() {
+    override def run(): Unit = {
       try {
 //	Thread.sleep(50)
 	val connection = SocketChannel.open()
@@ -35,11 +35,11 @@ class JavaNioServerSocket extends Model {
     }
   }
 
-  def toggleBlocking(ch: ServerSocketChannel) {
+  def toggleBlocking(ch: ServerSocketChannel): Unit = {
     ch.configureBlocking(!ch.isBlocking())
   }
 
-  @After def cleanup() {
+  @After def cleanup(): Unit = {
     if (connection != null) {
       connection.close()
       connection = null
@@ -54,12 +54,12 @@ class JavaNioServerSocket extends Model {
     }
   }
 
-  def readFrom(ch: SocketChannel) {
+  def readFrom(ch: SocketChannel): Unit = {
     val buf = ByteBuffer.allocate(1)
     assert(ch.read(buf) != -1)
   }
 
-  def startClient {
+  def startClient: Unit = {
     assert(client == null)
     client = new TestClient()
 //    if (!TestJPF.isJPFRun()) {

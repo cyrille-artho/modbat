@@ -17,21 +17,21 @@ class TransitionExpectedReward {
 
   var expectedReward = 0d
 
-  def updatePrecondPassededCounter {
+  def updatePrecondPassededCounter: Unit = {
     countPrecondPass += 1
     calculateExpectedReward
   }
 
-  def updatePrecondFailedCounter {
+  def updatePrecondFailedCounter: Unit = {
     countPrecondFail += 1
     calculateExpectedReward
   }
-  def updateAssertPassedCounter {
+  def updateAssertPassedCounter: Unit = {
     countAssertPass += 1
     calculateExpectedReward
   }
 
-  def updateAssertFailedCounter {
+  def updateAssertFailedCounter: Unit = {
     countAssertFail += 1
     calculateExpectedReward
   }

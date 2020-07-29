@@ -4,7 +4,7 @@ import modbat.dsl._
 
 class GetState2 extends Model {
   var i: Int = 0
-  @States(Array("state1", "state2")) @Weight(1.0) def invariantCheck {
+  @States(Array("state1", "state2")) @Weight(1.0) def invariantCheck: Unit = {
     val state = getCurrentState
     if (i == 1) assert (state.equals("state1"))
     else assert (state.equals("state2"))

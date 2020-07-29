@@ -13,7 +13,7 @@ class SocketObserver(val socket: Socket) extends Observer {
     require(socket.isClosed)
   }
 
-  @After def checkIsClosed {
+  @After def checkIsClosed: Unit = {
     assert(getCurrentState.equals("closed"))
   }
 }

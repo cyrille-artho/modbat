@@ -12,7 +12,7 @@ import modbat.log.Log
 class Dotify(val model: MBT, outFile: String = "") {
   var out: PrintStream = null
 
-  def init {
+  def init: Unit = {
     assert (outFile != "")
     val fullOutFile = Main.config.dotDir + File.separatorChar + outFile
     try {
@@ -100,7 +100,7 @@ class Dotify(val model: MBT, outFile: String = "") {
     }
   }
 
-  def dotifyEdge(tr: Transition) {
+  def dotifyEdge(tr: Transition): Unit = {
     val label = ppTrans(tr)
     if (tr.expectedExceptions.isEmpty) {
       printTrans(tr, label)
@@ -115,7 +115,7 @@ class Dotify(val model: MBT, outFile: String = "") {
     }
   }
 
-  def dotify(coverage: Boolean = false) {
+  def dotify(coverage: Boolean = false): Unit = {
     val ret = init
     out.println("digraph model {")
     out.println("  orientation = landscape;")

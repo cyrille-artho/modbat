@@ -70,7 +70,7 @@ object MBT {
   val stayLock = new AnyRef()
   val time = new VirtualTime
 
-  def init {
+  def init: Unit = {
     warningIssuedOn.clear
   }
 
@@ -85,7 +85,7 @@ object MBT {
     }
   }
 
-  def invokeMethod(m: Method, inst: Object) {
+  def invokeMethod(m: Method, inst: Object): Unit = {
     try {
       m.invoke(inst)
     } catch {
@@ -145,7 +145,7 @@ object MBT {
     }
   }
 
-  def configClassLoader(classpath: String) {
+  def configClassLoader(classpath: String): Unit = {
     val sep = System.getProperty("path.separator")
     val paths = classpath.split(sep)
     val urls = ListBuffer[URL]()
@@ -156,15 +156,15 @@ object MBT {
     classLoaderURLs = urls.toArray
   }
 
-  def setRNG(r: Random) {
+  def setRNG(r: Random): Unit = {
     rng = r
   }
 
-  def setRNG(seed: Long) {
+  def setRNG(seed: Long): Unit = {
     rng = new CloneableRandom(seed)
   }
 
-  def setTestFailed(failed: Boolean) {
+  def setTestFailed(failed: Boolean): Unit = {
     testHasFailed = failed
   }
 
@@ -172,7 +172,7 @@ object MBT {
 
   def getRandomSeed() = rng.getRandomSeed
 
-  def clearLaunchedModels() {
+  def clearLaunchedModels(): Unit = {
     launchedModels.clear
     launchedModelInst.clear
     transitionQueue.clear
@@ -183,7 +183,7 @@ object MBT {
 
   def getLaunchedModel(i: Int) = launchedModels(i)
 
-  def loadModelClass(className: String) {
+  def loadModelClass(className: String): Unit = {
     /* load model class */
     try {
       val classloader =
@@ -198,7 +198,7 @@ object MBT {
     }
   }
 
-  def prepare(instance: Model) {
+  def prepare(instance: Model): Unit = {
     if (Main.config.setup) {
       // Avoid invoking companion object methods on launched instances
       // Solution: Avoid calling static methods more than once.
@@ -207,7 +207,7 @@ object MBT {
     }
   }
 
-  def cleanup() {
+  def cleanup(): Unit = {
     // clear buffer of static methods for itself
     invokedStaticMethods.clear()
     if (Main.config.cleanup) {
@@ -295,7 +295,7 @@ object MBT {
     inst.addAndLaunch(modelInstance == null)
   }
 
-  def printStackTrace(trace: Array[StackTraceElement]) {
+  def printStackTrace(trace: Array[StackTraceElement]): Unit = {
     for (el <- trace) {
       val clsName = el.getClassName
       if (clsName.startsWith("modbat.mbt.") &&
@@ -386,7 +386,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
   /* isChild is true when coverage information of initial instance is
    * to be re-used; this is the case when a child is launched, but also
    * when a model instance is created again after the first test run. */
-  def init(isChild: Boolean) {
+  def init(isChild: Boolean): Unit = {
     for (tr <- trans) {
       regTrans(tr, isChild)
     }
@@ -438,7 +438,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
     fields
   }
 
-  def warnAboutNonDefaultWeights {
+  def warnAboutNonDefaultWeights: Unit = {
     for (t <- transitions filter (_.action.weight != 1.0)) {
       if (!MBT.warningIssued((className, t.coverage))) {
         Log.warn(
@@ -481,7 +481,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
     this
   }
 
-  def join(modelInstance: Model) {
+  def join(modelInstance: Model): Unit = {
     if (modelInstance == null) {
       Log.error(name + " calls join(null) but parameter must be non-null.")
       throw new NullPointerException()
@@ -506,7 +506,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
     master
   }
 
-  def regSynthTrans(isChild: Boolean) {
+  def regSynthTrans(isChild: Boolean): Unit = {
     for (tr <- transitions) {
       for (t <- tr.nonDetExceptions) {
         assert(t.target.isSynthetic)
@@ -519,7 +519,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
     }
   }
 
-  def registerStateSelfTrans(model: Model, isChild: Boolean) {
+  def registerStateSelfTrans(model: Model, isChild: Boolean): Unit = {
     val methods = MBT.getMethods(model).sortBy(_.toGenericString)
     for (m <- methods) {
       val annotation = m.getAnnotation(classOf[States])
@@ -621,7 +621,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
     }
   }
 
-  def setCoverageInfo(s: State) {
+  def setCoverageInfo(s: State): Unit = {
     s.coverage = new StateCoverage
   }
 
@@ -711,7 +711,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
     null
   }
 
-  def printStackTraceIfEnabled(e: Throwable) {
+  def printStackTraceIfEnabled(e: Throwable): Unit = {
     if (Main.config.printStackTrace) {
       Log.error(e.toString)
       MBT.printStackTrace(e.getStackTrace)
@@ -820,11 +820,11 @@ class MBT(val model: Model, val trans: List[Transition]) {
 
   def getTransition(i: Int) = transitions(i)
 
-  def setExpectedException(excType: String) {
+  def setExpectedException(excType: String): Unit = {
     expectedException = excType
   }
 
-  def setExpectedOverrideTrans(t: Int) {
+  def setExpectedOverrideTrans(t: Int): Unit = {
     expectedOverrideTrans = t
   }
 
@@ -914,7 +914,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
 
   class WakeUp() extends Thread {
 //  class Timer(val t: Long) extends Thread {
-    override def run() {
+    override def run(): Unit = {
 //      Log.fine(name + ": Started staying for " + t + " ms.")
 //      Thread.sleep(t)
       MBT.stayLock.synchronized {

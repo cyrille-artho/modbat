@@ -27,7 +27,7 @@ object ModbatTestHarness {
     (ret, scala.io.Source.fromString(out.toString).getLines().toList, scala.io.Source.fromString(err.toString).getLines().toList)
   }
   
-  def setEnv(newEnv: java.util.Map[String, String]) {
+  def setEnv(newEnv: java.util.Map[String, String]): Unit = {
      try {
       val processEnvironmentClass = Class.forName("java.lang.ProcessEnvironment")
       val theEnvironmentField = processEnvironmentClass.getDeclaredField("theEnvironment")

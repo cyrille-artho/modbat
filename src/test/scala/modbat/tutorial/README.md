@@ -5,7 +5,8 @@ The tool is included in the repository.
 
 ## Requirements ##
 
-* Scala 2.11.X; tested with Java 8.
+* Scala 2.11.X (tested with 2.11.12)
+* Java 8 (tested with 1.8.0_251).
 * Modbat (provided).
 
 ## Overview of examples ##
@@ -51,7 +52,7 @@ class SimpleListModel extends Model {
   var n = 0 // Number of elements in the collection
 
   def add {
-    val element = new Integer(choose(0, N))
+    val element = Integer.valueOf(choose(0, N))
     val ret = collection.add(element)
     n += 1
     assert(ret)
@@ -63,7 +64,7 @@ class SimpleListModel extends Model {
   }
 
   def remove {
-    val obj = new Integer(choose(0, N))
+    val obj = Integer.valueOf(choose(0, N))
     val res = collection.remove(obj)
     n = n - 1
   }
@@ -83,6 +84,8 @@ class SimpleListModel extends Model {
 
 ### Test using the simple model ###
 
+	cd src/test/scala/modbat/tutorial
+	sh compile.sh
 	sh runSimpleList.sh
 	[INFO] 5 tests executed, 0 ok, 5 failed.
 	[INFO] 2 types of test failures:
@@ -106,8 +109,8 @@ The failure also shows the random seeds of each failing test.
 
 A test can be replayed as follows:
 
-	scala -classpath . openmodbat-3.2.jar \
-	  -s=89a677f51847fa26 -n=1 model.simple.SimpleListModel
+	scala -classpath . modbat.jar \
+	  -s=89a677f51847fa26 -n=1 modbat.tutorial.simple.SimpleListModel
 
 Each failed test also produces a trace file, e. g., 89a677f51847fa26.err.
 
@@ -119,14 +122,14 @@ Each failed test also produces a trace file, e. g., 89a677f51847fa26.err.
 	        Predicted size: 0, actual size: 1
 	[ERROR] 	at scala.Predef$.assert(Predef.scala:170)
 	[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala:82)
-	[ERROR] 	at model.simple.SimpleListModel.assert(SimpleListModel.scala:6)
-	[ERROR] 	at model.simple.SimpleListModel.size(SimpleListModel.scala:30)
+	[ERROR] 	at modbat.tutorial.simple.SimpleListModel.assert(SimpleListModel.scala:6)
+	[ERROR] 	at modbat.tutorial.simple.SimpleListModel.size(SimpleListModel.scala:30)
 	        	...
 	[WARNING] Error found, model trace:
-	[WARNING] model/simple/SimpleListModel.scala:35: add; choices = (1)
-	[WARNING] model/simple/SimpleListModel.scala:36: size
-	[WARNING] model/simple/SimpleListModel.scala:38: remove; choices = (4)
-	[WARNING] model/simple/SimpleListModel.scala:36: size
+	[WARNING] modbat/tutorial/simple/SimpleListModel.scala:35: add; choices = (1)
+	[WARNING] modbat/tutorial/simple/SimpleListModel.scala:36: size
+	[WARNING] modbat/tutorial/simple/SimpleListModel.scala:38: remove; choices = (4)
+	[WARNING] modbat/tutorial/simple/SimpleListModel.scala:36: size
 
 Sequence leading to failure: add(1), check size, remove(4), check size.
 
@@ -211,6 +214,8 @@ class IteratorModel(val dataModel: CollectionModel,
 
 ### Test case generation with the example model ###
 
+	sh compile.sh
+	sh runLinkedList.sh
 	[INFO] 1000 tests executed, 997 ok, 3 failed.
 	[INFO] 2 types of test failures:
 	[INFO] 1) java.util.ConcurrentModificationException at failingNext:

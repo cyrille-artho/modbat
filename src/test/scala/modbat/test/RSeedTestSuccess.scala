@@ -6,7 +6,7 @@ import modbat.dsl._
     and perform a given action only if a test failed */
 class RSeedTestSuccess extends Model {
 
-  @After def finish {
+  @After def finish: Unit = {
     if (testFailed) {
       Console.out.println("This number is odd: " + rSeed)
     }

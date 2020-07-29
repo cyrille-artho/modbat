@@ -3,8 +3,8 @@ package modbat.test
 import modbat.dsl._
 
 class Child2(var id: Int) extends Model {
-  @Before def before { println("child:before") }
-  @After def after { println("child:after") }
+  @Before def before: Unit = { println("child:before") }
+  @After def after: Unit = { println("child:after") }
   // transitions
   "init" -> "running" := skip
   "running" -> "running" := {
