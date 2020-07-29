@@ -350,7 +350,7 @@ class PathInPointGraph(val root: TrieNode,
     }
   }
 
-  private def drawOneEdge(origin: String, dest: String, label: String) {
+  private def drawOneEdge(origin: String, dest: String, label: String): Unit = {
     out.print(origin + "->" + dest + label)
   }
 

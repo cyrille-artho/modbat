@@ -13,7 +13,7 @@ class IteratorModel(val dataModel: CollectionModel,
 
   def actualSize = dataModel.collection.size
 
-  def hasNext {
+  def hasNext: Unit = {
     if (valid) {
       assert ((pos < actualSize) == it.hasNext)
     } else {
@@ -21,20 +21,20 @@ class IteratorModel(val dataModel: CollectionModel,
     }
   }
 
-  def next { 
+  def next: Unit = { 
     require (valid)
     require (pos < actualSize)
     it.next
     pos += 1
   }
 
-  def failingNext { // throws NoSuchElementException
+  def failingNext: Unit = { // throws NoSuchElementException
     require (valid)
     require (pos >= actualSize)
     it.next
   }
 
-  def concNext { // throws ConcurrentModificationException
+  def concNext: Unit = { // throws ConcurrentModificationException
     require(!valid)
     it.next
   }

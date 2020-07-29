@@ -4,7 +4,7 @@ import modbat.dsl._
 
 class ConcurrentObserver(val target: ObserverHarness7) extends Observer {
   class BGThread(i: Int) extends Thread {
-    override def run() {
+    override def run(): Unit = {
       assert (i < 4)
     }
   }

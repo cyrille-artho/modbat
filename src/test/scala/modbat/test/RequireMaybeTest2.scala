@@ -3,7 +3,7 @@ package modbat.test
 import modbat.dsl._
 
 class RequireMaybeTest2 extends Model {
-  def maybeTest() {
+  def maybeTest(): Unit = {
     maybe {
       Console.err.println("Hit maybe!")
       assert (false, { "Hit maybe" })

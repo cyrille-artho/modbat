@@ -16,7 +16,7 @@ class ListIteratorModel(val dataModel: CollectionModel,
 
   def valid = (version == dataModel.version)
 
-  def hasNext {
+  def hasNext: Unit = {
     if (valid) {
       assert ((pos < size) == it.hasNext)
     } else {
@@ -24,7 +24,7 @@ class ListIteratorModel(val dataModel: CollectionModel,
     }
   }
 
-  def next { 
+  def next: Unit = { 
     require (valid)
     require (pos < size)
     it.next
@@ -32,7 +32,7 @@ class ListIteratorModel(val dataModel: CollectionModel,
     lastCalledNext = true
   }
 
-  def previous { // TODO: Fill in "previous"
+  def previous: Unit = { // TODO: Fill in "previous"
     require (valid)
     // TODO: add correct precondition
     it.previous // call function on system under test
@@ -41,12 +41,12 @@ class ListIteratorModel(val dataModel: CollectionModel,
   }
 
   // update version count in iterator and collection
-  def markAsModified {
+  def markAsModified: Unit = {
     version += 1
     dataModel.version += 1
   }
 
-  def add {
+  def add: Unit = {
     require (valid)
     val element = Integer.valueOf(choose(0, dataModel.N))
     it.add(element)
@@ -55,7 +55,7 @@ class ListIteratorModel(val dataModel: CollectionModel,
     markAsModified
   }
 
-  def remove {
+  def remove: Unit = {
     require (valid)
     it.remove
     dataModel.n -= 1
@@ -65,7 +65,7 @@ class ListIteratorModel(val dataModel: CollectionModel,
     markAsModified
   }
 
-  def set {
+  def set: Unit = {
     require (valid)
     val element = Integer.valueOf(choose(0, dataModel.N))
     it.set(element)
@@ -74,7 +74,7 @@ class ListIteratorModel(val dataModel: CollectionModel,
   // this operation is possible in both states and does not change the state
   @States(Array("main", "modifiable")) // specify all states
   @Throws(Array("NoSuchElementException")) // specify the exception(s)
-  def failingNext { // throws NoSuchElementException
+  def failingNext: Unit = { // throws NoSuchElementException
     require (valid)
     require (pos >= size)
     it.next
@@ -83,7 +83,7 @@ class ListIteratorModel(val dataModel: CollectionModel,
   // this operation is possible in both states and does not change the state
   @States(Array("main", "modifiable")) // specify all states
   @Throws(Array("ConcurrentModificationException")) // specify the exception(s)
-  def concNext { // throws ConcurrentModificationException
+  def concNext: Unit = { // throws ConcurrentModificationException
     require(!valid)
     choose(
       { () => it.next() } // TODO: Add a variant testing "it.previous()"
@@ -93,7 +93,7 @@ class ListIteratorModel(val dataModel: CollectionModel,
   }
 
   @States(Array("main", "modifiable")) // specify all states
-  def checkIdx { // TODO: specify an assertion that checks if "pos"
+  def checkIdx: Unit = { // TODO: specify an assertion that checks if "pos"
     // from the model is equivalent to "nextIndex" from the iterator
   }
 

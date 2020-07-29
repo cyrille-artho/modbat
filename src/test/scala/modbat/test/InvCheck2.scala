@@ -4,7 +4,7 @@ import modbat.dsl._
 
 class InvCheck2 extends Model {
   var i: Int = 0
-  @States(Array("somestate", "state2")) @Weight(1.0) def invariantCheck {
+  @States(Array("somestate", "state2")) @Weight(1.0) def invariantCheck: Unit = {
     assert (i != 0, { "i = " + i })
   }
 

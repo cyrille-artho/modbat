@@ -12,28 +12,28 @@ class CarModel extends Model {
   var power = 0
   val cmdSeq = new ListBuffer[(String, Int)]()
 
-  @Before def init {
+  @Before def init: Unit = {
     gear = choose(1, GEAR_MAX + 1)
     power = choose(0, 2)
     cmdSeq += (("gear", gear))
     cmdSeq += (("power", power))
   }
 
-  def shiftUp {
+  def shiftUp: Unit = {
     require(gear < GEAR_MAX)
     require(cmdSeq.size < SEQ_MAX_LEN)
     gear = gear + 1
     cmdSeq += (("gear", gear))
   }
 
-  def shiftDown {
+  def shiftDown: Unit = {
     require(gear > 1)
     require(cmdSeq.size < SEQ_MAX_LEN)
     gear = gear - 1
     cmdSeq += (("gear", gear))
   }
 
-  def togglePower {
+  def togglePower: Unit = {
     require(cmdSeq.size < SEQ_MAX_LEN)
     power = 1 - power
     cmdSeq += (("power", power))

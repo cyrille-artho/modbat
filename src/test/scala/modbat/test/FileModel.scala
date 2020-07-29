@@ -6,11 +6,11 @@ import modbat.dsl._
 object FileModel {
   var files: List[File] = (Nil)
 
-  @Before def setup {
+  @Before def setup: Unit = {
     files = (Nil)
   }
 
-  @After def cleanup {
+  @After def cleanup: Unit = {
 //    Console.out.println(files.size + " dirs/files created.")
     for (f <- files) {
       if (f.isDirectory()) {
