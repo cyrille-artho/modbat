@@ -81,7 +81,7 @@ object TransitionCoverage {
 
   def reuseOverrideInfo(instance: MBT,
                         target: List[NextStateOverride],
-                        source: List[NextStateOverride]) {
+                        source: List[NextStateOverride]): Unit = {
     val sourceIt = source.iterator
     val targetIt = target.iterator
     while (sourceIt.hasNext) {

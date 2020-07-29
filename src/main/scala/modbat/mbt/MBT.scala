@@ -103,18 +103,18 @@ object MBT {
   }
 
   def invokeAnnotatedStaticMethods(annotationType: Class[_ <: Annotation],
-                                   instance: Model) {
+                                   instance: Model): Unit = {
     invokeAll(annotationType, instance, handleStatic)
   }
 
   def invokeAnnotatedMethods(annotationType: Class[_ <: Annotation],
-                             instance: Model) {
+                             instance: Model): Unit = {
     invokeAll(annotationType, instance, handleDynamic)
   }
 
   def invokeAll(annotationType: Class[_ <: Annotation],
                 model: Model,
-                handler: (Class[_ <: Annotation], Method, Object) => Unit) {
+                handler: (Class[_ <: Annotation], Method, Object) => Unit): Unit = {
     val methods = getMethods(model)
     for (m <- methods) {
       val annotation = m.getAnnotation(annotationType)
@@ -126,7 +126,7 @@ object MBT {
 
   def handleStatic(annotationType: Class[_ <: Annotation],
                    m: Method,
-                   instance: Object) {
+                   instance: Object): Unit = {
     if ((m.getModifiers() & Modifier.STATIC) != 0) {
       if (!invokedStaticMethods.contains(m)) {
         invokedStaticMethods += m
@@ -138,7 +138,7 @@ object MBT {
 
   def handleDynamic(annotationType: Class[_ <: Annotation],
                     m: Method,
-                    instance: Object) {
+                    instance: Object): Unit = {
     if ((m.getModifiers() & Modifier.STATIC) == 0) {
       Log.debug(annotationType.getSimpleName() + ": " + m.getName())
       m.invoke(instance)
@@ -532,7 +532,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
   def registerTrans(model: Model,
                     m: Method,
                     annotation: States,
-                    isChild: Boolean) {
+                    isChild: Boolean): Unit = {
     val params = m.getParameterTypes
     if (params.length != 0) {
       if (!MBT.warningIssued(m)) {
@@ -560,7 +560,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
   def registerTransForStates(model: Model,
                              m: Method,
                              annotation: States,
-                             isChild: Boolean) {
+                             isChild: Boolean): Unit = {
     assert(Transition.pendingTransitions.isEmpty)
     val transStates = annotation.value()
     val n = (transStates filter (t => states.contains(t))).size
@@ -627,7 +627,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
 
   def regTrans(tr: Transition,
                isChild: Boolean,
-               ignoreDuplicates: Boolean = false) {
+               ignoreDuplicates: Boolean = false): Unit = {
     tr.origin = uniqueState(tr.origin)
     tr.dest = uniqueState(tr.dest)
     Log.debug(
