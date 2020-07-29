@@ -14,7 +14,7 @@ object Transition {
   def getTransitions = pendingTransitions.toList
 
   def clear: Unit = {
-    pendingTransitions.clear
+    pendingTransitions.clear()
   }
 }
 

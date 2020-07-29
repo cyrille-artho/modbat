@@ -50,9 +50,9 @@ abstract trait Model {
 
   def getCurrentState = efsm.getCurrentState
 
-  def getRandomSeed() = MBT.getRandomSeed
+  def getRandomSeed() = MBT.getRandomSeed()
 
-  def testFailed() = MBT.testFailed
+  def testFailed() = MBT.testFailed()
 
   // delegate instance creation to MBT to distinguish between different
   // states with same name in different models

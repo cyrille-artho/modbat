@@ -71,7 +71,7 @@ object MBT {
   val time = new VirtualTime
 
   def init: Unit = {
-    warningIssuedOn.clear
+    warningIssuedOn.clear()
   }
 
   // TODO: If necessary, add another argument (tag) to distinguish between
@@ -173,9 +173,9 @@ object MBT {
   def getRandomSeed() = rng.getRandomSeed
 
   def clearLaunchedModels(): Unit = {
-    launchedModels.clear
-    launchedModelInst.clear
-    transitionQueue.clear
+    launchedModels.clear()
+    launchedModelInst.clear()
+    transitionQueue.clear()
     or_else = false
     testHasFailed = false
     currentTransition = null
@@ -490,7 +490,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
       Log.error(
         name + " calls join on model of type " +
           modelInstance.getClass + ", which has not been launched yet.")
-      Transition.pendingTransitions.clear // clear init'd but unlaunched model
+      Transition.pendingTransitions.clear() // clear init'd but unlaunched model
       throw new modbat.dsl.JoinWithoutLaunchException()
     }
     assert(joining == null)

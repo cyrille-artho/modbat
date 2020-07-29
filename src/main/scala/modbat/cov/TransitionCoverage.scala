@@ -47,7 +47,7 @@ object TransitionCoverage {
 	   transIt.next }) */
       // assertion was sometimes violated even though both lists
       // had the same size
-      reuseTransInfo(instance, transIt.next, mTransIt.next)
+      reuseTransInfo(instance, transIt.next(), mTransIt.next())
     }
   }
 
@@ -86,8 +86,8 @@ object TransitionCoverage {
     val targetIt = target.iterator
     while (sourceIt.hasNext) {
       assert(targetIt.hasNext)
-      val t1 = sourceIt.next
-      val t2 = targetIt.next
+      val t1 = sourceIt.next()
+      val t2 = targetIt.next()
       assert(t1.target.isSynthetic)
       assert(t2.target.isSynthetic)
       reuseTransInfo(instance, t2.target, t1.target)
