@@ -32,6 +32,7 @@ import modbat.util.FieldUtil
 
 import scala.math._
 import scala.util.Random
+import scala.language.postfixOps
 import com.miguno.akka.testing.VirtualTime
 
 class NoTaskException(message: String = null, cause: Throwable = null)
