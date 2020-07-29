@@ -111,12 +111,12 @@ object Modbat {
     if (testFailures.size == 1) {
       Log.info("One type of test failure:")
     } else {
-      Log.info(testFailures.size + " types of test failures:")
+      Log.info(Integer.toString(testFailures.size) + " types of test failures:")
     }
     var i = 0
     for (f <- testFailures.keySet.toSeq.sortWith(ErrOrdering.lt)) {
       i += 1
-      Log.info(i + ") " + showFailure(f) + ":")
+      Log.info(Integer.toString(i) + ") " + showFailure(f) + ":")
       val rseeds = testFailures(f)
       Log.info("   " + rseeds.map(_.toHexString).mkString(" "))
     }
@@ -161,7 +161,7 @@ object Modbat {
 
     if (Main.config.logLevel == Log.Debug) trie.display(trie.root)
     val numOfPaths = trie.numOfPaths(trie.root)
-    Log.info(numOfPaths + " main paths executed.")
+    Log.info(Integer.toString(numOfPaths) + " main paths executed.")
     val shortestPath = trie.shortestPath(trie.root)
     Log.info("the shortest path has " + shortestPath + " transitions.")
     val longestPath = trie.longestPath(trie.root)
@@ -300,9 +300,9 @@ object Modbat {
         pathCoverageBFSearch // User search function to find a transition in trie as a starting point to display in graphs
     }
 
-    Log.info(
-      count + " tests executed, " + (count - failed) + " ok, " +
-        failed + " failed.")
+    Log.info(Integer.toString(count) + " tests executed, " +
+             Integer.toString(count - failed) + " ok, " +
+             Integer.toString(failed) + " failed.")
     if (count == 0) {
       return
     }

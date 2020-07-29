@@ -76,9 +76,9 @@ class Transition(var origin: State,
 
   def prTrans = {
     if (isSynthetic) {
-      origin + " --> " + dest
+      origin.toString() + " --> " + dest
     } else {
-      origin + " => " + dest
+      origin.toString() + " => " + dest
     }
   }
 

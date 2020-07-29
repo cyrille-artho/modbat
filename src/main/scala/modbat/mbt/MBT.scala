@@ -723,7 +723,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
     if (!MBT.expected(successor.expectedExceptions, e)) {
       val excTrans = nonDetExc(successor.nonDetExceptions, e)
       if (excTrans eq null) {
-        Log.warn(e + " occurred, aborting.")
+        Log.warn(e.toString() + " occurred, aborting.")
         printStackTraceIfEnabled(e)
         val fName = successor.action.transfunc.getClass.getName
         if (fName.startsWith("modbat.mbt") ||
@@ -745,7 +745,8 @@ class MBT(val model: Model, val trans: List[Transition]) {
                                        null,
                                        e.getClass.getName))
       }
-      Log.fine(e + " leads to exception state " + excTrans.dest + ".")
+      Log.fine(e.toString() + " leads to exception state " +
+               excTrans.dest.toString() + ".")
       Log.debug("Exceptional transition is at " + excTrans.sourceInfo)
       if (successor.action.immediate) {
         Log.fine("Next transition on this model must be taken immediately.")
@@ -756,7 +757,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
                                       e.getClass.getName,
                                       successor.action.immediate)
     }
-    Log.fine(e + " generated as expected.")
+    Log.fine(e.toString() + " generated as expected.")
     return TransitionCoverage.cover(this, successor, null, e.getClass.getName)
   }
 
