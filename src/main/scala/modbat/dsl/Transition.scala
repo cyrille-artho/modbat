@@ -13,7 +13,7 @@ object Transition {
   val pendingTransitions = ListBuffer[Transition]()
   def getTransitions = pendingTransitions.toList
 
-  def clear {
+  def clear: Unit = {
     pendingTransitions.clear
   }
 }

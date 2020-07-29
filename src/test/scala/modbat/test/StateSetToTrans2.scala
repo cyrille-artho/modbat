@@ -4,7 +4,7 @@ import modbat.dsl._
 
 /** Test model to force conversion of state list to transition in error trace. */
 class StateSetToTrans2 extends Model {
-  def fail { assert (false) }
+  def fail: Unit = { assert (false) }
 
   "init" -> "one" := skip
   "init" -> "two" := skip

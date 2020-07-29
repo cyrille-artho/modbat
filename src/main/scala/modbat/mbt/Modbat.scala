@@ -70,7 +70,7 @@ object Modbat {
   var trie = new Trie()
   private var pathInfoRecorder = new ListBuffer[PathInfo]
 
-  def init {
+  def init: Unit = {
     // reset all static variables
     failed = 0
     count = 0
@@ -87,7 +87,7 @@ object Modbat {
     }
   }
 
-  def shutdown {
+  def shutdown: Unit = {
     if (Main.config.shutdown) {
       MBT.invokeAnnotatedStaticMethods(classOf[Shutdown], null)
     }
@@ -104,7 +104,7 @@ object Modbat {
     }
   }
 
-  def showErrors {
+  def showErrors: Unit = {
     if (testFailures.size < 1) {
       return
     }
@@ -130,7 +130,7 @@ object Modbat {
     }
   }
 
-  def warnPrecond(modelInst: MBT, t: Transition, idx: Int) {
+  def warnPrecond(modelInst: MBT, t: Transition, idx: Int): Unit = {
     Log.info(
       "Precondition " + (idx + 1) + " always " +
         passFailed(t.coverage.precond.precondPassed.get(idx)) +
@@ -138,7 +138,7 @@ object Modbat {
         ppTrans(new RecordedTransition(modelInst, t)))
   }
 
-  def preconditionCoverage {
+  def preconditionCoverage: Unit = {
     for ((modelName, modelInst) <- firstInstance) {
       for (t <- modelInst.transitions) {
         val diffSet =
@@ -157,7 +157,7 @@ object Modbat {
     }
   }
 
-  private def pathCoverageDisplay {
+  private def pathCoverageDisplay: Unit = {
 
     if (Main.config.logLevel == Log.Debug) trie.display(trie.root)
     val numOfPaths = trie.numOfPaths(trie.root)
@@ -266,7 +266,7 @@ object Modbat {
     )
   }
 
-  private def pathCoverageBFSearch {
+  private def pathCoverageBFSearch: Unit = {
     // bfsearch a recorded transition in the trie by using a string format,
     // key-level-parentNodeTranID as the input from terminal, where
     // key is the concatenation of the target transition's ID and quality(action outcome);
@@ -292,7 +292,7 @@ object Modbat {
     }
   }
 
-  def coverage {
+  def coverage: Unit = {
 
     if (Main.config.dotifyPathCoverage) {
       pathCoverageDisplay // Display path coverage/execution paths in state and path graphs -Rui
@@ -336,7 +336,7 @@ object Modbat {
   }
 
   object ShutdownHandler extends Thread {
-    override def run() {
+    override def run(): Unit = {
       if (appState == AppExplore) {
         restoreChannels
         Console.println
@@ -345,7 +345,7 @@ object Modbat {
     }
   }
 
-  def restoreChannels {
+  def restoreChannels: Unit = {
     restoreChannel(out, origOut, logFile)
     restoreChannel(err, origErr, errFile, true)
   }
@@ -372,7 +372,7 @@ object Modbat {
     }
   }
 
-  def explore(n: Int) {
+  def explore(n: Int): Unit = {
     init
     if (!isUnitTest) {
       Runtime.getRuntime().addShutdownHook(ShutdownHandler)
@@ -410,7 +410,7 @@ object Modbat {
     wrapRun
   }
 
-  def runTests(n: Int) {
+  def runTests(n: Int): Unit = {
     for (i <- 1 to n) { // n is the number of test cases
       MBT.rng = masterRNG.clone
       // advance RNG by one step for each path
@@ -748,7 +748,7 @@ object Modbat {
     updateExecHistory(model, rng, result, updates)
   }
 
-  def unblockJoiningModels(model: MBT) {
+  def unblockJoiningModels(model: MBT): Unit = {
     // Unblock all models that are joining this one.
     for (m <- MBT.launchedModels filter (_.joining == model)) {
       m.joining = null
@@ -765,7 +765,7 @@ object Modbat {
     Log.warn("Maybe the preconditions are too strict?")
   }
 
-  def checkIfPendingModels {
+  def checkIfPendingModels: Unit = {
     if ((MBT.launchedModels filter (_.joining != null)).size != 0) {
       Log.warn(
         "Deadlock: Some models stuck waiting for another model to finish.")
@@ -1051,7 +1051,7 @@ object Modbat {
     }
   }
 
-  def printTrace(transitions: List[RecordedTransition]) {
+  def printTrace(transitions: List[RecordedTransition]): Unit = {
     Log.warn("Error found, model trace:")
     for (t <- transitions) {
       Log.warn(ppTrans(t))

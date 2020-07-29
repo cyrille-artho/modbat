@@ -84,12 +84,12 @@ object SourceInfo {
   class LineNumberVisitor(val r: SourceRecord)
     extends org.objectweb.asm.MethodVisitor(Opcodes.ASM4) {
 
-    override def visitLineNumber(line: Int, start: org.objectweb.asm.Label) {
+    override def visitLineNumber(line: Int, start: org.objectweb.asm.Label): Unit = {
       r.line = line
     }
   }
 
-  def analyzeClosure(visitor: ClassVisitor, closureName: String) {
+  def analyzeClosure(visitor: ClassVisitor, closureName: String): Unit = {
     val cr = new ClassReader(findInURLs(closureName + ".class",
 			     MBT.classLoaderURLs))
     try {
@@ -107,7 +107,7 @@ object SourceInfo {
     val mName = m.getName
     val mDesc = Type.getMethodDescriptor(m)
 
-    override def visitSource(source: String, debug: String) {
+    override def visitSource(source: String, debug: String): Unit = {
       r.source = source
     }
 
@@ -124,7 +124,7 @@ object SourceInfo {
   class SourceInfoClsVisitor(val r: SourceRecord)
     extends ClassVisitor(Opcodes.ASM4) {
 
-    override def visitSource(source: String, debug: String) {
+    override def visitSource(source: String, debug: String): Unit = {
       r.source = source
     }
 
@@ -227,7 +227,7 @@ object SourceInfo {
      * apply methods are generated. These in turn call an apply method
      * of a different class that finally contains the desired apply$mc
      * method. */
-    override def visitEnd() {
+    override def visitEnd(): Unit = {
       if (r.methodInfo == null) {
 	r.methodInfo = ""
 	if (!analyzed && r.closure.name != null) {
@@ -298,7 +298,7 @@ object SourceInfo {
     }
   }
 
-  def clsNotFoundMsg(cls: Class[_]) {
+  def clsNotFoundMsg(cls: Class[_]): Unit = {
     Log.error(cls.getName.replace('.', File.separatorChar) + ".class" +
 	      ": file not found")
   }

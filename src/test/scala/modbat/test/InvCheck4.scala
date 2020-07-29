@@ -4,9 +4,9 @@ import modbat.dsl._
 
 class InvCheck4 extends Model {
   var i: Int = 0
-  @States(Array("somestate", "state2")) @Weight(1.0) def inc { i = i + 1 }
+  @States(Array("somestate", "state2")) @Weight(1.0) def inc: Unit = { i = i + 1 }
 
-  @States(Array("end")) def check { assert (i != 0, { "i = " + i }) }
+  @States(Array("end")) def check: Unit = { assert (i != 0, { "i = " + i }) }
 
   // transitions
   "reset" -> "somestate" := skip

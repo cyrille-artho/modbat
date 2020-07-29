@@ -17,7 +17,7 @@ object NioSocket1 {
     NioSocket1.port = ch.socket().getLocalPort()
     ch.configureBlocking(true)
 
-    override def run() {
+    override def run(): Unit = {
       var closed = false
       var connection: SocketChannel = null
       while (!closed) {
@@ -40,11 +40,11 @@ object NioSocket1 {
     }
   }
 
-  @Init def startServer() {
+  @Init def startServer(): Unit = {
     TestServer.start()
   }
 
-  @Shutdown def shutdown() {
+  @Shutdown def shutdown(): Unit = {
     TestServer.interrupt()
   }
 }
@@ -52,23 +52,23 @@ object NioSocket1 {
 class NioSocket1 extends Model {
   var ch: SocketChannel = null
 
-  @After def cleanup() {
+  @After def cleanup(): Unit = {
     if (ch != null) {
       ch.close()
     }
   }
 
   // helper functions
-  def connect(ch: SocketChannel) {
+  def connect(ch: SocketChannel): Unit = {
     ch.connect(new InetSocketAddress("localhost", NioSocket1.port))
   }
 
-  def readFrom(ch: SocketChannel) {
+  def readFrom(ch: SocketChannel): Unit = {
     val buf = ByteBuffer.allocate(1)
     assert(ch.read(buf) != -1)
   }
 
-  def toggleBlocking(ch: SocketChannel) {
+  def toggleBlocking(ch: SocketChannel): Unit = {
     ch.configureBlocking(!ch.isBlocking())
   }
 

@@ -29,14 +29,14 @@ object TransitionCoverage {
     (Ok(sameAgain), new RecordedTransition(model, t, null, nextState, excType))
   }
 
-  def setCoverageAndState(t: Transition, model: MBT) {
+  def setCoverageAndState(t: Transition, model: MBT): Unit = {
     t.coverage.cover
     StateCoverage.cover(t.dest)
     assert(model != null)
     model.currentState = t.dest
   }
 
-  def reuseCoverageInfo(instance: MBT, master: MBT, className: String) {
+  def reuseCoverageInfo(instance: MBT, master: MBT, className: String): Unit = {
     // copy values of previous equivalent instance for performance
     // and correct coverage information
     val transIt = instance.transitions.iterator
@@ -51,7 +51,7 @@ object TransitionCoverage {
     }
   }
 
-  def reuseTransInfo(instance: MBT, newTrans: Transition, master: Transition) {
+  def reuseTransInfo(instance: MBT, newTrans: Transition, master: Transition): Unit = {
     assert(
       (newTrans.origin.name.equals(master.origin.name)) &&
         (newTrans.dest.name.equals(master.dest.name)),
@@ -95,11 +95,11 @@ object TransitionCoverage {
     }
   }
 
-  def prep(t: Transition) {
+  def prep(t: Transition): Unit = {
     t.coverage.precond.count = 0
   }
 
-  def precond(outcome: Boolean) {
+  def precond(outcome: Boolean): Unit = {
     val t = MBT.currentTransition
     val pCov = t.coverage.precond
     val pCount = t.coverage.expectedReward
@@ -117,7 +117,7 @@ object TransitionCoverage {
   }
 
   // todo: count assert -Rui
-  def assertCount(assertion: Boolean) {
+  def assertCount(assertion: Boolean): Unit = {
     val t = MBT.currentTransition
     val aCount = t.coverage.expectedReward
     if (!assertion)
@@ -134,7 +134,7 @@ class TransitionCoverage {
   // todo: expected reward of transition -Rui
   val expectedReward = new TransitionExpectedReward
 
-  def cover {
+  def cover: Unit = {
     count += 1
   }
 

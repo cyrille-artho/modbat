@@ -3,19 +3,19 @@ package modbat.test
 import modbat.dsl._
 
 object ComplexLaunch3 {
-  @Init def init { println("init") }
-  @Shutdown def shutdown { println("shutdown") }
+  @Init def init: Unit = { println("init") }
+  @Shutdown def shutdown: Unit = { println("shutdown") }
 
-  @Before def companion_before { println("companion-before") }
-  @After def companion_after { println("companion-after") }
+  @Before def companion_before: Unit = { println("companion-before") }
+  @After def companion_after: Unit = { println("companion-after") }
 }
 
 class ComplexLaunch3 (var id: Int) extends Model {
   def this() = this(0)
   val origId = id
 
-  @Before def before { println(origId + "before") }
-  @After def after { println(origId + "after") }
+  @Before def before: Unit = { println(origId + "before") }
+  @After def after: Unit = { println(origId + "after") }
 
   // transitions
   "init" -> "active" := skip

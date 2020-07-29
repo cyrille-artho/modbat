@@ -8,25 +8,25 @@ class SimpleListModel extends Model {
   val collection = new LinkedList[Integer] // the "system under test"
   var n = 0 // Number of elements in the collection
 
-  def add {
+  def add: Unit = {
     val element = Integer.valueOf(choose(0, N))
     val ret = collection.add(element)   
     n += 1
     assert(ret)
   }
 
-  def clear {
+  def clear: Unit = {
     collection.clear
     n = 0
   }
 
-  def remove {
+  def remove: Unit = {
     val obj = Integer.valueOf(choose(0, N))
     val res = collection.remove(obj)
     n = n - 1
   }
 
-  def size {
+  def size: Unit = {
     assert (collection.size == n,
 	    "Predicted size: " + n +
 	    ", actual size: " + collection.size)

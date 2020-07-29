@@ -10,11 +10,11 @@ abstract class CollectionModel extends Model {
   var version = 0 // how many modifications were made on the collection
   var n = 0 // Number of elements in the collection
 
-  def invalidateIt { // invalidate all active iterators
+  def invalidateIt: Unit = { // invalidate all active iterators
     version += 1
   }
 
-  def add {
+  def add: Unit = {
     val element = Integer.valueOf(choose(0, N))
     val ret = collection.add(element)   
     n += 1
@@ -22,13 +22,13 @@ abstract class CollectionModel extends Model {
     invalidateIt
   }
 
-  def clear {
+  def clear: Unit = {
     collection.clear
     n = 0
     invalidateIt
   }
 
-  def remove {
+  def remove: Unit = {
     val obj = Integer.valueOf(choose(0, N))
     val res = collection.remove(obj)
     if (res) {
@@ -36,13 +36,13 @@ abstract class CollectionModel extends Model {
     }
   }
 
-  def iterator { 
+  def iterator: Unit = { 
     val it = collection.iterator()
     val modelIt = new IteratorModel(this, it)
     launch(modelIt)
   }
 
-  def size {
+  def size: Unit = {
     assert (collection.size == n,
 	    "Predicted size: " + n +
 	    ", actual size: " + collection.size)

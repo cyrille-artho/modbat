@@ -3,7 +3,7 @@ package modbat.cov
 import modbat.dsl.State
 
 object StateCoverage {
-  def cover(s: State) {
+  def cover(s: State): Unit = {
     assert(s.coverage != null, { "No coverage object for state " + s.toString })
     s.coverage.cover
   }
@@ -12,7 +12,7 @@ object StateCoverage {
 class StateCoverage {
   var count = 0
 
-  def cover {
+  def cover: Unit = {
     count += 1
   }
 
