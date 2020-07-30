@@ -162,4 +162,13 @@ class ConfigTest extends FlatSpec with Matchers {
 
   "IllegalArg2" should "produce an exception" in
     ConfigTest.testConfig(Array("--x"), 1)
+
+  "MultipleArguments" should "be parsed correctly" in
+    ConfigTest.testConfig(Array("-s", "--mode=exec"))
+
+  "DuplicateShow" should "show configuration each time" in
+    ConfigTest.testConfig(Array("-s", "--mode=exec", "-s"))
+
+  "Illegal option" should "show be recognized" in
+    ConfigTest.testConfig(Array("-s", "--mode=quux", "-s"), 1)
 }

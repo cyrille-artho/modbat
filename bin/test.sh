@@ -33,13 +33,11 @@ unset CLASSPATH
 
 run 0 $APP -h
 run 0 $APP --help
-# -h and --help tests cannot be done as unit tests as they retrieve the
-# version information from the executable JAR file at run-time
+# TODO: need to ignore missing version info in output when running as unit test
 run 0 $APP -v
 run 0 $APP --version
-run 0 $APP -s --mode=exec
-run 0 $APP -s --mode=exec -s
-run 1 $APP -s --mode=quux -s
+# -v and --version tests cannot be done as unit tests as they retrieve the
+# version information from the executable JAR file at run-time
 run 0 $APP a b c
 run 0 $APP -- a b c
 run 0 $APP -- -h a b c
