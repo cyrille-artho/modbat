@@ -37,7 +37,6 @@ run 0 $APP -v
 run 0 $APP --version
 run 0 $APP --show
 run 0 $APP --help
-run 1 $APP -x
 run 1 $APP --x
 run 0 $APP -s --mode=exec
 run 0 $APP -s --mode=exec -s

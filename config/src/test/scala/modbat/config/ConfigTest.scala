@@ -34,10 +34,18 @@ object ConfigTest {
     configTest(args, List("This is a test", "for the splash screen"))
   }
 
-  def testConfig(args: Array[String]): (Iterator[String], Iterator[String]) = {
-    val logErr = configTest(args, List())
-    checkOutput(args, logErr)
-    logErr
+  def testConfig(args: Array[String], errCode: Int = 0): Unit = {
+    try {
+      val logErr = configTest(args, List())
+      if (errCode != 0) {
+        System.err.println("Error code " + Integer.toString(errCode) +
+                           " expected but test was successful.")
+        assert (errCode == 0)
+      }
+      checkOutput(args, logErr)
+    } catch {
+      case (t: Throwable) => assert(errCode != 0)
+    }
   }
 
   def report(msg: String, lineNo: Int,
@@ -146,6 +154,6 @@ class ConfigTest extends FlatSpec with Matchers {
   "showConfig" should "produce the same output as in the output template" in
     ConfigTest.testConfig(Array("-s"))
 
-//  "IllegalArg" should "produce an exception" in
-//    ConfigTest.testConfig(Array("-x"))
+  "IllegalArg" should "produce an exception" in
+    ConfigTest.testConfig(Array("-x"), 1)
 }
