@@ -1,15 +1,19 @@
 package modbat.config
 
 import java.io.ByteArrayOutputStream
+import java.io.File
 import java.io.FileDescriptor
 import java.io.FileOutputStream
 import java.io.PrintStream
+
+import scala.io.Source
+import scala.math.min
 
 import org.scalatest._
 
 object ConfigTest {
   def configTest(args: Array[String], splash: List[String]):
-    (List[String], List[String]) = {
+    (Iterator[String], Iterator[String]) = {
     val out: ByteArrayOutputStream = new ByteArrayOutputStream() 
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
 
@@ -21,22 +25,86 @@ object ConfigTest {
         c.parseArgs(args)
       }
     }
-    (scala.io.Source.fromString(out.toString).getLines().toList, scala.io.Source.fromString(err.toString).getLines().toList)
+    (scala.io.Source.fromString(out.toString).getLines(), scala.io.Source.fromString(err.toString).getLines())
   }
 
-  def testCtor(args: Array[String]): (List[String], List[String]) = {
+  def testCtor(args: Array[String]): (Iterator[String], Iterator[String]) = {
     configTest(args, List("This is a test", "for the splash screen"))
   }
 
-  def testConfig(args: Array[String]): (List[String], List[String]) = {
-    configTest(args, List())
+  def testConfig(args: Array[String]): (Iterator[String], Iterator[String]) = {
+    val logErr = configTest(args, List())
+    checkOutput(args, logErr)
+    logErr
+  }
+
+  def report(msg: String, lineNo: Int,
+             context: Array[String], expected: String,
+             actual: String): Unit = {
+    val startLine = min(lineNo - 3, 1)
+    System.err.println(msg)
+    val endLine = lineNo - 1
+    if (endLine > 0) {
+      System.err.println("Context, lines " + Integer.toString(startLine) +
+                         Integer.toString(endLine))
+      for (l <- startLine to endLine) {
+        System.err.println(Integer.toString(l) + ": " + context(l % 3))
+      }
+    }
+    System.err.println(Integer.toString(lineNo) + "< " + expected)
+    System.err.println(Integer.toString(lineNo) + "> " + actual)
+  }
+
+  def sameAs[String](expected: Iterator[String], actual: Iterator[String],
+    templateName: String): Boolean = {
+    var l = 0
+    val context = List("", "", "").toArray
+    for (line <- expected) {
+      l = l + 1
+      if (!actual.hasNext) {
+        report("Output truncated; matching context in template " + templateName,
+               l, context, line.toString(), "")
+        return false
+      } else {
+        val actLine = actual.next()
+        if (line.equals(actLine)) {
+          context(l % 3) = line.toString()
+        } else {
+          report("Output truncated; matching context in template " + templateName,
+                 l, context, line.toString(), actLine.toString())
+          return false
+        }
+      }
+    }
+    true
+// TODO: Write actual output to file if problem detected,
+// output "diff" command, have assertion at the end
+  }
+
+  def checkFile(filename: String, output: Iterator[String]) = {
+    val logTemplFile = new File("../" + filename)
+    if (logTemplFile.exists()) {
+      val logTemplate = Source.fromFile(logTemplFile).getLines
+      assert(sameAs(output, logTemplate, logTemplFile.getName()))
+    } else {
+      val logTemplate = Iterator[String]()
+      assert(sameAs(output, logTemplate, logTemplFile.getName()))
+    }
+  }
+
+  def checkOutput(args: Array[String],
+                  logErr: (Iterator[String], Iterator[String])) = {
+    val logFileName = "log/config/" + args.mkString("")
+System.err.println("=== log file name: " + new File(logFileName).getCanonicalPath())
+    checkFile(logFileName + ".out", logErr._1)
+    checkFile(logFileName + ".eout", logErr._2)
   }
 }
 
 class ConfigTest extends FlatSpec with Matchers {
   "ConfigTest" should "run normally" in {
     val result = ConfigTest.testCtor(Array()) // no arguments
-    result._1 should contain theSameElementsInOrderAs List("This is a test", "for the splash screen")
+    result._1.toSeq should contain theSameElementsInOrderAs List("This is a test", "for the splash screen")
     result._2 shouldBe empty
   }
 
@@ -44,5 +112,9 @@ class ConfigTest extends FlatSpec with Matchers {
     val result = ConfigTest.testConfig(Array())
     result._1 shouldBe empty
     result._2 shouldBe empty
+  }
+
+  "showConfig" should "produce the same output as in the output template" in {
+    val result = ConfigTest.testConfig(Array("-s"))
   }
 }
