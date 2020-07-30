@@ -197,4 +197,16 @@ class ConfigTest extends FlatSpec with Matchers {
 
   "Boolean flag syntax test 4" should "fail" in
     ConfigTest.testConfig(Array("--redirectOut=xx", "-s"), 1)
+
+  "Boolean flag dependency test 1" should "pass" in
+    ConfigTest.testConfig(Array("--redirect-out", "--no-some-flag"))
+
+  "Boolean flag dependency test 2" should "pass" in
+    ConfigTest.testConfig(Array("--no-some-flag", "--redirect-out"))
+
+  "Boolean flag dependency test 3" should "pass" in
+    ConfigTest.testConfig(Array("--redirect-out", "--some-flag"))
+
+  "Boolean flag dependency test 4" should "fail" in
+    ConfigTest.testConfig(Array("--no-redirect-out", "--some-flag"), 1)
 }
