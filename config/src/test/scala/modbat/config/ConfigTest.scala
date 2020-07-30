@@ -61,15 +61,15 @@ object ConfigTest {
         System.err.println(Integer.toString(l) + ": " + context(l % 3))
       }
     }
-    System.err.println(Integer.toString(lineNo) + "< " + actual)
-    System.err.println(Integer.toString(lineNo) + "> " + expected)
+    System.err.println(Integer.toString(lineNo) + "> " + actual)
+    System.err.println(Integer.toString(lineNo) + "< " + expected)
   }
 
   def removeAnsiEscapes(line: String) = {
     line.replaceAll("\u009B|\u001B\\[[0-?]*[ -/]*[@-~]", "")
   }
 
-  def sameAs[String](expected: Iterator[String], actual: Iterator[String],
+  def sameAs[String](actual: Iterator[String], expected: Iterator[String],
     templateName: String): Boolean = {
     var l = 0
     val context = List("", "", "").toArray
