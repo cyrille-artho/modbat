@@ -12,7 +12,7 @@ import modbat.log.Log
 class Dotify(val model: MBT, outFile: String = "") {
   var out: PrintStream = null
 
-  def init {
+  def init: Unit = {
     assert (outFile != "")
     val fullOutFile = Main.config.dotDir + File.separatorChar + outFile
     try {
@@ -45,7 +45,7 @@ class Dotify(val model: MBT, outFile: String = "") {
   }
 
   def printTrans(tr: Transition, label: String = "", style: String = "",
-		color: String = "") {
+		color: String = ""): Unit = {
     val outgoing = model.transitions.filter(_.origin == tr.origin)
     val totalCov = outgoing.map(_.coverage.count).sum
     var prev = toLabel(tr.origin)
@@ -63,7 +63,7 @@ class Dotify(val model: MBT, outFile: String = "") {
   }
 
   def printEdge(from: String, to: String, label: String, style: String,
-		color: String, cov: Double) {
+		color: String, cov: Double): Unit = {
     val buf =
       new StringBuffer("  " + from + "\t-> " + to
 		       + " [ label = \"" + label + covStr(cov) + "\"")
@@ -100,7 +100,7 @@ class Dotify(val model: MBT, outFile: String = "") {
     }
   }
 
-  def dotifyEdge(tr: Transition) {
+  def dotifyEdge(tr: Transition): Unit = {
     val label = ppTrans(tr)
     if (tr.expectedExceptions.isEmpty) {
       printTrans(tr, label)
@@ -115,7 +115,7 @@ class Dotify(val model: MBT, outFile: String = "") {
     }
   }
 
-  def dotify(coverage: Boolean = false) {
+  def dotify(coverage: Boolean = false): Unit = {
     val ret = init
     out.println("digraph model {")
     out.println("  orientation = landscape;")

@@ -14,6 +14,7 @@ object Model {
   // main loop
   // requires synchronization on a global lock
   def assert(assertion: Boolean, message: Any): Unit = {
+    TransitionCoverage.assertCount(assertion) // update assertion counters -Rui
     if (!assertion) {
       // if in different thread, set testHasFailed
       // do not set this flag in Modbat thread as functions that are
@@ -49,9 +50,9 @@ abstract trait Model {
 
   def getCurrentState = efsm.getCurrentState
 
-  def getRandomSeed() = MBT.getRandomSeed
+  def getRandomSeed() = MBT.getRandomSeed()
 
-  def testFailed() = MBT.testFailed
+  def testFailed() = MBT.testFailed()
 
   // delegate instance creation to MBT to distinguish between different
   // states with same name in different models
@@ -74,7 +75,7 @@ abstract trait Model {
     new Action(() => action)
   }
 
-  def skip {}
+  def skip: Unit = {}
 
   def launch(modelInstance: Model) = MBT.launch(modelInstance)
 

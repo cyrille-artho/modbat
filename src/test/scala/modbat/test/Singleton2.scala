@@ -3,21 +3,21 @@ package modbat.test
 import modbat.dsl._
 
 object Singleton2 {
-  @Init def init() {
+  @Init def init(): Unit = {
     println("init")
   }
 
-  @Shutdown def shutdown() {
+  @Shutdown def shutdown(): Unit = {
     println("shutdown")
   }
 }
 
 class Singleton2 extends Model {
-  @Before def start() {
+  @Before def start(): Unit = {
     println("start")
   }
 
-  @After def end() {
+  @After def end(): Unit = {
     println("end")
   }
 

@@ -14,13 +14,13 @@ object Log {
   // if a use case for changing it exists
   private var errLevel = Warning
 
-  def setLevel(level: Int) {
+  def setLevel(level: Int): Unit = {
     Log.level = level
   }
 
   def isLogging(level: Int): Boolean = (this.level <= level)
 
-  def log(msg: String, level: Int) {
+  def log(msg: String, level: Int): Unit = {
     if (isLogging(level)) {
       if (errLevel <= level) {
 	Console.err.println(msg)

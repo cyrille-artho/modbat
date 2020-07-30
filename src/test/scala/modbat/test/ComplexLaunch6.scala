@@ -6,8 +6,8 @@ class ComplexLaunch6 (var id: Int) extends Model {
   def this() = this(0)
   val origId = id
 
-  @Before def before { println(origId + "before") }
-  @After def after { println(origId + "after") }
+  @Before def before: Unit = { println(origId + "before") }
+  @After def after: Unit = { println(origId + "after") }
 
   // transitions
   "init" -> "active" := skip

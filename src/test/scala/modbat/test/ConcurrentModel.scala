@@ -4,7 +4,7 @@ import modbat.dsl._
 
 class ConcurrentModel extends Model {
   class BGThread extends Thread {
-    override def run {
+    override def run: Unit = {
       assert(false)
     }
   }

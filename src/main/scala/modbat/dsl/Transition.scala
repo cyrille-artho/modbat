@@ -4,7 +4,7 @@ import java.io.File
 
 import scala.collection.mutable.ListBuffer
 import scala.util.matching.Regex
-import modbat.cov.TransitionCoverage
+import modbat.cov.{TransitionAverageReward, TransitionCoverage}
 import modbat.mbt.{MBT, Main}
 import modbat.trace.RecordedChoice
 import modbat.util.SourceInfo
@@ -13,8 +13,8 @@ object Transition {
   val pendingTransitions = ListBuffer[Transition]()
   def getTransitions = pendingTransitions.toList
 
-  def clear {
-    pendingTransitions.clear
+  def clear: Unit = {
+    pendingTransitions.clear()
   }
 }
 
@@ -39,6 +39,8 @@ class Transition(var origin: State,
   val nonDetExcConv = ListBuffer[NextStateOnException]()
   val nextStatePredConv = ListBuffer[NextStatePredicate]()
   var coverage: TransitionCoverage = _
+  // averageReward of the transition - Rui
+  var averageReward: TransitionAverageReward = _
 
   var idx: Int = 0 // add a transition ID, initialized as 0 -RUI
   var n: Int = 0
@@ -74,9 +76,9 @@ class Transition(var origin: State,
 
   def prTrans = {
     if (isSynthetic) {
-      origin + " --> " + dest
+      origin.toString() + " --> " + dest
     } else {
-      origin + " => " + dest
+      origin.toString() + " => " + dest
     }
   }
 

@@ -1,6 +1,6 @@
 digraph model {
   orientation = portrait;
-  graph [ rankdir = "TB", ranksep="0.08", nodesep="0.18" ];
+  graph [ rankdir = "TB", ranksep="0.08", nodesep="0.18", size="8!" ];
   node [ fontname = "Helvetica", fontsize="11.0", shape="ellipse", margin="0.01", height="0.1", width="0.5" ];
   edge [ fontname = "Helvetica", arrowsize=".3", arrowhead="normal", fontsize="6.0", margin="0.05" ];
 None [shape=none, style=invis, width=0.1, height=0.1];

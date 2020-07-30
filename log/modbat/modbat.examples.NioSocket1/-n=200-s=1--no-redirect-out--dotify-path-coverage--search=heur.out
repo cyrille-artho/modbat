@@ -1,0 +1,2393 @@
+       1 3ba471c1785a0175
+       2 402b73cd0066eaea
+[INFO] *** bandit UCB candidates:List((1.7774100225154745,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+       3 41530f4040856586
+[INFO] *** bandit UCB candidates:List((1.6481470739682051,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+       4  89a82931be29e65
+[INFO] *** bandit UCB candidates:List((1.561351257733922,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+       5 49a846e52b813972
+[INFO] *** bandit UCB candidates:List((1.4970612889970507,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((3.472769702248751,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((2.082303807367511,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+       6 27fe2d950fc74b21
+[INFO] *** bandit UCB candidates:List((1.4465835975798385,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((3.339333980337618,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((2.842026886600883,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((2.8941225779941018,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((2.4930184728248452,0), (2.4930184728248452,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+[INFO] *** bandit UCB candidates:List((2.0651092223153955,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8686362411795194,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+       7 19b6aa1b14a29017
+[INFO] *** bandit UCB candidates:List((1.4053798584219568,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.917427129385146,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((2.69629414793641,2), (2.69629414793641,3), (2.69629414793641,4))
+[INFO] *** bandit UCB chosen candidate's index:3
+       8 5ff50ec9279365d2
+[INFO] *** bandit UCB candidates:List((1.3707957931681174,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.8293078072747155,3), (2.8293078072747155,5))
+[INFO] *** bandit UCB chosen candidate's index:5
+[INFO] *** bandit UCB candidates:List((1.7385661990458505,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7389791186424546,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+       9  85780661bf76533
+[INFO] *** bandit UCB candidates:List((1.3411519036837556,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.8649279712439144,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+      10 486e122d1bcbade7
+[INFO] *** bandit UCB candidates:List((1.3153220087631157,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.7597463734821552,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((2.6537581293032577,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((2.5727697022487512,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+      11  a410ce32fc39dfb
+[INFO] *** bandit UCB candidates:List((1.2925164651903043,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.7548200450309492,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.640212868367717,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((2.5420268866008833,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((2.49629414793641,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((2.338974062949946,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((2.1949646735850363,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      12  745035c2b643033, one test failed.
+[INFO] *** bandit UCB candidates:List((1.2721615944491054,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.5521588409807094,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((2.2346539036373576,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((2.2015459273656615,0), (2.2015459273656615,3))
+[INFO] *** bandit UCB chosen candidate's index:0
+      13  1e528010d3d2d54, one test failed.
+[INFO] *** bandit UCB candidates:List((1.2538283869463933,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.5052536992181027,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((2.3931075390936636,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((2.224517568269195,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+[INFO] *** bandit UCB candidates:List((1.6196669901688088,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+      14 1690fa4e0c732f7d, one test failed.
+[INFO] *** bandit UCB candidates:List((1.2371882139060708,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.440726410823185,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((2.305138070931756,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((2.1574452600480276,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((2.075636972019636,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((2.0832151805566084,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((2.021246665609314,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      15 8d32a08e0d0b1183, 2 tests failed.
+[INFO] *** bandit UCB candidates:List((1.2219841753961052,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.3893535719394037,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((2.30010933704164,2), (2.30010933704164,3), (2.30010933704164,4))
+[INFO] *** bandit UCB chosen candidate's index:3
+      16 5a92477004cf57fb, 2 tests failed.
+[INFO] *** bandit UCB candidates:List((1.208011921181351,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.3941225779941013,3), (2.3941225779941013,5))
+[INFO] *** bandit UCB chosen candidate's index:3
+      17 284ca782182a253f, 2 tests failed.
+[INFO] *** bandit UCB candidates:List((1.1951064341838582,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.4050198165176697,5))
+[INFO] *** bandit UCB chosen candidate's index:5
+[INFO] *** bandit UCB candidates:List((1.6102959906117236,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.5597051824376162,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+      18 5e7dfc9e0a3af5da, 2 tests failed.
+[INFO] *** bandit UCB candidates:List((1.1831326917804197,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.3577219929587923,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((2.2612361880832608,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((2.0394290035762634,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((2.013207291601623,0), (2.013207291601623,3))
+[INFO] *** bandit UCB chosen candidate's index:0
+      19 8e80db4b43867a5a, 2 tests failed.
+[INFO] *** bandit UCB candidates:List((1.1719789214420833,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.320591949136321,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((2.2040680368091987,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((2.0246689528269184,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+[INFO] *** bandit UCB candidates:List((1.4949646735850366,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.5101111012376456,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+      20 7bb4b043219b1ba6, 2 tests failed.
+[INFO] *** bandit UCB candidates:List((1.161551635489981,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.2887324302192047,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((2.1707326777154,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.260962299210618,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.9990680368091989,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.9529132075692666,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.913918675801538,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      21 636e772f0798297b, 3 tests failed.
+[INFO] *** bandit UCB candidates:List((1.1517719128157413,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.2166333896346373,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((2.1679797163419017,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.9254329319493189,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.8910916072638508,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.8837127533066593,0), (1.8837127533066593,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+[INFO] *** bandit UCB candidates:List((1.4560623070550642,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+      22 433bb5b50b64a008, 3 tests failed.
+[INFO] *** bandit UCB candidates:List((1.1425725716970354,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.196349087117346,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((2.1272294020935414,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.8907758345613703,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+      23 66809a782bf43de4, 3 tests failed.
+[INFO] *** bandit UCB candidates:List((1.1338959905457537,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.1780139729986656,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((2.092289734784046,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.8982869840780336,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.8729051934188168,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.8455964237835567,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.8212841307373036,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      24 572341b810ffdb34, 4 tests failed.
+[INFO] *** bandit UCB candidates:List((1.1256924071990935,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.1682005513993707,3), (2.1682005513993707,4), (2.1682005513993707,5))
+[INFO] *** bandit UCB chosen candidate's index:5
+[INFO] *** bandit UCB candidates:List((1.427435122937747,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.4228077237578367,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+      25 2512cb9b3c34c93f, 4 tests failed.
+[INFO] *** bandit UCB candidates:List((1.1179185766820396,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.1734404059691,3), (2.1734404059691,4))
+[INFO] *** bandit UCB chosen candidate's index:3
+      26 72dad7a5374659e4, 4 tests failed.
+[INFO] *** bandit UCB candidates:List((1.1105367009742966,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.1785372170215833,4))
+[INFO] *** bandit UCB chosen candidate's index:4
+      27 79a5b58718b0a686, 4 tests failed.
+[INFO] *** bandit UCB candidates:List((1.103513567612198,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.1681619509399965,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((2.0731924102785575,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.8289761257908528,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.8067503807965999,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.792534789679431,0), (1.792534789679431,3))
+[INFO] *** bandit UCB chosen candidate's index:0
+      28 6666de042dbcc690, 4 tests failed.
+[INFO] *** bandit UCB candidates:List((1.0968198503649806,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.152306357770998,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((2.0455833136115196,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.7972500053800142,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+[INFO] *** bandit UCB candidates:List((1.3849400150103164,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+      29 7d3db60a36899abc, 4 tests failed.
+[INFO] *** bandit UCB candidates:List((1.0904295369503343,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.1377278295267717,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((2.0210396178543446,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.7918368396273965,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.773227497146133,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7561962420983284,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      30 66b0c7572a7ff949, 5 tests failed.
+[INFO] *** bandit UCB candidates:List((1.0843194572452726,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.124256567416251,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.9990310825509858,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.7619543246480631,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7626393629101407,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.7480804195662811,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.733286239507586,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      31 7073195f4478074f, 6 tests failed.
+[INFO] *** bandit UCB candidates:List((1.0784688916732308,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.1117533014673064,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.9791472138141555,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.7382345966792494,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7264490652444549,0), (1.7264490652444549,3))
+[INFO] *** bandit UCB chosen candidate's index:0
+      32  e50486a02022728, 6 tests failed.
+[INFO] *** bandit UCB candidates:List((1.072859244063978,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.10010252447932,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.9610646853585403,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.7296963303603752,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+[INFO] *** bandit UCB candidates:List((1.3718047375984224,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.3603120093614414,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+      33 28d961ca0ac12e82, 6 tests failed.
+[INFO] *** bandit UCB candidates:List((1.0674737667416805,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.089207479733112,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.9515407208415394,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.078986388335184,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7277639003686456,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7146632337907688,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7024277030577537,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      34 3729e4b30cc61f61, 7 tests failed.
+[INFO] *** bandit UCB candidates:List((1.062297328213896,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.059424426702853,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.9534329769385788,2), (1.9534329769385788,3), (1.9534329769385788,4))
+[INFO] *** bandit UCB chosen candidate's index:4
+[INFO] *** bandit UCB candidates:List((1.3316778947505694,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+      35 8102b494089e6116, 7 tests failed.
+[INFO] *** bandit UCB candidates:List((1.0573162158332934,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.0507859868275182,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.9581015157406196,2), (1.9581015157406196,3))
+[INFO] *** bandit UCB chosen candidate's index:2
+      36 65ddd1b61aaa637e, 7 tests failed.
+[INFO] *** bandit UCB candidates:List((1.0525179673437517,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.0426048649320743,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.9626393629101404,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+      37 764cc9831b53a60a, 7 tests failed.
+[INFO] *** bandit UCB candidates:List((1.0478912264182645,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.034840248761797,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.9555462313937564,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.7065793479065074,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6949897087341521,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6841022649796649,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      38 71accd072d9aba73, 8 tests failed.
+[INFO] *** bandit UCB candidates:List((1.0434256182316592,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.0274563562878605,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.9397447211559677,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.6878232552544183,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6774652624358737,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6700244570278984,0), (1.6700244570278984,3))
+[INFO] *** bandit UCB chosen candidate's index:0
+      39 73a8798b3335e38a, 8 tests failed.
+[INFO] *** bandit UCB candidates:List((1.0391116418484299,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.0204216565513073,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.925157673602326,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.6724273789246458,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+[INFO] *** bandit UCB candidates:List((1.325161340918281,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.3123344764134592,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+      40 44907dab3e7f0a55, 8 tests failed.
+[INFO] *** bandit UCB candidates:List((1.0349405767908721,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.013708234110811,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.9116361617804547,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.6716998494667759,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.6712854028299235,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6619005287759454,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6530052782183182,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      41 46e3ffb302d6b70f, 9 tests failed.
+[INFO] *** bandit UCB candidates:List((1.0309044016196813,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.0072912666961322,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.8990555764835726,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.6561394127328302,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6476170000361003,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6395096852147988,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      42 903dd74e32475186, 10 tests failed.
+[INFO] *** bandit UCB candidates:List((1.0269957227342394,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((2.001148592879887,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.8873107605378077,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.642381592899802,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6345924565397367,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6271590479317224,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      43 7974bf3b16645027, 11 tests failed.
+[INFO] *** bandit UCB candidates:List((1.0232077119027718,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.9952603519084422,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.8763122803395793,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.6298067508667695,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6270720161186492,0), (1.6270720161186492,3))
+[INFO] *** bandit UCB chosen candidate's index:0
+      44 6be018a71603cc94, 11 tests failed.
+[INFO] *** bandit UCB candidates:List((1.019534051278612,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.9896086818119552,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.865983533671783,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.6288472316866653,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+[INFO] *** bandit UCB candidates:List((1.2895977036101238,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+      45  de8785f38307c43, 11 tests failed.
+[INFO] *** bandit UCB candidates:List((1.0159688848596473,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.9841774649150137,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.8562584810674034,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.624355921434554,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6174530188191687,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.610838930088557,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      46 43e6dcdf22215f20, 12 tests failed.
+[INFO] *** bandit UCB candidates:List((1.012506775512791,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.9789521121542615,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.8540854249570602,2), (1.8540854249570602,3), (1.8540854249570602,4))
+[INFO] *** bandit UCB chosen candidate's index:3
+      47 7c984b5d1a209c21, 12 tests failed.
+[INFO] *** bandit UCB candidates:List((1.0091426668210994,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.9739193793640877,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.8571783832983173,2), (1.8571783832983173,4))
+[INFO] *** bandit UCB chosen candidate's index:2
+      48 2a83b5bd2ae1ea70, 12 tests failed.
+[INFO] *** bandit UCB candidates:List((1.0058718491235559,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.9690672100499553,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.8602050489586404,4))
+[INFO] *** bandit UCB chosen candidate's index:4
+[INFO] *** bandit UCB candidates:List((1.2853663388577,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.2738009276111946,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+      49 6685050840640de1, 12 tests failed.
+[INFO] *** bandit UCB candidates:List((1.002689929210979,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.9643846002288006,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.8509884038978124,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.6132200915996568,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6068300981949086,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6006930002652766,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      50  2d6f6cd03d01cb4, 13 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9995928032195058,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.9598614817488091,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.8421550856568063,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.6029138378257588,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6033017662323505,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.5976742699484086,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.591938606248336,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      51 8b388ceb07e23410, 14 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9965766323284485,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.9554886211598048,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.8337840742847034,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.5940085380081244,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.588448469171321,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5895811961817488,0), (1.5895811961817488,3))
+[INFO] *** bandit UCB chosen candidate's index:0
+      52 4f7e879b0e4cace2, 14 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9936378209242821,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.9512575317302419,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.8258359561946298,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.5909412593642245,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+[INFO] *** bandit UCB candidates:List((1.2551209379311272,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+      53 4c7f1e112f7be0ec, 14 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9907729969389141,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.9471603966271667,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.8248584158691732,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.9431900016143016,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5843378670819506,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5791325664330604,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.57410496499129,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      54 10f631783dc7013b, 15 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9879789941096688,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.9342947005924214,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.8204080916821639,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.5759743070788725,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5710860312878472,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5663571874115432,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      55 1be7db2e0056c237, 16 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9852528359418047,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.9306756331659076,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.8131322511302128,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.5681229657857423,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.563519488999633,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5590597394104215,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      56 7ba3e1c53557bb86, 17 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9825917211828326,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.9271594728265602,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.8061899460011854,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.560732161552485,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5563857255085634,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5543455235500967,0), (1.5543455235500967,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+[INFO] *** bandit UCB candidates:List((1.250894501623828,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.2418563766533297,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+      57 7f5be57033817337, 17 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9799930106422337,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.923741230824267,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7995561393981812,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.5554421166630488,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+      58 816d9a4b1fa53eb1, 17 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9774542152110327,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.9204162575287012,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7932083491717468,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.5531446143736447,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5490314212677818,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5458147257531385,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.5454962443731333,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      59 5709fa3011381cf5, 18 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9749729849536168,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.9171802129854358,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7871263228194034,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.547027275382448,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5431167305806737,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5393146499868062,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      60 8d21f4b907f41bc8, 19 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9725470991596568,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.9140290405635243,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7817578350387508,2), (1.7817578350387508,3), (1.7817578350387508,4))
+[INFO] *** bandit UCB chosen candidate's index:4
+[INFO] *** bandit UCB candidates:List((1.2261182476342722,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+      61 8a0cfd0207a16674, 19 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9701744572573554,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.91095894331586,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7838767699653775,2), (1.7838767699653775,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+      62 8eb96fde1c23c3e1, 19 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9678530705008302,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.9079663627264016,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7859606099664673,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      63 3f1b50c735ccd873, 19 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9655810543545074,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.9050479595628946,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7838096506521657,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.5407736784322412,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5370573984392295,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.533440422487991,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      64 2d9150ba3b734bbc, 20 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9633566215061604,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.902200596591486,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7781320749737095,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.5348335297101698,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5312952642713604,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5278482068655665,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      65 2d89e9db14cd4e33, 21 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9611780754478865,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.899421322941719,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7726738906535888,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.5291807507271336,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5258061181735418,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5262337100807857,0), (1.5262337100807857,3))
+[INFO] *** bandit UCB chosen candidate's index:0
+      66 83eb485c157a76bd, 21 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9590438045709933,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8967073599377613,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.767421134844422,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.527105742592342,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+[INFO] *** bandit UCB candidates:List((1.2206455787959225,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.2147445161891919,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+      67 28d1f1a7209cde8a, 21 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9569522767266414,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8940560882351378,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7623610587887975,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.5232586348905284,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5200353450141997,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.51688978875393,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      68 885136503d1f67bc, 22 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9549020342092371,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.891465036122314,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7574819955782617,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.5181324540720675,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5150485199426158,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5120365792443762,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      69 1ea3cf211c7e0fdf, 23 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9528916891241009,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.888931868863757,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7527732450736355,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.5132301592178852,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5102753827666269,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5073874453742944,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      70 74d7a32c045c0c2e, 24 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9509199191049429,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8864543789760013,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.748224973418662,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.5085354508643518,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5057006646379176,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.502928073662258,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      71 5c0c21e3035866bc, 25 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9489854633501982,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.884030477341131,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7438281250119558,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.5040336599698274,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.501310596131057,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5013662270016745,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.499982629865865,0), (1.499982629865865,3))
+[INFO] *** bandit UCB chosen candidate's index:0
+      72 131df2271c378618, 25 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9470871189504126,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8816581850732708,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7395743451543817,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.500697364125485,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+[INFO] *** bandit UCB candidates:List((1.2012256958199856,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+      73 8899551c24d493b7, 25 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9452237374816356,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8793356260633793,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7354559118767405,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4995333561709943,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4969105331534522,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4943420922030035,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      74 3003311528925804, 26 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9433942218422369,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.877061020136105,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7314656756889342,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4953816737239067,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4928565294037321,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4903822942614586,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      75 1bb021a0182cc1d2, 27 tests failed.
+[INFO] *** bandit UCB candidates:List((0.941597523312764,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8748326767598495,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7275970061866364,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4913865604738308,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.488952907258156,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4865669981939487,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      76 12f7e650353c15cc, 28 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9398326388203995,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.872648989257642,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7276624943507675,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8705084294721093,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4875381371294039,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.485190331062617,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4828873774928042,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      77 81eb89c705fcccfc, 29 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9380986083913245,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8652062621028567,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7251433938891414,2), (1.7251433938891414,3), (1.7251433938891414,4))
+[INFO] *** bandit UCB chosen candidate's index:4
+[INFO] *** bandit UCB candidates:List((1.1938096752427758,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.1913127397127918,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+      78 4db8f48a384cfcbc, 29 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9363945127758542,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8631960477447944,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7266449886391917,2), (1.7266449886391917,3))
+[INFO] *** bandit UCB chosen candidate's index:2
+      79 89f23a52456a9b0c, 29 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9347194712326008,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8612233786694172,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7281270567061275,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+      80 20e695942a96012a, 29 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9330726394591746,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8592870564848898,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7266539065786377,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4838273843560825,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4815602648012964,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4793353495967807,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      81 5460ba9a005203b6, 30 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9314532076580517,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8573859366754897,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7229464316867817,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.480246048563031,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.478054885890451,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.476813485452523,0), (1.476813485452523,3))
+[INFO] *** bandit UCB chosen candidate's index:0
+      82 69437d8a0104ed32, 30 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9298603987272505,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.855518925491318,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.719345684982247,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4774040649680045,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+[INFO] *** bandit UCB candidates:List((1.1795203702090662,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+      83 46d186dd4125cca4, 30 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9282934665663658,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8536849770564088,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7158465620626553,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.476372065462611,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4742530143868917,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4721715439108367,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      84 4c13e77638350c65, 31 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9267516944893273,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.851883090677235,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7124442945577754,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4730379160118134,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4709864388318108,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4689704791526546,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      85 82919b790367b5c5, 32 tests failed.
+[INFO] *** bandit UCB candidates:List((0.925234393735991,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8501123083353117,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7091344222372113,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.469811672588221,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4678240866695198,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4658701130279024,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      86 57b4573231ecaef7, 33 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9237409020753382,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8483717123491143,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7059127678927846,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4666874709599713,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4647603731843315,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4628651250098705,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      87 31303b36300e691c, 34 tests failed.
+[INFO] *** bandit UCB candidates:List((0.922270582493663,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8466604231918846,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.7027754146755893,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4636598882942955,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4639287988715077,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4619909443752865,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.46014897304387,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      88 2166da561cdeb0ce, 35 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9208228219616766,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8449775974531213,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.699718685609502,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4609209745271787,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4591032759562648,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4573143236714219,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      89 7b2a0eac308fb13e, 36 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9193970302749516,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.843322425932645,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6967391250386474,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4580660069611442,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4565544296816053,0), (1.4565544296816053,3))
+[INFO] *** bandit UCB chosen candidate's index:0
+      90  8473fb630ae87ef, 36 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9179926389625845,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8416941318571045,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6938334817969585,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.457043385841502,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+[INFO] *** bandit UCB candidates:List((1.1697778967002337,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.1707665450519635,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+      91 23f089ed2556055e, 36 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9166091002593604,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.840091969209693,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6909986939142572,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4566743314795976,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4549314545363798,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4532152955794546,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      92 4dce0625017986b6, 37 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9152458861370805,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8385152211646179,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6882318746959812,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.453940658697656,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4522459542755253,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.450576693444693,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      93  377a2fb24ffde59, 38 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9139024873910508,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8369631986186215,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6855303000332444,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.45128397091483,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4496351547584052,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4480105928145037,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      94 5bf00c6a3d11f6cf, 39 tests failed.
+[INFO] *** bandit UCB candidates:List((0.912578412778041,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8354352388124642,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6828913968168984,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4487006175805508,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.447095556795416,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4455136386422143,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      95  701136a43c9f7c1, 40 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9112731882023075,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8339307040359072,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6803127323439684,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.446187188668783,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4446238889651848,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4430826916317243,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      96  af39d7b440c7619, 41 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9099863559465282,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8324489804102415,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6777920046176664,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4437404945871366,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4422170888186476,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4407148106486103,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+      97 58d5d266207001dc, 42 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9087174739447398,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8309894767429054,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6775424468601425,2), (1.6775424468601425,3), (1.6775424468601425,4))
+[INFO] *** bandit UCB chosen candidate's index:4
+[INFO] *** bandit UCB candidates:List((1.1603506598274538,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+      98 76b004ab0082dd30, 42 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9074661150945785,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8295516234491764,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6786519770247401,2), (1.6786519770247401,3))
+[INFO] *** bandit UCB chosen candidate's index:2
+      99  2a290d33cc03f82, 42 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9062318666063287,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.828134871536313,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6797498661856904,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+     100 51b2192d1171a160, 42 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9050143293864621,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8267386916458996,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6764652319235898,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4413575481023675,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4398722859466737,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4384072368538205,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     101  e33f5272c52bf71, 43 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9038131174535191,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8253625731504648,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.674033809076306,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.439035548047507,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4380817906834094,0), (1.4380817906834094,3))
+[INFO] *** bandit UCB chosen candidate's index:0
+     102 8a4a8b323494e5a2, 43 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9026278573843387,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8240060233007653,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6716547005521734,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4384906724636233,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+[INFO] *** bandit UCB candidates:List((1.15057440911942,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+     103 4e85c1cc3f124334, 43 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9014581877887802,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8226685664203846,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6693260215121264,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.437887920546778,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4364554796426383,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4350420165672164,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     104 6d528b3112757752, 44 tests failed.
+[INFO] *** bandit UCB candidates:List((0.9003037588112139,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8213497431445618,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6670459812087586,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.435651547019055,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.434253380765283,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4328734067463555,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     105 4e85146b20c5c815, 45 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8991642316571784,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8200491097003935,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.664812877031332,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.433469878992124,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.43210457537342,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.431321481774157,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4308959065380134,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     106  b84de6836f46555, 46 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8980392781437052,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8187662372257607,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6626250890046517,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4314790994879705,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4301440050929857,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.428825686372518,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     107 7d75c42c1bd51f84, 47 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8969285802719245,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8175007111245318,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6604810747015173,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4293968591605524,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4280920939222037,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4268034446411841,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     108 6ea9b38108a80d15, 48 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8958318298206478,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8162521304557657,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6583793645325435,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4273630581583365,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4260874343987306,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.424827303312755,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     109 65429e920397dd38, 49 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8947487279597208,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8150201073548053,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6587811818191918,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.813804266484305,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     110 59738f243cc27517, 49 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8936789848820124,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8105018618244184,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6569539353162281,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.425375793020399,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4241281883187034,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4228954868699997,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     111 50bf4f3720291df2, 50 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8926223194529816,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8093384616538306,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.654922646857812,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4234332646160577,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4222126172304175,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.421098924182735,0), (1.421098924182735,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+[INFO] *** bandit UCB candidates:List((1.1507495378855257,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.1432406062962475,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+     112 2cafbe4e0839a7c9, 50 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8915784588768401,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8081897703981673,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6529299093045342,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4214440563359863,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+     113 6b5a1aad2e156d09, 50 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8905471383783767,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8070554700444332,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6509744943638918,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4212516831651398,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.420057277231462,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.418876698827331,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     114  f0cac4f1df2b6e5, 51 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8895281008995888,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8059352522848062,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6490552280926258,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4193980806526487,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.418228663261739,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4170725717688843,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     115 61332b73323be382, 52 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8885210968103003,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8048288181352299,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6471709878417633,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4175842211803489,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4164388895813096,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.415306407841448,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     116 1882e35e3e7cd6db, 53 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8875258836320165,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8037358775722958,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6453206994088108,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.41580866397433,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4146865612394863,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4135768562473174,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     117 80423a103b0344ec, 54 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8865422257742926,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.8026561491873818,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6435033343807244,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4140700411976426,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4129703532488813,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4118826333104515,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     118 20c150d212ee4cc3, 55 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8855698942829597,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.80158935985708,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6417179076527455,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4123670532448798,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4112890061135932,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4102225182260664,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     119 2d9766e3151561de, 56 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8846086665995705,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.800535244429011,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6399634751095156,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4106984644034015,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4096413217026016,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4085953491352847,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     120 3a0a10b21ae15e75, 57 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8836583263314818,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7994935454221783,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6383780369103023,2), (1.6383780369103023,3), (1.6383780369103023,4))
+[INFO] *** bandit UCB chosen candidate's index:3
+     121  96b330c19f19d71, 57 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8827186630320193,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7984640127410725,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6392104272380892,2), (1.6392104272380892,4))
+[INFO] *** bandit UCB chosen candidate's index:4
+[INFO] *** bandit UCB candidates:List((1.1344711308821882,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+     122 1ccbb9572b3e3341, 57 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8817894719902019,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.797446403402777,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6400357312724707,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     123 688d117a0e13f58e, 57 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8808705540295375,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.796440481276386,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6390401221192548,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.409063098847901,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4080261594373014,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.407000019495861,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     124  9dc339743719e73, 58 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8799617153154309,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7954460168340702,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6373336548256403,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4074598369384352,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.406442432765286,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4054354747229372,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     125 1d1a22cb2b853961, 59 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8790627671707656,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7944627869131904,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6356558377757593,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4058876117951014,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.40596751634018,0), (1.40596751634018,3))
+[INFO] *** bandit UCB chosen candidate's index:0
+     126 13a0925d0fc29fd5, 59 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8781735258992552,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7934905744888667,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6340058619291706,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.406258821320226,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+[INFO] *** bandit UCB candidates:List((1.1307207418788041,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.1278327537935673,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+     127 52906bc52be64052, 59 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8772938126161774,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7925291684564728,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6323829500314533,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.405088162215363,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4040982242658013,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4033882840400442,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.403215613037786,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     128 3ccb565d11aab186, 60 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8764234530861246,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7915783634235407,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6307863550251103,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4036572951703552,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4026846366434893,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4017216322958337,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     129 30b7f8f030c22f8a, 61 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8755622775674331,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7906379595105948,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6292153585564602,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.402156198426216,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4012010133245258,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.4002551810602286,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     130 8c6d4b270d0ec7e2, 62 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8747101206629637,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.789707762160467,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6276692695717443,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.4006828462847578,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3997445908731987,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3988154002188151,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     131 2a654f6c36e64fae, 63 tests failed.
+[INFO] *** bandit UCB candidates:List((0.873866821176929,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7887875819556636,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6261474229962194,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3992363702324941,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3983145246085413,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3974014681748437,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     132 2ccd7db115e2b146, 64 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8730322219774796,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7878772344433886,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6246491784905068,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3978159398051806,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3969100065601798,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.396012598754764,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     133 46e74a6630b09fc2, 65 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8722061698647747,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.786976539967838,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6231739192789183,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3964207604584866,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3955302634302391,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3946480392572504,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     134 29f82abd2be12950, 66 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8713885154442816,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7860853235094154,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6217210510448887,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3950500715829475,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3941745546922444,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3933070686323201,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     135 181c017d0b58f4e1, 67 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8705791130050566,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7852034145305282,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6202900008890249,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.393703144651762,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3928421708162557,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3919889957804068,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     136   d70461434217a8, 68 tests failed.
+[INFO] *** bandit UCB candidates:List((0.86977782040278,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7843306468276483,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6188802163456195,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3923792814910487,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.391532431610438,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3917566314452743,0), (1.3917566314452743,3))
+[INFO] *** bandit UCB chosen candidate's index:0
+     137  2785ca0067f97c2, 68 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8689844989473237,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.783466858389338,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.617491164453796,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3920049731636255,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+[INFO] *** bandit UCB candidates:List((1.1199031251739018,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+     138 3440001829ae7f1f, 68 tests failed.
+[INFO] *** bandit UCB candidates:List((0.868199013294646,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7826118912599553,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6161223308797377,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3908568921974473,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3900239631479172,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3891984011877858,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     139    dbe1822ea5d5e, 69 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8674212313428167,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.781765591408774,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.614773219086711,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3895798127620136,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.388760214592391,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.38794777826275,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     140 6b3b77e519a5044a, 70 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8666510241319862,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7809278086042608,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6134433495498444,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3883238019414945,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3875171642736635,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3867174912725635,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     141 43a26828012dacc5, 71 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8658882657481239,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7800983962932748,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6121322590128369,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3870882704370835,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3862942374116045,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3855069795476918,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     142 3ac17c0a2f73dcbd, 72 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8651328332303547,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.779277211484957,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6108394997839792,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3858726520494602,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3850908815951117,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3843157040822347,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     143 45f8badb3ca0d883, 73 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8643846064817416,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7784641146390998,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6095646390690521,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3846764025204605,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3839065656684353,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3831431464631032,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     144 696819cb3b77b790, 74 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8636434681833554,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7776589695587872,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6083072583388451,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.383498998445173,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3827407786847337,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3819888078633746,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     145  e8d2dab326af877, 75 tests failed.
+[INFO] *** bandit UCB candidates:List((0.862909303711495,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7768616432871205,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6070669527291908,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.382339936249458,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.381593028922108,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.380852208095323,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     146 19c2f9b0443e619a, 76 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8621820010579202,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7760720060078383,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.605843330471558,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.381198731228276,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3804628429577486,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3797328847189818,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     147 8cd982f21acee05e, 77 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8614614507529652,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7752899309496633,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6046360123523848,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.380074916640595,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3793497647961757,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.37863039220243,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     148 49de621b3d9fec2e, 78 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8607475457914149,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7745152942942075,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6049732341957705,2), (1.6049732341957705,3), (1.6049732341957705,4))
+[INFO] *** bandit UCB chosen candidate's index:2
+     149 3757b6f140de9fff, 78 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8600401815610224,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.773747975087282,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6056088509304507,3), (1.6056088509304507,4))
+[INFO] *** bandit UCB chosen candidate's index:3
+     150 6732d0302bf1fa8e, 78 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8593392557735604,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7729878551534624,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6062400342887342,4))
+[INFO] *** bandit UCB chosen candidate's index:4
+[INFO] *** bandit UCB candidates:List((1.1124289428680187,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.1138523467306802,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+     151 7570cae244d14c51, 78 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8586446683982973,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7722348190137682,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6040129982310734,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.378968042856975,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3791639834424767,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3783749748226757,0), (1.3783749748226757,3))
+[INFO] *** bandit UCB chosen candidate's index:0
+     152 7272cc2214f64421, 78 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8579563215978008,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.77148875380632,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6041800785162403,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7707495492098557,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     153 73274c6412b66546, 78 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8572741196659701,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7685657039343876,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6031989431886964,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3785885863046825,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+[INFO] *** bandit UCB candidates:List((1.1066325165054751,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+     154 2b18082b1bd0dc96, 78 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8565979689682072,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7678500800662647,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.602027918576242,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3784581736867736,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3777478722465513,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.377043143924849,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     155  49bb4bb3c960eb0, 79 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8559277778836389,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7671408596286435,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.6008719896578767,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.377374838320475,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3766746296434196,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.375979856049929,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     156 65f3554e0408f396, 80 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8552634567493089,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.766437944636958,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.599730827835919,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3763074189524283,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3756170535616463,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.37493199005586,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     157 301f42f142e726e8, 81 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8546049178062584,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7657412392254164,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5986041145022176,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3752555187870876,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.374574755919761,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3738991663573248,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     158 25c334f80aafdb67, 82 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8539520751474194,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7650506495879086,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5974915406504235,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3742187549094014,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3735473621255607,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3728810184789997,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     159 1de15f7b3c42c4df, 83 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8533048446672529,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7643660839209308,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5963928065064992,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.373196757662794,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3725345104754643,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3718771924755138,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     160 35dc77543612bbf2, 84 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8526631440130579,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7636874523684414,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5953076211764587,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3721891700609925,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3715358515863434,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3708873463825677,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     161 43506750339f1db2, 85 tests failed.
+[INFO] *** bandit UCB candidates:List((0.85202689253789,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.763014666968574,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5942357023104006,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.371195647231545,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3705510478577714,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.369911149697255,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     162 3a47a3200828273f, 86 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8513960112550234,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.762347641602132,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.593176775781948,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.370215855889021,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3695797729627799,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3689482828857575,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     163 5c0522670ac785d8, 87 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8507704227938993,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7616862919427962,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.592130575382268,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3692494738360468,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3686217113653532,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3679984369167335,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     164 1368684424c2ee47, 88 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8501500513575028,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7610305354089768,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5910968425279,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.368296189490441,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3676765578630117,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3670613128188172,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     165 3ad1174c417204f2, 89 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8495348226811124,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7603802911172464,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.590075325981648,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3673557014368583,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3667440171529561,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.366136621260774,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     166  d2488fd015bf912, 90 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8489246639923714,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7597354798372928,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.589065781585872,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3664277180014435,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3662974480888876,0), (1.3662974480888876,3))
+[INFO] *** bandit UCB chosen candidate's index:0
+     167 4d468ce94468c2fb, 90 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8483195039726305,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.759096023948331,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5880679720075153,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3664809672034934,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+[INFO] *** bandit UCB candidates:List((1.0997548438279927,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+     168 4f7d28d7358dd4d8, 90 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8477192727195141,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7584618473969233,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5870816664942737,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3659366331889637,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3653363034062331,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.364740124257153,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     169 1709ffac3a75c90d, 91 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8471239017106652,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7578328756561492,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5861066406413313,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3650269208661556,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3644341103253042,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.363845359660791,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     170 9039b49537389c85, 92 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8465333237686231,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7572090356860752,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5851426761681258,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3641290253385492,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.363543569850357,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3629620862929852,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     171 65de71562afd7ec8, 93 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8459474730267946,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7565902558954785,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5841895607046408,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3632426859266165,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3626644263758807,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.362090053510054,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     172 3fef422422d2797d, 94 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8453662848964772,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7559764661047723,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5832470875867448,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3623676500294348,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3617964321731377,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3612290183487137,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     173 254fa0b3215e47e2, 95 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8447896960348967,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7553675975100955,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5823150556601318,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.361503672803539,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3609393470787992,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3603787452241833,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     174 5aa6beba13be63fe, 96 tests failed.
+[INFO] *** bandit UCB candidates:List((0.84421764431422,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7547635826485153,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.581393269092434,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3606505168572962,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3600929381985443,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3595390056427201,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     175 6b9734f01b76c71e, 97 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8436500687915122,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7541643553643087,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.580481537193115,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.359807951959926,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3592569796247853,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3587095779277738,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     176 1ddd220736b088d6, 98 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8430869096796002,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.75356985077628,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5795796742407566,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3589757547643373,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3584312521677213,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.357890246959003,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     177 133202bc25957d90, 99 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8425281083188128,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.752980005246078,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5786874993173918,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3581537085430164,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3576155430989865,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3572265521940763,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.357130122573703,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     178  18af24e227cc295, 100 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8419736071495647,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7523947563474755,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.577804836149541,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3573907836471788,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3568585836118614,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3563297427838885,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     179 88af43883571af0c, 101 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8414233496857559,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7518140428365787,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5769315129556332,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.356587795277613,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3560616836264598,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3555388640315789,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     180 2618bb7730143131, 102 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8408772804889572,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7512378046229313,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5762401916685391,2), (1.5762401916685391,3), (1.5762401916685391,4))
+[INFO] *** bandit UCB chosen candidate's index:3
+     181 69bff9e70d82f564, 102 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8403353451433538,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7506659827414826,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5767314762801758,2), (1.5767314762801758,4))
+[INFO] *** bandit UCB chosen candidate's index:4
+[INFO] *** bandit UCB candidates:List((1.0974794170897293,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.0944708665222445,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+     182 8cf8d97e436614c2, 102 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8397974902314236,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.750098519325388,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5772199369125595,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     183 7ab0a1a605b3cc06, 102 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8392636633103199,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.749535357579615,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.576479601219245,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3557943576253206,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3552742127503912,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3547572946846826,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     184 5b3027c638096b93, 103 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8387338128889387,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7489764417553249,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.575620636253443,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3550102776793085,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3550750202579644,0), (1.3550750202579644,3))
+[INFO] *** bandit UCB chosen candidate's index:0
+     185 16700b661d8c07f9, 103 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8382078884056458,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7484217171250014,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.574770579505155,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3552332605222275,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+[INFO] *** bandit UCB candidates:List((1.0881520896087131,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+     186  66e23460230b15c, 103 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8376858402066402,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.747871129958305,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5739292745258013,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3545898626714443,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3540782794566109,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3535698310675957,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     187 13e5de2430b696f0, 104 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8371676195249337,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7473246274986243,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5730965687148533,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3538195390132501,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.353313636915821,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3528108087925956,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     188 7d4f70a92974fbb6, 105 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8366531784599263,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7467821579403022,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5722723131986922,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3530581144439504,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3525577832648472,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3520604668843033,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     189 3f8dc2a045229654, 106 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8361424699575553,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7462436704065138,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5714563627141023,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3523054142690256,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3518105468383448,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3513186366470311,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     190 6dca132d294a3762, 107 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8356354477910011,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.745709114927773,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5706485754961848,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3515612686160448,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3510717606857536,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3505851539951523,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     191  ad19b3f0f3643ea, 108 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8351320665419317,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7451784424210492,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5698488131705017,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.350825512263746,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3503412624050164,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3498598592913242,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     192 579327a812a74456, 109 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8346322815822653,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7446516046694687,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.569056940649256,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3500979844784944,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.349618893983437,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.349142597191623,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     193 165f1b7b12c4f187, 110 tests failed.
+[INFO] *** bandit UCB candidates:List((0.834136049056437,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7441285543025904,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5682728260313352,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3493785288577387,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3489045016453174,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3484332164972441,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     194  f808bd2425676f4, 111 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8336433258641525,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7436092447772242,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5674963405060494,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3486669931801183,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3481979357060325,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3477315700124366,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     195 4edf88a220ac2696, 112 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8331540696436112,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.743093630358787,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5667273582603989,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.347963229261885,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3474990504322266,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3470375144083684,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     196 4d1379510a99338c, 113 tests failed.
+[INFO] *** bandit UCB candidates:List((0.832668238755186,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7425816661031686,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5659657563897276,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3472670928193309,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3468077039078263,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3463509100926276,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     197 446f9f4c0e286e59, 114 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8321857922655445,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.742073307839098,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5652114148116065,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3465784433369228,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3461237579055867,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3456716210840884,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     198 59dc5a9b1e4edff8, 115 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8317066899321951,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7415685121509894,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5644642161828233,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3458971439408671,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3454470777639027,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3449995148928804,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     199 331cb36f3d83ebce, 116 tests failed.
+[INFO] *** bandit UCB candidates:List((0.83123089218845,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.741067236362255,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.563724045819332,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.345223061277843,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3447775322686304,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.344334462405217,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+     200 65383ba340c441e3, 117 tests failed.
+[INFO] *** bandit UCB candidates:List((0.8307583601287849,0))
+[INFO] *** bandit UCB chosen candidate's index:0
+[INFO] *** bandit UCB candidates:List((1.7405694385190673,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.5629907916190509,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] *** bandit UCB candidates:List((1.3445560653986535,2))
+[INFO] *** bandit UCB chosen candidate's index:2
+[INFO] *** bandit UCB candidates:List((1.3442854883617716,0), (1.3442854883617716,3))
+[INFO] *** bandit UCB chosen candidate's index:3
+[INFO] *** bandit UCB candidates:List((1.0821059023627748,1))
+[INFO] *** bandit UCB chosen candidate's index:1
+[INFO] 25 main paths executed.
+[INFO] the shortest path has 2 transitions.
+[INFO] the longest path has 8 transitions.
+[INFO] path length results: Map(8 -> 1, 2 -> 2, 5 -> 5, 4 -> 4, 7 -> 4, 3 -> 2, 6 -> 7)
+[INFO] the average length of paths is: 5.16
+[INFO] the standard deviation for the length of paths is: 1.5666524822052912
+[INFO] the total number of nodes in path-based graph:72
+[INFO] the total number of choice nodes in path-based graph: 0
+[INFO] the total number of edges in path-based graph: 129
+[INFO] the total number of non choice related edges in path-based graph: 129
+[INFO] the total number of backtracked edges in path-based graph: 19
+[INFO] the total number of failed edges in path-based graph: 6
+[INFO] the total number of choice related edges in path-based graph: 0
+[INFO] the total number of cycles in path-based graph: 33
+[INFO] ---------------------- table data of PG -----------------------
+Name & Test Cases & Nodes & Choice Nodes & Edges & failEdges & Cycles & LIP & LP & SP & AVE & SD
+modbat.examples.NioSocket1 & 200 & 72  & 0  & 129   & 6         & 33    & 25 & 8 & 2  & 5.16 & 1.5666524822052912
+--------------------------------------------------------------
+[INFO] the total number of choice nodes in state-based graph: 0
+[INFO] the total number of edges in state-based graph: 22
+[INFO] the total number of non choice related edges in state-based graph: 21
+[INFO] the total number of backtracked edges in state-based graph: 2
+[INFO] the total number of failed edges in state-based graph: 1
+[INFO] the total number of choice related edges in state-based graph: 0
+[INFO] the total number of Jumped dotted edges in state-based graph: 1
+[INFO] the total number of cycles in state-based graph: 6
+[INFO] ---------------------- table data of SG -----------------------
+Name & Test Cases & Choice Nodes & Edges & failEdges & Cycles
+modbat.examples.NioSocket1 & 200 & 0 & 22 & 1 & 6
+--------------------------------------------------------------
+[INFO] 200 tests executed, 83 ok, 117 failed.
+[INFO] One type of test failure:
+[INFO] 1) java.lang.AssertionError: assertion failed at readFrom
+[INFO]    a410ce32fc39dfb 1690fa4e0c732f7d 7bb4b043219b1ba6 66809a782bf43de4 7d3db60a36899abc 66b0c7572a7ff949 28d961ca0ac12e82 764cc9831b53a60a 44907dab3e7f0a55 46e3ffb302d6b70f 903dd74e32475186 de8785f38307c43 6685050840640de1 2d6f6cd03d01cb4 4c7f1e112f7be0ec 10f631783dc7013b 1be7db2e0056c237 816d9a4b1fa53eb1 5709fa3011381cf5 3f1b50c735ccd873 2d9150ba3b734bbc 28d1f1a7209cde8a 885136503d1f67bc 1ea3cf211c7e0fdf 74d7a32c045c0c2e 8899551c24d493b7 3003311528925804 1bb021a0182cc1d2 12f7e650353c15cc 20e695942a96012a 46d186dd4125cca4 4c13e77638350c65 82919b790367b5c5 57b4573231ecaef7 31303b36300e691c 2166da561cdeb0ce 23f089ed2556055e 4dce0625017986b6 377a2fb24ffde59 5bf00c6a3d11f6cf 701136a43c9f7c1 af39d7b440c7619 51b2192d1171a160 4e85c1cc3f124334 6d528b3112757752 4e85146b20c5c815 b84de6836f46555 7d75c42c1bd51f84 6ea9b38108a80d15 59738f243cc27517 6b5a1aad2e156d09 f0cac4f1df2b6e5 61332b73323be382 1882e35e3e7cd6db 80423a103b0344ec 20c150d212ee4cc3 2d9766e3151561de 688d117a0e13f58e 9dc339743719e73 52906bc52be64052 3ccb565d11aab186 30b7f8f030c22f8a 8c6d4b270d0ec7e2 2a654f6c36e64fae 2ccd7db115e2b146 46e74a6630b09fc2 29f82abd2be12950 181c017d0b58f4e1 3440001829ae7f1f dbe1822ea5d5e 6b3b77e519a5044a 43a26828012dacc5 3ac17c0a2f73dcbd 45f8badb3ca0d883 696819cb3b77b790 e8d2dab326af877 19c2f9b0443e619a 8cd982f21acee05e 2b18082b1bd0dc96 49bb4bb3c960eb0 65f3554e0408f396 301f42f142e726e8 25c334f80aafdb67 1de15f7b3c42c4df 35dc77543612bbf2 43506750339f1db2 3a47a3200828273f 5c0522670ac785d8 1368684424c2ee47 3ad1174c417204f2 4f7d28d7358dd4d8 1709ffac3a75c90d 9039b49537389c85 65de71562afd7ec8 3fef422422d2797d 254fa0b3215e47e2 5aa6beba13be63fe 6b9734f01b76c71e 1ddd220736b088d6 133202bc25957d90 18af24e227cc295 88af43883571af0c 7ab0a1a605b3cc06 66e23460230b15c 13e5de2430b696f0 7d4f70a92974fbb6 3f8dc2a045229654 6dca132d294a3762 ad19b3f0f3643ea 579327a812a74456 165f1b7b12c4f187 f808bd2425676f4 4edf88a220ac2696 4d1379510a99338c 446f9f4c0e286e59 59dc5a9b1e4edff8 331cb36f3d83ebce
+[INFO] 6 states covered (100 % out of 6),
+[INFO] 19 transitions covered (95 % out of 20).
+[INFO] Precondition 1 always passed at transition modbat/examples/NioSocket1.scala:93 finishConnect
+[INFO] Precondition 1 always passed at transition modbat/examples/NioSocket1.scala:97 sleep
+[INFO] Random seed for next test would be: 21a48b131218e9b4

@@ -99,6 +99,37 @@ class Configuration extends modbat.config.Configuration {
   @Choice(Array("dot", "exec"))
   var mode = "exec"
 
+  @Doc("search mode (for usage mode=exec)")
+  @Choice(Array("random", "heur"))
+  var search = "random"
+
+  @Doc("bandit trade off value (for usage search=heur)")
+  var banditTradeoff = 2
+
+  @Doc("backtrack transition reward (for usage search=heur)")
+  var backtrackTReward = 0.8d
+
+  @Doc("self-loop transition reward (for usage search=heur)")
+  var selfTReward = 0.4d
+
+  @Doc("good and successful transition reward (for usage search=heur)")
+  var goodTReward = 0.6d
+
+  @Doc("failed transition reward (for usage search=heur)")
+  var failTReward = 0.5d
+
+  @Doc("passed precondition reward (for usage search=heur)")
+  var precondPassReward = 0.7d
+
+  @Doc("failed precondition reward (for usage search=heur)")
+  var precondFailReward = 0.7d
+
+  @Doc("passed assertion reward (for usage search=heur)")
+  var assertPassReward = 0.7d
+
+  @Doc("failed assertion reward (for usage search=heur)")
+  var assertFailReward = 0.7d
+
   @Doc("limit times same state is visited; 0 = no limit")
   @Range(min = 0)
   var loopLimit = 0

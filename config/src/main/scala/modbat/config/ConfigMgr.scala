@@ -21,7 +21,7 @@ object ArgParse extends Enumeration {
 object ConfigMgr {
   import ArgParse._
 
-  def main(args: Array[String]) {
+  def main(args: Array[String]): Unit = {
     try {
         run(args)
     } catch {
@@ -29,7 +29,7 @@ object ConfigMgr {
     }
   }
 
-  def run(args: Array[String]) {
+  def run(args: Array[String]): Unit = {
     // parse arguments
     var c: ConfigMgr = null
     try {
@@ -48,7 +48,7 @@ object ConfigMgr {
 	             }
         	  }
         	  if (hasMore) {
-        	    println
+                    println()
         	  }
         	}
 	        case None => // nothing
@@ -167,7 +167,7 @@ class ConfigMgr (progName: String, argName: String,
 	    "show current configuration")
     println(formatStr("  -v, --version", HelpArgWidth) +
 	    "show version number and exit")
-    footnotes.clear
+    footnotes.clear()
     for (f <- fields) {
       val doc = new StringBuilder(docStr(f))
       val footnote = f.getAnnotation(classOf[Footnote])
@@ -188,11 +188,11 @@ class ConfigMgr (progName: String, argName: String,
     printFootnotes
   }
 
-  def setSplashScreen(info: List[String]) {
+  def setSplashScreen(info: List[String]): Unit = {
     splashScreen = info
   }
 
-  def showSplashScreen {
+  def showSplashScreen: Unit = {
     if (splashScreen != null) {
       splashScreen.foreach(println)
     }
@@ -374,7 +374,7 @@ class ConfigMgr (progName: String, argName: String,
     " must be at most " + max + "."
   }
 
-  def checkRange(value: AnyVal, range: Range, optionName: String) {
+  def checkRange(value: AnyVal, range: Range, optionName: String): Unit = {
     if (range != null) {
       (value: @unchecked) match {
 	case i: Int => {
@@ -501,7 +501,7 @@ class ConfigMgr (progName: String, argName: String,
     }
   }
 
-  def checkDependencies(f: Field) {
+  def checkDependencies(f: Field): Unit = {
     val constraint = f.getAnnotation(classOf[Requires])
     if (constraint == null)
       return
@@ -557,7 +557,7 @@ class ConfigMgr (progName: String, argName: String,
   }
 
   def upperFirst(str: String) = {
-    Character.toUpperCase(str.charAt(0)) + str.substring(1)
+    Character.toUpperCase(str.charAt(0)).toString() + str.substring(1)
   }
 
   def getConstValue(clsName: String, element: String) = {
@@ -630,7 +630,7 @@ class ConfigMgr (progName: String, argName: String,
     } else value.toString()
   }
 
-  def printField(field: Field) {
+  def printField(field: Field): Unit = {
     val choice = field.getAnnotation(classOf[Choice])
     if (choice != null) {
       printFieldWithChoice (field, choice)
@@ -668,7 +668,7 @@ class ConfigMgr (progName: String, argName: String,
   }
 
   def printFieldWithBounds(field: Field, value: String,
-			   min: AnyVal, max: AnyVal) {
+			   min: AnyVal, max: AnyVal): Unit = {
     printField(field,
 	       formatStr(field.getName(), NameLength) +
 	       "\t" + field.getType() + "\t" + formatStr(value, ValueLength) +
@@ -707,7 +707,7 @@ class ConfigMgr (progName: String, argName: String,
     s.append("}")
   }
 
-  def printField(field: Field, contents: String) {
+  def printField(field: Field, contents: String): Unit = {
     val out = new StringBuilder(contents)
     val constraint = field.getAnnotation(classOf[Requires])
     if (constraint != null) {
@@ -733,7 +733,7 @@ class ConfigMgr (progName: String, argName: String,
     println(out)
   }
 
-  def printFieldWithChoice(field: Field, range: Choice) {
+  def printFieldWithChoice(field: Field, range: Choice): Unit = {
     printField(field,
 	       formatStr(field.getName(), NameLength) + "\t" +
 	       field.getType().getSimpleName() + "\t" +
@@ -743,7 +743,7 @@ class ConfigMgr (progName: String, argName: String,
 
   def showConfig: ArgParse = {
     val fields: Array[Field] = config.getClass().getDeclaredFields()
-    footnotes.clear
+    footnotes.clear()
     println(Console.BOLD +
 	    formatStr("Option", NameLength) + "\tType   \t" +
 	    formatStr("Value", ValueLength) + "\tRange" +

@@ -1,5 +1,5 @@
 package modbat.test
 
 object SUTWithFailedReq {
-  def fail { require(false) }
+  def fail: Unit = { require(false) }
 }

@@ -29,7 +29,7 @@ class CloneableRandom(rngTrace: Array[Int], dbgTrace: Array[String])
   /** Return random seed from last time when it was actually set */
   override def getRandomSeed = seed
 
-  def updateSeed {
+  def updateSeed: Unit = {
     seed = z << 32 | w
   }
 
@@ -66,8 +66,8 @@ class CloneableRandom(rngTrace: Array[Int], dbgTrace: Array[String])
   }
 
   def clear = {
-    storedResults.clear
-    resultsAsString.clear
+    storedResults.clear()
+    resultsAsString.clear()
     recordedChoices.clear() // clear recorded choices -rui
   }
 

@@ -4,7 +4,7 @@
 [ERROR] java.lang.NullPointerException
 [ERROR] 	at modbat.test.NullaryCons.<init>(NullaryCons.scala)
 [ERROR] 	at modbat.test.NullaryCons.<init>(NullaryCons.scala)
-[ERROR] 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-[ERROR] 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java)
-[ERROR] 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java)
-[ERROR] 	at java.lang.reflect.Constructor.newInstance(Constructor.java)
+[ERROR] 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+[ERROR] 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java)
+[ERROR] 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java)
+[ERROR] 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java)

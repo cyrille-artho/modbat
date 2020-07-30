@@ -7,17 +7,17 @@ import modbat.log.Log
 object Main {
   val config = new Configuration()
 
-  def main(args: Array[String]) {
+  def main(args: Array[String]): Unit = {
     Modbat.isUnitTest = false
     try {
-        run(args) // TODO: do not call exit once exceptions are used
+      run(args) // TODO: do not call exit once exceptions are used
     } catch {
       case e: Exception => System.exit(1)
     }
     System.exit(0)
   }
 
-  def run(args: Array[String]){
+  def run(args: Array[String]): Unit = {
     var modelClassName: String = null
     val c = new ConfigMgr("scala modbat.jar",
                           "CLASSNAME",
@@ -33,20 +33,21 @@ object Main {
             Log.error("Model class argument missing. Try --help.")
             throw new NoModelClassException(c.header)
           }
-	        modelClassName = remainingArgs.next
-	        if (remainingArgs.hasNext) {
-          val remaining = remainingArgs.next()
-	    Log.error("Extra arguments starting at \"" + remaining +
-		      "\" are not supported.")
-      throw new ExtraArgumentsException(remaining)
-	  }
-	}
-	case None => // nothing
+          modelClassName = remainingArgs.next()
+          if (remainingArgs.hasNext) {
+            val remaining = remainingArgs.next()
+            Log.error(
+              "Extra arguments starting at \"" + remaining +
+                "\" are not supported.")
+            throw new ExtraArgumentsException(remaining)
+          }
+        }
+        case None => // nothing
       }
     } catch {
       case e: IllegalArgumentException => {
-	Log.error(e.getMessage())
-	throw e
+        Log.error(e.getMessage())
+        throw e
       }
     }
 
@@ -61,7 +62,7 @@ object Main {
     }
   }
 
-  def setup(modelClassName: String) {
+  def setup(modelClassName: String): Unit = {
     /* configure components */
     Log.setLevel(config.logLevel)
     MBT.configClassLoader(config.classpath)

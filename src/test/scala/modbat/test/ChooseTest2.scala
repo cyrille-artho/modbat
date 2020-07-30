@@ -5,7 +5,7 @@ import modbat.dsl._
 class ChooseTest2 extends Model {
   var n = 0
 
-  def use(i: Int) {
+  def use(i: Int): Unit = {
     Console.out.println("Using " + i)
     assert (i > 0)
     assert (i < 4)
@@ -13,5 +13,5 @@ class ChooseTest2 extends Model {
   }
 
   // transitions
-  "ok" -> "ok" := use(1 + new Integer(choose(0, n)))
+  "ok" -> "ok" := use(1 + Integer.valueOf(choose(0, n)))
 }

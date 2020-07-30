@@ -3,15 +3,15 @@ package modbat.test
 import modbat.dsl._
 
 object ComplexLaunch2 {
-  @Init def init { println("init") }
-  @Shutdown def shutdown { println("shutdown") }
+  @Init def init: Unit = { println("init") }
+  @Shutdown def shutdown: Unit = { println("shutdown") }
 }
 
 class ComplexLaunch2 (var id: Int) extends Model {
   def this() = this(0)
 
-  @Before def before { println("before") }
-  @After def after { println("after") }
+  @Before def before: Unit = { println("before") }
+  @After def after: Unit = { println("after") }
 
   // transitions
   "init" -> "active" := skip

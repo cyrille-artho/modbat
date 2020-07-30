@@ -37,8 +37,9 @@ class PathInPointGraph(val root: TrieNode,
   override def dotify(): (Int, Int, Int, Int, Int, Int, Int) = {
     out.println("digraph model {")
     out.println("  orientation = portrait;")
+    // the size attribute can scale the graphs down，If size ends in an exclamation point (!), then it is taken to be the desired size
     out.println(
-      "  graph [ rankdir = \"TB\", ranksep=\"0.1\", nodesep=\"0.05\" ];")
+      "  graph [ rankdir = \"TB\", ranksep=\"0.1\", nodesep=\"0.05\", size=\"8!\" ];") //ranksep="0.1", nodesep="0.05" for small graphs; ranksep="0.5", nodesep="0.1" for big graphs
     out.println(
       "  node [ fontname = \"Helvetica\", fontsize=\"6.0\", shape=\"" + "point" +
         "\", margin=\"0.01\"," + " height=\"0.1\"," + " width=\"0.5\" ];")
@@ -349,7 +350,7 @@ class PathInPointGraph(val root: TrieNode,
     }
   }
 
-  private def drawOneEdge(origin: String, dest: String, label: String) {
+  private def drawOneEdge(origin: String, dest: String, label: String): Unit = {
     out.print(origin + "->" + dest + label)
   }
 

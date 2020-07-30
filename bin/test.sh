@@ -208,10 +208,6 @@ run 0 $APP -n=500 -s=1 --no-redirect-out --log-level=fine \
 run 0 $APP -n=1000 -s=1 --no-redirect-out --log-level=fine \
 	modbat.examples.JavaNioServerSocket
 
-run 0 $APP --mode=dot --auto-labels \
-	modbat.examples.JavaNioServerSocket
-savemv modbat.examples.JavaNioServerSocket.dot nioserv-auto.dot
-checkfile nioserv-auto.dot
 ## path coverage 20 test cases
 run 0 $APP -n=20 -s=1 --no-redirect-out --dotify-path-coverage --path-coverage-graph-mode=abstracted \
 	modbat.examples.NioSocket1
@@ -233,13 +229,40 @@ savemv modbat.examples.NioSocket1-root-StateGraph.dot nio-path-state-500.dot
 checkfile nio-path-state-500.dot
 savemv modbat.examples.NioSocket1-root-PointGraph.dot nio-path-point-500.dot
 checkfile nio-path-point-500.dot
-# path coverage 1000 test cases
+## path coverage 1000 test cases
 run 0 $APP -n=1000 -s=1 --no-redirect-out --dotify-path-coverage --path-coverage-graph-mode=abstracted \
 	modbat.examples.NioSocket1
 savemv modbat.examples.NioSocket1-root-StateGraph.dot nio-path-state-1000.dot
 checkfile nio-path-state-1000.dot
 savemv modbat.examples.NioSocket1-root-PointGraph.dot nio-path-point-1000.dot
 checkfile nio-path-point-1000.dot
+
+## heuristic search 10 test cases
+run 0 $APP -n=10 -s=1 --no-redirect-out --dotify-path-coverage --search=heur \
+	modbat.examples.NioSocket1
+savemv modbat.examples.NioSocket1-root-StateGraph.dot nio-path-state-heur-10.dot
+checkfile nio-path-state-heur-10.dot
+savemv modbat.examples.NioSocket1-root-PointGraph.dot nio-path-point-heur-10.dot
+checkfile nio-path-point-heur-10.dot
+## heuristic search 100 test cases
+run 0 $APP -n=100 -s=1 --no-redirect-out --dotify-path-coverage --search=heur \
+	modbat.examples.NioSocket1
+savemv modbat.examples.NioSocket1-root-StateGraph.dot nio-path-state-heur-100.dot
+checkfile nio-path-state-heur-100.dot
+savemv modbat.examples.NioSocket1-root-PointGraph.dot nio-path-point-heur-100.dot
+checkfile nio-path-point-heur-100.dot
+## heuristic search 200 test cases
+run 0 $APP -n=200 -s=1 --no-redirect-out --dotify-path-coverage --search=heur \
+	modbat.examples.NioSocket1
+savemv modbat.examples.NioSocket1-root-StateGraph.dot nio-path-state-heur-200.dot
+checkfile nio-path-state-heur-200.dot
+savemv modbat.examples.NioSocket1-root-PointGraph.dot nio-path-point-heur-200.dot
+checkfile nio-path-point-heur-200.dot
+
+run 0 $APP --mode=dot --auto-labels \
+	modbat.examples.JavaNioServerSocket
+savemv modbat.examples.JavaNioServerSocket.dot nioserv-auto.dot
+checkfile nioserv-auto.dot
 
 run 0 $APP --mode=dot --log-level=debug \
 	--auto-labels \
