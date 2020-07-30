@@ -35,13 +35,15 @@ object ConfigTest {
   }
 
   def testConfig(args: Array[String], errCode: Int = 0): Unit = {
+    var logErr: (Iterator[String], Iterator[String]) =
+      (Iterator[String](), Iterator[String]())
     try {
-      val logErr = configTest(args, List())
+      logErr = configTest(args, List())
       if (errCode != 0) {
         assert (errCode == 0, "Error code " + Integer.toString(errCode) +
                               " expected but test was successful.")
       }
-      checkOutput(args, logErr)
+    checkOutput(args, logErr)
     } catch {
       case (e: Exception) =>
         assert(errCode != 0, "Caught unexpected exception: " + e.toString())
@@ -61,8 +63,8 @@ object ConfigTest {
         System.err.println(Integer.toString(l) + ": " + context(l % 3))
       }
     }
-    System.err.println(Integer.toString(lineNo) + "> " + actual)
     System.err.println(Integer.toString(lineNo) + "< " + expected)
+    System.err.println(Integer.toString(lineNo) + "> " + actual)
   }
 
   def removeAnsiEscapes(line: String) = {
