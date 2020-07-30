@@ -39,10 +39,6 @@ run 0 $APP --version
 # -v and --version tests cannot be done as unit tests as they retrieve the
 # version information from the executable JAR file at run-time
 
-run 1 $APP --odd-prime
-run 0 $APP --no-odd-prime
-run 0 $APP --odd-prime --small-prime=three
-
 run 0 $APP --no-redirectOut -s
 run 1 $APP --no-redirectOut=true -s
 run 1 $APP --no-redirectOut=false -s

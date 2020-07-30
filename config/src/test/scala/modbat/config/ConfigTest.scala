@@ -218,4 +218,13 @@ class ConfigTest extends FlatSpec with Matchers {
 
   "Dependency between boolean and numerical option 3" should "fail" in
     ConfigTest.testConfig(Array("--even-prime", "--small-prime=three"), 1)
+
+  "Dependency between boolean and numerical option 4" should "fail" in
+    ConfigTest.testConfig(Array("--odd-prime"), 1)
+
+  "Dependency between boolean and numerical option 5" should "pass" in
+    ConfigTest.testConfig(Array("--no-odd-prime"))
+
+  "Dependency between boolean and numerical option 6" should "pass" in
+    ConfigTest.testConfig(Array("--odd-prime", "--small-prime=three"))
 }
