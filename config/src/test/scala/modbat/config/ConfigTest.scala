@@ -83,7 +83,7 @@ object ConfigTest {
     }
     if (actual.hasNext) {
       report("Extra output; matching context in template " +
-             templateName + ":", l, context, "",
+             templateName + ":", l + 1, context, "",
              removeAnsiEscapes(actual.next().toString()))
       return false
     }
