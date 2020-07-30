@@ -43,8 +43,8 @@ object ConfigTest {
       }
       checkOutput(args, logErr)
     } catch {
-      case (t: Throwable) =>
-        assert(errCode != 0, "Caught unexpected exception: " + t.toString())
+      case (e: Exception) =>
+        assert(errCode != 0, "Caught unexpected exception: " + e.toString())
     }
   }
 
@@ -120,7 +120,7 @@ object ConfigTest {
       System.err.println("diff " + filename.replace("../", "") +
                          " " + actualOutput.replace("../", ""))
     }
-    assert(result)
+    assert(result, "Output does not match template")
   }
 
   def doCheck(filename: String, output: Iterator[String]) = {
