@@ -1,9 +1,11 @@
 package modbat.config
 
+import java.io.BufferedWriter
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileDescriptor
 import java.io.FileOutputStream
+import java.io.FileWriter
 import java.io.PrintStream
 
 import scala.io.Source
@@ -92,20 +94,43 @@ object ConfigTest {
 // output "diff" command, have assertion at the end
   }
 
+  def logFileName(filename: String) = {
+    if (filename.endsWith(".eout")) {
+      filename.replace(".eout", ".err")
+    } else {
+      assert(filename.endsWith(".out"))
+      filename.replace(".out", ".log")
+    }
+  }
+
   def checkFile(filename: String, output: Iterator[String]) = {
-    val logTemplFile = new File("../" + filename)
+    val result = doCheck(filename, output)
+    if (!result) {
+      val actualOutput = logFileName(filename)
+System.err.println(">>>" + actualOutput)
+      val writer = new BufferedWriter(new FileWriter(actualOutput))
+      output.foreach(writer.write)
+      writer.close()
+      System.err.println("diff " + filename.replace("../", "") +
+                         " " + actualOutput.replace("../", ""))
+    }
+    assert(result)
+  }
+
+  def doCheck(filename: String, output: Iterator[String]) = {
+    val logTemplFile = new File(filename)
     if (logTemplFile.exists()) {
       val logTemplate = Source.fromFile(logTemplFile).getLines
-      assert(sameAs(output, logTemplate, logTemplFile.getName()))
+      sameAs(output, logTemplate, logTemplFile.getName())
     } else {
       val logTemplate = Iterator[String]()
-      assert(sameAs(output, logTemplate, logTemplFile.getName()))
+      sameAs(output, logTemplate, logTemplFile.getName())
     }
   }
 
   def checkOutput(args: Array[String],
                   logErr: (Iterator[String], Iterator[String])) = {
-    val logFileName = "log/config/" + args.mkString("")
+    val logFileName = "../log/config/" + args.mkString("")
     checkFile(logFileName + ".out", logErr._1)
     checkFile(logFileName + ".eout", logErr._2)
   }
@@ -122,4 +147,7 @@ class ConfigTest extends FlatSpec with Matchers {
 
   "showConfig" should "produce the same output as in the output template" in
     ConfigTest.testConfig(Array("-s"))
+
+//  "IllegalArg" should "produce an exception" in
+//    ConfigTest.testConfig(Array("-x"))
 }
