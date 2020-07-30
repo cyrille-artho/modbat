@@ -15,7 +15,6 @@ APP="scala build/config.jar"
 
 export LOG_PATH="$TEST_LOG_PATH"
 unset CLASSPATH
-run 0 $APP -s
 
 export CLASSPATH=foo
 run 0 $APP -s cp_1

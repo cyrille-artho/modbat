@@ -118,13 +118,8 @@ class ConfigTest extends FlatSpec with Matchers {
     result._2 shouldBe empty
   }
 
-  "NoInput" should "produce no output" in {
-    val result = ConfigTest.testConfig(Array())
-    result._1 shouldBe empty
-    result._2 shouldBe empty
-  }
+  "NoInput" should "produce no output" in ConfigTest.testConfig(Array())
 
-  "showConfig" should "produce the same output as in the output template" in {
-    val result = ConfigTest.testConfig(Array("-s"))
-  }
+  "showConfig" should "produce the same output as in the output template" in
+    ConfigTest.testConfig(Array("-s"))
 }
