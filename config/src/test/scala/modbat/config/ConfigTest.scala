@@ -7,7 +7,7 @@ import java.io.FileOutputStream
 import java.io.PrintStream
 
 import scala.io.Source
-import scala.math.min
+import scala.math.max
 
 import org.scalatest._
 
@@ -41,12 +41,12 @@ object ConfigTest {
   def report(msg: String, lineNo: Int,
              context: Array[String], expected: String,
              actual: String): Unit = {
-    val startLine = min(lineNo - 3, 1)
+    val startLine = max(lineNo - 3, 1)
     System.err.println(msg)
     val endLine = lineNo - 1
     if (endLine > 0) {
       System.err.println("Context, lines " + Integer.toString(startLine) +
-                         Integer.toString(endLine))
+                         " - " + Integer.toString(endLine))
       for (l <- startLine to endLine) {
         System.err.println(Integer.toString(l) + ": " + context(l % 3))
       }
