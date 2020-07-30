@@ -55,19 +55,23 @@ object ConfigTest {
     System.err.println(Integer.toString(lineNo) + "> " + actual)
   }
 
+  def removeAnsiEscapes(line: String) = {
+    line.replaceAll("\u009B|\u001B\\[[0-?]*[ -/]*[@-~]", "")
+  }
+
   def sameAs[String](expected: Iterator[String], actual: Iterator[String],
     templateName: String): Boolean = {
     var l = 0
     val context = List("", "", "").toArray
     for (line <- expected) {
-      val printableLine = line.toString().replaceAll("\\P{Print}", "")
+      val printableLine = removeAnsiEscapes(line.toString())
       l = l + 1
       if (!actual.hasNext) {
         report("Output truncated; matching context in template " +
                templateName + ":", l, context, printableLine, "")
         return false
       } else {
-        val actLine = actual.next().toString().replaceAll("\\P{Print}", "")
+        val actLine = removeAnsiEscapes(actual.next().toString())
         if (printableLine.equals(actLine)) {
           context(l % 3) = printableLine
         } else {
