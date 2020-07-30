@@ -43,10 +43,6 @@ run 1 $APP --odd-prime
 run 0 $APP --no-odd-prime
 run 0 $APP --odd-prime --small-prime=three
 
-run 0 $APP --even-prime
-run 0 $APP --no-even-prime
-run 1 $APP --even-prime --small-prime=three
-
 run 0 $APP --no-redirectOut -s
 run 1 $APP --no-redirectOut=true -s
 run 1 $APP --no-redirectOut=false -s
