@@ -81,6 +81,12 @@ object ConfigTest {
         }
       }
     }
+    if (actual.hasNext) {
+      report("Extra output; matching context in template " +
+             templateName + ":", l, context, "",
+             removeAnsiEscapes(actual.next().toString()))
+      return false
+    }
     true
 // TODO: Write actual output to file if problem detected,
 // output "diff" command, have assertion at the end
