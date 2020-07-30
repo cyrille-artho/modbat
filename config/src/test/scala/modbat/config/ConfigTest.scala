@@ -289,6 +289,7 @@ class ConfigTest extends FlatSpec with Matchers {
 
   "Option range test 7" should "fail" in
     ConfigTest.configTest(Array("--abortProbability=1.5", "-s"), 1)
+  //  TODO: Test for max range on int, min/max on long
 
   "Option parameter test 1" should "fail" in
     ConfigTest.configTest(Array("-f=x", "-s"), 1)
@@ -319,4 +320,10 @@ class ConfigTest extends FlatSpec with Matchers {
 
   "Option parameter test 10" should "pass" in
     ConfigTest.configTest(Array("-s=ffffffffffffffff", "-s"))
+
+  "Bogus parameter test 1" should "fail" in
+    ConfigTest.configTest(Array("--Quux"), 1)
+
+  "Bogus parameter test 2" should "fail" in
+    ConfigTest.configTest(Array("--baz-Quux"), 1)
 }

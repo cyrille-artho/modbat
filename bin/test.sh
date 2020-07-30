@@ -39,10 +39,6 @@ run 0 $APP --version
 # -v and --version tests cannot be done as unit tests as they retrieve the
 # version information from the executable JAR file at run-time
 
-# TODO: Test for max range on int, min/max on long
-run 1 $APP --Quux
-run 1 $APP --baz-Quux
-
 
 APP="scala build/modbat.jar"
 run 1 $APP --model-class=x
