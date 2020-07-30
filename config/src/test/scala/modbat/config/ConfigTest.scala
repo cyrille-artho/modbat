@@ -38,13 +38,13 @@ object ConfigTest {
     try {
       val logErr = configTest(args, List())
       if (errCode != 0) {
-        System.err.println("Error code " + Integer.toString(errCode) +
-                           " expected but test was successful.")
-        assert (errCode == 0)
+        assert (errCode == 0, "Error code " + Integer.toString(errCode) +
+                              " expected but test was successful.")
       }
       checkOutput(args, logErr)
     } catch {
-      case (t: Throwable) => assert(errCode != 0)
+      case (t: Throwable) =>
+        assert(errCode != 0, "Caught unexpected exception: " + t.toString())
     }
   }
 
@@ -154,6 +154,12 @@ class ConfigTest extends FlatSpec with Matchers {
   "showConfig" should "produce the same output as in the output template" in
     ConfigTest.testConfig(Array("-s"))
 
+  "showConfigLong" should "produce the same output as in the output template" in
+    ConfigTest.testConfig(Array("--show"))
+
   "IllegalArg" should "produce an exception" in
     ConfigTest.testConfig(Array("-x"), 1)
+
+  "IllegalArg2" should "produce an exception" in
+    ConfigTest.testConfig(Array("--x"), 1)
 }

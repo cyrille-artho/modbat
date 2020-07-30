@@ -10,7 +10,6 @@ APP="scala -cp build/modbat.jar modbat.config.ConfigTest"
 run 0 $APP -h
 run 0 $APP -s
 
-
 APP="scala build/config.jar"
 
 export LOG_PATH="$TEST_LOG_PATH"
@@ -33,11 +32,11 @@ run 1 $APP -classp=baz -s
 unset CLASSPATH
 
 run 0 $APP -h
+run 0 $APP --help
+# -h and --help tests cannot be done as unit tests as they retrieve the
+# version information from the executable JAR file at run-time
 run 0 $APP -v
 run 0 $APP --version
-run 0 $APP --show
-run 0 $APP --help
-run 1 $APP --x
 run 0 $APP -s --mode=exec
 run 0 $APP -s --mode=exec -s
 run 1 $APP -s --mode=quux -s
