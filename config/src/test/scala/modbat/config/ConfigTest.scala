@@ -53,8 +53,8 @@ object ConfigTest {
         System.err.println(Integer.toString(l) + ": " + context(l % 3))
       }
     }
-    System.err.println(Integer.toString(lineNo) + "< " + expected)
-    System.err.println(Integer.toString(lineNo) + "> " + actual)
+    System.err.println(Integer.toString(lineNo) + "< " + actual)
+    System.err.println(Integer.toString(lineNo) + "> " + expected)
   }
 
   def removeAnsiEscapes(line: String) = {
@@ -90,8 +90,6 @@ object ConfigTest {
       return false
     }
     true
-// TODO: Write actual output to file if problem detected,
-// output "diff" command, have assertion at the end
   }
 
   def logFileName(filename: String) = {
@@ -104,12 +102,12 @@ object ConfigTest {
   }
 
   def checkFile(filename: String, output: Iterator[String]) = {
-    val result = doCheck(filename, output)
+    val iters = output.duplicate
+    val result = doCheck(filename, iters._1)
     if (!result) {
       val actualOutput = logFileName(filename)
-System.err.println(">>>" + actualOutput)
       val writer = new BufferedWriter(new FileWriter(actualOutput))
-      output.foreach(writer.write)
+      iters._2.map(l => removeAnsiEscapes(l) + "\n").foreach(writer.write)
       writer.close()
       System.err.println("diff " + filename.replace("../", "") +
                          " " + actualOutput.replace("../", ""))
