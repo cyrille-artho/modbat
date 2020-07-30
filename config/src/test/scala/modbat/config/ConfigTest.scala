@@ -24,7 +24,7 @@ object ConfigTest {
         val c = new ConfigMgr("ConfigTest", "[FILE]", new TestConfiguration(),
 			  new Version ("modbat.config"), true)
         c.setSplashScreen(splash)
-        c.parseArgs(args)
+        ConfigMgr.printRemainingArgs(c.parseArgs(args))
       }
     }
     (scala.io.Source.fromString(out.toString).getLines(), scala.io.Source.fromString(err.toString).getLines())
@@ -171,4 +171,7 @@ class ConfigTest extends FlatSpec with Matchers {
 
   "Illegal option" should "show be recognized" in
     ConfigTest.testConfig(Array("-s", "--mode=quux", "-s"), 1)
+
+  "No options" should "print remaining args to console" in
+    ConfigTest.testConfig(Array("a", "b", "c"))
 }

@@ -29,30 +29,32 @@ object ConfigMgr {
     }
   }
 
+  def printRemainingArgs(args: Option[Iterator[String]]): Unit = {
+    args match {
+      case Some(remainingArgs) => {
+        // app-specific handling of left-over args; here: pretty-print
+        val hasMore = remainingArgs.hasNext
+        while (remainingArgs.hasNext) {
+          print (remainingArgs.next())
+            if (remainingArgs.hasNext) {
+              print (" ")
+            }
+          }
+          if (hasMore) {
+            println()
+          }
+        }
+      case None => // nothing
+    }
+  }
+
   def run(args: Array[String]): Unit = {
     // parse arguments
     var c: ConfigMgr = null
     try {
       c = new ConfigMgr("ConfigMgr", "[FILE]", new TestConfiguration(),
 			new Version ("modbat.config"), true)
-      val remainder = c.parseArgs(args)
-
-      remainder match {
-	       case Some(remainingArgs) => {
-	         // app-specific handling of left-over args; here: pretty-print
-	         val hasMore = remainingArgs.hasNext
-	         while (remainingArgs.hasNext) {
-	           print (remainingArgs.next())
-	             if (remainingArgs.hasNext) {
-	               print (" ")
-	             }
-        	  }
-        	  if (hasMore) {
-                    println()
-        	  }
-        	}
-	        case None => // nothing
-        }
+      printRemainingArgs(c.parseArgs(args))
       } catch {
         case e: IllegalArgumentException => {
 	      if (c != null) {
