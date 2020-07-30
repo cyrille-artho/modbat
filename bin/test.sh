@@ -39,12 +39,6 @@ run 0 $APP --version
 # -v and --version tests cannot be done as unit tests as they retrieve the
 # version information from the executable JAR file at run-time
 
-run 1 $APP -f=x -s
-run 1 $APP -g=x -s
-run 1 $APP -f=
-run 1 $APP -f
-run 1 $APP --modelClass=
-run 1 $APP --modelClass
 run 1 $APP -n-runs=2
 run 0 $APP --n-runs=2 -s
 run 0 $APP -s=10c1be9b302682f3 -s

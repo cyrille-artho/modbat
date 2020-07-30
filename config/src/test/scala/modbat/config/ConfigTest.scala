@@ -283,4 +283,22 @@ class ConfigTest extends FlatSpec with Matchers {
 
   "Option range test 7" should "fail" in
     ConfigTest.configTest(Array("--abortProbability=1.5", "-s"), 1)
+
+  "Option parameter test 1" should "fail" in
+    ConfigTest.configTest(Array("-f=x", "-s"), 1)
+
+  "Option parameter test 2" should "fail" in
+    ConfigTest.configTest(Array("-g=x", "-s"), 1)
+
+  "Option parameter test 3" should "fail" in
+    ConfigTest.configTest(Array("-f="), 1)
+
+  "Option parameter test 4" should "fail" in
+    ConfigTest.configTest(Array("-f"), 1)
+
+  "Option parameter test 5" should "fail" in
+    ConfigTest.configTest(Array("--modelClass="), 1)
+
+  "Option parameter test 6" should "fail" in
+    ConfigTest.configTest(Array("--modelClass"), 1)
 }
