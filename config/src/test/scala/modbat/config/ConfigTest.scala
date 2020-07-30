@@ -227,4 +227,40 @@ class ConfigTest extends FlatSpec with Matchers {
 
   "Dependency between boolean and numerical option 6" should "pass" in
     ConfigTest.testConfig(Array("--odd-prime", "--small-prime=three"))
+
+  "Option syntax test 1" should "pass" in
+    ConfigTest.testConfig(Array("--no-redirectOut", "-s"))
+
+  "Option syntax test 2" should "fail" in
+    ConfigTest.testConfig(Array("--no-redirectOut=true", "-s"), 1)
+
+  "Option syntax test 3" should "fail" in
+    ConfigTest.testConfig(Array("--no-redirectOut=false", "-s"), 1)
+
+  "Option syntax test 4" should "fail" in
+    ConfigTest.testConfig(Array("--no-redirectOut=xx", "-s"), 1)
+
+  "Option syntax test 5" should "fail" in
+    ConfigTest.testConfig(Array("--no-mode"), 1)
+
+  "Option syntax test 6" should "fail" in
+    ConfigTest.testConfig(Array("--nRuns"), 1)
+
+  "Option syntax test 7" should "fail" in
+    ConfigTest.testConfig(Array("--nRuns="), 1)
+
+  "Option syntax test 8" should "fail" in
+    ConfigTest.testConfig(Array("--nRuns=a"), 1)
+
+  "Option syntax test 9" should "pass" in
+    ConfigTest.testConfig(Array("--nRuns=1", "-s"))
+
+  "Option syntax test 10" should "pass" in
+    ConfigTest.testConfig(Array("--nRuns=999999", "-s"))
+
+  "Option range test 1" should "fail" in
+    ConfigTest.testConfig(Array("--nRuns=0"), 1)
+
+  "Option range test 2" should "fail" in
+    ConfigTest.testConfig(Array("--nRuns=999999999999"), 1)
 }
