@@ -38,9 +38,6 @@ run 0 $APP -v
 run 0 $APP --version
 # -v and --version tests cannot be done as unit tests as they retrieve the
 # version information from the executable JAR file at run-time
-run 0 $APP -- a b c
-run 0 $APP -- -h a b c
-run 0 $APP -- --help a b c
 run 0 $APP --redirectOut -s
 run 0 $APP --redirectOut=true -s
 run 0 $APP --redirectOut=false -s

@@ -174,4 +174,15 @@ class ConfigTest extends FlatSpec with Matchers {
 
   "No options" should "print remaining args to console" in
     ConfigTest.testConfig(Array("a", "b", "c"))
+
+  "Double hyphen" should "print remaining args to console" in
+    ConfigTest.testConfig(Array("--", "a", "b", "c"))
+
+  "Double hyphen with options" should
+    "print remaining option and args to console" in
+    ConfigTest.testConfig(Array("--", "-h", "a", "b", "c"))
+
+  "Double hyphen with long options" should
+    "print remaining option and args to console" in
+    ConfigTest.testConfig(Array("--", "--help", "a", "b", "c"))
 }
