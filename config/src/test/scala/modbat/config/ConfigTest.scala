@@ -60,19 +60,19 @@ object ConfigTest {
     var l = 0
     val context = List("", "", "").toArray
     for (line <- expected) {
+      val printableLine = line.toString().replaceAll("\\P{Print}", "")
       l = l + 1
       if (!actual.hasNext) {
         report("Output truncated; matching context in template " +
-               templateName + ":", l, context, line.toString(), "")
+               templateName + ":", l, context, printableLine, "")
         return false
       } else {
-        val actLine = actual.next()
-        if (line.equals(actLine)) {
-          context(l % 3) = line.toString()
+        val actLine = actual.next().toString().replaceAll("\\P{Print}", "")
+        if (printableLine.equals(actLine)) {
+          context(l % 3) = printableLine
         } else {
           report("Output mismatch; matching context in template " +
-                 templateName + ":", l, context,
-                 line.toString(), actLine.toString())
+                 templateName + ":", l, context, printableLine, actLine)
           return false
         }
       }
@@ -96,7 +96,6 @@ object ConfigTest {
   def checkOutput(args: Array[String],
                   logErr: (Iterator[String], Iterator[String])) = {
     val logFileName = "log/config/" + args.mkString("")
-System.err.println("=== log file name: " + new File(logFileName).getCanonicalPath())
     checkFile(logFileName + ".out", logErr._1)
     checkFile(logFileName + ".eout", logErr._2)
   }
