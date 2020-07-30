@@ -263,4 +263,19 @@ class ConfigTest extends FlatSpec with Matchers {
 
   "Option range test 2" should "fail" in
     ConfigTest.testConfig(Array("--nRuns=999999999999"), 1)
+
+  "Option range test 3" should "pass" in
+    ConfigTest.testConfig(Array("-s", "--small-prime=three", "-s"))
+
+  "Option range test 4" should "fail" in
+    ConfigTest.testConfig(Array("-s", "--small-prime=one"), 1)
+
+  "Option range test 5" should "pass" in
+    ConfigTest.testConfig(Array("--abortProbability=0.5", "-s"))
+
+  "Option range test 6" should "fail" in
+    ConfigTest.testConfig(Array("--abortProbability=-0.5", "-s"), 1)
+
+  "Option range test 7" should "fail" in
+    ConfigTest.testConfig(Array("--abortProbability=1.5", "-s"), 1)
 }

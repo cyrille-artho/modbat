@@ -39,11 +39,6 @@ run 0 $APP --version
 # -v and --version tests cannot be done as unit tests as they retrieve the
 # version information from the executable JAR file at run-time
 
-run 0 $APP -s --small-prime=three -s
-run 1 $APP -s --small-prime=one
-run 0 $APP --abortProbability=0.5 -s
-run 1 $APP --abortProbability=-0.5 -s
-run 1 $APP --abortProbability=1.5 -s
 run 1 $APP -f=x -s
 run 1 $APP -g=x -s
 run 1 $APP -f=
