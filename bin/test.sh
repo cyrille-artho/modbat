@@ -39,13 +39,6 @@ run 0 $APP --version
 # -v and --version tests cannot be done as unit tests as they retrieve the
 # version information from the executable JAR file at run-time
 
-run 1 $APP -n-runs=2
-run 0 $APP --n-runs=2 -s
-run 0 $APP -s=10c1be9b302682f3 -s
-run 1 $APP -s=10c1be9b302682f30
-run 0 $APP -s=ffffffffffffffff -s
-# n is not in hex
-run 1 $APP -n=ffffffff -s
 # TODO: Test for max range on int, min/max on long
 run 1 $APP --Quux
 run 1 $APP --baz-Quux

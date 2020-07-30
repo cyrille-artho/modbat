@@ -263,6 +263,12 @@ class ConfigTest extends FlatSpec with Matchers {
   "Option syntax test 10" should "pass" in
     ConfigTest.configTest(Array("--nRuns=999999", "-s"))
 
+  "Option syntax test 11" should "fail" in
+    ConfigTest.configTest(Array("-n-runs=2"), 1)
+
+  "Option syntax test 12" should "pass" in
+    ConfigTest.configTest(Array("--n-runs=2"))
+
   "Option range test 1" should "fail" in
     ConfigTest.configTest(Array("--nRuns=0"), 1)
 
@@ -301,4 +307,16 @@ class ConfigTest extends FlatSpec with Matchers {
 
   "Option parameter test 6" should "fail" in
     ConfigTest.configTest(Array("--modelClass"), 1)
+
+  "Option parameter test 7" should "fail" in
+    ConfigTest.configTest(Array("-n=ffffffff", "-s"), 1) // n is not in hex
+
+  "Option parameter test 8" should "pass" in
+    ConfigTest.configTest(Array("-s=10c1be9b302682f3", "-s"))
+
+  "Option parameter test 9" should "fail" in
+    ConfigTest.configTest(Array("-s=10c1be9b302682f30"), 1) // out of range
+
+  "Option parameter test 10" should "pass" in
+    ConfigTest.configTest(Array("-s=ffffffffffffffff", "-s"))
 }
