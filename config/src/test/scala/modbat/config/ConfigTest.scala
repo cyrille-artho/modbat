@@ -62,16 +62,17 @@ object ConfigTest {
     for (line <- expected) {
       l = l + 1
       if (!actual.hasNext) {
-        report("Output truncated; matching context in template " + templateName,
-               l, context, line.toString(), "")
+        report("Output truncated; matching context in template " +
+               templateName + ":", l, context, line.toString(), "")
         return false
       } else {
         val actLine = actual.next()
         if (line.equals(actLine)) {
           context(l % 3) = line.toString()
         } else {
-          report("Output truncated; matching context in template " + templateName,
-                 l, context, line.toString(), actLine.toString())
+          report("Output mismatch; matching context in template " +
+                 templateName + ":", l, context,
+                 line.toString(), actLine.toString())
           return false
         }
       }
