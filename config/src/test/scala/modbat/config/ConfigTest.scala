@@ -185,4 +185,16 @@ class ConfigTest extends FlatSpec with Matchers {
   "Double hyphen with long options" should
     "print remaining option and args to console" in
     ConfigTest.testConfig(Array("--", "--help", "a", "b", "c"))
+
+  "Boolean flag syntax test 1" should "pass" in
+    ConfigTest.testConfig(Array("--redirectOut", "-s"))
+
+  "Boolean flag syntax test 2" should "pass" in
+    ConfigTest.testConfig(Array("--redirectOut=true", "-s"))
+
+  "Boolean flag syntax test 3" should "pass" in
+    ConfigTest.testConfig(Array("--redirectOut=false", "-s"))
+
+  "Boolean flag syntax test 4" should "fail" in
+    ConfigTest.testConfig(Array("--redirectOut=xx", "-s"), 1)
 }
