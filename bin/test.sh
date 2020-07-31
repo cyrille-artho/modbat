@@ -41,8 +41,6 @@ run 0 $APP --version
 
 
 APP="scala build/modbat.jar"
-run 1 $APP --model-class=x
-
 #run 1 $APP
 # FIXME: Disabled because dir/log file name not extracted correctly
 run 1 $APP a b c

@@ -30,7 +30,7 @@ object ModbatTestHarness {
     (ret, scala.io.Source.fromString(out.toString).getLines().toList, scala.io.Source.fromString(err.toString).getLines().toList)
   }
 
-  def test(args: Array[String], env: () => Unit, errCode: Int = 0): Unit = {
+  def runTest(args: Array[String], env: () => Unit, errCode: Int = 0): Unit = {
     val out: ByteArrayOutputStream = new ByteArrayOutputStream()
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
     env()
@@ -51,6 +51,15 @@ object ModbatTestHarness {
       }
     }
     checkOutput(args, bytesToLines(out), bytesToLines(err))
+  }
+
+  def test(args: Array[String], env: () => Unit, errCode: Int = 0): Unit = {
+    try {
+      runTest(args, env, errCode)
+    } catch {
+      case (e: Exception) =>
+        assert(errCode != 0, "Caught unexpected exception: " + e.toString())
+    }
   }
 
   def mainTarget(args: Array[String]) = {
