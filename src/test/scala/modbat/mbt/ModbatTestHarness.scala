@@ -7,6 +7,9 @@ import java.io.PrintStream
 import java.util.Collections
 import java.util.HashMap
 
+import modbat.config.ConfigTestHarness.bytesToLines
+import modbat.config.ConfigTestHarness.checkOutput
+
 object ModbatTestHarness {
   def testMain(args: Array[String], env: () => Unit): (Int, List[String], List[String]) = {
     env()
@@ -26,7 +29,30 @@ object ModbatTestHarness {
     }
     (ret, scala.io.Source.fromString(out.toString).getLines().toList, scala.io.Source.fromString(err.toString).getLines().toList)
   }
-  
+
+  def test(args: Array[String], env: () => Unit, errCode: Int = 0): Unit = {
+    val out: ByteArrayOutputStream = new ByteArrayOutputStream()
+    val err: ByteArrayOutputStream = new ByteArrayOutputStream()
+
+    Console.withErr(err) {
+      Console.withOut(out) {
+        try {
+          Main.run(args)
+          if (errCode != 0) {
+            assert (errCode == 0, "Error code " + Integer.toString(errCode) +
+                                  " expected but test was successful.")
+          }
+        } catch {
+          case e: IllegalArgumentException => {
+            checkOutput(args, bytesToLines(out), bytesToLines(err))
+            throw e
+          }
+        }
+      }
+    }
+    checkOutput(args, bytesToLines(out), bytesToLines(err))
+  }
+
   def setEnv(newEnv: java.util.Map[String, String]): Unit = {
      try {
       val processEnvironmentClass = Class.forName("java.lang.ProcessEnvironment")
