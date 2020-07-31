@@ -288,10 +288,6 @@ run 0 $APP -s=1 -n=10 --no-redirect-out --log-level=fine \
 run 0 $APP -s=2e78dcb10b272e5 -n=1 --no-redirect-out \
 	modbat.test.Redundancy
 
-run 1 $APP -s=1 --no-redirect-out modbat.test.EmptyModel
-
-run 1 $APP -s=1 --no-redirect-out modbat.test.AbstractCls
-
 run 0 $APP -s=1 -n=3 --no-redirect-out --log-level=fine \
 	modbat.test.Shortcut
 run 0 $APP -s=1 -n=1 --no-redirect-out modbat.test.Shortcut
