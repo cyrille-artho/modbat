@@ -34,4 +34,8 @@ class ModbatTest extends FlatSpec with Matchers with AppendedClues {
   "A missing model class 8" should "cause Modbat to fail" in {
     ModbatTestHarness.test(Array("--log-level=fine"), (() => ModbatTestHarness.setTestJar()), 1)
   }
+
+  "A class that is not a model class" should "cause Modbat to fail" in {
+    ModbatTestHarness.test(Array("-s=1", "--no-redirect-out", "modbat.examples.SimpleCounter"), (() => ModbatTestHarness.setTestJar()), 1)
+  }
 }

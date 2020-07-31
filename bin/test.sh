@@ -43,19 +43,8 @@ run 0 $APP --version
 APP="scala build/modbat.jar"
 #run 1 $APP
 # FIXME: Disabled because dir/log file name not extracted correctly
-run 1 $APP a b c
-run 1 $APP -n=1 x b c
-run 1 $APP x y -n=1
-run 1 $APP -n=2 -- -n=1
-run 1 $APP a -n=2 -- -n=1
-run 1 $APP -s=0
-
-run 1 $APP --log-level=fine
-# lower-case option arg
-
 
 export CLASSPATH=build/modbat-examples.jar
-run 1 $APP -s=1 --no-redirect-out modbat.examples.SimpleCounter
 
 run 0 $APP -n=5 -s=1 --no-redirect-out --log-level=fine \
 	--no-init --no-shutdown modbat.examples.NioSocket1
