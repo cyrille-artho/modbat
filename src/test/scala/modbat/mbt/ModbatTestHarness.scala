@@ -8,7 +8,7 @@ import java.util.Collections
 import java.util.HashMap
 
 import modbat.config.ConfigTestHarness.bytesToLines
-import modbat.config.ConfigTestHarness.checkOutput
+import modbat.config.ConfigTestHarness.checkFile
 
 object ModbatTestHarness {
   def testMain(args: Array[String], env: () => Unit): (Int, List[String], List[String]) = {
@@ -33,7 +33,7 @@ object ModbatTestHarness {
   def test(args: Array[String], env: () => Unit, errCode: Int = 0): Unit = {
     val out: ByteArrayOutputStream = new ByteArrayOutputStream()
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
-
+    env()
     Console.withErr(err) {
       Console.withOut(out) {
         try {
@@ -51,6 +51,26 @@ object ModbatTestHarness {
       }
     }
     checkOutput(args, bytesToLines(out), bytesToLines(err))
+  }
+
+  def mainTarget(args: Array[String]) = {
+    args.find(a => !a.startsWith("-")) match {
+      case Some(s: String) => s
+      case _ => ""
+    }
+  }
+
+  def logFileName(args: Array[String]) = {
+    val target = mainTarget(args)
+    val params = args.filterNot(a => a.equals(target))
+    target + "/" + params.mkString("")
+  }
+
+  def checkOutput(args: Array[String],
+                  log: Iterator[String], err: Iterator[String]) = {
+    val logFile = "log/modbat/" + logFileName(args)
+    checkFile(logFile + ".out", log)
+    checkFile(logFile + ".eout", err)
   }
 
   def setEnv(newEnv: java.util.Map[String, String]): Unit = {
