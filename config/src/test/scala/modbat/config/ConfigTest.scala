@@ -14,6 +14,9 @@ import scala.math.max
 import org.scalatest._
 
 object ConfigTest {
+  def bytesToLines(bytes: ByteArrayOutputStream) =
+    scala.io.Source.fromString(bytes.toString()).getLines()
+
   def runTest(args: Array[String], errCode: Int = 0): Unit = {
     val out: ByteArrayOutputStream = new ByteArrayOutputStream() 
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
@@ -32,17 +35,13 @@ object ConfigTest {
           case e: IllegalArgumentException => {
             Console.err.println(c.header)
             Console.err.println(e.getMessage())
-            checkOutput(args,
-                        scala.io.Source.fromString(out.toString).getLines(),
-                        scala.io.Source.fromString(err.toString).getLines())
+            checkOutput(args, bytesToLines(out), bytesToLines(err))
             throw e
           }
         }
       }
     }
-    checkOutput(args,
-                scala.io.Source.fromString(out.toString).getLines(),
-                scala.io.Source.fromString(err.toString).getLines())
+    checkOutput(args, bytesToLines(out), bytesToLines(err))
   }
 
   def configTest(args: Array[String], errCode: Int = 0): Unit = {
