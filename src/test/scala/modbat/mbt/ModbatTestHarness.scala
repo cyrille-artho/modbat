@@ -15,19 +15,18 @@ object ModbatTestHarness {
     env()
     val out: ByteArrayOutputStream = new ByteArrayOutputStream()
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
-    var ret = 0
 
     Console.withErr(err) {
       Console.withOut(out) {
         try {
           Main.run(args)
-          ret=0
+          (0, bytesToLines(out).toList, bytesToLines(err).toList)
         } catch {
-          case e: Exception => ret=1
+          case _: Throwable =>
+            (1, bytesToLines(out).toList, bytesToLines(err).toList)
         }
       }
     }
-    (ret, scala.io.Source.fromString(out.toString).getLines().toList, scala.io.Source.fromString(err.toString).getLines().toList)
   }
 
   def runTest(args: Array[String], env: () => Unit, errCode: Int = 0): Unit = {
