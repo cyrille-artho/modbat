@@ -3,9 +3,9 @@ package modbat.trace
 import java.lang.reflect.Field
 
 import modbat.dsl.Transition
-import modbat.mbt.MBT
+import modbat.mbt.ModelInstance
 
-class RecordedTransition(val model: MBT,
+class RecordedTransition(val model: ModelInstance,
                          val transition: Transition,
                          val recordedAction: StackTraceElement = null,
                          /* state override result (if any) that was recorded */

@@ -1,6 +1,7 @@
 package modbat.dsl
 
 import modbat.mbt.MBT
+import modbat.mbt.ModelInstance
 import modbat.cov.TransitionCoverage
 import modbat.RequirementFailedException
 import modbat.trace.{BoolChoice, FuncChoice, NumChoice}
@@ -46,7 +47,7 @@ abstract trait Model {
   def assert(assertion: Boolean, message: Any): Unit =
     Model.assert(assertion, message)
 
-  var efsm: MBT = null
+  var efsm: ModelInstance = null
 
   def getCurrentState = efsm.getCurrentState
 

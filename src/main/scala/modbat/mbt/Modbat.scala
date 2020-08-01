@@ -54,7 +54,7 @@ object Modbat {
   var errFile: String = _
   var failed = 0
   var count = 0 // count the number of executed test cases.
-  val firstInstance = new LinkedHashMap[String, MBT]()
+  val firstInstance = new LinkedHashMap[String, ModelInstance]()
   var appState = AppExplore // track app state in shutdown handler
   // shutdown handler is registered at time when model exploration starts
   private var executedTransitions = new ListBuffer[RecordedTransition]
@@ -130,7 +130,7 @@ object Modbat {
     }
   }
 
-  def warnPrecond(modelInst: MBT, t: Transition, idx: Int): Unit = {
+  def warnPrecond(modelInst: ModelInstance, t: Transition, idx: Int): Unit = {
     Log.info(
       "Precondition " + (idx + 1) + " always " +
         passFailed(t.coverage.precond.precondPassed.get(idx)) +
@@ -458,7 +458,7 @@ object Modbat {
     }
   }
 
-  def exploreModel(model: MBT) = {
+  def exploreModel(model: ModelInstance) = {
     Log.debug("--- Exploring model ---")
     timesVisited.clear()
     executedTransitions.clear()
@@ -484,8 +484,8 @@ object Modbat {
     retVal
   }
 
-  def addSuccessors(m: MBT,
-                    result: ListBuffer[(MBT, Transition)],
+  def addSuccessors(m: ModelInstance,
+                    result: ListBuffer[(ModelInstance, Transition)],
                     quiet: Boolean = false): Unit = {
     for (s <- m.successors(quiet)) {
       if (!quiet) {
@@ -512,8 +512,8 @@ object Modbat {
     }
   }
 
-  def allSuccessors(givenModel: MBT): List[(MBT, Transition)] = {
-    val result = new ListBuffer[(MBT, Transition)]()
+  def allSuccessors(givenModel: ModelInstance): List[(ModelInstance, Transition)] = {
+    val result = new ListBuffer[(ModelInstance, Transition)]()
     if (givenModel == null) {
       MBT.stayLock.synchronized {
         // TODO: allow selection to be overridden by invokeTransition
@@ -543,7 +543,7 @@ object Modbat {
     result.toList
   }
 
-  def totalWeight(trans: List[(MBT, Transition)]) = {
+  def totalWeight(trans: List[(ModelInstance, Transition)]) = {
     var w = 0.0
     for (t <- trans) {
       w = w + t._2.action.weight
@@ -551,22 +551,22 @@ object Modbat {
     w
   }
 
-  def makeChoice(choices: List[(MBT, Transition)], totalW: Double) = {
+  def makeChoice(choices: List[(ModelInstance, Transition)], totalW: Double) = {
     Main.config.search match {
       case "random" => weightedChoice(choices, totalW)
       case "heur"   => heuristicChoice(choices, totalW)
     }
   }
 
-  def heuristicChoice(choices: List[(MBT, Transition)],
-                      totalW: Double): (MBT, Transition) = {
+  def heuristicChoice(choices: List[(ModelInstance, Transition)],
+                      totalW: Double): (ModelInstance, Transition) = {
     // Compute choice based on bandit UCB and expected rewards (ER)  - Rui
     val choice = banditUCBERChoice(choices, totalW)
     choice
   }
 
-  private def banditUCBERChoice(choices: List[(MBT, Transition)],
-                                totalW: Double): (MBT, Transition) = {
+  private def banditUCBERChoice(choices: List[(ModelInstance, Transition)],
+                                totalW: Double): (ModelInstance, Transition) = {
 
     Log.debug("Tradeoff:" + Main.config.banditTradeoff)
     Log.debug("Backtracked transition reward:" + Main.config.backtrackTReward)
@@ -649,8 +649,8 @@ object Modbat {
     }
   }
 
-  def weightedChoice(choices: List[(MBT, Transition)],
-                     totalW: Double): (MBT, Transition) = {
+  def weightedChoice(choices: List[(ModelInstance, Transition)],
+                     totalW: Double): (ModelInstance, Transition) = {
 
     val n = (totalW * MBT.rng.nextFloat(false))
     var w = 0.0
@@ -663,7 +663,7 @@ object Modbat {
     choices.last
   }
 
-  def updateExecHistory(model: MBT,
+  def updateExecHistory(model: ModelInstance,
                         localStoredRNGState: CloneableRandom,
                         result: (TransitionResult, RecordedTransition),
                         updates: List[(Field, Any)]): Unit = {
@@ -719,7 +719,7 @@ object Modbat {
     }
   }
 
-  def invocationSuccessor: Option[(MBT, Transition)] = {
+  def invocationSuccessor: Option[(ModelInstance, Transition)] = {
     if (!MBT.transitionQueue.isEmpty)
       Log.debug(
         "Current InvokeTransitionQueue = (" + MBT.transitionQueue.mkString + ")")
@@ -738,7 +738,7 @@ object Modbat {
     None
   }
 
-  def checkForFieldUpdates(model: MBT,
+  def checkForFieldUpdates(model: ModelInstance,
                            result: (TransitionResult, RecordedTransition),
                            rng: CloneableRandom): Unit = {
     val updates: List[(Field, Any)] = model.tracedFields.updates
@@ -748,14 +748,14 @@ object Modbat {
     updateExecHistory(model, rng, result, updates)
   }
 
-  def unblockJoiningModels(model: MBT): Unit = {
+  def unblockJoiningModels(model: ModelInstance): Unit = {
     // Unblock all models that are joining this one.
     for (m <- MBT.launchedModels filter (_.joining == model)) {
       m.joining = null
     }
   }
 
-  def warnAboutPreconditions(allSucc: List[(MBT, Transition)],
+  def warnAboutPreconditions(allSucc: List[(ModelInstance, Transition)],
                              backtracked: Boolean): Unit = {
     for (succ <- allSucc) {
       Log.warn(
@@ -777,7 +777,7 @@ object Modbat {
   }
 
   class PathResult(val result: (TransitionResult, RecordedTransition),
-                   val successor: (MBT, Transition),
+                   val successor: (ModelInstance, Transition),
                    val backtracked: Boolean,
                    val failed: Boolean,
                    val isObserver: Boolean)
@@ -820,7 +820,7 @@ object Modbat {
       /* Pop invokeTransition queue until a feasible transition is popped.
        * If there is, execute it.
        * Otherwise, if total weight > 0, choose one transition by weight and execute it. */
-      var successor: (MBT, Transition) = null
+      var successor: (ModelInstance, Transition) = null
       //successor = invocationSuccessor.getOrElse(weightedChoice(successors, totalW))
       // TODO: try bandit by calling makeChoice
       successor = invocationSuccessor.getOrElse(makeChoice(successors, totalW))
@@ -842,7 +842,7 @@ object Modbat {
                 .updateAverageReward(TransitionRewardTypes.GoodTransReward)
             }
 
-            val succ = new ListBuffer[(MBT, Transition)]()
+            val succ = new ListBuffer[(ModelInstance, Transition)]()
             addSuccessors(model, succ, true)
             if (succ.size == 0) {
               Log.debug("Model " + model.name + " has terminated.")
@@ -905,7 +905,7 @@ object Modbat {
 
   // Store path information
   private def storePathInfo(result: (TransitionResult, RecordedTransition),
-                            successor: (MBT, Transition),
+                            successor: (ModelInstance, Transition),
                             backtracked: Boolean,
                             failed: Boolean): Unit = {
 
@@ -994,10 +994,10 @@ object Modbat {
     Ok()
   }
 
-  /* Observer update. This is not an instance method in MBT because
+  /* Observer update. This is not an instance method in ModelInstance because
      it is only used in online mode (observer transitions are also
      recorded and normally replayed in offline mode). */
-  def updateObserver(observer: MBT): TransitionResult = {
+  def updateObserver(observer: ModelInstance): TransitionResult = {
     val observedStates = new HashSet[State]()
     var result: TransitionResult = Ok()
     while (!observedStates.contains(observer.currentState)) {
@@ -1007,7 +1007,7 @@ object Modbat {
     result
   }
 
-  def executeObserverStep(observer: MBT): TransitionResult = {
+  def executeObserverStep(observer: ModelInstance): TransitionResult = {
     for (trans <- observer.successors(false)) {
       assert(!trans.isSynthetic)
       val localStoredRNGState = MBT.rng.asInstanceOf[CloneableRandom].clone

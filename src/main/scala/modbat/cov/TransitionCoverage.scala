@@ -6,12 +6,13 @@ package modbat.cov
 import modbat.dsl.Transition
 import modbat.dsl.NextStateOverride
 import modbat.mbt.MBT
+import modbat.mbt.ModelInstance
 import modbat.trace.Ok
 import modbat.trace.RecordedTransition
 
 object TransitionCoverage {
 
-  def cover(model: MBT,
+  def cover(model: ModelInstance,
             t: Transition,
             nextState: Transition = null,
             excType: String = null,
@@ -29,14 +30,14 @@ object TransitionCoverage {
     (Ok(sameAgain), new RecordedTransition(model, t, null, nextState, excType))
   }
 
-  def setCoverageAndState(t: Transition, model: MBT): Unit = {
+  def setCoverageAndState(t: Transition, model: ModelInstance): Unit = {
     t.coverage.cover
     StateCoverage.cover(t.dest)
     assert(model != null)
     model.currentState = t.dest
   }
 
-  def reuseCoverageInfo(instance: MBT, master: MBT, className: String): Unit = {
+  def reuseCoverageInfo(instance: ModelInstance, master: ModelInstance, className: String): Unit = {
     // copy values of previous equivalent instance for performance
     // and correct coverage information
     val transIt = instance.transitions.iterator
@@ -51,7 +52,7 @@ object TransitionCoverage {
     }
   }
 
-  def reuseTransInfo(instance: MBT, newTrans: Transition, master: Transition): Unit = {
+  def reuseTransInfo(instance: ModelInstance, newTrans: Transition, master: Transition): Unit = {
     assert(
       (newTrans.origin.name.equals(master.origin.name)) &&
         (newTrans.dest.name.equals(master.dest.name)),
@@ -79,7 +80,7 @@ object TransitionCoverage {
                       master.nonDetExceptions)
   }
 
-  def reuseOverrideInfo(instance: MBT,
+  def reuseOverrideInfo(instance: ModelInstance,
                         target: List[NextStateOverride],
                         source: List[NextStateOverride]): Unit = {
     val sourceIt = source.iterator

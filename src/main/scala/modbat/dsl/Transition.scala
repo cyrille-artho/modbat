@@ -5,7 +5,7 @@ import java.io.File
 import scala.collection.mutable.ListBuffer
 import scala.util.matching.Regex
 import modbat.cov.{TransitionAverageReward, TransitionCoverage}
-import modbat.mbt.{MBT, Main}
+import modbat.mbt.Main
 import modbat.trace.RecordedChoice
 import modbat.util.SourceInfo
 

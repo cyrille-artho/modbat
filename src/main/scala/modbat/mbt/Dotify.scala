@@ -9,7 +9,7 @@ import modbat.dsl.State
 import modbat.dsl.Transition
 import modbat.log.Log
 
-class Dotify(val model: MBT, outFile: String = "") {
+class Dotify(val model: ModelInstance, outFile: String = "") {
   var out: PrintStream = null
 
   def init: Unit = {
