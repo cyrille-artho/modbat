@@ -235,7 +235,7 @@ class ModelInstance (/*val mbt: MBT, */val model: Model, val trans: List[Transit
             + m.getName)
          val st = states(state)
         val wrapper = { () => mbt.invokeMethod(m, model) }
-         val action = new Action(/***model, */wrapper, m)
+         val action = new Action(model, wrapper, m)
          action.weight = weight
          if (exceptions != null) {
            action.throws(exceptions.value())

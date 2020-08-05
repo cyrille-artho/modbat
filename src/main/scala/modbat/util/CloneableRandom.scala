@@ -4,6 +4,7 @@ import java.lang.Integer.MAX_VALUE
 
 import scala.collection.mutable.{ArrayBuffer, ListBuffer}
 import modbat.dsl.Action
+import modbat.dsl.Model
 import modbat.trace.RecordedChoice
 
 /* Class to replace scala.util.Random with. This class can be cloned
@@ -82,9 +83,9 @@ class CloneableRandom(rngTrace: Array[Int], dbgTrace: Array[String])
     result
   }
 
-  override def nextFunc(actions: Array[() => Any]) = {
-    val result = super.nextFunc(actions)
-    val action = new Action(result)
+  override def nextFunc(model: Model, actions: Array[() => Any]) = {
+    val result = super.nextFunc(model, actions)
+    val action = new Action(model, result)
     resultsAsString += SourceInfo.actionInfo(action, true)
     result
   }

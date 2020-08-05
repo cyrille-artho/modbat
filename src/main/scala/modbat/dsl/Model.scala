@@ -67,7 +67,7 @@ abstract trait Model {
   def maybeBool(pred: () => Boolean) = mbt.maybeBool(pred)
 
   implicit def transfuncToAction(action: => Any) = {
-    new Action(/***this, */() => action)
+    new Action(this, () => action)
   }
 
   def skip: Unit = {}
@@ -107,7 +107,7 @@ abstract trait Model {
 
   type AnyFunc = () => Any
   def choose(actions: AnyFunc*): Any = {
-    val choice = mbt.rng.nextFunc(actions.toArray)
+    val choice = mbt.rng.nextFunc(this, actions.toArray)
     val funcChoice = FuncChoice(choice) // create a func choice -Rui
     mbt.rng.recordChoice(funcChoice) // record func choice - Rui
 
