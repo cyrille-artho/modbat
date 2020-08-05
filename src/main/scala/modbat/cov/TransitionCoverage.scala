@@ -5,6 +5,7 @@ package modbat.cov
 
 import modbat.dsl.Transition
 import modbat.dsl.NextStateOverride
+import modbat.mbt.Main
 import modbat.mbt.MBT
 import modbat.mbt.ModelInstance
 import modbat.trace.Ok
@@ -133,7 +134,7 @@ class TransitionCoverage {
   var count = 0
   val precond = new PreconditionCoverage
   // todo: expected reward of transition -Rui
-  val expectedReward = new TransitionExpectedReward
+  val expectedReward = new TransitionExpectedReward(/***/Main.config)
 
   def cover: Unit = {
     count += 1

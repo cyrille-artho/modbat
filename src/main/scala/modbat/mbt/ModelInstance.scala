@@ -314,7 +314,7 @@ class ModelInstance (/*val mbt: MBT, */val model: Model, val trans: List[Transit
     }
 
     tr.coverage = new TransitionCoverage()
-    tr.averageReward = new TransitionAverageReward() // averageReward of the transition - Rui
+    tr.averageReward = new TransitionAverageReward(/***/Main.config) // averageReward of the transition - Rui
     if (tr.isSynthetic) {
       return
     }
