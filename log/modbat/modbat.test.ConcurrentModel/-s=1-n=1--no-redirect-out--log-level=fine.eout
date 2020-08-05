@@ -1,6 +1,7 @@
 Exception in thread "Thread-X" java.lang.AssertionError: assertion failed
 	at scala.Predef$.assert(Predef.scala)
-	at modbat.dsl.Model$.assert(Model.scala)
+	at modbat.dsl.Model$class.assert(Model.scala)
+	at modbat.test.ConcurrentModel.assert(ConcurrentModel.scala)
 	at modbat.dsl.Model$class.assert(Model.scala)
 	at modbat.test.ConcurrentModel.assert(ConcurrentModel.scala)
 	at modbat.test.ConcurrentModel$BGThread.run(ConcurrentModel.scala)
