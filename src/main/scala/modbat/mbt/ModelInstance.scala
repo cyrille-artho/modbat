@@ -33,7 +33,7 @@ import modbat.dsl.Weight
 import modbat.log.Log
 import modbat.mbt.{MBT => mbt}
 
-class ModelInstance (/*val mbt: MBT, */val model: Model, val trans: List[Transition]) {
+class ModelInstance (/***val mbt: MBT, */val model: Model, val trans: List[Transition]) {
   val className = model.getClass.getName
   var states = HashMap[String, State]()
   val transitions = new ListBuffer[Transition]()
@@ -126,7 +126,7 @@ class ModelInstance (/*val mbt: MBT, */val model: Model, val trans: List[Transit
       registerStateSelfTrans(model, false)
     }
     model.efsm = this
-    model.mbt = /***mbt*/new MBT()
+    model.mbt = /***mbt*/new MBT(/***/Main.config)
     mbt.prepare(model)
     Log.fine("Launching new model instance " + name + "...")
     if (model.isInstanceOf[Observer]) {

@@ -363,7 +363,7 @@ object MBT {
   }
 }
 
-class MBT {
+class MBT (val config: Configuration) {
   def choose(min: Int, max: Int) = MBT.choose(min, max)
   def getRandomSeed() = MBT.getRandomSeed()
   def launch(modelInstance: Model) = MBT.launch(modelInstance)

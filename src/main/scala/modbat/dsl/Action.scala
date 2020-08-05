@@ -82,7 +82,7 @@ class Action(val model: Model, val transfunc: () => Any, val method: Method = nu
   }
 
   def or_else(action: => Any) = {
-    if (mbt.rng.nextFloat(true) < Main.config.maybeProbability) {
+    if (mbt.rng.nextFloat(true) < mbt.config.maybeProbability) {
       /***mbt*/MBT.or_else = true
       transfunc() // Call function that or_else is chained on,
       // but do not use RNG as "maybe" branch should always be taken.
