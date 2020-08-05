@@ -454,7 +454,7 @@ object Modbat {
     if (t == null) {
       "(transition outside model such as callback)"
     } else {
-      t.transition.ppTrans(true)
+      t.transition.ppTrans(/***/Main.config.autoLabels, true)
     }
   }
 

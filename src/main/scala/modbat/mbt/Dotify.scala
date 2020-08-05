@@ -86,7 +86,7 @@ class Dotify(val config: Configuration, val model: ModelInstance, outFile: Strin
     if (!config.autoLabels && (tr.action.label.isEmpty)) {
       ""
     } else if (tr.action.transfunc != null) {
-      tr.ppTrans()
+      tr.ppTrans(config.autoLabels)
     } else {
       ""
     }

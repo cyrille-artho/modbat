@@ -5,7 +5,6 @@ import java.io.File
 import scala.collection.mutable.ListBuffer
 import scala.util.matching.Regex
 import modbat.cov.{TransitionAverageReward, TransitionCoverage}
-import modbat.mbt.Main
 import modbat.trace.RecordedChoice
 import modbat.util.SourceInfo
 
@@ -85,8 +84,8 @@ class Transition (val model:            Model,
     }
   }
 
-  def ppTrans(showSkip: Boolean = false): String = {
-    if (Main.config.autoLabels && action.label.isEmpty) {
+  def ppTrans(autoLabels: Boolean, showSkip: Boolean = false): String = {
+    if (autoLabels && action.label.isEmpty) {
       assert(action.transfunc != null)
       val actionInfo = SourceInfo.actionInfo(action, false)
       if (actionInfo.equals(SourceInfo.SKIP)) {
