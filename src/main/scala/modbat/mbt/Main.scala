@@ -10,14 +10,14 @@ object Main {
   def main(args: Array[String]): Unit = {
     Modbat.isUnitTest = false
     try {
-      run(args) // TODO: do not call exit once exceptions are used
+      run(args, config) // TODO: do not call exit once exceptions are used
     } catch {
       case e: Exception => System.exit(1)
     }
     System.exit(0)
   }
 
-  def run(args: Array[String]): Unit = {
+  def run(args: Array[String], config: Configuration): Unit = {
     var modelClassName: String = null
     val c = new ConfigMgr("scala modbat.jar",
                           "CLASSNAME",
@@ -51,18 +51,18 @@ object Main {
       }
     }
 
-    setup(modelClassName) // TODO: refactor into case code below once needed
+    setup(config, modelClassName) // TODO: refactor into case code below once needed
 
     Modbat.init
     /* execute */
     config.mode match {
       case "dot" =>
-        new Dotify(MBT.launch(null), modelClassName + ".dot").dotify()
+        new Dotify(config, MBT.launch(null), modelClassName + ".dot").dotify()
       case _ => Modbat.explore(config.nRuns)
     }
   }
 
-  def setup(modelClassName: String): Unit = {
+  def setup(config: Configuration, modelClassName: String): Unit = {
     /* configure components */
     Log.setLevel(config.logLevel)
     MBT.configClassLoader(config.classpath)

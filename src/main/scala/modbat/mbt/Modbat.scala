@@ -330,7 +330,7 @@ object Modbat {
     Log.info("Random seed for next test would be: " + randomSeed.toHexString)
     if (Main.config.dotifyCoverage) {
       for ((modelName, modelInst) <- firstInstance) {
-        new Dotify(modelInst, modelName + ".dot").dotify(true)
+        new Dotify(/***/Main.config, modelInst, modelName + ".dot").dotify(true)
       }
     }
   }
