@@ -365,7 +365,6 @@ object MBT {
 
 class MBT {
   def choose(min: Int, max: Int) = MBT.choose(min, max)
-  var externalException: Throwable = null
   def getRandomSeed() = MBT.getRandomSeed()
   def launch(modelInstance: Model) = MBT.launch(modelInstance)
   def maybe(action: Action) = MBT.maybe(action)
@@ -373,6 +372,4 @@ class MBT {
   val modbatThread = MBT.modbatThread
   def rng = MBT.rng
   def testFailed() = MBT.testHasFailed
-  def testHasFailed = MBT.testHasFailed
-  def testHasFailed_=(status: Boolean): Unit = { MBT.testHasFailed = status }
 }

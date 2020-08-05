@@ -31,8 +31,8 @@ abstract trait Model {
           val e = new AssertionError(
             "Assertion failed in Thread " +
               Thread.currentThread.getName)
-          mbt.externalException = e
-          mbt.testHasFailed = true
+          /***mbt*/MBT.externalException = e
+          /***mbt*/MBT.testHasFailed = true
         }
       }
       if (message == null) {
