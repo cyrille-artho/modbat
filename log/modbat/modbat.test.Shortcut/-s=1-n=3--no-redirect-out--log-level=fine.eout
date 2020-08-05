@@ -1,7 +1,8 @@
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.Shortcut.assert(Shortcut.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.Shortcut.assert(Shortcut.scala)
 [ERROR] 	at modbat.test.Shortcut$$anonfun$5.apply$mcV$sp(Shortcut.scala)
@@ -14,7 +15,8 @@
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.Shortcut.assert(Shortcut.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.Shortcut.assert(Shortcut.scala)
 [ERROR] 	at modbat.test.Shortcut$$anonfun$5.apply$mcV$sp(Shortcut.scala)
@@ -28,7 +30,8 @@
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.Shortcut.assert(Shortcut.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.Shortcut.assert(Shortcut.scala)
 [ERROR] 	at modbat.test.Shortcut$$anonfun$5.apply$mcV$sp(Shortcut.scala)

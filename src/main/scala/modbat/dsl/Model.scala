@@ -9,7 +9,12 @@ import modbat.trace.{BoolChoice, FuncChoice, NumChoice}
 import scala.language.implicitConversions
 import sourcecode._
 
-object Model {
+abstract trait Model {
+  var mbt: MBT = null
+  var efsm: ModelInstance = null
+
+  def assert(assertion: Boolean): Unit = assert(assertion, null)
+
   // TODO: if not run in Modbat main thread, also handle assertion failure
   // by setting testFailed and triggering error trace display in Modbat
   // main loop
@@ -21,13 +26,13 @@ object Model {
       // do not set this flag in Modbat thread as functions that are
       // expected to throw an assertion failure would otherwise mistakenly
       // mark a test as failed
-      if (Thread.currentThread != MBT.modbatThread) {
-        MBT.synchronized {
+      if (Thread.currentThread != mbt.modbatThread) {
+        mbt.synchronized {
           val e = new AssertionError(
             "Assertion failed in Thread " +
               Thread.currentThread.getName)
-          MBT.externalException = e
-          MBT.testHasFailed = true
+          mbt.externalException = e
+          mbt.testHasFailed = true
         }
       }
       if (message == null) {
@@ -38,25 +43,14 @@ object Model {
     }
   }
 
-  def assert(assertion: Boolean): Unit = assert(assertion, null)
-}
-
-abstract trait Model {
-  def assert(assertion: Boolean): Unit = Model.assert(assertion, null)
-
-  def assert(assertion: Boolean, message: Any): Unit =
-    Model.assert(assertion, message)
-
-  var efsm: ModelInstance = null
-
   def getCurrentState = efsm.getCurrentState
 
-  def getRandomSeed() = MBT.getRandomSeed()
+  def getRandomSeed() = mbt.getRandomSeed()
 
-  def testFailed() = MBT.testFailed()
+  def testFailed() = mbt.testFailed()
 
-  // delegate instance creation to MBT to distinguish between different
-  // states with same name in different models
+  // delegate instance creation to ModelInstance to distinguish between
+  // different states with same name in different models
   implicit def stringPairToStatePair(names: (String, String)) = {
     new StatePair(this, new State(names._1), new State(names._2))
   }
@@ -67,33 +61,33 @@ abstract trait Model {
     new StateSet(this, names._1, names._2)
   }
 
-  def maybe(action: Action) = MBT.maybe(action)
+  def maybe(action: Action) = mbt.maybe(action)
 
   // TODO: Currenty unused; remove?
-  def maybeBool(pred: () => Boolean) = MBT.maybeBool(pred)
+  def maybeBool(pred: () => Boolean) = mbt.maybeBool(pred)
 
   implicit def transfuncToAction(action: => Any) = {
-    new Action(() => action)
+    new Action(/***this, */() => action)
   }
 
   def skip: Unit = {}
 
-  def launch(modelInstance: Model) = MBT.launch(modelInstance)
+  def launch(modelInstance: Model) = mbt.launch(modelInstance)
 
   def join(modelInstance: Model) = efsm.join(modelInstance)
 
   def choose(min: Int, max: Int) = {
-    val choice = MBT.choose(min, max)
+    val choice = mbt.choose(min, max)
     val numChoice = NumChoice(choice) // create a number choice -Rui
-    MBT.rng.recordChoice(numChoice) // record number choice -Rui
+    mbt.rng.recordChoice(numChoice) // record number choice -Rui
 
     choice
   }
 
   def choose() = {
-    val choice = (MBT.choose(0, 2) == 0)
+    val choice = (mbt.choose(0, 2) == 0)
     val boolChoice = BoolChoice(choice) // create a boolean choice -Rui
-    MBT.rng.recordChoice(boolChoice) // record boolean choice -Rui
+    mbt.rng.recordChoice(boolChoice) // record boolean choice -Rui
 
     choice
   }
@@ -113,9 +107,9 @@ abstract trait Model {
 
   type AnyFunc = () => Any
   def choose(actions: AnyFunc*): Any = {
-    val choice = MBT.rng.nextFunc(actions.toArray)
+    val choice = mbt.rng.nextFunc(actions.toArray)
     val funcChoice = FuncChoice(choice) // create a func choice -Rui
-    MBT.rng.recordChoice(funcChoice) // record func choice - Rui
+    mbt.rng.recordChoice(funcChoice) // record func choice - Rui
 
     choice()
   }

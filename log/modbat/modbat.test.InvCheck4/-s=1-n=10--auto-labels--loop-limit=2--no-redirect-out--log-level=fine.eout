@@ -1,7 +1,6 @@
 [WARNING] java.lang.AssertionError: assertion failed: i = 0 occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed: i = 0
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.InvCheck4.assert(InvCheck4.scala)
 [ERROR] 	at modbat.test.InvCheck4.check(InvCheck4.scala)
@@ -15,7 +14,6 @@
 [WARNING] java.lang.AssertionError: assertion failed: i = 0 occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed: i = 0
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.InvCheck4.assert(InvCheck4.scala)
 [ERROR] 	at modbat.test.InvCheck4.check(InvCheck4.scala)
@@ -31,7 +29,6 @@
 [WARNING] java.lang.AssertionError: assertion failed: i = 0 occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed: i = 0
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.InvCheck4.assert(InvCheck4.scala)
 [ERROR] 	at modbat.test.InvCheck4.check(InvCheck4.scala)
@@ -45,7 +42,6 @@
 [WARNING] java.lang.AssertionError: assertion failed: i = 0 occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed: i = 0
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.InvCheck4.assert(InvCheck4.scala)
 [ERROR] 	at modbat.test.InvCheck4.check(InvCheck4.scala)
@@ -61,7 +57,6 @@
 [WARNING] java.lang.AssertionError: assertion failed: i = 0 occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed: i = 0
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.InvCheck4.assert(InvCheck4.scala)
 [ERROR] 	at modbat.test.InvCheck4.check(InvCheck4.scala)
@@ -77,7 +72,6 @@
 [WARNING] java.lang.AssertionError: assertion failed: i = 0 occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed: i = 0
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.InvCheck4.assert(InvCheck4.scala)
 [ERROR] 	at modbat.test.InvCheck4.check(InvCheck4.scala)
@@ -93,7 +87,6 @@
 [WARNING] java.lang.AssertionError: assertion failed: i = 0 occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed: i = 0
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.InvCheck4.assert(InvCheck4.scala)
 [ERROR] 	at modbat.test.InvCheck4.check(InvCheck4.scala)
@@ -109,7 +102,6 @@
 [WARNING] java.lang.AssertionError: assertion failed: i = 0 occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed: i = 0
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.InvCheck4.assert(InvCheck4.scala)
 [ERROR] 	at modbat.test.InvCheck4.check(InvCheck4.scala)
@@ -125,7 +117,6 @@
 [WARNING] java.lang.AssertionError: assertion failed: i = 0 occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed: i = 0
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.InvCheck4.assert(InvCheck4.scala)
 [ERROR] 	at modbat.test.InvCheck4.check(InvCheck4.scala)

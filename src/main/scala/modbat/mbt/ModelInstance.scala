@@ -126,7 +126,7 @@ class ModelInstance (/*val mbt: MBT, */val model: Model, val trans: List[Transit
       registerStateSelfTrans(model, false)
     }
     model.efsm = this
-    /***model.mbt = mbt*/
+    model.mbt = /***mbt*/new MBT()
     mbt.prepare(model)
     Log.fine("Launching new model instance " + name + "...")
     if (model.isInstanceOf[Observer]) {

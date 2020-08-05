@@ -1,7 +1,8 @@
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.AnyFuncTest.assert(AnyFuncTest.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.AnyFuncTest.assert(AnyFuncTest.scala)
 [ERROR] 	at modbat.test.AnyFuncTest$$anonfun$1.apply$mcV$sp(AnyFuncTest.scala)

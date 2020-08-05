@@ -1,7 +1,8 @@
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GenLabel.assert(GenLabel.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.GenLabel.assert(GenLabel.scala)
 [ERROR] 	at modbat.test.GenLabel.dec(GenLabel.scala)
@@ -13,48 +14,8 @@
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.GenLabel.assert(GenLabel.scala)
-[ERROR] 	at modbat.test.GenLabel.dec(GenLabel.scala)
-[ERROR] 	at modbat.test.GenLabel$$anonfun$2.apply$mcV$sp(GenLabel.scala)
-[ERROR] 	at modbat.test.GenLabel$$anonfun$2.apply(GenLabel.scala)
-[ERROR] 	at modbat.test.GenLabel$$anonfun$2.apply(GenLabel.scala)
-[WARNING] Error found, model trace:
-[WARNING] modbat/test/GenLabel.scala:12: inc
-[WARNING] modbat/test/GenLabel.scala:12: inc
-[WARNING] modbat/test/GenLabel.scala:12: inc
-[WARNING] modbat/test/GenLabel.scala:12: inc
-[WARNING] modbat/test/GenLabel.scala:12: inc
-[WARNING] modbat/test/GenLabel.scala:12: inc
-[WARNING] modbat/test/GenLabel.scala:13: dec
-[WARNING] modbat/test/GenLabel.scala:12: inc
-[WARNING] modbat/test/GenLabel.scala:13: dec
-[WARNING] modbat/test/GenLabel.scala:13: dec
-[WARNING] modbat/test/GenLabel.scala:13: dec
-[WARNING] modbat/test/GenLabel.scala:12: inc
-[WARNING] modbat/test/GenLabel.scala:12: inc
-[WARNING] modbat/test/GenLabel.scala:13: dec
-[WARNING] modbat/test/GenLabel.scala:13: dec
-[WARNING] modbat/test/GenLabel.scala:13: dec
-[WARNING] modbat/test/GenLabel.scala:13: dec
-[WARNING] modbat/test/GenLabel.scala:13: dec
-[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
-[ERROR] java.lang.AssertionError: assertion failed
-[ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
-[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
-[ERROR] 	at modbat.test.GenLabel.assert(GenLabel.scala)
-[ERROR] 	at modbat.test.GenLabel.dec(GenLabel.scala)
-[ERROR] 	at modbat.test.GenLabel$$anonfun$2.apply$mcV$sp(GenLabel.scala)
-[ERROR] 	at modbat.test.GenLabel$$anonfun$2.apply(GenLabel.scala)
-[ERROR] 	at modbat.test.GenLabel$$anonfun$2.apply(GenLabel.scala)
-[WARNING] Error found, model trace:
-[WARNING] modbat/test/GenLabel.scala:13: dec
-[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
-[ERROR] java.lang.AssertionError: assertion failed
-[ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.GenLabel.assert(GenLabel.scala)
 [ERROR] 	at modbat.test.GenLabel.dec(GenLabel.scala)
@@ -67,6 +28,49 @@
 [WARNING] modbat/test/GenLabel.scala:12: inc
 [WARNING] modbat/test/GenLabel.scala:12: inc
 [WARNING] modbat/test/GenLabel.scala:12: inc
+[WARNING] modbat/test/GenLabel.scala:12: inc
+[WARNING] modbat/test/GenLabel.scala:13: dec
+[WARNING] modbat/test/GenLabel.scala:12: inc
+[WARNING] modbat/test/GenLabel.scala:13: dec
+[WARNING] modbat/test/GenLabel.scala:13: dec
+[WARNING] modbat/test/GenLabel.scala:13: dec
+[WARNING] modbat/test/GenLabel.scala:12: inc
+[WARNING] modbat/test/GenLabel.scala:12: inc
+[WARNING] modbat/test/GenLabel.scala:13: dec
+[WARNING] modbat/test/GenLabel.scala:13: dec
+[WARNING] modbat/test/GenLabel.scala:13: dec
+[WARNING] modbat/test/GenLabel.scala:13: dec
+[WARNING] modbat/test/GenLabel.scala:13: dec
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GenLabel.assert(GenLabel.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GenLabel.assert(GenLabel.scala)
+[ERROR] 	at modbat.test.GenLabel.dec(GenLabel.scala)
+[ERROR] 	at modbat.test.GenLabel$$anonfun$2.apply$mcV$sp(GenLabel.scala)
+[ERROR] 	at modbat.test.GenLabel$$anonfun$2.apply(GenLabel.scala)
+[ERROR] 	at modbat.test.GenLabel$$anonfun$2.apply(GenLabel.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/GenLabel.scala:13: dec
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GenLabel.assert(GenLabel.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GenLabel.assert(GenLabel.scala)
+[ERROR] 	at modbat.test.GenLabel.dec(GenLabel.scala)
+[ERROR] 	at modbat.test.GenLabel$$anonfun$2.apply$mcV$sp(GenLabel.scala)
+[ERROR] 	at modbat.test.GenLabel$$anonfun$2.apply(GenLabel.scala)
+[ERROR] 	at modbat.test.GenLabel$$anonfun$2.apply(GenLabel.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/GenLabel.scala:12: inc
+[WARNING] modbat/test/GenLabel.scala:12: inc
+[WARNING] modbat/test/GenLabel.scala:12: inc
+[WARNING] modbat/test/GenLabel.scala:12: inc
+[WARNING] modbat/test/GenLabel.scala:12: inc
 [WARNING] modbat/test/GenLabel.scala:13: dec
 [WARNING] modbat/test/GenLabel.scala:12: inc
 [WARNING] modbat/test/GenLabel.scala:13: dec
@@ -81,7 +85,8 @@
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GenLabel.assert(GenLabel.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.GenLabel.assert(GenLabel.scala)
 [ERROR] 	at modbat.test.GenLabel.dec(GenLabel.scala)
