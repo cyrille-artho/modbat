@@ -241,7 +241,9 @@ class ModelInstance (/*val mbt: MBT, */val model: Model, val trans: List[Transit
            action.throws(exceptions.value())
          }
          val lineNumber = SourceInfo.lineNumberFromMethod(m)
-         val t = new Transition(/***model, */st, st, false, action, m.getDeclaringClass().getName(), lineNumber, false)
+         val t =
+           new Transition(model, st, st, false, action,
+                          m.getDeclaringClass().getName(), lineNumber, false)
          regTrans(t, isChild, true)
       } else {
          if (!mbt.warningIssued((state, m))) {

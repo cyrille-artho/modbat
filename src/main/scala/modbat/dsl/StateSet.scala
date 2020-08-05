@@ -2,7 +2,7 @@ package modbat.dsl
 
 import scala.collection.mutable.ListBuffer
 
-class StateSet(preStates: List[String], postState: String) {
+class StateSet(val model: Model, preStates: List[String], postState: String) {
   val dest = new State(postState)
 
   def := (action: => Any)
@@ -12,7 +12,7 @@ class StateSet(preStates: List[String], postState: String) {
     val a = new Action(() => action)
     for (origin <- preStates) {
       trans +=
-	new Transition(new State(origin), dest, false, a, fullName.value, line.value)
+	new Transition(model, new State(origin), dest, false, a, fullName.value, line.value)
     }
     trans.toList
   }

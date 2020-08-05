@@ -58,13 +58,13 @@ abstract trait Model {
   // delegate instance creation to MBT to distinguish between different
   // states with same name in different models
   implicit def stringPairToStatePair(names: (String, String)) = {
-    new StatePair(new State(names._1), new State(names._2))
+    new StatePair(this, new State(names._1), new State(names._2))
   }
 
   // allow sets of states for transitions with same pre-states
   // (common for transitions leading to same error state)
   implicit def multiTrans(names: (List[String], String)) = {
-    new StateSet(names._1, names._2)
+    new StateSet(this, names._1, names._2)
   }
 
   def maybe(action: Action) = MBT.maybe(action)

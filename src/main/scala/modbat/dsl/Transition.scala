@@ -23,13 +23,14 @@ object Transition {
  * and processed later. At the end of model initialization, transitions
  * from annotated methods are added; those are not kept in the
  * buffer as not to interfere with the next model instance. */
-class Transition(var origin: State,
-                 var dest: State,
-                 val isSynthetic: Boolean,
-                 val action: Action,
-                 fullName: String,
-                 sourceLine: Int,
-                 remember: Boolean = true) {
+class Transition (val model:            Model,
+                  var origin:           State,
+		  var dest:		State,
+		  val isSynthetic:	Boolean,
+		  val action:		Action,
+                  fullName:             String,
+                  sourceLine:           Int,
+                  remember:             Boolean = true) {
 
   val sourceInfo = SourceInfo.sourceInfoFromFullName(fullName, sourceLine)
 
@@ -56,7 +57,7 @@ class Transition(var origin: State,
       Transition.pendingTransitions += this
     }
     for (nonDetE <- action.nonDetExc) {
-      val t = new Transition(origin, nonDetE._2, true, action, nonDetE._3._1, nonDetE._3._2)
+      val t = new Transition(model, origin, nonDetE._2, true, action, nonDetE._3._1, nonDetE._3._2)
       nonDetExcConv += new NextStateOnException(nonDetE._1, t)
     }
 
@@ -65,7 +66,8 @@ class Transition(var origin: State,
     val len = action.nextStatePred.length
     for (nextSt <- action.nextStatePred) {
       val t =
-        new Transition(origin, nextSt._2, true, new Action(action.transfunc), nextSt._4._1, nextSt._4._2)
+        new Transition(model, origin, nextSt._2, true,
+                       new Action(action.transfunc), nextSt._4._1, nextSt._4._2)
       if (len > 1) {
         t.n = i
       }
