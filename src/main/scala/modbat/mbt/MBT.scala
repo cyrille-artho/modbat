@@ -372,4 +372,5 @@ class MBT (val config: Configuration) {
   val modbatThread = MBT.modbatThread
   def rng = MBT.rng
   def testFailed() = MBT.testHasFailed
+  def currentTransition = MBT.currentTransition
 }

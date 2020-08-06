@@ -101,8 +101,8 @@ object TransitionCoverage {
     t.coverage.precond.count = 0
   }
 
-  def precond(outcome: Boolean): Unit = {
-    val t = MBT.currentTransition
+  def precond(mbt: MBT, outcome: Boolean): Unit = {
+    val t = mbt.currentTransition
     val pCov = t.coverage.precond
     val pCount = t.coverage.expectedReward
     val c = pCov.count
@@ -119,8 +119,8 @@ object TransitionCoverage {
   }
 
   // todo: count assert -Rui
-  def assertCount(assertion: Boolean): Unit = {
-    val t = MBT.currentTransition
+  def assertCount(mbt: MBT, assertion: Boolean): Unit = {
+    val t = mbt.currentTransition
     val aCount = t.coverage.expectedReward
     if (!assertion)
       aCount.updateAssertFailedCounter

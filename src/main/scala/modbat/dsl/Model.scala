@@ -20,7 +20,7 @@ abstract trait Model {
   // main loop
   // requires synchronization on a global lock
   def assert(assertion: Boolean, message: Any): Unit = {
-    TransitionCoverage.assertCount(assertion) // update assertion counters -Rui
+    TransitionCoverage.assertCount(mbt, assertion) // update assertion counters -Rui
     if (!assertion) {
       // if in different thread, set testHasFailed
       // do not set this flag in Modbat thread as functions that are
@@ -93,7 +93,7 @@ abstract trait Model {
   }
 
   def require(requirement: Boolean, message: Any): Unit = {
-    TransitionCoverage.precond(requirement)
+    TransitionCoverage.precond(mbt, requirement)
     if (!requirement) {
       if (message == null) {
         throw new RequirementFailedException("requirement failed")
