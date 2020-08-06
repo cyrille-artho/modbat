@@ -5,10 +5,9 @@ import modbat.config.Version
 import modbat.log.Log
 
 object Main {
-  val config = new Configuration()
-
   def main(args: Array[String]): Unit = {
     Modbat.isUnitTest = false
+    val config = new Configuration()
     try {
       run(args, config) // TODO: do not call exit once exceptions are used
     } catch {
