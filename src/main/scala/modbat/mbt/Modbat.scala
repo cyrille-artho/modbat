@@ -188,7 +188,7 @@ object Modbat {
          numNonChoiceEdgePG,
          numChoiceEdgePG,
          numCycleSelfTranPG) =
-      new PathInPointGraph(trie.root, "Point", "root").dotify()
+      new PathInPointGraph(trie.root, "Point", "root", /***/Main.config).dotify()
 
     Log.info(
       "the total number of nodes in path-based graph:" + (numNodePG + numChoiceNodePG))
@@ -230,7 +230,7 @@ object Modbat {
          numNonChoiceEdgeSG,
          numChoiceEdgeSG,
          numCycleSelfTranSG) =
-      new PathInStateGraph(trie.root, "State", "root").dotify()
+      new PathInStateGraph(trie.root, "State", "root", /***/Main.config).dotify()
 
     Log.info(
       "the total number of choice nodes in state-based graph: " + numChoiceNodeSG)
@@ -285,8 +285,8 @@ object Modbat {
             "the found transition is recorded in a leaf of the trie, so there is no children to print in graphs.")
         else {
           trie.display(foundNode)
-          new PathInStateGraph(foundNode, "State", input).dotify()
-          new PathInPointGraph(foundNode, "Point", input).dotify()
+          new PathInStateGraph(foundNode, "State", input, /***/Main.config).dotify()
+          new PathInPointGraph(foundNode, "Point", input, /***/Main.config).dotify()
         }
       }
     }
