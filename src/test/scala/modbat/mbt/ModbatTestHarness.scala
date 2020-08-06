@@ -10,7 +10,7 @@ import java.util.HashMap
 object ModbatTestHarness {
   def testMain(args: Array[String], env: () => Unit): (Int, List[String], List[String]) = {
     env()
-    val config = /***new Configuration()*/Main.config
+    val config = new Configuration()
     val out: ByteArrayOutputStream = new ByteArrayOutputStream()
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
     var ret = 0
