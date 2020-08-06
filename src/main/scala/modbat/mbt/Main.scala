@@ -54,6 +54,7 @@ object Main {
     val mbt = new MBT(config)
     setup(config, mbt, modelClassName) // TODO: refactor into case code below once needed
 
+    val modbat = new Modbat(mbt)
     Modbat.init(mbt)/***/
     /* execute */
     config.mode match {

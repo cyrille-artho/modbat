@@ -39,12 +39,14 @@ class NoTaskException(message: String = null, cause: Throwable = null)
 
 /** Contains code to explore model */
 object Modbat {
-  var mbt: MBT = null/***/
   object AppState extends Enumeration {
     val AppExplore, AppShutdown = Value
   }
 
   import AppState._
+
+  var mbt: MBT = null
+  var isUnitTest = true
 
   val origOut = Console.out
   val origErr = Console.err
@@ -64,7 +66,6 @@ object Modbat {
   val testFailures =
     new HashMap[(TransitionResult, String), ListBuffer[Long]]()
 //  val time = new VirtualTime
-  var isUnitTest = true
 
   // The trie to record sequences of executed transitions (execution paths) -Rui
   var trie = new Trie()
@@ -72,7 +73,7 @@ object Modbat {
 
   def init(mbt: MBT): Unit = {
     // reset all static variables
-    Modbat.mbt = mbt /***/
+    Modbat.mbt = mbt
     failed = 0
     count = 0
     firstInstance.clear()
@@ -83,7 +84,7 @@ object Modbat {
     masterRNG = mbt.rng.asInstanceOf[CloneableRandom].clone
     /***MBT.init*/
     // call init if needed
-    if (/***/Main.config.init) {
+    if (Main.config.init) {
       mbt.invokeAnnotatedStaticMethods(classOf[Init], null)
     }
   }
@@ -331,7 +332,7 @@ object Modbat {
     Log.info("Random seed for next test would be: " + randomSeed.toHexString)
     if (Main.config.dotifyCoverage) {
       for ((modelName, modelInst) <- firstInstance) {
-        new Dotify(/***/Main.config, modelInst, modelName + ".dot").dotify(true)
+        new Dotify(Main.config, modelInst, modelName + ".dot").dotify(true)
       }
     }
   }
@@ -374,8 +375,8 @@ object Modbat {
   }
 
   def explore(n: Int): Unit = {
-    init(mbt)/***/
-    if (!isUnitTest) {
+    init(mbt)
+    if (!Modbat.isUnitTest) {
       Runtime.getRuntime().addShutdownHook(ShutdownHandler)
     }
 
@@ -455,7 +456,7 @@ object Modbat {
     if (t == null) {
       "(transition outside model such as callback)"
     } else {
-      t.transition.ppTrans(/***/Main.config.autoLabels, true)
+      t.transition.ppTrans(Main.config.autoLabels, true)
     }
   }
 
@@ -1013,7 +1014,7 @@ object Modbat {
       assert(!trans.isSynthetic)
       val localStoredRNGState = mbt.rng.asInstanceOf[CloneableRandom].clone
       val result = observer.executeTransition(trans)
-      Modbat.updateExecHistory(observer, localStoredRNGState, result, Nil)
+      updateExecHistory(observer, localStoredRNGState, result, Nil)
       if (TransitionResult.isErr(result._1)) {
         printTrace(executedTransitions.toList)
       }
@@ -1061,4 +1062,7 @@ object Modbat {
       }
     }
   }
+}
+
+class Modbat(val mbt: MBT) {
 }
