@@ -313,8 +313,8 @@ class ModelInstance (val mbt: MBT, val model: Model,
       return
     }
 
-    tr.coverage = new TransitionCoverage(/***/Main.config)
-    tr.averageReward = new TransitionAverageReward(/***/Main.config) // averageReward of the transition - Rui
+    tr.coverage = new TransitionCoverage(mbt.config)
+    tr.averageReward = new TransitionAverageReward(mbt.config) // averageReward of the transition - Rui
     if (tr.isSynthetic) {
       return
     }
@@ -436,7 +436,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
     (TransitionResult, RecordedTransition) = {
     for (nextSt <- trans.nextStatePredicates) {
       if (!(nextSt.nonDet) ||
-           (mbt.rng.nextFloat(true) < /***mbt.*/Main.config.maybeProbability)) {
+           (mbt.rng.nextFloat(true) < mbt.config.maybeProbability)) {
          val envCallResult = nextSt.action() // result of "nextIf" condition
          Log.debug("Call to nextIf returns " + envCallResult + ".")
          // remember outcome of RNG if next state predicate should be checked
@@ -532,7 +532,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
          }
          case illarg: IllegalArgumentException => {
            val msg = illarg.getMessage
-           if (!/***mbt.*/Main.config.precondAsFailure && (msg != null) &&
+           if (!mbt.config.precondAsFailure && (msg != null) &&
                (msg.startsWith("requirement failed"))) {
              handleReqFailure(illarg, successor)
            } else { // treat precond. failure like normal exception
