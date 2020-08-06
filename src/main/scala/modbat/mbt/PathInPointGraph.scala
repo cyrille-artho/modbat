@@ -17,8 +17,8 @@ import modbat.log.Log
 class PathInPointGraph(val root: TrieNode,
                        val typeName: String,
                        val graphInitNode: String,
-                       config: Configuration)
-    extends PathVisualizer(config) {
+                       mbt: MBT)
+    extends PathVisualizer(mbt) {
   require(typeName == "Point", "the input of path visualizer must be Point")
 
   // PointNodeInfo is used to record the node information used for "point" output graph
@@ -119,7 +119,7 @@ class PathInPointGraph(val root: TrieNode,
       if (node.currentNodeCounterRecorder.nonEmpty) {
         val newNodeInfo =
           new PointNodeInfo(node, transHasChoices, choiceTree,
-                            isSelfTrans, config)
+                            isSelfTrans, mbt.config)
         newNodeStack += newNodeInfo // store node information for each transition into stack*/
         val result = display(node, newNodeNumber, newNodeStack)
         newNodeNumber = result._1
@@ -127,13 +127,13 @@ class PathInPointGraph(val root: TrieNode,
       }
 
       // the "full" graph case
-      if (config.pathCoverageGraphMode.equals("full") && node.isLeaf && node.transitionInfo.transCounter > 1) {
+      if (mbt.config.pathCoverageGraphMode.equals("full") && node.isLeaf && node.transitionInfo.transCounter > 1) {
         for (i <- 0 until node.transitionInfo.transCounter - 1) {
           Log.debug(
             "replicated node is here to be recorded:" + node.currentTransition + ", current node counter:" + node.currentNodeCounterRecorder)
           val newNodeInfo =
             new PointNodeInfo(node, transHasChoices, choiceTree, isSelfTrans,
-                              config)
+                              mbt.config)
           newNodeStack += newNodeInfo // store node information for each transition into stack*/
           val result = display(node, newNodeNumber, newNodeStack)
           newNodeNumber = result._1
@@ -309,7 +309,7 @@ class PathInPointGraph(val root: TrieNode,
       val choiceNode = root.children(choiceKey)
 
       var choiceNodeStyle
-        : String = " , shape=diamond, width=0.05, height=0.05, fontsize=11, xlabel=\"" + (if (config.pathLabelDetail)
+        : String = " , shape=diamond, width=0.05, height=0.05, fontsize=11, xlabel=\"" + (if (mbt.config.pathLabelDetail)
                                                                                             choiceNode.choiceCounter
                                                                                           else
                                                                                             "") + " \"];"
@@ -373,7 +373,7 @@ class PathInPointGraph(val root: TrieNode,
     }
     // set output label optional
     def labelOutputOptional(labelName: String, labelValue: String): String =
-      if (config.pathLabelDetail) labelName + labelValue + "\\n"
+      if (mbt.config.pathLabelDetail) labelName + labelValue + "\\n"
       else ""
 
     val modelName: String = node.modelInfo.modelName
@@ -409,7 +409,7 @@ class PathInPointGraph(val root: TrieNode,
       count
         .split(";")
         .map(_.toDouble)
-        .sum * 100.0d / config.nRuns.toDouble + 1.0d).toString + "\","
+        .sum * 100.0d / mbt.config.nRuns.toDouble + 1.0d).toString + "\","
 
     val label: String =
       "[" + edgeStyle +

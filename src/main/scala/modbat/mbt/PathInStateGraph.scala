@@ -14,8 +14,8 @@ import util.control.Breaks._
 class PathInStateGraph(val root: TrieNode,
                        val typeName: String,
                        val graphInitNode: String,
-                       config: Configuration)
-    extends PathVisualizer(config) {
+                       mbt: MBT)
+    extends PathVisualizer(mbt) {
   require(typeName == "State", "the input of path visualizer must be Ellipse")
 
   // class StateNodeInfo is used for record the node information used for "State" output graph
@@ -73,7 +73,7 @@ class PathInStateGraph(val root: TrieNode,
 
       var sameTransition = false
       // use abstractions to merge transitions' counters and choices's counters
-      if (config.pathCoverageGraphMode.equals("abstracted"))
+      if (mbt.config.pathCoverageGraphMode.equals("abstracted"))
         if (nodeRecorder != null) {
           breakable { // break this loop if found the same transition
             for (n <- nodeRecorder) {
@@ -137,7 +137,7 @@ class PathInStateGraph(val root: TrieNode,
         val newNodeInfo =
           new StateNodeInfo(node,
                             node.transitionInfo.transCounter.toString,
-                            transExecutedRecords, config)
+                            transExecutedRecords, mbt.config)
         nodeRecorder += newNodeInfo
       }
 
@@ -200,7 +200,7 @@ class PathInStateGraph(val root: TrieNode,
         // draw Choices with transitions
         drawTransWithChoices(n, choiceTree.root, 0, "")
         // display choice tree for debug
-        if (config.logLevel == Log.Debug)
+        if (mbt.config.logLevel == Log.Debug)
           choiceTree.displayChoices(choiceTree.root, 0)
       } else {
         // transitions without choices situation
@@ -213,7 +213,7 @@ class PathInStateGraph(val root: TrieNode,
         // edge label
         val edgeLabel: String = createEdgeLabel(n, edgeStyle, n.transCounter)
 
-        config.pathCoverageGraphMode match {
+        mbt.config.pathCoverageGraphMode match {
           case "full" =>
             // output all the edges according to trc and tpc counters
             for (trc_tpc <- n.transExecutedRecords.split(",")) {
@@ -305,7 +305,7 @@ class PathInStateGraph(val root: TrieNode,
 
       // choice node style
       val choiceNodeStyle
-        : String = " , shape=diamond, width=0.2, height=0.3, fontsize=11, xlabel=\"" + (if (config.pathLabelDetail)
+        : String = " , shape=diamond, width=0.2, height=0.3, fontsize=11, xlabel=\"" + (if (mbt.config.pathLabelDetail)
                                                                                           choiceNode.choiceCounter
                                                                                         else
                                                                                           "") + "\"];"
@@ -323,7 +323,7 @@ class PathInStateGraph(val root: TrieNode,
       val stepEdgeLabel: String =
         createEdgeLabel(nodeInfo, edgeStyle, choiceNode.choiceCounter.toString)
 
-      config.pathCoverageGraphMode match {
+      mbt.config.pathCoverageGraphMode match {
         case "full" =>
           for (cc <- 0 until choiceNode.choiceCounter) {
             // update counters
@@ -394,7 +394,7 @@ class PathInStateGraph(val root: TrieNode,
 
     // set output label optional
     def labelOutputOptional(labelName: String, labelValue: String): String =
-      if (config.pathLabelDetail) labelName + labelValue + "\\n"
+      if (mbt.config.pathLabelDetail) labelName + labelValue + "\\n"
       else ""
 
     val modelName: String = nodeInfo.node.modelInfo.modelName.toString
@@ -425,12 +425,12 @@ class PathInStateGraph(val root: TrieNode,
 
     // calculate penwidth
     var edgeWidth = ""
-    if (config.pathCoverageGraphMode.equals("abstracted"))
+    if (mbt.config.pathCoverageGraphMode.equals("abstracted"))
       edgeWidth = "penwidth=\"" + log10(
         count
           .split(";")
           .map(_.toDouble)
-          .sum * 100.0d / config.nRuns.toDouble + 1.0d).toString + "\","
+          .sum * 100.0d / mbt.config.nRuns.toDouble + 1.0d).toString + "\","
 
     val label: String =
       "[" + edgeStyle +

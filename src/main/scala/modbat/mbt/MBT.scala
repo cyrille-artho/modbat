@@ -381,4 +381,6 @@ class MBT (val config: Configuration) {
   val stayLock = MBT.stayLock
   val time = MBT.time
   val transitionQueue = MBT.transitionQueue
+  def classLoaderURLs = MBT.classLoaderURLs
+  def modelClass = MBT.modelClass
 }
