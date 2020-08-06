@@ -288,7 +288,7 @@ object MBT {
       Log.error("  \"a\" -> \"b\" := skip")
       throw new NoTransitionsException(model.getClass.getName)
     }
-    val inst = new ModelInstance(model, Transition.getTransitions)
+    val inst = new ModelInstance(/***/new MBT(Main.config), model, Transition.getTransitions)
     Transition.clear
     inst.addAndLaunch(modelInstance == null)
   }
@@ -373,4 +373,12 @@ class MBT (val config: Configuration) {
   def rng = MBT.rng
   def testFailed() = MBT.testHasFailed
   def currentTransition = MBT.currentTransition
+  def launchedModels = MBT.launchedModels
+  def prepare(instance: Model) = MBT.prepare(instance)
+  def warningIssued(o: Object) = MBT.warningIssued(o)
+  def getMethods(m: Model) = MBT.getMethods(m)
+  def checkDuplicates = MBT.checkDuplicates
+  val stayLock = MBT.stayLock
+  val time = MBT.time
+  val transitionQueue = MBT.transitionQueue
 }

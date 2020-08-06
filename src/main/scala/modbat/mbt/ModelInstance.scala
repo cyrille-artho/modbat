@@ -31,9 +31,9 @@ import modbat.trace.TransitionResult
 import modbat.util.SourceInfo
 import modbat.dsl.Weight
 import modbat.log.Log
-import modbat.mbt.{MBT => mbt}
 
-class ModelInstance (/***val mbt: MBT, */val model: Model, val trans: List[Transition]) {
+class ModelInstance (val mbt: MBT, val model: Model,
+                     val trans: List[Transition]) {
   val className = model.getClass.getName
   var states = HashMap[String, State]()
   val transitions = new ListBuffer[Transition]()
@@ -47,7 +47,7 @@ class ModelInstance (/***val mbt: MBT, */val model: Model, val trans: List[Trans
   var joining: ModelInstance = null
   val tracedFields = new TracedFields(getTracedFields, model)
   @volatile var staying = false
-  val mIdx = MBT.launchedModels.count(_.className.equals(className)) // mIdx gives the ID of the model -Rui
+  val mIdx = mbt.launchedModels.count(_.className.equals(className)) // mIdx gives the ID of the model -Rui
 
   /* isChild is true when coverage information of initial instance is
    * to be re-used; this is the case when a child is launched, but also
@@ -126,7 +126,7 @@ class ModelInstance (/***val mbt: MBT, */val model: Model, val trans: List[Trans
       registerStateSelfTrans(model, false)
     }
     model.efsm = this
-    model.mbt = /***mbt*/new MBT(/***/Main.config)
+    model.mbt = mbt
     mbt.prepare(model)
     Log.fine("Launching new model instance " + name + "...")
     if (model.isInstanceOf[Observer]) {
@@ -138,7 +138,7 @@ class ModelInstance (/***val mbt: MBT, */val model: Model, val trans: List[Trans
       warnAboutNonDefaultWeights
     }
     mbt.launchedModels += this
-    mbt.launchedModelInst += model
+    MBT/***mbt*/.launchedModelInst += model
     currentState = initialState
     StateCoverage.cover(initialState)
     this
@@ -234,7 +234,7 @@ class ModelInstance (/***val mbt: MBT, */val model: Model, val trans: List[Trans
           "Registering \"" + state + "\" -> \"" + state + "\" := "
             + m.getName)
          val st = states(state)
-        val wrapper = { () => mbt.invokeMethod(m, model) }
+        val wrapper = { () => MBT.invokeMethod(m, model) }
          val action = new Action(model, wrapper, m)
          action.weight = weight
          if (exceptions != null) {
@@ -373,9 +373,9 @@ class ModelInstance (/***val mbt: MBT, */val model: Model, val trans: List[Trans
   }
 
   def printStackTraceIfEnabled(e: Throwable) {
-    if (/***mbt.enableStackTrace*/Main.config.printStackTrace) {
+    if (mbt.config.printStackTrace) {
        Log.error(e.toString)
-       mbt.printStackTrace(e.getStackTrace)
+       MBT.printStackTrace(e.getStackTrace)
      }
   }
 
@@ -503,7 +503,7 @@ class ModelInstance (/***val mbt: MBT, */val model: Model, val trans: List[Trans
     }
     if (successor.action.transfunc ne null) {
       try {
-        mbt.currentTransition = successor
+        MBT/***mbt*/.currentTransition = successor
         TransitionCoverage.prep(successor)
         successor.action.transfunc()
         successor.action.stayTime match {
