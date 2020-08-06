@@ -11,7 +11,6 @@ import java.util.BitSet
 
 import scala.collection.mutable.HashMap
 import scala.collection.mutable.HashSet
-import scala.collection.mutable.LinkedHashMap
 import scala.collection.mutable.ListBuffer
 import modbat.cov.{
   StateCoverage,
@@ -56,7 +55,6 @@ object Modbat {
   var errFile: String = _
   var failed = 0
   var count = 0 // count the number of executed test cases.
-  val firstInstance = new LinkedHashMap[String, ModelInstance]()
   var appState = AppExplore // track app state in shutdown handler
   // shutdown handler is registered at time when model exploration starts
   private var executedTransitions = new ListBuffer[RecordedTransition]
@@ -76,7 +74,6 @@ object Modbat {
     Modbat.mbt = mbt
     failed = 0
     count = 0
-    firstInstance.clear()
     appState = AppExplore
     executedTransitions.clear()
     timesVisited.clear()
@@ -141,7 +138,7 @@ object Modbat {
   }
 
   def preconditionCoverage: Unit = {
-    for ((modelName, modelInst) <- firstInstance) {
+    for ((modelName, modelInst) <- mbt.firstInstance) {
       for (t <- modelInst.transitions) {
         val diffSet =
           t.coverage.precond.precondPassed.clone.asInstanceOf[BitSet]
@@ -309,13 +306,13 @@ object Modbat {
       return
     }
     showErrors
-    for ((modelName, modelInst) <- firstInstance) {
+    for ((modelName, modelInst) <- mbt.firstInstance) {
       val nCoveredStates =
         (modelInst.states.values filter (_.coverage.isCovered)).size
       val nCoveredTrans =
         (modelInst.transitions filter (_.coverage.isCovered)).size
       var modelStr = ""
-      if (firstInstance.size != 1) {
+      if (mbt.firstInstance.size != 1) {
         modelStr = modelName + ": "
       }
       val nStates = modelInst.states.size
@@ -331,7 +328,7 @@ object Modbat {
     randomSeed = (masterRNG.z << 32 | masterRNG.w)
     Log.info("Random seed for next test would be: " + randomSeed.toHexString)
     if (mbt.config.dotifyCoverage) {
-      for ((modelName, modelInst) <- firstInstance) {
+      for ((modelName, modelInst) <- mbt.firstInstance) {
         new Dotify(mbt.config, modelInst, modelName + ".dot").dotify(true)
       }
     }

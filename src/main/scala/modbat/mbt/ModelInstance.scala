@@ -113,14 +113,14 @@ class ModelInstance (val mbt: MBT, val model: Model,
   }
 
   def addAndLaunch(firstLaunch: Boolean) = {
-    if (/***mbt.m*/Modbat.firstInstance.contains(className)) {
+    if (mbt.firstInstance.contains(className)) {
       val master =
          initChildInstance(className, trans.toArray)
       regSynthTrans(true)
       registerStateSelfTrans(model, true)
       TransitionCoverage.reuseCoverageInfo(this, master, className)
     } else {
-      /***mbt.m*/Modbat.firstInstance.put(className, this)
+      mbt.firstInstance.put(className, this)
       init (false)
       regSynthTrans(false)
       registerStateSelfTrans(model, false)
@@ -160,7 +160,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
   }
 
   def initChildInstance(className: String, trans: Array[Any]) = {
-    val master = /***mbt.m*/Modbat.firstInstance(className)
+    val master = mbt.firstInstance(className)
     Log.debug("Identical model found: " + master.name)
     states = master.states
     initialState = master.initialState

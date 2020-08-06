@@ -12,9 +12,10 @@ import java.net.URLClassLoader
 
 import scala.collection.Iterator
 import scala.collection.JavaConversions._
+import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.HashMap
 import scala.collection.mutable.HashSet
-import scala.collection.mutable.ArrayBuffer
+import scala.collection.mutable.LinkedHashMap
 import scala.collection.mutable.ListBuffer
 import scala.collection.mutable.Queue
 import scala.concurrent.duration._
@@ -108,6 +109,7 @@ class MBT (val config: Configuration) {
   val launchedModelInst = new ArrayBuffer[Model]()
   val invokedStaticMethods = new HashSet[Method]()
   val transitionQueue = new Queue[(ModelInstance, String)]()
+  val firstInstance = new LinkedHashMap[String, ModelInstance]()
   var rng: Random = null
   /***var rethrowExceptions = false // for offline testing (to be done)*/
   var or_else = false // true if or_else predicate has just been evaluated
@@ -126,6 +128,7 @@ class MBT (val config: Configuration) {
   val time = new VirtualTime
 
   def init: Unit = {
+    firstInstance.clear()
     warningIssuedOn.clear()
     invokedStaticMethods.clear
     externalException = null
