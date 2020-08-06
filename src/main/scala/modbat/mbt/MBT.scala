@@ -127,15 +127,6 @@ class MBT (val config: Configuration) {
   val stayLock = new AnyRef()
   val time = new VirtualTime
 
-  def init: Unit = {
-    firstInstance.clear()
-    warningIssuedOn.clear()
-    invokedStaticMethods.clear
-    externalException = null
-    checkDuplicates=false
-    warningIssuedOn.clear
-  }
-
   // TODO: If necessary, add another argument (tag) to distinguish between
   // different types of warnings for the same type of object/data.
   def warningIssued(o: Object) = {

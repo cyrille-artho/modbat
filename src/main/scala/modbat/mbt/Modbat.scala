@@ -79,7 +79,6 @@ object Modbat {
     timesVisited.clear()
     testFailures.clear()
     masterRNG = mbt.rng.asInstanceOf[CloneableRandom].clone
-    /***MBT.init*/
     // call init if needed
     if (mbt.config.init) {
       mbt.invokeAnnotatedStaticMethods(classOf[Init], null)
