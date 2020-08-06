@@ -138,7 +138,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
       warnAboutNonDefaultWeights
     }
     mbt.launchedModels += this
-    MBT/***mbt*/.launchedModelInst += model
+    mbt.launchedModelInst += model
     currentState = initialState
     StateCoverage.cover(initialState)
     this
@@ -503,7 +503,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
     }
     if (successor.action.transfunc ne null) {
       try {
-        MBT/***mbt*/.currentTransition = successor
+        mbt.currentTransition = successor
         TransitionCoverage.prep(successor)
         successor.action.transfunc()
         successor.action.stayTime match {

@@ -44,15 +44,72 @@ import com.miguno.akka.testing.VirtualTime
 /** Contains core functionality for loading and running model.
   * Model exploration code is in Modbat. */
 object MBT {
+  var isOffline = true
+  var classLoaderURLs: Array[URL] = null
+
+  def invokeMethod(m: Method, inst: Object): Unit = {
+    try {
+      m.invoke(inst)
+    } catch {
+      case invoc: InvocationTargetException => throw invoc.getCause
+    }
+  }
+
+  def configClassLoader(classpath: String): Unit = {
+    val sep = System.getProperty("path.separator")
+    val paths = classpath.split(sep)
+    val urls = ListBuffer[URL]()
+    for (p <- paths) {
+      Log.debug("Adding " + p + " to classpath.")
+      urls += new File(p).toURI.toURL()
+    }
+    classLoaderURLs = urls.toArray
+  }
+
+  def printStackTrace(trace: Array[StackTraceElement]): Unit = {
+    for (el <- trace) {
+      val clsName = el.getClassName
+      if (clsName.startsWith("modbat.mbt.") &&
+          !clsName.startsWith("modbat.mbt.Predef")) {
+        return
+      }
+      Log.error("\tat " + el.toString)
+    }
+  }
+
+  def matchesType(ex: Throwable, excPattern: Regex): Boolean = {
+    var e: Class[_] = ex.getClass
+    while (e != null) {
+      excPattern findFirstIn e.getName() match {
+        case Some(e: String) => return true
+        case _ =>
+      }
+      e = e.getSuperclass
+    }
+    false
+  }
+
+  /* check if exception matches against regex of expected exceptions */
+  def expected(exc: List[Regex], e: Throwable): Boolean = {
+    exc foreach (ex =>
+      if (matchesType(e, ex)) {
+        Log.debug("Expected: " + e)
+        return true
+      }
+    )
+    return false
+  }
+}
+
+class MBT (val config: Configuration) {
   var modelClass: Class[_ <: Any] = null // main model class
+  // TODO: refactor SourceInfo into instance?
   val launchedModels = new ArrayBuffer[ModelInstance]()
   val launchedModelInst = new ArrayBuffer[Model]()
   val invokedStaticMethods = new HashSet[Method]()
   val transitionQueue = new Queue[(ModelInstance, String)]()
   var rng: Random = null
-  var rethrowExceptions = false // for offline testing (to be done)
-  var classLoaderURLs: Array[URL] = null
-  var isOffline = true
+  /***var rethrowExceptions = false // for offline testing (to be done)*/
   var or_else = false // true if or_else predicate has just been evaluated
   // used to skip subsequent "maybe", which is called just afterwards
   // (as sequential maybe... or_else is interpreted as nested operators)
@@ -70,6 +127,10 @@ object MBT {
 
   def init: Unit = {
     warningIssuedOn.clear()
+    invokedStaticMethods.clear
+    externalException = null
+    checkDuplicates=false
+    warningIssuedOn.clear
   }
 
   // TODO: If necessary, add another argument (tag) to distinguish between
@@ -80,14 +141,6 @@ object MBT {
       false
     } else {
       true
-    }
-  }
-
-  def invokeMethod(m: Method, inst: Object): Unit = {
-    try {
-      m.invoke(inst)
-    } catch {
-      case invoc: InvocationTargetException => throw invoc.getCause
     }
   }
 
@@ -143,17 +196,6 @@ object MBT {
     }
   }
 
-  def configClassLoader(classpath: String): Unit = {
-    val sep = System.getProperty("path.separator")
-    val paths = classpath.split(sep)
-    val urls = ListBuffer[URL]()
-    for (p <- paths) {
-      Log.debug("Adding " + p + " to classpath.")
-      urls += new File(p).toURI.toURL()
-    }
-    classLoaderURLs = urls.toArray
-  }
-
   def setRNG(r: Random): Unit = {
     rng = r
   }
@@ -185,7 +227,7 @@ object MBT {
     /* load model class */
     try {
       val classloader =
-        new URLClassLoader(classLoaderURLs,
+        new URLClassLoader(MBT.classLoaderURLs,
                            Thread.currentThread().getContextClassLoader())
       modelClass = classloader.loadClass(className)
     } catch {
@@ -197,7 +239,7 @@ object MBT {
   }
 
   def prepare(instance: Model): Unit = {
-    if (Main.config.setup) {
+    if (config.setup) {
       // Avoid invoking companion object methods on launched instances
       // Solution: Avoid calling static methods more than once.
       invokeAnnotatedStaticMethods(classOf[Before], instance)
@@ -208,7 +250,7 @@ object MBT {
   def cleanup(): Unit = {
     // clear buffer of static methods for itself
     invokedStaticMethods.clear()
-    if (Main.config.cleanup) {
+    if (config.cleanup) {
       val instances = launchedModelInst.reverse
       instances.foreach(inst => invokeAnnotatedMethods(classOf[After], inst))
       instances.foreach(inst =>
@@ -261,12 +303,12 @@ object MBT {
         Log.error("Exception in default (nullary) constructor of main model.")
         Log.error("In dot mode, a constructor that ignores any data")
         Log.error("is sufficient to visualize the ESFM graph.")
-        if (!Main.config.printStackTrace) {
+        if (!config.printStackTrace) {
           Log.error("Use --print-stack-trace to see the stack trace.")
         } else {
           val cause = e.getCause
           Log.error(cause.toString)
-          printStackTrace(cause.getStackTrace)
+          MBT.printStackTrace(cause.getStackTrace)
         }
         throw (e)
         null
@@ -288,20 +330,9 @@ object MBT {
       Log.error("  \"a\" -> \"b\" := skip")
       throw new NoTransitionsException(model.getClass.getName)
     }
-    val inst = new ModelInstance(/***/new MBT(Main.config), model, Transition.getTransitions)
+    val inst = new ModelInstance(this, model, Transition.getTransitions)
     Transition.clear
     inst.addAndLaunch(modelInstance == null)
-  }
-
-  def printStackTrace(trace: Array[StackTraceElement]): Unit = {
-    for (el <- trace) {
-      val clsName = el.getClassName
-      if (clsName.startsWith("modbat.mbt.") &&
-          !clsName.startsWith("modbat.mbt.Predef")) {
-        return
-      }
-      Log.error("\tat " + el.toString)
-    }
   }
 
   // choose between min (inclusive) and max (exclusive)
@@ -310,21 +341,21 @@ object MBT {
       // size of range is 0 but return min to avoid division by 0
       min
     } else {
-      MBT.rng.choose(min, max)
+      rng.choose(min, max)
     }
   }
 
   def maybe(action: Action) = {
-    if (MBT.or_else) {
-      MBT.or_else = false
+    if (or_else) {
+      or_else = false
       action.transfunc()
     } else {
       // compute choice for "maybe" -Rui
       val choice
-        : Boolean = MBT.rng.nextFloat(true) < Main.config.maybeProbability
+        : Boolean = rng.nextFloat(true) < config.maybeProbability
       // record choice for "maybe" -Rui
       val maybeChoice = MaybeChoice(choice)
-      MBT.rng.recordChoice(maybeChoice)
+      rng.recordChoice(maybeChoice)
       if (choice) {
         action.transfunc()
       }
@@ -332,55 +363,10 @@ object MBT {
   }
   // all maybeBool things need to be deleted -Rui
   def maybeBool(pred: () => Boolean) = {
-    if (MBT.rng.nextFloat(true) < Main.config.maybeProbability) {
+    if (rng.nextFloat(true) < config.maybeProbability) {
       pred()
     } else {
       false
     }
   }
-
-  def matchesType(ex: Throwable, excPattern: Regex): Boolean = {
-    var e: Class[_] = ex.getClass
-    while (e != null) {
-      excPattern findFirstIn e.getName() match {
-        case Some(e: String) => return true
-        case _ =>
-      }
-      e = e.getSuperclass
-    }
-    false
-  }
-
-  /* check if exception matches against regex of expected exceptions */
-  def expected(exc: List[Regex], e: Throwable): Boolean = {
-    exc foreach (ex =>
-      if (matchesType(e, ex)) {
-        Log.debug("Expected: " + e)
-        return true
-      }
-    )
-    return false
-  }
-}
-
-class MBT (val config: Configuration) {
-  def choose(min: Int, max: Int) = MBT.choose(min, max)
-  def getRandomSeed() = MBT.getRandomSeed()
-  def launch(modelInstance: Model) = MBT.launch(modelInstance)
-  def maybe(action: Action) = MBT.maybe(action)
-  def maybeBool(pred: () => Boolean) = MBT.maybeBool(pred)
-  val modbatThread = MBT.modbatThread
-  def rng = MBT.rng
-  def testFailed() = MBT.testHasFailed
-  def currentTransition = MBT.currentTransition
-  def launchedModels = MBT.launchedModels
-  def prepare(instance: Model) = MBT.prepare(instance)
-  def warningIssued(o: Object) = MBT.warningIssued(o)
-  def getMethods(m: Model) = MBT.getMethods(m)
-  def checkDuplicates = MBT.checkDuplicates
-  val stayLock = MBT.stayLock
-  val time = MBT.time
-  val transitionQueue = MBT.transitionQueue
-  def classLoaderURLs = MBT.classLoaderURLs
-  def modelClass = MBT.modelClass
 }

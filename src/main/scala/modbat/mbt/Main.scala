@@ -51,23 +51,24 @@ object Main {
       }
     }
 
-    setup(config, modelClassName) // TODO: refactor into case code below once needed
+    val mbt = new MBT(config)
+    setup(config, mbt, modelClassName) // TODO: refactor into case code below once needed
 
-    Modbat.init
+    Modbat.init(mbt)/***/
     /* execute */
     config.mode match {
       case "dot" =>
-        new Dotify(config, MBT.launch(null), modelClassName + ".dot").dotify()
+        new Dotify(config, mbt.launch(null), modelClassName + ".dot").dotify()
       case _ => Modbat.explore(config.nRuns)
     }
   }
 
-  def setup(config: Configuration, modelClassName: String): Unit = {
+  def setup(config: Configuration, mbt: MBT, modelClassName: String): Unit = {
     /* configure components */
     Log.setLevel(config.logLevel)
-    MBT.configClassLoader(config.classpath)
-    MBT.loadModelClass(modelClassName)
-    MBT.setRNG(config.randomSeed)
     MBT.isOffline = false
+    MBT.configClassLoader(config.classpath)
+    mbt.loadModelClass(modelClassName)
+    mbt.setRNG(config.randomSeed)
   }
 }
