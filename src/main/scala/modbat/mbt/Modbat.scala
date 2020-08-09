@@ -44,6 +44,7 @@ object Modbat {
   import AppState._
 
   var mbt: MBT = null
+  var thisM: Modbat = null
   var isUnitTest = true
   val origOut = Console.out
   val origErr = Console.err
@@ -67,8 +68,9 @@ object Modbat {
   var trie = new Trie()
   private var pathInfoRecorder = new ListBuffer[PathInfo]
 
-  def init(mbt: MBT): Unit = {
+  def init(modbat: Modbat, mbt: MBT): Unit = {
     // reset all static variables
+    thisM = modbat;
     Modbat.mbt = mbt
     failed = 0
     count = 0
@@ -80,12 +82,6 @@ object Modbat {
     // call init if needed
     if (mbt.config.init) {
       mbt.invokeAnnotatedStaticMethods(classOf[Init], null)
-    }
-  }
-
-  def shutdown: Unit = {
-    if (mbt.config.shutdown) {
-      mbt.invokeAnnotatedStaticMethods(classOf[Shutdown], null)
     }
   }
 
@@ -369,7 +365,7 @@ object Modbat {
   }
 
   def explore(n: Int): Unit = {
-    init(mbt)
+    init(thisM, mbt)
     if (!Modbat.isUnitTest) {
       Runtime.getRuntime().addShutdownHook(ShutdownHandler)
     }
@@ -378,7 +374,7 @@ object Modbat {
 
     coverage
     appState = AppShutdown
-    shutdown
+    thisM.shutdown
     Runtime.getRuntime().removeShutdownHook(ShutdownHandler)
   }
 
@@ -387,23 +383,6 @@ object Modbat {
     assert(rng.w <= 0xffffffffL)
     assert(rng.z <= 0xffffffffL)
     rng.z << 32 | rng.w
-  }
-
-  def wrapRun = {
-    Console.withErr(err) {
-      Console.withOut(out) {
-        val model = mbt.launch(null)
-        val result = exploreModel(model)
-        mbt.cleanup()
-        result
-      }
-    }
-  }
-
-  def runTest = {
-    mbt.clearLaunchedModels()
-    mbt.testHasFailed = false
-    wrapRun
   }
 
   def runTests(n: Int): Unit = {
@@ -431,7 +410,7 @@ object Modbat {
         Console.println()
       }
       mbt.checkDuplicates = (i == 1)
-      val result = runTest
+      val result = thisM.runTest
       count = i
       restoreChannels
       if (TransitionResult.isErr(result)) {
@@ -1059,6 +1038,30 @@ object Modbat {
 }
 
 class Modbat(val mbt: MBT) {
-  def init(mbt: MBT) = Modbat.init(mbt)
+  def init(mbt: MBT) = Modbat.init(this, mbt)
   def explore(n: Int) = Modbat.explore(n)
+  def exploreModel(model: ModelInstance) = Modbat.exploreModel(model)
+
+  def shutdown: Unit = {
+    if (mbt.config.shutdown) {
+      mbt.invokeAnnotatedStaticMethods(classOf[Shutdown], null)
+    }
+  }
+
+  def wrapRun = {
+    Console.withErr(/***/Modbat.err) {
+      Console.withOut(/***/Modbat.out) {
+        val model = mbt.launch(null)
+        val result = exploreModel(model)
+        mbt.cleanup()
+        result
+      }
+    }
+  }
+
+  def runTest = {
+    mbt.clearLaunchedModels()
+    mbt.testHasFailed = false
+    wrapRun
+  }
 }
