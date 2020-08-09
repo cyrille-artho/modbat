@@ -181,6 +181,8 @@ task tutorialJar {
 }
 
 test {
+  dependsOn compileTestJava
+  dependsOn compileTestScala
   dependsOn examplesJar
   dependsOn tutorialJar
   dependsOn testsJar
