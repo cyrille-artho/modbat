@@ -43,7 +43,6 @@ object Modbat {
   }
   import AppState._
 
-  var  Modbat = null
   var isUnitTest = true
 
   def showFailure(f: (TransitionResult, String)) = {
