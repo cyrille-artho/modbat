@@ -49,7 +49,7 @@ object ModbatTestHarness {
                                   " expected but test was successful.")
           }
         } catch {
-          case e: IllegalArgumentException => {
+          case e: Throwable => {
             System.setOut(origOut)
             System.setErr(origErr)
             checkOutput(args, bytesToLines(out), bytesToLines(err))
@@ -67,7 +67,7 @@ object ModbatTestHarness {
     try {
       runTest(args, env, errCode)
     } catch {
-      case (e: Exception) =>
+      case (e: Throwable) =>
         val cause = e.getCause()
         if (cause == null) {
           assert(errCode != 0, "Caught unexpected exception: " + e.toString())
