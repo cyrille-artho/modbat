@@ -54,7 +54,6 @@ object Main {
     setup(config, mbt, modelClassName) // TODO: refactor into case code below once needed
 
     val modbat = new Modbat(mbt)
-    modbat.init(mbt)/***/
     /* execute */
     config.mode match {
       case "dot" =>

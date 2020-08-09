@@ -69,7 +69,7 @@ object Modbat {
 
   def init(modbat: Modbat, mbt: MBT): Unit = {
     // reset all static variables
-    thisM = modbat;
+    thisM = modbat
     failed = 0
     count = 0
     appState = AppExplore
@@ -363,7 +363,6 @@ object Modbat {
   }
 
   def explore(n: Int): Unit = {
-    init(thisM, thisM.mbt)
     if (!Modbat.isUnitTest) {
       Runtime.getRuntime().addShutdownHook(ShutdownHandler)
     }
@@ -1029,7 +1028,7 @@ object Modbat {
 }
 
 class Modbat(val mbt: MBT) {
-  def init(mbt: MBT) = Modbat.init(this, mbt)
+  Modbat.init(this, mbt)
   def explore(n: Int) = Modbat.explore(n)
   def exploreModel(model: ModelInstance) = Modbat.exploreModel(model)
 
