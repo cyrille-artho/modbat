@@ -378,20 +378,13 @@ object Modbat {
     Runtime.getRuntime().removeShutdownHook(ShutdownHandler)
   }
 
-  def getRandomSeed = {
-    val rng = mbt.rng.asInstanceOf[CloneableRandom]
-    assert(rng.w <= 0xffffffffL)
-    assert(rng.z <= 0xffffffffL)
-    rng.z << 32 | rng.w
-  }
-
   def runTests(n: Int): Unit = {
     for (i <- 1 to n) { // n is the number of test cases
       mbt.rng = masterRNG.clone
       // advance RNG by one step for each path
       // so each path stays the same even if the length of other paths
       // changes due to small changes in the model or in this tool
-      randomSeed = getRandomSeed
+      randomSeed = thisM.getRandomSeed
       val seed = randomSeed.toHexString
       failed match {
         case 0 => Console.printf("%8d %16s", i, seed)
@@ -1063,5 +1056,12 @@ class Modbat(val mbt: MBT) {
     mbt.clearLaunchedModels()
     mbt.testHasFailed = false
     wrapRun
+  }
+
+  def getRandomSeed = {
+    val rng = mbt.rng.asInstanceOf[CloneableRandom]
+    assert(rng.w <= 0xffffffffL)
+    assert(rng.z <= 0xffffffffL)
+    rng.z << 32 | rng.w
   }
 }
