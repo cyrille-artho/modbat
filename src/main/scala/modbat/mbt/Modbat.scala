@@ -45,12 +45,6 @@ object Modbat {
 
   var thisM: Modbat = null
   var isUnitTest = true
-  val origOut = Console.out
-  val origErr = Console.err
-  var out: PrintStream = origOut
-  var err: PrintStream = origErr
-  var logFile: String = _
-  var errFile: String = _
   var failed = 0
   var count = 0 // count the number of executed test cases.
   var appState = AppExplore // track app state in shutdown handler
@@ -384,14 +378,14 @@ object Modbat {
         case 1 => Console.printf("%8d %16s, one test failed.", i, seed)
         case _ => Console.printf("%8d %16s, %d tests failed.", i, seed, failed)
       }
-      logFile = thisM.mbt.config.logPath + "/" + seed + ".log"
-      errFile = thisM.mbt.config.logPath + "/" + seed + ".err"
+      thisM.logFile = thisM.mbt.config.logPath + "/" + seed + ".log"
+      thisM.errFile = thisM.mbt.config.logPath + "/" + seed + ".err"
       if (thisM.mbt.config.redirectOut) {
-        out = new PrintStream(new FileOutputStream(logFile))
-        System.setOut(out)
+        thisM.out = new PrintStream(new FileOutputStream(thisM.logFile))
+        System.setOut(thisM.out)
 
-        err = new PrintStream(new FileOutputStream(errFile), true)
-        System.setErr(err)
+        thisM.err = new PrintStream(new FileOutputStream(thisM.errFile), true)
+        System.setErr(thisM.err)
       } else {
         Console.println()
       }
@@ -1024,7 +1018,15 @@ object Modbat {
 }
 
 class Modbat(val mbt: MBT) {
+  val origOut = System.out
+  val origErr = System.err
+  var out: PrintStream = origOut
+  var err: PrintStream = origErr
+  var logFile: String = _
+  var errFile: String = _
+
   Modbat.init(this, mbt)
+
   def explore(n: Int) = Modbat.explore(n)
   def exploreModel(model: ModelInstance) = Modbat.exploreModel(model)
 
@@ -1035,8 +1037,8 @@ class Modbat(val mbt: MBT) {
   }
 
   def wrapRun = {
-    Console.withErr(/***/Modbat.err) {
-      Console.withOut(/***/Modbat.out) {
+    Console.withErr(err) {
+      Console.withOut(out) {
         val model = mbt.launch(null)
         val result = exploreModel(model)
         mbt.cleanup()
@@ -1059,7 +1061,7 @@ class Modbat(val mbt: MBT) {
   }
 
   def restoreChannels: Unit = {
-    Modbat.restoreChannel(mbt, Modbat.out, Modbat.origOut, Modbat.logFile)
-    Modbat.restoreChannel(mbt, Modbat.err, Modbat.origErr, Modbat.errFile, true)
+    Modbat.restoreChannel(mbt, out, origOut, logFile)
+    Modbat.restoreChannel(mbt, err, origErr, errFile, true)
   }
 }
