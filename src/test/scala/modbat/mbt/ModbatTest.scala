@@ -2,7 +2,7 @@ package modbat.mbt
 
 import org.scalatest._
 
-class ModbatTest extends FlatSpec with Matchers with AppendedClues {
+class ModbatTest extends FlatSpec with Matchers {
   "A missing model class" should "cause Modbat to fail" in {
     ModbatTestHarness.test(Array("--model-class=x"), (() => ModbatTestHarness.setTestJar()), 1)
   }

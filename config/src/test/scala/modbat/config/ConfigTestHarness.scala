@@ -125,8 +125,8 @@ object ConfigTestHarness {
       iters._2.map(l =>
                    filter(removeAnsiEscapes(l)) + "\n").foreach(writer.write)
       writer.close()
-      System.err.println("diff " + filename.replace("../", "") +
-                         " " + actualOutput.replace("../", ""))
+      System.err.println("diff " + actualOutput.replace("../", "") +
+                         " " + filename.replace("../", ""))
     }
     assert(result, "Output does not match template")
   }

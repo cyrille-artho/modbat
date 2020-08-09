@@ -104,7 +104,6 @@ object MBT {
 
 class MBT (val config: Configuration) {
   var modelClass: Class[_ <: Any] = null // main model class
-  // TODO: refactor SourceInfo into instance?
   val launchedModels = new ArrayBuffer[ModelInstance]()
   val launchedModelInst = new ArrayBuffer[Model]()
   val invokedStaticMethods = new HashSet[Method]()

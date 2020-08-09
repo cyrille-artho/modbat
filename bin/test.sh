@@ -46,15 +46,6 @@ APP="scala build/modbat.jar"
 
 export CLASSPATH=build/modbat-examples.jar
 
-run 0 $APP -n=5 -s=1 --no-redirect-out --log-level=fine \
-	--no-init --no-shutdown modbat.examples.NioSocket1
-run 0 $APP -n=10 -s=1 --no-redirect-out --log-level=fine \
-	--no-init --no-shutdown modbat.examples.NioSocket1
-run 0 $APP -n=20 -s=1 --no-redirect-out --log-level=fine \
-	--no-init --no-shutdown modbat.examples.NioSocket1
-run 0 $APP -n=50 -s=1 --no-redirect-out --log-level=fine \
-	--no-init --no-shutdown modbat.examples.NioSocket1
-
 run 0 $APP -n=10 -s=1 --no-redirect-out --log-level=fine \
 	modbat.examples.NioSocket1
 run 0 $APP -n=20 -s=1 --no-redirect-out --log-level=fine \

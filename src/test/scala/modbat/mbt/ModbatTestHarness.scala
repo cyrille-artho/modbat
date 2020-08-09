@@ -120,6 +120,12 @@ object ModbatTestHarness {
     }
   }
 
+  def setExamplesJar() = {
+    val mapsetExamplesJar = new java.util.HashMap[String, String]()
+    mapsetExamplesJar.put("CLASSPATH", "build/modbat-examples.jar")
+    setEnv (mapsetExamplesJar)
+  }
+
   def setTestJar() = {
     val mapsetTestJar = new java.util.HashMap[String, String]()
     mapsetTestJar.put("CLASSPATH", "build/modbat-test.jar")
