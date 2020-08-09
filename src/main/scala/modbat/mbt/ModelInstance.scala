@@ -28,7 +28,6 @@ import modbat.trace.ExpectedExceptionMissing
 import modbat.trace.TracedFields
 import modbat.trace.RecordedTransition
 import modbat.trace.TransitionResult
-import modbat.util.SourceInfo
 import modbat.dsl.Weight
 import modbat.log.Log
 
@@ -240,7 +239,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
          if (exceptions != null) {
            action.throws(exceptions.value())
          }
-         val lineNumber = SourceInfo.lineNumberFromMethod(m)
+         val lineNumber = mbt.sourceInfo.lineNumberFromMethod(m)
          val t =
            new Transition(model, st, st, false, action,
                           m.getDeclaringClass().getName(), lineNumber, false)

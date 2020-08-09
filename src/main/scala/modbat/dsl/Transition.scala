@@ -31,7 +31,8 @@ class Transition (val model:            Model,
                   sourceLine:           Int,
                   remember:             Boolean = true) {
 
-  val sourceInfo = SourceInfo.sourceInfoFromFullName(fullName, sourceLine)
+  def sourceInfo =
+    model.mbt.sourceInfo.sourceInfoFromFullName(fullName, sourceLine)
 
   // NextStateNextIf records the result of the nextIf with the next state -Rui
   case class NextStateNextIf(val nextState: State, val nextIf: Boolean)
@@ -87,8 +88,8 @@ class Transition (val model:            Model,
   def ppTrans(autoLabels: Boolean, showSkip: Boolean = false): String = {
     if (autoLabels && action.label.isEmpty) {
       assert(action.transfunc != null)
-      val actionInfo = SourceInfo.actionInfo(action, false)
-      if (actionInfo.equals(SourceInfo.SKIP)) {
+      val actionInfo = model.mbt.sourceInfo.actionInfo(action, false)
+      if (actionInfo.equals(model.mbt.sourceInfo.SKIP)) {
         if (showSkip) {
           return "[skip]"
         } else {

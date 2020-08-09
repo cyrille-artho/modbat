@@ -86,7 +86,7 @@ class CloneableRandom(rngTrace: Array[Int], dbgTrace: Array[String])
   override def nextFunc(model: Model, actions: Array[() => Any]) = {
     val result = super.nextFunc(model, actions)
     val action = new Action(model, result)
-    resultsAsString += SourceInfo.actionInfo(action, true)
+    resultsAsString += model.mbt.sourceInfo.actionInfo(action, true)
     result
   }
 

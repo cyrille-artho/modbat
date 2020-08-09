@@ -38,6 +38,7 @@ import modbat.log.Log
 import modbat.trace._
 import modbat.util.CloneableRandom
 import modbat.util.Random
+import modbat.util.SourceInfo
 
 import com.miguno.akka.testing.VirtualTime
 
@@ -46,7 +47,6 @@ import com.miguno.akka.testing.VirtualTime
   * Model exploration code is in Modbat. */
 object MBT {
   var isOffline = true
-  var classLoaderURLs: Array[URL] = null
 
   def invokeMethod(m: Method, inst: Object): Unit = {
     try {
@@ -54,17 +54,6 @@ object MBT {
     } catch {
       case invoc: InvocationTargetException => throw invoc.getCause
     }
-  }
-
-  def configClassLoader(classpath: String): Unit = {
-    val sep = System.getProperty("path.separator")
-    val paths = classpath.split(sep)
-    val urls = ListBuffer[URL]()
-    for (p <- paths) {
-      Log.debug("Adding " + p + " to classpath.")
-      urls += new File(p).toURI.toURL()
-    }
-    classLoaderURLs = urls.toArray
   }
 
   def printStackTrace(trace: Array[StackTraceElement]): Unit = {
@@ -100,6 +89,18 @@ object MBT {
     )
     return false
   }
+
+  def cpToURL(classpath: String): Array[URL] = {
+    val sep = System.getProperty("path.separator")
+    val paths = classpath.split(sep)
+    val urls = ListBuffer[URL]()
+    for (p <- paths) {
+      Log.debug("Adding " + p + " to classpath.")
+      urls += new File(p).toURI.toURL()
+    }
+    urls.toArray
+  }
+
 }
 
 class MBT (val config: Configuration) {
@@ -125,7 +126,8 @@ class MBT (val config: Configuration) {
   var currentTransition: Transition = null
   val stayLock = new AnyRef()
   val time = new VirtualTime
-  MBT.configClassLoader(config.classpath)
+  val classLoaderURLs = MBT.cpToURL(config.classpath)
+  val sourceInfo = new SourceInfo(classLoaderURLs)
 
   // TODO: If necessary, add another argument (tag) to distinguish between
   // different types of warnings for the same type of object/data.
@@ -221,7 +223,7 @@ class MBT (val config: Configuration) {
     /* load model class */
     try {
       val classloader =
-        new URLClassLoader(MBT.classLoaderURLs,
+        new URLClassLoader(classLoaderURLs,
                            Thread.currentThread().getContextClassLoader())
       modelClass = classloader.loadClass(className)
     } catch {
