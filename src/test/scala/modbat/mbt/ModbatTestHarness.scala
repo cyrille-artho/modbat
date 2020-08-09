@@ -68,7 +68,14 @@ object ModbatTestHarness {
       runTest(args, env, errCode)
     } catch {
       case (e: Exception) =>
-        assert(errCode != 0, "Caught unexpected exception: " + e.toString())
+        val cause = e.getCause()
+        if (cause == null) {
+          assert(errCode != 0, "Caught unexpected exception: " + e.toString())
+        } else {
+          assert(errCode != 0,
+                 "Caught unexpected exception: " + e.toString() +
+                 "; cause: " + e.getCause())
+        }
     }
   }
 
