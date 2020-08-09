@@ -328,27 +328,23 @@ object Modbat {
   object ShutdownHandler extends Thread {
     override def run(): Unit = {
       if (appState == AppExplore) {
-        restoreChannels
+        thisM.restoreChannels
         Console.println()
         coverage
       }
     }
   }
 
-  def restoreChannels: Unit = {
-    restoreChannel(out, origOut, logFile)
-    restoreChannel(err, origErr, errFile, true)
-  }
-
-  def restoreChannel(ch: PrintStream,
+  def restoreChannel(mbt: MBT,
+                     ch: PrintStream,
                      orig: PrintStream,
                      filename: String,
                      isErr: Boolean = false): Unit = {
-    if (thisM.mbt.config.redirectOut) {
+    if (mbt.config.redirectOut) {
       ch.close()
       val file = new File(filename)
-      if ((thisM.mbt.config.deleteEmptyLog && (file.length == 0)) ||
-          (thisM.mbt.config.removeLogOnSuccess && !thisM.mbt.testHasFailed)) {
+      if ((mbt.config.deleteEmptyLog && (file.length == 0)) ||
+          (mbt.config.removeLogOnSuccess && !mbt.testHasFailed)) {
         if (!file.delete()) {
           Log.warn("Cannot delete file " + filename)
         }
@@ -402,7 +398,7 @@ object Modbat {
       thisM.mbt.checkDuplicates = (i == 1)
       val result = thisM.runTest
       count = i
-      restoreChannels
+      thisM.restoreChannels
       if (TransitionResult.isErr(result)) {
         failed += 1
       } else {
@@ -1060,5 +1056,10 @@ class Modbat(val mbt: MBT) {
     assert(rng.w <= 0xffffffffL)
     assert(rng.z <= 0xffffffffL)
     rng.z << 32 | rng.w
+  }
+
+  def restoreChannels: Unit = {
+    Modbat.restoreChannel(mbt, Modbat.out, Modbat.origOut, Modbat.logFile)
+    Modbat.restoreChannel(mbt, Modbat.err, Modbat.origErr, Modbat.errFile, true)
   }
 }
