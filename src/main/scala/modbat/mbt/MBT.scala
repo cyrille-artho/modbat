@@ -125,6 +125,7 @@ class MBT (val config: Configuration) {
   var currentTransition: Transition = null
   val stayLock = new AnyRef()
   val time = new VirtualTime
+  MBT.configClassLoader(config.classpath)
 
   // TODO: If necessary, add another argument (tag) to distinguish between
   // different types of warnings for the same type of object/data.

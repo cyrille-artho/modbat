@@ -66,7 +66,6 @@ object Main {
     /* configure components */
     Log.setLevel(config.logLevel)
     MBT.isOffline = false
-    MBT.configClassLoader(config.classpath)
     mbt.loadModelClass(modelClassName)
     mbt.setRNG(config.randomSeed)
   }
