@@ -130,7 +130,7 @@ object ConfigTestHarness {
       System.err.println("diff " + actualOutput.replace("../", "") +
                          " " + filename.replace("../", ""))
     }
-    assert(result, "Output does not match template")
+    result
   }
 
   def doCheck(filename: String, output: Iterator[String],
@@ -148,7 +148,9 @@ object ConfigTestHarness {
   def checkOutput(args: Array[String],
                   log: Iterator[String], err: Iterator[String]) = {
     val logFileName = "../log/config/" + args.mkString("")
-    checkFile(logFileName + ".out", log)
-    checkFile(logFileName + ".eout", err)
+    val logMatch = checkFile(logFileName + ".out", log)
+    val errMatch = checkFile(logFileName + ".eout", err)
+    assert(logMatch, "Output does not match template")
+    assert(errMatch, "Errors do not match template")
   }
 }
