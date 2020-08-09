@@ -77,7 +77,7 @@ object ConfigTestHarness {
   }
 
   def sameAs[String](actual: Iterator[String], expected: Iterator[String],
-    templateName: String): Boolean = {
+    templateName: String, filterFunc: String => String): Boolean = {
     var l = 0
     val context = List("", "", "").toArray
     for (line <- expected) {
@@ -89,7 +89,8 @@ object ConfigTestHarness {
         return false
       } else {
         val actLine = removeAnsiEscapes(actual.next().toString())
-        if (printableLine.equals(filter(actLine))) {
+        val filteredLine = filterFunc(actLine.asInstanceOf[String])
+        if (printableLine.equals(filteredLine)) {
           context(l % 3) = printableLine
         } else {
           report("Output mismatch; matching context in template " +
@@ -116,9 +117,10 @@ object ConfigTestHarness {
     }
   }
 
-  def checkFile(filename: String, output: Iterator[String]) = {
+  def checkFile(filename: String, output: Iterator[String],
+                filterFunc: String => String = filter) = {
     val iters = output.duplicate
-    val result = doCheck(filename, iters._1)
+    val result = doCheck(filename, iters._1, filterFunc)
     if (!result) {
       val actualOutput = logFileName(filename)
       val writer = new BufferedWriter(new FileWriter(actualOutput))
@@ -131,14 +133,15 @@ object ConfigTestHarness {
     assert(result, "Output does not match template")
   }
 
-  def doCheck(filename: String, output: Iterator[String]) = {
+  def doCheck(filename: String, output: Iterator[String],
+              filterFunc: String => String) = {
     val logTemplFile = new File(filename)
     if (logTemplFile.exists()) {
       val logTemplate = Source.fromFile(logTemplFile).getLines
-      sameAs(output, logTemplate, logTemplFile.getName())
+      sameAs(output, logTemplate, logTemplFile.getName(), filterFunc)
     } else {
       val logTemplate = Iterator[String]()
-      sameAs(output, logTemplate, logTemplFile.getName())
+      sameAs(output, logTemplate, logTemplFile.getName(), filterFunc)
     }
   }
 

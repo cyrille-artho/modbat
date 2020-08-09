@@ -9,6 +9,7 @@ import java.util.HashMap
 
 import modbat.config.ConfigTestHarness.bytesToLines
 import modbat.config.ConfigTestHarness.checkFile
+import modbat.config.ConfigTestHarness.{filter => configTestFilter}
 
 object ModbatTestHarness {
   def testMain(args: Array[String], env: () => Unit): (Int, List[String], List[String]) = {
@@ -71,6 +72,11 @@ object ModbatTestHarness {
     }
   }
 
+  def filter(line: String) = {
+    configTestFilter(line).
+      replaceAll("(at .*):[0-9]*","$1")
+  }
+
   def mainTarget(args: Array[String]) = {
     args.find(a => !a.startsWith("-")) match {
       case Some(s: String) => s
@@ -87,8 +93,8 @@ object ModbatTestHarness {
   def checkOutput(args: Array[String],
                   log: Iterator[String], err: Iterator[String]) = {
     val logFile = "log/modbat/" + logFileName(args)
-    checkFile(logFile + ".out", log)
-    checkFile(logFile + ".eout", err)
+    checkFile(logFile + ".out", log, filter)
+    checkFile(logFile + ".eout", err, filter)
   }
 
   def setEnv(newEnv: java.util.Map[String, String]): Unit = {
