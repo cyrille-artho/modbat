@@ -1,4 +1,3 @@
-[DEBUG] Adding build/modbat-examples.jar to classpath.
 [DEBUG] modbat.examples.JavaNioServerSocket-1: Registered state transition from reset to open
 [DEBUG] modbat.examples.JavaNioServerSocket-1: Registered state transition from open to open
 [DEBUG] modbat.examples.JavaNioServerSocket-1: Registered state transition from open to bound
