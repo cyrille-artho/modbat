@@ -41,12 +41,10 @@ object Modbat {
   object AppState extends Enumeration {
     val AppExplore, AppShutdown = Value
   }
-
   import AppState._
 
   var mbt: MBT = null
   var isUnitTest = true
-
   val origOut = Console.out
   val origErr = Console.err
   var out: PrintStream = origOut
@@ -1061,4 +1059,6 @@ object Modbat {
 }
 
 class Modbat(val mbt: MBT) {
+  def init(mbt: MBT) = Modbat.init(mbt)
+  def explore(n: Int) = Modbat.explore(n)
 }

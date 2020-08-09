@@ -54,12 +54,12 @@ object Main {
     setup(config, mbt, modelClassName) // TODO: refactor into case code below once needed
 
     val modbat = new Modbat(mbt)
-    Modbat.init(mbt)/***/
+    modbat.init(mbt)/***/
     /* execute */
     config.mode match {
       case "dot" =>
         new Dotify(config, mbt.launch(null), modelClassName + ".dot").dotify()
-      case _ => Modbat.explore(config.nRuns)
+      case _ => modbat.explore(config.nRuns)
     }
   }
 
