@@ -15,9 +15,9 @@ import modbat.util.SourceInfo
  * buffer as not to interfere with the next model instance. */
 class Transition (val model:            Model,
                   var origin:           State,
-		  var dest:		State,
-		  val isSynthetic:	Boolean,
-		  val action:		Action,
+                  var dest:             State,
+                  val isSynthetic:      Boolean,
+                  val action:           Action,
                   fullName:             String,
                   sourceLine:           Int,
                   remember:             Boolean = true) {
