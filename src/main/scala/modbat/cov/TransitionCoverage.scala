@@ -5,13 +5,15 @@ package modbat.cov
 
 import modbat.dsl.Transition
 import modbat.dsl.NextStateOverride
+import modbat.mbt.Configuration
 import modbat.mbt.MBT
+import modbat.mbt.ModelInstance
 import modbat.trace.Ok
 import modbat.trace.RecordedTransition
 
 object TransitionCoverage {
 
-  def cover(model: MBT,
+  def cover(model: ModelInstance,
             t: Transition,
             nextState: Transition = null,
             excType: String = null,
@@ -29,14 +31,14 @@ object TransitionCoverage {
     (Ok(sameAgain), new RecordedTransition(model, t, null, nextState, excType))
   }
 
-  def setCoverageAndState(t: Transition, model: MBT): Unit = {
+  def setCoverageAndState(t: Transition, model: ModelInstance): Unit = {
     t.coverage.cover
     StateCoverage.cover(t.dest)
     assert(model != null)
     model.currentState = t.dest
   }
 
-  def reuseCoverageInfo(instance: MBT, master: MBT, className: String): Unit = {
+  def reuseCoverageInfo(instance: ModelInstance, master: ModelInstance, className: String): Unit = {
     // copy values of previous equivalent instance for performance
     // and correct coverage information
     val transIt = instance.transitions.iterator
@@ -51,7 +53,7 @@ object TransitionCoverage {
     }
   }
 
-  def reuseTransInfo(instance: MBT, newTrans: Transition, master: Transition): Unit = {
+  def reuseTransInfo(instance: ModelInstance, newTrans: Transition, master: Transition): Unit = {
     assert(
       (newTrans.origin.name.equals(master.origin.name)) &&
         (newTrans.dest.name.equals(master.dest.name)),
@@ -79,7 +81,7 @@ object TransitionCoverage {
                       master.nonDetExceptions)
   }
 
-  def reuseOverrideInfo(instance: MBT,
+  def reuseOverrideInfo(instance: ModelInstance,
                         target: List[NextStateOverride],
                         source: List[NextStateOverride]): Unit = {
     val sourceIt = source.iterator
@@ -99,8 +101,8 @@ object TransitionCoverage {
     t.coverage.precond.count = 0
   }
 
-  def precond(outcome: Boolean): Unit = {
-    val t = MBT.currentTransition
+  def precond(mbt: MBT, outcome: Boolean): Unit = {
+    val t = mbt.currentTransition
     val pCov = t.coverage.precond
     val pCount = t.coverage.expectedReward
     val c = pCov.count
@@ -117,8 +119,8 @@ object TransitionCoverage {
   }
 
   // todo: count assert -Rui
-  def assertCount(assertion: Boolean): Unit = {
-    val t = MBT.currentTransition
+  def assertCount(mbt: MBT, assertion: Boolean): Unit = {
+    val t = mbt.currentTransition
     val aCount = t.coverage.expectedReward
     if (!assertion)
       aCount.updateAssertFailedCounter
@@ -128,11 +130,11 @@ object TransitionCoverage {
 
 }
 
-class TransitionCoverage {
+class TransitionCoverage(val config: Configuration) {
   var count = 0
   val precond = new PreconditionCoverage
   // todo: expected reward of transition -Rui
-  val expectedReward = new TransitionExpectedReward
+  val expectedReward = new TransitionExpectedReward(config)
 
   def cover: Unit = {
     count += 1

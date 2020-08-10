@@ -9,12 +9,12 @@ import modbat.dsl.State
 import modbat.dsl.Transition
 import modbat.log.Log
 
-class Dotify(val model: MBT, outFile: String = "") {
+class Dotify(val config: Configuration, val model: ModelInstance, outFile: String = "") {
   var out: PrintStream = null
 
   def init: Unit = {
     assert (outFile != "")
-    val fullOutFile = Main.config.dotDir + File.separatorChar + outFile
+    val fullOutFile = config.dotDir + File.separatorChar + outFile
     try {
       out = new PrintStream(new FileOutputStream(fullOutFile), false, "UTF-8")
     } catch {
@@ -83,10 +83,10 @@ class Dotify(val model: MBT, outFile: String = "") {
   }
 
   def ppTrans(tr: Transition) = {
-    if (!Main.config.autoLabels && (tr.action.label.isEmpty)) {
+    if (!config.autoLabels && (tr.action.label.isEmpty)) {
       ""
     } else if (tr.action.transfunc != null) {
-      tr.ppTrans()
+      tr.ppTrans(config.autoLabels)
     } else {
       ""
     }

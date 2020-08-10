@@ -1,4 +1,3 @@
-[DEBUG] Adding build/modbat-test.jar to classpath.
        1 3ba471c1785a0175
 [DEBUG] modbat.test.ComplexLaunch-1: Registered state transition from init to active
 [DEBUG] modbat.test.ComplexLaunch-1: Registered state transition from active to active

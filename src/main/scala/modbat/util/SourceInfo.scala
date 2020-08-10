@@ -24,9 +24,8 @@ import scala.language.existentials
 
 import modbat.log.Log
 import modbat.dsl.Action
-import modbat.mbt.MBT
 
-object SourceInfo {
+class SourceInfo(val classLoaderURLs: Array[URL]) {
   def sourceInfoFromFullName(fullName: String, lineNumber: Int) = {
     val idx = fullName.lastIndexOf('.')
     if (idx == -1) {
@@ -91,7 +90,7 @@ object SourceInfo {
 
   def analyzeClosure(visitor: ClassVisitor, closureName: String): Unit = {
     val cr = new ClassReader(findInURLs(closureName + ".class",
-			     MBT.classLoaderURLs))
+			     classLoaderURLs))
     try {
       cr.accept(visitor, 0)
     } catch {
@@ -231,8 +230,7 @@ object SourceInfo {
       if (r.methodInfo == null) {
 	r.methodInfo = ""
 	if (!analyzed && r.closure.name != null) {
-	  SourceInfo.analyzeClosure(new ActionInfoClsVisitor(r),
-				    r.closure.name)
+          analyzeClosure(new ActionInfoClsVisitor(r), r.closure.name)
 	  Log.debug("Function \"" + r.methodInfo +
 		    "\" called inside closure (such as \"maybe\").")
 	}
@@ -254,7 +252,7 @@ object SourceInfo {
 
   def findPath(cls: Class[_ <: Any]): InputStream = {
     val filename = cls.getName.replace('.', '/') + ".class"
-    return findInURLs(filename, MBT.classLoaderURLs)
+    return findInURLs(filename, classLoaderURLs)
   }
 
   def findInURLs(filename: String, urls: Array[URL]): InputStream = {

@@ -52,10 +52,12 @@ dependencies {
     compile group: 'javassist', name: 'javassist', version: '3.12.1.GA'
     compile project(':config')
     compile project(':akka-mock-scheduler')
+    testCompile project(':config')
     testCompile 'org.hamcrest:hamcrest-core:1.3'
     testCompile 'junit:junit:4.11'
     testCompile 'org.scalatest:scalatest_2.11:3.0.1'
     testRuntime 'org.pegdown:pegdown:1.4.2'
+    testCompile project(':config').sourceSets.test.output
 }
 
 jar {
@@ -179,6 +181,8 @@ task tutorialJar {
 }
 
 test {
+  dependsOn compileTestJava
+  dependsOn compileTestScala
   dependsOn examplesJar
   dependsOn tutorialJar
   dependsOn testsJar

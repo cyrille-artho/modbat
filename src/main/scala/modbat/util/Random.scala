@@ -3,6 +3,7 @@ package modbat.util
 import java.lang.Integer.MAX_VALUE
 
 import modbat.log.Log
+import modbat.dsl.Model
 import modbat.trace.RecordedChoice
 
 trait Random {
@@ -10,7 +11,8 @@ trait Random {
   // this will differ from the current state if next... was used after the
   // seed was set
 
-  def nextFunc(actions: Array[() => Any]) = actions(nextInt(actions.size))
+  def nextFunc(model: Model, actions: Array[() => Any]) =
+    actions(nextInt(actions.size))
 
   def nextBoolean(): Boolean = {
     return ((nextInt(true) % 2) == 0)

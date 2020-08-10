@@ -1,10 +1,10 @@
 package modbat.cov
 
 import modbat.cov.TransitionRewardTypes.RewardType
+import modbat.mbt.Configuration
 import scala.collection.mutable.ListBuffer
-import modbat.mbt.Main
 
-class TransitionAverageReward {
+class TransitionAverageReward(val config: Configuration) {
 
   val rewardsLst: ListBuffer[Double] = new ListBuffer[Double]
   var averageReward = 0.0d
@@ -13,13 +13,13 @@ class TransitionAverageReward {
 
     rewardType match {
       case TransitionRewardTypes.BacktrackTransReward =>
-        rewardsLst += Main.config.backtrackTReward
+        rewardsLst += config.backtrackTReward
       case TransitionRewardTypes.SelfTransReward =>
-        rewardsLst += Main.config.selfTReward
+        rewardsLst += config.selfTReward
       case TransitionRewardTypes.GoodTransReward =>
-        rewardsLst += Main.config.goodTReward
+        rewardsLst += config.goodTReward
       case TransitionRewardTypes.FailTransReward =>
-        rewardsLst += Main.config.failTReward
+        rewardsLst += config.failTReward
     }
     averageReward = rewardsLst.sum / rewardsLst.length
   }
