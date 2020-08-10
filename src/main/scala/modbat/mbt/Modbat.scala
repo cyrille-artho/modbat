@@ -897,8 +897,6 @@ class Modbat(val mbt: MBT) {
     }
     Log.debug("No more successors.")
     checkIfPendingModels
-    Transition.pendingTransitions.clear()
-    // in case a newly constructed model was never launched
     ((Finished, null), null)
   }
 

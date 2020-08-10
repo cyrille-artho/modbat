@@ -8,15 +8,6 @@ import modbat.cov.{TransitionAverageReward, TransitionCoverage}
 import modbat.trace.RecordedChoice
 import modbat.util.SourceInfo
 
-object Transition {
-  val pendingTransitions = ListBuffer[Transition]()
-  def getTransitions = pendingTransitions.toList
-
-  def clear: Unit = {
-    pendingTransitions.clear()
-  }
-}
-
 /* Create a new transition. This usually happens as a side-effect
  * inside the constructor of a model; such transitions are remembered
  * and processed later. At the end of model initialization, transitions
@@ -54,7 +45,7 @@ class Transition (val model:            Model,
 
   if (!isSynthetic) {
     if (remember) {
-      Transition.pendingTransitions += this
+      model.pendingTransitions += this
     }
     for (nonDetE <- action.nonDetExc) {
       val t = new Transition(model, origin, nonDetE._2, true, action, nonDetE._3._1, nonDetE._3._2)

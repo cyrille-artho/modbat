@@ -6,12 +6,14 @@ import modbat.cov.TransitionCoverage
 import modbat.RequirementFailedException
 import modbat.trace.{BoolChoice, FuncChoice, NumChoice}
 
+import scala.collection.mutable.ListBuffer
 import scala.language.implicitConversions
 import sourcecode._
 
 abstract trait Model {
   var mbt: MBT = null
   var efsm: ModelInstance = null
+  val pendingTransitions = ListBuffer[Transition]()
 
   def assert(assertion: Boolean): Unit = assert(assertion, null)
 

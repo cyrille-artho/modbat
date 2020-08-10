@@ -151,7 +151,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
     if (modelInstance.efsm == null) {
       Log.error(name + " calls join on model of type " +
          	modelInstance.getClass + ", which has not been launched yet.")
-      Transition.pendingTransitions.clear // clear init'd but unlaunched model
+      modelInstance.pendingTransitions.clear // clear init'd but unlaunched model
       throw new modbat.dsl.JoinWithoutLaunchException()
     }
     assert(joining == null)
@@ -222,7 +222,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
                              m: Method,
                              annotation: States,
                              isChild: Boolean): Unit = {
-    assert(Transition.pendingTransitions.isEmpty)
+    assert(model.pendingTransitions.isEmpty)
     val transStates = annotation.value()
     val n = (transStates filter(t => states.contains(t))).size
     val weight = getWeight(m.getAnnotation(classOf[Weight]), n)
@@ -251,7 +251,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
          }
       }
     }
-    assert(Transition.pendingTransitions.isEmpty)
+    assert(model.pendingTransitions.isEmpty)
   }
 
   /* Iterate through all existing instances to find highest ID.

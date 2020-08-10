@@ -278,7 +278,6 @@ class MBT (val config: Configuration) {
       if (modelInstance != null) {
         modelInstance
       } else {
-        assert(Transition.pendingTransitions.isEmpty)
         val cons = findConstructor(modelClass.asInstanceOf[Class[Model]])
         cons.newInstance().asInstanceOf[Model]
       }
@@ -318,16 +317,16 @@ class MBT (val config: Configuration) {
   // if modelInstance == null: initial model
   def launch(modelInstance: Model): ModelInstance = {
     val model = mkModel(modelInstance)
-
-    if (Transition.pendingTransitions.isEmpty) {
+    if (model.pendingTransitions.isEmpty) {
       Log.error("Model " + model.getClass.getName + " has no transitions.")
       Log.error("Make sure at least one transition exists of type")
       Log.error("  \"a\" -> \"b\" := { code } // or, for an empty transition:")
       Log.error("  \"a\" -> \"b\" := skip")
       throw new NoTransitionsException(model.getClass.getName)
     }
-    val inst = new ModelInstance(this, model, Transition.getTransitions)
-    Transition.clear
+    val inst =
+      new ModelInstance(this, model, model.pendingTransitions.toList)
+    model.pendingTransitions.clear
     inst.addAndLaunch(modelInstance == null)
   }
 
