@@ -12,6 +12,8 @@ import modbat.config.ConfigTestHarness.checkFile
 import modbat.config.ConfigTestHarness.{filter => configTestFilter}
 
 object ModbatTestHarness {
+  import Main.TestData
+
   def testMain(args: Array[String], env: () => Unit): (Int, List[String], List[String]) = {
     env()
     val config = new Configuration()
@@ -38,6 +40,7 @@ object ModbatTestHarness {
     val config = new Configuration()
     val origOut = System.out
     val origErr = System.err
+    val testData = new TestData()
     System.setOut(new PrintStream(out))
     System.setErr(new PrintStream(err))
     Console.withErr(err) {
@@ -50,6 +53,7 @@ object ModbatTestHarness {
           }
         } catch {
           case e: Throwable => {
+            testData.modbat.ShutdownHandler.run
             System.setOut(origOut)
             System.setErr(origErr)
             checkOutput(args, bytesToLines(out), bytesToLines(err))
