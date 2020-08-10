@@ -25,6 +25,7 @@ version = '1.0.2'
 mainClassName = 'modbat.config.ConfigMgr'
 
 dependencies {
+    compile group: 'com.lihaoyi', name: 'sourcecode_2.11', version: '0.1.7'
     testCompile 'org.scalatest:scalatest_2.11:3.0.1'
     testRuntime 'org.pegdown:pegdown:1.4.2'
 }

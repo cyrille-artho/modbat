@@ -7,17 +7,54 @@ import java.io.FileDescriptor
 import java.io.FileOutputStream
 import java.io.FileWriter
 import java.io.PrintStream
+import java.io.PrintWriter
 
 import scala.io.Source
 import scala.math.max
 
 object ConfigTestHarness {
+  def writeToFiles(fileName: String,
+                  filteredLog: Iterator[String],
+                  filteredErr: Iterator[String]): Unit = {
+    if (filteredLog.hasNext) {
+      write(fileName + ".log", filteredLog)
+    }
+    if (filteredErr.hasNext) {
+      write(fileName + ".err", filteredErr)
+    }
+  }
+
+  //this function overwrite file (or creates it if it does not exist)
+  def write(file: String, iterator_data: Iterator[String]): Unit = {
+    val writer = new PrintWriter(new File(file))
+    while (iterator_data.hasNext)
+      writer.println(iterator_data.next())
+    writer.close()
+  }
+
+  def testFileName(className: String, td: org.scalatest.TestData):
+    (String, String) = {
+    val dirName = "../log/config/" + className
+    val directory = new File(dirName)
+    if (! directory.exists()) {
+        directory.mkdirs()
+    }
+    val testName = td.name.substring(0, td.name.indexOf(td.text) - 1)
+    val camelCaseFileName =
+      " ([a-zA-Z0-9])".r.replaceAllIn(testName,
+                                      { m => m.group(1).toUpperCase() })
+    (dirName, camelCaseFileName)
+  }
+
   def bytesToLines(bytes: ByteArrayOutputStream) =
     scala.io.Source.fromString(bytes.toString()).getLines()
 
-  def runTest(args: Array[String], shouldFail: Boolean): Unit = {
+  def runTest(className: String, args: Array[String],
+              td: org.scalatest.TestData): Unit = {
+    val shouldFail = td.text.startsWith("should fail")
     val out: ByteArrayOutputStream = new ByteArrayOutputStream() 
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
+    val (dirName, fileName) = testFileName(className, td)
 
     Console.withErr(err) {
       Console.withOut(out) {
@@ -33,19 +70,24 @@ object ConfigTestHarness {
           case e: IllegalArgumentException => {
             Console.err.println(c.header)
             Console.err.println(e.getMessage())
-            checkOutput(args, bytesToLines(out), bytesToLines(err))
+            checkOutput(args, dirName + "/" + fileName,
+                        bytesToLines(out), bytesToLines(err))
             throw e
           }
         }
       }
     }
-    checkOutput(args, bytesToLines(out), bytesToLines(err))
+    checkOutput(args, dirName + "/" + fileName,
+                bytesToLines(out), bytesToLines(err))
   }
 
-  def test(args: Array[String], td: org.scalatest.TestData): Unit = {
+  def test(args: Array[String], td: org.scalatest.TestData)
+    (implicit fullName: sourcecode.FullName): Unit = {
+    val className =
+      fullName.value.substring(0, fullName.value.lastIndexOf("."))
     val shouldFail = td.text.startsWith("should fail")
     try {
-      runTest(args, shouldFail)
+      runTest(className, args, td)
     } catch {
       case (e: Exception) =>
         assert(shouldFail, "Caught unexpected exception: " + e.toString())
@@ -146,11 +188,14 @@ object ConfigTestHarness {
     }
   }
 
-  def checkOutput(args: Array[String],
+  def checkOutput(args: Array[String], newLogFileName: String,
                   log: Iterator[String], err: Iterator[String]) = {
     val logFileName = "../log/config/" + args.mkString("")
-    val logMatch = checkFile(logFileName + ".out", log)
-    val errMatch = checkFile(logFileName + ".eout", err)
+    val logIters = log.duplicate
+    val errIters = err.duplicate
+    writeToFiles (newLogFileName, logIters._1, errIters._1)
+    val logMatch = checkFile(logFileName + ".out", logIters._2)
+    val errMatch = checkFile(logFileName + ".eout", errIters._2)
     assert(logMatch, "Output does not match template")
     assert(errMatch, "Errors do not match template")
   }
