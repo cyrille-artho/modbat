@@ -33,7 +33,7 @@ object Main {
             Log.error("Model class argument missing. Try --help.")
             throw new NoModelClassException(c.header)
           }
-          modelClassName = remainingArgs.next
+          modelClassName = remainingArgs.next()
           if (remainingArgs.hasNext) {
             val remaining = remainingArgs.next()
             Log.error(

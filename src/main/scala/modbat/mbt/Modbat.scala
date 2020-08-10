@@ -74,11 +74,11 @@ object Modbat {
     // reset all static variables
     failed = 0
     count = 0
-    firstInstance.clear
+    firstInstance.clear()
     appState = AppExplore
-    executedTransitions.clear
-    timesVisited.clear
-    testFailures.clear
+    executedTransitions.clear()
+    timesVisited.clear()
+    testFailures.clear()
     masterRNG = MBT.rng.asInstanceOf[CloneableRandom].clone
     MBT.init
     // call init if needed
@@ -111,12 +111,12 @@ object Modbat {
     if (testFailures.size == 1) {
       Log.info("One type of test failure:")
     } else {
-      Log.info(testFailures.size + " types of test failures:")
+      Log.info(Integer.toString(testFailures.size) + " types of test failures:")
     }
     var i = 0
     for (f <- testFailures.keySet.toSeq.sortWith(ErrOrdering.lt)) {
       i += 1
-      Log.info(i + ") " + showFailure(f) + ":")
+      Log.info(Integer.toString(i) + ") " + showFailure(f) + ":")
       val rseeds = testFailures(f)
       Log.info("   " + rseeds.map(_.toHexString).mkString(" "))
     }
@@ -161,7 +161,7 @@ object Modbat {
 
     if (Main.config.logLevel == Log.Debug) trie.display(trie.root)
     val numOfPaths = trie.numOfPaths(trie.root)
-    Log.info(numOfPaths + " main paths executed.")
+    Log.info(Integer.toString(numOfPaths) + " main paths executed.")
     val shortestPath = trie.shortestPath(trie.root)
     Log.info("the shortest path has " + shortestPath + " transitions.")
     val longestPath = trie.longestPath(trie.root)
@@ -300,9 +300,9 @@ object Modbat {
         pathCoverageBFSearch // User search function to find a transition in trie as a starting point to display in graphs
     }
 
-    Log.info(
-      count + " tests executed, " + (count - failed) + " ok, " +
-        failed + " failed.")
+    Log.info(Integer.toString(count) + " tests executed, " +
+             Integer.toString(count - failed) + " ok, " +
+             Integer.toString(failed) + " failed.")
     if (count == 0) {
       return
     }
@@ -339,7 +339,7 @@ object Modbat {
     override def run(): Unit = {
       if (appState == AppExplore) {
         restoreChannels
-        Console.println
+        Console.println()
         coverage
       }
     }
@@ -353,7 +353,7 @@ object Modbat {
   def restoreChannel(ch: PrintStream,
                      orig: PrintStream,
                      filename: String,
-                     isErr: Boolean = false) {
+                     isErr: Boolean = false): Unit = {
     if (Main.config.redirectOut) {
       ch.close()
       val file = new File(filename)
@@ -405,7 +405,7 @@ object Modbat {
   }
 
   def runTest = {
-    MBT.clearLaunchedModels
+    MBT.clearLaunchedModels()
     MBT.testHasFailed = false
     wrapRun
   }
@@ -432,7 +432,7 @@ object Modbat {
         err = new PrintStream(new FileOutputStream(errFile), true)
         System.setErr(err)
       } else {
-        Console.println
+        Console.println()
       }
       MBT.checkDuplicates = (i == 1)
       val result = runTest
@@ -460,9 +460,9 @@ object Modbat {
 
   def exploreModel(model: MBT) = {
     Log.debug("--- Exploring model ---")
-    timesVisited.clear
-    executedTransitions.clear
-    pathInfoRecorder.clear // clear path information - Rui
+    timesVisited.clear()
+    executedTransitions.clear()
+    pathInfoRecorder.clear() // clear path information - Rui
     timesVisited += ((RecordedState(model, model.initialState), 1))
     for (f <- model.tracedFields.fields) {
       val value = FieldUtil.getValue(f, model.model)
@@ -486,7 +486,7 @@ object Modbat {
 
   def addSuccessors(m: MBT,
                     result: ListBuffer[(MBT, Transition)],
-                    quiet: Boolean = false) {
+                    quiet: Boolean = false): Unit = {
     for (s <- m.successors(quiet)) {
       if (!quiet) {
         Log.debug(
@@ -523,7 +523,7 @@ object Modbat {
           addSuccessors(m, result)
         }
         if (result.isEmpty && !staying.isEmpty) {
-          MBT.time.scheduler.timeUntilNextTask match {
+          MBT.time.scheduler.timeUntilNextTask() match {
             case Some(s) => MBT.time.advance(s)
             case None    => throw new NoTaskException()
           }
@@ -666,13 +666,13 @@ object Modbat {
   def updateExecHistory(model: MBT,
                         localStoredRNGState: CloneableRandom,
                         result: (TransitionResult, RecordedTransition),
-                        updates: List[(Field, Any)]) {
+                        updates: List[(Field, Any)]): Unit = {
     result match {
       case (Ok(_), successorTrans: RecordedTransition) =>
         successorTrans.updates = updates
-        successorTrans.randomTrace = MBT.rng.asInstanceOf[CloneableRandom].trace
+        successorTrans.randomTrace = MBT.rng.asInstanceOf[CloneableRandom].trace()
         successorTrans.debugTrace =
-          MBT.rng.asInstanceOf[CloneableRandom].debugTrace
+          MBT.rng.asInstanceOf[CloneableRandom].debugTrace()
 
         // get recorded choices - Rui
         successorTrans.recordedChoices =
@@ -695,9 +695,9 @@ object Modbat {
       // retry with other successor states in next loop iteration
       case (r: TransitionResult, failedTrans: RecordedTransition) =>
         assert(TransitionResult.isErr(r))
-        failedTrans.randomTrace = MBT.rng.asInstanceOf[CloneableRandom].trace
+        failedTrans.randomTrace = MBT.rng.asInstanceOf[CloneableRandom].trace()
         failedTrans.debugTrace =
-          MBT.rng.asInstanceOf[CloneableRandom].debugTrace
+          MBT.rng.asInstanceOf[CloneableRandom].debugTrace()
         failedTrans.recordedChoices = MBT.rng
           .asInstanceOf[CloneableRandom]
           .getRecordedChoices() // get recorded choices for failed transition -Rui
@@ -725,7 +725,7 @@ object Modbat {
         "Current InvokeTransitionQueue = (" + MBT.transitionQueue.mkString + ")")
 
     while (!MBT.transitionQueue.isEmpty) {
-      val (model, label) = MBT.transitionQueue.dequeue
+      val (model, label) = MBT.transitionQueue.dequeue()
       val trs = model.transitions
         .filter(_.action.label == label)
         .filter(_.origin == model.currentState)
@@ -740,7 +740,7 @@ object Modbat {
 
   def checkForFieldUpdates(model: MBT,
                            result: (TransitionResult, RecordedTransition),
-                           rng: CloneableRandom) {
+                           rng: CloneableRandom): Unit = {
     val updates: List[(Field, Any)] = model.tracedFields.updates
     for (u <- updates) {
       Log.fine("Trace field " + u._1 + " now has value " + u._2)
@@ -756,7 +756,7 @@ object Modbat {
   }
 
   def warnAboutPreconditions(allSucc: List[(MBT, Transition)],
-                             backtracked: Boolean) {
+                             backtracked: Boolean): Unit = {
     for (succ <- allSucc) {
       Log.warn(
         "All preconditions false at transition " +
@@ -898,7 +898,7 @@ object Modbat {
     }
     Log.debug("No more successors.")
     checkIfPendingModels
-    Transition.pendingTransitions.clear
+    Transition.pendingTransitions.clear()
     // in case a newly constructed model was never launched
     ((Finished, null), null)
   }

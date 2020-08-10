@@ -71,7 +71,7 @@ object MBT {
   val time = new VirtualTime
 
   def init: Unit = {
-    warningIssuedOn.clear
+    warningIssuedOn.clear()
   }
 
   // TODO: If necessary, add another argument (tag) to distinguish between
@@ -103,18 +103,18 @@ object MBT {
   }
 
   def invokeAnnotatedStaticMethods(annotationType: Class[_ <: Annotation],
-                                   instance: Model) {
+                                   instance: Model): Unit = {
     invokeAll(annotationType, instance, handleStatic)
   }
 
   def invokeAnnotatedMethods(annotationType: Class[_ <: Annotation],
-                             instance: Model) {
+                             instance: Model): Unit = {
     invokeAll(annotationType, instance, handleDynamic)
   }
 
   def invokeAll(annotationType: Class[_ <: Annotation],
                 model: Model,
-                handler: (Class[_ <: Annotation], Method, Object) => Unit) {
+                handler: (Class[_ <: Annotation], Method, Object) => Unit): Unit = {
     val methods = getMethods(model)
     for (m <- methods) {
       val annotation = m.getAnnotation(annotationType)
@@ -126,7 +126,7 @@ object MBT {
 
   def handleStatic(annotationType: Class[_ <: Annotation],
                    m: Method,
-                   instance: Object) {
+                   instance: Object): Unit = {
     if ((m.getModifiers() & Modifier.STATIC) != 0) {
       if (!invokedStaticMethods.contains(m)) {
         invokedStaticMethods += m
@@ -138,7 +138,7 @@ object MBT {
 
   def handleDynamic(annotationType: Class[_ <: Annotation],
                     m: Method,
-                    instance: Object) {
+                    instance: Object): Unit = {
     if ((m.getModifiers() & Modifier.STATIC) == 0) {
       Log.debug(annotationType.getSimpleName() + ": " + m.getName())
       m.invoke(instance)
@@ -173,9 +173,9 @@ object MBT {
   def getRandomSeed() = rng.getRandomSeed
 
   def clearLaunchedModels(): Unit = {
-    launchedModels.clear
-    launchedModelInst.clear
-    transitionQueue.clear
+    launchedModels.clear()
+    launchedModelInst.clear()
+    transitionQueue.clear()
     or_else = false
     testHasFailed = false
     currentTransition = null
@@ -490,7 +490,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
       Log.error(
         name + " calls join on model of type " +
           modelInstance.getClass + ", which has not been launched yet.")
-      Transition.pendingTransitions.clear // clear init'd but unlaunched model
+      Transition.pendingTransitions.clear() // clear init'd but unlaunched model
       throw new modbat.dsl.JoinWithoutLaunchException()
     }
     assert(joining == null)
@@ -532,7 +532,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
   def registerTrans(model: Model,
                     m: Method,
                     annotation: States,
-                    isChild: Boolean) {
+                    isChild: Boolean): Unit = {
     val params = m.getParameterTypes
     if (params.length != 0) {
       if (!MBT.warningIssued(m)) {
@@ -560,7 +560,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
   def registerTransForStates(model: Model,
                              m: Method,
                              annotation: States,
-                             isChild: Boolean) {
+                             isChild: Boolean): Unit = {
     assert(Transition.pendingTransitions.isEmpty)
     val transStates = annotation.value()
     val n = (transStates filter (t => states.contains(t))).size
@@ -627,7 +627,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
 
   def regTrans(tr: Transition,
                isChild: Boolean,
-               ignoreDuplicates: Boolean = false) {
+               ignoreDuplicates: Boolean = false): Unit = {
     tr.origin = uniqueState(tr.origin)
     tr.dest = uniqueState(tr.dest)
     Log.debug(
@@ -723,7 +723,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
     if (!MBT.expected(successor.expectedExceptions, e)) {
       val excTrans = nonDetExc(successor.nonDetExceptions, e)
       if (excTrans eq null) {
-        Log.warn(e + " occurred, aborting.")
+        Log.warn(e.toString() + " occurred, aborting.")
         printStackTraceIfEnabled(e)
         val fName = successor.action.transfunc.getClass.getName
         if (fName.startsWith("modbat.mbt") ||
@@ -745,7 +745,8 @@ class MBT(val model: Model, val trans: List[Transition]) {
                                        null,
                                        e.getClass.getName))
       }
-      Log.fine(e + " leads to exception state " + excTrans.dest + ".")
+      Log.fine(e.toString() + " leads to exception state " +
+               excTrans.dest.toString() + ".")
       Log.debug("Exceptional transition is at " + excTrans.sourceInfo)
       if (successor.action.immediate) {
         Log.fine("Next transition on this model must be taken immediately.")
@@ -756,7 +757,7 @@ class MBT(val model: Model, val trans: List[Transition]) {
                                       e.getClass.getName,
                                       successor.action.immediate)
     }
-    Log.fine(e + " generated as expected.")
+    Log.fine(e.toString() + " generated as expected.")
     return TransitionCoverage.cover(this, successor, null, e.getClass.getName)
   }
 

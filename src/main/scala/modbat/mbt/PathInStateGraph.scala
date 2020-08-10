@@ -110,7 +110,7 @@ class PathInStateGraph(val root: TrieNode,
                   }
                 }
 
-                break
+                break()
               }
               /*else {
               // debug code:

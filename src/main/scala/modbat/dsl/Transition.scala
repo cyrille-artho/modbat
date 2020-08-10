@@ -14,7 +14,7 @@ object Transition {
   def getTransitions = pendingTransitions.toList
 
   def clear: Unit = {
-    pendingTransitions.clear
+    pendingTransitions.clear()
   }
 }
 
@@ -76,9 +76,9 @@ class Transition(var origin: State,
 
   def prTrans = {
     if (isSynthetic) {
-      origin + " --> " + dest
+      origin.toString() + " --> " + dest
     } else {
-      origin + " => " + dest
+      origin.toString() + " => " + dest
     }
   }
 

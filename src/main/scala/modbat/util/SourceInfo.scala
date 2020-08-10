@@ -148,7 +148,7 @@ object SourceInfo {
     extends org.objectweb.asm.MethodVisitor(Opcodes.ASM4) {
 
     override def visitMethodInsn(opcode: Int, owner: String,
-				 name: String, desc: String) {
+				 name: String, desc: String): Unit = {
       if (owner.startsWith("modbat/dsl/Predef")) {
 	if (name.equals("skip")) {
 	  r.methodInfo = SKIP // empty string would result in fall-back label
@@ -194,7 +194,7 @@ object SourceInfo {
     extends org.objectweb.asm.MethodVisitor(Opcodes.ASM4) {
 
     override def visitMethodInsn(opcode: Int, owner: String,
-				 name: String, desc: String) {
+				 name: String, desc: String): Unit = {
       if (!name.contains("$$anonfun$apply$") &&
 	  desc.contains("$$anonfun$")) {
 	r.name = owner
