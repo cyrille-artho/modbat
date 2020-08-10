@@ -51,7 +51,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
   /* isChild is true when coverage information of initial instance is
    * to be re-used; this is the case when a child is launched, but also
    * when a model instance is created again after the first test run. */
-  def init(isChild: Boolean) {
+  def init(isChild: Boolean): Unit = {
     for (tr <- trans) {
       regTrans(tr, isChild)
     }
@@ -151,7 +151,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
     if (modelInstance.efsm == null) {
       Log.error(name + " calls join on model of type " +
          	modelInstance.getClass + ", which has not been launched yet.")
-      modelInstance.pendingTransitions.clear // clear init'd but unlaunched model
+      modelInstance.pendingTransitions.clear() // clear init'd but unlaunched model
       throw new modbat.dsl.JoinWithoutLaunchException()
     }
     assert(joining == null)
@@ -167,7 +167,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
     master
   }
 
-  def regSynthTrans(isChild: Boolean) {
+  def regSynthTrans(isChild: Boolean): Unit = {
     for (tr <- transitions) {
       for (t <- tr.nonDetExceptions) {
          assert (t.target.isSynthetic)
@@ -281,12 +281,12 @@ class ModelInstance (val mbt: MBT, val model: Model,
     }
   }
 
-  def setCoverageInfo(s: State) {
+  def setCoverageInfo(s: State): Unit = {
     s.coverage = new StateCoverage
   }
 
   def regTrans(tr: Transition, isChild: Boolean,
-                ignoreDuplicates: Boolean = false) {
+                ignoreDuplicates: Boolean = false): Unit = {
     tr.origin = uniqueState(tr.origin)
     tr.dest = uniqueState(tr.dest)
     Log.debug(
@@ -371,7 +371,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
     null
   }
 
-  def printStackTraceIfEnabled(e: Throwable) {
+  def printStackTraceIfEnabled(e: Throwable): Unit = {
     if (mbt.config.printStackTrace) {
        Log.error(e.toString)
        MBT.printStackTrace(e.getStackTrace)
@@ -383,7 +383,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
     if (!expected(successor.expectedExceptions, e)) {
       val excTrans = nonDetExc(successor.nonDetExceptions, e)
       if (excTrans eq null) {
-         Log.warn(e + " occurred, aborting.")
+         Log.warn(e.toString() + " occurred, aborting.")
          printStackTraceIfEnabled(e)
          val fName = successor.action.transfunc.getClass.getName
          if (fName.startsWith("modbat.mbt") ||
@@ -593,7 +593,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
 
   class WakeUp() extends Thread {
 //  class Timer(val t: Long) extends Thread {
-    override def run() {
+    override def run(): Unit = {
 //      Log.fine(name + ": Started staying for " + t + " ms.")
 //      Thread.sleep(t)
       mbt.stayLock.synchronized {

@@ -326,7 +326,7 @@ class MBT (val config: Configuration) {
     }
     val inst =
       new ModelInstance(this, model, model.pendingTransitions.toList)
-    model.pendingTransitions.clear
+    model.pendingTransitions.clear()
     inst.addAndLaunch(modelInstance == null)
   }
 
