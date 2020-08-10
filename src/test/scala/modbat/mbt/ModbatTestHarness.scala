@@ -33,7 +33,8 @@ object ModbatTestHarness {
     }
   }
 
-  def runTest(args: Array[String], env: () => Unit, errCode: Int = 0): Unit = {
+  def runTest(args: Array[String], env: () => Unit,
+              shouldFail: Boolean): Unit = {
     val out: ByteArrayOutputStream = new ByteArrayOutputStream()
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
     env()
@@ -47,9 +48,9 @@ object ModbatTestHarness {
       Console.withOut(out) {
         try {
           Main.run(args, config)
-          if (errCode != 0) {
-            assert (errCode == 0, "Error code " + Integer.toString(errCode) +
-                                  " expected but test was successful.")
+          if (shouldFail) {
+            assert (false,
+                    "Non-zero error code expected but test was successful.")
           }
         } catch {
           case e: Throwable => {
@@ -67,16 +68,18 @@ object ModbatTestHarness {
     checkOutput(args, bytesToLines(out), bytesToLines(err))
   }
 
-  def test(args: Array[String], env: () => Unit, errCode: Int = 0): Unit = {
+  def test(args: Array[String], env: () => Unit,
+           td: org.scalatest.TestData): Unit = {
+    val shouldFail = td.text.startsWith("should fail")
     try {
-      runTest(args, env, errCode)
+      runTest(args, env, shouldFail)
     } catch {
       case (e: Throwable) =>
         val cause = e.getCause()
         if (cause == null) {
-          assert(errCode != 0, "Caught unexpected exception: " + e.toString())
+          assert(!shouldFail, "Caught unexpected exception: " + e.toString())
         } else {
-          assert(errCode != 0,
+          assert(!shouldFail,
                  "Caught unexpected exception: " + e.toString() +
                  "; cause: " + e.getCause())
         }

@@ -15,7 +15,7 @@ object ConfigTestHarness {
   def bytesToLines(bytes: ByteArrayOutputStream) =
     scala.io.Source.fromString(bytes.toString()).getLines()
 
-  def runTest(args: Array[String], errCode: Int = 0): Unit = {
+  def runTest(args: Array[String], shouldFail: Boolean): Unit = {
     val out: ByteArrayOutputStream = new ByteArrayOutputStream() 
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
 
@@ -25,9 +25,9 @@ object ConfigTestHarness {
                                 new Version ("modbat.config"), true)
         try {
           ConfigMgr.printRemainingArgs(c.parseArgs(args))
-          if (errCode != 0) {
-            assert (errCode == 0, "Error code " + Integer.toString(errCode) +
-                                  " expected but test was successful.")
+          if (shouldFail) {
+            assert (false,
+                    "Non-zero error code expected but test was successful.")
           }
         } catch {
           case e: IllegalArgumentException => {
@@ -42,12 +42,13 @@ object ConfigTestHarness {
     checkOutput(args, bytesToLines(out), bytesToLines(err))
   }
 
-  def test(args: Array[String], errCode: Int = 0): Unit = {
+  def test(args: Array[String], td: org.scalatest.TestData): Unit = {
+    val shouldFail = td.text.startsWith("should fail")
     try {
-      runTest(args, errCode)
+      runTest(args, shouldFail)
     } catch {
       case (e: Exception) =>
-        assert(errCode != 0, "Caught unexpected exception: " + e.toString())
+        assert(shouldFail, "Caught unexpected exception: " + e.toString())
     }
   }
 
