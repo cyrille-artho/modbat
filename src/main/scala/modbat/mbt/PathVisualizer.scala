@@ -3,13 +3,12 @@ package modbat.mbt
 import java.io.{File, FileOutputStream, IOException, PrintStream}
 import modbat.log.Log
 
-trait PathVisualizer {
-
+abstract class PathVisualizer(val mbt: MBT) {
   val typeName: String
   val graphInitNode: String
   var out: PrintStream = null
-  val outFile = MBT.modelClass.getName + "-" + graphInitNode + "-" + typeName + "Graph.dot"
-  val fullOutFile = Main.config.dotDir + File.separatorChar + outFile
+  val outFile = mbt.modelClass.getName + "-" + graphInitNode + "-" + typeName + "Graph.dot"
+  val fullOutFile = mbt.config.dotDir + File.separatorChar + outFile
   try {
     out = new PrintStream(new FileOutputStream(fullOutFile), false, "UTF-8")
   } catch {

@@ -1,7 +1,8 @@
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GenLabel2.assert(GenLabel2.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.GenLabel2.assert(GenLabel2.scala)
 [ERROR] 	at modbat.test.GenLabel2.dec(GenLabel2.scala)
@@ -13,48 +14,8 @@
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.GenLabel2.assert(GenLabel2.scala)
-[ERROR] 	at modbat.test.GenLabel2.dec(GenLabel2.scala)
-[ERROR] 	at modbat.test.GenLabel2$$anonfun$2.apply$mcV$sp(GenLabel2.scala)
-[ERROR] 	at modbat.test.GenLabel2$$anonfun$2.apply(GenLabel2.scala)
-[ERROR] 	at modbat.test.GenLabel2$$anonfun$2.apply(GenLabel2.scala)
-[WARNING] Error found, model trace:
-[WARNING] modbat/test/GenLabel2.scala:12: increment
-[WARNING] modbat/test/GenLabel2.scala:12: increment
-[WARNING] modbat/test/GenLabel2.scala:12: increment
-[WARNING] modbat/test/GenLabel2.scala:12: increment
-[WARNING] modbat/test/GenLabel2.scala:12: increment
-[WARNING] modbat/test/GenLabel2.scala:12: increment
-[WARNING] modbat/test/GenLabel2.scala:13: decrement
-[WARNING] modbat/test/GenLabel2.scala:12: increment
-[WARNING] modbat/test/GenLabel2.scala:13: decrement
-[WARNING] modbat/test/GenLabel2.scala:13: decrement
-[WARNING] modbat/test/GenLabel2.scala:13: decrement
-[WARNING] modbat/test/GenLabel2.scala:12: increment
-[WARNING] modbat/test/GenLabel2.scala:12: increment
-[WARNING] modbat/test/GenLabel2.scala:13: decrement
-[WARNING] modbat/test/GenLabel2.scala:13: decrement
-[WARNING] modbat/test/GenLabel2.scala:13: decrement
-[WARNING] modbat/test/GenLabel2.scala:13: decrement
-[WARNING] modbat/test/GenLabel2.scala:13: decrement
-[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
-[ERROR] java.lang.AssertionError: assertion failed
-[ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
-[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
-[ERROR] 	at modbat.test.GenLabel2.assert(GenLabel2.scala)
-[ERROR] 	at modbat.test.GenLabel2.dec(GenLabel2.scala)
-[ERROR] 	at modbat.test.GenLabel2$$anonfun$2.apply$mcV$sp(GenLabel2.scala)
-[ERROR] 	at modbat.test.GenLabel2$$anonfun$2.apply(GenLabel2.scala)
-[ERROR] 	at modbat.test.GenLabel2$$anonfun$2.apply(GenLabel2.scala)
-[WARNING] Error found, model trace:
-[WARNING] modbat/test/GenLabel2.scala:13: decrement
-[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
-[ERROR] java.lang.AssertionError: assertion failed
-[ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.GenLabel2.assert(GenLabel2.scala)
 [ERROR] 	at modbat.test.GenLabel2.dec(GenLabel2.scala)
@@ -67,6 +28,49 @@
 [WARNING] modbat/test/GenLabel2.scala:12: increment
 [WARNING] modbat/test/GenLabel2.scala:12: increment
 [WARNING] modbat/test/GenLabel2.scala:12: increment
+[WARNING] modbat/test/GenLabel2.scala:12: increment
+[WARNING] modbat/test/GenLabel2.scala:13: decrement
+[WARNING] modbat/test/GenLabel2.scala:12: increment
+[WARNING] modbat/test/GenLabel2.scala:13: decrement
+[WARNING] modbat/test/GenLabel2.scala:13: decrement
+[WARNING] modbat/test/GenLabel2.scala:13: decrement
+[WARNING] modbat/test/GenLabel2.scala:12: increment
+[WARNING] modbat/test/GenLabel2.scala:12: increment
+[WARNING] modbat/test/GenLabel2.scala:13: decrement
+[WARNING] modbat/test/GenLabel2.scala:13: decrement
+[WARNING] modbat/test/GenLabel2.scala:13: decrement
+[WARNING] modbat/test/GenLabel2.scala:13: decrement
+[WARNING] modbat/test/GenLabel2.scala:13: decrement
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GenLabel2.assert(GenLabel2.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GenLabel2.assert(GenLabel2.scala)
+[ERROR] 	at modbat.test.GenLabel2.dec(GenLabel2.scala)
+[ERROR] 	at modbat.test.GenLabel2$$anonfun$2.apply$mcV$sp(GenLabel2.scala)
+[ERROR] 	at modbat.test.GenLabel2$$anonfun$2.apply(GenLabel2.scala)
+[ERROR] 	at modbat.test.GenLabel2$$anonfun$2.apply(GenLabel2.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/GenLabel2.scala:13: decrement
+[WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
+[ERROR] java.lang.AssertionError: assertion failed
+[ERROR] 	at scala.Predef$.assert(Predef.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GenLabel2.assert(GenLabel2.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GenLabel2.assert(GenLabel2.scala)
+[ERROR] 	at modbat.test.GenLabel2.dec(GenLabel2.scala)
+[ERROR] 	at modbat.test.GenLabel2$$anonfun$2.apply$mcV$sp(GenLabel2.scala)
+[ERROR] 	at modbat.test.GenLabel2$$anonfun$2.apply(GenLabel2.scala)
+[ERROR] 	at modbat.test.GenLabel2$$anonfun$2.apply(GenLabel2.scala)
+[WARNING] Error found, model trace:
+[WARNING] modbat/test/GenLabel2.scala:12: increment
+[WARNING] modbat/test/GenLabel2.scala:12: increment
+[WARNING] modbat/test/GenLabel2.scala:12: increment
+[WARNING] modbat/test/GenLabel2.scala:12: increment
+[WARNING] modbat/test/GenLabel2.scala:12: increment
 [WARNING] modbat/test/GenLabel2.scala:13: decrement
 [WARNING] modbat/test/GenLabel2.scala:12: increment
 [WARNING] modbat/test/GenLabel2.scala:13: decrement
@@ -81,7 +85,8 @@
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.test.GenLabel2.assert(GenLabel2.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.GenLabel2.assert(GenLabel2.scala)
 [ERROR] 	at modbat.test.GenLabel2.dec(GenLabel2.scala)

@@ -1,7 +1,6 @@
 [WARNING] java.lang.AssertionError: assertion failed: n = 10 occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed: n = 10
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.WeightedTestWFrac.assert(WeightedTestWFrac.scala)
 [ERROR] 	at modbat.test.WeightedTestWFrac$$anonfun$1.apply$mcV$sp(WeightedTestWFrac.scala)
