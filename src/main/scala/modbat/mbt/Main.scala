@@ -5,19 +5,25 @@ import modbat.config.Version
 import modbat.log.Log
 
 object Main {
-  val config = new Configuration()
+  class TestData {
+    var modbat: Modbat = _
+    // store reference to Modbat instance for final callback
+    // from test harness in case of test failure
+  }
 
   def main(args: Array[String]): Unit = {
     Modbat.isUnitTest = false
+    val config = new Configuration()
     try {
-      run(args) // TODO: do not call exit once exceptions are used
+      run(args, config) // TODO: do not call exit once exceptions are used
     } catch {
       case e: Exception => System.exit(1)
     }
     System.exit(0)
   }
 
-  def run(args: Array[String]): Unit = {
+  def run(args: Array[String], config: Configuration,
+          testData: TestData = new TestData()): Unit = {
     var modelClassName: String = null
     val c = new ConfigMgr("scala modbat.jar",
                           "CLASSNAME",
@@ -51,23 +57,24 @@ object Main {
       }
     }
 
-    setup(modelClassName) // TODO: refactor into case code below once needed
+    val mbt = new MBT(config)
+    setup(config, mbt, modelClassName) // TODO: refactor into case code below once needed
 
-    Modbat.init
+    val modbat = new Modbat(mbt)
+    testData.modbat = modbat
     /* execute */
     config.mode match {
       case "dot" =>
-        new Dotify(MBT.launch(null), modelClassName + ".dot").dotify()
-      case _ => Modbat.explore(config.nRuns)
+        new Dotify(config, mbt.launch(null), modelClassName + ".dot").dotify()
+      case _ => modbat.explore(config.nRuns)
     }
   }
 
-  def setup(modelClassName: String): Unit = {
+  def setup(config: Configuration, mbt: MBT, modelClassName: String): Unit = {
     /* configure components */
     Log.setLevel(config.logLevel)
-    MBT.configClassLoader(config.classpath)
-    MBT.loadModelClass(modelClassName)
-    MBT.setRNG(config.randomSeed)
     MBT.isOffline = false
+    mbt.loadModelClass(modelClassName)
+    mbt.setRNG(config.randomSeed)
   }
 }

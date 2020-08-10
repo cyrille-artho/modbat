@@ -1,7 +1,6 @@
 [WARNING] java.lang.AssertionError: assertion failed: Cannot mkdir "0/1/4" occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed: Cannot mkdir "0/1/4"
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.test.SimpleFileModel.assert(SimpleFileModel.scala)
 [ERROR] 	at modbat.test.SimpleFileModel$$anonfun$6.apply(SimpleFileModel.scala)

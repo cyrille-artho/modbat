@@ -2,7 +2,8 @@
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.examples.CounterModel2.assert(CounterModel2.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.examples.CounterModel2.assert(CounterModel2.scala)
 [ERROR] 	at modbat.examples.CounterModel2$$anonfun$6.apply$mcV$sp(CounterModel2.scala)
@@ -17,7 +18,8 @@
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.examples.CounterModel2.assert(CounterModel2.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.examples.CounterModel2.assert(CounterModel2.scala)
 [ERROR] 	at modbat.examples.CounterModel2$$anonfun$6.apply$mcV$sp(CounterModel2.scala)
@@ -32,7 +34,8 @@
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.examples.CounterModel2.assert(CounterModel2.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.examples.CounterModel2.assert(CounterModel2.scala)
 [ERROR] 	at modbat.examples.CounterModel2$$anonfun$6.apply$mcV$sp(CounterModel2.scala)
@@ -47,7 +50,8 @@
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
-[ERROR] 	at modbat.dsl.Model$.assert(Model.scala)
+[ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
+[ERROR] 	at modbat.examples.CounterModel2.assert(CounterModel2.scala)
 [ERROR] 	at modbat.dsl.Model$class.assert(Model.scala)
 [ERROR] 	at modbat.examples.CounterModel2.assert(CounterModel2.scala)
 [ERROR] 	at modbat.examples.CounterModel2$$anonfun$6.apply$mcV$sp(CounterModel2.scala)

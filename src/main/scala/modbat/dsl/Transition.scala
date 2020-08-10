@@ -5,33 +5,25 @@ import java.io.File
 import scala.collection.mutable.ListBuffer
 import scala.util.matching.Regex
 import modbat.cov.{TransitionAverageReward, TransitionCoverage}
-import modbat.mbt.{MBT, Main}
 import modbat.trace.RecordedChoice
 import modbat.util.SourceInfo
-
-object Transition {
-  val pendingTransitions = ListBuffer[Transition]()
-  def getTransitions = pendingTransitions.toList
-
-  def clear: Unit = {
-    pendingTransitions.clear()
-  }
-}
 
 /* Create a new transition. This usually happens as a side-effect
  * inside the constructor of a model; such transitions are remembered
  * and processed later. At the end of model initialization, transitions
  * from annotated methods are added; those are not kept in the
  * buffer as not to interfere with the next model instance. */
-class Transition(var origin: State,
-                 var dest: State,
-                 val isSynthetic: Boolean,
-                 val action: Action,
-                 fullName: String,
-                 sourceLine: Int,
-                 remember: Boolean = true) {
+class Transition (val model:            Model,
+                  var origin:           State,
+                  var dest:             State,
+                  val isSynthetic:      Boolean,
+                  val action:           Action,
+                  fullName:             String,
+                  sourceLine:           Int,
+                  remember:             Boolean = true) {
 
-  val sourceInfo = SourceInfo.sourceInfoFromFullName(fullName, sourceLine)
+  def sourceInfo =
+    model.mbt.sourceInfo.sourceInfoFromFullName(fullName, sourceLine)
 
   // NextStateNextIf records the result of the nextIf with the next state -Rui
   case class NextStateNextIf(val nextState: State, val nextIf: Boolean)
@@ -53,10 +45,10 @@ class Transition(var origin: State,
 
   if (!isSynthetic) {
     if (remember) {
-      Transition.pendingTransitions += this
+      model.pendingTransitions += this
     }
     for (nonDetE <- action.nonDetExc) {
-      val t = new Transition(origin, nonDetE._2, true, action, nonDetE._3._1, nonDetE._3._2)
+      val t = new Transition(model, origin, nonDetE._2, true, action, nonDetE._3._1, nonDetE._3._2)
       nonDetExcConv += new NextStateOnException(nonDetE._1, t)
     }
 
@@ -65,7 +57,9 @@ class Transition(var origin: State,
     val len = action.nextStatePred.length
     for (nextSt <- action.nextStatePred) {
       val t =
-        new Transition(origin, nextSt._2, true, new Action(action.transfunc), nextSt._4._1, nextSt._4._2)
+        new Transition(model, origin, nextSt._2, true,
+                       new Action(model, action.transfunc),
+                       nextSt._4._1, nextSt._4._2)
       if (len > 1) {
         t.n = i
       }
@@ -82,11 +76,11 @@ class Transition(var origin: State,
     }
   }
 
-  def ppTrans(showSkip: Boolean = false): String = {
-    if (Main.config.autoLabels && action.label.isEmpty) {
+  def ppTrans(autoLabels: Boolean, showSkip: Boolean = false): String = {
+    if (autoLabels && action.label.isEmpty) {
       assert(action.transfunc != null)
-      val actionInfo = SourceInfo.actionInfo(action, false)
-      if (actionInfo.equals(SourceInfo.SKIP)) {
+      val actionInfo = model.mbt.sourceInfo.actionInfo(action, false)
+      if (actionInfo.equals(model.mbt.sourceInfo.SKIP)) {
         if (showSkip) {
           return "[skip]"
         } else {

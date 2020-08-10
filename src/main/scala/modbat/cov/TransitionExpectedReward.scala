@@ -1,7 +1,8 @@
 package modbat.cov
 
-import modbat.mbt.Main
-class TransitionExpectedReward {
+import modbat.mbt.Configuration
+
+class TransitionExpectedReward (val config: Configuration) {
 
   // todo: count passed times for assertion - Rui
   var countAssertPass = 0
@@ -41,8 +42,8 @@ class TransitionExpectedReward {
 
     val precondExpectedReward: Double =
       if (totalCountPrecond != 0)
-        (countPrecondPass.toDouble / totalCountPrecond.toDouble) * Main.config.precondPassReward +
-          (countPrecondFail.toDouble / totalCountPrecond.toDouble) * Main.config.precondFailReward
+        (countPrecondPass.toDouble / totalCountPrecond.toDouble) * config.precondPassReward +
+          (countPrecondFail.toDouble / totalCountPrecond.toDouble) * config.precondFailReward
       else 0d
     precondExpectedReward
   }
@@ -51,8 +52,8 @@ class TransitionExpectedReward {
     totalCountAssert = countAssertPass + countAssertFail
     val assertExpectedReward: Double =
       if (totalCountAssert != 0)
-        (countAssertPass.toDouble / totalCountAssert.toDouble) * Main.config.assertPassReward +
-          (countAssertFail.toDouble / totalCountAssert.toDouble) * Main.config.assertFailReward
+        (countAssertPass.toDouble / totalCountAssert.toDouble) * config.assertPassReward +
+          (countAssertFail.toDouble / totalCountAssert.toDouble) * config.assertFailReward
       else 0d
     assertExpectedReward
   }
