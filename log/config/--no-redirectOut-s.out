@@ -1,4 +1,4 @@
-Option                 	Type   	Value           	Range
+[1mOption                 	Type   	Value           	Range[0m
 redirectOut            	boolean	false           
 classpath              	String	.               
 randomSeed             	long	e9232493f22057d 

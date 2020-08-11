@@ -1,4 +1,4 @@
-Option                 	Type   	Value           	Range
+[1mOption                 	Type   	Value           	Range[0m
 redirectOut            	boolean	true            
 classpath              	String	.               
 randomSeed             	long	e9232493f22057d 
@@ -12,7 +12,7 @@ evenPrime              	boolean	false           	[3]
 [1] requires redirectOut to be set to true if option is set.
 [2] requires smallPrime to be set to value other than two if option is set.
 [3] requires smallPrime to be set to two if option is set.
-Option                 	Type   	Value           	Range
+[1mOption                 	Type   	Value           	Range[0m
 redirectOut            	boolean	true            
 classpath              	String	.               
 randomSeed             	long	e9232493f22057d 
