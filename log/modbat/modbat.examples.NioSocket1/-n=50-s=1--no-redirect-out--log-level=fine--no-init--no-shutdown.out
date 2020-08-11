@@ -311,5 +311,5 @@
 [INFO]    49a846e52b813972 27fe2d950fc74b21 5ff50ec9279365d2 a410ce32fc39dfb 8d32a08e0d0b1183 8102b494089e6116 44907dab3e7f0a55 46e3ffb302d6b70f 2a83b5bd2ae1ea70
 [INFO] 5 states covered (83 % out of 6),
 [INFO] 9 transitions covered (45 % out of 20).
-[INFO] Precondition 1 always passed at transition modbat/examples/NioSocket1.scala:82 connect
+[INFO] Precondition 1 always passed at transition modbat/examples/NioSocket1.scala: connect
 [INFO] Random seed for next test would be: 8b388ceb07e23410

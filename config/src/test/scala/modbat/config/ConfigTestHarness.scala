@@ -5,19 +5,60 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileDescriptor
 import java.io.FileOutputStream
-import java.io.FileWriter
 import java.io.PrintStream
+import java.io.PrintWriter
 
 import scala.io.Source
 import scala.math.max
 
 object ConfigTestHarness {
+  def writeToFiles(fileName: String,
+                  log: Iterator[String],
+                  err: Iterator[String]): Unit = {
+    if (log.hasNext) {
+      write(fileName + ".log", log)
+    }
+    if (err.hasNext) {
+      write(fileName + ".err", err)
+    }
+  }
+
+  //this function overwrite file (or creates it if it does not exist)
+  def write(file: String, lines: Iterator[String]): Unit = {
+    val writer = new PrintWriter(new File(file))
+    for (line <- lines) {
+      writer.println(line)
+   }
+    writer.close()
+  }
+
+  def testFileName(className: String, td: org.scalatest.TestData): String = {
+    val dirName = className
+    var testName = td.name.substring(0, td.name.indexOf(td.text) - 1)
+    if (testName.startsWith("An ")) {
+      testName =
+        new String(testName.substring(3, 4)).toUpperCase() + testName.substring(4)
+    } else if (testName.startsWith("A ")) {
+      testName =
+        new String(testName.substring(2, 3)).toUpperCase() + testName.substring(3)
+    }
+    val camelCaseFileName =
+      " ([a-zA-Z0-9])".r.replaceAllIn(testName,
+                                      { m => m.group(1).toUpperCase() })
+    dirName + "/" + camelCaseFileName
+  }
+
   def bytesToLines(bytes: ByteArrayOutputStream) =
     scala.io.Source.fromString(bytes.toString()).getLines()
 
-  def runTest(args: Array[String], shouldFail: Boolean): Unit = {
+  def runTest(className: String, args: Array[String],
+              td: org.scalatest.TestData): Unit = {
+    val shouldFail = td.text.startsWith("should fail")
     val out: ByteArrayOutputStream = new ByteArrayOutputStream() 
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
+    val logFileName = "../log/config/" + testFileName(className, td)
+    val oldLogFileName = "../log/config/" + args.mkString("")
+    var exc: Throwable = null
 
     Console.withErr(err) {
       Console.withOut(out) {
@@ -33,19 +74,24 @@ object ConfigTestHarness {
           case e: IllegalArgumentException => {
             Console.err.println(c.header)
             Console.err.println(e.getMessage())
-            checkOutput(args, bytesToLines(out), bytesToLines(err))
-            throw e
           }
         }
       }
     }
-    checkOutput(args, bytesToLines(out), bytesToLines(err))
+    checkOutput(args, oldLogFileName, logFileName,
+                bytesToLines(out), bytesToLines(err))
+    if (exc != null) {
+      throw exc
+    }
   }
 
-  def test(args: Array[String], td: org.scalatest.TestData): Unit = {
+  def test(args: Array[String], td: org.scalatest.TestData)
+    (implicit fullName: sourcecode.FullName): Unit = {
+    val className =
+      fullName.value.substring(0, fullName.value.lastIndexOf("."))
     val shouldFail = td.text.startsWith("should fail")
     try {
-      runTest(args, shouldFail)
+      runTest(className, args, td)
     } catch {
       case (e: Exception) =>
         assert(shouldFail, "Caught unexpected exception: " + e.toString())
@@ -78,24 +124,23 @@ object ConfigTestHarness {
   }
 
   def sameAs[String](actual: Iterator[String], expected: Iterator[String],
-    templateName: String, filterFunc: String => String): Boolean = {
+    templateName: String): Boolean = {
     var l = 0
     val context = List("", "", "").toArray
     for (line <- expected) {
-      val printableLine = removeAnsiEscapes(line.toString())
       l = l + 1
       if (!actual.hasNext) {
         report("Output truncated; matching context in template " +
-               templateName + ":", l, context, printableLine, "")
+               templateName + ":", l, context, line.toString(), "")
         return false
       } else {
-        val actLine = removeAnsiEscapes(actual.next().toString())
-        val filteredLine = filterFunc(actLine.asInstanceOf[String])
-        if (printableLine.equals(filteredLine)) {
-          context(l % 3) = printableLine
+        val actualLine = actual.next()
+        if (line.equals(actualLine)) {
+          context(l % 3) = line.toString()
         } else {
           report("Output mismatch; matching context in template " +
-                 templateName + ":", l, context, printableLine, actLine)
+                 templateName + ":", l, context,
+                 line.toString(), actualLine.toString())
           return false
         }
       }
@@ -103,7 +148,7 @@ object ConfigTestHarness {
     if (actual.hasNext) {
       report("Extra output; matching context in template " +
              templateName + ":", l + 1, context, "",
-             removeAnsiEscapes(actual.next().toString()))
+             actual.next().toString())
       return false
     }
     true
@@ -118,39 +163,38 @@ object ConfigTestHarness {
     }
   }
 
-  def checkFile(filename: String, output: Iterator[String],
-                filterFunc: String => String = filter) = {
-    val iters = output.duplicate
-    val result = doCheck(filename, iters._1, filterFunc)
+  def checkFile(filename: String, output: Iterator[String]): Boolean = {
+    val result = doCheck(filename, output)
     if (!result) {
       val actualOutput = logFileName(filename)
-      val writer = new BufferedWriter(new FileWriter(actualOutput))
-      iters._2.map(l =>
-                   filter(removeAnsiEscapes(l)) + "\n").foreach(writer.write)
-      writer.close()
       System.err.println("diff " + actualOutput.replace("../", "") +
                          " " + filename.replace("../", ""))
     }
     result
   }
 
-  def doCheck(filename: String, output: Iterator[String],
-              filterFunc: String => String) = {
+  def doCheck(filename: String, output: Iterator[String]): Boolean = {
     val logTemplFile = new File(filename)
     if (logTemplFile.exists()) {
       val logTemplate = Source.fromFile(logTemplFile).getLines
-      sameAs(output, logTemplate, logTemplFile.getName(), filterFunc)
+      sameAs(output, logTemplate, logTemplFile.getName())
     } else {
       val logTemplate = Iterator[String]()
-      sameAs(output, logTemplate, logTemplFile.getName(), filterFunc)
+      sameAs(output, logTemplate, logTemplFile.getName())
     }
   }
 
-  def checkOutput(args: Array[String],
-                  log: Iterator[String], err: Iterator[String]) = {
-    val logFileName = "../log/config/" + args.mkString("")
-    val logMatch = checkFile(logFileName + ".out", log)
-    val errMatch = checkFile(logFileName + ".eout", err)
+  def checkOutput(args: Array[String], logFileName: String,
+                  newLogFileName: String,
+                  log: Iterator[String], err: Iterator[String],
+                  filterFunc: String => String = filter) = {
+    val logIters = log.map(line => filterFunc(line)).duplicate
+    val errIters = err.map(line => filterFunc(line)).duplicate
+//System.err.println("git mv " + logFileName + ".out " + newLogFileName + ".out")
+//System.err.println("git mv " + logFileName + ".eout " + newLogFileName + ".eout")
+    writeToFiles (/***newL*/logFileName, logIters._1, errIters._1 )
+    val logMatch = checkFile(logFileName + ".out", logIters._2)
+    val errMatch = checkFile(logFileName + ".eout", errIters._2)
     assert(logMatch, "Output does not match template")
     assert(errMatch, "Errors do not match template")
   }
