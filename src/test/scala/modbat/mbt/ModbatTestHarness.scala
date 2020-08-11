@@ -14,6 +14,8 @@ import modbat.config.ConfigTestHarness.testFileName
 
 object ModbatTestHarness {
   import Main.TestData
+  val origOut = System.out
+  val origErr = System.err
 
   def testMain(args: Array[String], env: () => Unit): (Int, List[String], List[String]) = {
     env()
@@ -41,8 +43,6 @@ object ModbatTestHarness {
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
     env()
     val config = new Configuration()
-    val origOut = System.out
-    val origErr = System.err
     val testData = new TestData()
     val logFile = "log/modbat/" + getLogFileName(args)
     val logFileName = "log/modbat/" + testFileName(className, td)

@@ -24,16 +24,24 @@ object ConfigTestHarness {
   }
 
   //this function overwrite file (or creates it if it does not exist)
-  def write(file: String, iterator_data: Iterator[String]): Unit = {
+  def write(file: String, lines: Iterator[String]): Unit = {
     val writer = new PrintWriter(new File(file))
-    while (iterator_data.hasNext)
-      writer.println(iterator_data.next())
+    for (line <- lines) {
+      writer.println(line)
+   }
     writer.close()
   }
 
   def testFileName(className: String, td: org.scalatest.TestData): String = {
     val dirName = className
-    val testName = td.name.substring(0, td.name.indexOf(td.text) - 1)
+    var testName = td.name.substring(0, td.name.indexOf(td.text) - 1)
+    if (testName.startsWith("An ")) {
+      testName =
+        new String(testName.substring(3, 4)).toUpperCase() + testName.substring(4)
+    } else if (testName.startsWith("A ")) {
+      testName =
+        new String(testName.substring(2, 3)).toUpperCase() + testName.substring(3)
+    }
     val camelCaseFileName =
       " ([a-zA-Z0-9])".r.replaceAllIn(testName,
                                       { m => m.group(1).toUpperCase() })
