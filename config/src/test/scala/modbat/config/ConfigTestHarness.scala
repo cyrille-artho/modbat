@@ -5,7 +5,6 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileDescriptor
 import java.io.FileOutputStream
-import java.io.FileWriter
 import java.io.PrintStream
 import java.io.PrintWriter
 
@@ -14,13 +13,14 @@ import scala.math.max
 
 object ConfigTestHarness {
   def writeToFiles(fileName: String,
-                  filteredLog: Iterator[String],
-                  filteredErr: Iterator[String]): Unit = {
-    if (filteredLog.hasNext) {
-      write(fileName + ".log", filteredLog)
+                  log: Iterator[String],
+                  err: Iterator[String],
+                  filter: String => String): Unit = {
+    if (log.hasNext) {
+      write(fileName + ".log", log.map(line => filter(line)))
     }
-    if (filteredErr.hasNext) {
-      write(fileName + ".err", filteredErr)
+    if (err.hasNext) {
+      write(fileName + ".err", err.map(line => filter(line)))
     }
   }
 
@@ -158,15 +158,11 @@ object ConfigTestHarness {
   }
 
   def checkFile(filename: String, output: Iterator[String],
-                filterFunc: String => String = filter) = {
+                filterFunc: String => String = filter): Boolean = {
     val iters = output.duplicate
-    val result = doCheck(filename, iters._1, filterFunc)
+    val result = doCheck(filename, output, filterFunc)
     if (!result) {
       val actualOutput = logFileName(filename)
-      val writer = new BufferedWriter(new FileWriter(actualOutput))
-      iters._2.map(l =>
-                   filter(removeAnsiEscapes(l)) + "\n").foreach(writer.write)
-      writer.close()
       System.err.println("diff " + actualOutput.replace("../", "") +
                          " " + filename.replace("../", ""))
     }
@@ -174,7 +170,7 @@ object ConfigTestHarness {
   }
 
   def doCheck(filename: String, output: Iterator[String],
-              filterFunc: String => String) = {
+              filterFunc: String => String): Boolean = {
     val logTemplFile = new File(filename)
     if (logTemplFile.exists()) {
       val logTemplate = Source.fromFile(logTemplFile).getLines
@@ -187,11 +183,13 @@ object ConfigTestHarness {
 
   def checkOutput(args: Array[String], logFileName: String,
                   newLogFileName: String,
-                  log: Iterator[String], err: Iterator[String]) = {
+                  log: Iterator[String], err: Iterator[String],
+                  filterFunc: String => String = filter) = {
     val logIters = log.duplicate
     val errIters = err.duplicate
-//System.err.println("git mv " + logFileName + " " + newLogFileName)
-    writeToFiles (newLogFileName, logIters._1, errIters._1)
+//System.err.println("git mv " + logFileName + ".out " + newLogFileName + ".out")
+//System.err.println("git mv " + logFileName + ".eout " + newLogFileName + ".eout")
+    writeToFiles (newLogFileName, logIters._1, errIters._1, filterFunc)
     val logMatch = checkFile(logFileName + ".out", logIters._2)
     val errMatch = checkFile(logFileName + ".eout", errIters._2)
     assert(logMatch, "Output does not match template")

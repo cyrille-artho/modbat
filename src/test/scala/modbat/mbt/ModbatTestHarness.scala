@@ -67,7 +67,7 @@ object ModbatTestHarness {
     }
     System.setOut(origOut)
     System.setErr(origErr)
-    checkOutput(args, logFile, logFileName, bytesToLines(out), bytesToLines(err))
+    checkOutput(args, logFile, logFileName, bytesToLines(out), bytesToLines(err), filter)
     if (exc != null) {
       throw exc
     }
@@ -96,7 +96,7 @@ object ModbatTestHarness {
 
   def filter(line: String) = {
     configTestFilter(line).
-      replaceAll("(at .*):[0-9]*","$1")
+      replaceAll("(at [^:]*):[0-9]*","$1")
   }
 
   def mainTarget(args: Array[String]) = {
