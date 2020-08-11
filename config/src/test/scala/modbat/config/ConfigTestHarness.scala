@@ -34,11 +34,6 @@ object ConfigTestHarness {
 
   def testFileName(className: String, td: org.scalatest.TestData): String = {
     val dirName = className
-    val directory = new File(dirName)
-    if (! directory.exists()) {
-System.err.println(directory.toString())
-        directory.mkdirs()
-    }
     val testName = td.name.substring(0, td.name.indexOf(td.text) - 1)
     val camelCaseFileName =
       " ([a-zA-Z0-9])".r.replaceAllIn(testName,
