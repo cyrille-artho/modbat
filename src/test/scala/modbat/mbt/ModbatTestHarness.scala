@@ -61,10 +61,6 @@ object ModbatTestHarness {
           case e: Throwable => {
             testData.modbat.ShutdownHandler.run
             exc = e
-            System.setOut(origOut)
-            System.setErr(origErr)
-            checkOutput(args, logFile, logFile, bytesToLines(out), bytesToLines(err))
-            throw e
           }
         }
       }
