@@ -32,8 +32,7 @@ object ConfigTestHarness {
     writer.close()
   }
 
-  def testFileName(className: String, td: org.scalatest.TestData):
-    (String, String) = {
+  def testFileName(className: String, td: org.scalatest.TestData): String = {
     val dirName = "../log/config/" + className
     val directory = new File(dirName)
     if (! directory.exists()) {
@@ -43,7 +42,7 @@ object ConfigTestHarness {
     val camelCaseFileName =
       " ([a-zA-Z0-9])".r.replaceAllIn(testName,
                                       { m => m.group(1).toUpperCase() })
-    (dirName, camelCaseFileName)
+    dirName + "/" + camelCaseFileName
   }
 
   def bytesToLines(bytes: ByteArrayOutputStream) =
@@ -54,8 +53,8 @@ object ConfigTestHarness {
     val shouldFail = td.text.startsWith("should fail")
     val out: ByteArrayOutputStream = new ByteArrayOutputStream() 
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
-    val (dirName, fileName) = testFileName(className, td)
-    val logFileName = "../log/config/" + args.mkString("")
+    val logFileName = testFileName(className, td)
+    val oldLogFileName = "../log/config/" + args.mkString("")
 
     Console.withErr(err) {
       Console.withOut(out) {
@@ -71,14 +70,14 @@ object ConfigTestHarness {
           case e: IllegalArgumentException => {
             Console.err.println(c.header)
             Console.err.println(e.getMessage())
-            checkOutput(args, logFileName, dirName + "/" + fileName,
+            checkOutput(args, oldLogFileName, logFileName,
                         bytesToLines(out), bytesToLines(err))
             throw e
           }
         }
       }
     }
-    checkOutput(args, logFileName, dirName + "/" + fileName,
+    checkOutput(args, oldLogFileName, logFileName,
                 bytesToLines(out), bytesToLines(err))
   }
 
