@@ -8,11 +8,14 @@ import java.util.Collections
 import java.util.HashMap
 
 import modbat.config.ConfigTestHarness.bytesToLines
-import modbat.config.ConfigTestHarness.checkFile
+import modbat.config.ConfigTestHarness.checkOutput
 import modbat.config.ConfigTestHarness.{filter => configTestFilter}
+import modbat.config.ConfigTestHarness.testFileName
 
 object ModbatTestHarness {
   import Main.TestData
+  val origOut = System.out
+  val origErr = System.err
 
   def testMain(args: Array[String], env: () => Unit): (Int, List[String], List[String]) = {
     env()
@@ -33,15 +36,17 @@ object ModbatTestHarness {
     }
   }
 
-  def runTest(args: Array[String], env: () => Unit,
-              shouldFail: Boolean): Unit = {
+  def runTest(className: String, args: Array[String], env: () => Unit,
+              td: org.scalatest.TestData): Unit = {
+    val shouldFail = td.text.startsWith("should fail")
     val out: ByteArrayOutputStream = new ByteArrayOutputStream()
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
     env()
     val config = new Configuration()
-    val origOut = System.out
-    val origErr = System.err
     val testData = new TestData()
+    val logFile = "log/modbat/" + getLogFileName(args)
+    val logFileName = "log/modbat/" + testFileName(className, td)
+    var exc: Throwable = null
     System.setOut(new PrintStream(out))
     System.setErr(new PrintStream(err))
     Console.withErr(err) {
@@ -55,24 +60,27 @@ object ModbatTestHarness {
         } catch {
           case e: Throwable => {
             testData.modbat.ShutdownHandler.run
-            System.setOut(origOut)
-            System.setErr(origErr)
-            checkOutput(args, bytesToLines(out), bytesToLines(err))
-            throw e
+            exc = e
           }
         }
       }
     }
     System.setOut(origOut)
     System.setErr(origErr)
-    checkOutput(args, bytesToLines(out), bytesToLines(err))
+    checkOutput(args, logFile, logFileName, bytesToLines(out), bytesToLines(err), filter)
+    if (exc != null) {
+      throw exc
+    }
   }
 
   def test(args: Array[String], env: () => Unit,
-           td: org.scalatest.TestData): Unit = {
+           td: org.scalatest.TestData)
+    (implicit fullName: sourcecode.FullName): Unit = {
+    val className =
+      fullName.value.substring(0, fullName.value.lastIndexOf("."))
     val shouldFail = td.text.startsWith("should fail")
     try {
-      runTest(args, env, shouldFail)
+      runTest(className, args, env, td)
     } catch {
       case (e: Throwable) =>
         val cause = e.getCause()
@@ -88,7 +96,7 @@ object ModbatTestHarness {
 
   def filter(line: String) = {
     configTestFilter(line).
-      replaceAll("(at .*):[0-9]*","$1")
+      replaceAll("(at [^:]*):[0-9]*","$1")
   }
 
   def mainTarget(args: Array[String]) = {
@@ -98,17 +106,10 @@ object ModbatTestHarness {
     }
   }
 
-  def logFileName(args: Array[String]) = {
+  def getLogFileName(args: Array[String]) = {
     val target = mainTarget(args)
     val params = args.filterNot(a => a.equals(target))
     target + "/" + params.mkString("")
-  }
-
-  def checkOutput(args: Array[String],
-                  log: Iterator[String], err: Iterator[String]) = {
-    val logFile = "log/modbat/" + logFileName(args)
-    checkFile(logFile + ".out", log, filter)
-    checkFile(logFile + ".eout", err, filter)
   }
 
   def setEnv(newEnv: java.util.Map[String, String]): Unit = {
