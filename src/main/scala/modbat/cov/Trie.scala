@@ -2,6 +2,7 @@ package modbat.cov
 
 import modbat.dsl.{State, Transition}
 import modbat.log.Log
+import modbat.mbt.MBT
 import modbat.mbt.PathInfo
 import modbat.mbt.TransitionQuality.Quality
 import modbat.trace.RecordedChoice
@@ -9,7 +10,7 @@ import modbat.trace.RecordedChoice
 import scala.collection.mutable.{HashMap, ListBuffer, Map}
 
 /** Trie stores sequences of transitions (execution paths) for the path coverage. */
-class Trie {
+class Trie(val mbt: MBT) {
   val root: TrieNode = new TrieNode()
 
   /** Insert stores each executed path into the trie, and
@@ -95,7 +96,7 @@ class Trie {
       }
       // debug code:
       /*else {
-        Log.debug(
+        mbt.log.debug(
           "the missing transition:" + p.transition + ", its quality:" + p.transitionQuality + ", and nextIf:" + p.nextStateNextIf)
       }*/
     }
@@ -103,7 +104,7 @@ class Trie {
     // It means to update transition repetition counter (trc) and
     // and transition path counter (tpc) mentioned in the paper
     updateTransSameRepetitionTimes(currentNode)
-    //if (currentNode.children.nonEmpty) Log.debug("not a leaf")
+    //if (currentNode.children.nonEmpty) mbt.log.debug("not a leaf")
     // Set this node to leaf
     if (currentNode.children.isEmpty) currentNode.isLeaf = true
   }
@@ -162,12 +163,12 @@ class Trie {
         root.children.getOrElse(t, sys.error(s"unexpected key: $t"))
       // debug code:
       if (level == 0) {
-        Log.debug(
+        mbt.log.debug(
           "[" + node.modelInfo.toString + node.transitionInfo.toString +
             " counters of execution:" + node.transExecutedRecords +
             ", current depth:" + (level + 1) + checkLeaf(node) + "]")
       } else
-        Log.debug(
+        mbt.log.debug(
           "-" * level + "[" + node.modelInfo.toString + node.transitionInfo.toString +
             " counters of execution:" + node.transExecutedRecords +
             ", current depth:" + (level + 1) + checkLeaf(node) + "]")
@@ -188,7 +189,7 @@ class Trie {
     if (root.isLeaf) return null //resultNode
 
     val v = root.children.getOrElse(key, null)
-    //Log.debug(key ++ ":" ++ root.children.map(i => i._1).toString())
+    //mbt.log.debug(key ++ ":" ++ root.children.map(i => i._1).toString())
 
     if (v != null && targetLevel == level) {
       if (root.currentTransition != null) {

@@ -56,17 +56,6 @@ object MBT {
     }
   }
 
-  def printStackTrace(trace: Array[StackTraceElement]): Unit = {
-    for (el <- trace) {
-      val clsName = el.getClassName
-      if (clsName.startsWith("modbat.mbt.") &&
-          !clsName.startsWith("modbat.mbt.Predef")) {
-        return
-      }
-      Log.error("\tat " + el.toString)
-    }
-  }
-
   def matchesType(ex: Throwable, excPattern: Regex): Boolean = {
     var e: Class[_] = ex.getClass
     while (e != null) {
@@ -78,32 +67,9 @@ object MBT {
     }
     false
   }
-
-  /* check if exception matches against regex of expected exceptions */
-  def expected(exc: List[Regex], e: Throwable): Boolean = {
-    exc foreach (ex =>
-      if (matchesType(e, ex)) {
-        Log.debug("Expected: " + e)
-        return true
-      }
-    )
-    return false
-  }
-
-  def cpToURL(classpath: String): Array[URL] = {
-    val sep = System.getProperty("path.separator")
-    val paths = classpath.split(sep)
-    val urls = ListBuffer[URL]()
-    for (p <- paths) {
-      Log.debug("Adding " + p + " to classpath.")
-      urls += new File(p).toURI.toURL()
-    }
-    urls.toArray
-  }
-
 }
 
-class MBT (val config: Configuration) {
+class MBT (val config: Configuration, val log: Log) {
   var modelClass: Class[_ <: Any] = null // main model class
   val launchedModels = new ArrayBuffer[ModelInstance]()
   val launchedModelInst = new ArrayBuffer[Model]()
@@ -126,8 +92,41 @@ class MBT (val config: Configuration) {
   var currentTransition: Transition = null
   val stayLock = new AnyRef()
   val time = new VirtualTime
-  val classLoaderURLs = MBT.cpToURL(config.classpath)
-  val sourceInfo = new SourceInfo(classLoaderURLs)
+  val classLoaderURLs = cpToURL(config.classpath)
+  val sourceInfo = new SourceInfo(classLoaderURLs, log)
+
+  def printStackTrace(trace: Array[StackTraceElement]): Unit = {
+    for (el <- trace) {
+      val clsName = el.getClassName
+      if (clsName.startsWith("modbat.mbt.") &&
+          !clsName.startsWith("modbat.mbt.Predef")) {
+        return
+      }
+      log.error("\tat " + el.toString)
+    }
+  }
+
+  /* check if exception matches against regex of expected exceptions */
+  def expected(exc: List[Regex], e: Throwable): Boolean = {
+    exc foreach (ex =>
+      if (MBT.matchesType(e, ex)) {
+        log.debug("Expected: " + e)
+        return true
+      }
+    )
+    return false
+  }
+
+  def cpToURL(classpath: String): Array[URL] = {
+    val sep = System.getProperty("path.separator")
+    val paths = classpath.split(sep)
+    val urls = ListBuffer[URL]()
+    for (p <- paths) {
+      log.debug("Adding " + p + " to classpath.")
+      urls += new File(p).toURI.toURL()
+    }
+    urls.toArray
+  }
 
   // TODO: If necessary, add another argument (tag) to distinguish between
   // different types of warnings for the same type of object/data.
@@ -177,7 +176,7 @@ class MBT (val config: Configuration) {
     if ((m.getModifiers() & Modifier.STATIC) != 0) {
       if (!invokedStaticMethods.contains(m)) {
         invokedStaticMethods += m
-        Log.debug(annotationType.getSimpleName() + ": static " + m.getName())
+        log.debug(annotationType.getSimpleName() + ": static " + m.getName())
         m.invoke(instance)
       }
     }
@@ -187,7 +186,7 @@ class MBT (val config: Configuration) {
                     m: Method,
                     instance: Object): Unit = {
     if ((m.getModifiers() & Modifier.STATIC) == 0) {
-      Log.debug(annotationType.getSimpleName() + ": " + m.getName())
+      log.debug(annotationType.getSimpleName() + ": " + m.getName())
       m.invoke(instance)
     }
   }
@@ -197,7 +196,7 @@ class MBT (val config: Configuration) {
   }
 
   def setRNG(seed: Long): Unit = {
-    rng = new CloneableRandom(seed)
+    rng = new CloneableRandom(log, seed)
   }
 
   def setTestFailed(failed: Boolean): Unit = {
@@ -228,7 +227,7 @@ class MBT (val config: Configuration) {
       modelClass = classloader.loadClass(className)
     } catch {
       case e: ClassNotFoundException => {
-        Log.error("Class \"" + className + "\" not found.")
+        log.error("Class \"" + className + "\" not found.")
         throw e
       }
     }
@@ -261,12 +260,12 @@ class MBT (val config: Configuration) {
       c.getConstructor()
     } catch {
       case e: NoSuchMethodException => {
-        Log.error("No suitable constructor found.")
-        Log.error(
+        log.error("No suitable constructor found.")
+        log.error(
           "A public nullary constructor is needed " +
             "to instantiate the primary model.")
-        Log.error("Consider adding a constructor variant:")
-        Log.error("  def this() = this(...)")
+        log.error("Consider adding a constructor variant:")
+        log.error("  def this() = this(...)")
         throw (e)
         null
       }
@@ -283,27 +282,27 @@ class MBT (val config: Configuration) {
       }
     } catch {
       case c: ClassCastException => {
-        Log.error("Model class does not extend Model.")
-        Log.error("Check if the right class was specified.")
+        log.error("Model class does not extend Model.")
+        log.error("Check if the right class was specified.")
         throw (c)
         null
       }
       case e: InstantiationException => {
-        Log.error("Cannot instantiate model class.")
-        Log.error("The class must not be abstract or an interface.")
+        log.error("Cannot instantiate model class.")
+        log.error("The class must not be abstract or an interface.")
         throw (e)
         null
       }
       case e: InvocationTargetException => {
-        Log.error("Exception in default (nullary) constructor of main model.")
-        Log.error("In dot mode, a constructor that ignores any data")
-        Log.error("is sufficient to visualize the ESFM graph.")
+        log.error("Exception in default (nullary) constructor of main model.")
+        log.error("In dot mode, a constructor that ignores any data")
+        log.error("is sufficient to visualize the ESFM graph.")
         if (!config.printStackTrace) {
-          Log.error("Use --print-stack-trace to see the stack trace.")
+          log.error("Use --print-stack-trace to see the stack trace.")
         } else {
           val cause = e.getCause
-          Log.error(cause.toString)
-          MBT.printStackTrace(cause.getStackTrace)
+          log.error(cause.toString)
+          printStackTrace(cause.getStackTrace)
         }
         throw (e)
         null
@@ -318,10 +317,10 @@ class MBT (val config: Configuration) {
   def launch(modelInstance: Model): ModelInstance = {
     val model = mkModel(modelInstance)
     if (model.pendingTransitions.isEmpty) {
-      Log.error("Model " + model.getClass.getName + " has no transitions.")
-      Log.error("Make sure at least one transition exists of type")
-      Log.error("  \"a\" -> \"b\" := { code } // or, for an empty transition:")
-      Log.error("  \"a\" -> \"b\" := skip")
+      log.error("Model " + model.getClass.getName + " has no transitions.")
+      log.error("Make sure at least one transition exists of type")
+      log.error("  \"a\" -> \"b\" := { code } // or, for an empty transition:")
+      log.error("  \"a\" -> \"b\" := skip")
       throw new NoTransitionsException(model.getClass.getName)
     }
     val inst =

@@ -116,7 +116,7 @@ class PathInStateGraph(val root: TrieNode,
               }
               /*else {
               // debug code:
-              Log.debug(
+              mbt.log.debug(
                 "--- print debug --- NOT same transition:" + node.transitionInfo.transOrigin +
                   " =>" + node.transitionInfo.transDest +
                   ", " + node.transitionInfo.transitionID + ", " +
@@ -189,7 +189,7 @@ class PathInStateGraph(val root: TrieNode,
       }
 
       // choiceTree is a trie to store choices
-      val choiceTree: ChoiceTree = new ChoiceTree()
+      val choiceTree: ChoiceTree = new ChoiceTree(mbt)
 
       if (n.node.transitionInfo.transitionChoicesMap != null && n.node.transitionInfo.transitionChoicesMap.nonEmpty) {
         // transition with choices situation

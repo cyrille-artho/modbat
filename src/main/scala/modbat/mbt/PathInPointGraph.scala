@@ -106,7 +106,7 @@ class PathInPointGraph(val root: TrieNode,
         node.transitionInfo.transitionChoicesMap != null && node.transitionInfo.transitionChoicesMap.nonEmpty
 
       // choiceTree records choices
-      val choiceTree: ChoiceTree = new ChoiceTree()
+      val choiceTree: ChoiceTree = new ChoiceTree(mbt)
       if (transHasChoices) {
         // transition with choices
         for ((choiceList, counter) <- node.transitionInfo.transitionChoicesMap) {
@@ -129,7 +129,7 @@ class PathInPointGraph(val root: TrieNode,
       // the "full" graph case
       if (mbt.config.pathCoverageGraphMode.equals("full") && node.isLeaf && node.transitionInfo.transCounter > 1) {
         for (i <- 0 until node.transitionInfo.transCounter - 1) {
-          Log.debug(
+          mbt.log.debug(
             "replicated node is here to be recorded:" + node.currentTransition + ", current node counter:" + node.currentNodeCounterRecorder)
           val newNodeInfo =
             new PointNodeInfo(node, transHasChoices, choiceTree, isSelfTrans,

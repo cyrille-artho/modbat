@@ -75,35 +75,12 @@ object Modbat {
       transition.sourceInfo + ": " + transName
     }
   }
-
-  def restoreChannel(mbt: MBT,
-                     ch: PrintStream,
-                     orig: PrintStream,
-                     filename: String,
-                     isErr: Boolean = false): Unit = {
-    if (mbt.config.redirectOut) {
-      ch.close()
-      val file = new File(filename)
-      if ((mbt.config.deleteEmptyLog && (file.length == 0)) ||
-          (mbt.config.removeLogOnSuccess && !mbt.testHasFailed)) {
-        if (!file.delete()) {
-          Log.warn("Cannot delete file " + filename)
-        }
-      }
-      if (isErr) {
-        System.setErr(orig)
-      } else {
-        System.setOut(orig)
-        Console.print("[2K\r")
-      }
-    }
-  }
 }
 
 class Modbat(val mbt: MBT) {
   import Modbat.AppState._
-  val origOut = System.out
-  val origErr = System.err
+  val origOut = mbt.log.out
+  val origErr = mbt.log.err
   var out: PrintStream = origOut
   var err: PrintStream = origErr
   var logFile: String = _
@@ -121,7 +98,7 @@ class Modbat(val mbt: MBT) {
 //  val time = new VirtualTime
 
   // The trie to record sequences of executed transitions (execution paths) -Rui
-  var trie = new Trie()
+  var trie = new Trie(mbt)
   private var pathInfoRecorder = new ListBuffer[PathInfo]
 
   if (mbt.config.init) {
@@ -159,8 +136,31 @@ class Modbat(val mbt: MBT) {
   }
 
   def restoreChannels: Unit = {
-    Modbat.restoreChannel(mbt, out, origOut, logFile)
-    Modbat.restoreChannel(mbt, err, origErr, errFile, true)
+    restoreChannel(mbt, out, origOut, logFile)
+    restoreChannel(mbt, err, origErr, errFile, true)
+  }
+
+  def restoreChannel(mbt: MBT,
+                     ch: PrintStream,
+                     orig: PrintStream,
+                     filename: String,
+                     isErr: Boolean = false): Unit = {
+    if (mbt.config.redirectOut) {
+      ch.close()
+      val file = new File(filename)
+      if ((mbt.config.deleteEmptyLog && (file.length == 0)) ||
+          (mbt.config.removeLogOnSuccess && !mbt.testHasFailed)) {
+        if (!file.delete()) {
+          mbt.log.warn("Cannot delete file " + filename)
+        }
+      }
+      if (isErr) {
+        System.setErr(orig)
+      } else {
+        System.setOut(orig)
+        Console.print("[2K\r")
+      }
+    }
   }
 
   def showErrors: Unit = {
@@ -168,21 +168,21 @@ class Modbat(val mbt: MBT) {
       return
     }
     if (testFailures.size == 1) {
-      Log.info("One type of test failure:")
+      mbt.log.info("One type of test failure:")
     } else {
-      Log.info(Integer.toString(testFailures.size) + " types of test failures:")
+      mbt.log.info(Integer.toString(testFailures.size) + " types of test failures:")
     }
     var i = 0
     for (f <- testFailures.keySet.toSeq.sortWith(ErrOrdering.lt)) {
       i += 1
-      Log.info(Integer.toString(i) + ") " + Modbat.showFailure(f) + ":")
+      mbt.log.info(Integer.toString(i) + ") " + Modbat.showFailure(f) + ":")
       val rseeds = testFailures(f)
-      Log.info("   " + rseeds.map(_.toHexString).mkString(" "))
+      mbt.log.info("   " + rseeds.map(_.toHexString).mkString(" "))
     }
   }
 
   def warnPrecond(modelInst: ModelInstance, t: Transition, idx: Int): Unit = {
-    Log.info(
+    mbt.log.info(
       "Precondition " + (idx + 1) + " always " +
         Modbat.passFailed(t.coverage.precond.precondPassed.get(idx)) +
         " at transition " +
@@ -212,25 +212,25 @@ class Modbat(val mbt: MBT) {
 
     if (mbt.config.logLevel == Log.Debug) trie.display(trie.root)
     val numOfPaths = trie.numOfPaths(trie.root)
-    Log.info(Integer.toString(numOfPaths) + " main paths executed.")
+    mbt.log.info(Integer.toString(numOfPaths) + " main paths executed.")
     val shortestPath = trie.shortestPath(trie.root)
-    Log.info("the shortest path has " + shortestPath + " transitions.")
+    mbt.log.info("the shortest path has " + shortestPath + " transitions.")
     val longestPath = trie.longestPath(trie.root)
-    Log.info("the longest path has " + longestPath + " transitions.")
+    mbt.log.info("the longest path has " + longestPath + " transitions.")
     // pathLengthResults is a map that records the all length of paths (keys),
     // and the number of the same length (values), based on the number of transitions
     val pathLengthResults = trie.pathLengthRecorder(trie.root)
-    Log.info("path length results: " + pathLengthResults)
+    mbt.log.info("path length results: " + pathLengthResults)
     // the average length of all paths, based on the number of transitions
     val averageLength = pathLengthResults.foldLeft(0.0) {
       case (a, (k, v)) => a + k * v
     } / numOfPaths
-    Log.info("the average length of paths is: " + averageLength)
+    mbt.log.info("the average length of paths is: " + averageLength)
     // the standard deviation for the length of paths, based on the number of transitions
     val stdDev = math.sqrt(pathLengthResults.foldLeft(0.0) {
       case (a, (k, v)) => a + math.pow(k - averageLength, 2) * v
     } / numOfPaths)
-    Log.info("the standard deviation for the length of paths is: " + stdDev)
+    mbt.log.info("the standard deviation for the length of paths is: " + stdDev)
     // information for the path based graph
     val (numNodePG,
          numChoiceNodePG,
@@ -241,28 +241,28 @@ class Modbat(val mbt: MBT) {
          numCycleSelfTranPG) =
       new PathInPointGraph(trie.root, "Point", "root", mbt).dotify()
 
-    Log.info(
+    mbt.log.info(
       "the total number of nodes in path-based graph:" + (numNodePG + numChoiceNodePG))
-    Log.info(
+    mbt.log.info(
       "the total number of choice nodes in path-based graph: " + numChoiceNodePG)
 
-    Log.info(
+    mbt.log.info(
       "the total number of edges in path-based graph: " + (numNonChoiceEdgePG + numChoiceEdgePG))
 
-    Log.info(
+    mbt.log.info(
       "the total number of non choice related edges in path-based graph: " + numNonChoiceEdgePG)
 
-    Log.info(
+    mbt.log.info(
       "the total number of backtracked edges in path-based graph: " + numBacktrackedEdgePG)
-    Log.info(
+    mbt.log.info(
       "the total number of failed edges in path-based graph: " + numFailedEdgePG)
 
-    Log.info(
+    mbt.log.info(
       "the total number of choice related edges in path-based graph: " + numChoiceEdgePG)
-    Log.info(
+    mbt.log.info(
       "the total number of cycles in path-based graph: " + numCycleSelfTranPG)
 
-    Log.info(
+    mbt.log.info(
       "---------------------- table data of PG -----------------------\n" +
         "Name" + " & " + "Test Cases" + " & " +
         "Nodes" + " & " + "Choice Nodes" + " & " + "Edges" + " & " + "failEdges" + " & " + "Cycles" + " & " +
@@ -283,30 +283,30 @@ class Modbat(val mbt: MBT) {
          numCycleSelfTranSG) =
       new PathInStateGraph(trie.root, "State", "root", mbt).dotify()
 
-    Log.info(
+    mbt.log.info(
       "the total number of choice nodes in state-based graph: " + numChoiceNodeSG)
 
-    Log.info(
+    mbt.log.info(
       "the total number of edges in state-based graph: " + (numNonChoiceEdgeSG + numChoiceEdgeSG + numJumpedEdge))
 
-    Log.info(
+    mbt.log.info(
       "the total number of non choice related edges in state-based graph: " + numNonChoiceEdgeSG)
 
-    Log.info(
+    mbt.log.info(
       "the total number of backtracked edges in state-based graph: " + numBacktrackedEdgeSG)
-    Log.info(
+    mbt.log.info(
       "the total number of failed edges in state-based graph: " + numFailedEdgeSG)
 
-    Log.info(
+    mbt.log.info(
       "the total number of choice related edges in state-based graph: " + numChoiceEdgeSG)
 
-    Log.info(
+    mbt.log.info(
       "the total number of Jumped dotted edges in state-based graph: " + numJumpedEdge)
 
-    Log.info(
+    mbt.log.info(
       "the total number of cycles in state-based graph: " + numCycleSelfTranSG)
 
-    Log.info(
+    mbt.log.info(
       "---------------------- table data of SG -----------------------\n" +
         "Name" + " & " + "Test Cases" + " & " +
         "Choice Nodes" + " & " + "Edges" + " & " + "failEdges" + " & " + "Cycles" + "\n" +
@@ -332,7 +332,7 @@ class Modbat(val mbt: MBT) {
         val foundNode =
           trie.bfSearchT(trie.root, goal(0), goal(1).toInt, goal(2).toInt)
         if (foundNode.isLeaf)
-          Log.debug(
+          mbt.log.debug(
             "the found transition is recorded in a leaf of the trie, so there is no children to print in graphs.")
         else {
           trie.display(foundNode)
@@ -351,7 +351,7 @@ class Modbat(val mbt: MBT) {
         pathCoverageBFSearch // User search function to find a transition in trie as a starting point to display in graphs
     }
 
-    Log.info(Integer.toString(count) + " tests executed, " +
+    mbt.log.info(Integer.toString(count) + " tests executed, " +
              Integer.toString(count - failed) + " ok, " +
              Integer.toString(failed) + " failed.")
     if (count == 0) {
@@ -369,16 +369,16 @@ class Modbat(val mbt: MBT) {
       }
       val nStates = modelInst.states.size
       val nTrans = modelInst.transitions.size
-      Log.info(
+      mbt.log.info(
         modelStr + nCoveredStates + " states covered (" +
           nCoveredStates * 100 / nStates + " % out of " + nStates + "),")
-      Log.info(
+      mbt.log.info(
         modelStr + nCoveredTrans + " transitions covered (" +
           nCoveredTrans * 100 / nTrans + " % out of " + nTrans + ").")
     }
     preconditionCoverage
     randomSeed = (masterRNG.z << 32 | masterRNG.w)
-    Log.info("Random seed for next test would be: " + randomSeed.toHexString)
+    mbt.log.info("Random seed for next test would be: " + randomSeed.toHexString)
     if (mbt.config.dotifyCoverage) {
       for ((modelName, modelInst) <- mbt.firstInstance) {
         new Dotify(mbt.config, modelInst, modelName + ".dot").dotify(true)
@@ -418,9 +418,9 @@ class Modbat(val mbt: MBT) {
       randomSeed = getRandomSeed
       val seed = randomSeed.toHexString
       failed match {
-        case 0 => Console.printf("%8d %16s", i, seed)
-        case 1 => Console.printf("%8d %16s, one test failed.", i, seed)
-        case _ => Console.printf("%8d %16s, %d tests failed.", i, seed, failed)
+        case 0 => mbt.log.out.printf("%8d %16s", Integer.valueOf(i), seed)
+        case 1 => mbt.log.out.printf("%8d %16s, one test failed.", Integer.valueOf(i), java.lang.Long.valueOf(seed))
+        case _ => mbt.log.out.printf("%8d %16s, %d tests failed.", Integer.valueOf(i), java.lang.Long.valueOf(seed), Integer.valueOf(failed))
       }
       logFile = mbt.config.logPath + "/" + seed + ".log"
       errFile = mbt.config.logPath + "/" + seed + ".err"
@@ -431,7 +431,7 @@ class Modbat(val mbt: MBT) {
         err = new PrintStream(new FileOutputStream(errFile), true)
         System.setErr(err)
       } else {
-        Console.println()
+        mbt.log.out.println()
       }
       mbt.checkDuplicates = (i == 1)
       val result = runTest
@@ -458,14 +458,14 @@ class Modbat(val mbt: MBT) {
   }
 
   def exploreModel(model: ModelInstance) = {
-    Log.debug("--- Exploring model ---")
+    mbt.log.debug("--- Exploring model ---")
     timesVisited.clear()
     executedTransitions.clear()
     pathInfoRecorder.clear() // clear path information - Rui
     timesVisited += ((RecordedState(model, model.initialState), 1))
     for (f <- model.tracedFields.fields) {
       val value = FieldUtil.getValue(f, model.model)
-      Log.fine("Trace field " + f.getName + " has initial value " + value)
+      mbt.log.fine("Trace field " + f.getName + " has initial value " + value)
       model.tracedFields.values(f) = value
     }
     val result = exploreSuccessors
@@ -479,7 +479,7 @@ class Modbat(val mbt: MBT) {
       rseeds += randomSeed
     }
     // TODO: classify errors
-    Log.debug("--- Resetting to initial state ---")
+    mbt.log.debug("--- Resetting to initial state ---")
     retVal
   }
 
@@ -488,7 +488,7 @@ class Modbat(val mbt: MBT) {
                     quiet: Boolean = false): Unit = {
     for (s <- m.successors(quiet)) {
       if (!quiet) {
-        Log.debug(
+        mbt.log.debug(
           "State " + s.dest +
             " in model " + m.name + " was visited " +
             timesVisited.getOrElseUpdate(RecordedState(m, s.dest), 0)
@@ -499,7 +499,7 @@ class Modbat(val mbt: MBT) {
           (timesVisited.getOrElseUpdate(RecordedState(m, s.dest), 0)
             >= limit)) {
         if (!quiet) {
-          Log.fine(
+          mbt.log.fine(
             "Detected beginning of loop " + limit +
               " (model " + m.name + ", state " + s.dest +
               "), filtering transition " + s + ".")
@@ -567,56 +567,56 @@ class Modbat(val mbt: MBT) {
   private def banditUCBERChoice(choices: List[(ModelInstance, Transition)],
                                 totalW: Double): (ModelInstance, Transition) = {
 
-    Log.debug("Tradeoff:" + mbt.config.banditTradeoff)
-    Log.debug("Backtracked transition reward:" + mbt.config.backtrackTReward)
-    Log.debug("Self-transition reward:" + mbt.config.selfTReward)
-    Log.debug("Good transition reward:" + mbt.config.goodTReward)
-    Log.debug("Failed transition reward:" + mbt.config.failTReward)
+    mbt.log.debug("Tradeoff:" + mbt.config.banditTradeoff)
+    mbt.log.debug("Backtracked transition reward:" + mbt.config.backtrackTReward)
+    mbt.log.debug("Self-transition reward:" + mbt.config.selfTReward)
+    mbt.log.debug("Good transition reward:" + mbt.config.goodTReward)
+    mbt.log.debug("Failed transition reward:" + mbt.config.failTReward)
 
-    Log.debug("Passed precondition reward:" + mbt.config.precondPassReward)
-    Log.debug("Failed precondition reward:" + mbt.config.precondFailReward)
-    Log.debug("Passed assertion reward:" + mbt.config.assertPassReward)
-    Log.debug("Failed assertion reward:" + mbt.config.assertFailReward)
+    mbt.log.debug("Passed precondition reward:" + mbt.config.precondPassReward)
+    mbt.log.debug("Failed precondition reward:" + mbt.config.precondFailReward)
+    mbt.log.debug("Passed assertion reward:" + mbt.config.assertPassReward)
+    mbt.log.debug("Failed assertion reward:" + mbt.config.assertFailReward)
 
     val currentStateCount = choices.head._1.currentState.coverage.count
     val transCountLst = choices.map(_._2.coverage.count)
     val precondFailedCountLst =
       choices.map(_._2.coverage.expectedReward.countPrecondFail)
 
-    Log.debug(
+    mbt.log.debug(
       "*** List of failed assertion counts:" + choices.map(
         _._2.coverage.expectedReward.countAssertFail))
-    Log.debug(
+    mbt.log.debug(
       "*** List of passed assertion counts:" + choices.map(
         _._2.coverage.expectedReward.countAssertPass))
 
-    Log.debug(
+    mbt.log.debug(
       "*** List of passed precondition counts:" + choices.map(
         _._2.coverage.expectedReward.countPrecondPass))
 
-    Log.debug("*** List of failed precondition counts:" + precondFailedCountLst)
-    Log.debug(
+    mbt.log.debug("*** List of failed precondition counts:" + precondFailedCountLst)
+    mbt.log.debug(
       "*** List of precond counters:" + choices.map(
         _._2.coverage.precond.count))
 
     val expectedRewardList =
       choices.map(_._2.coverage.expectedReward.expectedReward)
-    Log.debug("*** List of expected reward:" + expectedRewardList)
+    mbt.log.debug("*** List of expected reward:" + expectedRewardList)
 
     val rewardLst = choices.map(_._2.averageReward.rewardsLst)
-    Log.debug("*** List of reward lists for transitions:" + rewardLst)
+    mbt.log.debug("*** List of reward lists for transitions:" + rewardLst)
 
     val averageRewardLst = choices.map(_._2.averageReward.averageReward)
-    Log.debug("*** List of average rewards for transitions:" + averageRewardLst)
+    mbt.log.debug("*** List of average rewards for transitions:" + averageRewardLst)
 
     // nState is the total number of times for current state to be  visited already
     val nState = currentStateCount + precondFailedCountLst.sum
-    Log.debug(
+    mbt.log.debug(
       "*** The total number of times for current state to be visited:" + nState)
 
     // nTranslst is the list to store all values of counters for already selected transitions
     val nTransLst = (transCountLst, precondFailedCountLst).zipped.map(_ + _)
-    Log.debug(
+    mbt.log.debug(
       "*** The list to store all values of counters for already selected transitions:" + nTransLst)
 
     if (nTransLst.contains(0)) {
@@ -626,22 +626,22 @@ class Modbat(val mbt: MBT) {
       // Compute choice based on the UCB formula of bandit problem
       val banditUCBSelectedTransLst =
         nTransLst.map(n => sqrt(mbt.config.banditTradeoff * log(nState) / n))
-      Log.debug("*** banditUCBSelectedTransLst:" + banditUCBSelectedTransLst)
+      mbt.log.debug("*** banditUCBSelectedTransLst:" + banditUCBSelectedTransLst)
 
       // banditUCB is the sum of the average reward, less selected transition value, and expected reward
       val banditUCB =
         ((averageRewardLst, banditUCBSelectedTransLst).zipped.map(_ + _),
          expectedRewardList).zipped.map(_ + _)
-      Log.debug("*** banditUCB:" + banditUCB)
+      mbt.log.debug("*** banditUCB:" + banditUCB)
 
       val banditUCBChoiceCandidates =
         banditUCB.zipWithIndex.filter(x => x._1 == banditUCB.max)
-      Log.info("*** bandit UCB candidates:" + banditUCBChoiceCandidates)
+      mbt.log.info("*** bandit UCB candidates:" + banditUCBChoiceCandidates)
 
       val banditUCBChoiceCandidate = banditUCBChoiceCandidates(
         mbt.rng.nextInt(banditUCBChoiceCandidates.length))
       val banditUCBChoiceIndex = banditUCBChoiceCandidate._2
-      Log.info(
+      mbt.log.info(
         "*** bandit UCB chosen candidate's index:" + banditUCBChoiceIndex)
 
       return choices(banditUCBChoiceIndex)
@@ -720,7 +720,7 @@ class Modbat(val mbt: MBT) {
 
   def invocationSuccessor: Option[(ModelInstance, Transition)] = {
     if (!mbt.transitionQueue.isEmpty)
-      Log.debug(
+      mbt.log.debug(
         "Current InvokeTransitionQueue = (" + mbt.transitionQueue.mkString + ")")
 
     while (!mbt.transitionQueue.isEmpty) {
@@ -729,7 +729,7 @@ class Modbat(val mbt: MBT) {
         .filter(_.action.label == label)
         .filter(_.origin == model.currentState)
       if (trs.size != 1) {
-        Log.warn(s"${label} matches ${trs.size} transitions")
+        mbt.log.warn(s"${label} matches ${trs.size} transitions")
       } else {
         return Some(model, trs.head)
       }
@@ -742,7 +742,7 @@ class Modbat(val mbt: MBT) {
                            rng: CloneableRandom): Unit = {
     val updates: List[(Field, Any)] = model.tracedFields.updates
     for (u <- updates) {
-      Log.fine("Trace field " + u._1 + " now has value " + u._2)
+      mbt.log.fine("Trace field " + u._1 + " now has value " + u._2)
     }
     updateExecHistory(model, rng, result, updates)
   }
@@ -757,20 +757,20 @@ class Modbat(val mbt: MBT) {
   def warnAboutPreconditions(allSucc: List[(ModelInstance, Transition)],
                              backtracked: Boolean): Unit = {
     for (succ <- allSucc) {
-      Log.warn(
+      mbt.log.warn(
         "All preconditions false at transition " +
           ppTrans(new RecordedTransition(succ._1, succ._2)))
     }
-    Log.warn("Maybe the preconditions are too strict?")
+    mbt.log.warn("Maybe the preconditions are too strict?")
   }
 
   def checkIfPendingModels: Unit = {
     if ((mbt.launchedModels filter (_.joining != null)).size != 0) {
-      Log.warn(
+      mbt.log.warn(
         "Deadlock: Some models stuck waiting for another model to finish.")
       for (m <- mbt.launchedModels filter (_.joining != null)) {
         val trans = (executedTransitions filter (_.model eq m)).last
-        Log.warn(m.name + ": " + ppTrans(trans))
+        mbt.log.warn(m.name + ": " + ppTrans(trans))
       }
     }
   }
@@ -810,10 +810,10 @@ class Modbat(val mbt: MBT) {
       val localStoredRNGState = mbt.rng.asInstanceOf[CloneableRandom].clone
       val abortProbability = mbt.rng.nextFloat(false)
       if (abortProbability < mbt.config.abortProbability) {
-        Log.debug(
+        mbt.log.debug(
           "Configured abort probability:" + mbt.config.abortProbability)
-        Log.debug("Actual abort probability:" + abortProbability)
-        Log.debug("Aborting...")
+        mbt.log.debug("Actual abort probability:" + abortProbability)
+        mbt.log.debug("Aborting...")
         return ((Finished, null), null)
       }
       /* Pop invokeTransition queue until a feasible transition is popped.
@@ -844,7 +844,7 @@ class Modbat(val mbt: MBT) {
             val succ = new ListBuffer[(ModelInstance, Transition)]()
             addSuccessors(model, succ, true)
             if (succ.size == 0) {
-              Log.debug("Model " + model.name + " has terminated.")
+              mbt.log.debug("Model " + model.name + " has terminated.")
               unblockJoiningModels(model)
             }
             if (sameAgain) {
@@ -895,7 +895,7 @@ class Modbat(val mbt: MBT) {
     if (successors.isEmpty && backtracked) {
       warnAboutPreconditions(allSucc, backtracked)
     }
-    Log.debug("No more successors.")
+    mbt.log.debug("No more successors.")
     checkIfPendingModels
     ((Finished, null), null)
   }
@@ -972,7 +972,7 @@ class Modbat(val mbt: MBT) {
   private def insertPathInfoInTrie: Unit = {
     // output all executed transitions of the current test - Rui
     for (p <- pathInfoRecorder)
-      Log.debug(
+      mbt.log.debug(
         "Recorded information for path coverage: " + p.toString + ", transID:" + p.transition.idx + ", nextif:" + p.nextStateNextIf)
     // Put information in pathInfoRecoder to the trie by
     // inserting all the information of the current test into a trie for path coverage,
@@ -1037,11 +1037,11 @@ class Modbat(val mbt: MBT) {
   }
 
   def printTrace(transitions: List[RecordedTransition]): Unit = {
-    Log.warn("Error found, model trace:")
+    mbt.log.warn("Error found, model trace:")
     for (t <- transitions) {
-      Log.warn(ppTrans(t))
+      mbt.log.warn(ppTrans(t))
       for (u <- t.updates) {
-        Log.warn("  " + u._1 + " = " + u._2)
+        mbt.log.warn("  " + u._1 + " = " + u._2)
       }
     }
   }

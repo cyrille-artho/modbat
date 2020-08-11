@@ -13,8 +13,8 @@ abstract class PathVisualizer(val mbt: MBT) {
     out = new PrintStream(new FileOutputStream(fullOutFile), false, "UTF-8")
   } catch {
     case ioe: IOException => {
-      Log.error("Cannot open file " + fullOutFile + ":")
-      Log.error(ioe.getMessage)
+      mbt.log.error("Cannot open file " + fullOutFile + ":")
+      mbt.log.error(ioe.getMessage)
       //System.exit(1)
     }
   }
