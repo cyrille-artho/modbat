@@ -75,9 +75,6 @@ object ConfigTestHarness {
             Console.err.println(c.header)
             Console.err.println(e.getMessage())
             exc = e
-            checkOutput(args, logFileName, oldLogFileName,
-                        bytesToLines(out), bytesToLines(err))
-            throw e
           }
         }
       }
