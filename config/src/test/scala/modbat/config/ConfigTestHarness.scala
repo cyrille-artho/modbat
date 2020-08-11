@@ -33,7 +33,7 @@ object ConfigTestHarness {
   }
 
   def testFileName(className: String, td: org.scalatest.TestData): String = {
-    val dirName = "../log/config/" + className
+    val dirName = className
     val directory = new File(dirName)
     if (! directory.exists()) {
         directory.mkdirs()
@@ -53,7 +53,7 @@ object ConfigTestHarness {
     val shouldFail = td.text.startsWith("should fail")
     val out: ByteArrayOutputStream = new ByteArrayOutputStream() 
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
-    val logFileName = testFileName(className, td)
+    val logFileName = "../log/config/" + testFileName(className, td)
     val oldLogFileName = "../log/config/" + args.mkString("")
 
     Console.withErr(err) {
@@ -193,6 +193,7 @@ object ConfigTestHarness {
                   log: Iterator[String], err: Iterator[String]) = {
     val logIters = log.duplicate
     val errIters = err.duplicate
+//System.err.println("git mv " + logFileName + " " + newLogFileName)
     writeToFiles (newLogFileName, logIters._1, errIters._1)
     val logMatch = checkFile(logFileName + ".out", logIters._2)
     val errMatch = checkFile(logFileName + ".eout", errIters._2)
