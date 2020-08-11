@@ -36,6 +36,7 @@ object ConfigTestHarness {
     val dirName = className
     val directory = new File(dirName)
     if (! directory.exists()) {
+System.err.println(directory.toString())
         directory.mkdirs()
     }
     val testName = td.name.substring(0, td.name.indexOf(td.text) - 1)
