@@ -55,6 +55,7 @@ object ConfigTestHarness {
     val out: ByteArrayOutputStream = new ByteArrayOutputStream() 
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
     val (dirName, fileName) = testFileName(className, td)
+    val logFileName = "../log/config/" + args.mkString("")
 
     Console.withErr(err) {
       Console.withOut(out) {
@@ -70,14 +71,14 @@ object ConfigTestHarness {
           case e: IllegalArgumentException => {
             Console.err.println(c.header)
             Console.err.println(e.getMessage())
-            checkOutput(args, dirName + "/" + fileName,
+            checkOutput(args, logFileName, dirName + "/" + fileName,
                         bytesToLines(out), bytesToLines(err))
             throw e
           }
         }
       }
     }
-    checkOutput(args, dirName + "/" + fileName,
+    checkOutput(args, logFileName, dirName + "/" + fileName,
                 bytesToLines(out), bytesToLines(err))
   }
 
@@ -188,9 +189,9 @@ object ConfigTestHarness {
     }
   }
 
-  def checkOutput(args: Array[String], newLogFileName: String,
+  def checkOutput(args: Array[String], logFileName: String,
+                  newLogFileName: String,
                   log: Iterator[String], err: Iterator[String]) = {
-    val logFileName = "../log/config/" + args.mkString("")
     val logIters = log.duplicate
     val errIters = err.duplicate
     writeToFiles (newLogFileName, logIters._1, errIters._1)
