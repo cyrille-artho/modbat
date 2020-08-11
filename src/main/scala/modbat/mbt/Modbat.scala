@@ -112,9 +112,9 @@ class Modbat(val mbt: MBT) {
   var count = 0 // count the number of executed test cases.
   var appState = AppExplore // track app state in shutdown handler
   // shutdown handler is registered at time when model exploration starts
-  private var executedTransitions = new ListBuffer[RecordedTransition]
+  private val executedTransitions = new ListBuffer[RecordedTransition]
   private var randomSeed: Long = 0 // current random seed
-  var masterRNG: CloneableRandom = mbt.rng.asInstanceOf[CloneableRandom].clone
+  val masterRNG: CloneableRandom = mbt.rng.asInstanceOf[CloneableRandom].clone
   private val timesVisited = new HashMap[RecordedState, Int]
   val testFailures =
     new HashMap[(TransitionResult, String), ListBuffer[Long]]()
