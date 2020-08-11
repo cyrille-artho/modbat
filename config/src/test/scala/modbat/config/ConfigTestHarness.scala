@@ -55,6 +55,7 @@ object ConfigTestHarness {
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
     val logFileName = "../log/config/" + testFileName(className, td)
     val oldLogFileName = "../log/config/" + args.mkString("")
+    var exc: Throwable = null
 
     Console.withErr(err) {
       Console.withOut(out) {
@@ -70,15 +71,15 @@ object ConfigTestHarness {
           case e: IllegalArgumentException => {
             Console.err.println(c.header)
             Console.err.println(e.getMessage())
-            checkOutput(args, oldLogFileName, logFileName,
-                        bytesToLines(out), bytesToLines(err))
-            throw e
           }
         }
       }
     }
     checkOutput(args, oldLogFileName, logFileName,
                 bytesToLines(out), bytesToLines(err))
+    if (exc != null) {
+      throw exc
+    }
   }
 
   def test(args: Array[String], td: org.scalatest.TestData)
