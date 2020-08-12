@@ -12,7 +12,7 @@ object Log {
   val None = 10
 }
 
-class Log(val out: PrintStream, val err: PrintStream) {
+class Log(var out: PrintStream, var err: PrintStream) {
   import Log._
   private var level = Info
   // errLevel can currently not be set - this can be added later

@@ -112,11 +112,17 @@ class Modbat(val mbt: MBT) {
   }
 
   def wrapRun = {
+    val origOut = mbt.log.out
+    val origErr = mbt.log.err
+    mbt.log.out = out
+    mbt.log.err = err
     Console.withErr(err) {
       Console.withOut(out) {
         val model = mbt.launch(null)
         val result = exploreModel(model)
         mbt.cleanup()
+        mbt.log.out = origOut
+        mbt.log.err = origErr
         result
       }
     }
