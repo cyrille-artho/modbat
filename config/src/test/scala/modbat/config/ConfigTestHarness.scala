@@ -194,8 +194,8 @@ object ConfigTestHarness {
 //System.err.println("git mv " + logFileName + ".out " + newLogFileName + ".out")
 //System.err.println("git mv " + logFileName + ".eout " + newLogFileName + ".eout")
     writeToFiles (newLogFileName, logIters._1, errIters._1)
-    val logMatch = checkFile(logFileName + ".out", logIters._2)
-    val errMatch = checkFile(logFileName + ".eout", errIters._2)
+    val logMatch = checkFile(newLogFileName + ".out", logIters._2)
+    val errMatch = checkFile(newLogFileName + ".eout", errIters._2)
     assert(logMatch, "Output does not match template")
     assert(errMatch, "Errors do not match template")
   }
