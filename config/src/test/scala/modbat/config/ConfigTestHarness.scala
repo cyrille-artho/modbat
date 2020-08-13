@@ -58,6 +58,8 @@ object ConfigTestHarness {
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
     val logFileName = "../log/config/" + testFileName(className, td)
     val oldLogFileName = "../log/config/" + args.mkString("")
+    // TODO: remove "oldLogFileName" and all its uses after full conversion
+    // of bin/test.sh to new test framework
     var exc: Throwable = null
 
     Console.withErr(err) {

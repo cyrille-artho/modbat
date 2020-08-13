@@ -17,21 +17,6 @@ import modbat.log.Log
 object ModbatTestHarness {
   import Main.TestData
 
-  def testMain(args: Array[String], env: () => Unit): (Int, List[String], List[String]) = {
-    env()
-    val config = new Configuration()
-    val out: ByteArrayOutputStream = new ByteArrayOutputStream()
-    val err: ByteArrayOutputStream = new ByteArrayOutputStream()
-
-    try {
-      Main.run(args, config, new Log(new PrintStream(out), new PrintStream(err)))
-      (0, bytesToLines(out).toList, bytesToLines(err).toList)
-    } catch {
-      case _: Throwable =>
-        (1, bytesToLines(out).toList, bytesToLines(err).toList)
-    }
-  }
-
   def runTest(className: String, args: Array[String], env: () => Unit,
               td: org.scalatest.TestData): Unit = {
     val shouldFail = td.text.startsWith("should fail")
