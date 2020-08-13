@@ -12,29 +12,10 @@ import modbat.config.ConfigTestHarness.checkOutput
 import modbat.config.ConfigTestHarness.{filter => configTestFilter}
 import modbat.config.ConfigTestHarness.testFileName
 
+import modbat.log.Log
+
 object ModbatTestHarness {
   import Main.TestData
-  val origOut = System.out
-  val origErr = System.err
-
-  def testMain(args: Array[String], env: () => Unit): (Int, List[String], List[String]) = {
-    env()
-    val config = new Configuration()
-    val out: ByteArrayOutputStream = new ByteArrayOutputStream()
-    val err: ByteArrayOutputStream = new ByteArrayOutputStream()
-
-    Console.withErr(err) {
-      Console.withOut(out) {
-        try {
-          Main.run(args, config)
-          (0, bytesToLines(out).toList, bytesToLines(err).toList)
-        } catch {
-          case _: Throwable =>
-            (1, bytesToLines(out).toList, bytesToLines(err).toList)
-        }
-      }
-    }
-  }
 
   def runTest(className: String, args: Array[String], env: () => Unit,
               td: org.scalatest.TestData): Unit = {
@@ -47,26 +28,18 @@ object ModbatTestHarness {
     val logFile = "log/modbat/" + getLogFileName(args)
     val logFileName = "log/modbat/" + testFileName(className, td)
     var exc: Throwable = null
-    System.setOut(new PrintStream(out))
-    System.setErr(new PrintStream(err))
-    Console.withErr(err) {
-      Console.withOut(out) {
-        try {
-          Main.run(args, config)
-          if (shouldFail) {
-            assert (false,
-                    "Non-zero error code expected but test was successful.")
-          }
-        } catch {
-          case e: Throwable => {
-            testData.modbat.ShutdownHandler.run
-            exc = e
-          }
-        }
+    try {
+      Main.run(args, config, new Log(new PrintStream(out), new PrintStream(err)))
+      if (shouldFail) {
+        assert (false,
+                "Non-zero error code expected but test was successful.")
+      }
+    } catch {
+      case e: Throwable => {
+        testData.modbat.ShutdownHandler.run
+        exc = e
       }
     }
-    System.setOut(origOut)
-    System.setErr(origErr)
     checkOutput(args, logFile, logFileName, bytesToLines(out), bytesToLines(err), filter)
     if (exc != null) {
       throw exc

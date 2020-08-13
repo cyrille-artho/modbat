@@ -1,5 +1,6 @@
 package modbat.config
 
+import java.io.PrintStream
 import java.lang.annotation.Annotation
 import java.lang.reflect.Field
 import java.lang.reflect.Method
@@ -23,7 +24,7 @@ object ConfigMgr {
 
   def main(args: Array[String]): Unit = {
     try {
-        run(args)
+      run(args)
     } catch {
       case e: Exception => System.exit(1)
     }
@@ -57,11 +58,11 @@ object ConfigMgr {
       printRemainingArgs(c.parseArgs(args))
       } catch {
         case e: IllegalArgumentException => {
-	      if (c != null) {
-	         Console.err.println(c.header)
-	      }
-	      Console.err.println(e.getMessage())
-	      throw e
+          if (c != null) {
+            Console.err.println(c.header)
+          }
+          Console.err.println(e.getMessage())
+          throw e
         }
       }
     }
@@ -71,7 +72,8 @@ object ConfigMgr {
     defined in <tt>@test</tt> annotations. */
 class ConfigMgr (progName: String, argName: String,
 		 config: Configuration,
-		 version: Version, test: Boolean = false) {
+		 version: Version, test: Boolean = false,
+                 out: PrintStream = Console.out) {
   import ArgParse._
   import ConfigMgr._
   import FieldUtil._
@@ -159,15 +161,15 @@ class ConfigMgr (progName: String, argName: String,
 
   def header = progName + " v" + version
 
-  def showVersion = println(header)
+  def showVersion = out.println(header)
 
   def usage: ArgParse = {
     showVersion
-    println("Usage: " + progName + " [--OPTION=value] ... " + argName)
-    println(formatStr("  -h, --help", HelpArgWidth) + "show this help and exit")
-    println(formatStr("  -s, --show", HelpArgWidth) +
+    out.println("Usage: " + progName + " [--OPTION=value] ... " + argName)
+    out.println(formatStr("  -h, --help", HelpArgWidth) + "show this help and exit")
+    out.println(formatStr("  -s, --show", HelpArgWidth) +
 	    "show current configuration")
-    println(formatStr("  -v, --version", HelpArgWidth) +
+    out.println(formatStr("  -v, --version", HelpArgWidth) +
 	    "show version number and exit")
     footnotes.clear()
     for (f <- fields) {
@@ -179,11 +181,11 @@ class ConfigMgr (progName: String, argName: String,
       }
       val shorthand = f.getAnnotation(classOf[Shorthand])
       if (shorthand != null) {
-	println(formatStr("  -" + shorthand.value() +
+	out.println(formatStr("  -" + shorthand.value() +
 			  ", --" + fieldToCmdArg(f) + " ",
 			  HelpArgWidth) + doc)
       } else {
-	println(formatStr("      --" + fieldToCmdArg(f) + " ",
+	out.println(formatStr("      --" + fieldToCmdArg(f) + " ",
 			  HelpArgWidth) + doc)
       }
     }
@@ -196,7 +198,7 @@ class ConfigMgr (progName: String, argName: String,
 
   def showSplashScreen: Unit = {
     if (splashScreen != null) {
-      splashScreen.foreach(println)
+      splashScreen.foreach(out.println)
     }
   }
 
@@ -732,7 +734,7 @@ class ConfigMgr (progName: String, argName: String,
       }
       out.append("\t[" + footnotes.length + "]")
     }
-    println(out)
+    this.out.println(out)
   }
 
   def printFieldWithChoice(field: Field, range: Choice): Unit = {
@@ -746,7 +748,7 @@ class ConfigMgr (progName: String, argName: String,
   def showConfig: ArgParse = {
     val fields: Array[Field] = config.getClass().getDeclaredFields()
     footnotes.clear()
-    println(Console.BOLD +
+    out.println(Console.BOLD +
 	    formatStr("Option", NameLength) + "\tType   \t" +
 	    formatStr("Value", ValueLength) + "\tRange" +
 	    Console.RESET)
@@ -766,7 +768,7 @@ class ConfigMgr (progName: String, argName: String,
     var i = 0
     for (f <- footnotes) {
       i += 1
-      println("[" + i + "] " + f.mkString("\n    "))
+      out.println("[" + i + "] " + f.mkString("\n    "))
     }
     Ok
   }

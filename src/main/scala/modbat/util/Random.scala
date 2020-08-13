@@ -6,7 +6,7 @@ import modbat.log.Log
 import modbat.dsl.Model
 import modbat.trace.RecordedChoice
 
-trait Random {
+abstract class Random(val log: Log) {
   def getRandomSeed: Long // get original random seed
   // this will differ from the current state if next... was used after the
   // seed was set
@@ -38,7 +38,7 @@ trait Random {
     if (d < 0) throw new IllegalArgumentException("Invalid range")
     else {
       val res = min + nextIntR(d, true)
-      Log.fine("choose(" + min + ", " + max + ") = " + res)
+      log.fine("choose(" + min + ", " + max + ") = " + res)
       res
     }
   }

@@ -5,6 +5,7 @@ import java.lang.Integer.MAX_VALUE
 import scala.collection.mutable.{ArrayBuffer, ListBuffer}
 import modbat.dsl.Action
 import modbat.dsl.Model
+import modbat.log.Log
 import modbat.trace.RecordedChoice
 
 /* Class to replace scala.util.Random with. This class can be cloned
@@ -13,8 +14,8 @@ import modbat.trace.RecordedChoice
    are not needed at the moment but would have to be implemented for full
    compatibility with the existing RNG in Scala. */
 
-class CloneableRandom(rngTrace: Array[Int], dbgTrace: Array[String])
-    extends Random {
+class CloneableRandom(log: Log, rngTrace: Array[Int], dbgTrace: Array[String])
+    extends Random(log) {
   val storedResults = new ArrayBuffer[Int](rngTrace.size)
   val resultsAsString = new ArrayBuffer[String](dbgTrace.size)
   storedResults ++= rngTrace
@@ -40,19 +41,20 @@ class CloneableRandom(rngTrace: Array[Int], dbgTrace: Array[String])
     updateSeed
   }
 
-  def this(z: Long, w: Long, trace: Array[Int], debugTrace: Array[String]) = {
-    this(trace, debugTrace)
+  def this(log: Log, z: Long, w: Long,
+           trace: Array[Int], debugTrace: Array[String]) = {
+    this(log, trace, debugTrace)
     this.z = z
     this.w = w
     updateSeed
   }
 
-  def this(z: Long, w: Long) = {
-    this(z, w, Array[Int](), Array[String]())
+  def this(log: Log, z: Long, w: Long) = {
+    this(log, z, w, Array[Int](), Array[String]())
   }
 
-  def this(seed: Long) = {
-    this(Array[Int](), Array[String]())
+  def this(log: Log, seed: Long) = {
+    this(log, Array[Int](), Array[String]())
     if ((seed >> 32) == 0) {
       reSeed(seed)
     } else {
@@ -63,7 +65,8 @@ class CloneableRandom(rngTrace: Array[Int], dbgTrace: Array[String])
   }
 
   override def clone(): CloneableRandom = {
-    new CloneableRandom(z, w, storedResults.toArray, resultsAsString.toArray)
+    new CloneableRandom(log, z, w,
+                        storedResults.toArray, resultsAsString.toArray)
   }
 
   def clear = {

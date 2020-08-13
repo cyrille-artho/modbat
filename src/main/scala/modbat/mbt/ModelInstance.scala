@@ -79,7 +79,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
       val p = paramAnns(i)
       for (ann <- p) {
          if (ann.isInstanceOf[Trace]) {
-           Log.debug("Trace param. " + i)
+           mbt.log.debug("Trace param. " + i)
          }
       }
       i += 1
@@ -95,7 +95,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
     }
     for (f <- cls.getDeclaredFields()) {
       if (f.getAnnotation(classOf[Trace]) != null) {
-         Log.debug("Trace field " + cls + "." + f.getName)
+         mbt.log.debug("Trace field " + cls + "." + f.getName)
          fields += f
       }
     }
@@ -105,7 +105,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
   def warnAboutNonDefaultWeights: Unit = {
     for (t <- transitions filter (_.action.weight != 1.0)) {
       if (!mbt.warningIssued((className, t.coverage))) {
-         Log.warn("Observer " + className + ": transition " + t +
+         mbt.log.warn("Observer " + className + ": transition " + t +
          	 " has non-default weight, which is ignored.")
       }
     }
@@ -127,12 +127,12 @@ class ModelInstance (val mbt: MBT, val model: Model,
     model.efsm = this
     model.mbt = mbt
     mbt.prepare(model)
-    Log.fine("Launching new model instance " + name + "...")
+    mbt.log.fine("Launching new model instance " + name + "...")
     if (model.isInstanceOf[Observer]) {
       isObserver = true
-        if (firstLaunch) {
-                  Log.error("Primary model must not be of type Observer.")
-           throw new FirstLaunchObserverException(name)
+      if (firstLaunch) {
+        mbt.log.error("Primary model must not be of type Observer.")
+        throw new FirstLaunchObserverException(name)
       }
       warnAboutNonDefaultWeights
     }
@@ -145,11 +145,11 @@ class ModelInstance (val mbt: MBT, val model: Model,
 
   def join(modelInstance: Model): Unit = {
     if (modelInstance == null) {
-      Log.error(name + " calls join(null) but parameter must be non-null.")
+      mbt.log.error(name + " calls join(null) but parameter must be non-null.")
       throw new NullPointerException()
     }
     if (modelInstance.efsm == null) {
-      Log.error(name + " calls join on model of type " +
+      mbt.log.error(name + " calls join on model of type " +
          	modelInstance.getClass + ", which has not been launched yet.")
       modelInstance.pendingTransitions.clear() // clear init'd but unlaunched model
       throw new modbat.dsl.JoinWithoutLaunchException()
@@ -160,7 +160,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
 
   def initChildInstance(className: String, trans: Array[Any]) = {
     val master = mbt.firstInstance(className)
-    Log.debug("Identical model found: " + master.name)
+    mbt.log.debug("Identical model found: " + master.name)
     states = master.states
     initialState = master.initialState
     init (true)
@@ -197,7 +197,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
     val params = m.getParameterTypes
     if (params.length != 0) {
       if (!mbt.warningIssued(m)) {
-        Log.warn(
+        mbt.log.warn(
           "Ignoring method " + m +
             ", which has @States annotation but more than zero arguments.")
       }
@@ -229,7 +229,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
     val exceptions = m.getAnnotation(classOf[Throws])
     for (state <- transStates) {
       if (states.contains(state)) {
-        Log.debug(
+        mbt.log.debug(
           "Registering \"" + state + "\" -> \"" + state + "\" := "
             + m.getName)
          val st = states(state)
@@ -246,7 +246,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
          regTrans(t, isChild, true)
       } else {
          if (!mbt.warningIssued((state, m))) {
-           Log.warn("Ignoring non-existent state " + state +
+           mbt.log.warn("Ignoring non-existent state " + state +
          	   " from @States annotation for " + m.getName + ".")
          }
       }
@@ -289,7 +289,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
                 ignoreDuplicates: Boolean = false): Unit = {
     tr.origin = uniqueState(tr.origin)
     tr.dest = uniqueState(tr.dest)
-    Log.debug(
+    mbt.log.debug(
       name + ": Registered state transition from " + tr.origin +
         " to " + tr.dest)
     if (mbt.checkDuplicates && !ignoreDuplicates) {
@@ -299,7 +299,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
            transitions filter (t => t.action.label.equals(label))
          if (duplicates.length != 0) {
            if (!mbt.warningIssued(label)) {
-             Log.warn ("Duplicate transition label \"" + label + "\".")
+             mbt.log.warn ("Duplicate transition label \"" + label + "\".")
            }
          }
       }
@@ -373,8 +373,8 @@ class ModelInstance (val mbt: MBT, val model: Model,
 
   def printStackTraceIfEnabled(e: Throwable): Unit = {
     if (mbt.config.printStackTrace) {
-       Log.error(e.toString)
-       MBT.printStackTrace(e.getStackTrace)
+       mbt.log.error(e.toString)
+       mbt.printStackTrace(e.getStackTrace)
      }
   }
 
@@ -383,7 +383,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
     if (!expected(successor.expectedExceptions, e)) {
       val excTrans = nonDetExc(successor.nonDetExceptions, e)
       if (excTrans eq null) {
-         Log.warn(e.toString() + " occurred, aborting.")
+         mbt.log.warn(e.toString() + " occurred, aborting.")
          printStackTraceIfEnabled(e)
          val fName = successor.action.transfunc.getClass.getName
          if (fName.startsWith("modbat.mbt") ||
@@ -405,11 +405,11 @@ class ModelInstance (val mbt: MBT, val model: Model,
                                        null,
                                        e.getClass.getName))
       }
-      Log.fine(e.toString() + " leads to exception state " +
+      mbt.log.fine(e.toString() + " leads to exception state " +
                excTrans.dest.toString() + ".")
-      Log.debug("Exceptional transition is at " + excTrans.sourceInfo)
+      mbt.log.debug("Exceptional transition is at " + excTrans.sourceInfo)
       if (successor.action.immediate) {
-         Log.fine("Next transition on this model must be taken immediately.")
+         mbt.log.fine("Next transition on this model must be taken immediately.")
       }
       return TransitionCoverage.cover(this,
                                       successor,
@@ -417,7 +417,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
                                       e.getClass.getName,
                                       successor.action.immediate)
     }
-    Log.fine(e.toString() + " generated as expected.")
+    mbt.log.fine(e.toString() + " generated as expected.")
     return TransitionCoverage.cover(this, successor, null, e.getClass.getName)
   }
 
@@ -437,14 +437,14 @@ class ModelInstance (val mbt: MBT, val model: Model,
       if (!(nextSt.nonDet) ||
            (mbt.rng.nextFloat(true) < mbt.config.maybeProbability)) {
          val envCallResult = nextSt.action() // result of "nextIf" condition
-         Log.debug("Call to nextIf returns " + envCallResult + ".")
+         mbt.log.debug("Call to nextIf returns " + envCallResult + ".")
          // remember outcome of RNG if next state predicate should be checked
          // record outcome of nextSt.action() and check for consistency
          // during replay
          val transition = nextSt.target
          if (envCallResult) {
            if (!MBT.isOffline || (expectedOverrideTrans == transition.n)) {
-             Log.fine(
+             mbt.log.fine(
                "Next state predicate" +
                transNumToString(transition.n) +
                " at " + nextSt.target.sourceInfo +
@@ -461,16 +461,16 @@ class ModelInstance (val mbt: MBT, val model: Model,
 
   def successors(quiet: Boolean): List[Transition] = {
     if (!quiet) {
-      Log.debug (name + ": Current state: " + currentState)
+      mbt.log.debug (name + ": Current state: " + currentState)
     }
     val successorTrs =
        transitions.toList.filter (t => !t.isSynthetic &&
          			  t.origin == currentState)
 
-    if (Log.isLogging(Log.Debug)) {
+    if (mbt.log.isLogging(Log.Debug)) {
       for (trans <- successorTrs) {
          if (!quiet) {
-           Log.debug(name + ": Possible successor: " + trans.dest)
+           mbt.log.debug(name + ": Possible successor: " + trans.dest)
          }
       }
     }
@@ -489,7 +489,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
 
   def handleReqFailure(req: Exception, successor: Transition):
     (TransitionResult, RecordedTransition) = {
-      Log.fine("Precondition violated, backtracking to " +
+      mbt.log.fine("Precondition violated, backtracking to " +
                 successor.origin + ".")
     (Backtrack, new RecordedTransition(this, successor)) // return the RecordedTransition when backtracking - Rui
   }
@@ -498,7 +498,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
   def executeTransition(successor: Transition):
     (TransitionResult, RecordedTransition) = {
     if (!MBT.isOffline) {
-      Log.fine(name + ": Executing transition " + successor + "...")
+      mbt.log.fine(name + ": Executing transition " + successor + "...")
     }
     if (successor.action.transfunc ne null) {
       try {
@@ -520,7 +520,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
           case _ => ()
         }
          if (!successor.expectedExceptions.isEmpty) {
-           Log.warn("Expected exception did not occur, aborting.")
+           mbt.log.warn("Expected exception did not occur, aborting.")
            (ExpectedExceptionMissing, new RecordedTransition(this, successor))
          } else {
            checkNextStPred(successor)
@@ -541,7 +541,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
          case e: Throwable => handle(e, successor)
       }
     } else {
-      Log.debug("Empty transition action.")
+      mbt.log.debug("Empty transition action.")
       checkNextStPred(successor)
     }
   }
@@ -574,7 +574,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
   def expected(exc: List[Regex], e: Throwable): Boolean = {
     exc foreach (ex =>
       if (matchesType(e, ex)) {
-        Log.debug("Expected: " + e)
+        mbt.log.debug("Expected: " + e)
         return true
       }
     )
@@ -594,13 +594,13 @@ class ModelInstance (val mbt: MBT, val model: Model,
   class WakeUp() extends Thread {
 //  class Timer(val t: Long) extends Thread {
     override def run(): Unit = {
-//      Log.fine(name + ": Started staying for " + t + " ms.")
+//      mbt.log.fine(name + ": Started staying for " + t + " ms.")
 //      Thread.sleep(t)
       mbt.stayLock.synchronized {
         staying = false
 //        mbt.stayLock.notify()
       }
-      Log.fine(name + ": Finished staying.")
+      mbt.log.fine(name + ": Finished staying.")
     }
   }
 }

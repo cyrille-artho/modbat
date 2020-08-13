@@ -58,6 +58,8 @@ object ConfigTestHarness {
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
     val logFileName = "../log/config/" + testFileName(className, td)
     val oldLogFileName = "../log/config/" + args.mkString("")
+    // TODO: remove "oldLogFileName" and all its uses after full conversion
+    // of bin/test.sh to new test framework
     var exc: Throwable = null
 
     Console.withErr(err) {
@@ -74,6 +76,7 @@ object ConfigTestHarness {
           case e: IllegalArgumentException => {
             Console.err.println(c.header)
             Console.err.println(e.getMessage())
+            exc = e
           }
         }
       }
@@ -192,9 +195,9 @@ object ConfigTestHarness {
     val errIters = err.map(line => filterFunc(line)).duplicate
 //System.err.println("git mv " + logFileName + ".out " + newLogFileName + ".out")
 //System.err.println("git mv " + logFileName + ".eout " + newLogFileName + ".eout")
-    writeToFiles (/***newL*/logFileName, logIters._1, errIters._1 )
-    val logMatch = checkFile(logFileName + ".out", logIters._2)
-    val errMatch = checkFile(logFileName + ".eout", errIters._2)
+    writeToFiles (newLogFileName, logIters._1, errIters._1)
+    val logMatch = checkFile(newLogFileName + ".out", logIters._2)
+    val errMatch = checkFile(newLogFileName + ".eout", errIters._2)
     assert(logMatch, "Output does not match template")
     assert(errMatch, "Errors do not match template")
   }

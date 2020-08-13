@@ -25,7 +25,7 @@ import scala.language.existentials
 import modbat.log.Log
 import modbat.dsl.Action
 
-class SourceInfo(val classLoaderURLs: Array[URL]) {
+class SourceInfo(val classLoaderURLs: Array[URL], val log: Log) {
   def sourceInfoFromFullName(fullName: String, lineNumber: Int) = {
     val idx = fullName.lastIndexOf('.')
     if (idx == -1) {
@@ -95,7 +95,7 @@ class SourceInfo(val classLoaderURLs: Array[URL]) {
       cr.accept(visitor, 0)
     } catch {
       case e: ClassNotFoundException => {
-	Log.warn(closureName.replace('.', File.separatorChar) +
+	log.warn(closureName.replace('.', File.separatorChar) +
 		 ".class: file not found")
       }
     }
@@ -231,7 +231,7 @@ class SourceInfo(val classLoaderURLs: Array[URL]) {
 	r.methodInfo = ""
 	if (!analyzed && r.closure.name != null) {
           analyzeClosure(new ActionInfoClsVisitor(r), r.closure.name)
-	  Log.debug("Function \"" + r.methodInfo +
+	  log.debug("Function \"" + r.methodInfo +
 		    "\" called inside closure (such as \"maybe\").")
 	}
       }
@@ -275,15 +275,15 @@ class SourceInfo(val classLoaderURLs: Array[URL]) {
 	      return new FileInputStream(f)
             }
 	  }
-	  Log.debug(filename + " not found in " + basename + ".")
+	  log.debug(filename + " not found in " + basename + ".")
 	} else {
-	  Log.warn("Warning: class path entry " + basename + " not found.")
+	  log.warn("Warning: class path entry " + basename + " not found.")
 	}
       } else {
-	Log.info("Skipping non-file URL " + url + ".")
+	log.info("Skipping non-file URL " + url + ".")
       }
     }
-    Log.error("Class file " + filename + " cannot be loaded.")
+    log.error("Class file " + filename + " cannot be loaded.")
     throw new ClassNotFoundException()
   }
 
@@ -297,7 +297,7 @@ class SourceInfo(val classLoaderURLs: Array[URL]) {
   }
 
   def clsNotFoundMsg(cls: Class[_]): Unit = {
-    Log.error(cls.getName.replace('.', File.separatorChar) + ".class" +
+    log.error(cls.getName.replace('.', File.separatorChar) + ".class" +
 	      ": file not found")
   }
 

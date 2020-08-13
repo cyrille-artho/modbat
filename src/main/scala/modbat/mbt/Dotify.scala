@@ -11,6 +11,7 @@ import modbat.log.Log
 
 class Dotify(val config: Configuration, val model: ModelInstance, outFile: String = "") {
   var out: PrintStream = null
+  val log = model.mbt.log
 
   def init: Unit = {
     assert (outFile != "")
@@ -19,8 +20,8 @@ class Dotify(val config: Configuration, val model: ModelInstance, outFile: Strin
       out = new PrintStream(new FileOutputStream(fullOutFile), false, "UTF-8")
     } catch {
       case ioe: IOException => {
-	Log.error("Cannot open file " + fullOutFile + ":")
-	Log.error(ioe.getMessage)
+	log.error("Cannot open file " + fullOutFile + ":")
+	log.error(ioe.getMessage)
 	throw ioe
       }
     }

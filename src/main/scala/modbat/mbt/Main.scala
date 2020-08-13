@@ -14,8 +14,9 @@ object Main {
   def main(args: Array[String]): Unit = {
     Modbat.isUnitTest = false
     val config = new Configuration()
+    val log = new Log(Console.out, Console.err)
     try {
-      run(args, config) // TODO: do not call exit once exceptions are used
+      run(args, config, log)
     } catch {
       case e: Exception => System.exit(1)
     }
@@ -23,26 +24,29 @@ object Main {
   }
 
   def run(args: Array[String], config: Configuration,
+          log: Log,
           testData: TestData = new TestData()): Unit = {
     var modelClassName: String = null
     val c = new ConfigMgr("scala modbat.jar",
                           "CLASSNAME",
                           config,
-                          new Version("modbat.mbt"))
+                          new Version("modbat.mbt"),
+                          /* test = */false,
+                          log.out)
     /* delegate parsing args to config library */
     try {
       val remainder = c.parseArgs(args)
       remainder match {
         case Some(remainingArgs) => {
           if (!remainingArgs.hasNext) {
-            Log.error(c.header)
-            Log.error("Model class argument missing. Try --help.")
+            log.error(c.header)
+            log.error("Model class argument missing. Try --help.")
             throw new NoModelClassException(c.header)
           }
           modelClassName = remainingArgs.next()
           if (remainingArgs.hasNext) {
             val remaining = remainingArgs.next()
-            Log.error(
+            log.error(
               "Extra arguments starting at \"" + remaining +
                 "\" are not supported.")
             throw new ExtraArgumentsException(remaining)
@@ -52,12 +56,13 @@ object Main {
       }
     } catch {
       case e: IllegalArgumentException => {
-        Log.error(e.getMessage())
+        log.error(e.getMessage())
         throw e
       }
     }
 
-    val mbt = new MBT(config)
+    val mbt = new MBT(config, log)
+    log.setLevel(config.logLevel)
     setup(config, mbt, modelClassName) // TODO: refactor into case code below once needed
 
     val modbat = new Modbat(mbt)
@@ -72,7 +77,6 @@ object Main {
 
   def setup(config: Configuration, mbt: MBT, modelClassName: String): Unit = {
     /* configure components */
-    Log.setLevel(config.logLevel)
     MBT.isOffline = false
     mbt.loadModelClass(modelClassName)
     mbt.setRNG(config.randomSeed)

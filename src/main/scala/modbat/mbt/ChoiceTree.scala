@@ -5,7 +5,7 @@ import modbat.trace.RecordedChoice
 
 import scala.collection.mutable.HashMap
 
-class ChoiceTree {
+class ChoiceTree (val mbt: MBT) {
   class ChoiceNode() {
     // children store the transitions in string and the next nodes
     var children: HashMap[Any, ChoiceNode] = HashMap.empty[Any, ChoiceNode]
@@ -49,10 +49,10 @@ class ChoiceTree {
       val node: ChoiceNode =
         root.children.getOrElse(choice, sys.error(s"unexpected key: $choice"))
       if (level == 0) {
-        Log.debug(
+        mbt.log.debug(
           "recorded choice:" + node.recordedChoice + ", choice counter:" + node.choiceCounter)
       } else {
-        Log.debug("*" * level +
+        mbt.log.debug("*" * level +
           "recorded choice:" + node.recordedChoice + ", choice counter:" + node.choiceCounter)
       }
       displayChoices(node, level + 1)
