@@ -93,5 +93,5 @@ modbat.examples.NioSocket1 & 10 & 0 & 17 & 0 & 5
 [INFO] 10 tests executed, 10 ok, 0 failed.
 [INFO] 6 states covered (100 % out of 6),
 [INFO] 15 transitions covered (75 % out of 20).
-[INFO] Precondition 1 always passed at transition modbat/examples/NioSocket1.scala:93 finishConnect
+[INFO] Precondition 1 always passed at transition modbat/examples/NioSocket1.scala:95 finishConnect
 [INFO] Random seed for next test would be: a410ce32fc39dfb

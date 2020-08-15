@@ -2,5 +2,5 @@
 [INFO] 1 tests executed, 1 ok, 0 failed.
 [INFO] 3 states covered (50 % out of 6),
 [INFO] 2 transitions covered (10 % out of 20).
-[INFO] Precondition 1 always failed at transition modbat/examples/NioSocket1.scala:86 connect
+[INFO] Precondition 1 always failed at transition modbat/examples/NioSocket1.scala:88 connect
 [INFO] Random seed for next test would be: 25ab24d9461ee328

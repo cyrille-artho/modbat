@@ -10,14 +10,14 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:79: toggleBlocking; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:86: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:97: sleep; choices = (0.24076776)
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:116: finishConnect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:81: toggleBlocking; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:88: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:99: sleep; choices = (0.24076776)
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:118: finishConnect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -30,12 +30,12 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:116: finishConnect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:118: finishConnect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -48,13 +48,13 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:79: toggleBlocking; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:86: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:97: sleep; choices = (0.091820545)
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:81: toggleBlocking; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:88: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:99: sleep; choices = (0.091820545)
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -67,12 +67,12 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:116: finishConnect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:118: finishConnect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -85,11 +85,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -102,12 +102,12 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:116: finishConnect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:118: finishConnect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -120,13 +120,13 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:79: toggleBlocking; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:86: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:97: sleep; choices = (0.019827731)
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:81: toggleBlocking; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:88: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:99: sleep; choices = (0.019827731)
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -139,11 +139,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -156,12 +156,12 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:116: finishConnect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:118: finishConnect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -174,11 +174,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -191,11 +191,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -208,11 +208,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -225,11 +225,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -242,12 +242,12 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:116: finishConnect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:118: finishConnect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -260,13 +260,13 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:79: toggleBlocking; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:86: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:97: sleep; choices = (0.03623658)
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:81: toggleBlocking; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:88: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:99: sleep; choices = (0.03623658)
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -279,11 +279,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -296,11 +296,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -313,12 +313,12 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:116: finishConnect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:118: finishConnect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -331,11 +331,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -348,11 +348,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -365,11 +365,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -382,11 +382,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -399,11 +399,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -416,11 +416,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -433,11 +433,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -450,11 +450,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -467,11 +467,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -484,11 +484,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -501,13 +501,13 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:79: toggleBlocking; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:86: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:97: sleep; choices = (0.24740748)
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:81: toggleBlocking; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:88: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:99: sleep; choices = (0.24740748)
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -520,11 +520,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -537,11 +537,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -554,11 +554,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -571,11 +571,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -588,11 +588,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -605,12 +605,12 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:116: finishConnect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:118: finishConnect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -623,11 +623,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -640,11 +640,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -657,11 +657,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -674,11 +674,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -691,11 +691,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -708,11 +708,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -725,11 +725,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -742,11 +742,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -759,11 +759,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -776,11 +776,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -793,12 +793,12 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:116: finishConnect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:118: finishConnect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -811,11 +811,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -828,11 +828,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -845,11 +845,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -862,11 +862,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -879,11 +879,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -896,11 +896,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -913,11 +913,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -930,11 +930,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -947,11 +947,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -964,11 +964,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -981,11 +981,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -998,11 +998,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1015,11 +1015,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1032,12 +1032,12 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:116: finishConnect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:118: finishConnect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1050,11 +1050,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1067,11 +1067,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1084,11 +1084,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1101,11 +1101,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1118,11 +1118,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1135,11 +1135,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1152,11 +1152,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1169,11 +1169,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1186,11 +1186,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1203,11 +1203,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1220,11 +1220,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1237,11 +1237,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1254,11 +1254,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1271,11 +1271,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1288,11 +1288,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1305,11 +1305,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1322,11 +1322,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1339,11 +1339,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1356,11 +1356,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1373,11 +1373,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1390,11 +1390,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1407,11 +1407,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1424,11 +1424,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1441,11 +1441,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1458,11 +1458,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1475,11 +1475,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1492,11 +1492,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1509,11 +1509,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1526,11 +1526,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1543,11 +1543,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1560,11 +1560,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1577,11 +1577,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1594,11 +1594,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1611,11 +1611,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1628,11 +1628,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1645,11 +1645,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1662,11 +1662,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1679,11 +1679,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1696,11 +1696,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1713,12 +1713,12 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:116: finishConnect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:118: finishConnect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1731,11 +1731,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1748,11 +1748,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1765,11 +1765,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1782,11 +1782,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1799,11 +1799,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1816,11 +1816,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1833,11 +1833,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1850,11 +1850,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1867,11 +1867,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1884,11 +1884,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1901,11 +1901,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1918,11 +1918,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1935,11 +1935,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1952,11 +1952,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1969,11 +1969,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -1986,11 +1986,11 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
 [WARNING] java.lang.AssertionError: assertion failed occurred, aborting.
 [ERROR] java.lang.AssertionError: assertion failed
 [ERROR] 	at scala.Predef$.assert(Predef.scala)
@@ -2003,8 +2003,8 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$15.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:76: open; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:82: connect; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
-[WARNING] modbat/examples/NioSocket1.scala:119: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:78: open; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:84: connect; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
+[WARNING] modbat/examples/NioSocket1.scala:121: readFrom; choices = ()
