@@ -9,8 +9,8 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$3.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$3.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:78: open
-[WARNING] modbat/examples/NioSocket1.scala:84: connect
+[WARNING] modbat/examples/NioSocket1.scala: open
+[WARNING] modbat/examples/NioSocket1.scala: connect
 [WARNING] java.net.ConnectException: Connection refused occurred, aborting.
 [ERROR] java.net.ConnectException: Connection refused
 [ERROR] 	at java.base/sun.nio.ch.Net.connect0(Native Method)
@@ -22,8 +22,8 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$3.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$3.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:78: open
-[WARNING] modbat/examples/NioSocket1.scala:84: connect
+[WARNING] modbat/examples/NioSocket1.scala: open
+[WARNING] modbat/examples/NioSocket1.scala: connect
 [WARNING] java.net.ConnectException: Connection refused occurred, aborting.
 [ERROR] java.net.ConnectException: Connection refused
 [ERROR] 	at java.base/sun.nio.ch.Net.connect0(Native Method)
@@ -35,5 +35,5 @@
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$3.apply(NioSocket1.scala)
 [ERROR] 	at modbat.examples.NioSocket1$$anonfun$3.apply(NioSocket1.scala)
 [WARNING] Error found, model trace:
-[WARNING] modbat/examples/NioSocket1.scala:78: open
-[WARNING] modbat/examples/NioSocket1.scala:84: connect
+[WARNING] modbat/examples/NioSocket1.scala: open
+[WARNING] modbat/examples/NioSocket1.scala: connect

@@ -58,7 +58,8 @@ object ModbatTestHarness {
 
   def filter(line: String) = {
     configTestFilter(line).
-      replaceAll("(at [^:]*):[0-9]*","$1")
+      replaceAll("(at [^:]*):[0-9]*","$1").
+      replaceAll("^(\\[WARNING\\] [a-zA-Z0-9/.]*:)[0-9]*:", "$1")
   }
 
   def mainTarget(args: Array[String]) = {
