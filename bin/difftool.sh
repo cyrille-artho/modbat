@@ -13,7 +13,7 @@ checkdiff() {
     echo
     echo "# Output difference: " >& 2
     echo "$diffcmd" >& 2
-    $diffcmd >& 2
+    $diffcmd
     failed=`expr ${failed} + 1`
     return 1
   fi

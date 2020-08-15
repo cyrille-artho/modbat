@@ -10,8 +10,9 @@ import java.nio.channels.SocketChannel
 
 object NioSocket1 {
   var port: Int = 8888 // pre-set to non-0 value for "no-init" test
+  var testServer: TestServer =_
 
-  object TestServer extends Thread {
+  class TestServer extends Thread {
     val ch = ServerSocketChannel.open()
     ch.socket().bind(new InetSocketAddress("localhost", 0))
     NioSocket1.port = ch.socket().getLocalPort()
@@ -36,16 +37,17 @@ object NioSocket1 {
           }
         }
       }
-      TestServer.ch.close()
+      ch.close()
     }
   }
 
   @Init def startServer(): Unit = {
-    TestServer.start()
+    testServer = new TestServer()
+    testServer.start()
   }
 
   @Shutdown def shutdown(): Unit = {
-    TestServer.interrupt()
+    testServer.interrupt()
   }
 }
 

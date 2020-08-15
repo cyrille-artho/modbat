@@ -36,12 +36,14 @@ object ModbatTestHarness {
       }
     } catch {
       case e: Throwable => {
-        testData.modbat.ShutdownHandler.run
+        if (testData.modbat != null) {
+          testData.modbat.ShutdownHandler.run
+        }
         exc = e
       }
     }
     checkOutput(args, logFile, logFileName, bytesToLines(out), bytesToLines(err), filter)
-    if (exc != null) {
+    if (shouldFail && (exc != null)) {
       throw exc
     }
   }
@@ -51,20 +53,7 @@ object ModbatTestHarness {
     (implicit fullName: sourcecode.FullName): Unit = {
     val className =
       fullName.value.substring(0, fullName.value.lastIndexOf("."))
-    val shouldFail = td.text.startsWith("should fail")
-    try {
-      runTest(className, args, env, td)
-    } catch {
-      case (e: Throwable) =>
-        val cause = e.getCause()
-        if (cause == null) {
-          assert(!shouldFail, "Caught unexpected exception: " + e.toString())
-        } else {
-          assert(!shouldFail,
-                 "Caught unexpected exception: " + e.toString() +
-                 "; cause: " + e.getCause())
-        }
-    }
+    runTest(className, args, env, td)
   }
 
   def filter(line: String) = {
