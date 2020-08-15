@@ -47,4 +47,16 @@ class NioSocketTest extends fixture.FlatSpec with fixture.TestDataFixture with M
   "NioSocket1Test11" should "pass" in { td =>
     ModbatTestHarness.test(Array("-n=1000", "-s=1", "--no-redirect-out", "--log-level=fine", "modbat.examples.NioSocket1"), (() => ModbatTestHarness.setExamplesJar()), td)
   }
+
+  "NioSocket1Test12" should "fail" in { td =>
+    ModbatTestHarness.test(Array("--mode=dot", "--auto-labels", "--dot-dir=dir_does_not_exist", "modbat.examples.NioSocket1"), (() => ModbatTestHarness.setExamplesJar()), td)
+  }
+
+  "NioSocket1Test13" should "pass" in { td =>
+    ModbatTestHarness.test(Array("-n=1", "-s=61a342c60d18ff4d", "--no-redirect-out", "modbat.examples.NioSocket1"), (() => ModbatTestHarness.setExamplesJar()), td)
+  }
+
+  "NioSocket1Test14" should "pass" in { td =>
+    ModbatTestHarness.test(Array("-n=1000", "-s=1", "--no-redirect-out", "--stop-on-failure", "modbat.examples.NioSocket1"), (() => ModbatTestHarness.setExamplesJar()), td)
+  }
 }

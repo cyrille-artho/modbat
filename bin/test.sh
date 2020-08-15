@@ -58,9 +58,6 @@ savemv dot_test/modbat.examples.NioSocket1.dot niosocket1.dot
 checkfile niosocket1.dot
 rm -rf dot_test
 
-run 1 $APP --mode=dot --auto-labels --dot-dir=dir_does_not_exit \
-	modbat.examples.NioSocket1
-
 run 0 $APP -n=10 -s=1 --dotify-coverage \
 	--auto-labels \
 	modbat.examples.NioSocket1
@@ -84,13 +81,6 @@ run 0 $APP -n=500 -s=1 --maybe-probability=0 \
 	modbat.examples.NioSocket1
 savemv modbat.examples.NioSocket1.dot cov_500-p0.dot
 checkfile cov_500-p0.dot
-
-run 0 $APP -n=1 -s=61a342c60d18ff4d --no-redirect-out \
-	modbat.examples.NioSocket1
-
-run 0 $APP -n=1000 -s=1 --no-redirect-out --stop-on-failure \
-	modbat.examples.NioSocket1
-
 
 run 0 $APP -n=5 -s=1 --no-redirect-out --log-level=fine \
 	modbat.examples.JavaNioServerSocket

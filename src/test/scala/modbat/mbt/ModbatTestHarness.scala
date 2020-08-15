@@ -19,7 +19,7 @@ object ModbatTestHarness {
 
   def runTest(className: String, args: Array[String], env: () => Unit,
               td: org.scalatest.TestData): Unit = {
-    val shouldFail = td.text.startsWith("should fail")
+    val shouldFail = !td.text.startsWith("should pass")
     val out: ByteArrayOutputStream = new ByteArrayOutputStream()
     val err: ByteArrayOutputStream = new ByteArrayOutputStream()
     env()
@@ -43,7 +43,7 @@ object ModbatTestHarness {
       }
     }
     checkOutput(args, logFile, logFileName, bytesToLines(out), bytesToLines(err), filter)
-    if (shouldFail && (exc != null)) {
+    if (!shouldFail && (exc != null)) {
       throw exc
     }
   }
