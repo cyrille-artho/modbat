@@ -206,7 +206,6 @@ run 0 $APP -n=1000 -s=1 --no-redirect-out --loop-limit=5 \
 
 
 run 0 $APP -s=1 -n=1000 modbat.examples.JavaNioSocket
-run 0 $APP -s=1 -n=10000 modbat.examples.JavaNioSocket
 
 
 run 0 $APP -s=1 -n=30 --no-redirect-out --log-level=fine \
