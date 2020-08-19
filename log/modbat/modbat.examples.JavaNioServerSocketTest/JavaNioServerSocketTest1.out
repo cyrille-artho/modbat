@@ -77,5 +77,5 @@
 [INFO]    402b73cd0066eaea
 [INFO] 7 states covered (100 % out of 7),
 [INFO] 15 transitions covered (88 % out of 17).
-[INFO] Precondition 1 always passed at transition modbat/examples/JavaNioServerSocket.scala:92 startClient
+[INFO] Precondition 1 always passed at transition modbat/examples/JavaNioServerSocket.scala: startClient
 [INFO] Random seed for next test would be: 27fe2d950fc74b21

@@ -82,23 +82,6 @@ run 0 $APP -n=500 -s=1 --maybe-probability=0 \
 savemv modbat.examples.NioSocket1.dot cov_500-p0.dot
 checkfile cov_500-p0.dot
 
-run 0 $APP -n=5 -s=1 --no-redirect-out --log-level=fine \
-	modbat.examples.JavaNioServerSocket
-run 0 $APP -n=10 -s=1 --no-redirect-out --log-level=fine \
-	modbat.examples.JavaNioServerSocket
-run 0 $APP -n=20 -s=1 --no-redirect-out --log-level=fine \
-	modbat.examples.JavaNioServerSocket
-run 0 $APP -n=50 -s=1 --no-redirect-out --log-level=fine \
-	modbat.examples.JavaNioServerSocket
-run 0 $APP -n=100 -s=1 --no-redirect-out --log-level=fine \
-	modbat.examples.JavaNioServerSocket
-run 0 $APP -n=200 -s=1 --no-redirect-out --log-level=fine \
-	modbat.examples.JavaNioServerSocket
-run 0 $APP -n=500 -s=1 --no-redirect-out --log-level=fine \
-	modbat.examples.JavaNioServerSocket
-run 0 $APP -n=1000 -s=1 --no-redirect-out --log-level=fine \
-	modbat.examples.JavaNioServerSocket
-
 ## path coverage 20 test cases
 run 0 $APP -n=20 -s=1 --no-redirect-out --dotify-path-coverage --path-coverage-graph-mode=abstracted \
 	modbat.examples.NioSocket1
