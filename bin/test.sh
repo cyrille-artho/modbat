@@ -205,15 +205,6 @@ run 0 $APP -n=1000 -s=1 --no-redirect-out --loop-limit=5 \
 run 0 $APP -s=1 -n=1000 modbat.examples.JavaNioSocket
 
 
-run 0 $APP -s=1 -n=30 --no-redirect-out --log-level=fine \
-	modbat.examples.SimpleModel
-run 0 $APP -s=49a846e52b813972 -n=1 --no-redirect-out \
-	modbat.examples.SimpleModel
-run 0 $APP -s=88af43883571af0c -n=1 --no-redirect-out \
-	modbat.examples.SimpleModel
-run 0 $APP -s=88af43883571af0c -n=1 --no-redirect-out \
-	modbat.examples.SimpleModel --print-stack-trace
-
 run 0 $APP -s=1 -n=30 --no-redirect-out modbat.examples.CounterModel
 run 0 $APP --mode=dot --auto-labels modbat.examples.CounterModel
 savemv modbat.examples.CounterModel.dot counter.dot
