@@ -24,4 +24,8 @@ class JavaNioServerSocketTest extends fixture.FlatSpec with fixture.TestDataFixt
   "JavaNioServerSocketTest5" should "pass" in { td =>
     ModbatTestHarness.test(Array("-n=100", "-s=1", "--no-redirect-out", "--log-level=fine", "modbat.examples.JavaNioServerSocket"), (() => ModbatTestHarness.setExamplesJar()), td)
   }
+
+  "Test replay for JavaNioServerSocket" should "pass" in { td =>
+    ModbatTestHarness.test(Array("-n=1", "-s=321e7808", "--no-redirect-out", "modbat.examples.JavaNioServerSocket"), (() => ModbatTestHarness.setExamplesJar()), td)
+  }
 }

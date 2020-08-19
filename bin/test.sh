@@ -166,9 +166,6 @@ run 0 $APP -n=100 -s=1 --dotify-coverage \
 savemv modbat.examples.JavaNioServerSocket.dot scov_100.dot
 checkfile scov_100.dot
 
-run 0 $APP -n=1 -s=321e7808 --no-redirect-out \
-	modbat.examples.JavaNioServerSocket
-
 # modified ServerSocket so assertions are accurate
 run 0 $APP -n=1000 -s=1 --no-redirect-out \
 	modbat.examples.JavaNioServerSocket2
