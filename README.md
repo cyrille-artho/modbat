@@ -2,7 +2,10 @@
 
 # Modbat: Model-based Tester
 
-Modbat is specialized to testing the application programming interface
+Model-based testing automates the generation of test sequences that share
+similar characteristics (for example, tests adding or removing data to a list).
+
+Modbat is specialized for testing the application programming interface
 (API) of software. The model used by Modbat is compatible with Java
 bytecode. The user defines and compiles a model, which is then explored
 by Modbat and executed against the system under test. Failed test runs
