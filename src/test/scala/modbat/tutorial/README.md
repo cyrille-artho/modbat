@@ -6,7 +6,7 @@ The tool is included in the repository.
 ## Requirements ##
 
 * Scala 2.11.X (tested with 2.11.12)
-* Java 8 (tested with 1.8.0_251).
+* Java 11 (tested with 11.0.3).
 * Modbat (provided).
 
 ## Overview of examples ##
