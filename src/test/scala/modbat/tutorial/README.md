@@ -15,7 +15,9 @@ The tool is included in the repository.
 2. modbat/tutorial/iterator: A more complex model that includes the usage of iterators.
 3. modbat/tutorial/listit: A model showing list iterators with multiple states, and a few other Modbat features.
 
-## [../../../../mbt.pdf](Slides in PDF) ##
+## Slides ##
+
+[../../../../../mbt.pdf](Slides in PDF)
 
 ## Getting started
 
