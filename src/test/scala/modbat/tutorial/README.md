@@ -17,7 +17,7 @@ The tool is included in the repository.
 
 ## Slides ##
 
-[https://github.com/cyrille-artho/modbat/blob/master/mbt.pdf](Slides in PDF)
+[https://github.com/cyrille-artho/modbat/blob/master/mbt.pdf](PDF)
 
 ## Getting started
 
