@@ -38,7 +38,6 @@ class ModelInstance (val mbt: MBT, val model: Model,
   val transitions = new ListBuffer[Transition]()
   var initialState: State = null
   var currentState: State = null
-  var name = setModelName
   /* number of nextIf transition taken, -1 if none taken */
   var expectedOverrideTrans = -1
   var expectedException: String = null
@@ -47,6 +46,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
   val tracedFields = new TracedFields(getTracedFields, model)
   @volatile var staying = false
   val mIdx = mbt.launchedModels.count(_.className.equals(className)) // mIdx gives the ID of the model -Rui
+  def name = className + "-" + (mIdx + 1)
 
   /* isChild is true when coverage information of initial instance is
    * to be re-used; this is the case when a child is launched, but also
@@ -252,22 +252,6 @@ class ModelInstance (val mbt: MBT, val model: Model,
       }
     }
     assert(model.pendingTransitions.isEmpty)
-  }
-
-  /* Iterate through all existing instances to find highest ID.
-   * If we ever have large models where this becomes too slow,
-   * add a hash map mapping model class names to a counter */
-  def setModelName: String = {
-    var id: Int = 1
-    for (m <- mbt.launchedModels) {
-      if (m.className.equals(className)) {
-         val n = Integer.parseInt(m.name.substring(m.name.indexOf('-') + 1))
-         if (n >= id) {
-           id = n + 1
-         }
-      }
-    }
-    className + "-" + id
   }
 
   def uniqueState (state: State) = {
