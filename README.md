@@ -309,12 +309,12 @@ next executed transition is one of the available transitions in state
 ```scala
 "pre" -> "post" := {
 	n = choose(0, 40)
-} nextIf({ () => n > 30 } -> "nextState")
+} nextIf({ () => n > 30 } -> "transToNextState")
 ```
 
 Non-deterministic conditions other than exceptions can be handled using
-"nextIf"; given a list of (condition, nextState) pairs, the transition
-branches to "nextState" if the given condition is true.
+"nextIf"; given a list of (condition, transToNextState) pairs, the transition
+branches to "transToNextState" if the given condition is true.
 
 Conditions are usually given as an anonymous function in Scala, using the
 "() =>" notation, before the actual condition.
@@ -355,7 +355,7 @@ Same as "maybe" but returns a boolean. If the function is not executed
 ```scala
 "pre" -> "post" := {
 	n = choose(0, 40)
-} maybeNextIf({ () => n > 30 } -> "nextState")
+} maybeNextIf({ () => n > 30 } -> "transToNextState")
 ```
 
 Same as "nextIf", but the condition is only evaluated with a certain
@@ -363,7 +363,7 @@ probability (default: 0.5). Otherwise, the given condition is ignored,
 and the default transition is chosen. This function is syntactic sugar for
 
 ```scala
-nextIf({ () => maybeBool({ () => n > 30 }) } -> "nextState")
+nextIf({ () => maybeBool({ () => n > 30 }) } -> "transToNextState")
 ```
 
 * label:

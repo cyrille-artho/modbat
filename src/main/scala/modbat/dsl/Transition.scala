@@ -25,11 +25,11 @@ class Transition (val model:            Model,
   def sourceInfo =
     model.mbt.sourceInfo.sourceInfoFromFullName(fullName, sourceLine)
 
-  // NextStateNextIf records the result of the nextIf with the next state -Rui
-  case class NextStateNextIf(val nextState: State, val nextIf: Boolean)
+  // transToNextStateNextIf records the result of the nextIf with the next state -Rui
+  case class transToNextStateNextIf(val transToNextState: State, val nextIf: Boolean)
 
-  val nonDetExcConv = ListBuffer[NextStateOnException]()
-  val nextStatePredConv = ListBuffer[NextStatePredicate]()
+  val nonDetExcConv = ListBuffer[transToNextStateOnException]()
+  val transToNextStatePredConv = ListBuffer[transToNextStatePredicate]()
   var coverage: TransitionCoverage = _
   // averageReward of the transition - Rui
   var averageReward: TransitionAverageReward = _
@@ -41,7 +41,7 @@ class Transition (val model:            Model,
 
   def expectedExceptions = action.expectedExc.toList
   def nonDetExceptions = nonDetExcConv.toList
-  def nextStatePredicates = nextStatePredConv.toList
+  def transToNextStatePredicates = transToNextStatePredConv.toList
 
   if (!isSynthetic) {
     if (remember) {
@@ -49,13 +49,13 @@ class Transition (val model:            Model,
     }
     for (nonDetE <- action.nonDetExc) {
       val t = new Transition(model, origin, nonDetE._2, true, action, nonDetE._3._1, nonDetE._3._2)
-      nonDetExcConv += new NextStateOnException(nonDetE._1, t)
+      nonDetExcConv += new transToNextStateOnException(nonDetE._1, t)
     }
 
     var i: Int = 1 // count index of next state predicate, if there are
     // several "nextIf" defintions for one transition (very rare)
-    val len = action.nextStatePred.length
-    for (nextSt <- action.nextStatePred) {
+    val len = action.transToNextStatePred.length
+    for (nextSt <- action.transToNextStatePred) {
       val t =
         new Transition(model, origin, nextSt._2, true,
                        new Action(model, action.transfunc),
@@ -64,7 +64,7 @@ class Transition (val model:            Model,
         t.n = i
       }
       i = i + 1
-      nextStatePredConv += new NextStatePredicate(nextSt._1, t, nextSt._3)
+      transToNextStatePredConv += new transToNextStatePredicate(nextSt._1, t, nextSt._3)
     }
   }
 
@@ -107,6 +107,6 @@ class Transition (val model:            Model,
   }
 
   // get the next state with the result of the nextIf -Rui
-  def getNextStateNextIf(nextState: State, nextIf: Boolean): NextStateNextIf =
-    NextStateNextIf(nextState, nextIf)
+  def gettransToNextStateNextIf(transToNextState: State, nextIf: Boolean): transToNextStateNextIf =
+    transToNextStateNextIf(transToNextState, nextIf)
 }

@@ -111,7 +111,7 @@ class Dotify(val config: Configuration, val model: ModelInstance, outFile: Strin
 	  t.toString.replace("Exception", "Exc."))
       printTrans (tr, labels.mkString(", "), color="red")
     }
-    for (nextSt <- tr.nextStatePredicates) {
+    for (nextSt <- tr.transToNextStatePredicates) {
       printTrans(nextSt.target, addParens(label), style = "dashed")
     }
   }

@@ -9,7 +9,7 @@ class RecordedTransition(val model: ModelInstance,
                          val transition: Transition,
                          val recordedAction: StackTraceElement = null,
                          /* state override result (if any) that was recorded */
-                         val nextState: Transition = null,
+                         val transToNextState: Transition = null,
                          /* exception type (if any) that was recorded */
                          val exceptionType: String = null) {
   var randomTrace: Array[Int] = null
@@ -18,21 +18,21 @@ class RecordedTransition(val model: ModelInstance,
 
   var recordedChoices: List[RecordedChoice] = _ // record choices -Rui
 
-  /* nextState should override default successor state */
+  /* transToNextState should override default successor state */
   def dest = {
-    if (nextState == null) {
+    if (transToNextState == null) {
       transition.dest
     } else {
-      nextState.dest
+      transToNextState.dest
     }
   }
 
   /* transition that was effectively taken */
   def trans = {
-    if (nextState == null) {
+    if (transToNextState == null) {
       transition
     } else {
-      nextState
+      transToNextState
     }
   }
 

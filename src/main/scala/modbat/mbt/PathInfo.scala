@@ -10,13 +10,13 @@ import modbat.mbt.TransitionQuality.Quality
   * @param modelName The current model's name
   * @param modelID The current model's ID
   * @param transition The current executed transition
-  * @param nextStateNextIf The next state and the boolean result of nextif
+  * @param transToNextStateNextIf The next state and the boolean result of nextif
   * @param transitionQuality The quality of the transition, which could be OK, Backtrack, or Fail (action outcomes)
   */
 class PathInfo(val modelName: String,
                val modelID: Int,
                val transition: Transition,
-               val nextStateNextIf: Transition#NextStateNextIf,
+               val transToNextStateNextIf: Transition#transToNextStateNextIf,
                val transitionQuality: Quality = TransitionQuality.OK) {
 
   override def toString: String =

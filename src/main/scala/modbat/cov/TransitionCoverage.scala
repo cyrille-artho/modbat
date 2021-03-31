@@ -4,7 +4,7 @@ package modbat.cov
    a numerical value), and to manage handling of data */
 
 import modbat.dsl.Transition
-import modbat.dsl.NextStateOverride
+import modbat.dsl.transToNextStateOverride
 import modbat.mbt.Configuration
 import modbat.mbt.MBT
 import modbat.mbt.ModelInstance
@@ -15,20 +15,20 @@ object TransitionCoverage {
 
   def cover(model: ModelInstance,
             t: Transition,
-            nextState: Transition = null,
+            transToNextState: Transition = null,
             excType: String = null,
             sameAgain: Boolean = false) = {
     assert(t.coverage != null, {
       "No coverage object for transition " + t.toString
     })
-    if (nextState == null) {
+    if (transToNextState == null) {
       setCoverageAndState(t, model)
     } else {
-      setCoverageAndState(nextState, model)
+      setCoverageAndState(transToNextState, model)
     }
     // do not use stack trace information as call has already happened
     // so that information is no longer directly available
-    (Ok(sameAgain), new RecordedTransition(model, t, null, nextState, excType))
+    (Ok(sameAgain), new RecordedTransition(model, t, null, transToNextState, excType))
   }
 
   def setCoverageAndState(t: Transition, model: ModelInstance): Unit = {
@@ -74,16 +74,16 @@ object TransitionCoverage {
       return
     }
     reuseOverrideInfo(instance,
-                      newTrans.nextStatePredicates,
-                      master.nextStatePredicates)
+                      newTrans.transToNextStatePredicates,
+                      master.transToNextStatePredicates)
     reuseOverrideInfo(instance,
                       newTrans.nonDetExceptions,
                       master.nonDetExceptions)
   }
 
   def reuseOverrideInfo(instance: ModelInstance,
-                        target: List[NextStateOverride],
-                        source: List[NextStateOverride]): Unit = {
+                        target: List[transToNextStateOverride],
+                        source: List[transToNextStateOverride]): Unit = {
     val sourceIt = source.iterator
     val targetIt = target.iterator
     while (sourceIt.hasNext) {
