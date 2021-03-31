@@ -330,7 +330,7 @@ class ModelInfo(val modelName: String, val modelID: Int) {
   * @param transitionID The transition's ID
   * @param transCounter The number of time that transition is executed in a path
   * @param transitionQuality The quality of the transition, which could be OK, Backtrack, or Fail (action outcomes)
-  * @param transToNextState The information for the next state and the boolean result of nextif
+  * @param nextStateNextIf The information for the next state and the boolean result of nextif
   * @param transitionChoicesMap The choices of each transition for each tests stored, and a counter to counter same choices
   */
 class TransitionInfo(val transOrigin: State,
