@@ -26,7 +26,7 @@ import modbat.dsl.Action
 import modbat.dsl.After
 import modbat.dsl.Before
 import modbat.dsl.Model
-import modbat.dsl.transToNextStateOnException
+import modbat.dsl.NextStateOnException
 import modbat.dsl.Observer
 import modbat.dsl.State
 import modbat.dsl.States

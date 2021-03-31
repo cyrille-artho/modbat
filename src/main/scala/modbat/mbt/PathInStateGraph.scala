@@ -80,7 +80,7 @@ class PathInStateGraph(val root: TrieNode,
               // the transition already in the nodeRecorder, and the transition quality is also the same
               if (n.node.transitionInfo.transitionID == node.transitionInfo.transitionID &&
                   n.node.transitionInfo.transitionQuality == node.transitionInfo.transitionQuality &&
-                  n.node.transitionInfo.transToNextStateNextIf.transToNextState.toString == node.transitionInfo.transToNextStateNextIf.transToNextState.toString) {
+                  n.node.transitionInfo.transToNextState.transToNextState.toString == node.transitionInfo.transToNextState.transToNextState.toString) {
                 // set sameTransition flag to true
                 sameTransition = true
 
@@ -120,7 +120,7 @@ class PathInStateGraph(val root: TrieNode,
                 "--- print debug --- NOT same transition:" + node.transitionInfo.transOrigin +
                   " =>" + node.transitionInfo.transDest +
                   ", " + node.transitionInfo.transitionID + ", " +
-                  node.transitionInfo.transitionQuality + ", " + node.transitionInfo.transToNextStateNextIf.transToNextState)
+                  node.transitionInfo.transitionQuality + ", " + node.transitionInfo.transToNextState.transToNextState)
 
               //sameTransition = false
             }*/
@@ -175,7 +175,7 @@ class PathInStateGraph(val root: TrieNode,
       // S_dest
       val transDest: String =
         if (backtracked)
-          n.node.transitionInfo.transToNextStateNextIf.transToNextState.toString
+          n.node.transitionInfo.transToNextState.transToNextState.toString
         else n.node.transitionInfo.transDest.toString
 
       def updateCounters = {
@@ -235,10 +235,10 @@ class PathInStateGraph(val root: TrieNode,
       }
 
       // jumped edge when nextIf is true
-      if (n.node.transitionInfo.transToNextStateNextIf != null && n.node.transitionInfo.transToNextStateNextIf.nextIf) {
+      if (n.node.transitionInfo.transToNextState != null && n.node.transitionInfo.transToNextState.nextIf) {
         val jumpedNodeOriginNextIf = transDest
         val jumpedNodeDestNextIf =
-          n.node.transitionInfo.transToNextStateNextIf.transToNextState.toString
+          n.node.transitionInfo..transToNextState.toString
 
         jumpedEdgeCounter += 1 // update counters for jumped edges
         // draw
@@ -265,7 +265,7 @@ class PathInStateGraph(val root: TrieNode,
     // S_dest
     val transDest: String =
       if (backtracked)
-        nodeInfo.node.transitionInfo.transToNextStateNextIf.transToNextState.toString
+        nodeInfo.node.transitionInfo.transToNextState.transToNextState.toString
       else nodeInfo.node.transitionInfo.transDest.toString
     // transition ID
     val transID: String = nodeInfo.node.transitionInfo.transitionID.toString
@@ -411,16 +411,16 @@ class PathInStateGraph(val root: TrieNode,
 
     // next state
     val transToNextState: String =
-      if (nodeInfo.node.transitionInfo.transToNextStateNextIf != null)
-        nodeInfo.node.transitionInfo.transToNextStateNextIf.transToNextState.toString
+      if (nodeInfo.node.transitionInfo.transToNextState != null)
+        nodeInfo.node.transitionInfo.transToNextState.transToNextState.toString
       else "null"
 
     val backtracked
       : Boolean = nodeInfo.node.transitionInfo.transitionQuality == TransitionQuality.backtrack
 
-    val transToNextStateOfBacktrack: String =
+    val NextStateOfBacktrack: String =
       if (backtracked)
-        "(" + nodeInfo.node.transitionInfo.transToNextStateNextIf.transToNextState.toString + ")"
+        "(" + nodeInfo.node.transitionInfo.transToNextState.transToNextState.toString + ")"
       else ""
 
     // calculate penwidth
@@ -440,7 +440,7 @@ class PathInStateGraph(val root: TrieNode,
         //"M:" + modelName + "\\n" +
         labelOutputOptional("MID:", modelID) +
         //"MID:" + modelID + "\\n" +
-        labelOutputOptional("T:", transName + transToNextStateOfBacktrack) +
+        labelOutputOptional("T:", transName + NextStateOfBacktrack) +
         labelOutputOptional("TID:", transID) +
         labelOutputOptional("T-Path-Counter:", transCounter) +
         labelOutputOptional("next state:", transToNextState) +

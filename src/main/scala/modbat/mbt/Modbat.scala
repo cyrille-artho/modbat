@@ -927,22 +927,22 @@ class Modbat(val mbt: MBT) {
         // Record next state into current transition,
         // when backtracked, the next state is the origin state
 
-        val transToNextStateNextIf =
-          trans.gettransToNextStateNextIf(result._2.transition.origin, false)
+        val transToNextState =
+          trans.gettransToNextState(result._2.transition.origin, false)
 
         pathInfoRecorder += new PathInfo(model.className,
                                          model.mIdx,
                                          trans,
-                                         transToNextStateNextIf,
+                                         transToNextState,
                                          TransitionQuality.backtrack)
 
       } else if (failed) { // failed case
-        val transToNextStateNextIf =
-          trans.gettransToNextStateNextIf(result._2.transition.dest, false)
+        val transToNextState =
+          trans.gettransToNextState(result._2.transition.dest, false)
         pathInfoRecorder += new PathInfo(model.className,
                                          model.mIdx,
                                          trans,
-                                         transToNextStateNextIf,
+                                         transToNextState,
                                          TransitionQuality.fail)
         // add this failed transition to trie
         if (mbt.config.dotifyPathCoverage) trie.insert(pathInfoRecorder)
@@ -953,22 +953,22 @@ class Modbat(val mbt: MBT) {
         // record this next state, otherwise,
         // record the current transition's dest as the next state
         if (result._2.transToNextState != null) {
-          val transToNextStateNextIf =
-            trans.gettransToNextStateNextIf(result._2.transToNextState.dest, true)
+          val transToNextState =
+            trans.gettransToNextState(result._2.transToNextState.dest, true)
 
           pathInfoRecorder += new PathInfo(model.className,
                                            model.mIdx,
                                            trans,
-                                           transToNextStateNextIf,
+                                           transToNextState,
                                            TransitionQuality.OK)
         } else {
-          val transToNextStateNextIf =
-            trans.gettransToNextStateNextIf(result._2.transition.dest, false)
+          val transToNextState =
+            trans.gettransToNextState(result._2.transition.dest, false)
 
           pathInfoRecorder += new PathInfo(model.className,
                                            model.mIdx,
                                            trans,
-                                           transToNextStateNextIf,
+                                           transToNextState,
                                            TransitionQuality.OK)
         }
       }
@@ -979,7 +979,7 @@ class Modbat(val mbt: MBT) {
     // output all executed transitions of the current test - Rui
     for (p <- pathInfoRecorder)
       mbt.log.debug(
-        "Recorded information for path coverage: " + p.toString + ", transID:" + p.transition.idx + ", nextif:" + p.transToNextStateNextIf)
+        "Recorded information for path coverage: " + p.toString + ", transID:" + p.transition.idx + ", nextif:" + p.transToNextState)
     // Put information in pathInfoRecoder to the trie by
     // inserting all the information of the current test into a trie for path coverage,
     // if the configuration of path coverage is true. - Rui

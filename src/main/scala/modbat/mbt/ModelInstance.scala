@@ -13,7 +13,7 @@ import scala.util.matching.Regex
 import modbat.RequirementFailedException
 import modbat.dsl.Action
 import modbat.dsl.Model
-import modbat.dsl.transToNextStateOnException
+import modbat.dsl.NextStateOnException
 import modbat.dsl.Observer
 import modbat.dsl.State
 import modbat.cov.StateCoverage
@@ -173,7 +173,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
          assert (t.target.isSynthetic)
          regTrans(t.target, isChild)
       }
-      for (t <- tr.transToNextStatePredicates) {
+      for (t <- tr.NextStatePredicates) {
          assert (t.target.isSynthetic)
          regTrans(t.target, isChild)
       }
@@ -417,7 +417,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
      condition holds */
   def checkNextStPred(trans: Transition):
     (TransitionResult, RecordedTransition) = {
-    for (nextSt <- trans.transToNextStatePredicates) {
+    for (nextSt <- trans.NextStatePredicates) {
       if (!(nextSt.nonDet) ||
            (mbt.rng.nextFloat(true) < mbt.config.maybeProbability)) {
          val envCallResult = nextSt.action() // result of "nextIf" condition
@@ -532,7 +532,7 @@ class ModelInstance (val mbt: MBT, val model: Model,
 
 /* check if any entry matches against exception,
    return successor state if so */
-  def nonDetExc(excToStateMap: List[transToNextStateOnException],
+  def nonDetExc(excToStateMap: List[NextStateOnException],
                 e: Throwable): Transition = {
     for (entry <- excToStateMap) {
       if (expected(List(entry.exception), e)) {

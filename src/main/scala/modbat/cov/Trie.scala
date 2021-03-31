@@ -97,7 +97,7 @@ class Trie(val mbt: MBT) {
       // debug code:
       /*else {
         mbt.log.debug(
-          "the missing transition:" + p.transition + ", its quality:" + p.transitionQuality + ", and nextIf:" + p.transToNextStateNextIf)
+          "the missing transition:" + p.transition + ", its quality:" + p.transitionQuality + ", and nextIf:" + p.transToNextState)
       }*/
     }
     // Update same repetition times happening for this transition during the whole test
@@ -126,7 +126,7 @@ class Trie(val mbt: MBT) {
       p.transition.idx,
       1,
       p.transitionQuality,
-      p.transToNextStateNextIf,
+      p.transToNextState,
       choicesMap
     )
   }
@@ -330,7 +330,7 @@ class ModelInfo(val modelName: String, val modelID: Int) {
   * @param transitionID The transition's ID
   * @param transCounter The number of time that transition is executed in a path
   * @param transitionQuality The quality of the transition, which could be OK, Backtrack, or Fail (action outcomes)
-  * @param transToNextStateNextIf The information for the next state and the boolean result of nextif
+  * @param transToNextState The information for the next state and the boolean result of nextif
   * @param transitionChoicesMap The choices of each transition for each tests stored, and a counter to counter same choices
   */
 class TransitionInfo(val transOrigin: State,
@@ -338,14 +338,14 @@ class TransitionInfo(val transOrigin: State,
                      val transitionID: Int,
                      var transCounter: Int,
                      val transitionQuality: Quality,
-                     val transToNextStateNextIf: Transition#transToNextStateNextIf,
+                     val transToNextState: Transition#transToNextState,
                      val transitionChoicesMap: Map[List[RecordedChoice], Int]) {
 
   override def toString: String =
     s" trans: $transOrigin=>$transDest, " +
       s"trans Origin: $transOrigin, trans Dest: $transDest, transitionID: $transitionID, " +
       s"trans counter: $transCounter, transition quality: $transitionQuality, " +
-      s"nextIf: $transToNextStateNextIf, " +
+      s"nextIf: $transToNextState, " +
       s"trans choices map: $transitionChoicesMap,"
 
 }

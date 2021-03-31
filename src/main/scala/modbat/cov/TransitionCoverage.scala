@@ -4,7 +4,7 @@ package modbat.cov
    a numerical value), and to manage handling of data */
 
 import modbat.dsl.Transition
-import modbat.dsl.transToNextStateOverride
+import modbat.dsl.NextStateOverride
 import modbat.mbt.Configuration
 import modbat.mbt.MBT
 import modbat.mbt.ModelInstance
@@ -74,16 +74,16 @@ object TransitionCoverage {
       return
     }
     reuseOverrideInfo(instance,
-                      newTrans.transToNextStatePredicates,
-                      master.transToNextStatePredicates)
+                      newTrans.transToNextState,
+                      master.NextStatePredicates)
     reuseOverrideInfo(instance,
                       newTrans.nonDetExceptions,
                       master.nonDetExceptions)
   }
 
   def reuseOverrideInfo(instance: ModelInstance,
-                        target: List[transToNextStateOverride],
-                        source: List[transToNextStateOverride]): Unit = {
+                        target: List[NextStateOverride],
+                        source: List[NextStateOverride]): Unit = {
     val sourceIt = source.iterator
     val targetIt = target.iterator
     while (sourceIt.hasNext) {

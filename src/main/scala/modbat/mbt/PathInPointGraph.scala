@@ -392,16 +392,16 @@ class PathInPointGraph(val root: TrieNode,
       .mkString(",")
 
     val transToNextState: String =
-      if (node.transitionInfo.transToNextStateNextIf != null)
-        node.transitionInfo.transToNextStateNextIf.transToNextState.toString
+      if (node.transitionInfo.transToNextState != null)
+        node.transitionInfo.transToNextState.transToNextState.toString
       else "null"
 
     val backtracked
       : Boolean = node.transitionInfo.transitionQuality == TransitionQuality.backtrack
 
-    val transToNextStateOfBacktrack: String =
+    val NextStateOfBacktrack: String =
       if (backtracked)
-        "(" + node.transitionInfo.transToNextStateNextIf.transToNextState.toString + ")"
+        "(" + node.transitionInfo.transToNextState.transToNextState.toString + ")"
       else ""
 
     // calculate penwidth
@@ -419,7 +419,7 @@ class PathInPointGraph(val root: TrieNode,
         //"M:" + modelName + "\\n" +
         labelOutputOptional("MID:", modelID) +
         //"MID:" + modelID + "\\n" +
-        labelOutputOptional("T:", transName + transToNextStateOfBacktrack) +
+        labelOutputOptional("T:", transName + NextStateOfBacktrack) +
         labelOutputOptional("TID:", transID) +
         labelOutputOptional("T-Path-Counter:", transCounter) +
         labelOutputOptional("next state:", transToNextState) +
