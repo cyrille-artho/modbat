@@ -338,7 +338,7 @@ class TransitionInfo(val transOrigin: State,
                      val transitionID: Int,
                      var transCounter: Int,
                      val transitionQuality: Quality,
-                     val transToNextState: Transition#transToNextState,
+                     val NextStateNextIf: Transition#NextStateNextIf,
                      val transitionChoicesMap: Map[List[RecordedChoice], Int]) {
 
   override def toString: String =
