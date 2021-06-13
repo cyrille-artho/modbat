@@ -37,11 +37,11 @@ class Action(val model: Model, val transfunc: () => Any, val method: Method = nu
   def catches(excToState: (String, String)*)
     (implicit line: sourcecode.Line, fullName: sourcecode.FullName): Action = {
     for (excMapping <- excToState) {
-      val foo = excMapping match {
+      val detExc = excMapping match {
         case (name, state) =>
           DetExc(new Regex(name), new State(state), fullName.value, line.value)
       }
-      nonDetExcs += foo
+      nonDetExcs += detExc
     }
     immediate = true
     this
