@@ -12,7 +12,6 @@ class Action(val model: Model, val transfunc: () => Any, val method: Method = nu
   val nonDetExc = ListBuffer[(Regex, State, (String, Int))]()
   // nonDetExc: (exc. name, target state, (fullName, line))
   val nextStatePreds = ListBuffer[NextStatePred]()
-  // nextStatePred: (pred. fn, target state, maybe, (fullName, line))
   var label: String = ""
   var weight = 1.0
   var immediate = false // if true, do not switch between model
