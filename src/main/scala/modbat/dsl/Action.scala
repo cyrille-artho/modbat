@@ -11,7 +11,7 @@ class Action(val model: Model, val transfunc: () => Any, val method: Method = nu
   val expectedExc = ListBuffer[Regex]()
   val nonDetExc = ListBuffer[(Regex, State, (String, Int))]()
   // nonDetExc: (exc. name, target state, (fullName, line))
-  val nextStatePred = ListBuffer[(() => Boolean, State, Boolean, (String, Int))]()
+  val nextStatePreds = ListBuffer[NextStatePred]()
   // nextStatePred: (pred. fn, target state, maybe, (fullName, line))
   var label: String = ""
   var weight = 1.0
@@ -21,7 +21,7 @@ class Action(val model: Model, val transfunc: () => Any, val method: Method = nu
 
   def nonDetExceptions = nonDetExc.toList
 
-  def nextStatePredicates = nextStatePred.toList
+  def nextStatePredicates = nextStatePreds.toList
 
   def label(name: String): Action = {
     label = name
@@ -49,18 +49,20 @@ class Action(val model: Model, val transfunc: () => Any, val method: Method = nu
 
   def maybeNextIf(conditions: (() => Boolean, String)*)
     (implicit line: sourcecode.Line, fullName: sourcecode.FullName): Action = {
-    for (cond <- conditions) {
-      nextStatePred += ((cond._1, new State(cond._2), true,
-                         ((fullName.value, line.value))))
+    conditions.foreach {
+      case (pred, stateName) =>
+        val nextStatePred = NextStatePred(pred, new State(stateName), maybe = true, fullName.value, line.value)
+        nextStatePreds += nextStatePred
     }
     this
   }
 
   def nextIf(conditions: (() => Boolean, String)*)
     (implicit line: sourcecode.Line, fullName: sourcecode.FullName): Action = {
-    for (cond <- conditions) {
-      nextStatePred += ((cond._1, new State(cond._2), false,
-                         ((fullName.value, line.value))))
+    conditions.foreach {
+      case (pred, stateName) =>
+        val nextStatePred = NextStatePred(pred, new State(stateName), maybe = true, fullName.value, line.value)
+        nextStatePreds += nextStatePred
     }
     this
   }
