@@ -60,7 +60,7 @@ class Action(val model: Model, val transfunc: () => Any, val method: Method = nu
     (implicit line: sourcecode.Line, fullName: sourcecode.FullName): Action = {
     conditions.foreach {
       case (pred, stateName) =>
-        val nextStatePred = NextStatePred(pred, new State(stateName), maybe = true, fullName.value, line.value)
+        val nextStatePred = NextStatePred(pred, new State(stateName), maybe = false, fullName.value, line.value)
         nextStatePreds += nextStatePred
     }
     this
