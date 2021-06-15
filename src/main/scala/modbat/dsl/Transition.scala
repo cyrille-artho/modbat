@@ -48,7 +48,7 @@ class Transition (val model:            Model,
       model.pendingTransitions += this
     }
     action.nonDetExcs.foreach {
-      case DetExc(excName, target, fullName, line) =>
+      case NonDetExc(excName, target, fullName, line) =>
         val t = new Transition(model, origin, target, isSynthetic = true, action, fullName, line)
         nonDetExcConv += new NextStateOnException(excName, t)
     }

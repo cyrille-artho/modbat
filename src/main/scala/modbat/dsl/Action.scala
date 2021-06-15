@@ -7,7 +7,7 @@ import scala.util.matching.Regex
 class Action(val model: Model, val transfunc: () => Any, val method: Method = null) {
   val mbt = model.mbt
   val expectedExc = ListBuffer[Regex]()
-  val nonDetExcs = ListBuffer[DetExc]()
+  val nonDetExcs = ListBuffer[NonDetExc]()
   val nextStatePred = ListBuffer[(() => Boolean, State, Boolean, (String, Int))]()
   // nextStatePred: (pred. fn, target state, maybe, (fullName, line))
   var label: String = ""
@@ -39,7 +39,7 @@ class Action(val model: Model, val transfunc: () => Any, val method: Method = nu
     for (excMapping <- excToState) {
       val detExc = excMapping match {
         case (name, state) =>
-          DetExc(new Regex(name), new State(state), fullName.value, line.value)
+          NonDetExc(new Regex(name), new State(state), fullName.value, line.value)
       }
       nonDetExcs += detExc
     }
