@@ -47,9 +47,10 @@ class Transition (val model:            Model,
     if (remember) {
       model.pendingTransitions += this
     }
-    for (nonDetE <- action.nonDetExc) {
-      val t = new Transition(model, origin, nonDetE._2, true, action, nonDetE._3._1, nonDetE._3._2)
-      nonDetExcConv += new NextStateOnException(nonDetE._1, t)
+    action.nonDetExcs.foreach {
+      case NonDetExc(excName, target, fullName, line) =>
+        val t = new Transition(model, origin, target, isSynthetic = true, action, fullName, line)
+        nonDetExcConv += new NextStateOnException(excName, t)
     }
 
     var i: Int = 1 // count index of next state predicate, if there are

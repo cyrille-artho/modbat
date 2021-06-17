@@ -3,14 +3,11 @@ package modbat.dsl
 import java.lang.reflect.Method
 import scala.collection.mutable.ListBuffer
 import scala.util.matching.Regex
-import modbat.log.Log
-import modbat.mbt.Main
 
 class Action(val model: Model, val transfunc: () => Any, val method: Method = null) {
   val mbt = model.mbt
   val expectedExc = ListBuffer[Regex]()
-  val nonDetExc = ListBuffer[(Regex, State, (String, Int))]()
-  // nonDetExc: (exc. name, target state, (fullName, line))
+  val nonDetExcs = ListBuffer[NonDetExc]()
   val nextStatePreds = ListBuffer[NextStatePred]()
   var label: String = ""
   var weight = 1.0
@@ -18,7 +15,7 @@ class Action(val model: Model, val transfunc: () => Any, val method: Method = nu
   // instances for next step; immediately execute this model again
   var stayTime: Option[(Int, Int)] = None
 
-  def nonDetExceptions = nonDetExc.toList
+  def nonDetExceptions = nonDetExcs.toList
 
   def nextStatePredicates = nextStatePreds.toList
 
@@ -39,8 +36,11 @@ class Action(val model: Model, val transfunc: () => Any, val method: Method = nu
   def catches(excToState: (String, String)*)
     (implicit line: sourcecode.Line, fullName: sourcecode.FullName): Action = {
     for (excMapping <- excToState) {
-      nonDetExc += ((new Regex(excMapping._1), new State(excMapping._2),
-                     ((fullName.value, line.value))))
+      val detExc = excMapping match {
+        case (name, state) =>
+          NonDetExc(new Regex(name), new State(state), fullName.value, line.value)
+      }
+      nonDetExcs += detExc
     }
     immediate = true
     this
