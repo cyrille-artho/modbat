@@ -55,17 +55,13 @@ class Transition (val model:            Model,
 
     var i: Int = 1 // count index of next state predicate, if there are
     // several "nextIf" defintions for one transition (very rare)
-    val len = action.nextStatePred.length
-    for (nextSt <- action.nextStatePred) {
-      val t =
-        new Transition(model, origin, nextSt._2, true,
-                       new Action(model, action.transfunc),
-                       nextSt._4._1, nextSt._4._2)
-      if (len > 1) {
-        t.n = i
-      }
-      i = i + 1
-      nextStatePredConv += new NextStatePredicate(nextSt._1, t, nextSt._3)
+    val len = action.nextStatePreds.length
+    action.nextStatePreds.foreach {
+      case NextStatePred(pred, state, maybe, fullName, line) =>
+        val t = new Transition(model, origin, state, isSynthetic = true, new Action(model, action.transfunc), fullName, line)
+        if (len > 1) t.n = i
+        i += 1
+        nextStatePredConv += new NextStatePredicate(pred, t, maybe)
     }
   }
 
