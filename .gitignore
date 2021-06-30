@@ -16,4 +16,5 @@ git-hash
 modbat.iml
 *.log
 *.err
+*.dot
 openmodbat.iml

@@ -1,0 +1,14 @@
+       1 a17f1c474a760a33
+[INFO] 1 main paths executed.
+[INFO] the shortest path has 2 transitions.
+[INFO] the longest path has 2 transitions.
+[INFO] path length results: Map(2 -> 1)
+[INFO] the average length of paths is: 2.0
+[INFO] the standard deviation for the length of paths is: 0.0
+
+[INFO] 1 main paths executed.
+[INFO] the shortest path has 2 transitions.
+[INFO] the longest path has 2 transitions.
+[INFO] path length results: Map(2 -> 1)
+[INFO] the average length of paths is: 2.0
+[INFO] the standard deviation for the length of paths is: 0.0

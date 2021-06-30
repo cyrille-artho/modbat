@@ -1,0 +1,38 @@
+       1 a17f1c474a760a33
+[INFO] 1 main paths executed.
+[INFO] the shortest path has 2 transitions.
+[INFO] the longest path has 2 transitions.
+[INFO] path length results: Map(2 -> 1)
+[INFO] the average length of paths is: 2.0
+[INFO] the standard deviation for the length of paths is: 0.0
+[INFO] the total number of nodes in path-based graph:2
+[INFO] the total number of choice nodes in path-based graph: 0
+[INFO] the total number of edges in path-based graph: 2
+[INFO] the total number of non choice related edges in path-based graph: 2
+[INFO] the total number of backtracked edges in path-based graph: 0
+[INFO] the total number of failed edges in path-based graph: 0
+[INFO] the total number of choice related edges in path-based graph: 0
+[INFO] the total number of cycles in path-based graph: 1
+[INFO] ---------------------- table data of PG -----------------------
+Name & Test Cases & Nodes & Choice Nodes & Edges & failEdges & Cycles & LIP & LP & SP & AVE & SD
+modbat.test.ChooseTest & 1 & 2  & 0  & 2   & 0         & 1    & 1 & 2 & 2  & 2.0 & 0.0
+--------------------------------------------------------------
+[INFO] the total number of choice nodes in state-based graph: 0
+[INFO] the total number of edges in state-based graph: 2
+[INFO] the total number of non choice related edges in state-based graph: 2
+[INFO] the total number of backtracked edges in state-based graph: 0
+[INFO] the total number of failed edges in state-based graph: 0
+[INFO] the total number of choice related edges in state-based graph: 0
+[INFO] the total number of Jumped dotted edges in state-based graph: 0
+[INFO] the total number of cycles in state-based graph: 1
+[INFO] ---------------------- table data of SG -----------------------
+Name & Test Cases & Choice Nodes & Edges & failEdges & Cycles
+modbat.test.ChooseTest & 1 & 0 & 2 & 0 & 1
+--------------------------------------------------------------
+[INFO] 1 tests executed, 1 ok, 0 failed.
+[INFO] 2 states covered (66 % out of 3),
+[INFO] 2 transitions covered (66 % out of 3).
+[INFO] modbat.test.ChooseTest: Nodes covered: 2, Total: 3, Percent: 66 %
+[INFO] modbat.test.ChooseTest: Edges covered: 2, Total: 3, Percent: 66 %
+[INFO] modbat.test.ChooseTest: Edge-pairs covered: 1, Total: 3, Percent: 33 %
+[INFO] Random seed for next test would be: ff42a9e02cd6c66

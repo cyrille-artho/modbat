@@ -17,7 +17,8 @@ class PathInfo(val modelName: String,
                val modelID: Int,
                val transition: Transition,
                val nextStateNextIf: Transition#NextStateNextIf,
-               val transitionQuality: Quality = TransitionQuality.OK) {
+               val transitionQuality: Quality = TransitionQuality.OK,
+               val nextState: Transition = null) {
 
   override def toString: String =
     s"model Name: $modelName, model ID: $modelID, transition: $transition, transition quality: $transitionQuality"

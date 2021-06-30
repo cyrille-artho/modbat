@@ -131,5 +131,8 @@ modbat.examples.NioSocket1 & 100 & 0 & 19 & 0 & 5
 [INFO] 100 tests executed, 100 ok, 0 failed.
 [INFO] 6 states covered (100 % out of 6),
 [INFO] 16 transitions covered (80 % out of 20).
+[INFO] modbat.examples.NioSocket1: Nodes covered: 6, Total: 6, Percent: 100 %
+[INFO] modbat.examples.NioSocket1: Edges covered: 16, Total: 20, Percent: 80 %
+[INFO] modbat.examples.NioSocket1: Edge-pairs covered: 31, Total: 61, Percent: 50 %
 [INFO] Precondition 1 always passed at transition modbat/examples/NioSocket1.scala:99 sleep
 [INFO] Random seed for next test would be: e33f5272c52bf71

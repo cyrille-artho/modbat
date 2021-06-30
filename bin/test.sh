@@ -89,6 +89,7 @@ savemv modbat.examples.NioSocket1-root-StateGraph.dot nio-path-state-20.dot
 checkfile nio-path-state-20.dot
 savemv modbat.examples.NioSocket1-root-PointGraph.dot nio-path-point-20.dot
 checkfile nio-path-point-20.dot
+rm -f modbat.examples.NioSocket1_graph.dot
 ## path coverage 100 test cases
 run 0 $APP -n=100 -s=1 --no-redirect-out --dotify-path-coverage --path-coverage-graph-mode=abstracted \
 	modbat.examples.NioSocket1
@@ -96,6 +97,7 @@ savemv modbat.examples.NioSocket1-root-StateGraph.dot nio-path-state-100.dot
 checkfile nio-path-state-100.dot
 savemv modbat.examples.NioSocket1-root-PointGraph.dot nio-path-point-100.dot
 checkfile nio-path-point-100.dot
+rm -f modbat.examples.NioSocket1_graph.dot
 ## path coverage 500 test cases
 run 0 $APP -n=500 -s=1 --no-redirect-out --dotify-path-coverage --path-coverage-graph-mode=abstracted \
 	modbat.examples.NioSocket1
@@ -103,6 +105,7 @@ savemv modbat.examples.NioSocket1-root-StateGraph.dot nio-path-state-500.dot
 checkfile nio-path-state-500.dot
 savemv modbat.examples.NioSocket1-root-PointGraph.dot nio-path-point-500.dot
 checkfile nio-path-point-500.dot
+rm -f modbat.examples.NioSocket1_graph.dot
 ## path coverage 1000 test cases
 run 0 $APP -n=1000 -s=1 --no-redirect-out --dotify-path-coverage --path-coverage-graph-mode=abstracted \
 	modbat.examples.NioSocket1
@@ -110,6 +113,7 @@ savemv modbat.examples.NioSocket1-root-StateGraph.dot nio-path-state-1000.dot
 checkfile nio-path-state-1000.dot
 savemv modbat.examples.NioSocket1-root-PointGraph.dot nio-path-point-1000.dot
 checkfile nio-path-point-1000.dot
+rm -f modbat.examples.NioSocket1_graph.dot
 
 ## heuristic search 10 test cases
 run 0 $APP -n=10 -s=1 --no-redirect-out --dotify-path-coverage --search=heur \
@@ -118,6 +122,7 @@ savemv modbat.examples.NioSocket1-root-StateGraph.dot nio-path-state-heur-10.dot
 checkfile nio-path-state-heur-10.dot
 savemv modbat.examples.NioSocket1-root-PointGraph.dot nio-path-point-heur-10.dot
 checkfile nio-path-point-heur-10.dot
+rm -f modbat.examples.NioSocket1_graph.dot
 ## heuristic search 100 test cases
 run 0 $APP -n=100 -s=1 --no-redirect-out --dotify-path-coverage --search=heur \
 	modbat.examples.NioSocket1
@@ -125,6 +130,7 @@ savemv modbat.examples.NioSocket1-root-StateGraph.dot nio-path-state-heur-100.do
 checkfile nio-path-state-heur-100.dot
 savemv modbat.examples.NioSocket1-root-PointGraph.dot nio-path-point-heur-100.dot
 checkfile nio-path-point-heur-100.dot
+rm -f modbat.examples.NioSocket1_graph.dot
 ## heuristic search 200 test cases
 run 0 $APP -n=200 -s=1 --no-redirect-out --dotify-path-coverage --search=heur \
 	modbat.examples.NioSocket1
@@ -132,6 +138,7 @@ savemv modbat.examples.NioSocket1-root-StateGraph.dot nio-path-state-heur-200.do
 checkfile nio-path-state-heur-200.dot
 savemv modbat.examples.NioSocket1-root-PointGraph.dot nio-path-point-heur-200.dot
 checkfile nio-path-point-heur-200.dot
+rm -f modbat.examples.NioSocket1_graph.dot
 
 run 0 $APP --mode=dot --auto-labels \
 	modbat.examples.JavaNioServerSocket
@@ -349,6 +356,15 @@ run 0 $APP -s=1 -n=100 modbat.test.ChooseTest
 run 0 $APP --mode=dot --show-choices modbat.test.ChooseTest
 savemv modbat.test.ChooseTest.dot chooseTest.dot
 checkfile chooseTest.dot
+
+# check that edge-pair coverage works; --dot-dir exists
+run 0 $APP --no-redirect-out -n=1 --dotify-path-coverage -s=7 modbat.test.ChooseTest
+savemv modbat.test.ChooseTest_graph.dot chooseTest_graph.dot
+checkfile chooseTest_graph.dot
+rm -f modbat.test.ChooseTest-root-PointGraph.dot
+rm -f modbat.test.ChooseTest-root-StateGraph.dot
+# check that --dotify-path coverage exists with an error because --dot-dir does NOT exist
+run 1 $APP --no-redirect-out -n=1 --dotify-path-coverage --dot-dir=dirnotexist -s=7 modbat.test.ChooseTest
 
 # delete log files on success
 run 0 $APP -s=1 -n=2 --remove-log-on-success modbat.test.Hello

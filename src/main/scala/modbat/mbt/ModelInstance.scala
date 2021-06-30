@@ -31,6 +31,10 @@ import modbat.trace.TransitionResult
 import modbat.dsl.Weight
 import modbat.log.Log
 
+import modbat.graphadaptor.GraphAdaptor
+import java.io.File
+import java.io.IOException
+
 class ModelInstance (val mbt: MBT, val model: Model,
                      val trans: List[Transition]) {
   val className = model.getClass.getName
@@ -47,6 +51,9 @@ class ModelInstance (val mbt: MBT, val model: Model,
   @volatile var staying = false
   val mIdx = mbt.launchedModels.count(_.className.equals(className)) // mIdx gives the ID of the model -Rui
   def name = className + "-" + (mIdx + 1)
+
+  // graph instance of model
+  var graph: GraphAdaptor = _
 
   /* isChild is true when coverage information of initial instance is
    * to be re-used; this is the case when a child is launched, but also
@@ -112,7 +119,8 @@ class ModelInstance (val mbt: MBT, val model: Model,
   }
 
   def addAndLaunch(firstLaunch: Boolean) = {
-    if (mbt.firstInstance.contains(className)) {
+    val isFirstInstance = !mbt.firstInstance.contains(className)
+    if (!isFirstInstance) {
       val master =
          initChildInstance(className, trans.toArray)
       regSynthTrans(true)
@@ -140,6 +148,30 @@ class ModelInstance (val mbt: MBT, val model: Model,
     mbt.launchedModelInst += model
     currentState = initialState
     StateCoverage.cover(initialState)
+
+    // If this model instance is the first instance of the model,
+    // create and store a graph data structure representing it.
+    if (isFirstInstance) {
+      val graph: GraphAdaptor = new GraphAdaptor(mbt.config, this)
+
+      // print graph to a dot file if such a file exists or possible to create.
+      // Otherwise, log a warning that the file could not be opened.
+      // Note: graph is printed to a file only when --dotify-path-coverage option is active
+      if (mbt.config.dotifyPathCoverage) {
+        val dotFileName = mbt.config.dotDir + File.separator + this.className + "_graph.dot"
+        try {
+          graph.printGraphTo(dotFileName)
+        } catch {
+          case ioe: IOException =>
+            mbt.log.error(s"Can not open file $dotFileName")
+            mbt.log.error(ioe.getMessage)
+        }
+      }
+
+      graph.updateTestRequirements()
+      this.graph = graph
+    }
+
     this
   }
 

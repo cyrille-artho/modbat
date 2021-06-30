@@ -1034,4 +1034,7 @@ modbat.examples.NioSocket1 & 1000 & 0 & 26 & 1 & 7
 [INFO]    8a4a8b323494e5a2 129f94f833eaa363 186622cd204ecbbb 52b3b297344848e2
 [INFO] 6 states covered (100 % out of 6),
 [INFO] 20 transitions covered (100 % out of 20).
+[INFO] modbat.examples.NioSocket1: Nodes covered: 6, Total: 6, Percent: 100 %
+[INFO] modbat.examples.NioSocket1: Edges covered: 20, Total: 20, Percent: 100 %
+[INFO] modbat.examples.NioSocket1: Edge-pairs covered: 52, Total: 61, Percent: 85 %
 [INFO] Random seed for next test would be: 4557745f20abfec0

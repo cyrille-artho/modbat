@@ -1,0 +1,11 @@
+[ERROR] Can not open file dirnotexist/modbat.test.ChooseTest_graph.dot
+[ERROR] dirnotexist/modbat.test.ChooseTest_graph.dot (No such file or directory)
+[ERROR] Cannot open file dirnotexist/modbat.test.ChooseTest-root-PointGraph.dot:
+[ERROR] dirnotexist/modbat.test.ChooseTest-root-PointGraph.dot (No such file or directory)
+[ERROR] Cannot open file dirnotexist/modbat.test.ChooseTest-root-PointGraph.dot:
+[ERROR] dirnotexist/modbat.test.ChooseTest-root-PointGraph.dot (No such file or directory)
+Exception in thread "Thread-X" java.lang.NullPointerException
+	at modbat.mbt.PathInPointGraph.dotify(PathInPointGraph.scala)
+	at modbat.mbt.Modbat.pathCoverageDisplay(Modbat.scala)
+	at modbat.mbt.Modbat.coverage(Modbat.scala)
+	at modbat.mbt.Modbat$ShutdownHandler$.run(Modbat.scala)
