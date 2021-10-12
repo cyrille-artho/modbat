@@ -31,7 +31,7 @@ Clone the repository and `cd` into it.
 
 Assemble the project by running:
 
-    gradle assemble
+    ./gradlew assemble
 
 This will build the project and place the JAR files in "./build".
 
