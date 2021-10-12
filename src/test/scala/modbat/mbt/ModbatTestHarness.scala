@@ -59,7 +59,9 @@ object ModbatTestHarness {
   def filter(line: String) = {
     configTestFilter(line).
       replaceAll("(at [^:]*):[0-9]*","$1").
-      replaceAll("^(\\[WARNING\\] [a-zA-Z0-9/.]*:)[0-9]*:", "$1")
+      replaceAll("^(\\[WARNING\\] [a-zA-Z0-9/.]*:)[0-9]*:", "$1").
+      replaceAll("java.nio.channels.ClosedChannelException",
+                 "java.nio.channels.AsynchronousCloseException")
   }
 
   def mainTarget(args: Array[String]) = {
