@@ -18,9 +18,5 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Validate Scala version
-        run: scala -version
       - name: Build with Gradle
         run: ./gradlew build
-      - name: Run system tests
-        run: bash bin/test.sh
