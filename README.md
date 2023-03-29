@@ -1,5 +1,7 @@
 *Check [LICENSE](LICENSE) for licensing conditions.*
 
+# Note: [Modbat has moved gitlab](https://gitlab.com/cartho/modbat)! This repo will remain as an archive.
+
 # Modbat: Model-based Tester
 
 Model-based testing automates the generation of test sequences that share
